@@ -1,0 +1,3 @@
+
+cd C:\Users\Tyler\Documents\GitHub\Project_Rose_Mu\Assets\Sprites\Actors\Rose\Slashing
+for /F "delims= " %i in ('%ASEPRITE% -b --list-tags Basic_Slash_Attacks_Export.ase') DO (%ASEPRITE% -b --frame-tag "%i" "Basic_Slash_Attacks_Export.ase" --sheet "%i.png")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Objects/Actors/Player/Rose/AttackObjects/Attack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/Actors/Player/Rose/AttackObjects/DownImpactAttack.gd" type="Script" id=2]
+
+[node name="XAttack" instance=ExtResource( 1 )]
+rotation = 3.14159
+script = ExtResource( 2 )
+wind = 0.3
+attack = 0.5
+recoil = 1.0
+speedx = 0.0
+speedy = 800.0
+knockback = Vector2( 100, 50 )
+
+[node name="collider" type="CollisionPolygon2D" parent="." index="1"]
+polygon = PoolVector2Array( -20, 60, -20, 25, -8, -20, 0, -30, 8, -20, 20, 25, 20, 60, 0, 20 )
+
+[node name="collider2" type="CollisionPolygon2D" parent="." index="2"]
+visible = false
+polygon = PoolVector2Array( -70.9263, 56.0025, -164.921, 14.454, -42.3192, -19.2616, 0, -30, 41.7995, -21.6455, 157.25, 19.5624, 76.8774, 58.3864, 26.1337, 34.5471, -0.770653, 89.3775, -28.3561, 32.8443 )
+disabled = true
+

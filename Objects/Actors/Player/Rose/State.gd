@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var host = get_parent().get_parent();
-onready var attack = get_parent().get_node("Attack");
+onready var attack_controller = get_parent().get_parent().get_node("Attack_Controller");
 onready var vault = get_parent().get_node("Vault");
 onready var animator = get_parent().get_parent().get_node("animator");
 

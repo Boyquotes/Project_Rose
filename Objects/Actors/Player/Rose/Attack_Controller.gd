@@ -1,13 +1,19 @@
-extends "./Free_Motion_State.gd"
+extends Node2D
+
+onready var host = get_parent();
 
 signal vault;
+signal attack;
 
 ### temp inits ###
 var combo_step = 0;
+var bash_charge = 0;
+var bash_charge_increment = 10;
+
 var on_cooldown = false;
-var dashing = false;
 var combo_end = false;
 var track_input = false;
+var save_input = false;
 var hit = false;
 var floating = false;
 #starting the attack
@@ -19,7 +25,7 @@ var attack_end = false;
 var animate = false;
 var attack_spawned = false;
 var attack_is_saved = false;
-
+var ignore_bash_release = false;
 ### attack codes ###
 var type = "slashing";
 var dir = "horizontal";
@@ -30,6 +36,7 @@ var current_attack = 'nil';
 var saved_attack = 'nil';
 var attack_str = "";
 var attack_idx = "";
+var charge_level = "low";
 
 
 ### modifiable inits ###
@@ -53,12 +60,64 @@ var bash_enabled = false;
 ### debug_vars ###
 var input_testing = false;
 
-func enter():
-	host.state = 'attack';
+
+func _on_Attack_Controller_attack():
 	track_input = true;
+	save_input = true;
 	saveInput(Input);
 	pass;
 
+### Prepares next move if user input is detected ###
+func saveInput(event):
+	if(event.is_action_just_released("bash_attack") && !ignore_bash_release):
+		saved_attack = 'bash';
+		cur_cost = basic_cost;
+		bash_charge = 0;
+		save_input = false;
+		$BashChargeTimer.stop();
+	elif(event.is_action_just_released("bash_attack")):
+		bash_charge = 0;
+		$BashChargeTimer.stop();
+	elif(host.is_attack_triggered()):
+		if(event.is_action_just_pressed("bash_attack")):
+			$BashChargeTimer.start();
+			ignore_bash_release = false
+		elif(event.is_action_just_pressed("slash_attack")):
+			saved_attack = 'slash';
+			cur_cost = basic_cost;
+			save_input = false;
+		elif(event.is_action_just_pressed("pierce_attack")):
+			saved_attack = 'pierce';
+			cur_cost = basic_cost;
+			save_input = false;
+		if(event.is_action_pressed("bash_attack") && charge_level != "low"):
+			saved_attack += 'bash';
+			cur_cost = spec_cost;
+			save_input = false;
+		if(event.is_action_just_pressed("dodge")):
+			saved_attack = 'dodge';
+			cur_cost = spec_cost;
+			save_input = false;
+			#TODO: allow input for shortly after start and mid-start for special attacks
+		elif(!event.is_action_just_pressed("bash_attack")):
+			ignore_bash_release = true;
+			bash_charge = 0;
+	if(!save_input):
+		attack_is_saved = true;
+		print(charge_level);
+		print(saved_attack);
+		charge_level = "low"; #TODO: do this later
+	pass;
+
+### Runs every frame ###
+func execute(delta):
+	#if(save_input):
+	#	saveInput(Input);
+	if(!input_testing):
+		attack();
+	pass;
+
+"""
 ### Handles animation, incomplete ###
 func handleAnimation():
 	if(!input_testing):
@@ -74,25 +133,7 @@ func handleAnimation():
 			host.animate(attack_str + attack_idx, false);
 	
 	pass;
-
-### Prepares next move if user input is detected ###
-func saveInput(event):
-	if(event.is_action_just_pressed("basic_attack") || event.is_action_just_pressed("special_attack")):
-		if(event.is_action_just_pressed("basic_attack")):
-			saved_attack = 'basic';
-			cur_cost = basic_cost;
-		elif(event.is_action_just_pressed("special_attack")):
-			saved_attack = 'special';
-			cur_cost = spec_cost;
-			attack_idx = "";
-			if(host.magic_bool):
-				magic = "_magic";
-			else:
-				magic = "";
-		if(saved_attack != 'nil'):
-			attack_is_saved = true;
-	pass;
-
+"""
 
 ### Determines direction of attack ###
 func atk_left(event):
@@ -113,7 +154,6 @@ func handleInput(event):
 		saveInput(event);
 	if(track_input):
 		if(host.resource < -10):
-			exit_g_or_a();
 			return;
 		if(event.is_action_pressed("switchL") && event.is_action_pressed("switchR")):
 			exit('block');
@@ -127,10 +167,8 @@ func handleInput(event):
 		
 		if(atk_left(event)):
 			dir = "horizontal"
-			update_look_direction(-1);
 		elif(atk_right(event)):
 			dir = "horizontal";
-			update_look_direction(1);
 		elif(host.mouse_enabled):
 			dir = "";
 		
@@ -177,28 +215,16 @@ func handleInput(event):
 			!event.is_action_pressed("lock")) ):
 			if(event.is_action_pressed("left") ||
 				event.is_action_pressed("right")):
-				exit_g_or_a();
 				return;
 		elif(!attack_is_saved && !event.is_action_pressed("lock")):
 			if(event.is_action_just_pressed("jump")):
-				exit_g_or_a();
 				return;
 	#combo timeout
 	if(!attack_start && !attack_mid && combo_end && 
 		(!event.is_action_pressed("switchL") && 
 		!event.is_action_pressed("switchR") && 
 		!event.is_action_pressed("lock"))):
-		exit_g_or_a();
 		return;
-	pass;
-
-### Runs every frame ###
-func execute(delta):
-	if(!input_testing):
-		attack();
-	#prevent player slipping
-	if(host.on_floor() && !attack_mid && !dashing):
-		host.hspd = 0;
 	pass;
 
 ### Cleans state up when player changes state ###
@@ -212,7 +238,7 @@ func exit(state):
 	attack_mid = false;
 	attack_end = false;
 	
-	dashing = false;
+	host.grav_activated = true;
 	hit = false;
 	attack_spawned = false;
 	attack_is_saved = false;
@@ -383,4 +409,18 @@ func _on_VaultTimer_timeout():
 	host.vspd = 0;
 	
 	exit("vault");
+	pass;
+
+func _on_BashChargeTimer_timeout():
+	bash_charge += bash_charge_increment;
+	print(bash_charge);
+	if(bash_charge < 20):
+		charge_level = "low";
+	elif(bash_charge < 40):
+		ignore_bash_release = false;
+		charge_level = "med";
+	elif(bash_charge < 60):
+		charge_level = "high";
+	
+	
 	pass;

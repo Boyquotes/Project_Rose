@@ -26,9 +26,8 @@ func handleAnimation():
 	pass;
 
 func handleInput(event):
-	if(event.is_action_just_pressed("attack") && host.resource >= attack.base_cost):
-		exit('attack');
-	elif(event.is_action_just_released("jump")):
+	.handleInput(event);
+	if(event.is_action_just_released("jump")):
 		jump_traversal = jump_displacement;
 	elif(host.on_floor()):
 		exit('move_on_ground');

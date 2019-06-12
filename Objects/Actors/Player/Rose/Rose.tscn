@@ -31,9 +31,9 @@
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Special_X_Up_Ground.png" type="Texture" id=29]
 [ext_resource path="res://Objects/Actors/Player/Rose/Move_On_Ground_State.gd" type="Script" id=30]
 [ext_resource path="res://Objects/Actors/Player/Rose/Move_In_Air_State.gd" type="Script" id=31]
-[ext_resource path="res://Objects/Actors/Player/Rose/Attack_State.gd" type="Script" id=32]
-[ext_resource path="res://Objects/Actors/Player/Rose/Ledge_Grab_State.gd" type="Script" id=33]
-[ext_resource path="res://Objects/Actors/Player/Rose/Vault_State.gd" type="Script" id=34]
+[ext_resource path="res://Objects/Actors/Player/Rose/Ledge_Grab_State.gd" type="Script" id=32]
+[ext_resource path="res://Objects/Actors/Player/Rose/Vault_State.gd" type="Script" id=33]
+[ext_resource path="res://Objects/Actors/Player/Rose/Attack_Controller.gd" type="Script" id=34]
 
 [sub_resource type="Animation" id=1]
 length = 0.3
@@ -696,7 +696,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("States/Attack")
+tracks/3/path = NodePath("Attack_Controller")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1418,33 +1418,15 @@ script = ExtResource( 30 )
 [node name="Move_In_Air" type="Node2D" parent="States"]
 script = ExtResource( 31 )
 
-[node name="Attack" type="Node2D" parent="States"]
-script = ExtResource( 32 )
-
-[node name="InterruptTimer" type="Timer" parent="States/Attack"]
-one_shot = true
-
-[node name="CooldownTimer" type="Timer" parent="States/Attack"]
-one_shot = true
-
-[node name="RecoilTimer" type="Timer" parent="States/Attack"]
-one_shot = true
-
-[node name="FloatTimer" type="Timer" parent="States/Attack"]
-one_shot = true
-
-[node name="VaultTimer" type="Timer" parent="States/Attack"]
-one_shot = true
-
 [node name="Ledge_Grab" type="Node2D" parent="States"]
 editor/display_folded = true
-script = ExtResource( 33 )
+script = ExtResource( 32 )
 
 [node name="Climb_Timer" type="Timer" parent="States/Ledge_Grab"]
 one_shot = true
 
 [node name="Vault" type="Node2D" parent="States"]
-script = ExtResource( 34 )
+script = ExtResource( 33 )
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]
 editor/display_folded = true
@@ -1471,14 +1453,37 @@ collision_mask = 33
 
 [node name="Stamina_Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Attack_Controller" type="Node2D" parent="."]
+script = ExtResource( 34 )
+
+[node name="InterruptTimer" type="Timer" parent="Attack_Controller"]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="Attack_Controller"]
+one_shot = true
+
+[node name="RecoilTimer" type="Timer" parent="Attack_Controller"]
+one_shot = true
+
+[node name="FloatTimer" type="Timer" parent="Attack_Controller"]
+one_shot = true
+
+[node name="VaultTimer" type="Timer" parent="Attack_Controller"]
+one_shot = true
+
+[node name="BashChargeTimer" type="Timer" parent="Attack_Controller"]
+wait_time = 1.5
 [connection signal="consume_resource" from="." to="." method="_on_Rose_consume_resource"]
-[connection signal="vault" from="States/Attack" to="States/Attack" method="_on_Attack_vault"]
-[connection signal="timeout" from="States/Attack/InterruptTimer" to="States/Attack" method="_on_InterruptTimer_timeout"]
-[connection signal="timeout" from="States/Attack/CooldownTimer" to="States/Attack" method="_on_CooldownTimer_timeout"]
-[connection signal="timeout" from="States/Attack/RecoilTimer" to="States/Attack" method="_on_RecoilTimer_timeout"]
-[connection signal="timeout" from="States/Attack/FloatTimer" to="States/Attack" method="_on_FloatTimer_timeout"]
-[connection signal="timeout" from="States/Attack/VaultTimer" to="States/Attack" method="_on_VaultTimer_timeout"]
 [connection signal="timeout" from="States/Ledge_Grab/Climb_Timer" to="States/Ledge_Grab" method="_on_Climb_Timer_timeout"]
 [connection signal="area_entered" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
 [connection signal="area_exited" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
 [connection signal="timeout" from="Stamina_Timer" to="." method="_on_Stamina_Timer_timeout"]
+[connection signal="attack" from="Attack_Controller" to="Attack_Controller" method="_on_Attack_Controller_attack"]
+[connection signal="vault" from="Attack_Controller" to="Attack_Controller" method="_on_Attack_vault"]
+[connection signal="timeout" from="Attack_Controller/InterruptTimer" to="Attack_Controller" method="_on_InterruptTimer_timeout"]
+[connection signal="timeout" from="Attack_Controller/CooldownTimer" to="Attack_Controller" method="_on_CooldownTimer_timeout"]
+[connection signal="timeout" from="Attack_Controller/RecoilTimer" to="Attack_Controller" method="_on_RecoilTimer_timeout"]
+[connection signal="timeout" from="Attack_Controller/FloatTimer" to="Attack_Controller" method="_on_FloatTimer_timeout"]
+[connection signal="timeout" from="Attack_Controller/VaultTimer" to="Attack_Controller" method="_on_VaultTimer_timeout"]
+[connection signal="timeout" from="Attack_Controller/BashChargeTimer" to="Attack_Controller" method="_on_BashChargeTimer_timeout"]

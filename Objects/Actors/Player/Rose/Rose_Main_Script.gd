@@ -7,7 +7,6 @@ signal consume_resource;
 onready var states = {
 	'move_on_ground' : $States/Move_On_Ground,
 	'move_in_air' : $States/Move_In_Air,
-	'attack' : $States/Attack,
 	'ledge_grab' : $States/Ledge_Grab,
 	'vault' : $States/Vault
 }
@@ -30,6 +29,7 @@ var max_stamina = 100;
 var resource = 0;
 var rad = 0.0;
 var deg = 0.0;
+var grav_activated = true;
 
 ### vars to send elsewhere
 var mouse_enabled = true;
@@ -70,25 +70,24 @@ func phys_execute(delta):
 	velocity.y = vspd;
 	velocity.x = hspd;
 	velocity = move_and_slide(velocity, floor_normal);
-	print(velocity.y);
 	#no gravity acceleration when on floor
 	if(is_on_floor()):
 		air_time = 0;
 		velocity.y = 0
 		vspd = 0;
-		states['attack'].air_counter = 1;
+		$Attack_Controller.air_counter = 1;
 	
-	if(grav_activated()):
+	if(grav_activated):
 		vspd += gravity * delta;
 	
 	#cap gravity
-	if(vspd > g_max && !states['attack'].dashing) :
+	if(vspd > g_max && grav_activated) :
 		vspd = g_max;
 	
 	if(is_on_ceiling()):
 		vspd = 0;
 	pass;
-
+"""
 func grav_activated():
 	return (!states['attack'].dashing && 
 			!states['attack'].floating && 
@@ -96,7 +95,7 @@ func grav_activated():
 			!states['vault'].vaulting &&
 			!states['vault'].vaulted &&
 			!states['move_in_air'].jumping );
-
+"""
 func _on_DetectHitboxArea_area_entered(area):
 	if(!targettableHitboxes.has(area)):
 		targettableHitboxes.push_back(area);
@@ -163,7 +162,7 @@ func _on_Rose_consume_resource(cost):
 	pass;
 
 func _on_Stamina_Timer_timeout():
-	if(states['attack'].attack_spawned):
+	if($Attack_Controller.attack_spawned):
 		$Stamina_Timer.start();
 	elif(stamina < 100):
 		stamina += 1;
@@ -188,3 +187,10 @@ func reset_hitbox():
 	$Hitbox/CollisionShape2D2.scale.y = 1;
 	$Hitbox/CollisionShape2D2.position.y = 0;
 	pass;
+
+func is_attack_triggered():
+	return (Input.is_action_just_pressed("bash_attack") ||
+	Input.is_action_just_pressed("dodge") ||
+	Input.is_action_just_pressed("pierce_attack") ||
+	Input.is_action_just_pressed("slash_attack") ||
+	Input.is_action_just_released("bash_attack"))

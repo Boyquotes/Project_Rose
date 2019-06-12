@@ -14,4 +14,3 @@ position = Vector2( 0, 20 )
 rotation = 1.5708
 scale = Vector2( 1, 1.5 )
 polygon = PoolVector2Array( 40, -5, 70, 0, 40, 5, 45, 0 )
-

@@ -31,9 +31,8 @@ var rad = 0.0;
 var deg = 0.0;
 var grav_activated = true;
 
-### vars to send elsewhere
-var mouse_enabled = true;
-
+enum InputType {GAMEPAD, KEYMOUSE};
+var ActiveInput = InputType.GAMEPAD;
 func _ready():
 	reset_hitbox();
 	$Camera2D.current = true;
@@ -45,6 +44,14 @@ func _ready():
 	hp = max_hp;
 	tag = "player";
 	gravity = 1800;
+	pass;
+
+func _input(event):
+	if(event.get_class() == "InputEventMouseButton" || event.get_class() == "InputEventKey"):
+		ActiveInput = InputType.KEYMOUSE;
+	elif(event.get_class() == "InputEventJoypadMotion" || event.get_class() == "InputEventJoypadButton"):
+		ActiveInput = InputType.GAMEPAD;
+
 	pass;
 
 func execute(delta):
@@ -170,16 +177,16 @@ func _on_Stamina_Timer_timeout():
 	pass;
 
 func mouse_r():
-	return (deg > -60 && deg < 60) && mouse_enabled;
+	return (deg > -60 && deg < 60) && ActiveInput == InputType.KEYMOUSE;
 
 func mouse_u():
-	return (deg > -150 && deg < -30) && mouse_enabled;
+	return (deg > -150 && deg < -30) && ActiveInput == InputType.KEYMOUSE;
 
 func mouse_l():
-	return (deg > 120 || deg < -120) && mouse_enabled;
+	return (deg > 120 || deg < -120) && ActiveInput == InputType.KEYMOUSE;
 
 func mouse_d():
-	return (deg < 150 && deg > 30) && mouse_enabled;
+	return (deg < 150 && deg > 30) && ActiveInput == InputType.KEYMOUSE;
 
 func reset_hitbox():
 	$CollisionShape2D.scale.y = 1

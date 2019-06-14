@@ -3,7 +3,7 @@ extends "./State.gd"
 func handleInput(event):
 	if(host.is_attack_triggered() && host.resource >= attack_controller.base_cost):
 		attack_controller.emit_signal("attack");
-		pass;
+	
 	pass;
 
 #returns direction based on input

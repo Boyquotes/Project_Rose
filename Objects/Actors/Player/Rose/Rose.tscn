@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Fall.png" type="Texture" id=2]
@@ -29,11 +29,14 @@
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Slashing/up_ground_1.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Slashing/up_ground_2.png" type="Texture" id=28]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Special_X_Up_Ground.png" type="Texture" id=29]
-[ext_resource path="res://Objects/Actors/Player/Rose/Move_On_Ground_State.gd" type="Script" id=30]
-[ext_resource path="res://Objects/Actors/Player/Rose/Move_In_Air_State.gd" type="Script" id=31]
-[ext_resource path="res://Objects/Actors/Player/Rose/Ledge_Grab_State.gd" type="Script" id=32]
-[ext_resource path="res://Objects/Actors/Player/Rose/Vault_State.gd" type="Script" id=33]
-[ext_resource path="res://Objects/Actors/Player/Rose/Attack_Controller.gd" type="Script" id=34]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Move_On_Ground_State.gd" type="Script" id=30]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Move_In_Air_State.gd" type="Script" id=31]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Ledge_Grab_State.gd" type="Script" id=32]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Vault_State.gd" type="Script" id=33]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Slash.gd" type="Script" id=34]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Bash.gd" type="Script" id=35]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Pierce.gd" type="Script" id=36]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Attack_Controller.gd" type="Script" id=37]
 
 [sub_resource type="Animation" id=1]
 length = 0.3
@@ -1349,10 +1352,10 @@ tracks/3/keys = {
 [sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 10, 19 )
 
-[sub_resource type="RectangleShape2D" id=32]
+[sub_resource type="RectangleShape2D" id=31]
 extents = Vector2( 2, 2 )
 
-[sub_resource type="RectangleShape2D" id=31]
+[sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 254.779, 147.421 )
 
 [node name="Rose" type="KinematicBody2D"]
@@ -1399,6 +1402,7 @@ hframes = 5
 shape = SubResource( 30 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+editor/display_folded = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 30 )
@@ -1408,6 +1412,7 @@ current = true
 zoom = Vector2( 0.5, 0.5 )
 
 [node name="Movement_States" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Move_On_Ground" type="Node2D" parent="Movement_States"]
 script = ExtResource( 30 )
@@ -1420,7 +1425,7 @@ script = ExtResource( 31 )
 position = Vector2( 18, -26 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Move_In_Air/Ledgebox"]
-shape = SubResource( 32 )
+shape = SubResource( 31 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
 script = ExtResource( 32 )
@@ -1437,6 +1442,17 @@ shape = SubResource( 30 )
 [node name="Vault" type="Node2D" parent="Movement_States"]
 script = ExtResource( 33 )
 
+[node name="Style_States" type="Node2D" parent="."]
+
+[node name="Slash" type="Node2D" parent="Style_States"]
+script = ExtResource( 34 )
+
+[node name="Bash" type="Node2D" parent="Style_States"]
+script = ExtResource( 35 )
+
+[node name="Pierce" type="Node2D" parent="Style_States"]
+script = ExtResource( 36 )
+
 [node name="DetectHitboxArea" type="Area2D" parent="."]
 editor/display_folded = true
 visible = false
@@ -1444,7 +1460,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 31 )
+shape = SubResource( 32 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0
@@ -1464,7 +1480,8 @@ collision_mask = 33
 autostart = true
 
 [node name="Attack_Controller" type="Node2D" parent="."]
-script = ExtResource( 34 )
+editor/display_folded = true
+script = ExtResource( 37 )
 
 [node name="InterruptTimer" type="Timer" parent="Attack_Controller"]
 one_shot = true

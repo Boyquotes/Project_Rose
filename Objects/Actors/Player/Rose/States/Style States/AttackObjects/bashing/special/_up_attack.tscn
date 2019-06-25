@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/AttackObjects/Attack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/AttackObjects/MoveAttack.gd" type="Script" id=2]
+
+
+[node name="XAttack" instance=ExtResource( 1 )]
+rotation = 1.5708
+script = ExtResource( 2 )
+wind = 0.01
+attack = 0.3
+recoil = 0.01
+speedx = 0.0
+speedy = 400.0
+knockback = Vector2( 40, -400 )
+vDirection = -1
+movex = false
+iframe = true
+
+[node name="collider" type="CollisionPolygon2D" parent="." index="1"]
+position = Vector2( 0.774798, -13.9472 )
+polygon = PoolVector2Array( -24.7797, 4.66771, -44.3446, -17.9965, -24.0049, -17.2217, -0.178411, -9.86073, 19.9676, 1.95559, 10.4758, 5.24871, -0.759507, 1.76195 )
+

@@ -54,6 +54,8 @@ func _ready():
 	hp = max_hp;
 	tag = "player";
 	gravity = 1800;
+	move_states[move_state].enter();
+	style_states[style_state].enter();
 	pass;
 
 
@@ -81,7 +83,7 @@ func phys_execute(delta):
 	move_states[move_state].handleAnimation();
 	move_states[move_state].handleInput();
 	move_states[move_state].execute(delta);
-	#style_states[style_state].handleInput();
+	style_states[style_state].handleInput();
 	#style_states[style_state].handleAnimation();
 	#count time in air
 	air_time += delta;
@@ -198,10 +200,3 @@ func reset_hitbox():
 	$Hitbox/CollisionShape2D2.scale.y = 1;
 	$Hitbox/CollisionShape2D2.position.y = 0;
 	pass;
-
-func is_attack_triggered():
-	return (Input.is_action_just_pressed("bash_attack") ||
-	Input.is_action_just_pressed("dodge") ||
-	Input.is_action_just_pressed("pierce_attack") ||
-	Input.is_action_just_pressed("slash_attack") ||
-	Input.is_action_just_released("bash_attack"))

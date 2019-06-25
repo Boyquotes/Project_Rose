@@ -9,11 +9,6 @@ func enter():
 
 func handleAnimation():
 	if(host.vspd < 0):
-		host.animate("jump", false);
-	elif(host.vspd > 0):
-		host.animate("fall", false);
-	"""
-	if(host.vspd < 0):
 		if(!host.style_states[host.style_state].busy):
 			host.animate(host.get_node("TopAnim"),"jump", false);
 		host.animate(host.get_node("BotAnim"),"jump", false);
@@ -21,7 +16,6 @@ func handleAnimation():
 		if(!host.style_states[host.style_state].busy):
 			host.animate(host.get_node("TopAnim"),"fall", false);
 		host.animate(host.get_node("BotAnim"),"fall", false);
-	"""
 	pass;
 
 func handleInput():
@@ -37,12 +31,12 @@ func handleInput():
 			is_wall = false;
 		#print(String(wasnt_wall) + " " + String(is_wall) + " " + String($Ledgebox.get_overlapping_bodies().size()));
 		if(wasnt_wall && is_wall && $Ledgebox.get_overlapping_bodies().size() == 0):
-			exit(ledge);
+			exit(host.get_node("Movement_States").get_node("Ledge_Grab"));
 	else:
 		wasnt_wall = false;
 		is_wall = false;
 	if(host.on_floor()):
-		exit(ground)
+		exit(host.get_node("Movement_States").get_node("Move_On_Ground"))
 	pass
 
 func execute(delta):

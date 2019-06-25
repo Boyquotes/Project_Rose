@@ -55,4 +55,5 @@ func Kill():
 	queue_free();
 
 func on_floor():
-	return test_move(transform, Vector2(0,5));
+	return test_move(transform, Vector2(0,1));
+	

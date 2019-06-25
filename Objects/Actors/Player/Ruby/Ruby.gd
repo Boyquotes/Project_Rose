@@ -1,24 +1,21 @@
 extends "res://Objects/Actors/Actor.gd"
 
-signal consume_resource;
-
-###states###
-#TODO: hurt_state
 ###states###
 #TODO: hurt_state
 onready var move_states = {
 	'move_on_ground' : $Movement_States/Move_On_Ground,
 	'move_in_air' : $Movement_States/Move_In_Air,
-	'ledge_grab' : $Movement_States/Ledge_Grab
+	'ledge_grab' : $Movement_States/Ledge_Grab,
+	'boost' : $Movement_States/Boost,
+	'lock_down' : $Movement_States/Lock_Down
 }
 var move_state = 'move_on_ground';
-
 onready var style_states = {
-	'slash' : $Style_States/Slash,
-	'bash' : $Style_States/Bash,
-	'pierce' : $Style_States/Pierce
+	'melee' : $Style_States/Melee,
+	'ranged' : $Style_States/Ranged
 }
-var style_state = 'slash';
+var style_state = 'melee';
+
 
 ###hitbox detection###
 var targettableHitboxes = [];
@@ -28,25 +25,21 @@ var itemTrace = [];
 onready var cam = get_node("Camera2D");
 
 ###Player Vars###
-var magic_bool = false;
-var stamina_bool = true;
-var mana = 100;
-var max_mana = 100;
-var stamina = 100;
-var max_stamina = 100;
-var resource = 0;
+var bullets = 0;
 var rad = 0.0;
 var deg = 0.0;
 var grav_activated = true;
+var input_type = "controller";
+
+var boosting = false;
+var locking = false;
 
 enum InputType {GAMEPAD, KEYMOUSE};
 var ActiveInput = InputType.GAMEPAD;
 
-
 func _ready():
 	reset_hitbox();
-	$Camera2D.current = true;
-	$Stamina_Timer.wait_time = .1
+	#$Stamina_Timer.wait_time = .1
 	max_hp = 1;
 	damage = 1;
 	mspd = 200;
@@ -56,6 +49,11 @@ func _ready():
 	gravity = 1800;
 	pass;
 
+func reset_defaults():
+	mspd = 200;
+	jspd = 400;
+	gravity = 1800;
+	pass;
 
 func _input(event):
 	if(event.get_class() == "InputEventMouseButton" || event.get_class() == "InputEventKey" || Input.get_connected_joypads().size() == 0):
@@ -63,32 +61,31 @@ func _input(event):
 	elif(event.get_class() == "InputEventJoypadMotion" || event.get_class() == "InputEventJoypadButton"):
 		ActiveInput = InputType.GAMEPAD;
 
-
 func execute(delta):
 	if(ActiveInput == InputType.KEYMOUSE):
 		rad = atan2(get_global_mouse_position().y - global_position.y , get_global_mouse_position().x - global_position.x);
 	elif(ActiveInput == InputType.GAMEPAD):
 		rad = atan2(Input.get_joy_axis(0, JOY_ANALOG_LY), Input.get_joy_axis(0, JOY_ANALOG_LX));
 	deg = rad2deg(rad);
-	
+	#print(Engine.get_frames_per_second());
 	hitboxLoop();
-	manage_resources();
+	pass;
 
 func phys_execute(delta):
-	#print(state);
-	#print(vspd);
 	#state machine
-	move_states[move_state].handleAnimation();
+	#states[state].handleAnimation();
 	move_states[move_state].handleInput();
+	move_states[move_state].handleAnimation();
 	move_states[move_state].execute(delta);
-	#style_states[style_state].handleInput();
-	#style_states[style_state].handleAnimation();
+	style_states[style_state].handleInput();
+	style_states[style_state].handleAnimation();
 	#count time in air
 	air_time += delta;
 	
 	#move across surfaces
 	velocity.y = vspd;
 	velocity.x = hspd;
+	
 	velocity = move_and_slide(velocity, floor_normal);
 	#no gravity acceleration when on floor
 	if(on_floor()):
@@ -119,10 +116,8 @@ func _on_DetectHitboxArea_area_exited(area):
 func hitboxLoop():
 	var space_state = get_world_2d().direct_space_state;
 	for item in targettableHitboxes:
-		var slash = nextRay(self,item,10,space_state);
-		var bash = nextRay(self,item,11,space_state);
-		var pierce = nextRay(self,item,12,space_state);
-		if(slash || bash || pierce):
+		var hit = nextRay(self,item,10,space_state);
+		if(hit):
 			item.hittable = true;
 		else:
 			item.hittable = false;
@@ -147,39 +142,6 @@ func nextRay(origin,dest,col_layer,spc):
 		itemTrace.clear();
 		return false;
 
-func manage_resources():
-	if(Input.is_action_just_pressed("switchY")):
-		if(stamina_bool):
-			stamina_bool = false;
-			magic_bool = true;
-		elif(magic_bool):
-			stamina_bool = true;
-			magic_bool = false;
-	if(stamina_bool):
-		resource = stamina;
-	elif(magic_bool):
-		resource = mana;
-	if(stamina > max_stamina):
-		stamina = max_stamina;
-	if(mana > max_mana):
-		mana = max_mana;
-	pass;
-
-func _on_Rose_consume_resource(cost):
-	if(stamina_bool):
-		stamina -= cost;
-	elif(magic_bool):
-		mana -= cost;
-	pass;
-
-func _on_Stamina_Timer_timeout():
-	if($Attack_Controller.attack_spawned):
-		$Stamina_Timer.start();
-	elif(stamina < 100):
-		stamina += 1;
-	#print(resource);
-	pass;
-
 func mouse_r():
 	return (deg > -60 && deg < 60);
 
@@ -193,15 +155,16 @@ func mouse_d():
 	return (deg < 150 && deg > 30);
 
 func reset_hitbox():
-	$CollisionShape2D.scale.y = 1
-	$CollisionShape2D.position.y = 0;
-	$Hitbox/CollisionShape2D2.scale.y = 1;
-	$Hitbox/CollisionShape2D2.position.y = 0;
+	#$CollisionShape2D.scale.y = 1
+	#$CollisionShape2D.position.y = 0;
 	pass;
 
-func is_attack_triggered():
-	return (Input.is_action_just_pressed("bash_attack") ||
-	Input.is_action_just_pressed("dodge") ||
-	Input.is_action_just_pressed("pierce_attack") ||
-	Input.is_action_just_pressed("slash_attack") ||
-	Input.is_action_just_released("bash_attack"))
+func add_velocity(vec: Vector2 = Vector2(0,0)):
+	hspd += vec.x * Direction;
+	vspd += vec.y;
+	pass;
+
+func subtract_velocity(vec: Vector2 = Vector2(0,0)):
+	hspd -= vec.x * Direction;
+	vspd -= vec.y;
+	pass;

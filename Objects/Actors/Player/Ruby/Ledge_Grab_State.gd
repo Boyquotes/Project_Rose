@@ -11,8 +11,8 @@ func enter():
 	pass
 
 func handleAnimation():
-	#host.animate(host.get_node("TopAnim"),"ledgegrab", false);
-	#host.animate(host.get_node("BotAnim"),"ledgegrab", false);
+	host.animate(host.get_node("TopAnim"),"ledgegrab", false);
+	host.animate(host.get_node("BotAnim"),"ledgegrab", false);
 	pass;
 
 func handleInput():
@@ -21,7 +21,7 @@ func handleInput():
 		$Climb_Timer.start();
 	elif(Input.is_action_just_pressed("jump")):
 		host.vspd = -host.jspd*3/5;
-		exit(air);
+		exit(host.get_node("Movement_States").get_node("Move_In_Air"));
 	pass
 
 func execute(delta):
@@ -45,6 +45,7 @@ func exit(state):
 
 
 func _on_Climb_Timer_timeout():
-	host.global_position = $Climbbox.global_position;
-	exit(ground)
+	host.position.x += 10 * host.Direction;
+	host.position.y -= 20;
+	exit(host.get_node("Movement_States").get_node("Move_On_Ground"))
 	pass

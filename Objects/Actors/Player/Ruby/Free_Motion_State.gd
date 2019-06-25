@@ -11,10 +11,9 @@ func update_look_direction(direction):
 		return;
 	if(host.Direction != direction):
 		if(host.Direction != 0):
-			host.get_node("Sprite").scale.x = host.get_node("Sprite").scale.x * -1;
-		#	host.get_node("Sprites").scale.x = host.get_node("Sprites").scale.x * -1;
-		#	host.get_node("ledge_cast").cast_to.x = host.get_node("ledge_cast").cast_to.x * -1;
-		#	host.get_node("Movement_States").scale.x = host.get_node("Movement_States").scale.x * -1
+			host.get_node("Sprites").scale.x = host.get_node("Sprites").scale.x * -1;
+			host.get_node("ledge_cast").cast_to.x = host.get_node("ledge_cast").cast_to.x * -1;
+			host.get_node("Movement_States").scale.x = host.get_node("Movement_States").scale.x * -1
 		host.Direction = direction;
 
 func execute(delta):

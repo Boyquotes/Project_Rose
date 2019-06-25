@@ -12,16 +12,16 @@ func enter():
 	vaulting = true;
 	pos = host.position
 	if(!host.get_node("vault_cast").is_colliding()):
-		exit_g_or_a();
+		exit(air);
 	pass
 
 func handleAnimation():
 	pass;
 
-func handleInput(event):
-	if(event.is_action_just_pressed("jump")):
+func handleInput():
+	if(Input.is_action_just_pressed("jump")):
 		host.vspd = -host.jspd;
-		exit('move_in_air');
+		exit(air);
 	pass
 
 func execute(delta):
@@ -48,8 +48,7 @@ func execute(delta):
 		host.hspd = 0;
 	
 	if(!vaulted && !host.get_node("vault_cast").is_colliding()):
-		exit_g_or_a();
-	
+		exit(air);
 	pass
 
 func exit(state):

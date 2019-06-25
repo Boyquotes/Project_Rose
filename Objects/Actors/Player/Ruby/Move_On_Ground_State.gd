@@ -7,11 +7,6 @@ func enter():
 
 func handleAnimation():
 	if(host.hspd > 0 || host.hspd < 0):
-		host.animate("run", false);
-	else: 
-		host.animate("idle", false);
-	"""
-	if(host.hspd > 0 || host.hspd < 0):
 		if(!host.style_states[host.style_state].busy):
 			host.animate(host.get_node("TopAnim"),"run", false);
 		if(!host.style_states[host.style_state].dashing):
@@ -20,7 +15,7 @@ func handleAnimation():
 		if(!host.style_states[host.style_state].busy):
 			host.animate(host.get_node("TopAnim"),"idle", false);
 			host.animate(host.get_node("BotAnim"),"idle", false);
-	"""
+		pass;
 
 func handleInput():
 	if(Input.is_action_just_pressed("jump")):

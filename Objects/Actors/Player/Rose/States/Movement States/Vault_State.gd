@@ -1,4 +1,4 @@
-extends "../State.gd"
+extends "./Move_State.gd"
 
 var vaulted = false;
 var vaulting = false;

@@ -2,7 +2,7 @@ extends "./Free_Motion_State.gd"
 
 var wasnt_wall = false;
 var is_wall = false;
-
+onready var ledge_cast = host.get_node("ledge_cast_right");
 func enter():
 	host.move_state = 'move_in_air';
 	pass
@@ -27,20 +27,23 @@ func handleAnimation():
 func handleInput():
 	if(Input.is_action_just_released("jump")):
 		host.vspd += host.jspd/3;
-	if(Input.is_action_pressed("grab")):
-		host.get_node("ledge_cast").enabled = true;
-		if(!host.get_node("ledge_cast").is_colliding()):
-			wasnt_wall = true;
-		if(wasnt_wall && host.get_node("ledge_cast").is_colliding()):
-			is_wall = true;
-		else:
-			is_wall = false;
-		#print(String(wasnt_wall) + " " + String(is_wall) + " " + String($Ledgebox.get_overlapping_bodies().size()));
-		if(wasnt_wall && is_wall && $Ledgebox.get_overlapping_bodies().size() == 0):
-			exit(ledge);
+	
+	if(host.Direction == 1):
+		ledge_cast = host.get_node("ledge_cast_right");
+	if(host.Direction == -1):
+		ledge_cast = host.get_node("ledge_cast_left");
+	
+	if(!ledge_cast.is_colliding()):
+		wasnt_wall = true;
+	if(wasnt_wall && ledge_cast.is_colliding()):
+		is_wall = true;
 	else:
-		wasnt_wall = false;
 		is_wall = false;
+	#print(String(wasnt_wall) + " " + String(is_wall) + " " + String($Ledgebox.get_overlapping_bodies().size()));
+	if(wasnt_wall && is_wall && $Ledgebox.get_overlapping_bodies().size() == 0):
+		ledge.ledge_cast = ledge_cast;
+		exit(ledge);
+	
 	if(host.on_floor()):
 		exit(ground)
 	pass

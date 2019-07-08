@@ -175,10 +175,10 @@ func _on_Rose_consume_resource(cost):
 	pass;
 
 func _on_Stamina_Timer_timeout():
-	if($Attack_Controller.attack_spawned):
-		$Stamina_Timer.start();
-	elif(stamina < 100):
-		stamina += 1;
+#	if($Attack_Controller.attack_spawned):
+#		$Stamina_Timer.start();
+#	elif(stamina < 100):
+#		stamina += 1;
 	#print(resource);
 	pass;
 

@@ -1,8 +1,7 @@
 extends "../State.gd"
 
-onready var slash = get_parent().get_node("Slash");
-onready var bash = get_parent().get_node("Bash");
-onready var pierce = get_parent().get_node("Pierce");
+onready var Wind_Dance = get_parent().get_node("Wind_Dance");
+onready var bash = get_parent().get_node("Closed_Fan");
 
 signal attack;
 
@@ -22,12 +21,14 @@ var attack_triggered = false;
 var busy = false;
 var dashing = false;
 ### attack codes ###
-var type = "type";
-var dir = "dir";
-var vdir = "vdir";
-var current_event = 'current_event';
+var style = "style";
+var dir = "_horizontal";
+var vdir = "";
+var current_event = "current_event";
+var combo = "";
 var attack_str = "attack_str";
 var attack_idx = "attack_idx";
+var previous_event = "previous_event";
 
 ### modifiable inits ###
 var end_time = .5;
@@ -87,34 +88,16 @@ func handleAnimation():
 func handleInput():
 	if(busy):
 		return;
-	if(!attack_triggered):
-		if(Input.is_action_pressed("attack")):
-			current_event = 'attack';
-		if(Input.is_action_just_released("attack")):
-			cur_cost = basic_cost;
-			attack_triggered = true;
-		if(Input.is_action_just_pressed("dodge")):
-			if(current_event == 'attack'):
-				current_event += 'dodge';
-			else:
-				current_event = 'dodge';
-			dashing = true;
-			cur_cost = basic_cost;
-			attack_triggered = true;
-			#TODO: allow input for shortly after start and mid-start for special attacks
-		if(Input.is_action_just_pressed("special")):
-			#TODO: Something for this
-			pass;
-		if(Input.is_action_just_pressed("switchL")):
-			#TODO: switch state automatically
-			exit(get_parent().get_child(stm1));
-		if(Input.is_action_just_pressed("switchR")):
-			#TODO: switch state automatically
-			exit(get_parent().get_child(stp1));
 	if(attack_triggered):
+		combo += current_event;
 		busy = true;
 		set_position_vars();
-	pass;
+
+func switch():
+	if(Input.is_action_just_pressed("switchL")):
+		exit(get_parent().get_child(stm1));
+	if(Input.is_action_just_pressed("switchR")):
+		exit(get_parent().get_child(stp1));
 
 func exit(state):
 	.exit(state);
@@ -173,19 +156,14 @@ func init_attack():
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
-	var tdir = dir;
-	var tvdir = vdir;
-	if(dir != ""):
-		tdir = "_" + dir;
-	
-	attack_str = type + "_" + current_event;#+tdir+tvdir;
+	attack_str = style + "_" + combo+dir+vdir;
 	print(attack_str);
 	pass;
 
 ### Resets attack strings ###
 func reset_strings():
-	dir = "dir";
-	vdir = "vdir";
+	dir = "_horizontal";
+	vdir = "";
 	current_event = 'current_event';
 	attack_str = "attack_str";
 	attack_idx = "attack_idx";
@@ -200,94 +178,22 @@ func attack():
 	
 	construct_attack_string();
 	attack_done();
+	#TODO: Get appropriate path to attack scene
 	"""
 	var path = "res://Objects/Actors/Player/Rose/AttackObjects/" + type + "/" + current_attack + "/";
-	#Ignore certain string combinations that result in existing attacks
-	if(current_attack == "basic"):
-		if(attack_idx == "_1"):
-			attack_idx = "_2";
-		else:
-			attack_idx = "_1";
-		magic = "";
-		if(dir == "horizontal"):
-			if(!atk_up(Input) && !atk_down(Input)):
-				vdir = "";
-				place = "";
-			elif(!atk_down(Input)):
-				place = "";
-			elif(atk_down(Input) && place == "ground"):
-				attack_idx = "";
-		elif(atk_up(Input)):
-			place = "";
-		
-		path += dir+vdir+place+"_attack.tscn";
-	
-	
-	if(current_attack == "special"):
-		if(type == "slashing" || type == "bashing"):
-			if(dir == "horizontal"):
-				if(!atk_up(Input) && !atk_down(Input)):
-					vdir = "";
-					place = "";
-				elif(!atk_down(Input) || type == "bashing"):
-					place = "";
-			elif(atk_up(Input)):
-				place = "";
-				
-		
-		path += dir+vdir+place+magic+"_attack.tscn";
-	
-	var true_length = cast_length;
-	if((atk_down(Input) || atk_up(Input)) && (atk_right(Input) || atk_left(Input))):
-		true_length = true_length / sqrt(2);
-	if(atk_down(Input)):
-		host.get_node("vault_cast").cast_to.y = true_length;
-	elif(atk_up(Input)):
-		host.get_node("vault_cast").cast_to.y = -true_length;
-	else:
-		host.get_node("vault_cast").cast_to.y = 0;
-	if(atk_right(Input)):
-		host.get_node("vault_cast").cast_to.x = true_length;
-	elif(atk_left(Input)):
-		host.get_node("vault_cast").cast_to.x = -true_length;
-	else:
-		host.get_node("vault_cast").cast_to.x = 0;
-	
+	path += dir+vdir+place+"_attack.tscn";
 	var effect = load(path).instance();
 	effect.host = host;
 	effect.attack_state = self;
 	host.add_child(effect);
 	"""
 	pass;
-"""
 
-### Timer allowing player to vault using certain special attacks ###
-func _on_Attack_vault():
-	host.get_node("vault_cast").cast_to = Vector2(0, cast_length);
-	if(dir == "horizontal" && current_attack == "basic"):
-		host.animate("vault_lift");
-		host.hspd = 500 * host.Direction;
-		host.vspd = -200;
-		
-		$VaultTimer.wait_time = vault_time;
-	else:
-		host.animate("vault_still");
-		$VaultTimer.wait_time = 0.1;
-	$VaultTimer.start();
-	pass;
-
-### Ends the vault sending the player to the vault state ###
-func _on_VaultTimer_timeout():
-	host.hspd = 0;
-	host.vspd = 0;
-	
-	exit("vault");
-	pass;
-"""
 
 func attack_done():
 	busy = false;
 	attack_triggered = false;
 	dashing = false;
+	previous_event = current_event;
 	reset_strings();
 	pass;

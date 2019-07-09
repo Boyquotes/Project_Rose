@@ -14,11 +14,10 @@ onready var move_states = {
 var move_state = 'move_on_ground';
 
 onready var style_states = {
-	'slash' : $Style_States/Slash,
-	'bash' : $Style_States/Bash,
-	'pierce' : $Style_States/Pierce
+	'wind_dance' : $Style_States/Wind_Dance,
+	'closed_fan' : $Style_States/Closed_Fan
 }
-var style_state = 'slash';
+var style_state = 'wind_dance';
 
 ###hitbox detection###
 var targettableHitboxes = [];

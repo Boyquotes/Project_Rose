@@ -860,7 +860,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=13]
 resource_name = "Wind_Dance_Y_Hor_Down"
 length = 1.15
 loop = true
@@ -975,7 +975,7 @@ tracks/6/keys = {
 "values": [ 0.0, 135.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=14]
 resource_name = "Wind_Dance_Y_Hor_Up"
 length = 1.15
 loop = true
@@ -1090,7 +1090,7 @@ tracks/6/keys = {
 "values": [ 0.0, 45.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=15]
 resource_name = "Wind_Dance_Y_Up"
 length = 1.15
 loop = true
@@ -1437,7 +1437,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=21]
 resource_name = "Wind_Dance_B"
 length = 0.6
 loop = true
@@ -1479,7 +1479,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=22]
 resource_name = "Wind_Dance_HoldX_Down_Ground"
 length = 0.6
 loop = true
@@ -1521,7 +1521,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=23]
 resource_name = "Wind_Dance_HoldX_Hor_Ground"
 length = 0.9
 loop = true
@@ -1563,7 +1563,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=24]
 resource_name = "Wind_Dance_HoldY"
 length = 0.65
 loop = true
@@ -1605,7 +1605,7 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=25]
 resource_name = "Wind_Dance_XX_Air"
 length = 0.5
 loop = true
@@ -1647,7 +1647,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=48]
+[sub_resource type="Animation" id=26]
 resource_name = "Wind_Dance_XX_Ground"
 length = 0.5
 loop = true
@@ -1689,7 +1689,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=49]
+[sub_resource type="Animation" id=27]
 resource_name = "Wind_Dance_X_Air"
 length = 0.5
 loop = true
@@ -1731,7 +1731,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=28]
 resource_name = "Wind_Dance_X_Ground"
 length = 0.5
 loop = true
@@ -1773,7 +1773,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=29]
 resource_name = "Wind_Dance_Y_Air"
 length = 1.15
 loop = true
@@ -1815,7 +1815,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
 }
 
-[sub_resource type="Animation" id=50]
+[sub_resource type="Animation" id=30]
 resource_name = "Wind_Dance_Y_Ground"
 length = 1.15
 loop = true
@@ -1857,7 +1857,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
 }
 
-[sub_resource type="Animation" id=43]
+[sub_resource type="Animation" id=31]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -1897,7 +1897,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=44]
+[sub_resource type="Animation" id=32]
 loop = true
 step = 0.2
 tracks/0/type = "value"
@@ -1937,7 +1937,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=45]
+[sub_resource type="Animation" id=33]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -1977,7 +1977,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=46]
+[sub_resource type="Animation" id=34]
 length = 0.4
 loop = true
 step = 0.2
@@ -2042,7 +2042,7 @@ tracks/4/keys = {
 "values": [ ExtResource( 18 ) ]
 }
 
-[sub_resource type="Animation" id=47]
+[sub_resource type="Animation" id=35]
 length = 0.84
 loop = true
 step = 0.07
@@ -2083,13 +2083,13 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 10, 19 )
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 10, 2 )
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=38]
 extents = Vector2( 254.779, 147.421 )
 
 [node name="Rose" type="KinematicBody2D"]
@@ -2110,9 +2110,9 @@ anims/Wind_Dance_X_Hor = SubResource( 9 )
 anims/Wind_Dance_X_Up = SubResource( 10 )
 anims/Wind_Dance_Y_Down_Air = SubResource( 11 )
 anims/Wind_Dance_Y_Hor = SubResource( 12 )
-anims/Wind_Dance_Y_Hor_Down = SubResource( 27 )
-anims/Wind_Dance_Y_Hor_Up = SubResource( 25 )
-anims/Wind_Dance_Y_Up = SubResource( 26 )
+anims/Wind_Dance_Y_Hor_Down = SubResource( 13 )
+anims/Wind_Dance_Y_Hor_Up = SubResource( 14 )
+anims/Wind_Dance_Y_Up = SubResource( 15 )
 anims/fall = SubResource( 16 )
 anims/idle = SubResource( 17 )
 anims/jump = SubResource( 18 )
@@ -2120,41 +2120,40 @@ anims/jump-to-fall = SubResource( 19 )
 anims/run = SubResource( 20 )
 
 [node name="BotAnim" type="AnimationPlayer" parent="."]
-anims/Wind_Dance_B = SubResource( 28 )
-anims/Wind_Dance_HoldX_Down_Ground = SubResource( 29 )
-anims/Wind_Dance_HoldX_Hor_Ground = SubResource( 30 )
-anims/Wind_Dance_HoldY = SubResource( 31 )
-anims/Wind_Dance_XX_Air = SubResource( 32 )
-anims/Wind_Dance_XX_Ground = SubResource( 48 )
-anims/Wind_Dance_X_Air = SubResource( 49 )
-anims/Wind_Dance_X_Ground = SubResource( 36 )
-anims/Wind_Dance_Y_Air = SubResource( 38 )
-anims/Wind_Dance_Y_Ground = SubResource( 50 )
-anims/fall = SubResource( 43 )
-anims/idle = SubResource( 44 )
-anims/jump = SubResource( 45 )
-anims/jump-to-fall = SubResource( 46 )
-anims/run = SubResource( 47 )
+anims/Wind_Dance_B = SubResource( 21 )
+anims/Wind_Dance_HoldX_Down_Ground = SubResource( 22 )
+anims/Wind_Dance_HoldX_Hor_Ground = SubResource( 23 )
+anims/Wind_Dance_HoldY = SubResource( 24 )
+anims/Wind_Dance_XX_Air = SubResource( 25 )
+anims/Wind_Dance_XX_Ground = SubResource( 26 )
+anims/Wind_Dance_X_Air = SubResource( 27 )
+anims/Wind_Dance_X_Ground = SubResource( 28 )
+anims/Wind_Dance_Y_Air = SubResource( 29 )
+anims/Wind_Dance_Y_Ground = SubResource( 30 )
+anims/fall = SubResource( 31 )
+anims/idle = SubResource( 32 )
+anims/jump = SubResource( 33 )
+anims/jump-to-fall = SubResource( 34 )
+anims/run = SubResource( 35 )
 
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="SpriteTop" type="Sprite" parent="Sprites"]
-position = Vector2( 0, -25 )
-texture = ExtResource( 6 )
-hframes = 6
+texture = ExtResource( 12 )
+hframes = 14
 
 [node name="SpriteBot" type="Sprite" parent="Sprites/SpriteTop"]
 texture = ExtResource( 26 )
 hframes = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 22 )
+shape = SubResource( 36 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 editor/display_folded = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 22 )
+shape = SubResource( 36 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -2172,7 +2171,7 @@ script = ExtResource( 32 )
 position = Vector2( 10, -26 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Move_In_Air/Ledgebox"]
-shape = SubResource( 23 )
+shape = SubResource( 37 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
 script = ExtResource( 33 )
@@ -2184,7 +2183,7 @@ one_shot = true
 position = Vector2( 13.9215, -38.9501 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 22 )
+shape = SubResource( 36 )
 
 [node name="Vault" type="Node2D" parent="Movement_States"]
 script = ExtResource( 34 )
@@ -2220,7 +2219,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 24 )
+shape = SubResource( 38 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0

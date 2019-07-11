@@ -178,7 +178,7 @@ func init_attack():
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
-	if(((dir != "_Hor" && vdir == "_Down") || current_event == "HoldX") && current_event != "Y"):
+	if(((dir != "_Hor" && vdir == "_Down") || current_event == "HoldX") || (current_event == "Y" && (dir != "_Hor" && vdir == "_Down"))):
 		attack_str = style + "_" + combo+dir+vdir+place;
 	else:
 		attack_str = style + "_" + combo+dir+vdir;

@@ -83,7 +83,7 @@ func phys_execute(delta):
 	move_states[move_state].handleInput();
 	move_states[move_state].execute(delta);
 	style_states[style_state].handleInput();
-	#style_states[style_state].handleAnimation();
+	style_states[style_state].handleAnimation();
 	#count time in air
 	air_time += delta;
 	
@@ -198,4 +198,24 @@ func reset_hitbox():
 	$CollisionShape2D.position.y = 0;
 	$Hitbox/CollisionShape2D2.scale.y = 1;
 	$Hitbox/CollisionShape2D2.position.y = 0;
+	pass;
+
+func add_velocity(vec: Vector2 = Vector2(0,0)):
+	hspd = vec.x * Direction;
+	vspd = vec.y;
+	pass;
+
+func subtract_velocity(vec: Vector2 = Vector2(0,0)):
+	hspd -= vec.x * Direction;
+	vspd -= vec.y;
+	pass;
+
+func deactivate_grav():
+	grav_activated = false;
+	vspd = 0;
+	velocity.y = 0;
+	pass;
+
+func activate_grav():
+	grav_activated = true;
 	pass;

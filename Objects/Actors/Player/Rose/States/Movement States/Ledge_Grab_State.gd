@@ -13,16 +13,19 @@ func enter():
 	pass
 
 func handleAnimation():
-	#host.animate(host.get_node("TopAnim"),"ledgegrab", false);
+	host.animate(host.get_node("TopAnim"),"ledgegrab", false);
 	#host.animate(host.get_node("BotAnim"),"ledgegrab", false);
 	pass;
 
 func handleInput():
-	if(Input.is_action_just_pressed("up") && $Climbbox.get_overlapping_bodies().size() == 0):
-		$Climb_Timer.wait_time = climb;
-		$Climb_Timer.start();
-	elif(Input.is_action_just_pressed("jump")):
-		host.vspd = -host.jspd*3/5;
+	if(!host.style_states[host.style_state].busy):
+		if(Input.is_action_just_pressed("up") && $Climbbox.get_overlapping_bodies().size() == 0):
+			$Climb_Timer.wait_time = climb;
+			$Climb_Timer.start();
+		elif(Input.is_action_just_pressed("jump")):
+			host.vspd = -host.jspd*3/5;
+			exit(air);
+	if(host.velocity != Vector2(0,0)):
 		exit(air);
 	pass
 

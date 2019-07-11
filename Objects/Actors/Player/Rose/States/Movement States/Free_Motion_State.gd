@@ -11,18 +11,16 @@ func update_look_direction(direction):
 		return;
 	if(host.Direction != direction):
 		if(host.Direction != 0):
-			host.get_node("Sprite").scale.x = host.get_node("Sprite").scale.x * -1;
+			host.get_node("Sprites").scale.x = host.get_node("Sprites").scale.x * -1;
 			host.get_node("Movement_States").scale.x = host.get_node("Movement_States").scale.x * -1;
 		host.Direction = direction;
 
 func execute(delta):
 	var input_direction = get_input_direction();
 	update_look_direction(input_direction);
-	if(input_direction != 0 && !(abs(host.hspd) > host.mspd)):
+	if(input_direction != 0 && !(abs(host.hspd) > host.mspd) && !host.style_states[host.style_state].busy):
 		host.hspd += host.mspd/10 * host.Direction;
 	elif(host.hspd != 0 && abs(host.hspd) > host.mspd):
-		host.hspd -= 50 * sign(host.hspd);
-	elif(abs(host.hspd) <= host.mspd && !(host.hspd < 30)):
-		host.hspd -= host.mspd/10 * sign(host.hspd);
+		host.hspd -= 5 * sign(host.hspd);
 	else:
 		host.hspd = 0;

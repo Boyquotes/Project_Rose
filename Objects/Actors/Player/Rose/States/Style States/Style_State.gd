@@ -20,14 +20,20 @@ var attack_is_saved = false;
 var attack_triggered = false;
 var busy = false;
 var dashing = false;
+var save_event = false;
+var event_is_saved = false;
+var interrupt = false;
+
 ### attack codes ###
 var style = "style";
-var dir = "_horizontal";
+var dir = "_Hor";
 var vdir = "";
 var current_event = "current_event";
+var saved_event = "saved_event";
 var combo = "";
+var place = "_Ground";
 var attack_str = "attack_str";
-var attack_idx = "attack_idx";
+var bot_str = "bot_str";
 var previous_event = "previous_event";
 
 ### modifiable inits ###
@@ -76,22 +82,41 @@ func handleAnimation():
 				#	host.new_anim = "-" + combo_attack.substr(combo_attack.length()-1,1) + "land";
 		elif(attack_start):
 		"""
-		"""
-		if(attack_triggered):
+		if(busy):
+			print(combo);
 			host.animate(host.get_node("TopAnim"),attack_str, false);
-			if(host.hspd == 0 || dashing):
-				host.animate(host.get_node("BotAnim"),attack_str, false);
-		"""
+			"""if(host.hspd == 0 || dashing):
+				print(bot_str);
+				host.animate(host.get_node("BotAnim"),attack_str, false);"""
 	pass;
 
 ### Prepares next move if user input is detected ###
 func handleInput():
-	if(busy):
-		return;
-	if(attack_triggered):
-		combo += current_event;
+	if(interrupt && attack_is_saved):
+		attack_done();
+		current_event = saved_event;
+		combo += saved_event;
 		busy = true;
+		attack_is_saved = false;
 		set_position_vars();
+	if(!busy):
+		if(parse_attack()):
+			combo += current_event;
+			busy = true;
+			attack_is_saved = false;
+			set_position_vars();
+	if(save_event):
+		if(parse_next_attack()):
+			attack_is_saved = true;
+			save_event = false;
+
+###begins parsing player attack if an attack is triggered##
+#overloaded by children states
+func parse_attack():
+	pass;
+
+func parse_next_attack():
+	pass;
 
 func switch():
 	if(Input.is_action_just_pressed("switchL")):
@@ -122,9 +147,9 @@ func atk_down():
 ### Handles all player input to decide what attack to trigger ###
 func set_position_vars():
 	if(atk_left()):
-		dir = "horizontal"
+		dir = "_Hor"
 	elif(atk_right()):
-		dir = "horizontal";
+		dir = "_Hor";
 	if(atk_down() || atk_up()):
 		if(!atk_left() && !atk_right()):
 			dir = "";
@@ -134,7 +159,7 @@ func set_position_vars():
 			vdir = "_down";
 	else:
 		vdir = "";
-		dir = "horizontal"
+		dir = "_Hor"
 	if(init_attack()):
 		attack();
 	pass;
@@ -156,17 +181,24 @@ func init_attack():
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
-	attack_str = style + "_" + combo+dir+vdir;
-	print(attack_str);
+	if(current_event == "X"):
+		if(vdir == "_Down" && place == "_Air"):
+			attack_str = style + "_" + combo+dir+vdir+place;
+		else:
+			attack_str = style + "_" + combo+dir+vdir;
+		bot_str = style + "_" + combo + place; 
+	else:
+		attack_str = style + "_" + combo+dir+vdir+place;
+		bot_str = attack_str;
 	pass;
 
 ### Resets attack strings ###
 func reset_strings():
-	dir = "_horizontal";
+	dir = "_Hor";
 	vdir = "";
 	current_event = 'current_event';
 	attack_str = "attack_str";
-	attack_idx = "attack_idx";
+	bot_str = "bot_str";
 	pass;
 
 ### Triggers appropriate attack based on the strings constructed by player input ###
@@ -177,7 +209,6 @@ func attack():
 	attack_spawned = true;
 	
 	construct_attack_string();
-	attack_done();
 	#TODO: Get appropriate path to attack scene
 	"""
 	var path = "res://Objects/Actors/Player/Rose/AttackObjects/" + type + "/" + current_attack + "/";
@@ -189,11 +220,23 @@ func attack():
 	"""
 	pass;
 
+func set_save_event():
+	save_event = true;
+
+func set_interrupt():
+	interrupt = true;
+
+func check_combo():
+	pass;
 
 func attack_done():
 	busy = false;
 	attack_triggered = false;
 	dashing = false;
+	save_event = false;
 	previous_event = current_event;
+	interrupt = false;
 	reset_strings();
+	$ComboTimer.start();
+	#host.activate_grav();
 	pass;

@@ -20,7 +20,7 @@ func execute(delta):
 	update_look_direction(input_direction);
 	if(input_direction != 0 && !(abs(host.hspd) > host.mspd) && !host.style_states[host.style_state].busy):
 		host.hspd += host.mspd/10 * host.Direction;
-	elif(host.hspd != 0 && abs(host.hspd) > host.mspd):
-		host.hspd -= 5 * sign(host.hspd);
-	else:
+	elif(host.hspd != 0 && abs(host.hspd) > host.mspd && host.fric_activated):
+		host.hspd -= 20 * sign(host.hspd);
+	elif(host.fric_activated):
 		host.hspd = 0;

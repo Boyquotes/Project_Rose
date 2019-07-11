@@ -11,11 +11,11 @@ func handleAnimation():
 	if(host.vspd < 0):
 		if(!host.style_states[host.style_state].busy):
 			host.animate(host.get_node("TopAnim"),"jump", false);
-			#host.animate(host.get_node("BotAnim"),"jump", false);
+			host.animate(host.get_node("BotAnim"),"jump", false);
 	else: 
 		if(!host.style_states[host.style_state].busy):
 			host.animate(host.get_node("TopAnim"),"fall", false);
-			#host.animate(host.get_node("BotAnim"),"fall", false);
+			host.animate(host.get_node("BotAnim"),"fall", false);
 	pass;
 
 func handleInput():

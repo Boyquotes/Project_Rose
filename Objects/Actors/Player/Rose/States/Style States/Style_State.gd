@@ -83,11 +83,8 @@ func handleAnimation():
 		elif(attack_start):
 		"""
 		if(busy):
-			print(combo);
 			host.animate(host.get_node("TopAnim"),attack_str, false);
-			"""if(host.hspd == 0 || dashing):
-				print(bot_str);
-				host.animate(host.get_node("BotAnim"),attack_str, false);"""
+			host.animate(host.get_node("BotAnim"),bot_str, false);
 	pass;
 
 ### Prepares next move if user input is detected ###
@@ -181,15 +178,15 @@ func init_attack():
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
-	if(current_event == "X"):
-		if(vdir == "_Down" && place == "_Air"):
-			attack_str = style + "_" + combo+dir+vdir+place;
-		else:
-			attack_str = style + "_" + combo+dir+vdir;
-		bot_str = style + "_" + combo + place; 
-	else:
+	if(((dir != "_Hor" && vdir == "_Down") || current_event == "HoldX") && current_event != "Y"):
 		attack_str = style + "_" + combo+dir+vdir+place;
+	else:
+		attack_str = style + "_" + combo+dir+vdir;
+	if(current_event == "HoldX" || current_event == "B"):
 		bot_str = attack_str;
+	else:
+		bot_str = style + "_" + combo + place; 
+	
 	pass;
 
 ### Resets attack strings ###

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Wind_Dance_Y_Hor_Air.png-e297bc94b5dacb5885bc676fc1e332a1.stex"
+path="res://.import/Wind_Dance_Y_Legs_Ground.png-ef79e1f09603b4a7efb29d8fab73040c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Actors/Rose/Slashing/Wind_Dance_Y_Hor_Air.png"
-dest_files=[ "res://.import/Wind_Dance_Y_Hor_Air.png-e297bc94b5dacb5885bc676fc1e332a1.stex" ]
+source_file="res://Assets/Sprites/Actors/Rose/Slashing/Wind_Dance_Y_Legs_Ground.png"
+dest_files=[ "res://.import/Wind_Dance_Y_Legs_Ground.png-ef79e1f09603b4a7efb29d8fab73040c.stex" ]
 
 [params]
 

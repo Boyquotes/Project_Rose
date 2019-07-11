@@ -37,6 +37,7 @@ var resource = 0;
 var rad = 0.0;
 var deg = 0.0;
 var grav_activated = true;
+var fric_activated = true;
 
 enum InputType {GAMEPAD, KEYMOUSE};
 var ActiveInput = InputType.GAMEPAD;
@@ -52,7 +53,7 @@ func _ready():
 	jspd = 400;
 	hp = max_hp;
 	tag = "player";
-	gravity = 1800;
+	gravity = 20;
 	move_states[move_state].enter();
 	style_states[style_state].enter();
 	pass;
@@ -101,7 +102,7 @@ func phys_execute(delta):
 		vspd = 0;
 	
 	if(grav_activated):
-		vspd += gravity * delta;
+		vspd += gravity;
 	
 	#cap gravity
 	if(vspd > g_max && grav_activated) :
@@ -216,6 +217,16 @@ func deactivate_grav():
 	velocity.y = 0;
 	pass;
 
+func deactivate_fric():
+	fric_activated = false;
+	hspd = 0;
+	velocity.x = 0;
+	pass;
+
 func activate_grav():
 	grav_activated = true;
+	pass;
+
+func activate_fric():
+	fric_activated = true;
 	pass;

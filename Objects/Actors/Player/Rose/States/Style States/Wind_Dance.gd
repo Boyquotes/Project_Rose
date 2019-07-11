@@ -77,7 +77,6 @@ func parse_next_attack():
 		slottedx = true;
 		combo = "";
 	elif(Input.is_action_just_pressed("attack") && !slottedx):
-		#print(combo + current_event);
 		if(current_event == "Y" || combo == "XX"):
 			saved_event = "HoldX";
 			slottedx = true;
@@ -162,6 +161,9 @@ func set_position_vars():
 				vdir = "_Up";
 			elif(atk_down()):
 				vdir = "_Down";
+				if(place == "_Ground"):
+					vdir = "";
+					dir = "_Hor";
 		else:
 			vdir = "";
 			dir = "_Hor"

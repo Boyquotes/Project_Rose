@@ -18,7 +18,7 @@ var hspd = 0;
 var vspd = 0;
 var Direction = 1;
 var gravity = 1200;
-var g_max = 300;
+var g_max = 200;
 var velocity = Vector2(0,0);
 var floor_normal = Vector2(0,-1);
 

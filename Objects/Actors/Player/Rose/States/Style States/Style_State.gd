@@ -162,7 +162,6 @@ func set_position_vars():
 
 ### Initializes attack once the player has committed ###
 func init_attack():
-	host.reset_hitbox();
 	if(input_testing):
 		#construct_attack_string();
 		#attack_is_saved = false;

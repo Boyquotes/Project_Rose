@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Move_On_Ground_State.gd" type="Script" id=2]
@@ -537,9 +537,22 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=16]
-length = 0.3
+[sub_resource type="Animation" id=26]
+resource_name = "air_move"
+length = 0.4
 loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/Hitbox:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 25.0 ]
+}
 
 [sub_resource type="Animation" id=17]
 loop = true
@@ -572,15 +585,52 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=18]
-length = 0.3
+length = 0.25
 loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/Hitbox:shape:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 20.0, 15.0, 10.0, 5.0, 20.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/Hitbox:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.05, 0.1, 0.15, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.2, 1 ), Vector2( 1.4, 1 ), Vector2( 1.6, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.15, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "jump"
+}, {
+"args": [  ],
+"method": "to_air"
+} ]
+}
 
-[sub_resource type="Animation" id=19]
-length = 0.4
-loop = true
-step = 0.2
-
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=20]
 resource_name = "ledgegrab"
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -595,7 +645,7 @@ tracks/0/keys = {
 "args": [ NodePath("Hitbox/Hitbox") ],
 "method": "tween_rotation_to_origin"
 }, {
-"args": [ NodePath("Hitbox"), 0.0, 25.0 ],
+"args": [ NodePath("Hitbox"), 0.0, 15.0 ],
 "method": "tween_rotation"
 }, {
 "args": [ NodePath("Hitbox") ],
@@ -603,7 +653,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=21]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -639,14 +689,15 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="CapsuleShape2D" id=21]
+[sub_resource type="CapsuleShape2D" id=22]
+height = 15.0
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 10, 2 )
 
-[sub_resource type="CapsuleShape2D" id=23]
+[sub_resource type="CapsuleShape2D" id=24]
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 254.779, 147.421 )
 
 [node name="Rose" type="KinematicBody2D"]
@@ -670,25 +721,25 @@ anims/Wind_Dance_Y_Hor = SubResource( 12 )
 anims/Wind_Dance_Y_Hor_Down = SubResource( 13 )
 anims/Wind_Dance_Y_Hor_Up = SubResource( 14 )
 anims/Wind_Dance_Y_Up = SubResource( 15 )
-anims/fall = SubResource( 16 )
+anims/air_move = SubResource( 26 )
 anims/idle = SubResource( 17 )
 anims/jump = SubResource( 18 )
-anims/jump-to-fall = SubResource( 19 )
-anims/ledgegrab = SubResource( 25 )
-anims/run = SubResource( 20 )
+anims/ledgegrab = SubResource( 20 )
+anims/run = SubResource( 21 )
 
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 21 )
+shape = SubResource( 22 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( 0, -20 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
-shape = SubResource( 21 )
+rotation = 0.436332
+shape = SubResource( 22 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -706,7 +757,7 @@ script = ExtResource( 3 )
 position = Vector2( 10, -26 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Move_In_Air/Ledgebox"]
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
 script = ExtResource( 4 )
@@ -718,7 +769,7 @@ one_shot = true
 position = Vector2( 13.9215, -38.9501 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 23 )
+shape = SubResource( 24 )
 
 [node name="Vault" type="Node2D" parent="Movement_States"]
 script = ExtResource( 5 )
@@ -754,7 +805,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 24 )
+shape = SubResource( 25 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0

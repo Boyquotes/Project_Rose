@@ -55,8 +55,6 @@ func _ready():
 	gravity = 20;
 	move_states[move_state].enter();
 	style_states[style_state].enter();
-	pass;
-
 
 func _input(event):
 	if(event.get_class() == "InputEventMouseButton" || event.get_class() == "InputEventKey" || Input.get_connected_joypads().size() == 0):
@@ -76,6 +74,7 @@ func execute(delta):
 	manage_resources();
 
 func phys_execute(delta):
+	tween_height_and_scale_from_vspd();
 	#print(state);
 	#print(vspd);
 	#state machine
@@ -106,16 +105,14 @@ func phys_execute(delta):
 	#cap gravity
 	if(vspd > g_max && grav_activated) :
 		vspd = g_max;
-	pass;
 
 func _on_DetectHitboxArea_area_entered(area):
 	if(!targettableHitboxes.has(area)):
 		targettableHitboxes.push_back(area);
-	pass;
+
 func _on_DetectHitboxArea_area_exited(area):
 	if(targettableHitboxes.has(area)):
 		targettableHitboxes.erase(area);
-	pass;
 
 func hitboxLoop():
 	var space_state = get_world_2d().direct_space_state;
@@ -127,7 +124,6 @@ func hitboxLoop():
 			item.hittable = true;
 		else:
 			item.hittable = false;
-	pass;
 
 func nextRay(origin,dest,col_layer,spc):
 	if(!itemTrace.has(origin)):
@@ -164,14 +160,14 @@ func manage_resources():
 		stamina = max_stamina;
 	if(mana > max_mana):
 		mana = max_mana;
-	pass;
+
 
 func _on_Rose_consume_resource(cost):
 	if(stamina_bool):
 		stamina -= cost;
 	elif(magic_bool):
 		mana -= cost;
-	pass;
+
 
 func _on_Stamina_Timer_timeout():
 #	if($Attack_Controller.attack_spawned):
@@ -196,32 +192,26 @@ func mouse_d():
 func add_velocity(vec: Vector2 = Vector2(0,0)):
 	hspd = vec.x * Direction;
 	vspd = vec.y;
-	pass;
 
 func subtract_velocity(vec: Vector2 = Vector2(0,0)):
 	hspd -= vec.x * Direction;
 	vspd -= vec.y;
-	pass;
 
 func deactivate_grav():
 	grav_activated = false;
 	vspd = 0;
 	velocity.y = 0;
-	pass;
 
 func deactivate_fric():
 	fric_activated = false;
 	hspd = 0;
 	velocity.x = 0;
-	pass;
 
 func activate_grav():
 	grav_activated = true;
-	pass;
 
 func activate_fric():
 	fric_activated = true;
-	pass;
 
 func tween_rotation(var node, var cur, var new):
 	$Tween.interpolate_property(get_node(node),"rotation_degrees",cur,new,.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
@@ -230,3 +220,23 @@ func tween_rotation(var node, var cur, var new):
 func tween_rotation_to_origin(var node):
 	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,0,.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
 	$Tween.start();
+
+func jump():
+	vspd = -jspd;
+
+func to_air():
+	move_states[move_state].exit(get_node("Movement_States").get_node("Move_In_Air"));
+
+var do = true;
+var do2 = true;
+func tween_height_and_scale_from_vspd():
+	if(abs(velocity.y) > 100 && do):
+		do = false;
+		do2 = true;
+		$Tween.interpolate_property(get_node("Hitbox/Hitbox"),"scale",Vector2(1,1),Vector2(.8,1),.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
+	elif(abs(velocity.y) < 100 && do2):
+		print("!!!");
+		do = true;
+		do2 = false;
+		$Tween.interpolate_property(get_node("Hitbox/Hitbox"),"scale",Vector2(.8,1),Vector2(1,1),.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
+		

@@ -8,12 +8,11 @@ func enter():
 	pass
 
 func handleAnimation():
-	if(host.vspd < 0):
-		if(!host.style_states[host.style_state].busy):
-			host.animate(host.get_node("TopAnim"),"jump", false);
-	else: 
-		if(!host.style_states[host.style_state].busy):
-			host.animate(host.get_node("TopAnim"),"fall", false);
+	if(!host.style_states[host.style_state].busy):
+		if(host.hspd > 0 || host.hspd < 0):
+			host.animate(host.get_node("TopAnim"),"air_move", false);
+		else: 
+			host.animate(host.get_node("TopAnim"),"idle", false);
 	pass;
 
 func handleInput():

@@ -1,6 +1,6 @@
 extends "./Move_State.gd"
 
-var climb = .5
+var climb = false;
 var hstop = false;
 var stickVar = 5;
 var ledge_cast;
@@ -16,15 +16,14 @@ func enter():
 func handleAnimation():
 	if(!played):
 		host.animate(host.get_node("TopAnim"),"ledgegrab", false);
-		played = true;
-	#host.animate(host.get_node("BotAnim"),"ledgegrab", false);
+	elif(climb):
+		host.animate(host.get_node("TopAnim"),"climb", false);
 	pass;
 
 func handleInput():
 	if(!host.style_states[host.style_state].busy):
 		if(Input.is_action_just_pressed("up") && $Climbbox.get_overlapping_bodies().size() == 0):
-			$Climb_Timer.wait_time = climb;
-			$Climb_Timer.start();
+			climb = true;
 		elif(Input.is_action_just_pressed("jump")):
 			host.vspd = -host.jspd*3/5;
 			exit(air);
@@ -43,7 +42,7 @@ func execute(delta):
 		hstop = true;
 	#Snap to ledge height
 	if(ledge_cast.is_colliding()):
-		host.position.y -= 3;
+		host.position.y -= 1;
 	pass
 
 func exit(state):
@@ -51,12 +50,16 @@ func exit(state):
 	hstop = false;
 	played = false;
 	stickVar = 5;
-	$Climb_Timer.stop();
+	climb = false;
 	.exit(state);
 	pass
 
+func done_ledge_grab():
+	played = true;
 
-func _on_Climb_Timer_timeout():
+func Climb(node: NodePath):
+	var sprite = host.get_node(node)
 	host.global_position = $Climbbox.global_position;
+	sprite.global_position = host.global_position;
 	exit(ground)
 	pass

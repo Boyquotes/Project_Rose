@@ -74,7 +74,7 @@ func execute(delta):
 	manage_resources();
 
 func phys_execute(delta):
-	tween_height_and_scale_from_vspd();
+	_stretch_based_on_velocity()
 	#print(state);
 	#print(vspd);
 	#state machine
@@ -213,30 +213,34 @@ func activate_grav():
 func activate_fric():
 	fric_activated = true;
 
-func tween_rotation(var node, var cur, var new):
-	$Tween.interpolate_property(get_node(node),"rotation_degrees",cur,new,.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
+func tween_rotation(node: NodePath, new: float, time: float = .1):
+	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 
-func tween_rotation_to_origin(var node):
-	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,0,.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
+func tween_rotation_from_specified(node: NodePath, cur: float, new: float, time: float = .1):
+	$Tween.interpolate_property(get_node(node),"rotation_degrees",cur,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	$Tween.start();
+
+func tween_rotation_to_origin(var node: NodePath, time: float = .1):
+	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,0,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 
 func jump():
 	vspd = -jspd;
 
-func to_air():
-	move_states[move_state].exit(get_node("Movement_States").get_node("Move_In_Air"));
+func change_move_state(var state: NodePath):
+	move_states[move_state].exit(get_node(state));
 
-var do = true;
-var do2 = true;
-func tween_height_and_scale_from_vspd():
-	if(abs(velocity.y) > 100 && do):
-		do = false;
-		do2 = true;
-		$Tween.interpolate_property(get_node("Hitbox/Hitbox"),"scale",Vector2(1,1),Vector2(.8,1),.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
-	elif(abs(velocity.y) < 100 && do2):
-		print("!!!");
-		do = true;
-		do2 = false;
-		$Tween.interpolate_property(get_node("Hitbox/Hitbox"),"scale",Vector2(.8,1),Vector2(1,1),.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
-		
+func tween_height(node: NodePath, new: float, time: float = .1):
+	var shape = get_node(node).shape;
+	$Tween.interpolate_property(shape,"height",shape.height,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT  )
+	$Tween.start();
+
+func tween_scale(node: NodePath, new: Vector2, time: float = .1):
+	$Tween.interpolate_property(get_node(node),"scale",get_node(node).scale,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	$Tween.start();
+
+func _stretch_based_on_velocity():
+	if(!on_floor()):
+		$Sprites/Sprite.scale.y = range_lerp(abs(velocity.y), 0, 500, 1, 1.5)
+		$Sprites/Sprite.scale.x = 1 / $Sprites/Sprite.scale.y

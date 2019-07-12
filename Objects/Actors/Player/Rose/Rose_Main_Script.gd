@@ -44,7 +44,6 @@ var ActiveInput = InputType.GAMEPAD;
 
 
 func _ready():
-	reset_hitbox();
 	$Camera2D.current = true;
 	$Stamina_Timer.wait_time = .1
 	max_hp = 1;
@@ -194,13 +193,6 @@ func mouse_l():
 func mouse_d():
 	return (deg < 150 && deg > 30);
 
-func reset_hitbox():
-	$CollisionShape2D.scale.y = 1
-	$CollisionShape2D.position.y = 0;
-	$Hitbox/CollisionShape2D2.scale.y = 1;
-	$Hitbox/CollisionShape2D2.position.y = 0;
-	pass;
-
 func add_velocity(vec: Vector2 = Vector2(0,0)):
 	hspd = vec.x * Direction;
 	vspd = vec.y;
@@ -230,3 +222,11 @@ func activate_grav():
 func activate_fric():
 	fric_activated = true;
 	pass;
+
+func tween_rotation(var node, var cur, var new):
+	$Tween.interpolate_property(get_node(node),"rotation_degrees",cur,new,.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
+	$Tween.start();
+
+func tween_rotation_to_origin(var node):
+	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,0,.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
+	$Tween.start();

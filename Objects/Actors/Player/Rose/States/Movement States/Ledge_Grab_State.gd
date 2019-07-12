@@ -4,6 +4,7 @@ var climb = .5
 var hstop = false;
 var stickVar = 5;
 var ledge_cast;
+var played = false;
 
 func enter():
 	host.move_state = 'ledge_grab';
@@ -13,7 +14,9 @@ func enter():
 	pass
 
 func handleAnimation():
-	host.animate(host.get_node("TopAnim"),"ledgegrab", false);
+	if(!played):
+		host.animate(host.get_node("TopAnim"),"ledgegrab", false);
+		played = true;
 	#host.animate(host.get_node("BotAnim"),"ledgegrab", false);
 	pass;
 
@@ -46,6 +49,7 @@ func execute(delta):
 func exit(state):
 	host.grav_activated = true;
 	hstop = false;
+	played = false;
 	stickVar = 5;
 	$Climb_Timer.stop();
 	.exit(state);

@@ -84,7 +84,6 @@ func handleAnimation():
 		"""
 		if(busy):
 			host.animate(host.get_node("TopAnim"),attack_str, false);
-			host.animate(host.get_node("BotAnim"),bot_str, false);
 	pass;
 
 ### Prepares next move if user input is detected ###

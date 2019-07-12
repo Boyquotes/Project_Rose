@@ -9,11 +9,9 @@ func handleAnimation():
 	if(host.hspd > 0 || host.hspd < 0):
 		if(!host.style_states[host.style_state].busy):
 			host.animate(host.get_node("TopAnim"),"run", false);
-			host.animate(host.get_node("BotAnim"),"run", false);
 	else: 
 		if(!host.style_states[host.style_state].busy):
 			host.animate(host.get_node("TopAnim"),"idle", false);
-			host.animate(host.get_node("BotAnim"),"idle", false);
 
 func handleInput():
 	if(Input.is_action_just_pressed("jump")):
@@ -25,8 +23,8 @@ func handleInput():
 
 func execute(delta):
 	.execute(delta);
-	#if(abs(host.hspd) > host.mspd && host.Direction != sign(host.velocity.x) && get_input_direction() != 0):
-	#	host.hspd -= 10 * sign(host.hspd);
+	if(host.Direction != sign(host.velocity.x) && get_input_direction() != 0 ):
+		host.hspd -= 10 * sign(host.hspd);
 	pass;
 
 func exit(state):

@@ -244,3 +244,11 @@ func _stretch_based_on_velocity():
 	if(!on_floor()):
 		$Sprites/Sprite.scale.y = range_lerp(abs(velocity.y), 0, 500, 1, 1.5)
 		$Sprites/Sprite.scale.x = 1 / $Sprites/Sprite.scale.y
+
+func change_particle_scale(partNode: NodePath,new: Vector2):
+	var particles = get_node(partNode);
+	particles.scale = new;
+
+func reset_particle(partNode: NodePath):
+	var particles = get_node(partNode);
+	particles.scale = Vector2(1,1);

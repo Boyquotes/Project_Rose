@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Vault_State.gd" type="Script" id=6]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Wind_Dance.gd" type="Script" id=7]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Closed_Fan.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Slashing/Wind_Dance_HoldX_Down_Ground_Slash.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Wind_Dance_B"
@@ -581,7 +582,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=57]
+[sub_resource type="Animation" id=16]
 resource_name = "air_idle"
 length = 0.4
 loop = true
@@ -600,7 +601,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=17]
 resource_name = "air_move_down"
 length = 0.4
 loop = true
@@ -619,8 +620,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=16]
-resource_name = "air_move_up"
+[sub_resource type="Animation" id=18]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -638,7 +638,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=58]
+[sub_resource type="Animation" id=19]
 resource_name = "climb"
 length = 0.3
 step = 0.05
@@ -686,7 +686,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=20]
 loop = true
 step = 0.2
 tracks/0/type = "method"
@@ -730,7 +730,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=21]
 length = 0.25
 loop = true
 step = 0.05
@@ -769,7 +769,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=22]
 resource_name = "land"
 length = 0.25
 step = 0.05
@@ -808,8 +808,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=19]
-resource_name = "ledgegrab"
+[sub_resource type="Animation" id=23]
 length = 0.3
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -866,7 +865,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=52]
+[sub_resource type="Animation" id=24]
 resource_name = "reset"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:rotation_degrees")
@@ -893,7 +892,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=25]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -943,7 +942,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=53]
+[sub_resource type="Animation" id=26]
 resource_name = "up_to_down_idle"
 length = 0.4
 loop = true
@@ -1031,20 +1030,34 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="RectangleShape2D" id=54]
+[sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 10, 20 )
 
-[sub_resource type="RectangleShape2D" id=55]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 10, 20 )
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 10, 2 )
 
-[sub_resource type="RectangleShape2D" id=56]
+[sub_resource type="RectangleShape2D" id=31]
 extents = Vector2( 10, 20 )
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 254.779, 147.421 )
+
+[sub_resource type="Gradient" id=33]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=34]
+gradient = SubResource( 33 )
+
+[sub_resource type="ParticlesMaterial" id=35]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 1000.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 34 )
 
 [node name="Rose" type="KinematicBody2D"]
 collision_layer = 2
@@ -1067,17 +1080,17 @@ anims/Wind_Dance_Y_Hor = SubResource( 12 )
 anims/Wind_Dance_Y_Hor_Down = SubResource( 13 )
 anims/Wind_Dance_Y_Hor_Up = SubResource( 14 )
 anims/Wind_Dance_Y_Up = SubResource( 15 )
-anims/air_idle = SubResource( 57 )
-anims/air_move_down = SubResource( 26 )
-anims/air_move_up = SubResource( 16 )
-anims/climb = SubResource( 58 )
-anims/idle = SubResource( 17 )
-anims/jump = SubResource( 18 )
-anims/land = SubResource( 25 )
-anims/ledgegrab = SubResource( 19 )
-anims/reset = SubResource( 52 )
-anims/run = SubResource( 20 )
-anims/up_to_down_idle = SubResource( 53 )
+anims/air_idle = SubResource( 16 )
+anims/air_move_down = SubResource( 17 )
+anims/air_move_up = SubResource( 18 )
+anims/climb = SubResource( 19 )
+anims/idle = SubResource( 20 )
+anims/jump = SubResource( 21 )
+anims/land = SubResource( 22 )
+anims/ledgegrab = SubResource( 23 )
+anims/reset = SubResource( 24 )
+anims/run = SubResource( 25 )
+anims/up_to_down_idle = SubResource( 26 )
 anims/up_to_down_moving = SubResource( 27 )
 
 [node name="Sprites" type="Node2D" parent="."]
@@ -1089,7 +1102,7 @@ texture = ExtResource( 2 )
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 54 )
+shape = SubResource( 28 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( 0, -20 )
@@ -1097,7 +1110,7 @@ position = Vector2( 0, -20 )
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
 scale = Vector2( 0.8, 1 )
-shape = SubResource( 55 )
+shape = SubResource( 29 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -1115,7 +1128,7 @@ script = ExtResource( 4 )
 position = Vector2( 10, -26 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Move_In_Air/Ledgebox"]
-shape = SubResource( 22 )
+shape = SubResource( 30 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
 script = ExtResource( 5 )
@@ -1124,7 +1137,7 @@ script = ExtResource( 5 )
 position = Vector2( 14, -40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 56 )
+shape = SubResource( 31 )
 
 [node name="Vault" type="Node2D" parent="Movement_States"]
 script = ExtResource( 6 )
@@ -1160,7 +1173,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 24 )
+shape = SubResource( 32 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0
@@ -1180,6 +1193,14 @@ cast_to = Vector2( -20, 0 )
 autostart = true
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="SlashParticle" type="Particles2D" parent="."]
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+process_material = SubResource( 35 )
+texture = ExtResource( 9 )
 [connection signal="consume_resource" from="." to="." method="_on_Rose_consume_resource"]
 [connection signal="timeout" from="Style_States/Wind_Dance/ChargeXTimer" to="Style_States/Wind_Dance" method="_on_ChargeXTimer_timeout"]
 [connection signal="timeout" from="Style_States/Wind_Dance/ChargeYTimer" to="Style_States/Wind_Dance" method="_on_ChargeYTimer_timeout"]

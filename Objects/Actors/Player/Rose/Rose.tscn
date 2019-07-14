@@ -1,20 +1,22 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox.png" type="Texture" id=2]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Move_On_Ground_State.gd" type="Script" id=3]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Move_In_Air_State.gd" type="Script" id=4]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Ledge_Grab_State.gd" type="Script" id=5]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Vault_State.gd" type="Script" id=6]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Wind_Dance.gd" type="Script" id=7]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Closed_Fan.gd" type="Script" id=8]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Slashing/Wind_Dance_HoldX_Down_Ground_Slash.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_top.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_bot.png" type="Texture" id=3]
+[ext_resource path="res://Objects/Actors/Player/Rose/AttackParticles.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Slashing/Wind_Dance_HoldX_Down_Ground_Slash.png" type="Texture" id=5]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Move_On_Ground_State.gd" type="Script" id=6]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Move_In_Air_State.gd" type="Script" id=7]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Ledge_Grab_State.gd" type="Script" id=8]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Movement States/Vault_State.gd" type="Script" id=9]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Wind_Dance.gd" type="Script" id=10]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Closed_Fan.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Wind_Dance_B"
 length = 0.6
 loop = true
-step = 0.05
+step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Style_States/Wind_Dance")
 tracks/0/interp = 1
@@ -102,8 +104,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "Wind_Dance_HoldX_Down_Ground"
 length = 0.6
-loop = true
-step = 0.07
+step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Style_States/Wind_Dance")
 tracks/0/interp = 1
@@ -119,6 +120,20 @@ tracks/0/keys = {
 }, {
 "args": [  ],
 "method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("AttackParticles")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Wind_Dance_HoldX_Down_Ground"
 } ]
 }
 
@@ -731,8 +746,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=21]
-length = 0.25
-loop = true
+length = 0.3
 step = 0.05
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -741,14 +755,11 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.15, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "jump"
-}, {
-"args": [ NodePath("Movement_States/Move_In_Air") ],
-"method": "change_move_state"
 } ]
 }
 tracks/1/type = "method"
@@ -768,10 +779,24 @@ tracks/1/keys = {
 "method": "tween_scale"
 } ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movement_States/Move_On_Ground/Jump_Timer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.1 ],
+"method": "start"
+} ]
+}
 
 [sub_resource type="Animation" id=22]
 resource_name = "land"
-length = 0.25
+length = 0.3
 step = 0.05
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -780,14 +805,11 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ NodePath("Sprites/Sprite") ],
 "method": "tween_rotation_to_origin"
-}, {
-"args": [ NodePath("Movement_States/Move_On_Ground") ],
-"method": "change_move_state"
 } ]
 }
 tracks/1/type = "method"
@@ -805,6 +827,20 @@ tracks/1/keys = {
 }, {
 "args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
 "method": "tween_scale"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movement_States/Move_In_Air/Land_Timer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.25 ],
+"method": "start"
 } ]
 }
 
@@ -1036,28 +1072,28 @@ extents = Vector2( 10, 20 )
 [sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 10, 20 )
 
-[sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 10, 2 )
-
-[sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 10, 20 )
-
-[sub_resource type="RectangleShape2D" id=32]
-extents = Vector2( 254.779, 147.421 )
-
-[sub_resource type="Gradient" id=33]
+[sub_resource type="Gradient" id=30]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=34]
-gradient = SubResource( 33 )
+[sub_resource type="GradientTexture" id=31]
+gradient = SubResource( 30 )
 
-[sub_resource type="ParticlesMaterial" id=35]
+[sub_resource type="ParticlesMaterial" id=32]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 angular_velocity = 1000.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color_ramp = SubResource( 34 )
+color_ramp = SubResource( 31 )
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 10, 2 )
+
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 10, 20 )
+
+[sub_resource type="RectangleShape2D" id=35]
+extents = Vector2( 254.779, 147.421 )
 
 [node name="Rose" type="KinematicBody2D"]
 collision_layer = 2
@@ -1095,10 +1131,16 @@ anims/up_to_down_moving = SubResource( 27 )
 
 [node name="Sprites" type="Node2D" parent="."]
 position = Vector2( 0, -20 )
+z_index = 1
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
 position = Vector2( 0, 20 )
+z_index = 1
 texture = ExtResource( 2 )
+
+[node name="SpriteBot" type="Sprite" parent="Sprites/Sprite"]
+z_index = -1
+texture = ExtResource( 3 )
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 visible = false
@@ -1116,37 +1158,61 @@ shape = SubResource( 29 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AttackParticles" type="Node2D" parent="."]
+editor/display_folded = true
+z_index = 1
+script = ExtResource( 4 )
+
+[node name="SlashParticle" type="Particles2D" parent="AttackParticles"]
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+process_material = SubResource( 32 )
+texture = ExtResource( 5 )
+
+[node name="particleTimer" type="Timer" parent="AttackParticles"]
+one_shot = true
+
 [node name="Movement_States" type="Node2D" parent="."]
 
 [node name="Move_On_Ground" type="Node2D" parent="Movement_States"]
-script = ExtResource( 3 )
+script = ExtResource( 6 )
+
+[node name="Jump_Timer" type="Timer" parent="Movement_States/Move_On_Ground"]
+one_shot = true
 
 [node name="Move_In_Air" type="Node2D" parent="Movement_States"]
-script = ExtResource( 4 )
+script = ExtResource( 7 )
 
 [node name="Ledgebox" type="Area2D" parent="Movement_States/Move_In_Air"]
 position = Vector2( 10, -26 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Move_In_Air/Ledgebox"]
-shape = SubResource( 30 )
+shape = SubResource( 33 )
+
+[node name="Land_Timer" type="Timer" parent="Movement_States/Move_In_Air"]
+one_shot = true
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
-script = ExtResource( 5 )
+editor/display_folded = true
+script = ExtResource( 8 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
 position = Vector2( 14, -40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 31 )
+shape = SubResource( 34 )
 
 [node name="Vault" type="Node2D" parent="Movement_States"]
-script = ExtResource( 6 )
+script = ExtResource( 9 )
 
 [node name="Style_States" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Wind_Dance" type="Node2D" parent="Style_States"]
-script = ExtResource( 7 )
+script = ExtResource( 10 )
 
 [node name="ChargeXTimer" type="Timer" parent="Style_States/Wind_Dance"]
 one_shot = true
@@ -1159,7 +1225,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="Closed_Fan" type="Node2D" parent="Style_States"]
-script = ExtResource( 8 )
+script = ExtResource( 11 )
 
 [node name="ChargeXTimer" type="Timer" parent="Style_States/Closed_Fan"]
 one_shot = true
@@ -1168,12 +1234,13 @@ one_shot = true
 one_shot = true
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]
+editor/display_folded = true
 visible = false
 collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 32 )
+shape = SubResource( 35 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0
@@ -1188,20 +1255,10 @@ cast_to = Vector2( 20, 0 )
 position = Vector2( 0, -20 )
 enabled = true
 cast_to = Vector2( -20, 0 )
-
-[node name="Stamina_Timer" type="Timer" parent="."]
-autostart = true
-
-[node name="Tween" type="Tween" parent="."]
-
-[node name="SlashParticle" type="Particles2D" parent="."]
-emitting = false
-amount = 1
-lifetime = 0.2
-one_shot = true
-process_material = SubResource( 35 )
-texture = ExtResource( 9 )
 [connection signal="consume_resource" from="." to="." method="_on_Rose_consume_resource"]
+[connection signal="timeout" from="AttackParticles/particleTimer" to="AttackParticles" method="_on_particleTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Move_On_Ground/Jump_Timer" to="Movement_States/Move_On_Ground" method="_on_JumpTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Move_In_Air/Land_Timer" to="Movement_States/Move_In_Air" method="_on_Land_Timer_timeout"]
 [connection signal="timeout" from="Style_States/Wind_Dance/ChargeXTimer" to="Style_States/Wind_Dance" method="_on_ChargeXTimer_timeout"]
 [connection signal="timeout" from="Style_States/Wind_Dance/ChargeYTimer" to="Style_States/Wind_Dance" method="_on_ChargeYTimer_timeout"]
 [connection signal="timeout" from="Style_States/Wind_Dance/ComboTimer" to="Style_States/Wind_Dance" method="_on_ComboTimer_timeout"]
@@ -1209,4 +1266,3 @@ texture = ExtResource( 9 )
 [connection signal="timeout" from="Style_States/Closed_Fan/ChargeYTimer" to="Style_States/Closed_Fan" method="_on_ChargeYTimer_timeout"]
 [connection signal="area_entered" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
 [connection signal="area_exited" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
-[connection signal="timeout" from="Stamina_Timer" to="." method="_on_Stamina_Timer_timeout"]

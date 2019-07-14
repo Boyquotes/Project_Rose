@@ -90,7 +90,7 @@ func set_position_vars():
 			dir = "_horizontal"
 	if(current_event == "HoldY"):
 		dir = "";
-		vdir 
+		vdir = "";
 	if(init_attack()):
 		attack();
 	pass;

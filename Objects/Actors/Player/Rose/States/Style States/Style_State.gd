@@ -1,7 +1,7 @@
 extends "../State.gd"
 
 onready var Wind_Dance = get_parent().get_node("Wind_Dance");
-onready var bash = get_parent().get_node("Closed_Fan");
+onready var Closed_Fan = get_parent().get_node("Closed_Fan");
 
 signal attack;
 

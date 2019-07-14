@@ -29,3 +29,7 @@ func execute(delta):
 func exit(state):
 	jump = false;
 	.exit(state);
+
+
+func _on_JumpTimer_timeout():
+	exit(air);

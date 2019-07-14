@@ -27,6 +27,10 @@ gdscript/warnings/unused_argument=false
 gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
 
+[display]
+
+window/stretch/mode="viewport"
+
 [importer_defaults]
 
 texture={

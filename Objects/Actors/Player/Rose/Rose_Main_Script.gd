@@ -45,7 +45,6 @@ var ActiveInput = InputType.GAMEPAD;
 
 func _ready():
 	$Camera2D.current = true;
-	$Stamina_Timer.wait_time = .1
 	max_hp = 1;
 	damage = 1;
 	mspd = 200;
@@ -71,12 +70,10 @@ func execute(delta):
 	deg = rad2deg(rad);
 	
 	hitboxLoop();
-	manage_resources();
 
 func phys_execute(delta):
 	_stretch_based_on_velocity()
-	#print(state);
-	#print(vspd);
+	#print(move_state);
 	#state machine
 	move_states[move_state].handleAnimation();
 	move_states[move_state].handleInput();
@@ -144,38 +141,10 @@ func nextRay(origin,dest,col_layer,spc):
 		itemTrace.clear();
 		return false;
 
-func manage_resources():
-	if(Input.is_action_just_pressed("switchY")):
-		if(stamina_bool):
-			stamina_bool = false;
-			magic_bool = true;
-		elif(magic_bool):
-			stamina_bool = true;
-			magic_bool = false;
-	if(stamina_bool):
-		resource = stamina;
-	elif(magic_bool):
-		resource = mana;
-	if(stamina > max_stamina):
-		stamina = max_stamina;
-	if(mana > max_mana):
-		mana = max_mana;
-
-
-func _on_Rose_consume_resource(cost):
-	if(stamina_bool):
-		stamina -= cost;
-	elif(magic_bool):
-		mana -= cost;
-
-
-func _on_Stamina_Timer_timeout():
-#	if($Attack_Controller.attack_spawned):
-#		$Stamina_Timer.start();
-#	elif(stamina < 100):
-#		stamina += 1;
-	#print(resource);
-	pass;
+func _stretch_based_on_velocity():
+	if(!on_floor()):
+		$Sprites/Sprite.scale.y = range_lerp(abs(velocity.y), 0, 500, 1, 1.5)
+		$Sprites/Sprite.scale.x = 1 / $Sprites/Sprite.scale.y
 
 func mouse_r():
 	return (deg > -60 && deg < 60);
@@ -213,6 +182,9 @@ func activate_grav():
 func activate_fric():
 	fric_activated = true;
 
+func change_move_state(var state: NodePath):
+	move_states[move_state].exit(get_node(state));
+
 func tween_rotation(node: NodePath, new: float, time: float = .1):
 	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
@@ -228,27 +200,6 @@ func tween_rotation_to_origin(var node: NodePath, time: float = .1):
 func jump():
 	vspd = -jspd;
 
-func change_move_state(var state: NodePath):
-	move_states[move_state].exit(get_node(state));
-
-func tween_height(node: NodePath, new: float, time: float = .1):
-	var shape = get_node(node).shape;
-	$Tween.interpolate_property(shape,"height",shape.height,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT  )
-	$Tween.start();
-
 func tween_scale(node: NodePath, new: Vector2, time: float = .1):
 	$Tween.interpolate_property(get_node(node),"scale",get_node(node).scale,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
-
-func _stretch_based_on_velocity():
-	if(!on_floor()):
-		$Sprites/Sprite.scale.y = range_lerp(abs(velocity.y), 0, 500, 1, 1.5)
-		$Sprites/Sprite.scale.x = 1 / $Sprites/Sprite.scale.y
-
-func change_particle_scale(partNode: NodePath,new: Vector2):
-	var particles = get_node(partNode);
-	particles.scale = new;
-
-func reset_particle(partNode: NodePath):
-	var particles = get_node(partNode);
-	particles.scale = Vector2(1,1);

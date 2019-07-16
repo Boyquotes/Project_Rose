@@ -172,6 +172,7 @@ func deactivate_grav():
 	velocity.y = 0;
 
 func deactivate_fric():
+	print("@@@");
 	fric_activated = false;
 	hspd = 0;
 	velocity.x = 0;
@@ -194,6 +195,7 @@ func tween_rotation_from_specified(node: NodePath, cur: float, new: float, time:
 	$Tween.start();
 
 func tween_rotation_to_origin(var node: NodePath, time: float = .1):
+	$Tween.stop(get_node(node));
 	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,0,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 

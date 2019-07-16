@@ -46,7 +46,6 @@ func phys_execute(delta):
 	pass;
 
 func animate(animator, anim, cont = true):
-	print(anim);
 	animator.stop(cont);
 	animator.play(anim);
 	pass;

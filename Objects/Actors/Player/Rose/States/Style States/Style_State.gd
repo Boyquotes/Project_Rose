@@ -23,6 +23,8 @@ var dashing = false;
 var save_event = false;
 var event_is_saved = false;
 var interrupt = false;
+var started_save = false;
+var follow_up = false;
 
 ### attack codes ###
 var style = "style";
@@ -71,38 +73,38 @@ func enter():
 ### Handles animation, incomplete ###
 func handleAnimation():
 	if(!input_testing):
-		"""
-		if(attack_end):
-			#landing frames
-			if(host.on_floor()):
-				pass;
-				#if(combo_attack.length()%2 == 1):
-				#	host.new_anim = combo_attack.substr(combo_attack.length()-1,1) + "land";
-				#else:
-				#	host.new_anim = "-" + combo_attack.substr(combo_attack.length()-1,1) + "land";
-		elif(attack_start):
-		"""
 		if(busy):
 			host.animate(host.get_node("TopAnim"),attack_str, false);
 	pass;
 
 ### Prepares next move if user input is detected ###
 func handleInput():
-	if(interrupt && attack_is_saved):
+	"""
+	if(Input.is_action_just_pressed("attack")):
+		print(String(interrupt) + " || " + String(!started_save) + ") && " + String(attack_is_saved));
+		print(busy);
+	if(Input.is_action_just_released("attack")):
+		print(String(interrupt) + " || " + String(!started_save) + ") && " + String(attack_is_saved));
+		print(busy);
+		print("____________________");"""
+	if((interrupt || (follow_up && !started_save)) && attack_is_saved):
 		attack_done();
 		current_event = saved_event;
 		combo += saved_event;
 		busy = true;
+		follow_up = false;
 		attack_is_saved = false;
 		set_position_vars();
-	if(!busy):
+	if(!busy && !started_save):
 		if(parse_attack()):
 			combo += current_event;
 			busy = true;
+			follow_up = false;
 			attack_is_saved = false;
 			set_position_vars();
-	if(save_event):
+	if(save_event || started_save):
 		if(parse_next_attack()):
+			started_save = false;
 			attack_is_saved = true;
 			save_event = false;
 
@@ -171,21 +173,14 @@ func init_attack():
 		attack_start = true;
 		attack_end = false;
 		attack_is_saved = false;
+		$StartTimer.start();
 		return true;
 	pass;
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
-	if(((dir != "_Hor" && vdir == "_Down") || current_event == "HoldX") || (current_event == "Y" && (dir != "_Hor" && vdir == "_Down"))):
-		attack_str = style + "_" + combo+dir+vdir+place;
-	else:
-		attack_str = style + "_" + combo+dir+vdir;
-	if(current_event == "HoldX" || current_event == "B"):
-		bot_str = attack_str;
-	else:
-		bot_str = style + "_" + combo + place; 
-	
-	pass;
+	if(host.move_state == "ledge_grab"):
+		host.move_states[host.move_state].update_look_direction_and_scale(host.Direction * -1);
 
 ### Resets attack strings ###
 func reset_strings():
@@ -220,6 +215,7 @@ func set_save_event():
 
 func set_interrupt():
 	interrupt = true;
+	follow_up = true;
 
 func check_combo():
 	pass;

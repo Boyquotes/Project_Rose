@@ -1,13 +1,113 @@
 extends Node2D
 
+var slashPath = "res://Objects/Actors/Player/Rose/SlashParticles.tscn";
+var node;
+var particle;
+
+func instance_slash():
+	node = load(slashPath).instance();
+	particle = node.get_child(0);
+	node.scale = scale;
+	get_parent().add_child(node);
+	node.global_position = get_parent().global_position;
+
 func Wind_Dance_HoldX_Down_Ground():
-	$SlashParticle.scale = Vector2(3.5, 0.5);
-	$SlashParticle.emitting = true;
+	instance_slash();
+	particle.lifetime = .3;
+	particle.process_material.angular_velocity = 1000;
+	particle.rotation_degrees = 0;
+	particle.scale = Vector2(3, 0.5);
+	particle.emitting = true;
 	$particleTimer.start(.3);
 
+func Wind_Dance_HoldX_Hor_Ground():
+	instance_slash();
+	particle.lifetime = .3;
+	particle.process_material.angular_velocity = 500;
+	particle.rotation_degrees = 78.5;
+	particle.scale = Vector2(1.65, 4);
+	particle.emitting = true;
+	$particleTimer.start(.3);
+
+func Wind_Dance_X_Hor():
+	instance_slash();
+	particle.lifetime = .2;
+	particle.process_material.angular_velocity = 750;
+	particle.rotation_degrees = 25;
+	particle.scale = Vector2(2.5, 1.6);
+	particle.emitting = true;
+	$particleTimer.start(.2);
+
+func Wind_Dance_XX_Hor():
+	instance_slash();
+	particle.lifetime = .2;
+	particle.process_material.angular_velocity = 750;
+	particle.rotation_degrees = -20;
+	particle.scale = Vector2(2.5, -1);
+	particle.emitting = true;
+	$particleTimer.start(.2);
+
+func Wind_Dance_X_Up():
+	Wind_Dance_X_Hor();
+	particle.rotation_degrees -= 90;
+
+func Wind_Dance_XX_Up():
+	Wind_Dance_XX_Hor();
+	particle.rotation_degrees -= 90;
+
+func Wind_Dance_X_Down_Air():
+	Wind_Dance_X_Hor();
+	particle.rotation_degrees += 90;
+
+func Wind_Dance_XX_Down_Air():
+	Wind_Dance_XX_Hor();
+	particle.rotation_degrees += 90;
+
+func Wind_Dance_Y_Hor():
+	instance_slash();
+	particle.one_shot = false;
+	particle.z_index = 5;
+	particle.amount = 7
+	particle.lifetime = .5;
+	particle.process_material.gravity = Vector3(-500,0,0);
+	particle.process_material.angular_velocity = 1000;
+	particle.process_material.angular_velocity_random = 1;
+	particle.process_material.scale = 1;
+	particle.process_material.scale_random = 0.4;
+	particle.process_material.scale_curve = CurveTexture.new();
+	particle.process_material.scale_curve.curve.add_point(Vector2(0,0.5));
+	particle.process_material.scale_curve.curve.add_point(Vector2(1,1));
+	particle.rotation_degrees = 0;
+	particle.scale = Vector2(3, 1);
+	particle.emitting = true;
+	$particleTimer.start(.6);
+
+func Wind_Dance_Y_Down_Air():
+	Wind_Dance_Y_Hor();
+	particle.rotation_degrees += 90;
+
+func Wind_Dance_Y_Up():
+	Wind_Dance_Y_Hor();
+	particle.rotation_degrees -= 90;
+
+func Wind_Dance_Y_Hor_Up():
+	Wind_Dance_Y_Hor();
+	particle.rotation_degrees -= 45;
+
+func Wind_Dance_Y_Hor_Down():
+	Wind_Dance_Y_Hor();
+	particle.rotation_degrees += 45;
+
+func slash_emit_off():
+	particle.emitting = false;
+
 func _on_particleTimer_timeout():
-	for child in get_children():
-		if "emitting" in child:
-			print(child.one_shot);
-			child.emitting = false;
-			child.scale = Vector2(1,1);
+	
+	particle.process_material.gravity = Vector3(0,0,0);
+	particle.process_material.angular_velocity_random = 0;
+	particle.process_material.scale_random = 0;
+	if(particle.process_material.scale_curve):
+		particle.process_material.scale_curve = null;
+	particle.z_index = 0;
+	node.queue_free();
+	particle.queue_free();

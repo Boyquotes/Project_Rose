@@ -15,9 +15,14 @@ func _process(delta):
 	if(!Input.is_action_pressed("attack")):
 		chargedx = false;
 		$ChargeXTimer.stop();
+	else:
+		$ComboTimer.start();
 	if(!Input.is_action_pressed("special")):
 		chargedy = false;
 		$ChargeYTimer.stop();
+	else:
+		$ComboTimer.start();
+
 func parse_attack():
 	if(chargedx):
 		current_event = "HoldX";
@@ -73,10 +78,11 @@ func parse_attack():
 
 func parse_next_attack():
 	if(chargedx):
-		current_event = "HoldX";
+		saved_event = "HoldX";
 		slottedx = true;
 		combo = "";
 	elif(Input.is_action_just_pressed("attack") && !slottedx):
+		started_save = true;
 		if(current_event == "Y" || combo == "XX"):
 			saved_event = "HoldX";
 			slottedx = true;
@@ -91,6 +97,7 @@ func parse_next_attack():
 		return true;
 	
 	if(Input.is_action_just_pressed("dodge")):
+		started_save = true;
 		if(Input.is_action_pressed("attack")):
 			saved_event = "X+B";
 		elif(previous_event == "X" && hit):
@@ -110,6 +117,7 @@ func parse_next_attack():
 		slottedy = true;
 		combo = "";
 	elif(Input.is_action_just_pressed("special") && $ChargeYTimer.is_stopped() && !slottedy):
+		started_save = true;
 		saved_event = "Y";
 		$ChargeYTimer.start();
 		slottedy = true;
@@ -181,11 +189,26 @@ func exit(state):
 	chargedy = false;
 	slottedy = false;
 
+func construct_attack_string():
+	.construct_attack_string();
+	if(((dir != "_Hor" && vdir == "_Down") || current_event == "HoldX") || (current_event == "Y" && (dir != "_Hor" && vdir == "_Down"))):
+		attack_str = style + "_" + combo+dir+vdir+place;
+	else:
+		attack_str = style + "_" + combo+dir+vdir;
+	if(current_event == "HoldX" || current_event == "B"):
+		bot_str = attack_str;
+	else:
+		bot_str = style + "_" + combo + place; 
+
 func attack_done():
-	chargedx = false;
-	slottedx = false;
-	chargedy = false;
-	slottedy = false;
+	print("!!!");
+	if(!saved_event):
+		if(!Input.is_action_pressed("attack")):
+			chargedx = false;
+		if(!Input.is_action_pressed("special")):
+			chargedy = false;
+		slottedx = false;
+		slottedy = false;
 	check_combo();
 	.attack_done();
 	pass;
@@ -203,12 +226,16 @@ func set_interrupt():
 	.set_interrupt();
 
 func _on_ChargeXTimer_timeout():
+	print("!!!");
 	chargedx = true;
 
 
 func _on_ChargeYTimer_timeout():
 	chargedy = true;
 
-
 func _on_ComboTimer_timeout():
 	combo = "";
+
+
+func _on_StartTimer_timeout():
+	attack_start = false;

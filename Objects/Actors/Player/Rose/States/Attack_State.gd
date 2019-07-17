@@ -8,7 +8,6 @@ var style_state = 'wind_dance';
 
 var leave = false;
 var update = false;
-var exit_early = false;
 
 func _ready():
 	$Wind_Dance.host = host;
@@ -28,9 +27,6 @@ func handleAnimation():
 	style_states[style_state].handleAnimation();
 
 func handleInput():
-	#if(!get_attack_pressed() && exit_early):
-	#	style_states[style_state].attack_done();
-	#	exit(ground);
 	var input_direction = get_input_direction();
 	if(style_states[style_state].save_event || style_states[style_state].event_is_saved || style_states[style_state].interrupt):
 		update = true;
@@ -43,12 +39,13 @@ func handleInput():
 	
 	if(!get_attack_pressed() && (style_states[style_state].save_event || style_states[style_state].attack_end)):
 		if(!style_states[style_state].attack_is_saved):
-			if(Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("up") || Input.is_action_pressed("down")):
-				leave = true;
-			elif(Input.is_action_just_pressed("jump")):
+			if(Input.is_action_just_pressed("jump")):
 				ground.jump = true;
 				leave = true;
+			elif(Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("up") || Input.is_action_pressed("down")):
+				leave = true;
 	if(leave && (style_states[style_state].interrupt || style_states[style_state].attack_end)):
+		
 		style_states[style_state].attack_done();
 		exit_g_or_a();
 
@@ -71,5 +68,7 @@ func exit_g_or_a():
 func exit(state):
 	leave = false;
 	update = false;
-	exit_early = false;
+	style_states[style_state].animate = false;
+	host.activate_grav();
+	host.activate_fric();
 	.exit(state);

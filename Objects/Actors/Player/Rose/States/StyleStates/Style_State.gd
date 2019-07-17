@@ -29,6 +29,7 @@ var chargedx = false;
 var chargedy = false;
 var slottedx = false;
 var slottedy = false;
+var animate = false;
 
 ### attack codes ###
 var style = "style";
@@ -67,6 +68,18 @@ func _ready():
 	if(stp1 >= style_n):
 		stp1 = 0;
 
+func execute(delta):
+	if(!Input.is_action_pressed("attack")):
+		chargedx = false;
+		$ChargeXTimer.stop();
+	else:
+		$ComboTimer.start();
+	if(!Input.is_action_pressed("special")):
+		chargedy = false;
+		$ChargeYTimer.stop();
+	else:
+		$ComboTimer.start();
+
 func enter():
 	attack_end = false;
 	#print("   " + get_parent().get_child(style_idx).name);
@@ -75,8 +88,9 @@ func enter():
 ### Handles animation, incomplete ###
 func handleAnimation():
 	if(!input_testing):
-		if(busy):
-			host.animate(host.get_node("TopAnim"),attack_str, false);
+		if(busy && animate):
+			host.animate(host.get_node("TopAnim"),attack_str, true);
+			animate = false;
 	pass;
 
 ### Prepares next move if user input is detected ###
@@ -193,18 +207,11 @@ func reset_strings():
 func attack():
 	#TODO: put this signal in the attacks instead
 	#host.emit_signal("consume_resource", cur_cost);
-	#animate = true;
 	
 	construct_attack_string();
+	animate = true;
+	$ComboTimer.start();
 	#TODO: Get appropriate path to attack scene
-	"""
-	var path = "res://Objects/Actors/Player/Rose/AttackObjects/" + type + "/" + current_attack + "/";
-	path += dir+vdir+place+"_attack.tscn";
-	var effect = load(path).instance();
-	effect.host = host;
-	effect.attack_state = self;
-	host.add_child(effect);
-	"""
 	pass;
 
 func set_save_event():
@@ -217,7 +224,7 @@ func set_interrupt():
 func check_combo():
 	pass;
 
-func attack_done():	
+func attack_done():
 	X = false;
 	Y = false;
 	B = false;

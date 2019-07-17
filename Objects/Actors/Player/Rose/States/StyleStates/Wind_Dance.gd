@@ -5,17 +5,7 @@ func enter():
 	get_parent().style_state = 'wind_dance';
 	style = "Wind_Dance";
 
-func execute(delta):
-	if(!Input.is_action_pressed("attack")):
-		chargedx = false;
-		$ChargeXTimer.stop();
-	else:
-		$ComboTimer.start();
-	if(!Input.is_action_pressed("special")):
-		chargedy = false;
-		$ChargeYTimer.stop();
-	else:
-		$ComboTimer.start();
+
 
 func parse_attack():
 	if(chargedx):
@@ -37,14 +27,16 @@ func parse_attack():
 		return true;
 	
 	if(B_pressed()):
-		#if(Input.is_action_pressed("attack")):
-		#	current_event = "X+B";
-		#elif(previous_event == "X" && hit):
-		#	current_event = "XB";
-		#else:
-		current_event = "B";
+		if(Input.is_action_pressed("attack") && hit):
+			current_event = "HitX+B";
+		if(Input.is_action_pressed("attack")):
+			current_event = "X+B";
+		elif(hit):
+			current_event = "HitB";
+		else:
+			current_event = "B";
 		
-		if(current_event == "B"):# || current_event == "XB"  || current_event == "X+B"):
+		if(current_event == "B" || current_event == "HitB"  || current_event == "X+B" || current_event == "HitX+B"):
 			if(!host.on_floor() && !hit):
 				started_save = false;
 				current_event = "current_event";
@@ -99,15 +91,16 @@ func parse_next_attack():
 	
 	if(B_pressed()):
 		started_save = true;
-		#if(Input.is_action_pressed("attack")):
-		#	saved_event = "X+B";
-		#elif(previous_event == "X" && hit):
-		#	saved_event = "XB";
-		#else:
-		saved_event = "B";
+		if(Input.is_action_pressed("attack") && hit):
+			saved_event = "HitX+B";
+		if(Input.is_action_pressed("attack")):
+			saved_event = "X+B";
+		elif(hit):
+			saved_event = "HitB";
+		else:
+			saved_event = "B";
 		
-		if(saved_event == "B"): #|| saved_event == "XB"  || saved_event == "X+B"):
-			
+		if(saved_event == "B" || saved_event == "HitB"  || saved_event == "X+B" || saved_event == "HitX+B"):
 			if(!host.on_floor() && !hit):
 				started_save = false;
 				saved_event = "saved_event";
@@ -187,7 +180,7 @@ func set_position_vars():
 		else:
 			vdir = "";
 			dir = "_Hor"
-	if(current_event == "XB" || current_event == "B"):
+	if(current_event == "XB" || current_event == "B" || current_event == "X+B"):
 		dir = "";
 		place = "";
 	if(init_attack()):
@@ -245,4 +238,8 @@ func _on_ChargeYTimer_timeout():
 
 func _on_ComboTimer_timeout():
 	combo = "";
-	get_parent().exit_g_or_a();
+	if(host.move_state == 'attack'):
+		get_parent().exit_g_or_a();
+
+func on_hit(area):
+	print(area.hittable);

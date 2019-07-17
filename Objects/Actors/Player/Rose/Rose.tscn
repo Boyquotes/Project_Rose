@@ -1,16 +1,16 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_top.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_bot.png" type="Texture" id=3]
-[ext_resource path="res://Objects/Actors/Player/Rose/AttackParticles.gd" type="Script" id=4]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/AttackParticles.gd" type="Script" id=4]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Move_On_Ground_State.gd" type="Script" id=5]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Move_In_Air_State.gd" type="Script" id=6]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Ledge_Grab_State.gd" type="Script" id=7]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Vault_State.gd" type="Script" id=8]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=9]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Closed_Fan.gd" type="Script" id=10]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Style States/Wind_Dance.gd" type="Script" id=11]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/StyleStates/Closed_Fan.gd" type="Script" id=10]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/StyleStates/Wind_Dance.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Wind_Dance_B"
@@ -23,7 +23,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.16, 0.44, 0.6 ),
+"times": PoolRealArray( 0.2, 0.44, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -285,7 +285,111 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "Wind_Dance_XX_Down_Air"
+resource_name = "Wind_Dance_X+B"
+length = 0.61
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.44, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deactivate_fric"
+}, {
+"args": [ Vector2( 400, 0 ) ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [ Vector2( 0, 0 ) ],
+"method": "add_velocity"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("AttackParticles")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.04 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Wind_Dance_XplusB"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -363,8 +467,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Wind_Dance_XX_Hor"
+[sub_resource type="Animation" id=7]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -442,8 +545,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "Wind_Dance_XX_Up"
+[sub_resource type="Animation" id=8]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -521,8 +623,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "Wind_Dance_X_Down_Air"
+[sub_resource type="Animation" id=9]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -600,7 +701,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -678,8 +779,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "Wind_Dance_X_Up"
+[sub_resource type="Animation" id=11]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -757,8 +857,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "Wind_Dance_Y_Down_Air"
+[sub_resource type="Animation" id=12]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -877,8 +976,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "Wind_Dance_Y_Hor"
+[sub_resource type="Animation" id=13]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -888,7 +986,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.28, 0.62, 1.05 ),
+"times": PoolRealArray( 0.21, 0.62, 1.05 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -1003,8 +1101,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "Wind_Dance_Y_Hor_Down"
+[sub_resource type="Animation" id=14]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -1129,8 +1226,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=14]
-resource_name = "Wind_Dance_Y_Hor_Up"
+[sub_resource type="Animation" id=15]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -1255,8 +1351,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=15]
-resource_name = "Wind_Dance_Y_Up"
+[sub_resource type="Animation" id=16]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -1375,8 +1470,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=16]
-resource_name = "air_idle"
+[sub_resource type="Animation" id=17]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -1394,8 +1488,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=17]
-resource_name = "air_move_down"
+[sub_resource type="Animation" id=18]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -1413,7 +1506,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=19]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -1431,8 +1524,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=19]
-resource_name = "climb"
+[sub_resource type="Animation" id=20]
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -1479,7 +1571,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=21]
 loop = true
 step = 0.2
 tracks/0/type = "method"
@@ -1523,7 +1615,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=22]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -1558,8 +1650,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=22]
-resource_name = "land"
+[sub_resource type="Animation" id=23]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -1622,7 +1713,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=24]
 length = 0.3
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -1679,8 +1770,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=24]
-resource_name = "reset"
+[sub_resource type="Animation" id=25]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -1706,7 +1796,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=26]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -1756,8 +1846,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=26]
-resource_name = "up_to_down_idle"
+[sub_resource type="Animation" id=27]
 length = 0.4
 loop = true
 step = 0.01
@@ -1793,8 +1882,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=27]
-resource_name = "up_to_down_moving"
+[sub_resource type="Animation" id=28]
 length = 0.4
 loop = true
 step = 0.01
@@ -1844,19 +1932,19 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 10, 20 )
-
 [sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 10, 20 )
 
 [sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 10, 2 )
-
-[sub_resource type="RectangleShape2D" id=31]
 extents = Vector2( 10, 20 )
 
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 10, 2 )
+
 [sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 10, 20 )
+
+[sub_resource type="RectangleShape2D" id=33]
 extents = Vector2( 254.779, 147.421 )
 
 [node name="Rose" type="KinematicBody2D"]
@@ -1869,29 +1957,30 @@ anims/Wind_Dance_B = SubResource( 1 )
 anims/Wind_Dance_HoldX_Down_Ground = SubResource( 2 )
 anims/Wind_Dance_HoldX_Hor_Ground = SubResource( 3 )
 anims/Wind_Dance_HoldY = SubResource( 4 )
-anims/Wind_Dance_XX_Down_Air = SubResource( 5 )
-anims/Wind_Dance_XX_Hor = SubResource( 6 )
-anims/Wind_Dance_XX_Up = SubResource( 7 )
-anims/Wind_Dance_X_Down_Air = SubResource( 8 )
-anims/Wind_Dance_X_Hor = SubResource( 9 )
-anims/Wind_Dance_X_Up = SubResource( 10 )
-anims/Wind_Dance_Y_Down_Air = SubResource( 11 )
-anims/Wind_Dance_Y_Hor = SubResource( 12 )
-anims/Wind_Dance_Y_Hor_Down = SubResource( 13 )
-anims/Wind_Dance_Y_Hor_Up = SubResource( 14 )
-anims/Wind_Dance_Y_Up = SubResource( 15 )
-anims/air_idle = SubResource( 16 )
-anims/air_move_down = SubResource( 17 )
-anims/air_move_up = SubResource( 18 )
-anims/climb = SubResource( 19 )
-anims/idle = SubResource( 20 )
-anims/jump = SubResource( 21 )
-anims/land = SubResource( 22 )
-anims/ledgegrab = SubResource( 23 )
-anims/reset = SubResource( 24 )
-anims/run = SubResource( 25 )
-anims/up_to_down_idle = SubResource( 26 )
-anims/up_to_down_moving = SubResource( 27 )
+anims/Wind_Dance_X+B = SubResource( 5 )
+anims/Wind_Dance_XX_Down_Air = SubResource( 6 )
+anims/Wind_Dance_XX_Hor = SubResource( 7 )
+anims/Wind_Dance_XX_Up = SubResource( 8 )
+anims/Wind_Dance_X_Down_Air = SubResource( 9 )
+anims/Wind_Dance_X_Hor = SubResource( 10 )
+anims/Wind_Dance_X_Up = SubResource( 11 )
+anims/Wind_Dance_Y_Down_Air = SubResource( 12 )
+anims/Wind_Dance_Y_Hor = SubResource( 13 )
+anims/Wind_Dance_Y_Hor_Down = SubResource( 14 )
+anims/Wind_Dance_Y_Hor_Up = SubResource( 15 )
+anims/Wind_Dance_Y_Up = SubResource( 16 )
+anims/air_idle = SubResource( 17 )
+anims/air_move_down = SubResource( 18 )
+anims/air_move_up = SubResource( 19 )
+anims/climb = SubResource( 20 )
+anims/idle = SubResource( 21 )
+anims/jump = SubResource( 22 )
+anims/land = SubResource( 23 )
+anims/ledgegrab = SubResource( 24 )
+anims/reset = SubResource( 25 )
+anims/run = SubResource( 26 )
+anims/up_to_down_idle = SubResource( 27 )
+anims/up_to_down_moving = SubResource( 28 )
 
 [node name="Sprites" type="Node2D" parent="."]
 position = Vector2( 0, -20 )
@@ -1912,7 +2001,7 @@ texture = ExtResource( 3 )
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 28 )
+shape = SubResource( 29 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( 0, -20 )
@@ -1920,7 +2009,7 @@ position = Vector2( 0, -20 )
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
 scale = Vector2( 0.8, 1 )
-shape = SubResource( 29 )
+shape = SubResource( 30 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -1959,7 +2048,7 @@ script = ExtResource( 6 )
 position = Vector2( 10, -26 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Move_In_Air/Ledgebox"]
-shape = SubResource( 30 )
+shape = SubResource( 31 )
 
 [node name="Land_Timer" type="Timer" parent="Movement_States/Move_In_Air"]
 one_shot = true
@@ -1972,7 +2061,7 @@ script = ExtResource( 7 )
 position = Vector2( 14, -40 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 31 )
+shape = SubResource( 32 )
 
 [node name="Vault" type="Node2D" parent="Movement_States"]
 script = ExtResource( 8 )
@@ -2000,7 +2089,6 @@ one_shot = true
 one_shot = true
 
 [node name="ComboTimer" type="Timer" parent="Movement_States/Attack/Wind_Dance"]
-wait_time = 1.5
 one_shot = true
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]
@@ -2010,7 +2098,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 32 )
+shape = SubResource( 33 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0

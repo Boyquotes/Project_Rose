@@ -78,4 +78,5 @@ func up_to_down_done():
 	up_to_down_proc = false;
 
 func _on_Land_Timer_timeout():
-	exit(ground);
+	if(host.move_state == 'move_in_air'):
+		exit(ground);

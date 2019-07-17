@@ -1,18 +1,60 @@
 extends Node2D
 
-var slashPath = "res://Objects/Actors/Player/Rose/SlashParticles.tscn";
-var node;
+var partNode;
 var particle;
+var hitNode;
+var hitbox;
 
-func instance_slash():
-	node = load(slashPath).instance();
-	particle = node.get_child(0);
-	node.scale = scale;
-	get_parent().add_child(node);
-	node.global_position = get_parent().global_position;
+onready var attack_state = get_parent().get_node("Movement_States").get_node("Attack");
+
+func instance_slash_particle():
+	partNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/SlashParticles.tscn").instance();
+	particle = partNode.get_child(0);
+	partNode.scale = scale;
+	get_parent().add_child(partNode);
+	partNode.global_position = get_parent().global_position;
+
+func connect_entered():
+	var style_state = attack_state.style_states[attack_state.style_state];
+	hitbox.connect("area_entered",style_state,"on_hit");
+	
+
+func instance_X_effect():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/X.tscn").instance();
+	hitbox = hitNode.get_child(0);
+	connect_entered();
+	hitNode.scale = scale;
+	get_parent().add_child(hitNode);
+	hitNode.global_position = get_parent().global_position;
+
+func instance_XplusB_effect():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/X+B.tscn").instance();
+	hitbox = hitNode.get_child(0);
+	connect_entered();
+	hitNode.scale = scale;
+	get_parent().add_child(hitNode);
+	hitNode.global_position = get_parent().global_position;
+
+func Wind_Dance_XplusB():
+	instance_slash_particle();
+	instance_XplusB_effect();
+	particle.z_index = 1;
+	particle.amount = 1;
+	particle.lifetime = .4;
+	particle.process_material.gravity = Vector3(0,-250,0);
+	particle.process_material.angular_velocity = 1000;
+	particle.process_material.angular_velocity_random = 0;
+	particle.process_material.angular_velocity_curve = CurveTexture.new();
+	particle.process_material.angular_velocity_curve.curve.add_point(Vector2(0,0));
+	particle.process_material.angular_velocity_curve.curve.add_point(Vector2(-360,1));
+	particle.rotation_degrees = 0;
+	particle.scale = Vector2(1, 0.5);
+	particle.emitting = true;
+	$particleTimer.start(.4);
 
 func Wind_Dance_HoldX_Down_Ground():
-	instance_slash();
+	instance_slash_particle();
+	instance_X_effect();
 	particle.lifetime = .3;
 	particle.process_material.angular_velocity = 1000;
 	particle.rotation_degrees = 0;
@@ -21,7 +63,8 @@ func Wind_Dance_HoldX_Down_Ground():
 	$particleTimer.start(.3);
 
 func Wind_Dance_HoldX_Hor_Ground():
-	instance_slash();
+	instance_slash_particle();
+	instance_X_effect();
 	particle.lifetime = .3;
 	particle.process_material.angular_velocity = 500;
 	particle.rotation_degrees = 78.5;
@@ -30,16 +73,18 @@ func Wind_Dance_HoldX_Hor_Ground():
 	$particleTimer.start(.3);
 
 func Wind_Dance_X_Hor():
-	instance_slash();
+	instance_slash_particle();
+	instance_X_effect();
 	particle.lifetime = .2;
 	particle.process_material.angular_velocity = 750;
-	particle.rotation_degrees = 25;
-	particle.scale = Vector2(2.5, 1.6);
+	particle.rotation_degrees = 20;
+	particle.scale = Vector2(2.5, 1);
 	particle.emitting = true;
 	$particleTimer.start(.2);
 
 func Wind_Dance_XX_Hor():
-	instance_slash();
+	instance_slash_particle();
+	instance_X_effect();
 	particle.lifetime = .2;
 	particle.process_material.angular_velocity = 750;
 	particle.rotation_degrees = -20;
@@ -64,7 +109,8 @@ func Wind_Dance_XX_Down_Air():
 	particle.rotation_degrees += 90;
 
 func Wind_Dance_Y_Hor():
-	instance_slash();
+	instance_slash_particle();
+	instance_X_effect();
 	particle.one_shot = false;
 	particle.z_index = 5;
 	particle.amount = 7
@@ -105,9 +151,13 @@ func _on_particleTimer_timeout():
 	
 	particle.process_material.gravity = Vector3(0,0,0);
 	particle.process_material.angular_velocity_random = 0;
+	if(particle.process_material.angular_velocity_curve):
+		particle.process_material.angular_velocity_curve = null;
 	particle.process_material.scale_random = 0;
 	if(particle.process_material.scale_curve):
 		particle.process_material.scale_curve = null;
 	particle.z_index = 0;
-	node.queue_free();
+	partNode.queue_free()
 	particle.queue_free();
+	hitNode.queue_free();
+	hitbox.queue_free();

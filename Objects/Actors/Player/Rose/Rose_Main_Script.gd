@@ -9,15 +9,10 @@ signal consume_resource;
 onready var move_states = {
 	'move_on_ground' : $Movement_States/Move_On_Ground,
 	'move_in_air' : $Movement_States/Move_In_Air,
-	'ledge_grab' : $Movement_States/Ledge_Grab
+	'ledge_grab' : $Movement_States/Ledge_Grab,
+	'attack' : $Movement_States/Attack
 }
 var move_state = 'move_on_ground';
-
-onready var style_states = {
-	'wind_dance' : $Style_States/Wind_Dance,
-	'closed_fan' : $Style_States/Closed_Fan
-}
-var style_state = 'wind_dance';
 
 ###hitbox detection###
 var targettableHitboxes = [];
@@ -53,7 +48,6 @@ func _ready():
 	tag = "player";
 	gravity = 20;
 	move_states[move_state].enter();
-	style_states[style_state].enter();
 
 func _input(event):
 	if(event.get_class() == "InputEventMouseButton" || event.get_class() == "InputEventKey" || Input.get_connected_joypads().size() == 0):
@@ -72,14 +66,14 @@ func execute(delta):
 	hitboxLoop();
 
 func phys_execute(delta):
-	_stretch_based_on_velocity()
-	#print(move_state);
+	_stretch_based_on_velocity();
+	
 	#state machine
 	move_states[move_state].handleAnimation();
 	move_states[move_state].handleInput();
 	move_states[move_state].execute(delta);
-	style_states[style_state].handleInput();
-	style_states[style_state].handleAnimation();
+	
+	print(move_state);
 	#count time in air
 	air_time += delta;
 	
@@ -172,7 +166,6 @@ func deactivate_grav():
 	velocity.y = 0;
 
 func deactivate_fric():
-	print("@@@");
 	fric_activated = false;
 	hspd = 0;
 	velocity.x = 0;

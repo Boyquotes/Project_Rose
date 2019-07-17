@@ -43,7 +43,6 @@ func handleInput():
 			if(current_event == "B" || current_event == "XB"  || current_event == "X+B"):
 				combo = "";
 				$ChargeXTimer.stop();
-				dashing = true;
 				cur_cost = basic_cost;
 				attack_triggered = true;
 		

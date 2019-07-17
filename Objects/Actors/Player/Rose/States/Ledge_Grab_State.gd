@@ -14,18 +14,13 @@ func enter():
 	pass
 
 func handleAnimation():
-	if(!host.style_states[host.style_state].busy):
-		if(!played):
-			host.animate(host.get_node("TopAnim"),"ledgegrab", false);
-		elif(climb):
-			host.animate(host.get_node("TopAnim"),"climb", false);
-	elif(host.style_states[host.style_state].interrupt):
-		host.style_states[host.style_state].attack_done();
-		played = false;
-		update_look_direction_and_scale(host.Direction * -1);
+	if(!played):
+		host.animate(host.get_node("TopAnim"),"ledgegrab", false);
+	elif(climb):
+		host.animate(host.get_node("TopAnim"),"climb", false);
 
 func handleInput():
-	if(Input.is_action_pressed("up") && Input.is_action_just_pressed("jump") && $Climbbox.get_overlapping_bodies().size() == 0  && !host.style_states[host.style_state].busy):
+	if(Input.is_action_pressed("up") && Input.is_action_just_pressed("jump")):
 		climb = true;
 	elif(Input.is_action_just_pressed("jump")):
 		host.vspd = -host.jspd*3/5;

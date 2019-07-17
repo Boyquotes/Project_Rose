@@ -7,11 +7,10 @@ var slottedy = false;
 
 func enter():
 	.enter();
-	host.style_state = 'wind_dance';
+	get_parent().style_state = 'wind_dance';
 	style = "Wind_Dance";
-	pass;
 
-func _process(delta):
+func execute(delta):
 	if(!Input.is_action_pressed("attack")):
 		chargedx = false;
 		$ChargeXTimer.stop();
@@ -28,7 +27,7 @@ func parse_attack():
 		current_event = "HoldX";
 		slottedx = true;
 		combo = "";
-	elif(Input.is_action_just_pressed("attack") && $ChargeXTimer.is_stopped() && !slottedx):
+	elif(X_pressed() && $ChargeXTimer.is_stopped() && !slottedx):
 		if(previous_event == "Y" || combo == "XX"):
 			current_event = "HoldX";
 			slottedx = true;
@@ -38,23 +37,27 @@ func parse_attack():
 			$ChargeXTimer.start();
 			slottedx = true;
 	if(Input.is_action_just_released("attack") && slottedx):
+		
 		$ChargeXTimer.stop();
 		cur_cost = basic_cost;
 		saved_event = current_event;
 		return true;
 	
-	if(Input.is_action_just_pressed("dodge")):
+	if(B_pressed()):
 		if(Input.is_action_pressed("attack")):
 			current_event = "X+B";
 		elif(previous_event == "X" && hit):
 			current_event = "XB";
-		elif(host.on_floor()):
+		else:
 			current_event = "B";
 		
 		if(current_event == "B" || current_event == "XB"  || current_event == "X+B"):
+			if(!host.on_floor() && !hit):
+				attack_done();
+				get_parent().exit(ground);
+				return false;
 			combo = "";
 			$ChargeXTimer.stop();
-			dashing = true;
 			cur_cost = basic_cost;
 			saved_event = current_event;
 			return true;
@@ -63,7 +66,7 @@ func parse_attack():
 		current_event = "HoldY";
 		slottedy = true;
 		combo = "";
-	elif(Input.is_action_just_pressed("special") && $ChargeYTimer.is_stopped() && !slottedy):
+	elif(Y_pressed() && $ChargeYTimer.is_stopped() && !slottedy):
 		current_event = "Y";
 		$ChargeYTimer.start();
 		slottedy = true;
@@ -102,13 +105,16 @@ func parse_next_attack():
 			saved_event = "X+B";
 		elif(previous_event == "X" && hit):
 			saved_event = "XB";
-		elif(host.on_floor()):
+		else:
 			saved_event = "B";
 		
 		if(saved_event == "B" || saved_event == "XB"  || saved_event == "X+B"):
+			if(!host.on_floor() && !hit):
+				attack_done();
+				get_parent().exit(ground);
+				return false;
 			combo = "";
 			$ChargeXTimer.stop();
-			dashing = true;
 			cur_cost = basic_cost;
 			return true;
 	
@@ -201,7 +207,9 @@ func construct_attack_string():
 		bot_str = style + "_" + combo + place; 
 
 func attack_done():
-	print("!!!");
+	X = false;
+	Y = false;
+	B = false;
 	if(!saved_event):
 		if(!Input.is_action_pressed("attack")):
 			chargedx = false;
@@ -226,7 +234,6 @@ func set_interrupt():
 	.set_interrupt();
 
 func _on_ChargeXTimer_timeout():
-	print("!!!");
 	chargedx = true;
 
 
@@ -235,7 +242,4 @@ func _on_ChargeYTimer_timeout():
 
 func _on_ComboTimer_timeout():
 	combo = "";
-
-
-func _on_StartTimer_timeout():
-	attack_start = false;
+	get_parent().exit_g_or_a();

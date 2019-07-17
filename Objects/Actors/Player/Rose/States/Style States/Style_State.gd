@@ -2,29 +2,29 @@ extends "../State.gd"
 
 onready var Wind_Dance = get_parent().get_node("Wind_Dance");
 onready var Closed_Fan = get_parent().get_node("Closed_Fan");
+onready var ground = get_parent().get_parent().get_node("Move_On_Ground");
+onready var air = get_parent().get_parent().get_node("Move_In_Air");
+onready var ledge = get_parent().get_parent().get_node("Ledge_Grab");
+onready var attack = get_parent().get_parent().get_node("Attack");
 
 signal attack;
 
 ### temp inits ###
 var on_cooldown = false;
 var hit = false;
-#starting the attack
-var attack_start = false;
-#middle of the attack
-var attack_mid = false;
 #end of the attack
 var attack_end = false;
-var animate = false;
-var attack_spawned = false;
 var attack_is_saved = false;
 var attack_triggered = false;
 var busy = false;
-var dashing = false;
 var save_event = false;
 var event_is_saved = false;
 var interrupt = false;
 var started_save = false;
 var follow_up = false;
+var X = false;
+var Y = false;
+var B = false;
 
 ### attack codes ###
 var style = "style";
@@ -39,9 +39,6 @@ var bot_str = "bot_str";
 var previous_event = "previous_event";
 
 ### modifiable inits ###
-var end_time = .5;
-var interrupt_time = .5;
-var distance_traversable = 80;
 var air_counter = 1;
 var cool = 1;
 var base_cost = 15;
@@ -67,8 +64,9 @@ func _ready():
 		stp1 = 0;
 
 func enter():
-	print("   " + get_parent().get_child(style_idx).name);
-	print(get_parent().get_child(stm1).name + "   " + get_parent().get_child(stp1).name);
+	attack_end = false;
+	#print("   " + get_parent().get_child(style_idx).name);
+	#print(get_parent().get_child(stm1).name + "   " + get_parent().get_child(stp1).name);
 
 ### Handles animation, incomplete ###
 func handleAnimation():
@@ -89,6 +87,7 @@ func handleInput():
 		print("____________________");"""
 	if((interrupt || (follow_up && !started_save)) && attack_is_saved):
 		attack_done();
+		attack_end = false;
 		current_event = saved_event;
 		combo += saved_event;
 		busy = true;
@@ -97,6 +96,7 @@ func handleInput():
 		set_position_vars();
 	if(!busy && !started_save):
 		if(parse_attack()):
+			attack_end = false;
 			combo += current_event;
 			busy = true;
 			follow_up = false;
@@ -127,7 +127,6 @@ func exit(state):
 	reset_strings();
 	attack_triggered = false;
 	busy = false;
-	dashing = false;
 
 ### Determines direction of attack ###
 func atk_left():
@@ -165,22 +164,18 @@ func set_position_vars():
 ### Initializes attack once the player has committed ###
 func init_attack():
 	if(input_testing):
-		#construct_attack_string();
-		#attack_is_saved = false;
+		construct_attack_string();
+		attack_is_saved = false;
 		return true;
 	else:
-		#stopTimers();
-		attack_start = true;
 		attack_end = false;
 		attack_is_saved = false;
-		$StartTimer.start();
 		return true;
 	pass;
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
-	if(host.move_state == "ledge_grab"):
-		host.move_states[host.move_state].update_look_direction_and_scale(host.Direction * -1);
+	pass;
 
 ### Resets attack strings ###
 func reset_strings():
@@ -196,7 +191,6 @@ func attack():
 	#TODO: put this signal in the attacks instead
 	#host.emit_signal("consume_resource", cur_cost);
 	#animate = true;
-	attack_spawned = true;
 	
 	construct_attack_string();
 	#TODO: Get appropriate path to attack scene
@@ -221,9 +215,9 @@ func check_combo():
 	pass;
 
 func attack_done():
+	attack_end = true;
 	busy = false;
 	attack_triggered = false;
-	dashing = false;
 	save_event = false;
 	previous_event = current_event;
 	interrupt = false;
@@ -231,3 +225,12 @@ func attack_done():
 	$ComboTimer.start();
 	#host.activate_grav();
 	pass;
+
+func X_pressed():
+	return X || Input.is_action_just_pressed("attack");
+
+func B_pressed():
+	return B || Input.is_action_just_pressed("dodge");
+
+func Y_pressed():
+	return Y || Input.is_action_just_pressed("special");

@@ -26,13 +26,8 @@ func update_look_direction(direction):
 
 func execute(delta):
 	var input_direction = get_input_direction();
-	print(input_direction);
-	#if(!host.style_states[host.style_state].busy): #|| host.style_states[host.style_state].attack_start):
 	update_look_direction_and_scale(input_direction);
-	if(input_direction != 0 && !(abs(host.hspd) > host.mspd) && host.style_states[host.style_state].busy && host.style_states[host.style_state].interrupt):
-		host.style_states[host.style_state].attack_done();
-		host.hspd += host.mspd/10 * host.Direction;
-	elif(input_direction != 0 && !(abs(host.hspd) > host.mspd) && !host.style_states[host.style_state].busy):
+	if(input_direction != 0 && !(abs(host.hspd) > host.mspd)):
 		host.hspd += host.mspd/10 * host.Direction;
 	elif(host.hspd != 0 && abs(host.hspd) > host.mspd && host.fric_activated):
 		host.hspd -= 20 * sign(host.hspd);

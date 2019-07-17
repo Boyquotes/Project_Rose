@@ -25,6 +25,10 @@ var follow_up = false;
 var X = false;
 var Y = false;
 var B = false;
+var chargedx = false;
+var chargedy = false;
+var slottedx = false;
+var slottedy = false;
 
 ### attack codes ###
 var style = "style";
@@ -77,14 +81,6 @@ func handleAnimation():
 
 ### Prepares next move if user input is detected ###
 func handleInput():
-	"""
-	if(Input.is_action_just_pressed("attack")):
-		print(String(interrupt) + " || " + String(!started_save) + ") && " + String(attack_is_saved));
-		print(busy);
-	if(Input.is_action_just_released("attack")):
-		print(String(interrupt) + " || " + String(!started_save) + ") && " + String(attack_is_saved));
-		print(busy);
-		print("____________________");"""
 	if((interrupt || (follow_up && !started_save)) && attack_is_saved):
 		attack_done();
 		attack_end = false;
@@ -107,6 +103,13 @@ func handleInput():
 			started_save = false;
 			attack_is_saved = true;
 			save_event = false;
+	"""
+		print(String(interrupt) + " || " + String(!started_save) + ") && " + String(attack_is_saved));
+		print(busy);
+	if(Input.is_action_just_released("attack")):
+		print(String(interrupt) + " || " + String(!started_save) + ") && " + String(attack_is_saved));
+		print(busy);
+		print("____________________");"""
 
 ###begins parsing player attack if an attack is triggered##
 #overloaded by children states
@@ -214,7 +217,10 @@ func set_interrupt():
 func check_combo():
 	pass;
 
-func attack_done():
+func attack_done():	
+	X = false;
+	Y = false;
+	B = false;
 	attack_end = true;
 	busy = false;
 	attack_triggered = false;
@@ -223,7 +229,7 @@ func attack_done():
 	interrupt = false;
 	reset_strings();
 	$ComboTimer.start();
-	#host.activate_grav();
+
 	pass;
 
 func X_pressed():

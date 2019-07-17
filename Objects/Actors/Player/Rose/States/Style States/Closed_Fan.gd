@@ -1,13 +1,8 @@
 extends "./Style_State.gd"
 
-var chargedx = false;
-var chargedy = false;
-var slottedx = false;
-var slottedy = false;
-
 func enter():
 	.enter();
-	host.style_state = 'closed_fan';
+	get_parent().style_state = 'closed_fan';
 	style = "closed_fan";
 	pass;
 

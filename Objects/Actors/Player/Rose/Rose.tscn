@@ -760,7 +760,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=11]
 resource_name = "Wind_Dance_Y_Down_Air"
 length = 1.15
-loop = true
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
@@ -881,7 +880,6 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=12]
 resource_name = "Wind_Dance_Y_Hor"
 length = 1.15
-loop = true
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
@@ -1134,7 +1132,6 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=14]
 resource_name = "Wind_Dance_Y_Hor_Up"
 length = 1.15
-loop = true
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
@@ -1261,7 +1258,6 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=15]
 resource_name = "Wind_Dance_Y_Up"
 length = 1.15
-loop = true
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")

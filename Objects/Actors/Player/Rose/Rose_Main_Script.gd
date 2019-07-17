@@ -57,6 +57,8 @@ func _input(event):
 
 
 func execute(delta):
+	if(Input.is_action_just_pressed("soft_reset")):
+		global_position = Vector2(0,0);
 	if(ActiveInput == InputType.KEYMOUSE):
 		rad = atan2(get_global_mouse_position().y - global_position.y , get_global_mouse_position().x - global_position.x);
 	elif(ActiveInput == InputType.GAMEPAD):
@@ -68,12 +70,12 @@ func execute(delta):
 func phys_execute(delta):
 	_stretch_based_on_velocity();
 	
+	#print(move_state);
 	#state machine
-	move_states[move_state].handleAnimation();
 	move_states[move_state].handleInput();
+	move_states[move_state].handleAnimation();
 	move_states[move_state].execute(delta);
 	
-	print(move_state);
 	#count time in air
 	air_time += delta;
 	

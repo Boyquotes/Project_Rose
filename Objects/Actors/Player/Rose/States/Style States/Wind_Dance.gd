@@ -1,10 +1,5 @@
 extends "./Style_State.gd"
 
-var chargedx = false;
-var chargedy = false;
-var slottedx = false;
-var slottedy = false;
-
 func enter():
 	.enter();
 	get_parent().style_state = 'wind_dance';
@@ -36,55 +31,58 @@ func parse_attack():
 			current_event = "X";
 			$ChargeXTimer.start();
 			slottedx = true;
-	if(Input.is_action_just_released("attack") && slottedx):
-		
+	if(Input.is_action_just_released("attack") && slottedx && (current_event == "X" || current_event == "HoldX")):
 		$ChargeXTimer.stop();
 		cur_cost = basic_cost;
-		saved_event = current_event;
 		return true;
 	
 	if(B_pressed()):
-		if(Input.is_action_pressed("attack")):
-			current_event = "X+B";
-		elif(previous_event == "X" && hit):
-			current_event = "XB";
-		else:
-			current_event = "B";
+		#if(Input.is_action_pressed("attack")):
+		#	current_event = "X+B";
+		#elif(previous_event == "X" && hit):
+		#	current_event = "XB";
+		#else:
+		current_event = "B";
 		
-		if(current_event == "B" || current_event == "XB"  || current_event == "X+B"):
+		if(current_event == "B"):# || current_event == "XB"  || current_event == "X+B"):
 			if(!host.on_floor() && !hit):
+				started_save = false;
+				current_event = "current_event";
+				slottedx = false;
+				slottedy = false;
+				B = false;
 				attack_done();
-				get_parent().exit(ground);
+				get_parent().exit_g_or_a();
 				return false;
 			combo = "";
 			$ChargeXTimer.stop();
 			cur_cost = basic_cost;
-			saved_event = current_event;
 			return true;
 	
 	if(chargedy && host.mana >= 100):
-		current_event = "HoldY";
+		current_event = "Y";
 		slottedy = true;
-		combo = "";
+		#combo = "";
+		#TODO: HoldY
 	elif(Y_pressed() && $ChargeYTimer.is_stopped() && !slottedy):
 		current_event = "Y";
 		$ChargeYTimer.start();
 		slottedy = true;
-	if(Input.is_action_just_released("special") && slottedy):
+	if(Input.is_action_just_released("special") && slottedy && (current_event == "Y" || current_event == "HoldY")):
 		if(current_event == "Y" || combo == "X" || combo == "XX"):
 			combo = "";
 		$ChargeYTimer.stop();
 		cur_cost = basic_cost;
-		saved_event = current_event;
 		return true;
 	switch();
+	return false;
 
 func parse_next_attack():
 	if(chargedx):
 		saved_event = "HoldX";
 		slottedx = true;
 		combo = "";
-	elif(Input.is_action_just_pressed("attack") && !slottedx):
+	elif(X_pressed() && !slottedx):
 		started_save = true;
 		if(current_event == "Y" || combo == "XX"):
 			saved_event = "HoldX";
@@ -94,24 +92,28 @@ func parse_next_attack():
 			saved_event = "X";
 			$ChargeXTimer.start();
 			slottedx = true;
-	if(Input.is_action_just_released("attack") && slottedx):
+	if(Input.is_action_just_released("attack") && slottedx && (saved_event == "X" || saved_event == "HoldX")):
 		$ChargeXTimer.stop();
 		cur_cost = basic_cost;
 		return true;
 	
-	if(Input.is_action_just_pressed("dodge")):
+	if(B_pressed()):
 		started_save = true;
-		if(Input.is_action_pressed("attack")):
-			saved_event = "X+B";
-		elif(previous_event == "X" && hit):
-			saved_event = "XB";
-		else:
-			saved_event = "B";
+		#if(Input.is_action_pressed("attack")):
+		#	saved_event = "X+B";
+		#elif(previous_event == "X" && hit):
+		#	saved_event = "XB";
+		#else:
+		saved_event = "B";
 		
-		if(saved_event == "B" || saved_event == "XB"  || saved_event == "X+B"):
+		if(saved_event == "B"): #|| saved_event == "XB"  || saved_event == "X+B"):
+			
 			if(!host.on_floor() && !hit):
-				attack_done();
-				get_parent().exit(ground);
+				started_save = false;
+				saved_event = "saved_event";
+				slottedx = false;
+				slottedy = false;
+				B = false;
 				return false;
 			combo = "";
 			$ChargeXTimer.stop();
@@ -119,15 +121,16 @@ func parse_next_attack():
 			return true;
 	
 	if(chargedy && host.mana >= 100):
-		saved_event = "HoldY";
+		saved_event = "Y";
 		slottedy = true;
-		combo = "";
-	elif(Input.is_action_just_pressed("special") && $ChargeYTimer.is_stopped() && !slottedy):
+		#combo = "";
+		#TODO: HoldY
+	elif(Y_pressed() && $ChargeYTimer.is_stopped() && !slottedy):
 		started_save = true;
 		saved_event = "Y";
 		$ChargeYTimer.start();
 		slottedy = true;
-	if(Input.is_action_just_released("special") && slottedy):
+	if(Input.is_action_just_released("special") && slottedy && (saved_event == "Y" || saved_event == "HoldY")):
 		if(current_event == "Y" || combo == "X" || combo == "XX"):
 			combo = "";
 		$ChargeYTimer.stop();
@@ -141,6 +144,9 @@ func set_position_vars():
 	chargedy = false;
 	slottedx = false;
 	slottedy = false;
+	X = false;
+	Y = false;
+	B = false;
 	if(!host.on_floor()):
 		place = "_Air";
 		if(current_event == "HoldX"):
@@ -207,9 +213,6 @@ func construct_attack_string():
 		bot_str = style + "_" + combo + place; 
 
 func attack_done():
-	X = false;
-	Y = false;
-	B = false;
 	if(!saved_event):
 		if(!Input.is_action_pressed("attack")):
 			chargedx = false;

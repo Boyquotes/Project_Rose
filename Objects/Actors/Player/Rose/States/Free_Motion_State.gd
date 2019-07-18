@@ -10,13 +10,16 @@ func update_look_direction_and_scale(direction):
 	if(direction == 0):
 		return;
 	if(host.Direction != direction):
-		if(host.Direction != 0):
-			host.get_node("Sprites").scale.x = host.get_node("Sprites").scale.x * -1;
-			host.get_node("Movement_States").scale.x = host.get_node("Movement_States").scale.x * -1;
-			host.get_node("PhysicsCollider").scale.x = host.get_node("PhysicsCollider").scale.x * -1;
-			host.get_node("Hitbox").scale.x = host.get_node("Hitbox").scale.x * -1;
-			host.get_node("AttackParticles").scale.x = host.get_node("AttackParticles").scale.x * -1;
-		host.Direction = direction;
+		turn(direction);
+
+func turn(direction):
+	if(host.Direction != 0):
+		host.get_node("Sprites").scale.x = host.get_node("Sprites").scale.x * -1;
+		host.get_node("Movement_States").scale.x = host.get_node("Movement_States").scale.x * -1;
+		host.get_node("PhysicsCollider").scale.x = host.get_node("PhysicsCollider").scale.x * -1;
+		host.get_node("Hitbox").scale.x = host.get_node("Hitbox").scale.x * -1;
+		host.get_node("AttackParticles").scale.x = host.get_node("AttackParticles").scale.x * -1;
+	host.Direction = direction;
 
 func update_look_direction(direction):
 	if(direction == 0):

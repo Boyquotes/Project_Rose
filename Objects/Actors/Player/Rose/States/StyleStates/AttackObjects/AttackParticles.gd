@@ -130,8 +130,8 @@ func Wind_Dance_Y_Hor():
 	#TODO: make specific hitbox
 	particle.one_shot = false;
 	particle.z_index = 5;
-	particle.amount = 7
-	particle.lifetime = .5;
+	particle.amount = 10
+	particle.lifetime = .3;
 	particle.process_material.gravity = Vector3(-500,0,0);
 	particle.process_material.angular_velocity = 1000;
 	particle.process_material.angular_velocity_random = 1;
@@ -143,7 +143,7 @@ func Wind_Dance_Y_Hor():
 	particle.rotation_degrees = 0;
 	particle.scale = Vector2(3, 1);
 	particle.emitting = true;
-	$particleTimer.start(.6);
+	$particleTimer.start(.45);
 
 func Wind_Dance_Y_Down_Air():
 	Wind_Dance_Y_Hor();

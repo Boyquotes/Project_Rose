@@ -20,13 +20,13 @@ func handleAnimation():
 		host.animate(host.get_node("TopAnim"),"climb", false);
 
 func handleInput():
-	if(Input.is_action_pressed("up") && Input.is_action_just_pressed("jump")):
+	if(Input.is_action_pressed("up") && Input.is_action_just_pressed("jump") && ($Climbbox.get_overlapping_areas().size() == 0 || $Climbbox.get_overlapping_bodies().size() == 0)):
 		climb = true;
 	elif(Input.is_action_just_pressed("jump")):
-		host.vspd = -host.jspd*3/5;
-		exit(air);
-	if(host.velocity != Vector2(0,0)):
-		exit(air);
+		turn(host.Direction * -1);
+		host.vspd = -host.jspd*2/5;
+		host.hspd = host.mspd * host.Direction;
+		$Jump_Timer.start();
 	pass
 
 func execute(delta):
@@ -61,3 +61,8 @@ func Climb(node: NodePath):
 	sprite.global_position = host.global_position;
 	exit(ground)
 	pass
+
+
+func _on_Jump_Timer_timeout():
+	if(host.move_state == 'ledge_grab'):
+		exit(air);

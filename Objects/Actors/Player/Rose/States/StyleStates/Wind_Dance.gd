@@ -242,6 +242,7 @@ func _on_ComboTimer_timeout():
 		get_parent().exit_g_or_a();
 
 func on_hit(area):
+	host.get_node("Camera2D").shake(.2, 15, 8);
 	hit = true;
 	if(current_event != "Y"):
 		if(place == "_Air" && vdir == "_Down"):

@@ -34,4 +34,5 @@ func exit(state):
 
 
 func _on_JumpTimer_timeout():
-	exit(air);
+	if(host.move_state == 'move_on_ground'):
+		exit(air);

@@ -54,8 +54,9 @@ func handleInput():
 		exit_g_or_a();
 
 func execute(delta):
-	var input_direction = get_input_direction();
-	if(!host.on_floor() && input_direction == host.Direction && !(abs(host.hspd) > host.mspd)):
+	if(!host.on_floor() && !(abs(host.hspd) > host.mspd/2) && style_states[style_state].hit && style_states[style_state].dir == "_Hor"):
+		host.hspd += host.mspd/10 * host.Direction;
+	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && style_states[style_state].hit && style_states[style_state].vdir == "_Down"):
 		host.hspd += host.mspd/10 * host.Direction;
 	else:
 		if(host.hspd != 0 && abs(host.hspd) > host.mspd && host.fric_activated):

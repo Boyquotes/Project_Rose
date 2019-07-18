@@ -2,7 +2,8 @@ extends "res://Objects/Actors/Actor.gd"
 
 
 var friction = 10;
-var damaged = false;
+var hit = false;
+
 func _physics_process(delta):
 	#move across surfaces
 	velocity.y = vspd;
@@ -10,7 +11,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, floor_normal);
 	
 	#no gravity acceleration when on floor
-	if(is_on_floor() && !damaged):
+	if(is_on_floor() && !hit):
 		velocity.y = 0
 		vspd = 0;
 		friction = 10;
@@ -33,19 +34,24 @@ func _physics_process(delta):
 		if((hspd <= 44 && hspd > 0) || (hspd >= 44 && hspd < 0)):
 			hspd = 0;
 	
-	if(damaged):
-		if(abs(hspd) > 0):
-			if(abs(hspd) < 2):
-				hspd = 0;
-			hspd -= 2 * sign(hspd);
-		if(abs(vspd) > 0):
-			if(abs(vspd) < 3):
-				vspd = 0;
-			vspd -= 3 * sign(vspd);
+	if(hit):
+		knockback();
 	pass;
 
 func _on_damage_timer_timeout():
-	damaged = false;
+	hit = false;
 	activate_fric();
 	activate_grav();
 	pass;
+
+var done_knockback = false;
+
+func knockback():
+	if(abs(hspd) > 0):
+		if(abs(hspd) < 2):
+			hspd = 0;
+		hspd -= 2 * sign(hspd);
+	if(abs(vspd) > 0):
+		if(abs(vspd) < 3):
+			vspd = 0;
+		vspd -= 3 * sign(vspd);

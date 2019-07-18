@@ -31,8 +31,6 @@ var max_stamina = 100;
 var resource = 0;
 var rad = 0.0;
 var deg = 0.0;
-var grav_activated = true;
-var fric_activated = true;
 
 enum InputType {GAMEPAD, KEYMOUSE};
 var ActiveInput = InputType.GAMEPAD;
@@ -160,25 +158,6 @@ func add_velocity(vec: Vector2 = Vector2(0,0)):
 func subtract_velocity(vec: Vector2 = Vector2(0,0)):
 	hspd -= vec.x * Direction;
 	vspd -= vec.y;
-
-func deactivate_grav():
-	grav_activated = false;
-	vspd = 0;
-	velocity.y = 0;
-
-func deactivate_grav_dont_stop():
-	grav_activated = false;
-
-func deactivate_fric():
-	fric_activated = false;
-	hspd = 0;
-	velocity.x = 0;
-
-func activate_grav():
-	grav_activated = true;
-
-func activate_fric():
-	fric_activated = true;
 
 func change_move_state(var state: NodePath):
 	move_states[move_state].exit(get_node(state));

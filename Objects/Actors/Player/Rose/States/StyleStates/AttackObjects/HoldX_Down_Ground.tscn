@@ -2,8 +2,10 @@
 
 [ext_resource path="res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/HitBoxParent.tscn" type="PackedScene" id=1]
 
-[node name="X" index="0" instance=ExtResource( 1 )]
-knockback = 150.0
+[node name="X" instance=ExtResource( 1 )]
+
+[node name="Area2D" parent="." index="0"]
+knockback = 200.0
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 scale = Vector2( 1, 0.65 )

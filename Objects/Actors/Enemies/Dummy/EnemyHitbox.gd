@@ -6,16 +6,14 @@ var hittable = false;
 
 
 func _on_HitBox_area_entered(area):
-	if("dam" in area):
+	if("knockback" in area):
 		if(hittable):
-			if(area.host.global_position >= global_position):
-				host.Direction = -1;
-			else:
-				host.Direction = 1;
-			host.hspd = area.knockback.x * host.Direction; 
-			host.vspd = area.knockback.y;
-			host.friction = 0;
+			host.deactivate_fric();
+			host.deactivate_grav();
+			#TODO: LINEAR knockback
+			#below is AWAY knockback
+			host.hspd = cos(get_angle_to(area.global_position)) * area.knockback * -1
+			host.vspd = ((sin(get_angle_to(area.global_position)) * area.knockback) + 50) * -1
 			host.damaged = true;
-			host.get_node("damage_timer").wait_time = area.attack;
 			host.get_node("damage_timer").start();
 	pass;

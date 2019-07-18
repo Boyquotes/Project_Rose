@@ -20,6 +20,7 @@ func connect_entered():
 
 func instance_hitbox():
 	hitbox = hitNode.get_child(0);
+	hitbox.host = get_parent();
 	connect_entered();
 	hitNode.scale = scale;
 	get_parent().add_child(hitNode);

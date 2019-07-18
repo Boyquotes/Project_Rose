@@ -36,7 +36,6 @@ func handleInput():
 		update_look_direction_and_scale(input_direction);
 	
 	style_states[style_state].handleInput();
-	print(air.jump);
 	
 	if(Input.is_action_just_pressed("jump") && style_states[style_state].hit && !host.on_floor()):
 		

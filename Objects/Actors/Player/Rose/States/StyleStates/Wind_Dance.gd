@@ -162,7 +162,7 @@ func set_position_vars():
 		if(atk_down() && current_event == "HoldX"):
 			dir = "";
 			vdir = "_Down";
-	if(current_event == "Y" || current_event == "XB"):
+	if(current_event == "Y" || current_event == "HitB" || current_event == "HitX+B"):
 		if(atk_left()):
 			dir = "_Hor"
 		elif(atk_right()):
@@ -218,7 +218,7 @@ func attack_done():
 	pass;
 
 func check_combo():
-	if(current_event == "HoldX" || current_event == "B" || current_event == "X+B" || current_event == "HoldY"):
+	if(current_event != "X"):
 		combo = "";
 	if(combo == "XXX" || combo == "Y"):
 		combo = "";
@@ -242,4 +242,15 @@ func _on_ComboTimer_timeout():
 		get_parent().exit_g_or_a();
 
 func on_hit(area):
-	print(area.hittable);
+	hit = true;
+	if(current_event != "Y"):
+		if(place == "_Air" && vdir == "_Down"):
+			host.jump()
+			$HitGravTimer.start();
+		elif(!host.on_floor()):
+			host.deactivate_grav();
+			$HitGravTimer.start();
+
+func _on_HitGravTimer_timeout():
+	hit = false;
+	host.activate_grav();

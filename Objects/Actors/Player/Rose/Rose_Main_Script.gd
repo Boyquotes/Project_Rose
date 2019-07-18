@@ -166,6 +166,9 @@ func deactivate_grav():
 	vspd = 0;
 	velocity.y = 0;
 
+func deactivate_grav_dont_stop():
+	grav_activated = false;
+
 func deactivate_fric():
 	fric_activated = false;
 	hspd = 0;

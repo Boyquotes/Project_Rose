@@ -3,8 +3,8 @@
 [ext_resource path="res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/HitBoxParent.tscn" type="PackedScene" id=1]
 
 [node name="X" index="0" instance=ExtResource( 1 )]
-knockback = 50.0
+knockback = 100.0
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 scale = Vector2( 1, 0.65 )
-polygon = PoolVector2Array( 0, 35, 25, 0, 0, -35, 30, -45, 70, -40, 80, -25, 80, 25, 70, 40, 30, 45 )
+polygon = PoolVector2Array( -1.86322, 50.9729, 35.0195, 34.423, 59.6079, 3.21453, 59.3006, -29.8853, 35.9415, -54.4738, -11.3913, -58.7295, 1.37578, -83.9468, 60.53, -91.3565, 106.326, -80.008, 128.763, -44.5438, 126.919, -14.754, 111.551, 21.6559, 77.1272, 53.3372, 35.9415, 72.2514 )

@@ -36,26 +36,34 @@ func handleInput():
 		update_look_direction_and_scale(input_direction);
 	
 	style_states[style_state].handleInput();
+	print(air.jump);
 	
-	if(!get_attack_pressed() && (style_states[style_state].save_event || style_states[style_state].attack_end)):
+	if(Input.is_action_just_pressed("jump") && style_states[style_state].hit && !host.on_floor()):
+		
+		air.jump = true;
+		leave = true;
+	elif(!get_attack_pressed() && (style_states[style_state].save_event || style_states[style_state].attack_end)):
 		if(!style_states[style_state].attack_is_saved):
-			if(Input.is_action_just_pressed("jump")):
+			if(Input.is_action_just_pressed("jump") && host.on_floor()):
 				ground.jump = true;
 				leave = true;
-			elif(Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("up") || Input.is_action_pressed("down")):
+			elif(Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down")):
 				leave = true;
+	
 	if(leave && (style_states[style_state].interrupt || style_states[style_state].attack_end)):
-		
 		style_states[style_state].attack_done();
 		exit_g_or_a();
 
 func execute(delta):
-	if(style_states[style_state].busy):
+	var input_direction = get_input_direction();
+	if(!host.on_floor() && input_direction == host.Direction && !(abs(host.hspd) > host.mspd)):
+		host.hspd += host.mspd/10 * host.Direction;
+	else:
 		if(host.hspd != 0 && abs(host.hspd) > host.mspd && host.fric_activated):
 			host.hspd -= 20 * sign(host.hspd);
 		elif(host.fric_activated):
 			host.hspd = 0;
-		
+	
 	style_states[style_state].execute(delta);
 
 func exit_g_or_a():
@@ -63,6 +71,7 @@ func exit_g_or_a():
 		true:
 			exit(ground)
 		false:
+			print("$$$");
 			exit(air);
 
 func exit(state):

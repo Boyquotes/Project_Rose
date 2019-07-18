@@ -225,6 +225,7 @@ func check_combo():
 	pass;
 
 func attack_done():
+	hit = false;
 	X = false;
 	Y = false;
 	B = false;

@@ -6,6 +6,7 @@ var land = false;
 var up_to_down_proc = true;
 var doneUp = false;
 var doneDown = false;
+var jump = false;
 
 onready var ledge_cast = host.get_node("ledge_cast_right");
 
@@ -13,7 +14,11 @@ func enter():
 	host.move_state = 'move_in_air';
 
 func handleAnimation():
-	if(host.on_floor() && !land):
+	if(jump):
+		print("!!!");
+		#TODO: special hit-jump
+		host.animate(host.get_node("TopAnim"),"airjump", false);
+	elif(host.on_floor() && !land):
 		land = true;
 		host.animate(host.get_node("TopAnim"),"land", false);
 	elif(!land):
@@ -80,3 +85,8 @@ func up_to_down_done():
 func _on_Land_Timer_timeout():
 	if(host.move_state == 'move_in_air'):
 		exit(ground);
+
+
+func _on_Jump_Timer_timeout():
+	print("@@@")
+	jump = false;

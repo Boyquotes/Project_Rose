@@ -5,8 +5,6 @@ func enter():
 	get_parent().style_state = 'wind_dance';
 	style = "Wind_Dance";
 
-
-
 func parse_attack():
 	if(chargedx):
 		current_event = "HoldX";
@@ -66,7 +64,6 @@ func parse_attack():
 		$ChargeYTimer.stop();
 		cur_cost = basic_cost;
 		return true;
-	switch();
 	return false;
 
 func parse_next_attack():
@@ -183,9 +180,7 @@ func set_position_vars():
 	if(current_event == "XB" || current_event == "B" || current_event == "X+B"):
 		dir = "";
 		place = "";
-	if(init_attack()):
-		attack();
-	pass;
+	.set_position_vars();
 
 func exit(state):
 	.exit(state);
@@ -215,7 +210,6 @@ func attack_done():
 		slottedy = false;
 	check_combo();
 	.attack_done();
-	pass;
 
 func check_combo():
 	if(current_event != "X"):
@@ -242,15 +236,16 @@ func _on_ComboTimer_timeout():
 		get_parent().exit_g_or_a();
 
 func on_hit(area):
-	host.get_node("Camera2D").shake(.2, 15, 8);
-	hit = true;
-	if(current_event != "Y"):
-		if(place == "_Air" && vdir == "_Down"):
-			host.jump()
-			$HitGravTimer.start();
-		elif(!host.on_floor()):
-			host.deactivate_grav();
-			$HitGravTimer.start();
+	if(area.hittable):
+		host.get_node("Camera2D").shake(.2, 15, 8);
+		hit = true;
+		if(current_event != "Y"):
+			if(place == "_Air" && vdir == "_Down"):
+				host.jump()
+				$HitGravTimer.start();
+			elif(!host.on_floor()):
+				host.deactivate_grav();
+				$HitGravTimer.start();
 
 func _on_HitGravTimer_timeout():
 	hit = false;

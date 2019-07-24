@@ -15,7 +15,6 @@ func enter():
 
 func handleAnimation():
 	if(jump):
-		print("!!!");
 		#TODO: special hit-jump
 		host.animate(host.get_node("TopAnim"),"airjump", false);
 	elif(host.on_floor() && !land):
@@ -88,5 +87,4 @@ func _on_Land_Timer_timeout():
 
 
 func _on_Jump_Timer_timeout():
-	print("@@@")
 	jump = false;

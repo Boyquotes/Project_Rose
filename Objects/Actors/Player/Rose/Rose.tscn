@@ -3072,11 +3072,11 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Move_In_Air" type="Node2D" parent="Movement_States"]
-editor/display_folded = true
 script = ExtResource( 7 )
 
 [node name="Ledgebox" type="Area2D" parent="Movement_States/Move_In_Air"]
 position = Vector2( 10, -26 )
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Move_In_Air/Ledgebox"]
 shape = SubResource( 42 )
@@ -3092,6 +3092,7 @@ script = ExtResource( 8 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
 position = Vector2( 14, -40 )
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
 shape = SubResource( 43 )
@@ -3108,11 +3109,19 @@ script = ExtResource( 10 )
 
 [node name="Closed_Fan" type="Node2D" parent="Movement_States/Attack"]
 script = ExtResource( 11 )
+input_testing = true
 
 [node name="ChargeXTimer" type="Timer" parent="Movement_States/Attack/Closed_Fan"]
 one_shot = true
 
 [node name="ChargeYTimer" type="Timer" parent="Movement_States/Attack/Closed_Fan"]
+one_shot = true
+
+[node name="ComboTimer" type="Timer" parent="Movement_States/Attack/Closed_Fan"]
+one_shot = true
+
+[node name="HitGravTimer" type="Timer" parent="Movement_States/Attack/Closed_Fan"]
+wait_time = 0.5
 one_shot = true
 
 [node name="Wind_Dance" type="Node2D" parent="Movement_States/Attack"]
@@ -3160,6 +3169,7 @@ editor/display_folded = true
 width = 20.0
 default_color = Color( 1, 0.4, 0.4, 1 )
 texture = ExtResource( 13 )
+texture_mode = -1091782734
 round_precision = 1
 script = ExtResource( 14 )
 targetPath = NodePath("../Sprites/Sprite/Position2D")
@@ -3193,6 +3203,8 @@ autostart = true
 [connection signal="timeout" from="Movement_States/Ledge_Grab/Jump_Timer" to="Movement_States/Ledge_Grab" method="_on_Jump_Timer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/Closed_Fan/ChargeXTimer" to="Movement_States/Attack/Closed_Fan" method="_on_ChargeXTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/Closed_Fan/ChargeYTimer" to="Movement_States/Attack/Closed_Fan" method="_on_ChargeYTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Attack/Closed_Fan/ComboTimer" to="Movement_States/Attack/Closed_Fan" method="_on_ComboTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Attack/Closed_Fan/HitGravTimer" to="Movement_States/Attack/Closed_Fan" method="_on_HitGravTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/Wind_Dance/ChargeXTimer" to="Movement_States/Attack/Wind_Dance" method="_on_ChargeXTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/Wind_Dance/ChargeYTimer" to="Movement_States/Attack/Wind_Dance" method="_on_ChargeYTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/Wind_Dance/ComboTimer" to="Movement_States/Attack/Wind_Dance" method="_on_ComboTimer_timeout"]

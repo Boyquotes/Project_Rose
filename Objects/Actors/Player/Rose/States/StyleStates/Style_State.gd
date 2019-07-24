@@ -52,7 +52,7 @@ var basic_cost = 15;
 var cur_cost = 0;
 
 ### debug_vars ###
-var input_testing = false;
+export(bool) var input_testing = false;
 var style_idx = 0;
 var style_n = 0;
 var stm1;
@@ -79,6 +79,14 @@ func execute(delta):
 		$ChargeYTimer.stop();
 	else:
 		$ComboTimer.start();
+
+func _process(delta):
+	if(Input.is_action_just_pressed("switchUp")):
+		if(get_parent().style_state != 'wind_dance'):
+			exit(Wind_Dance);
+	if(Input.is_action_just_pressed("switchDown")):
+		if(get_parent().style_state != 'closed_fan'):
+			exit(Closed_Fan);
 
 func enter():
 	attack_end = false;
@@ -140,6 +148,7 @@ func switch():
 		exit(get_parent().get_child(stp1));
 
 func exit(state):
+	combo = "";
 	.exit(state);
 	reset_strings();
 	attack_triggered = false;
@@ -160,35 +169,9 @@ func atk_down():
 
 ### Handles all player input to decide what attack to trigger ###
 func set_position_vars():
-	if(atk_left()):
-		dir = "_Hor"
-	elif(atk_right()):
-		dir = "_Hor";
-	if(atk_down() || atk_up()):
-		if(!atk_left() && !atk_right()):
-			dir = "";
-		if(atk_up()):
-			vdir = "_up";
-		elif(atk_down()):
-			vdir = "_down";
-	else:
-		vdir = "";
-		dir = "_Hor"
-	if(init_attack()):
-		attack();
-	pass;
-
-### Initializes attack once the player has committed ###
-func init_attack():
-	if(input_testing):
-		construct_attack_string();
-		attack_is_saved = false;
-		return true;
-	else:
-		attack_end = false;
-		attack_is_saved = false;
-		return true;
-	pass;
+	attack_end = false;
+	attack_is_saved = false;
+	attack();
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
@@ -209,8 +192,12 @@ func attack():
 	#host.emit_signal("consume_resource", cur_cost);
 	
 	construct_attack_string();
-	animate = true;
-	$ComboTimer.start();
+	if(input_testing):
+		print(attack_str);
+		attack_done();
+	else:
+		animate = true;
+		$ComboTimer.start();
 	#TODO: Get appropriate path to attack scene
 	pass;
 

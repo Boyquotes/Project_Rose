@@ -56,8 +56,11 @@ func handleInput():
 func execute(delta):
 	if(!host.on_floor() && !(abs(host.hspd) > host.mspd/2) && style_states[style_state].hit && style_states[style_state].dir == "_Hor"):
 		host.hspd += host.mspd/10 * host.Direction;
+		host.vspd -= host.mspd/150;
 	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && style_states[style_state].hit && style_states[style_state].vdir == "_Down"):
 		host.hspd += host.mspd/10 * host.Direction;
+	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && style_states[style_state].hit && style_states[style_state].vdir == "_Up"):
+		host.vspd -= host.mspd/150;
 	else:
 		if(host.hspd != 0 && abs(host.hspd) > host.mspd && host.fric_activated):
 			host.hspd -= 20 * sign(host.hspd);
@@ -71,13 +74,13 @@ func exit_g_or_a():
 		true:
 			exit(ground)
 		false:
-			print("$$$");
 			exit(air);
 
 func exit(state):
 	leave = false;
 	update = false;
 	style_states[style_state].animate = false;
+	style_states[style_state].combo = "";
 	host.activate_grav();
 	host.activate_fric();
 	.exit(state);

@@ -1,12 +1,12 @@
 extends KinematicBody2D
 
 ###actor_data###
-var max_hp;
+export(int) var max_hp = 1;
 #warning-ignore-
-var damage;
-var mspd;
-var jspd;
-var tag;
+export(int) var damage = 1;
+export(float) var mspd = 100;
+export(float) var jspd = 50;
+export(String) var tag = "NPC";
 
 var hp;
 
@@ -15,8 +15,8 @@ var air_time = 0;
 var hspd = 0;
 var vspd = 0;
 var Direction = 1;
-var gravity = 10;
-var g_max = 250;
+export(float) var gravity = 10;
+export(float) var g_max = 250;
 var velocity = Vector2(0,0);
 var floor_normal = Vector2(0,-1);
 var grav_activated = true;

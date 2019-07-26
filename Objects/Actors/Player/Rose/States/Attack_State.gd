@@ -8,6 +8,11 @@ var style_state = 'wind_dance';
 
 var leave = false;
 var update = false;
+var busy = false;
+var hover = false;
+var hop = false;
+
+onready var ComboTimer = get_node("ComboTimer");
 
 func _ready():
 	$Wind_Dance.host = host;
@@ -38,7 +43,6 @@ func handleInput():
 	style_states[style_state].handleInput();
 	
 	if(Input.is_action_just_pressed("jump") && style_states[style_state].hit && !host.on_floor()):
-		
 		air.jump = true;
 		leave = true;
 	elif(!get_attack_pressed() && (style_states[style_state].save_event || style_states[style_state].attack_end)):
@@ -48,19 +52,26 @@ func handleInput():
 				leave = true;
 			elif(Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down")):
 				leave = true;
-	
+			else:
+				leave = false;
+	if(get_attack_just_pressed() || get_attack_pressed() || style_states[style_state].attack_start):
+		leave = false;
 	if(leave && (style_states[style_state].interrupt || style_states[style_state].attack_end)):
 		style_states[style_state].attack_done();
 		exit_g_or_a();
 
 func execute(delta):
-	if(!host.on_floor() && !(abs(host.hspd) > host.mspd/2) && style_states[style_state].hit && style_states[style_state].dir == "_Hor"):
+	if(!host.on_floor() && !(abs(host.hspd) > host.mspd/2) && style_states[style_state].hit && hover):
 		host.hspd += host.mspd/10 * host.Direction;
 		host.vspd -= host.mspd/150;
-	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && style_states[style_state].hit && style_states[style_state].vdir == "_Down"):
+	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && style_states[style_state].hit && hop):
 		host.hspd += host.mspd/10 * host.Direction;
 	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && style_states[style_state].hit && style_states[style_state].vdir == "_Up"):
 		host.vspd -= host.mspd/150;
+	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && !busy):
+		var dir = get_input_direction();
+		update_look_direction_and_scale(dir);
+		host.hspd += host.mspd/10 * host.Direction;
 	else:
 		if(host.hspd != 0 && abs(host.hspd) > host.mspd && host.fric_activated):
 			host.hspd -= 20 * sign(host.hspd);
@@ -79,8 +90,14 @@ func exit_g_or_a():
 func exit(state):
 	leave = false;
 	update = false;
+	busy = false;
 	style_states[style_state].animate = false;
 	style_states[style_state].combo = "";
 	host.activate_grav();
 	host.activate_fric();
 	.exit(state);
+
+func _on_ComboTimer_timeout():
+	style_states[style_state].combo = "";
+	if(host.move_state == 'attack'):
+		exit_g_or_a();

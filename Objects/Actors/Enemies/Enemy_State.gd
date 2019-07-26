@@ -18,3 +18,8 @@ func execute(delta):
 func exit(state):
 	host.states[state].enter();
 	pass;
+
+func turn_around():
+	host.Direction = host.Direction * -1;
+	host.get_node("Sprite").scale.x = host.get_node("Sprite").scale.x * -1;
+	host.get_node("Casts").scale.x = host.get_node("Casts").scale.x * -1;

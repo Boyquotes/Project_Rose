@@ -1,5 +1,7 @@
 extends "res://Objects/Actors/Enemies/Enemy_State.gd"
 
+var jumped = false;
+
 func enter():
 	host.state = 'chase';
 	pass;
@@ -19,11 +21,17 @@ func handleInput(event):
 func execute(delta):
 	if(host.player.global_position.x > host.global_position.x):
 		if(host.Direction != 1):
-			host.scale.x = host.scale.x * -1;
-		host.Direction = 1;
+			turn_around();
 	elif(host.player.global_position.x < host.global_position.x):
 		if(host.Direction != -1):
-			host.scale.x = host.scale.x * -1;
-		host.Direction = -1;
+			turn_around();
+	if(host.on_floor()):
+		jumped = false;
+	else:
+		jumped = true;
+	if((host.get_node("Casts").get_node("jump_cast_feet").is_colliding() || host.player.global_position.y+50 < host.global_position.y) && !jumped):
+		if(host.jspd > 0):
+			jumped = true;
+			host.vspd = -host.jspd;
 	host.hspd = host.mspd * host.Direction;
 	pass

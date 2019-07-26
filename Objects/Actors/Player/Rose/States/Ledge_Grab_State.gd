@@ -20,7 +20,8 @@ func handleAnimation():
 		host.animate(host.get_node("TopAnim"),"climb", false);
 
 func handleInput():
-	if(Input.is_action_pressed("up") && Input.is_action_just_pressed("jump") && ($Climbbox.get_overlapping_areas().size() == 0 || $Climbbox.get_overlapping_bodies().size() == 0)):
+	if(Input.is_action_pressed("up") && Input.is_action_just_pressed("jump") && ($Climbbox.get_overlapping_areas().size() == 0 && $Climbbox.get_overlapping_bodies().size() == 0)):
+		
 		climb = true;
 	elif(Input.is_action_just_pressed("jump")):
 		turn(host.Direction * -1);

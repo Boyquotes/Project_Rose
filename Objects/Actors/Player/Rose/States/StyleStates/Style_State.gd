@@ -12,11 +12,10 @@ signal attack;
 ### temp inits ###
 var on_cooldown = false;
 var hit = false;
-#end of the attack
+var attack_start = false;
 var attack_end = false;
 var attack_is_saved = false;
 var attack_triggered = false;
-var busy = false;
 var save_event = false;
 var event_is_saved = false;
 var interrupt = false;
@@ -30,6 +29,8 @@ var chargedy = false;
 var slottedx = false;
 var slottedy = false;
 var animate = false;
+var switchUp = false;
+var switchDown = false;
 
 ### attack codes ###
 var style = "style";
@@ -68,35 +69,43 @@ func _ready():
 	if(stp1 >= style_n):
 		stp1 = 0;
 
+func _process(delta):
+	if(!attack.busy || interrupt):
+		if(Input.is_action_just_pressed("switchUp") || switchUp):
+			switchUp = false;
+			if(get_parent().style_state != 'wind_dance'):
+				exit(Wind_Dance);
+		if(Input.is_action_just_pressed("switchDown") || switchDown):
+			switchDown = false;
+			if(get_parent().style_state != 'closed_fan'):
+				exit(Closed_Fan);
+
 func execute(delta):
 	if(!Input.is_action_pressed("attack")):
 		chargedx = false;
 		$ChargeXTimer.stop();
 	else:
-		$ComboTimer.start();
+		attack.ComboTimer.start();
 	if(!Input.is_action_pressed("special")):
 		chargedy = false;
 		$ChargeYTimer.stop();
 	else:
-		$ComboTimer.start();
-
-func _process(delta):
-	if(Input.is_action_just_pressed("switchUp")):
-		if(get_parent().style_state != 'wind_dance'):
-			exit(Wind_Dance);
-	if(Input.is_action_just_pressed("switchDown")):
-		if(get_parent().style_state != 'closed_fan'):
-			exit(Closed_Fan);
+		attack.ComboTimer.start();
 
 func enter():
 	attack_end = false;
+	combo = "";
+	reset_strings();
+	attack_triggered = false;
+	switchUp = false;
+	switchDown = false;
 	#print("   " + get_parent().get_child(style_idx).name);
 	#print(get_parent().get_child(stm1).name + "   " + get_parent().get_child(stp1).name);
 
 ### Handles animation, incomplete ###
 func handleAnimation():
 	if(!input_testing):
-		if(busy && animate):
+		if(attack.busy && animate):
 			host.animate(host.get_node("TopAnim"),attack_str, true);
 			animate = false;
 	pass;
@@ -104,21 +113,14 @@ func handleAnimation():
 ### Prepares next move if user input is detected ###
 func handleInput():
 	if((interrupt || (follow_up && !started_save)) && attack_is_saved):
+		#parse_attack();
 		attack_done();
-		attack_end = false;
 		current_event = saved_event;
 		combo += saved_event;
-		busy = true;
-		follow_up = false;
-		attack_is_saved = false;
 		set_position_vars();
-	if(!busy && !started_save):
+	if(!attack.busy && !started_save):
 		if(parse_attack()):
-			attack_end = false;
 			combo += current_event;
-			busy = true;
-			follow_up = false;
-			attack_is_saved = false;
 			set_position_vars();
 	if(save_event || started_save):
 		if(parse_next_attack()):
@@ -139,20 +141,21 @@ func parse_attack():
 	pass;
 
 func parse_next_attack():
-	pass;
-
-func switch():
-	if(Input.is_action_just_pressed("switchL")):
-		exit(get_parent().get_child(stm1));
-	if(Input.is_action_just_pressed("switchR")):
-		exit(get_parent().get_child(stp1));
+	if(Input.is_action_just_pressed("switchUp")):
+		switchUp = true;
+		return false;
+	if(Input.is_action_just_pressed("switchDown") || switchDown):
+		switchDown = true;
+		return false;
+	return false;
 
 func exit(state):
 	combo = "";
 	.exit(state);
 	reset_strings();
 	attack_triggered = false;
-	busy = false;
+	switchUp = false;
+	switchDown = false;
 
 ### Determines direction of attack ###
 func atk_left():
@@ -169,8 +172,18 @@ func atk_down():
 
 ### Handles all player input to decide what attack to trigger ###
 func set_position_vars():
+	chargedx = false;
+	chargedy = false;
+	slottedx = false;
+	slottedy = false;
+	X = false;
+	Y = false;
+	B = false;
 	attack_end = false;
+	attack.busy = true;
+	follow_up = false;
 	attack_is_saved = false;
+	attack_start = true;
 	attack();
 
 ### Constructs the string used to look up attack hitboxes and animations ###
@@ -197,12 +210,13 @@ func attack():
 		attack_done();
 	else:
 		animate = true;
-		$ComboTimer.start();
+		attack.ComboTimer.start();
 	#TODO: Get appropriate path to attack scene
 	pass;
 
 func set_save_event():
 	save_event = true;
+	attack_start = false;
 
 func set_interrupt():
 	interrupt = true;
@@ -217,14 +231,15 @@ func attack_done():
 	Y = false;
 	B = false;
 	attack_end = true;
-	busy = false;
+	attack.busy = false;
 	attack_triggered = false;
 	save_event = false;
 	previous_event = current_event;
 	interrupt = false;
 	reset_strings();
-	$ComboTimer.start();
-
+	attack.ComboTimer.start();
+	attack.hop = false;
+	attack.hover = false;
 	pass;
 
 func X_pressed():

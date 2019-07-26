@@ -6,7 +6,7 @@ onready var player = get_tree().get_root().get_children()[0].get_node("Rose");
 #range which the enemy attacks
 export(float) var attack_range = 50;
 #range which the enemy chases
-export(Vector2) var chase_range = Vector2(160,32);
+export(float) var chase_range = 150;
 
 ###background_enemy_data###
 var decision;
@@ -14,6 +14,10 @@ var wait;
 
 onready var states;
 var state;
+
+var friction = 10;
+var hit = false;
+var moving = false;
 
 ### Enemy ###
 func _ready():
@@ -44,19 +48,30 @@ func phys_execute(delta):
 	velocity = move_and_slide(velocity,floor_normal);
 	
 	#no gravity acceleration when on floor
-	if(is_on_floor()):
+	if(on_floor()):
 		velocity.y = 0
 		vspd = 0;
 	
 	#add gravity
-	vspd += gravity * delta;
+	if(grav_activated):
+		vspd += gravity;
 	
 	#cap gravity
 	if(vspd > 900):
 		vspd = 900;
 	if(is_on_ceiling()):
 		vspd = 500;
-	pass
+	
+	if(fric_activated && !moving):
+		if(hspd > 0):
+			hspd -= friction;
+		elif(hspd < 0):
+			hspd += friction;
+		if((hspd <= 44 && hspd > 0) || (hspd >= 44 && hspd < 0)):
+			hspd = 0;
+	pass;
+
+var done_knockback = false;
 
 func makeDecision():
 	var dec = randi() % 100 + 1;
@@ -67,6 +82,6 @@ func canSeePlayer():
 	var result = space_state.intersect_ray(global_position, player.global_position, [self], collision_mask);
 	if(!result.empty()):
 		return false;
-	elif((abs(player.global_position.x-global_position.x) < chase_range.x) && (abs(player.global_position.y-global_position.y) < chase_range.y)):
+	elif((global_position.distance_to(player.global_position) <= chase_range)):
 		return true;
 	return false;

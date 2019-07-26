@@ -7,8 +7,9 @@ var hitbox;
 
 onready var attack_state = get_parent().get_node("Movement_States").get_node("Attack");
 
-func instance_slash_particle():
-	partNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/SlashParticles.tscn").instance();
+### GENERAL FUNCTIONS ### 
+
+func instance_particle():
 	particle = partNode.get_child(0);
 	partNode.scale = scale;
 	get_parent().add_child(partNode);
@@ -26,29 +27,55 @@ func instance_hitbox():
 	get_parent().add_child(hitNode);
 	hitNode.global_position = get_parent().global_position;
 
-func instance_X_hitbox():
-	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/X.tscn").instance();
+func emit_off():
+	particle.emitting = false;
+
+func _on_particleTimer_timeout():
+	particle.process_material.gravity = Vector3(0,0,0);
+	particle.process_material.angular_velocity_random = 0;
+	if(particle.process_material.angular_velocity_curve):
+		particle.process_material.angular_velocity_curve = null;
+	particle.process_material.scale_random = 0;
+	if(particle.process_material.scale_curve):
+		particle.process_material.scale_curve = null;
+	particle.rotation_degrees = 0
+	hitbox.rotation_degrees = 0
+	hitbox.inchdir = 1;
+	particle.z_index = 0;
+	partNode.queue_free()
+	particle.queue_free();
+	hitNode.queue_free();
+	hitbox.queue_free();
+
+### SLASH ATTACKS ###
+
+func instance_slash_particle():
+	partNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Wind_Dance/SlashParticles.tscn").instance();
+	instance_particle();
+
+func instance_slash_X_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Wind_Dance/X.tscn").instance();
 	instance_hitbox();
 
-func instance_XplusB_hitbox():
-	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/X+B.tscn").instance();
+func instance_slash_XplusB_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Wind_Dance/X+B.tscn").instance();
 	instance_hitbox();
 
-func instance_HoldX_Hor_Ground_hitbox():
-	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/HoldX_Hor_Ground.tscn").instance();
+func instance_slash_HoldX_Hor_Ground_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Wind_Dance/HoldX_Hor_Ground.tscn").instance();
 	instance_hitbox();
 
-func instance_HoldX_Down_Ground_hitbox():
-	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/HoldX_Down_Ground.tscn").instance();
+func instance_slash_HoldX_Down_Ground_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Wind_Dance/HoldX_Down_Ground.tscn").instance();
 	instance_hitbox();
 
-func instance_Y_hitbox():
-	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Y.tscn").instance();
+func instance_slash_Y_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Wind_Dance/Y.tscn").instance();
 	instance_hitbox();
 
 func Wind_Dance_XplusB():
 	instance_slash_particle();
-	instance_XplusB_hitbox();
+	instance_slash_XplusB_hitbox();
 	particle.z_index = 1;
 	particle.amount = 1;
 	particle.lifetime = .4;
@@ -66,7 +93,7 @@ func Wind_Dance_XplusB():
 
 func Wind_Dance_HoldX_Down_Ground():
 	instance_slash_particle();
-	instance_HoldX_Down_Ground_hitbox();
+	instance_slash_HoldX_Down_Ground_hitbox();
 	particle.lifetime = .3;
 	particle.process_material.angular_velocity = 1000;
 	particle.rotation_degrees = 0;
@@ -76,7 +103,7 @@ func Wind_Dance_HoldX_Down_Ground():
 
 func Wind_Dance_HoldX_Hor_Ground():
 	instance_slash_particle();
-	instance_HoldX_Hor_Ground_hitbox();
+	instance_slash_HoldX_Hor_Ground_hitbox();
 	particle.lifetime = .3;
 	particle.process_material.angular_velocity = 500;
 	particle.rotation_degrees = 78.5;
@@ -86,7 +113,7 @@ func Wind_Dance_HoldX_Hor_Ground():
 
 func Wind_Dance_X_Hor():
 	instance_slash_particle();
-	instance_X_hitbox();
+	instance_slash_X_hitbox();
 	particle.lifetime = .2;
 	particle.process_material.angular_velocity = 750;
 	particle.rotation_degrees = 10;
@@ -96,7 +123,7 @@ func Wind_Dance_X_Hor():
 
 func Wind_Dance_XX_Hor():
 	instance_slash_particle();
-	instance_X_hitbox();
+	instance_slash_X_hitbox();
 	particle.lifetime = .2;
 	particle.process_material.angular_velocity = 750;
 	particle.rotation_degrees = -10;
@@ -126,8 +153,7 @@ func Wind_Dance_XX_Down_Air():
 
 func Wind_Dance_Y_Hor():
 	instance_slash_particle();
-	instance_Y_hitbox();
-	#TODO: make specific hitbox
+	instance_slash_Y_hitbox();
 	particle.one_shot = false;
 	particle.z_index = 5;
 	particle.amount = 10
@@ -165,22 +191,118 @@ func Wind_Dance_Y_Hor_Down():
 	hitbox.rotation_degrees += 45;
 	particle.rotation_degrees += 45;
 
-func slash_emit_off():
-	particle.emitting = false;
+### BASH ATTACKS ###
 
-func _on_particleTimer_timeout():
+func instance_bash_particle():
+	partNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Closed_Fan/BashParticles.tscn").instance();
+	instance_particle();
 	
-	particle.process_material.gravity = Vector3(0,0,0);
-	particle.process_material.angular_velocity_random = 0;
-	if(particle.process_material.angular_velocity_curve):
-		particle.process_material.angular_velocity_curve = null;
-	particle.process_material.scale_random = 0;
-	if(particle.process_material.scale_curve):
-		particle.process_material.scale_curve = null;
-	particle.rotation_degrees = 0
-	hitbox.rotation_degrees = 0
-	particle.z_index = 0;
-	partNode.queue_free()
-	particle.queue_free();
-	hitNode.queue_free();
-	hitbox.queue_free();
+func instance_bash_Y_Hor_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Closed_Fan/Y_Hor.tscn").instance();
+	instance_hitbox();
+
+func instance_bash_Y_Up_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Closed_Fan/Y_Up.tscn").instance();
+	instance_hitbox();
+
+func instance_bash_X_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Closed_Fan/X.tscn").instance();
+	instance_hitbox();
+
+func instance_bash_HoldX_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Closed_Fan/HoldX.tscn").instance();
+	instance_hitbox();
+
+func instance_bash_QuickX_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/Closed_Fan/QuickX.tscn").instance();
+	instance_hitbox();
+
+func Closed_Fan_X_Hor():
+	instance_bash_particle();
+	instance_bash_X_hitbox();
+	particle.lifetime = .3;
+	particle.process_material.angular_velocity = 500;
+	particle.rotation_degrees = 0;
+	particle.scale = Vector2(1.5, 1);
+	particle.emitting = true;
+	$particleTimer.start(.3);
+
+func Closed_Fan_XX_Hor():
+	Closed_Fan_X_Hor();
+	particle.scale *= Vector2(1, -1);
+	particle.emitting = true;
+	$particleTimer.start(.3);
+	hitbox.inchdir = -1;
+
+func Closed_Fan_X_Down_Air():
+	Closed_Fan_X_Hor();
+	hitbox.rotation_degrees += 90;
+	particle.rotation_degrees += 90;
+
+func Closed_Fan_XX_Down_Air():
+	Closed_Fan_XX_Hor();
+	hitbox.rotation_degrees += 90;
+	particle.rotation_degrees += 90;
+
+func Closed_Fan_HoldX_Hor():
+	instance_bash_particle();
+	instance_bash_HoldX_hitbox();
+	particle.lifetime = .4;
+	particle.process_material.angular_velocity = 500;
+	particle.rotation_degrees = 0;
+	particle.scale = Vector2(2, -1.5);
+	particle.emitting = true;
+	$particleTimer.start(.4);
+
+func Closed_Fan_HoldX_Down_Air():
+	Closed_Fan_HoldX_Hor();
+	hitbox.rotation_degrees += 45;
+	particle.rotation_degrees += 45;
+
+func Closed_Fan_QuickX_Hor():
+	instance_bash_particle();
+	instance_bash_QuickX_hitbox();
+	particle.lifetime = .2;
+	particle.process_material.angular_velocity = 500;
+	particle.rotation_degrees = 0;
+	particle.scale = Vector2(2, .5);
+	particle.emitting = true;
+	$particleTimer.start(.2);
+
+func Closed_Fan_Y_Up():
+	instance_bash_particle();
+	instance_bash_Y_Up_hitbox();
+	particle.lifetime = .4;
+	particle.process_material.angular_velocity = 500;
+	particle.rotation_degrees = 0;
+	hitbox.rotation_degrees = -90;
+	particle.scale = Vector2(2, 3);
+	particle.emitting = true;
+	$particleTimer.start(.4);
+
+func Closed_Fan_Y_Hor_Up():
+	Closed_Fan_Y_Up();
+	hitbox.rotation_degrees += 45;
+	particle.rotation_degrees += 45;
+
+func Closed_Fan_Y_Hor():
+	instance_bash_particle();
+	instance_bash_Y_Hor_hitbox();
+	particle.lifetime = .4;
+	particle.process_material.angular_velocity = 500;
+	particle.rotation_degrees = 90;
+	particle.scale = Vector2(1.5, 4);
+	particle.emitting = true;
+	hitbox.rotation_degrees = 0;
+	$particleTimer.start(.4);
+
+func Closed_Fan_Y_Hor_Down_Air():
+	Closed_Fan_Y_Up();
+	hitbox.rotation_degrees += 135;
+	particle.rotation_degrees += 135;
+
+func Closed_Fan_Y_Down_Air():
+	Closed_Fan_Y_Up();
+	hitbox.rotation_degrees += 180;
+	hitNode.scale *= Vector2(-1,1);
+	particle.scale *= Vector2(1,-1);

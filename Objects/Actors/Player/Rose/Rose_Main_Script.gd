@@ -22,29 +22,24 @@ var itemTrace = [];
 onready var cam = get_node("Camera2D");
 
 ###Player Vars###
-var magic_bool = false;
-var stamina_bool = true;
-var mana = 100;
-var max_mana = 100;
+export(int) var max_mana = 100;
+var mana
+export(int) var max_stamina = 100;
 var stamina = 100;
-var max_stamina = 100;
 var resource = 0;
+
+
 var rad = 0.0;
 var deg = 0.0;
+
 
 enum InputType {GAMEPAD, KEYMOUSE};
 var ActiveInput = InputType.GAMEPAD;
 
 
 func _ready():
+	._ready();
 	$Camera2D.current = true;
-	max_hp = 1;
-	damage = 1;
-	mspd = 200;
-	jspd = 400;
-	hp = max_hp;
-	tag = "player";
-	gravity = 20;
 	move_states[move_state].enter();
 
 func _input(event):

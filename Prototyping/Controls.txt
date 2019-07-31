@@ -1,0 +1,23 @@
+Gamepad:
+Left stick to move
+Right stick can aim attacks
+Up on d-pad to switch to slashing attacks
+Down on d-pad to switch to bashing attacks
+left face button for normal attacks
+up face button special attacks
+down face button for jumping
+right face button for dodging
+
+Keyboard + Mouse:
+WASD to move
+arrows to aim attacks
+1 to switch to slashing attacks
+2 to switch to bashing attacks
+left click or q for normal attacks
+right click or e for special attacks
+space for jumping
+tab for dodging
+
+The player will automatically grab ledges when falling next to one.
+Hold up + jump to climb up ledges after having grabbed them.
+Jumping otherwise causes you to jump off the ledge

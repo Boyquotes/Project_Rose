@@ -11,6 +11,7 @@ var update = false;
 var busy = false;
 var hover = false;
 var hop = false;
+var attack_broken = false;
 
 onready var ComboTimer = get_node("ComboTimer");
 
@@ -42,36 +43,41 @@ func handleInput():
 	
 	style_states[style_state].handleInput();
 	
-	if(Input.is_action_just_pressed("jump") && style_states[style_state].hit && !host.on_floor()):
-		air.jump = true;
-		leave = true;
-	elif(!get_attack_pressed() && (style_states[style_state].save_event || style_states[style_state].attack_end)):
+	if(!get_attack_pressed() && (style_states[style_state].save_event || style_states[style_state].attack_end)):
 		if(!style_states[style_state].attack_is_saved):
-			if(Input.is_action_just_pressed("jump") && host.on_floor()):
-				ground.jump = true;
-				leave = true;
-			elif(Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down")):
+			if(Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("up") || Input.is_action_pressed("down")):
 				leave = true;
 			else:
 				leave = false;
 	if(get_attack_just_pressed() || get_attack_pressed() || style_states[style_state].attack_start):
 		leave = false;
+	if(Input.is_action_just_pressed("jump") && style_states[style_state].hit && !host.on_floor()):
+		air.jump = true;
+		leave = true;
+		attack_broken = true;
+	if(Input.is_action_just_pressed("jump") && host.on_floor()):
+		ground.jump = true;
+		leave = true;
+		attack_broken = true;
 	if(leave && (style_states[style_state].interrupt || style_states[style_state].attack_end)):
+		style_states[style_state].attack_done();
+		exit_g_or_a();
+	if(leave && attack_broken && (style_states[style_state].dodge_interrupt || !busy)):
+		if(!style_states[style_state].interrupt):
+			host.get_node("AttackParticles")._on_particleTimer_timeout();
 		style_states[style_state].attack_done();
 		exit_g_or_a();
 
 func execute(delta):
-	if(!host.on_floor() && !(abs(host.hspd) > host.mspd/2) && style_states[style_state].hit && hover):
-		host.hspd += host.mspd/10 * host.Direction;
-		host.vspd -= host.mspd/150;
-	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && style_states[style_state].hit && hop):
-		host.hspd += host.mspd/10 * host.Direction;
+	if(!host.on_floor() && (host.mspd >= abs(host.hspd)) && style_states[style_state].hit && hover):
+		host.hspd += acceleration/4 * host.Direction;
+		host.vspd -= acceleration/15;
+	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && hop):
+		var input_direction = get_input_direction();
+		update_look_direction_and_scale(input_direction);
+		host.hspd += acceleration * host.Direction;
 	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && style_states[style_state].hit && style_states[style_state].vdir == "_Up"):
-		host.vspd -= host.mspd/150;
-	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && !busy):
-		var dir = get_input_direction();
-		update_look_direction_and_scale(dir);
-		host.hspd += host.mspd/10 * host.Direction;
+		host.vspd -= acceleration/15;
 	else:
 		if(host.hspd != 0 && abs(host.hspd) > host.mspd && host.fric_activated):
 			host.hspd -= 20 * sign(host.hspd);
@@ -91,13 +97,16 @@ func exit(state):
 	leave = false;
 	update = false;
 	busy = false;
+	attack_broken = false;
+	style_states[style_state].slottedx = false;
+	style_states[style_state].slottedy = false;
 	style_states[style_state].animate = false;
 	style_states[style_state].combo = "";
-	host.activate_grav();
-	host.activate_fric();
 	.exit(state);
 
 func _on_ComboTimer_timeout():
 	style_states[style_state].combo = "";
+	style_states[style_state].chargedx = false;
+	style_states[style_state].chargedy = false;
 	if(host.move_state == 'attack'):
 		exit_g_or_a();

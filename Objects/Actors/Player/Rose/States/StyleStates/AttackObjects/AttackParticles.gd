@@ -31,21 +31,24 @@ func emit_off():
 	particle.emitting = false;
 
 func _on_particleTimer_timeout():
-	particle.process_material.gravity = Vector3(0,0,0);
-	particle.process_material.angular_velocity_random = 0;
-	if(particle.process_material.angular_velocity_curve):
-		particle.process_material.angular_velocity_curve = null;
-	particle.process_material.scale_random = 0;
-	if(particle.process_material.scale_curve):
-		particle.process_material.scale_curve = null;
-	particle.rotation_degrees = 0
-	hitbox.rotation_degrees = 0
-	hitbox.inchdir = 1;
-	particle.z_index = 0;
-	partNode.queue_free()
-	particle.queue_free();
-	hitNode.queue_free();
-	hitbox.queue_free();
+	if(is_instance_valid(partNode)):
+		particle.process_material.gravity = Vector3(0,0,0);
+		particle.process_material.angular_velocity_random = 0;
+		if(particle.process_material.angular_velocity_curve):
+			particle.process_material.angular_velocity_curve = null;
+		particle.process_material.scale_random = 0;
+		if(particle.process_material.scale_curve):
+			particle.process_material.scale_curve = null;
+		particle.rotation_degrees = 0
+		particle.z_index = 0;
+		particle.queue_free();
+		partNode.queue_free()
+	if(is_instance_valid(hitNode)):
+		hitbox.rotation_degrees = 0
+		hitbox.inchdir = 1;
+		hitNode.queue_free();
+		hitbox.queue_free();
+	$particleTimer.stop();
 
 ### SLASH ATTACKS ###
 

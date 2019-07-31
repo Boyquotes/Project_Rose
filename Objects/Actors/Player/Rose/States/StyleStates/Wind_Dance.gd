@@ -50,7 +50,7 @@ func parse_attack():
 			cur_cost = basic_cost;
 			return true;
 	
-	if(chargedy && host.mana >= 100):
+	if(chargedy):
 		current_event = "Y";
 		slottedy = true;
 		#combo = "";
@@ -101,6 +101,7 @@ func parse_next_attack():
 			saved_event = "B";
 		
 		if(saved_event == "B" || saved_event == "HitB"  || saved_event == "X+B" || saved_event == "HitX+B"):
+			print("!!!");
 			if(!host.on_floor() && !hit):
 				started_save = false;
 				saved_event = "saved_event";
@@ -111,6 +112,8 @@ func parse_next_attack():
 			combo = "";
 			$ChargeXTimer.stop();
 			cur_cost = basic_cost;
+			if(dodge_interrupt):
+				interrupt = true;
 			return true;
 	
 	if(chargedy && host.mana >= 100):
@@ -214,6 +217,12 @@ func check_combo():
 
 func set_save_event():
 	.set_save_event();
+
+func set_dodge_interrupt():
+	.set_dodge_interrupt();
+
+func unset_dodge_interrupt():
+	.unset_dodge_interrupt();
 
 func set_interrupt():
 	.set_interrupt();

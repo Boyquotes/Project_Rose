@@ -1,5 +1,6 @@
 extends "./Free_Motion_State.gd"
 
+var jumped = false;
 var wasnt_wall = false;
 var is_wall = false;
 var land = false;
@@ -7,6 +8,7 @@ var up_to_down_proc = true;
 var doneUp = false;
 var doneDown = false;
 var jump = false;
+var cutoff = false;
 
 onready var ledge_cast = host.get_node("ledge_cast_right");
 
@@ -44,8 +46,9 @@ func handleInput():
 	if(get_attack_just_pressed()):
 		exit(attack);
 		return;
-	if(Input.is_action_just_released("jump")):
-		host.vspd += host.jspd/3;
+	if(jumped && !Input.is_action_pressed("jump") && !cutoff):
+		cutoff = true;
+		host.vspd += host.jspd/2;
 	if(host.Direction == 1):
 		ledge_cast = host.get_node("ledge_cast_right");
 	if(host.Direction == -1):
@@ -75,6 +78,8 @@ func exit(state):
 	is_wall = false;
 	doneUp = false;
 	doneDown = false;
+	jumped = false;
+	cutoff = false;
 	.exit(state);
 	pass
 

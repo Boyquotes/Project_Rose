@@ -106,7 +106,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=64]
+[sub_resource type="Animation" id=2]
 resource_name = "Closed_Fan_B_Hor_Up"
 length = 0.61
 step = 0.01
@@ -203,7 +203,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=65]
+[sub_resource type="Animation" id=3]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
@@ -287,7 +287,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=66]
+[sub_resource type="Animation" id=4]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
@@ -371,7 +371,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=67]
+[sub_resource type="Animation" id=5]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -449,7 +449,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=68]
+[sub_resource type="Animation" id=6]
 length = 0.65
 step = 0.01
 tracks/0/type = "method"
@@ -527,7 +527,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=69]
+[sub_resource type="Animation" id=7]
 length = 0.65
 step = 0.01
 tracks/0/type = "method"
@@ -605,7 +605,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=70]
+[sub_resource type="Animation" id=8]
 length = 0.65
 step = 0.01
 tracks/0/type = "method"
@@ -683,7 +683,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=71]
+[sub_resource type="Animation" id=9]
 length = 0.65
 step = 0.01
 tracks/0/type = "method"
@@ -761,7 +761,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=72]
+[sub_resource type="Animation" id=10]
 resource_name = "Closed_Fan_YB_Down"
 length = 0.61
 step = 0.01
@@ -858,7 +858,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=73]
+[sub_resource type="Animation" id=11]
 resource_name = "Closed_Fan_YB_Hor"
 length = 0.61
 step = 0.01
@@ -949,7 +949,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=74]
+[sub_resource type="Animation" id=12]
 resource_name = "Closed_Fan_YB_Hor_Down"
 length = 0.61
 step = 0.01
@@ -1046,7 +1046,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=75]
+[sub_resource type="Animation" id=13]
 resource_name = "Closed_Fan_YB_Hor_Up"
 length = 0.61
 step = 0.01
@@ -1143,7 +1143,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=76]
+[sub_resource type="Animation" id=14]
 resource_name = "Closed_Fan_YB_Up"
 length = 0.61
 step = 0.01
@@ -1240,7 +1240,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=77]
+[sub_resource type="Animation" id=15]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
@@ -1344,36 +1344,16 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=78]
+[sub_resource type="Animation" id=16]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("AttackParticles")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.21, 0.6, 0.85 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "set_save_event"
-}, {
-"args": [  ],
-"method": "set_interrupt"
-}, {
-"args": [  ],
-"method": "attack_done"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("AttackParticles")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -1381,13 +1361,13 @@ tracks/1/keys = {
 "method": "Closed_Fan_Y_Hor"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.33, 0.53 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
@@ -1404,13 +1384,13 @@ tracks/2/keys = {
 "method": "tween_scale"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.33, 0.53 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
@@ -1427,13 +1407,13 @@ tracks/3/keys = {
 "method": "tween_rotation"
 } ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath("Movement_States/Attack/Closed_Fan")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Closed_Fan")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0.21, 0.6, 0.85 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -1448,7 +1428,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=79]
+[sub_resource type="Animation" id=17]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
@@ -1552,7 +1532,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=80]
+[sub_resource type="Animation" id=18]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
@@ -1656,7 +1636,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=81]
+[sub_resource type="Animation" id=19]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
@@ -1760,7 +1740,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=82]
+[sub_resource type="Animation" id=20]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -1770,7 +1750,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 0.44, 0.6 ),
+"times": PoolRealArray( 0.2, 0.35, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -1790,8 +1770,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.04, 0.3, 0.45 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.04, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "deactivate_fric"
@@ -1801,9 +1781,6 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "activate_fric"
-}, {
-"args": [ Vector2( 0, 0 ) ],
-"method": "add_velocity"
 } ]
 }
 tracks/2/type = "method"
@@ -1850,7 +1827,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=83]
+[sub_resource type="Animation" id=21]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -1940,7 +1917,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=84]
+[sub_resource type="Animation" id=22]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -2030,7 +2007,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=85]
+[sub_resource type="Animation" id=23]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -2120,7 +2097,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=86]
+[sub_resource type="Animation" id=24]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -2210,7 +2187,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=87]
+[sub_resource type="Animation" id=25]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -2300,7 +2277,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=88]
+[sub_resource type="Animation" id=26]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -2404,7 +2381,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=89]
+[sub_resource type="Animation" id=27]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -2508,7 +2485,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=90]
+[sub_resource type="Animation" id=28]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -2612,7 +2589,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=91]
+[sub_resource type="Animation" id=29]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -2716,7 +2693,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=92]
+[sub_resource type="Animation" id=30]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -2820,36 +2797,16 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=93]
+[sub_resource type="Animation" id=31]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("AttackParticles")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.28, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "set_save_event"
-}, {
-"args": [  ],
-"method": "set_interrupt"
-}, {
-"args": [  ],
-"method": "attack_done"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("AttackParticles")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0.15 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -2857,13 +2814,13 @@ tracks/1/keys = {
 "method": "Wind_Dance_HoldX_Down_Ground"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -2874,13 +2831,13 @@ tracks/2/keys = {
 "method": "tween_rotation_to_origin"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.15, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -2894,8 +2851,37 @@ tracks/3/keys = {
 "method": "tween_scale"
 } ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.15, 0.27, 0.5, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
 
-[sub_resource type="Animation" id=94]
+[sub_resource type="Animation" id=32]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
@@ -2905,9 +2891,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.16, 0.5, 0.85 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.01, 0.15, 0.27, 0.5, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
 "args": [  ],
 "method": "set_save_event"
 }, {
@@ -2979,7 +2974,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=95]
+[sub_resource type="Animation" id=33]
 length = 0.65
 loop = true
 step = 0.02
@@ -2998,7 +2993,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=96]
+[sub_resource type="Animation" id=34]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -3102,50 +3097,30 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=97]
+[sub_resource type="Animation" id=35]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("AttackParticles")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.11, 0.45, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "set_save_event"
-}, {
-"args": [  ],
-"method": "set_interrupt"
-}, {
-"args": [  ],
-"method": "attack_done"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("AttackParticles")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
+"times": PoolRealArray( 0.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "Wind_Dance_XX_Down_Air"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3159,13 +3134,13 @@ tracks/2/keys = {
 "method": "tween_rotation"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3179,20 +3154,19 @@ tracks/3/keys = {
 "method": "tween_scale"
 } ]
 }
-
-[sub_resource type="Animation" id=98]
-length = 0.6
-step = 0.01
-tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.11, 0.45, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.06, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
 "args": [  ],
 "method": "set_save_event"
 }, {
@@ -3203,27 +3177,31 @@ tracks/0/keys = {
 "method": "attack_done"
 } ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("AttackParticles")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
+
+[sub_resource type="Animation" id=36]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("AttackParticles")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "Wind_Dance_XX_Hor"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3237,13 +3215,13 @@ tracks/2/keys = {
 "method": "tween_rotation"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3257,20 +3235,19 @@ tracks/3/keys = {
 "method": "tween_scale"
 } ]
 }
-
-[sub_resource type="Animation" id=99]
-length = 0.6
-step = 0.01
-tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.11, 0.45, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.06, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
 "args": [  ],
 "method": "set_save_event"
 }, {
@@ -3281,27 +3258,31 @@ tracks/0/keys = {
 "method": "attack_done"
 } ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("AttackParticles")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
+
+[sub_resource type="Animation" id=37]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("AttackParticles")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "Wind_Dance_XX_Up"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3315,13 +3296,13 @@ tracks/2/keys = {
 "method": "tween_rotation"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3335,20 +3316,19 @@ tracks/3/keys = {
 "method": "tween_scale"
 } ]
 }
-
-[sub_resource type="Animation" id=100]
-length = 0.6
-step = 0.01
-tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.11, 0.45, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.06, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
 "args": [  ],
 "method": "set_save_event"
 }, {
@@ -3359,27 +3339,31 @@ tracks/0/keys = {
 "method": "attack_done"
 } ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("AttackParticles")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
+
+[sub_resource type="Animation" id=38]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("AttackParticles")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "Wind_Dance_X_Down_Air"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3393,13 +3377,13 @@ tracks/2/keys = {
 "method": "tween_rotation"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3413,8 +3397,31 @@ tracks/3/keys = {
 "method": "tween_scale"
 } ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.06, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
 
-[sub_resource type="Animation" id=101]
+[sub_resource type="Animation" id=39]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -3424,9 +3431,12 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.11, 0.45, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.06, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
 "args": [  ],
 "method": "set_save_event"
 }, {
@@ -3444,7 +3454,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
+"times": PoolRealArray( 0.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -3492,50 +3502,30 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=102]
+[sub_resource type="Animation" id=40]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("AttackParticles")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.11, 0.45, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "set_save_event"
-}, {
-"args": [  ],
-"method": "set_interrupt"
-}, {
-"args": [  ],
-"method": "attack_done"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("AttackParticles")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
+"times": PoolRealArray( 0.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "Wind_Dance_X_Up"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3549,13 +3539,13 @@ tracks/2/keys = {
 "method": "tween_rotation"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3569,20 +3559,19 @@ tracks/3/keys = {
 "method": "tween_scale"
 } ]
 }
-
-[sub_resource type="Animation" id=103]
-length = 1.15
-step = 0.01
-tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.28, 0.62, 1.05 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.06, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
 "args": [  ],
 "method": "set_save_event"
 }, {
@@ -3593,15 +3582,19 @@ tracks/0/keys = {
 "method": "attack_done"
 } ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.18, 0.2, 0.45, 0.65 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+
+[sub_resource type="Animation" id=41]
+length = 1.15
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.19, 0.2, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "deactivate_grav"
@@ -3611,18 +3604,15 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "activate_grav"
-}, {
-"args": [ Vector2( 0, 0 ) ],
-"method": "add_velocity"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("AttackParticles")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath("AttackParticles")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0.2, 0.35 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -3633,13 +3623,13 @@ tracks/2/keys = {
 "method": "emit_off"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.65 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3653,13 +3643,13 @@ tracks/3/keys = {
 "method": "tween_rotation"
 } ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.5, 0.65, 0.85 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
@@ -3688,8 +3678,37 @@ tracks/4/keys = {
 "method": "tween_scale"
 } ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.01, 0.17, 0.28, 0.65, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
 
-[sub_resource type="Animation" id=104]
+[sub_resource type="Animation" id=42]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -3699,9 +3718,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.21, 0.62, 1.05 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.01, 0.17, 0.28, 0.65, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
 "args": [  ],
 "method": "set_save_event"
 }, {
@@ -3719,8 +3747,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.16, 0.18, 0.2, 0.44, 0.45, 0.65 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.18, 0.19, 0.2, 0.44, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "deactivate_grav"
@@ -3736,9 +3764,6 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "activate_fric"
-}, {
-"args": [ Vector2( 0, 0 ) ],
-"method": "add_velocity"
 } ]
 }
 tracks/2/type = "method"
@@ -3814,38 +3839,18 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=105]
+[sub_resource type="Animation" id=43]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.28, 0.62, 1.05 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "set_save_event"
-}, {
-"args": [  ],
-"method": "set_interrupt"
-}, {
-"args": [  ],
-"method": "attack_done"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.16, 0.18, 0.2, 0.44, 0.45, 0.65 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.18, 0.19, 0.2, 0.44, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "deactivate_grav"
@@ -3861,18 +3866,15 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "activate_fric"
-}, {
-"args": [ Vector2( 0, 0 ) ],
-"method": "add_velocity"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("AttackParticles")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath("AttackParticles")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0.2, 0.35 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -3883,13 +3885,13 @@ tracks/2/keys = {
 "method": "emit_off"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.65 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -3903,13 +3905,13 @@ tracks/3/keys = {
 "method": "tween_rotation"
 } ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.5, 0.65, 0.85 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
@@ -3938,20 +3940,25 @@ tracks/4/keys = {
 "method": "tween_scale"
 } ]
 }
-
-[sub_resource type="Animation" id=106]
-length = 1.15
-step = 0.01
-tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.28, 0.62, 1.05 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+tracks/4/type = "method"
+tracks/4/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.01, 0.17, 0.28, 0.65, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
 "args": [  ],
 "method": "set_save_event"
 }, {
@@ -3962,15 +3969,19 @@ tracks/0/keys = {
 "method": "attack_done"
 } ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.16, 0.18, 0.2, 0.44, 0.45, 0.65 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+
+[sub_resource type="Animation" id=44]
+length = 1.15
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.18, 0.19, 0.2, 0.44, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "deactivate_grav"
@@ -3986,18 +3997,15 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "activate_fric"
-}, {
-"args": [ Vector2( 0, 0 ) ],
-"method": "add_velocity"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("AttackParticles")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath("AttackParticles")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0.2, 0.35 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -4008,13 +4016,13 @@ tracks/2/keys = {
 "method": "emit_off"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.65 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -4028,13 +4036,13 @@ tracks/3/keys = {
 "method": "tween_rotation"
 } ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.5, 0.65, 0.85 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
@@ -4063,20 +4071,25 @@ tracks/4/keys = {
 "method": "tween_scale"
 } ]
 }
-
-[sub_resource type="Animation" id=107]
-length = 1.15
-step = 0.01
-tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.28, 0.65, 1.05 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+tracks/4/type = "method"
+tracks/4/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.01, 0.17, 0.28, 0.65, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
 "args": [  ],
 "method": "set_save_event"
 }, {
@@ -4087,15 +4100,19 @@ tracks/0/keys = {
 "method": "attack_done"
 } ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.18, 0.2, 0.45, 0.65 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+
+[sub_resource type="Animation" id=45]
+length = 1.15
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.19, 0.2, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "deactivate_grav"
@@ -4105,18 +4122,15 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "activate_grav"
-}, {
-"args": [ Vector2( 0, 0 ) ],
-"method": "add_velocity"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("AttackParticles")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath("AttackParticles")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0.2, 0.35 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -4127,13 +4141,13 @@ tracks/2/keys = {
 "method": "emit_off"
 } ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.65 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -4147,13 +4161,13 @@ tracks/3/keys = {
 "method": "tween_rotation"
 } ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.5, 0.65, 0.85 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
@@ -4182,8 +4196,37 @@ tracks/4/keys = {
 "method": "tween_scale"
 } ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.01, 0.17, 0.28, 0.65, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
 
-[sub_resource type="Animation" id=108]
+[sub_resource type="Animation" id=46]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -4201,7 +4244,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=109]
+[sub_resource type="Animation" id=47]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -4219,7 +4262,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=110]
+[sub_resource type="Animation" id=48]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -4237,7 +4280,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=111]
+[sub_resource type="Animation" id=49]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -4269,7 +4312,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=112]
+[sub_resource type="Animation" id=50]
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -4316,7 +4359,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=113]
+[sub_resource type="Animation" id=51]
 loop = true
 step = 0.2
 tracks/0/type = "method"
@@ -4360,7 +4403,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=114]
+[sub_resource type="Animation" id=52]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -4406,7 +4449,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=115]
+[sub_resource type="Animation" id=53]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -4469,7 +4512,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=116]
+[sub_resource type="Animation" id=54]
 length = 0.3
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -4526,7 +4569,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=117]
+[sub_resource type="Animation" id=55]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -4552,7 +4595,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=118]
+[sub_resource type="Animation" id=56]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -4565,8 +4608,8 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite"), 10.0, 25.0 ],
-"method": "tween_rotation_from_specified"
+"args": [ NodePath("Sprites/Sprite"), 25.0 ],
+"method": "tween_rotation"
 }, {
 "args": [ NodePath("Sprites/Sprite"), 25.0, 10.0 ],
 "method": "tween_rotation_from_specified"
@@ -4602,7 +4645,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=119]
+[sub_resource type="Animation" id=57]
 length = 0.4
 loop = true
 step = 0.01
@@ -4707,7 +4750,7 @@ extents = Vector2( 254.779, 147.421 )
 collision_layer = 2
 script = ExtResource( 1 )
 max_hp = 5
-mspd = 200.0
+mspd = 250.0
 jspd = 400.0
 tag = "Player"
 gravity = 20.0
@@ -4715,62 +4758,62 @@ g_max = 300.0
 
 [node name="TopAnim" type="AnimationPlayer" parent="."]
 anims/Closed_Fan_B_Hor = SubResource( 1 )
-anims/Closed_Fan_B_Hor_Up = SubResource( 64 )
-anims/Closed_Fan_HoldX_Down_Air = SubResource( 65 )
-anims/Closed_Fan_HoldX_Hor = SubResource( 66 )
-anims/Closed_Fan_QuickX_Hor = SubResource( 67 )
-anims/Closed_Fan_XX_Down_Air = SubResource( 68 )
-anims/Closed_Fan_XX_Hor = SubResource( 69 )
-anims/Closed_Fan_X_Down_Air = SubResource( 70 )
-anims/Closed_Fan_X_Hor = SubResource( 71 )
-anims/Closed_Fan_YB_Down = SubResource( 72 )
-anims/Closed_Fan_YB_Hor = SubResource( 73 )
-anims/Closed_Fan_YB_Hor_Down = SubResource( 74 )
-anims/Closed_Fan_YB_Hor_Up = SubResource( 75 )
-anims/Closed_Fan_YB_Up = SubResource( 76 )
-anims/Closed_Fan_Y_Down_Air = SubResource( 77 )
-anims/Closed_Fan_Y_Hor = SubResource( 78 )
-anims/Closed_Fan_Y_Hor_Down_Air = SubResource( 79 )
-anims/Closed_Fan_Y_Hor_Up = SubResource( 80 )
-anims/Closed_Fan_Y_Up = SubResource( 81 )
-anims/Wind_Dance_B = SubResource( 82 )
-anims/Wind_Dance_HitB_Down = SubResource( 83 )
-anims/Wind_Dance_HitB_Hor = SubResource( 84 )
-anims/Wind_Dance_HitB_Hor_Down = SubResource( 85 )
-anims/Wind_Dance_HitB_Hor_Up = SubResource( 86 )
-anims/Wind_Dance_HitB_Up = SubResource( 87 )
-anims/Wind_Dance_HitX+B_Down = SubResource( 88 )
-anims/Wind_Dance_HitX+B_Hor = SubResource( 89 )
-anims/Wind_Dance_HitX+B_Hor_Down = SubResource( 90 )
-anims/Wind_Dance_HitX+B_Hor_Up = SubResource( 91 )
-anims/Wind_Dance_HitX+B_Up = SubResource( 92 )
-anims/Wind_Dance_HoldX_Down_Ground = SubResource( 93 )
-anims/Wind_Dance_HoldX_Hor_Ground = SubResource( 94 )
-anims/Wind_Dance_HoldY = SubResource( 95 )
-anims/Wind_Dance_X+B = SubResource( 96 )
-anims/Wind_Dance_XX_Down_Air = SubResource( 97 )
-anims/Wind_Dance_XX_Hor = SubResource( 98 )
-anims/Wind_Dance_XX_Up = SubResource( 99 )
-anims/Wind_Dance_X_Down_Air = SubResource( 100 )
-anims/Wind_Dance_X_Hor = SubResource( 101 )
-anims/Wind_Dance_X_Up = SubResource( 102 )
-anims/Wind_Dance_Y_Down_Air = SubResource( 103 )
-anims/Wind_Dance_Y_Hor = SubResource( 104 )
-anims/Wind_Dance_Y_Hor_Down = SubResource( 105 )
-anims/Wind_Dance_Y_Hor_Up = SubResource( 106 )
-anims/Wind_Dance_Y_Up = SubResource( 107 )
-anims/air_idle = SubResource( 108 )
-anims/air_move_down = SubResource( 109 )
-anims/air_move_up = SubResource( 110 )
-anims/airjump = SubResource( 111 )
-anims/climb = SubResource( 112 )
-anims/idle = SubResource( 113 )
-anims/jump = SubResource( 114 )
-anims/land = SubResource( 115 )
-anims/ledgegrab = SubResource( 116 )
-anims/reset = SubResource( 117 )
-anims/run = SubResource( 118 )
-anims/up_to_down_idle = SubResource( 119 )
+anims/Closed_Fan_B_Hor_Up = SubResource( 2 )
+anims/Closed_Fan_HoldX_Down_Air = SubResource( 3 )
+anims/Closed_Fan_HoldX_Hor = SubResource( 4 )
+anims/Closed_Fan_QuickX_Hor = SubResource( 5 )
+anims/Closed_Fan_XX_Down_Air = SubResource( 6 )
+anims/Closed_Fan_XX_Hor = SubResource( 7 )
+anims/Closed_Fan_X_Down_Air = SubResource( 8 )
+anims/Closed_Fan_X_Hor = SubResource( 9 )
+anims/Closed_Fan_YB_Down = SubResource( 10 )
+anims/Closed_Fan_YB_Hor = SubResource( 11 )
+anims/Closed_Fan_YB_Hor_Down = SubResource( 12 )
+anims/Closed_Fan_YB_Hor_Up = SubResource( 13 )
+anims/Closed_Fan_YB_Up = SubResource( 14 )
+anims/Closed_Fan_Y_Down_Air = SubResource( 15 )
+anims/Closed_Fan_Y_Hor = SubResource( 16 )
+anims/Closed_Fan_Y_Hor_Down_Air = SubResource( 17 )
+anims/Closed_Fan_Y_Hor_Up = SubResource( 18 )
+anims/Closed_Fan_Y_Up = SubResource( 19 )
+anims/Wind_Dance_B = SubResource( 20 )
+anims/Wind_Dance_HitB_Down = SubResource( 21 )
+anims/Wind_Dance_HitB_Hor = SubResource( 22 )
+anims/Wind_Dance_HitB_Hor_Down = SubResource( 23 )
+anims/Wind_Dance_HitB_Hor_Up = SubResource( 24 )
+anims/Wind_Dance_HitB_Up = SubResource( 25 )
+anims/Wind_Dance_HitX+B_Down = SubResource( 26 )
+anims/Wind_Dance_HitX+B_Hor = SubResource( 27 )
+anims/Wind_Dance_HitX+B_Hor_Down = SubResource( 28 )
+anims/Wind_Dance_HitX+B_Hor_Up = SubResource( 29 )
+anims/Wind_Dance_HitX+B_Up = SubResource( 30 )
+anims/Wind_Dance_HoldX_Down_Ground = SubResource( 31 )
+anims/Wind_Dance_HoldX_Hor_Ground = SubResource( 32 )
+anims/Wind_Dance_HoldY = SubResource( 33 )
+anims/Wind_Dance_X+B = SubResource( 34 )
+anims/Wind_Dance_XX_Down_Air = SubResource( 35 )
+anims/Wind_Dance_XX_Hor = SubResource( 36 )
+anims/Wind_Dance_XX_Up = SubResource( 37 )
+anims/Wind_Dance_X_Down_Air = SubResource( 38 )
+anims/Wind_Dance_X_Hor = SubResource( 39 )
+anims/Wind_Dance_X_Up = SubResource( 40 )
+anims/Wind_Dance_Y_Down_Air = SubResource( 41 )
+anims/Wind_Dance_Y_Hor = SubResource( 42 )
+anims/Wind_Dance_Y_Hor_Down = SubResource( 43 )
+anims/Wind_Dance_Y_Hor_Up = SubResource( 44 )
+anims/Wind_Dance_Y_Up = SubResource( 45 )
+anims/air_idle = SubResource( 46 )
+anims/air_move_down = SubResource( 47 )
+anims/air_move_up = SubResource( 48 )
+anims/airjump = SubResource( 49 )
+anims/climb = SubResource( 50 )
+anims/idle = SubResource( 51 )
+anims/jump = SubResource( 52 )
+anims/land = SubResource( 53 )
+anims/ledgegrab = SubResource( 54 )
+anims/reset = SubResource( 55 )
+anims/run = SubResource( 56 )
+anims/up_to_down_idle = SubResource( 57 )
 anims/up_to_down_moving = SubResource( 58 )
 
 [node name="Sprites" type="Node2D" parent="."]

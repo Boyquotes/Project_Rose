@@ -18,6 +18,7 @@ var attack_is_saved = false;
 var attack_triggered = false;
 var save_event = false;
 var event_is_saved = false;
+var dodge_interrupt = false;
 var interrupt = false;
 var started_save = false;
 var follow_up = false;
@@ -204,7 +205,9 @@ func attack():
 	#TODO: put this signal in the attacks instead
 	#host.emit_signal("consume_resource", cur_cost);
 	
+	host.add_velocity(Vector2(0,0));
 	construct_attack_string();
+	
 	if(input_testing):
 		print(attack_str);
 		attack_done();
@@ -217,6 +220,18 @@ func attack():
 func set_save_event():
 	save_event = true;
 	attack_start = false;
+
+func set_dodge_interrupt():
+	dodge_interrupt = true;
+	attack_start = true;
+
+func unset_dodge_interrupt():
+	dodge_interrupt = false;
+	started_save = false;
+	attack_is_saved = false;
+	save_event = false;
+	slottedx = false;
+	slottedy = false;
 
 func set_interrupt():
 	interrupt = true;
@@ -236,6 +251,7 @@ func attack_done():
 	save_event = false;
 	previous_event = current_event;
 	interrupt = false;
+	dodge_interrupt = false;
 	reset_strings();
 	attack.ComboTimer.start();
 	attack.hop = false;

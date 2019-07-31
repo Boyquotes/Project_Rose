@@ -19,14 +19,15 @@ func handleInput():
 		return;
 	elif(Input.is_action_just_pressed("jump")):
 		jump = true;
+		air.jumped = true;
 	elif(!host.on_floor() && !jump):
 		exit(air);
 		return;
 
 func execute(delta):
 	.execute(delta);
-	if(host.Direction != sign(host.velocity.x) && get_input_direction() != 0 ):
-		host.hspd -= 10 * sign(host.hspd);
+	#if(host.Direction != sign(host.velocity.x) && get_input_direction() != 0 ):
+	#	host.hspd -= 10 * sign(host.hspd);
 
 func exit(state):
 	jump = false;

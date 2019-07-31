@@ -27,13 +27,29 @@ func update_look_direction(direction):
 	if(host.Direction != direction):
 		host.Direction = direction;
 
+var acceleration = 30;
+var decceleration = 50;
+
 func execute(delta):
 	var input_direction = get_input_direction();
 	update_look_direction_and_scale(input_direction);
-	if(input_direction != 0 && !(abs(host.hspd) > host.mspd)):
-		host.hspd += host.mspd/10 * host.Direction;
+	if(input_direction != 0 && (host.mspd >= abs(host.hspd))):
+		if(host.Direction != sign(host.hspd)):
+			acceleration = 50;
+		else:
+			acceleration = 30;
+		if(!(host.mspd == abs(host.hspd)) || sign(host.hspd) != host.Direction):
+			host.hspd += acceleration * host.Direction;
+		if(host.mspd < abs(host.hspd)):
+			host.hspd = host.mspd * host.Direction;
 	elif(host.hspd != 0 && abs(host.hspd) > host.mspd && host.fric_activated):
-		host.hspd -= 20 * sign(host.hspd);
-	elif(host.fric_activated):
-		host.hspd = 0;
+		if(input_direction != 0 && sign(host.hspd) != input_direction):
+			host.hspd -= acceleration * sign(host.hspd);
+		else:
+			host.hspd -= decceleration/10 * sign(host.hspd);
+	elif(host.hspd != 0 && host.fric_activated):
+		if(abs(host.hspd) <= decceleration):
+			host.hspd = 0;
+		else:
+			host.hspd -= decceleration * sign(host.hspd);
 	

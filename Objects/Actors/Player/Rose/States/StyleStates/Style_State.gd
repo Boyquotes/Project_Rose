@@ -1,7 +1,6 @@
 extends "../State.gd"
 
-onready var Wind_Dance = get_parent().get_node("Wind_Dance");
-onready var Closed_Fan = get_parent().get_node("Closed_Fan");
+onready var attack_manager = get_parent().get_node("Attack_Manager");
 onready var ground = get_parent().get_parent().get_node("Move_On_Ground");
 onready var air = get_parent().get_parent().get_node("Move_In_Air");
 onready var ledge = get_parent().get_parent().get_node("Ledge_Grab");
@@ -69,17 +68,6 @@ func _ready():
 	stp1 = style_idx + 1;
 	if(stp1 >= style_n):
 		stp1 = 0;
-
-func _process(delta):
-	if(!attack.busy || interrupt):
-		if(Input.is_action_just_pressed("switchUp") || switchUp):
-			switchUp = false;
-			if(get_parent().style_state != 'wind_dance'):
-				exit(Wind_Dance);
-		if(Input.is_action_just_pressed("switchDown") || switchDown):
-			switchDown = false;
-			if(get_parent().style_state != 'closed_fan'):
-				exit(Closed_Fan);
 
 func execute(delta):
 	if(!Input.is_action_pressed("attack")):
@@ -257,6 +245,7 @@ func attack_done():
 	attack.ComboTimer.start();
 	attack.hop = false;
 	attack.hover = false;
+	attack.mobile = true;
 	pass;
 
 func X_pressed():

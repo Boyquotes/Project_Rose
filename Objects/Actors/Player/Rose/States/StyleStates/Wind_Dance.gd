@@ -2,7 +2,6 @@ extends "./Style_State.gd"
 
 func enter():
 	.enter();
-	get_parent().style_state = 'wind_dance';
 	style = "Wind_Dance";
 
 func parse_attack():

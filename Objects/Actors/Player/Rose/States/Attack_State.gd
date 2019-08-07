@@ -1,51 +1,47 @@
 extends "./Free_Motion_State.gd"
 
-onready var style_states = {
-	'wind_dance' : $Wind_Dance,
-	'closed_fan' : $Closed_Fan
-}
-var style_state = 'wind_dance';
+onready var attack_manager = get_node("Attack_Manager");
 
 var leave = false;
 var busy = false;
 var hover = false;
 var hop = false;
 var attack_broken = false;
+export(bool) var mobile = true;
 
 onready var ComboTimer = get_node("ComboTimer");
 
 ### Initialize Attack States ###
 func _ready():
-	$Wind_Dance.host = host;
-	$Closed_Fan.host = host;
+	$Attack_Manager.host = host;
 
 func enter():
 	host.move_state = 'attack';
-	style_states[style_state].enter();
+	attack_manager.enter();
 	if(Input.is_action_just_pressed("attack")):
-		style_states[style_state].X = true;
+		attack_manager.X = true;
 	elif(Input.is_action_just_pressed("dodge")):
-		style_states[style_state].B = true;
+		attack_manager.B = true;
 	elif(Input.is_action_just_pressed("special")):
-		style_states[style_state].Y = true;
+		attack_manager.Y = true;
 
 func handleAnimation():
-	style_states[style_state].handleAnimation();
+	attack_manager.handleAnimation();
 
 func handleInput():
-	style_states[style_state].handleInput();
+	attack_manager.handleInput();
 	
 	### for leaving the attack state early ###
-	if(!get_attack_pressed() && (style_states[style_state].save_event || style_states[style_state].attack_end)):
-		if(!style_states[style_state].attack_is_saved):
+	if(!get_attack_pressed() && (attack_manager.save_event || attack_manager.attack_end)):
+		if(!attack_manager.attack_is_saved):
 			if(Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("up") || Input.is_action_pressed("down")):
 				leave = true;
 			else:
 				leave = false;
-	if(get_attack_just_pressed() || get_attack_pressed() || style_states[style_state].attack_start):
+	if(get_attack_just_pressed() || get_attack_pressed() || attack_manager.attack_start):
 		leave = false;
-	if(style_states[style_state].dodge_interrupt || !busy):
-		if(Input.is_action_just_pressed("jump") && style_states[style_state].hit && !host.on_floor()):
+	if(attack_manager.dodge_interrupt || !busy):
+		if(Input.is_action_just_pressed("jump") && attack_manager.hit && !host.on_floor()):
 			air.jump = true;
 			leave = true;
 			attack_broken = true;
@@ -54,32 +50,35 @@ func handleInput():
 			leave = true;
 			attack_broken = true;
 	
-	if(leave && (style_states[style_state].interrupt || style_states[style_state].attack_end)):
-		style_states[style_state].attack_done();
+	if(leave && (attack_manager.interrupt || attack_manager.attack_end)):
+		attack_manager.attack_done();
 		exit_g_or_a();
 	if(leave && attack_broken):
 		host.get_node("AttackParticles")._on_particleTimer_timeout();
-		style_states[style_state].attack_done();
+		attack_manager.attack_done();
 		exit_g_or_a();
 
 func execute(delta):
 	### Determining player movement from attacks ###
-	if(!host.on_floor() && (host.mspd >= abs(host.hspd)) && style_states[style_state].hit && hover):
-		host.hspd += acceleration/4 * host.Direction;
-		host.vspd -= acceleration/15;
-	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && hop):
-		var input_direction = get_aim_direction();
-		update_look_direction_and_scale(input_direction);
-		host.hspd += acceleration * host.Direction;
-	elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && style_states[style_state].hit && style_states[style_state].vdir == "_Up"):
-		host.vspd -= acceleration/15;
+	if(mobile):
+		.execute(delta);
 	else:
-		if(host.hspd != 0 && abs(host.hspd) > host.mspd && host.fric_activated):
-			host.hspd -= 20 * sign(host.hspd);
-		elif(host.fric_activated):
-			host.hspd = 0;
+		if(!host.on_floor() && (host.mspd >= abs(host.hspd)) && attack_manager.hit && hover):
+			host.hspd += acceleration/4 * host.Direction;
+			host.vspd -= acceleration/15;
+		elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && hop):
+			var input_direction = get_aim_direction();
+			update_look_direction_and_scale(input_direction);
+			host.hspd += acceleration * host.Direction;
+		elif(!host.on_floor() && !(abs(host.hspd) > host.mspd) && attack_manager.hit && attack_manager.vdir == "_Up"):
+			host.vspd -= acceleration/15;
+		else:
+			if(host.hspd != 0 && abs(host.hspd) > host.mspd && host.fric_activated):
+				host.hspd -= 20 * sign(host.hspd);
+			elif(host.fric_activated):
+				host.hspd = 0;
 	
-	style_states[style_state].execute(delta);
+	attack_manager.execute(delta);
 
 func exit_g_or_a():
 	match(host.on_floor()):
@@ -92,15 +91,15 @@ func exit(state):
 	leave = false;
 	busy = false;
 	attack_broken = false;
-	style_states[style_state].slottedx = false;
-	style_states[style_state].slottedy = false;
-	style_states[style_state].animate = false;
-	style_states[style_state].combo = "";
+	attack_manager.slottedx = false;
+	attack_manager.slottedy = false;
+	attack_manager.animate = false;
+	attack_manager.combo = "";
 	.exit(state);
 
 func _on_ComboTimer_timeout():
-	style_states[style_state].combo = "";
-	style_states[style_state].chargedx = false;
-	style_states[style_state].chargedy = false;
+	attack_manager.combo = "";
+	attack_manager.chargedx = false;
+	attack_manager.chargedy = false;
 	if(host.move_state == 'attack'):
 		exit_g_or_a();

@@ -16,8 +16,8 @@ func instance_particle():
 	partNode.global_position = get_parent().global_position;
 
 func connect_entered():
-	var style_state = attack_state.style_states[attack_state.style_state];
-	hitbox.connect("area_entered",style_state,"on_hit");
+	var attack_manager = attack_state.attack_manager;
+	hitbox.connect("area_entered",attack_manager,"on_hit");
 
 func instance_hitbox():
 	hitbox = hitNode.get_child(0);

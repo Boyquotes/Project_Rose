@@ -1244,7 +1244,7 @@ tracks/3/keys = {
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1432,7 +1432,7 @@ tracks/3/keys = {
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1536,7 +1536,7 @@ tracks/4/keys = {
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1640,7 +1640,7 @@ tracks/4/keys = {
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1744,7 +1744,7 @@ tracks/4/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1831,7 +1831,7 @@ tracks/3/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1921,7 +1921,7 @@ tracks/3/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2011,7 +2011,7 @@ tracks/3/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2101,7 +2101,7 @@ tracks/3/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2191,7 +2191,7 @@ tracks/3/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2281,7 +2281,7 @@ tracks/3/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2385,7 +2385,7 @@ tracks/4/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2489,7 +2489,7 @@ tracks/4/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2593,7 +2593,7 @@ tracks/4/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2697,7 +2697,7 @@ tracks/4/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2852,7 +2852,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -2885,7 +2885,7 @@ tracks/3/keys = {
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2979,7 +2979,7 @@ length = 0.65
 loop = true
 step = 0.02
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2997,7 +2997,7 @@ tracks/0/keys = {
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -3155,7 +3155,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -3236,7 +3236,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -3317,7 +3317,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -3398,7 +3398,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -3425,7 +3425,7 @@ tracks/3/keys = {
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -3560,7 +3560,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -3679,7 +3679,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/4/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -3712,7 +3712,7 @@ tracks/4/keys = {
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
-tracks/0/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -3941,7 +3941,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/4/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -4072,7 +4072,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/4/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -4197,7 +4197,7 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("Movement_States/Attack/Wind_Dance")
+tracks/4/path = NodePath("Movement_States/Attack/Attack_Manager")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -4883,6 +4883,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Move_In_Air" type="Node2D" parent="Movement_States"]
+editor/display_folded = true
 script = ExtResource( 7 )
 
 [node name="Ledgebox" type="Area2D" parent="Movement_States/Move_In_Air"]
@@ -4899,6 +4900,7 @@ one_shot = true
 one_shot = true
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
+editor/display_folded = true
 script = ExtResource( 8 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
@@ -4932,17 +4934,17 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="Wind_Dance" type="Node2D" parent="Movement_States/Attack"]
+[node name="Attack_Manager" type="Node2D" parent="Movement_States/Attack"]
 script = ExtResource( 12 )
 
-[node name="ChargeXTimer" type="Timer" parent="Movement_States/Attack/Wind_Dance"]
+[node name="ChargeXTimer" type="Timer" parent="Movement_States/Attack/Attack_Manager"]
 wait_time = 0.5
 one_shot = true
 
-[node name="ChargeYTimer" type="Timer" parent="Movement_States/Attack/Wind_Dance"]
+[node name="ChargeYTimer" type="Timer" parent="Movement_States/Attack/Attack_Manager"]
 one_shot = true
 
-[node name="HitGravTimer" type="Timer" parent="Movement_States/Attack/Wind_Dance"]
+[node name="HitGravTimer" type="Timer" parent="Movement_States/Attack/Attack_Manager"]
 wait_time = 0.5
 one_shot = true
 
@@ -5012,9 +5014,9 @@ autostart = true
 [connection signal="timeout" from="Movement_States/Attack/Closed_Fan/ChargeXTimer" to="Movement_States/Attack/Closed_Fan" method="_on_ChargeXTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/Closed_Fan/ChargeYTimer" to="Movement_States/Attack/Closed_Fan" method="_on_ChargeYTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/Closed_Fan/HitGravTimer" to="Movement_States/Attack/Closed_Fan" method="_on_HitGravTimer_timeout"]
-[connection signal="timeout" from="Movement_States/Attack/Wind_Dance/ChargeXTimer" to="Movement_States/Attack/Wind_Dance" method="_on_ChargeXTimer_timeout"]
-[connection signal="timeout" from="Movement_States/Attack/Wind_Dance/ChargeYTimer" to="Movement_States/Attack/Wind_Dance" method="_on_ChargeYTimer_timeout"]
-[connection signal="timeout" from="Movement_States/Attack/Wind_Dance/HitGravTimer" to="Movement_States/Attack/Wind_Dance" method="_on_HitGravTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Attack/Attack_Manager/ChargeXTimer" to="Movement_States/Attack/Attack_Manager" method="_on_ChargeXTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Attack/Attack_Manager/ChargeYTimer" to="Movement_States/Attack/Attack_Manager" method="_on_ChargeYTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Attack/Attack_Manager/HitGravTimer" to="Movement_States/Attack/Attack_Manager" method="_on_HitGravTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/ComboTimer" to="Movement_States/Attack" method="_on_ComboTimer_timeout"]
 [connection signal="area_entered" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
 [connection signal="area_exited" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]

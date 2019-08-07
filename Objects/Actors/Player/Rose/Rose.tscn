@@ -3431,7 +3431,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.06, 0.45, 0.6 ),
+"times": PoolRealArray( 0, 0.01, 0.45, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -3454,7 +3454,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.05 ),
+"times": PoolRealArray( 0.02 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -4744,7 +4744,7 @@ extents = Vector2( 10, 2 )
 extents = Vector2( 10, 20 )
 
 [sub_resource type="RectangleShape2D" id=63]
-extents = Vector2( 254.779, 147.421 )
+extents = Vector2( 256, 150 )
 
 [node name="Rose" type="KinematicBody2D"]
 collision_layer = 2
@@ -4851,7 +4851,6 @@ shape = SubResource( 60 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
-editor/display_folded = true
 current = true
 zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 4 )
@@ -4863,13 +4862,12 @@ one_shot = true
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AttackParticles" type="Node2D" parent="."]
+editor/display_folded = true
 z_index = 1
 script = ExtResource( 5 )
 
 [node name="particleTimer" type="Timer" parent="AttackParticles"]
 one_shot = true
-
-[node name="ActionQueue" type="Node2D" parent="."]
 
 [node name="Movement_States" type="Node2D" parent="."]
 
@@ -4885,11 +4883,9 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Move_In_Air" type="Node2D" parent="Movement_States"]
-editor/display_folded = true
 script = ExtResource( 7 )
 
 [node name="Ledgebox" type="Area2D" parent="Movement_States/Move_In_Air"]
-editor/display_folded = true
 position = Vector2( 10, -26 )
 collision_layer = 0
 
@@ -4903,7 +4899,6 @@ one_shot = true
 one_shot = true
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
-editor/display_folded = true
 script = ExtResource( 8 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
@@ -4982,6 +4977,7 @@ editor/display_folded = true
 width = 20.0
 default_color = Color( 1, 0.4, 0.4, 1 )
 texture = ExtResource( 13 )
+texture_mode = 1066401792
 round_precision = 1
 script = ExtResource( 14 )
 targetPath = NodePath("../Sprites/Sprite/Position2D")

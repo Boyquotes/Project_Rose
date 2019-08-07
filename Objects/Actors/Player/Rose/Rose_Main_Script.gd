@@ -55,7 +55,7 @@ func execute(delta):
 	if(ActiveInput == InputType.KEYMOUSE):
 		rad = atan2(get_global_mouse_position().y - global_position.y , get_global_mouse_position().x - global_position.x);
 	elif(ActiveInput == InputType.GAMEPAD):
-		rad = atan2(Input.get_joy_axis(0, JOY_ANALOG_LY), Input.get_joy_axis(0, JOY_ANALOG_LX));
+		rad = atan2(Input.get_joy_axis(0, JOY_ANALOG_RY), Input.get_joy_axis(0, JOY_ANALOG_RX));
 	deg = rad2deg(rad);
 	
 	hitboxLoop();

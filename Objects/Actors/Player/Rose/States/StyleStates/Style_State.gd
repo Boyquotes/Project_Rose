@@ -207,7 +207,8 @@ func attack():
 	
 	host.add_velocity(Vector2(0,0));
 	construct_attack_string();
-	
+	var input_direction = get_parent().get_aim_direction();
+	get_parent().update_look_direction_and_scale(input_direction);
 	if(input_testing):
 		print(attack_str);
 		attack_done();

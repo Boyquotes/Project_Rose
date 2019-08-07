@@ -5,6 +5,10 @@ func get_input_direction():
 	var input_direction = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"));
 	return input_direction;
 
+func get_aim_direction():
+	var input_direction = int(Input.is_action_pressed("right") || Input.is_action_pressed("rright") || host.mouse_r()) - int(Input.is_action_pressed("left") || Input.is_action_pressed("rleft") || host.mouse_l());
+	return input_direction;
+
 #sets direction and turns the player appropriately
 func update_look_direction_and_scale(direction):
 	if(direction == 0):

@@ -146,9 +146,9 @@ func mouse_l():
 func mouse_d():
 	return (deg < 150 && deg > 30);
 
-func add_velocity(vec: Vector2 = Vector2(0,0)):
-	hspd = vec.x * Direction;
-	vspd = vec.y;
+func add_velocity(speed : float, degrees : float = $Movement_States/Attack/Attack_Manager.attack_degrees):
+	hspd = speed * cos(deg2rad(degrees)) * Direction;
+	vspd = speed * sin(deg2rad(degrees))
 
 func subtract_velocity(vec: Vector2 = Vector2(0,0)):
 	hspd -= vec.x * Direction;
@@ -175,4 +175,9 @@ func jump():
 
 func tween_scale(node: NodePath, new: Vector2, time: float = .1):
 	$Tween.interpolate_property(get_node(node),"scale",get_node(node).scale,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	$Tween.start();
+
+func tween_sprite_rot(var node: NodePath, time: float = .1):
+	$Tween.stop(get_node(node));
+	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,$Movement_States/Attack/Attack_Manager.attack_degrees,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();

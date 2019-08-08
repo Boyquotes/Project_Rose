@@ -2,6 +2,7 @@ extends "./Free_Motion_State.gd"
 
 var climb = false;
 var hstop = false;
+var dir = 1;
 var stickVar = 5;
 var ledge_cast;
 var played = false;
@@ -11,6 +12,7 @@ func enter():
 	host.grav_activated = false;
 	host.hspd = 0;
 	host.vspd = 0;
+	update_look_direction_and_scale(dir);
 	pass
 
 func handleAnimation():

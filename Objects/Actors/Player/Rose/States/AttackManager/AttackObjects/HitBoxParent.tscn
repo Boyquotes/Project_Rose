@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Objects/Actors/Player/Rose/States/StyleStates/AttackObjects/HitBoxParent.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/HitBoxParent.gd" type="Script" id=1]
 
 [node name="HitBoxParent" type="Node2D"]
 

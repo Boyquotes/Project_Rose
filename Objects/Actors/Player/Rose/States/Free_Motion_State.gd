@@ -22,7 +22,6 @@ func turn(direction):
 		host.get_node("Movement_States").scale.x = host.get_node("Movement_States").scale.x * -1;
 		host.get_node("PhysicsCollider").scale.x = host.get_node("PhysicsCollider").scale.x * -1;
 		host.get_node("Hitbox").scale.x = host.get_node("Hitbox").scale.x * -1;
-		host.get_node("AttackParticles").scale.x = host.get_node("AttackParticles").scale.x * -1;
 	host.Direction = direction;
 
 func update_look_direction(direction):

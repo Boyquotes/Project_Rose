@@ -18,12 +18,6 @@ func _ready():
 func enter():
 	host.move_state = 'attack';
 	attack_manager.enter();
-	if(Input.is_action_just_pressed("attack")):
-		attack_manager.X = true;
-	elif(Input.is_action_just_pressed("dodge")):
-		attack_manager.B = true;
-	elif(Input.is_action_just_pressed("special")):
-		attack_manager.Y = true;
 
 func handleAnimation():
 	attack_manager.handleAnimation();

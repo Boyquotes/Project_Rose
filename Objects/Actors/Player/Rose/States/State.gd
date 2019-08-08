@@ -3,10 +3,10 @@ extends Node2D
 onready var host = get_parent().get_parent();
 
 func get_attack_pressed():
-	return (Input.is_action_pressed("attack") || Input.is_action_pressed("dodge") || Input.is_action_pressed("special"));
+	return (Input.is_action_pressed("slash_attack") || Input.is_action_pressed("dodge") || Input.is_action_pressed("wind_attack"));
 
 func get_attack_just_pressed():
-	return (Input.is_action_just_pressed("attack") || Input.is_action_just_pressed("dodge") || Input.is_action_just_pressed("special"));
+	return (Input.is_action_just_pressed("slash_attack") || Input.is_action_just_pressed("dodge") || Input.is_action_just_pressed("wind_attack"));
 
 func enter():
 	pass;

@@ -54,7 +54,7 @@ func phys_execute(delta):
 	
 	#add gravity
 	if(grav_activated):
-		vspd += gravity;
+		vspd += true_gravity;
 	
 	#cap gravity
 	if(vspd > 900):

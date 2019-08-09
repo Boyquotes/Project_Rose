@@ -7,10 +7,12 @@ var hitbox;
 
 onready var attack_manager = get_parent();
 onready var attack_state = get_parent().get_parent();
+onready var host = get_parent().get_parent().get_parent().get_parent();
 
 ### GENERAL FUNCTIONS ### 
 
 func instance_particle():
+	attack_manager.attack_start = false;
 	particle = partNode.get_child(0);
 	partNode.scale = scale;
 	get_parent().add_child(partNode);
@@ -22,15 +24,16 @@ func connect_entered():
 
 func instance_hitbox():
 	hitbox = hitNode.get_child(0);
-	hitbox.host = get_parent();
+	hitbox.host = get_parent().get_parent().host;
 	connect_entered();
 	hitNode.scale = scale;
 	get_parent().add_child(hitNode);
 	hitNode.global_position = get_parent().global_position;
 
 func set_rot():
-	hitbox.rotation_degrees += attack_manager.attack_degrees;
-	particle.rotation_degrees += attack_manager.attack_degrees;
+	hitbox.global_rotation_degrees += attack_manager.attack_degrees;
+	particle.global_rotation_degrees += attack_manager.attack_degrees;
+	hitbox.direction = hitbox.global_rotation_degrees * host.Direction
 
 func emit_off():
 	particle.emitting = false;
@@ -44,8 +47,10 @@ func _on_particleTimer_timeout():
 		particle.process_material.scale_random = 0;
 		if(particle.process_material.scale_curve):
 			particle.process_material.scale_curve = null;
+		particle.process_material.scale = 1;
 		particle.rotation_degrees = 0
 		particle.z_index = 0;
+		particle.scale = Vector2(1,1);
 		particle.queue_free();
 		partNode.queue_free()
 	if(is_instance_valid(hitNode)):
@@ -98,7 +103,6 @@ func Wind_Dance_XplusB():
 	particle.scale = Vector2(.8, 0.25);
 	particle.emitting = true;
 	$particleTimer.start(.4);
-	set_rot();
 
 func Wind_Dance_X():
 	instance_slash_particle();
@@ -186,31 +190,6 @@ func Closed_Fan_XX_Hor():
 	$particleTimer.start(.3);
 	hitbox.inchdir = -1;
 
-func Closed_Fan_X_Down_Air():
-	Closed_Fan_X_Hor();
-	hitbox.rotation_degrees += 90;
-	particle.rotation_degrees += 90;
-
-func Closed_Fan_XX_Down_Air():
-	Closed_Fan_XX_Hor();
-	hitbox.rotation_degrees += 90;
-	particle.rotation_degrees += 90;
-
-func Closed_Fan_HoldX_Hor():
-	instance_bash_particle();
-	instance_bash_HoldX_hitbox();
-	particle.lifetime = .4;
-	particle.process_material.angular_velocity = 500;
-	particle.rotation_degrees = 0;
-	particle.scale = Vector2(2, -1.5);
-	particle.emitting = true;
-	$particleTimer.start(.4);
-
-func Closed_Fan_HoldX_Down_Air():
-	Closed_Fan_HoldX_Hor();
-	hitbox.rotation_degrees += 45;
-	particle.rotation_degrees += 45;
-
 func Closed_Fan_QuickX_Hor():
 	instance_bash_particle();
 	instance_bash_QuickX_hitbox();
@@ -220,22 +199,6 @@ func Closed_Fan_QuickX_Hor():
 	particle.scale = Vector2(2, .5);
 	particle.emitting = true;
 	$particleTimer.start(.2);
-
-func Closed_Fan_Y_Up():
-	instance_bash_particle();
-	instance_bash_Y_Up_hitbox();
-	particle.lifetime = .4;
-	particle.process_material.angular_velocity = 500;
-	particle.rotation_degrees = 0;
-	hitbox.rotation_degrees = -90;
-	particle.scale = Vector2(2, 3);
-	particle.emitting = true;
-	$particleTimer.start(.4);
-
-func Closed_Fan_Y_Hor_Up():
-	Closed_Fan_Y_Up();
-	hitbox.rotation_degrees += 45;
-	particle.rotation_degrees += 45;
 
 func Closed_Fan_Y_Hor():
 	instance_bash_particle();
@@ -247,14 +210,18 @@ func Closed_Fan_Y_Hor():
 	particle.emitting = true;
 	hitbox.rotation_degrees = 0;
 	$particleTimer.start(.4);
-
-func Closed_Fan_Y_Hor_Down_Air():
-	Closed_Fan_Y_Up();
-	hitbox.rotation_degrees += 135;
-	particle.rotation_degrees += 135;
-
-func Closed_Fan_Y_Down_Air():
-	Closed_Fan_Y_Up();
-	hitbox.rotation_degrees += 180;
-	hitNode.scale *= Vector2(-1,1);
-	particle.scale *= Vector2(1,-1);
+	set_rot();
+	if(hitbox.global_rotation_degrees == -135):
+		hitNode.scale *= Vector2(1,-1);
+		hitNode.rotation_degrees += 90;
+		particle.scale *= Vector2(-1,1);
+	if(hitbox.global_rotation_degrees == 45):
+		hitNode.scale *= Vector2(1,-1);
+		hitNode.rotation_degrees += 90;
+		particle.scale *= Vector2(-1,1);
+	if(round(hitbox.global_rotation_degrees) == 90 && host.Direction == 1):
+		hitNode.scale *= Vector2(-1,1);
+		particle.scale *= Vector2(-1,1);
+	if(round(hitbox.global_rotation_degrees) == -90 && host.Direction == -1):
+		hitNode.scale *= Vector2(-1,1);
+		particle.scale *= Vector2(-1,1);

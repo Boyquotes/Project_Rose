@@ -85,7 +85,7 @@ func phys_execute(delta):
 		vspd = 0;
 	
 	if(grav_activated):
-		vspd += gravity;
+		vspd += true_gravity;
 	
 	#cap gravity
 	if(vspd > g_max && grav_activated) :
@@ -135,16 +135,42 @@ func _stretch_based_on_velocity():
 		$Sprites/Sprite.scale.x = 1 / $Sprites/Sprite.scale.y
 
 func mouse_r():
-	return (deg > -60 && deg < 60);
+	if(ActiveInput == InputType.KEYMOUSE):
+		return (deg > -60 && deg < 60);
+	else:
+		return false;
 
 func mouse_u():
-	return (deg > -150 && deg < -30);
+	if(ActiveInput == InputType.KEYMOUSE):
+		return (deg > -150 && deg < -30);
+	else:
+		return false;
+
 
 func mouse_l():
-	return (deg > 120 || deg < -120);
+	if(ActiveInput == InputType.KEYMOUSE):
+		return (deg > 120 || deg < -120);
+	else:
+		return false;
+
 
 func mouse_d():
-	return (deg < 150 && deg > 30);
+	if(ActiveInput == InputType.KEYMOUSE):
+		return (deg < 150 && deg > 30);
+	else:
+		return false;
+
+func activate_fric():
+	.activate_fric();
+
+func activate_grav():
+	.activate_grav();
+
+func deativate_fric():
+	.deactivate_fric();
+
+func deactivate_grav():
+	.deactivate_grav();
 
 func add_velocity(speed : float, degrees : float = $Movement_States/Attack/Attack_Manager.attack_degrees):
 	hspd = speed * cos(deg2rad(degrees)) * Direction;

@@ -49,7 +49,7 @@ func go():
 	if(!halt):
 		host.actionTimer.wait_time = host.wait;
 		host.actionTimer.start();
-		tspd = rand_range(host.mspd/10, host.mspd);
+		tspd = rand_range(host.true_mspd/10, host.true_mspd);
 	else:
 		host.actionTimer.wait_time = host.wait+1;
 		host.actionTimer.start();
@@ -59,7 +59,7 @@ func go():
 func move():
 	if(!halt):
 		host.hspd = tspd * host.Direction;
-		host.get_node("animator").playback_speed = abs(host.hspd/host.mspd);
+		host.get_node("animator").playback_speed = abs(host.hspd/host.true_mspd);
 	else:
 		host.hspd = 0;
 		host.get_node("animator").playback_speed = 1;

@@ -14,9 +14,6 @@ func _ready():
 	true_knockback = knockback;
 
 func _physics_process(delta):
-	if(calc_direction):
-		direction = global_rotation_degrees * get_parent().scale.x;
-		calc_direction = false;
 	true_knockback -= 12;
 
 var host;

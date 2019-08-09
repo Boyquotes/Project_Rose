@@ -33,5 +33,5 @@ func execute(delta):
 		if(host.jspd > 0):
 			jumped = true;
 			host.vspd = -host.jspd;
-	host.hspd = host.mspd * host.Direction;
+	host.hspd = host.true_mspd * host.Direction;
 	pass

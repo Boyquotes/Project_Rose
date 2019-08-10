@@ -29,6 +29,7 @@ func handleInput():
 	if(!get_attack_pressed() && (attack_manager.interrupt || attack_manager.attack_end)):
 		if(!attack_manager.attack_is_saved):
 			if(Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("up") || Input.is_action_pressed("down")):
+				
 				leave = true;
 			else:
 				leave = false;
@@ -44,6 +45,7 @@ func handleInput():
 			leave = true;
 			attack_broken = true;
 	
+	print(String(leave) + " " + String(attack_manager.interrupt || attack_manager.attack_end))
 	if(leave && (attack_manager.interrupt || attack_manager.attack_end)):
 		attack_manager.attack_done();
 		exit_g_or_a();

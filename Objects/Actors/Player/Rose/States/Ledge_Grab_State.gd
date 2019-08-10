@@ -32,7 +32,7 @@ func handleInput():
 	elif(Input.is_action_just_pressed("jump")):
 		turn(host.Direction * -1);
 		host.vspd = -host.jspd*2/5;
-		host.hspd = host.mspd * host.Direction;
+		host.hspd = host.true_mspd * host.Direction;
 		$Jump_Timer.start();
 	pass
 

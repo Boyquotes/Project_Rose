@@ -10,7 +10,7 @@ signal attack;
 ### temp inits ###
 var on_cooldown = false;
 var hit = false;
-var attack_start = false;
+export(bool) var attack_start = false;
 var attack_end = false;
 var attack_is_saved = false;
 var attack_triggered = false;
@@ -20,18 +20,19 @@ var dodge_interrupt = false;
 var interrupt = false;
 var started_save = false;
 var follow_up = false;
-var enterX = false;
-var enterY = false;
-var enterB = false;
-var enterRb = false;
-var chargedX = false;
-var chargedY = false;
-var slottedX = false;
-var slottedY = false;
-var slottedRb = false;
+var enterSlash = false;
+var enterPierce = false;
+var enterDodge = false;
+var enterDodgeash = false;
+var chargedSlash = false;
+var chargedPierce = false;
+var slottedSlash = false;
+var slottedPierce = false;
+var slottedDodgeash = false;
 var animate = false;
 var switchUp = false;
 var switchDown = false;
+var dodgeDir = 0;
 
 ### attack codes ###
 var event_prefix = "Event";
@@ -57,27 +58,34 @@ var attack_degrees = 0;
 ### debug_vars ###
 export(bool) var input_testing = false;
 
-func execute(deRba):
+func execute(delta):
+	if(Input.is_action_just_pressed("dodge")):
+		if(Input.is_joy_button_pressed(0,4)):
+			dodgeDir = -1;
+		elif(Input.is_joy_button_pressed(0,5)):
+			dodgeDir = 1;
+		else:
+			dodgeDir = 0;
 	if(!Input.is_action_pressed("slash_attack")):
-		chargedX = false;
-		$ChargeXTimer.stop();
+		chargedSlash = false;
+		$ChargeSlashTimer.stop();
 	else:
 		attack.ComboTimer.start();
-	if(!Input.is_action_pressed("wind_attack")):
-		chargedY = false;
-		$ChargeYTimer.stop();
+	if(!Input.is_action_pressed("pierce_attack")):
+		chargedPierce = false;
+		$ChargePierceTimer.stop();
 	else:
 		attack.ComboTimer.start();
 
 func enter():
 	if(Input.is_action_just_pressed("slash_attack")):
-		enterX = true;
+		enterSlash = true;
 	elif(Input.is_action_just_pressed("dodge")):
-		enterB = true;
-	elif(Input.is_action_just_pressed("wind_attack")):
-		enterY = true;
+		enterDodge = true;
+	elif(Input.is_action_just_pressed("pierce_attack")):
+		enterPierce = true;
 	elif(Input.is_action_just_pressed("bash_attack")):
-		enterRb = true;
+		enterDodgeash = true;
 
 ### Handles animation, incomplete ###
 func handleAnimation():
@@ -116,114 +124,117 @@ func handleInput():
 func parse_attack(idx):
 	"""
 	TODO: put this back in
-	if(chargedx):
-		eventArr[idx] = "HoldX";
-		slottedx = true;
+	if(chargedSlash):
+		eventArr[idx] = "HoldSlash";
+		slottedSlash = true;
 		combo = "";
 	>>elif
 	"""
-	if(X_pressed() && $ChargeXTimer.is_stopped() && !slottedX):
+	if(Slash_pressed() && $ChargeSlashTimer.is_stopped() && !slottedSlash):
 		"""
 		TODO: put this back in
-		if(previous_event == "Y" || combo == "XX"):
-			eventArr[idx] = "HoldX";
-			slottedx = true;
+		if(previous_event == "Pierce" || combo == "SlashSlash"):
+			eventArr[idx] = "HoldSlash";
+			slottedSlash = true;
 			combo = "";
 		else:"""
-		if(combo == "XX"):
+		if(combo == "SlashSlash"):
 			combo = "";
-		if(combo == "RbRb"):
+		if(combo == "DodgeashDodgeash"):
 			combo = "";
-		if(combo == "Rb"):
-			combo = "X";
-		eventArr[idx] = "X";
-		$ChargeXTimer.start();
-		slottedX = true;
-	if(Input.is_action_just_released("slash_attack") && slottedX && (eventArr[idx] == "X" || eventArr[idx] == "HoldX")):
-		$ChargeXTimer.stop();
+		if(combo == "Dodgeash"):
+			combo = "Slash";
+		eventArr[idx] = "Slash";
+		$ChargeSlashTimer.start();
+		slottedSlash = true;
+	if(Input.is_action_just_released("slash_attack") && slottedSlash && (eventArr[idx] == "Slash" || eventArr[idx] == "HoldSlash")):
+		$ChargeSlashTimer.stop();
 		cur_cost = basic_cost;
 		return true;
 	
-	if(B_pressed()):
+	if(Dodge_pressed()):
 		if(Input.is_action_pressed("slash_attack") && hit):
-			eventArr[idx] = "HitX+B";
+			eventArr[idx] = "HitSlash+Dodge";
 		if(Input.is_action_pressed("slash_attack")):
-			eventArr[idx] = "X+B";
+			eventArr[idx] = "Slash+Dodge";
 		elif(hit):
-			eventArr[idx] = "HitB";
+			eventArr[idx] = "HitDodge";
 		else:
-			eventArr[idx] = "B";
+			eventArr[idx] = "Dodge";
 		
-		if(eventArr[idx] == "B" || eventArr[idx] == "HitB"  || eventArr[idx] == "X+B" || eventArr[idx] == "HitX+B"):
+		if(eventArr[idx] == "Dodge" || eventArr[idx] == "HitDodge"  || eventArr[idx] == "Slash+Dodge" || eventArr[idx] == "HitSlash+Dodge"):
 			if(!host.on_floor() && (!hit && !attack.hop)):
 				started_save = false;
 				eventArr[idx] = "current_event";
 				clear_slotted_vars();
-				enterB = false;
+				enterDodge = false;
 				attack_done();
 				get_parent().exit_g_or_a();
 				return false;
 			combo = "";
-			$ChargeXTimer.stop();
+			$ChargeSlashTimer.stop();
 			cur_cost = basic_cost;
 			if(dodge_interrupt):
 				attack.attack_broken = true;
 			return true;
 	
-	if(chargedY):
-		eventArr[idx] = "Y";
-		slottedY = true;
+	if(chargedPierce):
+		eventArr[idx] = "Pierce";
+		slottedPierce = true;
 		#combo = "";
-		#TODO: HoldY
-	elif(Y_pressed() && $ChargeYTimer.is_stopped() && !slottedY):
-		eventArr[idx] = "Y";
-		$ChargeYTimer.start();
-		slottedY = true;
-	if(Input.is_action_just_released("wind_attack") && slottedY && (eventArr[idx] == "Y" || eventArr[idx] == "HoldY")):
+		#TODO: HoldPierce
+	elif(Pierce_pressed() && $ChargePierceTimer.is_stopped() && !slottedPierce):
+		eventArr[idx] = "Pierce";
+		$ChargePierceTimer.start();
+		slottedPierce = true;
+	if(Input.is_action_just_released("pierce_attack") && slottedPierce && (eventArr[idx] == "Pierce" || eventArr[idx] == "HoldPierce")):
 		combo = "";
-		$ChargeYTimer.stop();
+		$ChargePierceTimer.stop();
 		cur_cost = basic_cost;
 		return true;
 	
-	if(Rb_pressed() && !slottedRb):
-		if(combo == "RbRb"):
+	if(Bash_pressed() && !slottedDodgeash):
+		if(combo == "BashBash"):
 			combo = "";
-		if(combo == "XX"):
+		if(combo == "SlashSlash"):
 			combo = "";
-		if(combo == "X"):
-			combo = "Rb";
-		eventArr[idx] = "Rb";
-		slottedRb = true;
-	if(Input.is_action_just_released("bash_attack") && slottedRb && eventArr[idx] == "Rb"):
+		if(combo == "Slash"):
+			combo = "Bash";
+		eventArr[idx] = "Bash";
+		slottedDodgeash = true;
+	if(Input.is_action_just_released("bash_attack") && slottedDodgeash && eventArr[idx] == "Bash"):
 		cur_cost = basic_cost;
 		return true;
 	return false;
 
-func X_pressed():
-	return enterX || Input.is_action_just_pressed("slash_attack");
+func Slash_pressed():
+	return enterSlash || Input.is_action_just_pressed("slash_attack");
 
-func B_pressed():
-	return enterB || Input.is_action_just_pressed("dodge");
+func Dodge_pressed():
+	return enterDodge || Input.is_action_just_pressed("dodge") || abs(Input.get_joy_axis(0,2)) >= .5 || abs(Input.get_joy_axis(0,3)) >= .5;
 
-func Y_pressed():
-	return enterY || Input.is_action_just_pressed("wind_attack");
+func Pierce_pressed():
+	return enterPierce || Input.is_action_just_pressed("pierce_attack");
 
-func Rb_pressed():
-	return enterRb || Input.is_action_just_pressed("bash_attack");
+func Bash_pressed():
+	return enterDodgeash || Input.is_action_just_pressed("bash_attack");
 
 
 ### Determines direction of attack ###
 func atk_left():
-	return Input.is_action_pressed("rleft") || Input.is_action_pressed("left") || (host.mouse_l() && host.ActiveInput == host.InputType.KEYMOUSE);
+	return Input.is_action_pressed("dleft") || Input.is_action_pressed("rleft") || Input.is_action_pressed("left") || (host.mouse_l() && host.ActiveInput == host.InputType.KEYMOUSE);
 
 func atk_right():
-	return Input.is_action_pressed("rright") || Input.is_action_pressed("right") || (host.mouse_r() && host.ActiveInput == host.InputType.KEYMOUSE);
+	return Input.is_action_pressed("dright") || Input.is_action_pressed("rright") || Input.is_action_pressed("right") || (host.mouse_r() && host.ActiveInput == host.InputType.KEYMOUSE);
 
 func atk_up():
-	return Input.is_action_pressed("rup") || Input.is_action_pressed("up") || (host.mouse_u() && host.ActiveInput == host.InputType.KEYMOUSE);
+	return Input.is_action_pressed("dup") || Input.is_action_pressed("rup") || Input.is_action_pressed("up") || (host.mouse_u() && host.ActiveInput == host.InputType.KEYMOUSE);
 
 func atk_down():
-	return Input.is_action_pressed("rdown") || Input.is_action_pressed("down") || (host.mouse_d() && host.ActiveInput == host.InputType.KEYMOUSE);
+	return Input.is_action_pressed("ddown") || Input.is_action_pressed("rdown") || Input.is_action_pressed("down") || (host.mouse_d() && host.ActiveInput == host.InputType.KEYMOUSE);
+
+func atk_is_dodge():
+	return (eventArr[0] == "Dodge" || eventArr[0] == "HitDodge"  || eventArr[0] == "Slash+Dodge" || eventArr[0] == "HitSlash+Dodge")
 
 ### Handles all player input to decide what attack to trigger ###
 func set_position_vars():
@@ -242,43 +253,35 @@ func set_position_vars():
 		place = "_Ground";
 	else:
 		place = "_Air";
-	if(eventArr[0] == "X"):
+	if(eventArr[0] == "Slash"):
 		if(dir == "_Hor"):
 			vdir = "";
 		if(host.on_floor()):
 			if(vdir == "_Down"):
 				dir = "_Hor";
 				vdir = "";
-	if(eventArr[0] == "B"):
+	if(eventArr[0] == "Dodge"):
 		dir = "";
 		vdir = "";
 		place = "";
-	if(eventArr[0] == "HitB"):
+	if(eventArr[0] == "HitDodge"):
 		place = "";
-	if(eventArr[0] == "HitX+B"):
+	if(eventArr[0] == "HitSlash+Dodge"):
 		place = "";
-	if(eventArr[0] == "X+B"):
+	if(eventArr[0] == "Slash+Dodge"):
 		place = "";
-	if(eventArr[0] == "Y"):
+	if(eventArr[0] == "Pierce"):
 		if(host.on_floor()):
 			if(vdir == "_Down"):
 				dir = "_Hor";
 				vdir = "";
 		place = "";
-	if(eventArr[0] == "Rb"):
+	if(eventArr[0] == "Bash"):
 		if(host.on_floor()):
 			if(vdir == "_Down"):
 				dir = "_Hor";
 				vdir = "";
 		place = ""
-	clear_charged_vars();
-	clear_slotted_vars();
-	clear_enter_vars();
-	attack_end = false;
-	attack.busy = true;
-	follow_up = false;
-	attack_is_saved = false;
-	attack_start = true;
 	attack();
 
 ### Resets attack strings ###
@@ -308,23 +311,35 @@ func attack():
 	else:
 		attack_degrees = 0;
 	
-	get_parent().update_look_direction_and_scale(input_direction);
+	if(atk_is_dodge() && dodgeDir != 0):
+		get_parent().update_look_direction_and_scale(dodgeDir);
+	else:
+		print(input_direction);
+		get_parent().update_look_direction_and_scale(input_direction);
+	
 	if(input_testing):
 		print(attack_str);
 		attack_done();
 	else:
 		animate = true;
 		attack.ComboTimer.start();
-	pass;
+	clear_charged_vars();
+	clear_slotted_vars();
+	clear_enter_vars();
+	attack_end = false;
+	attack.busy = true;
+	follow_up = false;
+	attack_is_saved = false;
+	attack_start = true;
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
-	if(eventArr[0] == "Rb"):
+	if(eventArr[0] == "Bash"):
 		if(dir == "" && vdir == ""):
 			pass;
 		else:
-			if(combo == "RbRb"):
-				combo = "Rb";
+			if(combo == "BashBash"):
+				combo = "Bash";
 			combo += "_Directional";
 	if(input_testing):
 		attack_str = event_prefix + "_" + combo+dir+vdir+place;
@@ -334,13 +349,13 @@ func construct_attack_string():
 func attack_done():
 	if(!attack_is_saved):
 		if(!Input.is_action_pressed("slash_attack")):
-			chargedX = false;
-		if(!Input.is_action_pressed("wind_attack")):
-			chargedY = false;
+			chargedSlash = false;
+		if(!Input.is_action_pressed("pierce_attack")):
+			chargedPierce = false;
 		clear_slotted_vars();
-	if(eventArr[0] != "X" && eventArr[0] != "Rb"):
+	if(eventArr[0] != "Slash" && eventArr[0] != "Bash"):
 		combo = "";
-	if(combo == "XXX" || combo == "Y" || combo == "Rb_Directional" ):
+	if(combo == "SlashSlashSlash" || combo == "Pierce" || combo == "Bash_Directional" ):
 		combo = "";
 	hit = false;
 	clear_enter_vars();
@@ -358,28 +373,30 @@ func attack_done():
 	attack.mobile = true;
 	attack.attack_dashing = false;
 	host.normalize_grav();
+	host.activate_grav();
+	host.activate_fric();
 	$AttackParticles._on_particleTimer_timeout();
 
 func clear_enter_vars():
-	enterX = false;
-	enterB = false;
-	enterY = false;
-	enterRb = false;
+	enterSlash = false;
+	enterDodge = false;
+	enterPierce = false;
+	enterDodgeash = false;
 
 func clear_slotted_vars():
-	slottedX = false;
-	slottedY = false;
-	slottedRb = false;
+	slottedSlash = false;
+	slottedPierce = false;
+	slottedDodgeash = false;
 
 func clear_charged_vars():
-	chargedX = false;
-	chargedY = false;
+	chargedSlash = false;
+	chargedPierce = false;
 
 func on_hit(area):
 	if(area.hittable):
 		host.get_node("Camera2D").shake(.1, 15, 8);
 		hit = true;
-		if(eventArr[0] == "X" && !host.on_floor() && vdir == "_Down"):
+		if(eventArr[0] == "Slash" && !host.on_floor() && vdir == "_Down"):
 			attack.hop = true;
 			host.jump()
 			host.activate_grav();
@@ -405,8 +422,8 @@ func set_interrupt():
 	interrupt = true;
 	follow_up = true;
 
-func _on_ChargeXTimer_timeout():
-	chargedX = true;
+func _on_ChargeSlashTimer_timeout():
+	chargedSlash = true;
 
-func _on_ChargeYTimer_timeout():
-	chargedY = true;
+func _on_ChargePierceTimer_timeout():
+	chargedPierce = true;

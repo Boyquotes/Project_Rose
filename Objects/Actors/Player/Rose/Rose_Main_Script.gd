@@ -62,7 +62,7 @@ func execute(delta):
 
 func phys_execute(delta):
 	_stretch_based_on_velocity();
-	#print(move_state);
+	print(move_state);
 	#state machine
 	move_states[move_state].handleInput();
 	move_states[move_state].handleAnimation();
@@ -152,7 +152,6 @@ func mouse_l():
 		return (deg > 120 || deg < -120);
 	else:
 		return false;
-
 
 func mouse_d():
 	if(ActiveInput == InputType.KEYMOUSE):

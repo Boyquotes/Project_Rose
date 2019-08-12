@@ -29,6 +29,6 @@ func _on_HitBox_area_entered(area):
 				HIT_TYPE.DIRECTIONAL:
 					host.hspd = cos(deg2rad(area.direction)) * knockback;
 					host.vspd = ((sin(deg2rad(area.direction)) * knockback) + tinch);
-			
+				
 			host.states[host.state].exit('hurt');
 	pass;

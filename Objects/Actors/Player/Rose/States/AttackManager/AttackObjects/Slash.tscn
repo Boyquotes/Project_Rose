@@ -10,3 +10,4 @@ knockback = 50.0
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 scale = Vector2( 1, 0.65 )
 polygon = PoolVector2Array( 0, 35, 25, 0, 0, -35, 30, -45, 70, -40, 80, -25, 80, 25, 70, 40, 30, 45 )
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_Area2D_area_entered"]

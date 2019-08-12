@@ -45,13 +45,10 @@ func handleInput():
 			leave = true;
 			attack_broken = true;
 	
-	print(String(leave) + " " + String(attack_manager.interrupt || attack_manager.attack_end))
 	if(leave && (attack_manager.interrupt || attack_manager.attack_end)):
 		attack_manager.attack_done();
 		exit_g_or_a();
 	if(leave && attack_broken):
-		
-		$Attack_Manager/AttackParticles._on_particleTimer_timeout();
 		attack_manager.attack_done();
 		exit_g_or_a();
 
@@ -101,6 +98,5 @@ func exit(state):
 
 func _on_ComboTimer_timeout():
 	attack_manager.combo = "";
-	attack_manager.clear_charged_vars();
 	if(host.move_state == 'attack'):
 		exit_g_or_a();

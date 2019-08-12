@@ -1,10 +1,10 @@
 extends "../State.gd"
 
-onready var ground = get_parent().get_parent().get_node("Move_On_Ground");
-onready var air = get_parent().get_parent().get_node("Move_In_Air");
-onready var ledge = get_parent().get_parent().get_node("Ledge_Grab");
-onready var attack = get_parent().get_parent().get_node("Attack");
-
+onready var ground_state = get_parent().get_parent().get_node("Move_On_Ground");
+onready var air_state = get_parent().get_parent().get_node("Move_In_Air");
+onready var ledge_state = get_parent().get_parent().get_node("Ledge_Grab");
+onready var attack_state = get_parent().get_parent().get_node("Attack");
+onready var powerups = get_parent().get_parent().get_parent().get_node("Powerups");
 signal attack;
 
 ### temp inits ###
@@ -29,6 +29,7 @@ var chargedPierce = false;
 var slottedSlash = false;
 var slottedPierce = false;
 var slottedDodgeash = false;
+var activateSlash = false;
 var animate = false;
 var switchUp = false;
 var switchDown = false;
@@ -66,20 +67,25 @@ func execute(delta):
 			dodgeDir = 1;
 		else:
 			dodgeDir = 0;
-	if(!Input.is_action_pressed("slash_attack")):
+	if(!Input.is_action_pressed("slash_attack") && !activateSlash):
 		chargedSlash = false;
 		$ChargeSlashTimer.stop();
 	else:
-		attack.ComboTimer.start();
+		attack_state.ComboTimer.start();
 	if(!Input.is_action_pressed("pierce_attack")):
 		chargedPierce = false;
 		$ChargePierceTimer.stop();
 	else:
-		attack.ComboTimer.start();
+		attack_state.ComboTimer.start();
 
 func enter():
 	if(Input.is_action_just_pressed("slash_attack")):
 		enterSlash = true;
+	if(Input.is_action_just_released("slash_attack")):
+		print(chargedSlash);
+		if(!chargedSlash):
+			enterSlash = true;
+		activateSlash = true;
 	elif(Input.is_action_just_pressed("dodge")):
 		enterDodge = true;
 	elif(Input.is_action_just_pressed("pierce_attack")):
@@ -90,20 +96,20 @@ func enter():
 ### Handles animation, incomplete ###
 func handleAnimation():
 	if(!input_testing):
-		if(attack.busy && animate):
+		if(attack_state.busy && animate):
 			host.animate(host.get_node("TopAnim"),attack_str, true);
 			animate = false;
 	pass;
 
 ### Prepares next move if user input is detected ###
 func handleInput():
-	if((attack.attack_broken || interrupt || (follow_up && !started_save)) && attack_is_saved):
+	if((attack_state.attack_broken || interrupt || (follow_up && !started_save)) && attack_is_saved):
 		attack_done();
-		attack.attack_broken = false;
+		attack_state.attack_broken = false;
 		eventArr[0] = eventArr[1];
 		combo += eventArr[1];
 		set_position_vars();
-	if(!attack.busy && !started_save):
+	if(!attack_state.busy && !started_save):
 		if(parse_attack(0)):
 			combo += eventArr[0];
 			set_position_vars();
@@ -122,40 +128,32 @@ func handleInput():
 
 ###begins parsing player attack if an attack is triggered##
 func parse_attack(idx):
-	"""
-	TODO: put this back in
 	if(chargedSlash):
-		eventArr[idx] = "HoldSlash";
+		eventArr[idx] = "ChargedSlash";
 		slottedSlash = true;
 		combo = "";
-	>>elif
-	"""
-	if(Slash_pressed() && $ChargeSlashTimer.is_stopped() && !slottedSlash):
-		"""
-		TODO: put this back in
-		if(previous_event == "Pierce" || combo == "SlashSlash"):
-			eventArr[idx] = "HoldSlash";
-			slottedSlash = true;
-			combo = "";
-		else:"""
+		print(activateSlash);
+	elif(Slash_pressed() && $ChargeSlashTimer.is_stopped() && !slottedSlash):
 		if(combo == "SlashSlash"):
 			combo = "";
-		if(combo == "DodgeashDodgeash"):
+		if(combo == "BashBash"):
 			combo = "";
-		if(combo == "Dodgeash"):
+		if(combo == "Bash"):
 			combo = "Slash";
 		eventArr[idx] = "Slash";
-		$ChargeSlashTimer.start();
+		if(powerups.reinforced_fabric):
+			$ChargeSlashTimer.start();
 		slottedSlash = true;
-	if(Input.is_action_just_released("slash_attack") && slottedSlash && (eventArr[idx] == "Slash" || eventArr[idx] == "HoldSlash")):
+	if((Input.is_action_just_released("slash_attack") || activateSlash) && slottedSlash && (eventArr[idx] == "Slash" || eventArr[idx] == "ChargedSlash")):
+		activateSlash = false;
 		$ChargeSlashTimer.stop();
 		cur_cost = basic_cost;
 		return true;
 	
 	if(Dodge_pressed()):
-		if(Input.is_action_pressed("slash_attack") && hit):
+		if(powerups.balancing_harness && Input.is_action_pressed("slash_attack") && hit):
 			eventArr[idx] = "HitSlash+Dodge";
-		if(Input.is_action_pressed("slash_attack")):
+		if(powerups.balancing_harness && Input.is_action_pressed("slash_attack")):
 			eventArr[idx] = "Slash+Dodge";
 		elif(hit):
 			eventArr[idx] = "HitDodge";
@@ -163,7 +161,7 @@ func parse_attack(idx):
 			eventArr[idx] = "Dodge";
 		
 		if(eventArr[idx] == "Dodge" || eventArr[idx] == "HitDodge"  || eventArr[idx] == "Slash+Dodge" || eventArr[idx] == "HitSlash+Dodge"):
-			if(!host.on_floor() && (!hit && !attack.hop)):
+			if(!host.on_floor() && (!hit && !attack_state.hop)):
 				started_save = false;
 				eventArr[idx] = "current_event";
 				clear_slotted_vars();
@@ -175,7 +173,7 @@ func parse_attack(idx):
 			$ChargeSlashTimer.stop();
 			cur_cost = basic_cost;
 			if(dodge_interrupt):
-				attack.attack_broken = true;
+				attack_state.attack_broken = true;
 			return true;
 	
 	if(chargedPierce):
@@ -203,6 +201,14 @@ func parse_attack(idx):
 		eventArr[idx] = "Bash";
 		slottedDodgeash = true;
 	if(Input.is_action_just_released("bash_attack") && slottedDodgeash && eventArr[idx] == "Bash"):
+		cur_cost = basic_cost;
+		return true;
+	
+	if((slottedPierce && Input.is_action_pressed("slash_attack")) || (slottedSlash && Input.is_action_pressed("pierce_attack")) && powerups.mana_fabric):
+		combo = "";
+		eventArr[idx] = "WindAttack";
+		$ChargePierceTimer.stop();
+		$ChargeSlashTimer.stop();
 		cur_cost = basic_cost;
 		return true;
 	return false;
@@ -260,6 +266,22 @@ func set_position_vars():
 			if(vdir == "_Down"):
 				dir = "_Hor";
 				vdir = "";
+	if(eventArr[0] == "ChargedSlash"):
+		if(host.on_floor()):
+			if(vdir == "_Down"):
+				dir = "";
+			else:
+				dir = "_Hor";
+				vdir = "";
+			place = "_Ground";
+		else:
+			dir = "_Hor"
+			vdir = "";
+			place = "_Air";
+	if(eventArr[0] == "WindAttack"):
+		if(dir == "_Hor"):
+			vdir = "";
+		place = "";
 	if(eventArr[0] == "Dodge"):
 		dir = "";
 		vdir = "";
@@ -314,23 +336,22 @@ func attack():
 	if(atk_is_dodge() && dodgeDir != 0):
 		get_parent().update_look_direction_and_scale(dodgeDir);
 	else:
-		print(input_direction);
 		get_parent().update_look_direction_and_scale(input_direction);
 	
+	clear_charged_vars();
+	clear_slotted_vars();
+	clear_enter_vars();
+	attack_end = false;
+	attack_state.busy = true;
+	follow_up = false;
+	attack_is_saved = false;
+	attack_start = true;
 	if(input_testing):
 		print(attack_str);
 		attack_done();
 	else:
 		animate = true;
-		attack.ComboTimer.start();
-	clear_charged_vars();
-	clear_slotted_vars();
-	clear_enter_vars();
-	attack_end = false;
-	attack.busy = true;
-	follow_up = false;
-	attack_is_saved = false;
-	attack_start = true;
+		attack_state.ComboTimer.start();
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
@@ -344,6 +365,8 @@ func construct_attack_string():
 	if(input_testing):
 		attack_str = event_prefix + "_" + combo+dir+vdir+place;
 	else:
+		if(eventArr[0] == "ChargedSlash"):
+			combo += dir + vdir;
 		attack_str = event_prefix + "_" + combo + place;
 
 func attack_done():
@@ -360,22 +383,21 @@ func attack_done():
 	hit = false;
 	clear_enter_vars();
 	attack_end = true;
-	attack.busy = false;
+	attack_state.busy = false;
 	attack_triggered = false;
 	save_event = false;
 	previous_event = eventArr[0];
 	interrupt = false;
 	dodge_interrupt = false;
 	reset_strings();
-	attack.ComboTimer.start();
-	attack.hop = false;
-	attack.hover = false;
-	attack.mobile = true;
-	attack.attack_dashing = false;
+	attack_state.ComboTimer.start();
+	attack_state.hop = false;
+	attack_state.hover = false;
+	attack_state.mobile = true;
+	attack_state.attack_dashing = false;
 	host.normalize_grav();
 	host.activate_grav();
 	host.activate_fric();
-	$AttackParticles._on_particleTimer_timeout();
 
 func clear_enter_vars():
 	enterSlash = false;
@@ -397,12 +419,12 @@ func on_hit(area):
 		host.get_node("Camera2D").shake(.1, 15, 8);
 		hit = true;
 		if(eventArr[0] == "Slash" && !host.on_floor() && vdir == "_Down"):
-			attack.hop = true;
+			attack_state.hop = true;
 			host.jump()
 			host.activate_grav();
 			hit = false;
-		elif(!host.on_floor() && !attack.attack_dashing):
-			attack.hover = true;
+		elif(!host.on_floor() && !attack_state.attack_dashing):
+			attack_state.hover = true;
 			host.mitigate_grav();
 
 func set_save_event():

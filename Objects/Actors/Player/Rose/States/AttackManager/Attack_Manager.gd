@@ -23,17 +23,19 @@ var follow_up = false;
 var enterSlash = false;
 var enterPierce = false;
 var enterDodge = false;
-var enterDodgeash = false;
+var enterBash = false;
 var chargedSlash = false;
 var chargedPierce = false;
 var slottedSlash = false;
 var slottedPierce = false;
-var slottedDodgeash = false;
+var slottedBash = false;
 var activateSlash = false;
 var animate = false;
 var switchUp = false;
 var switchDown = false;
 var dodgeDir = 0;
+var done_if_not_held = false;
+var attack_type = "";
 
 ### attack codes ###
 var event_prefix = "Event";
@@ -61,12 +63,7 @@ export(bool) var input_testing = false;
 
 func execute(delta):
 	if(Input.is_action_just_pressed("dodge")):
-		if(Input.is_joy_button_pressed(0,4)):
-			dodgeDir = -1;
-		elif(Input.is_joy_button_pressed(0,5)):
-			dodgeDir = 1;
-		else:
-			dodgeDir = 0;
+		change_dodge_dir();
 	if(!Input.is_action_pressed("slash_attack") && !activateSlash):
 		chargedSlash = false;
 		$ChargeSlashTimer.stop();
@@ -77,12 +74,24 @@ func execute(delta):
 		$ChargePierceTimer.stop();
 	else:
 		attack_state.ComboTimer.start();
+	if(done_if_not_held):
+		if(attack_type == "dodge"):
+			if(!Input.is_action_pressed("dodge")):
+				attack_done();
+				attack_state.exit_g_or_a();
+
+func change_dodge_dir():
+	if(Input.is_joy_button_pressed(0,4) || Input.get_joy_axis(0,2) <= -0.5):
+		dodgeDir = -1;
+	elif(Input.is_joy_button_pressed(0,5) || Input.get_joy_axis(0,2) >= 0.5):
+		dodgeDir = 1;
+	else:
+		dodgeDir = 0;
 
 func enter():
 	if(Input.is_action_just_pressed("slash_attack")):
 		enterSlash = true;
 	if(Input.is_action_just_released("slash_attack")):
-		print(chargedSlash);
 		if(!chargedSlash):
 			enterSlash = true;
 		activateSlash = true;
@@ -91,7 +100,7 @@ func enter():
 	elif(Input.is_action_just_pressed("pierce_attack")):
 		enterPierce = true;
 	elif(Input.is_action_just_pressed("bash_attack")):
-		enterDodgeash = true;
+		enterBash = true;
 
 ### Handles animation, incomplete ###
 func handleAnimation():
@@ -99,7 +108,6 @@ func handleAnimation():
 		if(attack_state.busy && animate):
 			host.animate(host.get_node("TopAnim"),attack_str, true);
 			animate = false;
-	pass;
 
 ### Prepares next move if user input is detected ###
 func handleInput():
@@ -148,12 +156,13 @@ func parse_attack(idx):
 		activateSlash = false;
 		$ChargeSlashTimer.stop();
 		cur_cost = basic_cost;
+		attack_type = "slash";
 		return true;
 	
 	if(Dodge_pressed()):
 		if(powerups.balancing_harness && Input.is_action_pressed("slash_attack") && hit):
 			eventArr[idx] = "HitSlash+Dodge";
-		if(powerups.balancing_harness && Input.is_action_pressed("slash_attack")):
+		elif(powerups.balancing_harness && Input.is_action_pressed("slash_attack")):
 			eventArr[idx] = "Slash+Dodge";
 		elif(hit):
 			eventArr[idx] = "HitDodge";
@@ -161,6 +170,7 @@ func parse_attack(idx):
 			eventArr[idx] = "Dodge";
 		
 		if(eventArr[idx] == "Dodge" || eventArr[idx] == "HitDodge"  || eventArr[idx] == "Slash+Dodge" || eventArr[idx] == "HitSlash+Dodge"):
+			change_dodge_dir();
 			if(!host.on_floor() && (!hit && !attack_state.hop)):
 				started_save = false;
 				eventArr[idx] = "current_event";
@@ -174,6 +184,7 @@ func parse_attack(idx):
 			cur_cost = basic_cost;
 			if(dodge_interrupt):
 				attack_state.attack_broken = true;
+			attack_type = "dodge";
 			return true;
 	
 	if(chargedPierce):
@@ -189,9 +200,10 @@ func parse_attack(idx):
 		combo = "";
 		$ChargePierceTimer.stop();
 		cur_cost = basic_cost;
+		attack_type = "pierce";
 		return true;
 	
-	if(Bash_pressed() && !slottedDodgeash):
+	if(Bash_pressed() && !slottedBash):
 		if(combo == "BashBash"):
 			combo = "";
 		if(combo == "SlashSlash"):
@@ -199,18 +211,35 @@ func parse_attack(idx):
 		if(combo == "Slash"):
 			combo = "Bash";
 		eventArr[idx] = "Bash";
-		slottedDodgeash = true;
-	if(Input.is_action_just_released("bash_attack") && slottedDodgeash && eventArr[idx] == "Bash"):
+		slottedBash = true;
+	if(Input.is_action_just_released("bash_attack") && slottedBash && eventArr[idx] == "Bash"):
 		cur_cost = basic_cost;
+		attack_type = "bash";
 		return true;
 	
-	if((slottedPierce && Input.is_action_pressed("slash_attack")) || (slottedSlash && Input.is_action_pressed("pierce_attack")) && powerups.mana_fabric):
+	if(((slottedPierce && Input.is_action_pressed("slash_attack")) || (slottedSlash && Input.is_action_pressed("pierce_attack"))) && powerups.mana_fabric):
 		combo = "";
 		eventArr[idx] = "WindAttack";
 		$ChargePierceTimer.stop();
 		$ChargeSlashTimer.stop();
 		cur_cost = basic_cost;
+		attack_type = "slash";
 		return true;
+	if(((slottedPierce && Input.is_action_pressed("bash_attack")) || (slottedBash && Input.is_action_pressed("pierce_attack"))) && powerups.rock_rune):
+		combo = "";
+		eventArr[idx] = "RockAttack";
+		$ChargePierceTimer.stop();
+		$ChargeSlashTimer.stop();
+		cur_cost = basic_cost;
+		attack_type = "bash";
+		return true;
+	if(Input.is_action_pressed("Super")):
+		if(Input.is_action_pressed("bash_attack")):
+			pass;
+		elif(Input.is_action_pressed("slash_attack")):
+			pass;
+		elif(Input.is_action_just_pressed("pierce_attack")):
+			pass;
 	return false;
 
 func Slash_pressed():
@@ -223,7 +252,7 @@ func Pierce_pressed():
 	return enterPierce || Input.is_action_just_pressed("pierce_attack");
 
 func Bash_pressed():
-	return enterDodgeash || Input.is_action_just_pressed("bash_attack");
+	return enterBash || Input.is_action_just_pressed("bash_attack");
 
 
 ### Determines direction of attack ###
@@ -281,6 +310,12 @@ func set_position_vars():
 	if(eventArr[0] == "WindAttack"):
 		if(dir == "_Hor"):
 			vdir = "";
+		place = "";
+	if(eventArr[0] == "RockAttack"):
+		if(host.on_floor()):
+			if(vdir == "_Down"):
+				dir = "_Hor";
+				vdir = "";
 		place = "";
 	if(eventArr[0] == "Dodge"):
 		dir = "";
@@ -358,16 +393,22 @@ func construct_attack_string():
 	if(eventArr[0] == "Bash"):
 		if(dir == "" && vdir == ""):
 			pass;
-		else:
+		elif(powerups.reinforced_casing):
 			if(combo == "BashBash"):
 				combo = "Bash";
 			combo += "_Directional";
 	if(input_testing):
 		attack_str = event_prefix + "_" + combo+dir+vdir+place;
 	else:
-		if(eventArr[0] == "ChargedSlash"):
-			combo += dir + vdir;
-		attack_str = event_prefix + "_" + combo + place;
+		
+		if(powerups.quick_mechanism && (eventArr[0] == "Slash" || eventArr[0] == "ChargedSlash")):
+			if(eventArr[0] == "ChargedSlash"):
+				combo += "Quick" + dir + vdir;
+				attack_str = event_prefix + "_" + combo + place;
+			else:
+				attack_str = event_prefix + "_" + combo + "Quick" + place;
+		else:
+			attack_str = event_prefix + "_" + combo + place;
 
 func attack_done():
 	if(!attack_is_saved):
@@ -395,6 +436,7 @@ func attack_done():
 	attack_state.hover = false;
 	attack_state.mobile = true;
 	attack_state.attack_dashing = false;
+	done_if_not_held = false;
 	host.normalize_grav();
 	host.activate_grav();
 	host.activate_fric();
@@ -403,12 +445,12 @@ func clear_enter_vars():
 	enterSlash = false;
 	enterDodge = false;
 	enterPierce = false;
-	enterDodgeash = false;
+	enterBash = false;
 
 func clear_slotted_vars():
 	slottedSlash = false;
 	slottedPierce = false;
-	slottedDodgeash = false;
+	slottedBash = false;
 
 func clear_charged_vars():
 	chargedSlash = false;
@@ -439,6 +481,9 @@ func unset_dodge_interrupt():
 	attack_is_saved = false;
 	save_event = false;
 	clear_slotted_vars();
+
+func set_done_if_not_held():
+	done_if_not_held = true;
 
 func set_interrupt():
 	interrupt = true;

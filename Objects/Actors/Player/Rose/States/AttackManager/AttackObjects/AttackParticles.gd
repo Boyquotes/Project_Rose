@@ -12,7 +12,6 @@ onready var host = get_parent().get_parent().get_parent().get_parent();
 ### GENERAL FUNCTIONS ### 
 
 func instance_particle():
-	attack_manager.attack_start = false;
 	particle = partNode.get_child(0);
 	partNode.scale = scale;
 	get_parent().add_child(partNode);
@@ -23,6 +22,7 @@ func connect_entered():
 	hitbox.connect("area_entered",attack_manager,"on_hit");
 
 func instance_hitbox():
+	attack_manager.attack_start = false;
 	hitbox = hitNode.get_child(0);
 	hitbox.host = get_parent().get_parent().host;
 	connect_entered();
@@ -33,7 +33,8 @@ func instance_hitbox():
 func set_rot():
 	if(is_instance_valid(hitbox)):
 		hitbox.global_rotation_degrees += attack_manager.attack_degrees;
-		hitbox.direction = hitbox.global_rotation_degrees * host.Direction
+		if(hitbox.direction == 0):
+			hitbox.direction = hitbox.global_rotation_degrees * host.Direction
 	if(is_instance_valid(particle)):
 		particle.global_rotation_degrees += attack_manager.attack_degrees;
 

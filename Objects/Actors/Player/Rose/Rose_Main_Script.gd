@@ -28,6 +28,7 @@ export(int) var max_stamina = 100;
 var stamina = 100;
 var resource = 0;
 
+var g_max_temp;
 
 var rad = 0.0;
 var deg = 0.0;
@@ -39,6 +40,7 @@ var ActiveInput = InputType.GAMEPAD;
 
 func _ready():
 	._ready();
+	g_max_temp = g_max;
 	$Camera2D.current = true;
 	move_states[move_state].enter();
 
@@ -63,7 +65,7 @@ func execute(delta):
 func phys_execute(delta):
 	_stretch_based_on_velocity();
 	#state machine
-	#print(move_state);
+	print(move_state);
 	move_states[move_state].handleInput();
 	move_states[move_state].handleAnimation();
 	move_states[move_state].execute(delta);

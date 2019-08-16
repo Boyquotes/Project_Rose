@@ -24,6 +24,14 @@ func WindAttack():
 	var y = sin(hitbox.rotation) * force;
 	hitbox.get_parent().apply_impulse(Vector2(0,0),Vector2(x * get_parent().get_parent().host.Direction,y));
 
+func RockAttack():
+	instance_RockAttack();
+	set_rot();
+	var force = 800;
+	var x = cos(hitbox.rotation) * force;
+	var y = sin(hitbox.rotation) * force;
+	hitbox.get_parent().apply_impulse(Vector2(0,0),Vector2(x * get_parent().get_parent().host.Direction,y));
+
 func instance_Pierce_hitbox():
 	hitNode = preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Pierce.tscn").instance();
 	instance_hitbox();
@@ -36,3 +44,6 @@ func instance_WindAttack():
 	hitNode = preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/WindAttack.tscn").instance();
 	instance_hitbox();
 
+func instance_RockAttack():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/RockAttack.tscn").instance();
+	instance_hitbox();

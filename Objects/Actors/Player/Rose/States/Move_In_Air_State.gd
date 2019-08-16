@@ -55,6 +55,11 @@ func handleInput():
 		cutoff = true;
 		host.vspd += host.jspd/2;
 	
+	if(Input.is_action_pressed("jump") && powerups.glide):
+		host.g_max = host.g_max_temp / 3;
+	else:
+		host.g_max = host.g_max_temp;
+	
 	if(!ledge_cast_R.is_colliding()):
 		wasnt_wall_R = true;
 	if(wasnt_wall_R && ledge_cast_R.is_colliding()):

@@ -46,14 +46,15 @@ func execute(delta):
 			host.hspd += true_acceleration * host.Direction;
 		if(host.true_mspd < abs(host.hspd)):
 			host.hspd = host.true_mspd * host.Direction;
-	elif(host.hspd != 0 && abs(host.hspd) > host.true_mspd && host.fric_activated):
-		if(input_direction != 0 && sign(host.hspd) != input_direction):
-			host.hspd -= true_acceleration * sign(host.hspd);
-		else:
-			host.hspd -= decceleration/10 * sign(host.hspd);
 	elif(host.hspd != 0 && host.fric_activated):
 		if(abs(host.hspd) <= decceleration):
 			host.hspd = 0;
 		else:
 			host.hspd -= decceleration * sign(host.hspd);
-	
+		"""
+	elif(host.hspd != 0 && abs(host.hspd) > host.true_mspd && host.fric_activated):
+		if(input_direction != 0 && sign(host.hspd) != input_direction):
+			host.hspd -= true_acceleration * sign(host.hspd);
+		else:
+			host.hspd -= decceleration/10 * sign(host.hspd);
+	"""

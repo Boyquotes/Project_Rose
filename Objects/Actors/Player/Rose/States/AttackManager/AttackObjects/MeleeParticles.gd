@@ -33,7 +33,6 @@ func SlashSlash():
 	Slash();
 	particle.rotation_degrees = -10;
 	particle.scale = Vector2(2.5, -1);
-	set_rot();
 
 func ChargedSlash_Down_Ground():
 	instance_slash_particle();
@@ -97,6 +96,11 @@ func BashBash():
 	hitNode.time = .3;
 	hitbox.inchdir = -1;
 
+func Pierce():
+	instance_Pierce_hitbox();
+	hitNode.time = 1;
+	set_rot();
+
 func instance_Slash_hitbox():
 	hitNode = preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Slash.tscn").instance();
 	instance_hitbox();
@@ -128,6 +132,10 @@ func instance_ChargedSlash_Down_Ground_hitbox():
 func instance_slash_particle():
 	partNode = preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/SlashParticles.tscn").instance();
 	instance_particle();
+
+func instance_Pierce_hitbox():
+	hitNode = preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Pierce.tscn").instance();
+	instance_hitbox();
 
 func Closed_Fan_QuickX_Hor():
 	instance_bash_particle();

@@ -1,6 +1,6 @@
 extends Area2D
 
-enum ATTACK_TYPE {MELEE, RANGED};
+enum ATTACK_TYPE {SLASH, BASH, PIERCE};
 enum KNOCKBACK_TYPE {AWAY, LINEAR, DIRECTIONAL, VORTEX};
 
 export(float) var knockback;
@@ -21,7 +21,7 @@ func _ready():
 		$AnimationPlayer.play("New Anim");
 
 func _physics_process(delta):
-	true_knockback -= 6;
+	true_knockback -= 3;
 	if(true_knockback <= 0):
 		true_knockback = 0;
 
@@ -31,7 +31,6 @@ func _on_RigidBody2D_body_entered(body):
 	pass;
 
 func _on_Area2D_area_entered(area):
-	print("!!!");
 	hits += 1;
 	if(hits >= hit_limit && hit_limit > 0):
-		$CollisionShape2D2.call_deferred("disabled",true);
+		get_child(0).call_deferred("disabled",true);

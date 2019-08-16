@@ -15,7 +15,7 @@ func _on_HitBox_area_entered(area):
 			
 			hit_type = area.knockback_type;
 			var mitigation = (global_position.distance_to(area.global_position) * sign(area.true_knockback))/10
-			var knockback = area.true_knockback - mitigation;
+			var knockback = area.true_knockback;
 			var tinch = inch * area.inchdir;
 			
 			match(hit_type):

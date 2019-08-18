@@ -65,7 +65,7 @@ func execute(delta):
 func phys_execute(delta):
 	_stretch_based_on_velocity();
 	#state machine
-	print(move_state);
+	#print(move_state);
 	move_states[move_state].handleInput();
 	move_states[move_state].handleAnimation();
 	move_states[move_state].execute(delta);
@@ -205,6 +205,16 @@ func tween_scale(node: NodePath, new: Vector2, time: float = .1):
 	$Tween.start();
 
 func tween_sprite_rot(var node: NodePath, time: float = .1):
+	var deg;
+	if(abs($Movement_States/Attack/Attack_Manager.attack_degrees) == 45):
+		deg = $Movement_States/Attack/Attack_Manager.attack_degrees * Direction;
+	else:
+		deg = $Movement_States/Attack/Attack_Manager.attack_degrees;
 	$Tween.stop(get_node(node));
-	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,$Movement_States/Attack/Attack_Manager.attack_degrees,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,deg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
+
+func change_grav(g):
+	true_gravity = g;
+func change_fric(f):
+	true_friction = f;

@@ -1,4 +1,4 @@
-extends "./HitBoxParent.gd"
+extends "../HitBoxParent.gd"
 
 var spawned = false;
 
@@ -6,7 +6,7 @@ func _on_Area2D_area_entered(area):
 	._on_Area2D_area_entered(area);
 	if(!spawned):
 		spawned = true;
-		var rock = preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/RockParticle.tscn").instance();
+		var rock = preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_Pierce/Pierce_Hit_Particle.tscn").instance();
 		if(direction == 180):
 			direction = -1;
 			rock.scale.x *= -1

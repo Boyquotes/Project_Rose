@@ -2,7 +2,6 @@ extends Node2D
 
 onready var host = get_parent().get_parent();
 
-
 func get_attack_pressed():
 	return (
 	Input.is_action_pressed("slash_attack") || 

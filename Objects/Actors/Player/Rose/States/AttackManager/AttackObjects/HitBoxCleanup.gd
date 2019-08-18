@@ -1,8 +1,6 @@
 extends Node2D
 
-export(float) var time = .2;
-
-func _ready():
+func init(time):
 	var anim = $AnimationPlayer.get_animation("New Anim");
 	anim.length = time;
 	anim.track_insert_key(0,time,{"method": "cleanup", "args": []});

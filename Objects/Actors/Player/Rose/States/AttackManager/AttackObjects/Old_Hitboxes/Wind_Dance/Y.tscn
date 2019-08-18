@@ -11,19 +11,20 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "queue_free"
-} ]
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
 }
 
-[node name="HitBoxParent" instance=ExtResource( 1 )]
+[node name="Y" instance=ExtResource( 1 )]
+
+[node name="Area2D" parent="." index="0"]
+knockback = 250.0
+knockback_type = 1
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
-polygon = PoolVector2Array( 8, 20, -8, 20, -50, 4, -50, -4, -8, -20, 8, -20, 50, -4, 50, 4 )
-disabled = true
+scale = Vector2( 1, 0.65 )
+polygon = PoolVector2Array( -45, 35, 55, 15, 55, -15, -45, -35, -25, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 "anims/New Anim" = SubResource( 1 )

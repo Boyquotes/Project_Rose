@@ -17,6 +17,8 @@ var hspd = 0;
 var vspd = 0;
 var Direction = 1;
 export(float) var base_gravity = 10;
+export(float) var base_friction = 50;
+var true_friction;
 var true_gravity;
 export(float) var g_max = 250;
 var velocity = Vector2(0,0);
@@ -26,6 +28,7 @@ var fric_activated = true;
 
 func _ready():
 	true_gravity = base_gravity;
+	true_friction = base_friction;
 	true_mspd = base_mspd;
 	hp = max_hp;
 	### default movement controller vars ###

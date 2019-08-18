@@ -32,7 +32,6 @@ func update_look_direction(direction):
 
 var true_acceleration = 30;
 var base_acceleration = 30
-var decceleration = 50;
 
 func execute(delta):
 	var input_direction = get_input_direction();
@@ -47,10 +46,10 @@ func execute(delta):
 		if(host.true_mspd < abs(host.hspd)):
 			host.hspd = host.true_mspd * host.Direction;
 	elif(host.hspd != 0 && host.fric_activated):
-		if(abs(host.hspd) <= decceleration):
+		if(abs(host.hspd) <= host.true_friction):
 			host.hspd = 0;
 		else:
-			host.hspd -= decceleration * sign(host.hspd);
+			host.hspd -= host.true_friction * sign(host.hspd);
 		"""
 	elif(host.hspd != 0 && abs(host.hspd) > host.true_mspd && host.fric_activated):
 		if(input_direction != 0 && sign(host.hspd) != input_direction):

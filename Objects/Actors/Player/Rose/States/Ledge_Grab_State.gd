@@ -5,13 +5,20 @@ var hstop = false;
 var dir = 1;
 var stickVar = 5;
 var ledge_cast;
+var ledge_box;
 var played = false;
+var going_up = false;
+var going_down = false;
 
 func enter():
 	host.move_state = 'ledge_grab';
 	host.grav_activated = false;
 	host.hspd = 0;
 	host.vspd = 0;
+	if(!ledge_cast.is_colliding() && ledge_box.get_overlapping_bodies().size() == 0):
+		going_down = true;
+	elif(ledge_cast.is_colliding() && ledge_box.get_overlapping_bodies().size() == 0):
+		going_up = true;
 	update_look_direction_and_scale(dir);
 	pass
 
@@ -23,7 +30,6 @@ func handleAnimation():
 
 func handleInput():
 	var dir = get_input_direction();
-	
 	if(Input.is_action_pressed("down") && Input.is_action_just_pressed("jump")):
 		host.position.y += 1;
 		exit(air);
@@ -46,8 +52,15 @@ func execute(delta):
 	else:
 		hstop = true;
 	#Snap to ledge height
-	if(ledge_cast.is_colliding()):
+	if(going_up && ledge_cast.is_colliding() && ledge_box.get_overlapping_bodies().size() == 0):
 		host.position.y -= 1;
+	else:
+		going_up = false;
+	if(going_down && !ledge_cast.is_colliding() && ledge_box.get_overlapping_bodies().size() == 0):
+		host.position.y += 1;
+	else:
+		going_down = false;
+		going_up = true;
 	pass
 
 func exit(state):
@@ -56,6 +69,8 @@ func exit(state):
 	played = false;
 	stickVar = 5;
 	climb = false;
+	going_up = false;
+	going_down = false;
 	.exit(state);
 	pass
 

@@ -68,6 +68,7 @@ func handleInput():
 		is_wall_R = false;
 	if(wasnt_wall_R && is_wall_R && Ledgebox_R.get_overlapping_bodies().size() == 0):
 		ledge.ledge_cast = ledge_cast_R;
+		ledge.ledge_box = Ledgebox_R;
 		ledge.dir = 1;
 		exit(ledge);
 		return;
@@ -81,7 +82,18 @@ func handleInput():
 	#print(String(wasnt_wall_L) + " " + String(is_wall_L) + " " + String(Ledgebox_L.get_overlapping_bodies().size()));
 	if(wasnt_wall_L && is_wall_L && Ledgebox_L.get_overlapping_bodies().size() == 0):
 		ledge.ledge_cast = ledge_cast_L;
+		ledge.ledge_box = Ledgebox_L;
 		ledge.dir = -1;
+		exit(ledge);
+		return;
+	if(host.is_on_wall() && powerups.mounting_hook && $hook_cast.is_colliding()):
+		if(host.Direction == -1):
+			ledge.ledge_cast = ledge_cast_L;
+			ledge.ledge_box = Ledgebox_L;
+		else:
+			ledge.ledge_cast = ledge_cast_R;
+			ledge.ledge_box = Ledgebox_R;
+		ledge.dir = host.Direction;
 		exit(ledge);
 		return;
 

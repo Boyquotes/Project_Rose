@@ -17,7 +17,7 @@ func _physics_process(delta):
 		friction = 10;
 	
 	if(grav_activated):
-		vspd += gravity;
+		vspd += true_gravity;
 	
 	#cap gravity
 	if(vspd > 450):

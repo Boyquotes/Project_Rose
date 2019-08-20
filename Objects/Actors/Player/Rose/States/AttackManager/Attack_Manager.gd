@@ -411,7 +411,7 @@ func attack():
 		attack_done();
 	else:
 		animate = true;
-		attack_state.ComboTimer.start();
+		attack_state.ComboTimer.stop();
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
@@ -439,6 +439,7 @@ func construct_attack_string():
 				attack_str = event_prefix + "_" + combo + place;
 
 func attack_done():
+	host.get_node("TopAnim").playback_speed = 1;
 	if(!attack_is_saved):
 		if(!Input.is_action_pressed("slash_attack")):
 			chargedSlash = false;
@@ -512,7 +513,6 @@ clear all the arrays.
 """
 
 func on_hit(col):
-	print(bounce);
 	if(bounce):
 		host.bounce();
 	if("hittable" in col):

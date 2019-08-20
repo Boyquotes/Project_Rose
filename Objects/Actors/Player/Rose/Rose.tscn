@@ -526,8 +526,9 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
-length = 0.6
+[sub_resource type="Animation" id=49]
+resource_name = "Event_ChargedSlashQuick_Down_Ground"
+length = 1.2
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
@@ -536,9 +537,12 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.15 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.15, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "ChargedSlash_Down_Ground_Quick"
+}, {
 "args": [  ],
 "method": "ChargedSlash_Down_Ground"
 } ]
@@ -550,9 +554,15 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.15 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.1 ],
+"method": "tween_rotation_to_origin"
+}, {
 "args": [ NodePath("Sprites/Sprite"), -25.0, 0.15 ],
 "method": "tween_rotation"
 }, {
@@ -567,9 +577,18 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
 "args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.15 ],
 "method": "tween_scale"
 }, {
@@ -587,17 +606,11 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.01, 0.15, 0.27, 0.5, 0.85 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.01, 0.85, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "set_dodge_interrupt"
-}, {
-"args": [  ],
-"method": "set_save_event"
-}, {
-"args": [  ],
-"method": "unset_dodge_interrupt"
 }, {
 "args": [  ],
 "method": "set_save_event"
@@ -610,20 +623,21 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/path = NodePath("TopAnim:playback_speed")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.01 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"update": 0,
+"values": [ 2.0 ]
 }
 
-[sub_resource type="Animation" id=7]
-length = 0.9
+[sub_resource type="Animation" id=50]
+resource_name = "Event_ChargedSlashQuick_Hor_Air"
+length = 1.8
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
@@ -632,17 +646,11 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.01, 0.15, 0.27, 0.5, 0.85 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.01, 1.37, 1.72 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "set_dodge_interrupt"
-}, {
-"args": [  ],
-"method": "set_save_event"
-}, {
-"args": [  ],
-"method": "unset_dodge_interrupt"
 }, {
 "args": [  ],
 "method": "set_save_event"
@@ -661,9 +669,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.15 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.15, 1.02 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "ChargedSlash_Hor"
+}, {
 "args": [  ],
 "method": "ChargedSlash_Hor"
 } ]
@@ -675,9 +686,21 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.33, 0.53 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.33, 0.53, 0.87, 1.07, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1.2 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.4, 1.6 ), 0.35 ],
+"method": "tween_scale"
+}, {
 "args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
 "method": "tween_scale"
 }, {
@@ -698,11 +721,17 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2, 0.33, 0.53 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.14, 0.15, 0.2, 0.33, 0.45, 0.53, 0.87, 1.01, 1.02, 1.07, 1.2, 1.32, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
 "method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
 }, {
 "args": [ NodePath("Sprites/Sprite"), 25.0, 0.1 ],
 "method": "tween_rotation"
@@ -710,13 +739,78 @@ tracks/3/keys = {
 "args": [ NodePath("Sprites/Sprite"), -25.0, 0.2 ],
 "method": "tween_rotation"
 }, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -45.0, 0.35 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 25.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
 "args": [ NodePath("Sprites/Sprite"), -45.0, 0.35 ],
 "method": "tween_rotation"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("TopAnim:playback_speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.87 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.14, 0.15, 0.5, 1.01, 1.02, 1.33 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 250.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 250.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
+}
 
 [sub_resource type="Animation" id=8]
-length = 0.9
+length = 1.8
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
@@ -725,17 +819,11 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.01, 0.15, 0.27, 0.5, 0.85 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.01, 1.37, 1.72 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "set_dodge_interrupt"
-}, {
-"args": [  ],
-"method": "set_save_event"
-}, {
-"args": [  ],
-"method": "unset_dodge_interrupt"
 }, {
 "args": [  ],
 "method": "set_save_event"
@@ -754,9 +842,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.15 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.15, 1.02 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "ChargedSlash_Hor"
+}, {
 "args": [  ],
 "method": "ChargedSlash_Hor"
 } ]
@@ -768,9 +859,21 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.33, 0.53 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.33, 0.53, 0.87, 1.07, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1.2 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.4, 1.6 ), 0.35 ],
+"method": "tween_scale"
+}, {
 "args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
 "method": "tween_scale"
 }, {
@@ -791,9 +894,30 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.14, 0.15, 0.2, 0.33, 0.45, 0.53 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.14, 0.15, 0.2, 0.33, 0.45, 0.53, 0.87, 1.01, 1.02, 1.07, 1.2, 1.32, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 25.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -45.0, 0.35 ],
+"method": "tween_rotation"
+}, {
 "args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
 "method": "tween_rotation"
 }, {
@@ -823,10 +947,51 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.87 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ false, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("TopAnim:playback_speed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.87 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.14, 0.15, 0.5, 1.01, 1.02, 1.33 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 250.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 250.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -2001,6 +2166,18 @@ tracks/3/keys = {
 "method": "tween_scale"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("TopAnim:playback_speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.5 ]
+}
 
 [sub_resource type="Animation" id=20]
 length = 0.6
@@ -2114,6 +2291,18 @@ tracks/5/keys = {
 "method": "activate_fric"
 } ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("TopAnim:playback_speed")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.5 ]
+}
 
 [sub_resource type="Animation" id=21]
 length = 0.6
@@ -2194,6 +2383,18 @@ tracks/3/keys = {
 "args": [  ],
 "method": "attack_done"
 } ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("TopAnim:playback_speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.5 ]
 }
 
 [sub_resource type="Animation" id=22]
@@ -2307,6 +2508,18 @@ tracks/5/keys = {
 "args": [  ],
 "method": "activate_fric"
 } ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("TopAnim:playback_speed")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.5 ]
 }
 
 [sub_resource type="Animation" id=23]
@@ -3658,6 +3871,7 @@ mana_fabric = true
 rock_rune = true
 explosive_rune = true
 magus_sleeve = true
+quick_mechanism = true
 
 [node name="TopAnim" type="AnimationPlayer" parent="."]
 anims/Closed_Fan_QuickX_Hor = SubResource( 1 )
@@ -3665,8 +3879,8 @@ anims/Event_Bash = SubResource( 2 )
 anims/Event_Bash+Dodge = SubResource( 3 )
 anims/Event_BashBash = SubResource( 4 )
 anims/Event_Bash_Directional = SubResource( 5 )
-anims/Event_ChargedSlashQuick_Down_Ground = SubResource( 6 )
-anims/Event_ChargedSlashQuick_Hor_Air = SubResource( 7 )
+anims/Event_ChargedSlashQuick_Down_Ground = SubResource( 49 )
+anims/Event_ChargedSlashQuick_Hor_Air = SubResource( 50 )
 anims/Event_ChargedSlashQuick_Hor_Ground = SubResource( 8 )
 anims/Event_ChargedSlash_Down_Ground = SubResource( 9 )
 anims/Event_ChargedSlash_Hor_Air = SubResource( 10 )
@@ -3799,6 +4013,7 @@ script = ExtResource( 9 )
 [node name="Attack" type="Node2D" parent="Movement_States"]
 script = ExtResource( 10 )
 attack_dashing = true
+mobile = false
 
 [node name="Attack_Controller" type="Node2D" parent="Movement_States/Attack"]
 script = ExtResource( 11 )
@@ -3822,6 +4037,7 @@ script = ExtResource( 12 )
 one_shot = true
 
 [node name="ComboTimer" type="Timer" parent="Movement_States/Attack"]
+wait_time = 0.5
 one_shot = true
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]

@@ -52,89 +52,94 @@ func set_rot(hitNodeIdx):
 
 func SlashPlusDodge():
 	instance_SlashPlusDodge_hitbox();
-	hitNode[0].init(.4);
+	hitNode[hitNode.size()-1].init(.4);
 
 func Slash():
 	instance_Slash_hitbox();
-	hitNode[0].init(.2);
-	set_rot(hitNode[0]);
+	hitNode[hitNode.size()-1].init(.2);
+	set_rot(hitNode[hitNode.size()-1]);
 
 func SlashSlash():
 	Slash();
-	var particle = get_particle(hitNode[0]);
+	var particle = get_particle(hitNode[hitNode.size()-1]);
 	particle.rotation_degrees = -10;
 	particle.scale = Vector2(2.5, -1);
 
 func ChargedSlash_Down_Ground():
 	instance_ChargedSlash_Down_Ground_hitbox();
-	hitNode[0].init(.3);
+	hitNode[hitNode.size()-1].init(.3);
+
+func ChargedSlash_Down_Ground_Quick():
+	instance_ChargedSlash_Down_Ground_hitbox();
+	hitNode[hitNode.size()-1].scale /= 2;
+	hitNode[hitNode.size()-1].init(.3);
 
 func ChargedSlash_Hor():
 	instance_ChargedSlash_Hor_hitbox();
-	hitNode[0].init(.3);
+	hitNode[hitNode.size()-1].init(.3);
 
 func Bash_Directional():
 	instance_Bash_Directional_hitbox();
-	set_rot(hitNode[0]);
-	var hitbox = get_hitbox(hitNode[0]);
+	set_rot(hitNode[hitNode.size()-1]);
+	var hitbox = get_hitbox(hitNode[hitNode.size()-1]);
 	if(hitbox.global_rotation_degrees == -135):
-		hitNode[0].scale *= Vector2(1,-1);
-		hitNode[0].rotation_degrees += 90;
+		hitNode[hitNode.size()-1].scale *= Vector2(1,-1);
+		hitNode[hitNode.size()-1].rotation_degrees += 90;
 	if(hitbox.global_rotation_degrees == 45):
-		hitNode[0].scale *= Vector2(1,-1);
-		hitNode[0].rotation_degrees += 90;
+		hitNode[hitNode.size()-1].scale *= Vector2(1,-1);
+		hitNode[hitNode.size()-1].rotation_degrees += 90;
 	if(round(hitbox.global_rotation_degrees) == 90 && host.Direction == 1):
-		hitNode[0].scale *= Vector2(-1,1);
+		hitNode[hitNode.size()-1].scale *= Vector2(-1,1);
 	if(round(hitbox.global_rotation_degrees) == -90 && host.Direction == -1):
-		hitNode[0].scale *= Vector2(-1,1);
-	hitNode[0].init(.4);
+		hitNode[hitNode.size()-1].scale *= Vector2(-1,1);
+	hitNode[hitNode.size()-1].init(.4);
 
 func Bash():
 	instance_Bash_hitbox();
-	hitNode[0].init(.3);
+	hitNode[hitNode.size()-1].init(.3);
 
 func BashBash():
 	Bash();
-	var particle = get_particle(hitNode[0]);
-	var hitbox = get_hitbox(hitNode[0]);
+	var particle = get_particle(hitNode[hitNode.size()-1]);
+	var hitbox = get_hitbox(hitNode[hitNode.size()-1]);
 	particle.scale *= Vector2(1, -1);
 	hitbox.inchdir = -1;
 
 func Pierce():
 	instance_Pierce_hitbox();
-	set_rot(hitNode[0]);
-	hitNode[0].init(.25);
+	set_rot(hitNode[hitNode.size()-1]);
+	hitNode[hitNode.size()-1].init(.25);
 
 func UpgradedPierce():
 	instance_UpgradedPierce_hitbox();
-	set_rot(hitNode[0]);
-	hitNode[0].init(.25);
+	set_rot(hitNode[hitNode.size()-1]);
+	hitNode[hitNode.size()-1].init(.25);
 
 func BashPlusDodge():
 	instance_BashPlusDodge_Forward();
 	instance_BashPlusDodge_Backward();
-	set_rot(hitNode[0]);
-	hitNode[1].scale.x = host.Direction;
-	set_rot(hitNode[1]);
-	hitNode[0].init(.3);
-	hitNode[1].init(.2);
+	set_rot(hitNode[hitNode.size()-2]);
+	hitNode[hitNode.size()-1].scale.x = host.Direction;
+	set_rot(hitNode[hitNode.size()-1]);
+	hitNode[hitNode.size()-2].init(.3);
+	hitNode[hitNode.size()-1].init(.2);
 
 ### RANGED ATTACKS ###
 
 func RangedSlash():
 	instance_RangedSlash();
-	set_rot(hitNode[0]);
+	set_rot(hitNode[hitNode.size()-1]);
 	throw(250);
-	hitNode[0].init(1.5);
+	hitNode[hitNode.size()-1].init(1.5);
 	
 func RangedBash():
 	instance_RangedBash();
-	set_rot(hitNode[0]);
+	set_rot(hitNode[hitNode.size()-1]);
 	throw(800);
-	hitNode[0].init(1);
+	hitNode[hitNode.size()-1].init(1);
 
 func throw(force):
-	var hitbox = get_hitbox(hitNode[0]);
+	var hitbox = get_hitbox(hitNode[hitNode.size()-1]);
 	var x = cos(hitbox.rotation) * force;
 	var y = sin(hitbox.rotation) * force;
 	hitbox.get_parent().apply_impulse(Vector2(0,0),Vector2(x * get_parent().get_parent().host.Direction,y));
@@ -193,7 +198,7 @@ func instance_UpgradedPierce_hitbox():
 
 func Closed_Fan_QuickX_Hor():
 	instance_bash_QuickX_hitbox();
-	var particle = get_particle(hitNode[0]);
+	var particle = get_particle(hitNode[hitNode.size()-1]);
 	particle.lifetime = .2;
 	particle.process_material.angular_velocity = 500;
 	particle.rotation_degrees = 0;
@@ -203,8 +208,8 @@ func Closed_Fan_QuickX_Hor():
 
 func Hurricane():
 	instance_Hurricane_hitbox();
-	var particle = get_particle(hitNode[0]);
-	var partNode = get_partNode(hitNode[0]);
+	var particle = get_particle(hitNode[hitNode.size()-1]);
+	var partNode = get_partNode(hitNode[hitNode.size()-1]);
 	particle.one_shot = false;
 	particle.z_index = 5;
 	particle.amount = 10
@@ -224,7 +229,7 @@ func Hurricane():
 	hitNode.time = .35;
 	hitNode.init();
 	partNode.init();
-	set_rot(hitNode[0]);
+	set_rot(hitNode[hitNode.size()-1]);
 
 func instance_Hurricane_hitbox():
 	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Old_Hitboxes/Wind_Dance/Y.tscn").instance());

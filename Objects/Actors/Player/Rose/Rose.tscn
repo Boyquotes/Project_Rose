@@ -4092,7 +4092,6 @@ editor/display_folded = true
 width = 20.0
 default_color = Color( 1, 0.4, 0.4, 1 )
 texture = ExtResource( 14 )
-texture_mode = 4128
 round_precision = 1
 script = ExtResource( 15 )
 targetPath = NodePath("../Sprites/Sprite/Position2D")

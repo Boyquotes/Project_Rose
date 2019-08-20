@@ -4,13 +4,12 @@
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/HitBoxParent.gd" type="Script" id=2]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_RangedSlash/RangedSlash_Particle.tscn" type="PackedScene" id=3]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 0.5
 bounce = 1.0
 absorbent = true
 
-[sub_resource type="Animation" id=1]
-resource_name = "New Anim"
+[sub_resource type="Animation" id=2]
 length = 2.0
 step = 0.05
 tracks/0/type = "method"
@@ -46,7 +45,7 @@ collision_layer = 4
 collision_mask = 17
 mode = 2
 mass = 0.01
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
 continuous_cd = 1
 contacts_reported = 10
@@ -71,7 +70,7 @@ position = Vector2( 0, 12 )
 polygon = PoolVector2Array( -4, 8, 4, 8, 10, -40, -10, -40 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-"anims/New Anim" = SubResource( 1 )
+"anims/New Anim" = SubResource( 2 )
 [connection signal="area_entered" from="Area2D" to="Area2D" method="_on_Area2D_area_entered"]
 
 [editable path="Area2D/Node2D"]

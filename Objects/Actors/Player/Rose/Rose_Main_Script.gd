@@ -11,7 +11,7 @@ onready var move_states = {
 	'move_in_air' : $Movement_States/Move_In_Air,
 	'ledge_grab' : $Movement_States/Ledge_Grab,
 	'attack' : $Movement_States/Attack,
-	'tether' : $Movement_States/Tethering
+	'tethering' : $Movement_States/Tethering
 }
 var move_state = 'move_on_ground';
 

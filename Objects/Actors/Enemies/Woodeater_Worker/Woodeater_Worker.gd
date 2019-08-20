@@ -6,5 +6,6 @@ func _ready():
 	'default' : $States/Default,
 	'chase' : $States/Chase,
 	'attack' : $States/Attack,
-	'hurt' : $States/Hurt
+	'hurt' : $States/Hurt,
+	'stun' : $States/Stun
 	};

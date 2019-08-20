@@ -253,13 +253,6 @@ func parse_attack(idx):
 		cur_cost = basic_cost;
 		attack_type = "bash";
 		return true;
-	if(Input.is_action_pressed("Super")):
-		if(Input.is_action_pressed("bash_attack")):
-			pass;
-		elif(Input.is_action_pressed("slash_attack")):
-			pass;
-		elif(Input.is_action_just_pressed("pierce_attack")):
-			pass;
 	return false;
 
 func Slash_pressed():
@@ -476,9 +469,11 @@ func attack_done():
 	host.true_friction = host.base_friction;
 	$Attack_Instancing.clear();
 	bounce = false;
-	if(Input.is_action_pressed("pierce_attack") && tethered_creature):
+	if(Input.is_action_pressed("ChannelLeft") && tethered_creature):
 		attack_state.exit(tethering_state);
 		attack_state.get_node("ComboTimer").stop();
+	else:
+		tethering_state.creatures.clear();
 
 func clear_enter_vars():
 	enterSlash = false;
@@ -497,12 +492,12 @@ func clear_charged_vars():
 
 func on_hit(col):
 	if(tether):
+		tether = false;
 		tethering_state.creatures.push_back(tethered_creature);
 	if(bounce):
 		host.bounce();
 	if("hittable" in col):
 		if(col.hittable):
-			host.get_node("Camera2D").shake(.1, 15, 8);
 			hit = true;
 			if(eventArr[0] == "Slash" && !host.on_floor() && vdir == "_Down"):
 				attack_state.hop = true;

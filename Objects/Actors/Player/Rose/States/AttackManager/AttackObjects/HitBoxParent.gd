@@ -1,6 +1,6 @@
 extends Area2D
 
-enum ATTACK_TYPE {SLASH, BASH, PIERCE};
+enum ATTACK_TYPE {SLASH, BASH, PIERCE, TRUE};
 enum KNOCKBACK_TYPE {AWAY, LINEAR, DIRECTIONAL, VORTEX};
 
 export(float) var knockback;
@@ -11,7 +11,6 @@ export(float) var inchdir = 1;
 export(int) var hit_limit = 0;
 var hits = 0;
 var true_knockback = 0;
-
 var calc_direction = true;
 
 func _ready():
@@ -26,7 +25,10 @@ var host;
 
 
 func _on_Area2D_area_entered(area):
-	hits += 1;
-	if(hits >= hit_limit && hit_limit > 0):
-		get_child(0).call_deferred("disabled",true);
-	host.get_node("Movement_States/Attack/Attack_Controller").on_hit(area);
+	print(area.hittable);
+	if(area.hittable):
+		host.get_node("Camera2D").shake(.1, 15, 8);
+		hits += 1;
+		if(hits >= hit_limit && hit_limit > 0):
+			get_child(0).call_deferred("disabled",true);
+		host.get_node("Movement_States/Attack/Attack_Controller").on_hit(area);

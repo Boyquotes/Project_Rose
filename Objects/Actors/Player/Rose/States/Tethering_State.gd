@@ -26,24 +26,73 @@ clear all the arrays.
 var creatures = [];
 var tethers = [];
 var end = false;
+var time = 1.5;
+var direction;
 
 func enter():
-	exit(attack); #TODO: get rid of this
 	host.move_state = 'tethering';
+	host.deactivate_grav();
+	host.deactivate_fric();
+	host.hspd = 0;
+	host.vspd = 0;
 	for c in creatures:
-		#put c in stunned state
-		#make sure stunning doesn't timeout
-		#create tethers on each creature
-		pass;
-	$tetherTimer.start();
+		c.states['stun'].true_time = 0;
+		c.states[c.state].exit('stun');
+		c.deactivate_grav();
+		c.hspd = 0;
+		c.vspd = 0;
+		tethers.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Tether/Tether.tscn").instance());
+		tethers[tethers.size()-1].host = host;
+		host.get_parent().add_child(tethers[tethers.size()-1]);
+		tethers[tethers.size()-1].global_position = c.global_position;
+	#$tetherTimer.start();
 
 func handleAnimation():
+	host.get_node("TopAnim").stop();
 	pass;
 
 func handleInput():
-	#TODO: directions
-	if(!Input.is_action_pressed("pierce_attack") || end):
+	if(up_wider()):
+		direction = -90;
+		direction += (int(right_wider()) - int(left_wider())) * 45;
+	elif(down_wider()):
+		direction = 90;
+		direction += (int(left_wider()) - int(right_wider())) * 45;
+	else:
+		direction = int(left_wider()) * 180;
+	if(left() || right() || up() || down()):
+		launch(direction);
+		if(get_attack_pressed()):
+			exit(attack);
+		else:
+			exit_g_or_a();
+	elif(!Input.is_action_pressed("ChannelLeft") || end):
 		launch();
+		exit_g_or_a();
+
+func left_wider():
+	return Input.get_joy_axis(0,0) < -0.3 || Input.get_joy_axis(0,2) < -0.3;
+
+func right_wider():
+	return Input.get_joy_axis(0,0) > 0.3 || Input.get_joy_axis(0,2) > 0.3;
+
+func up_wider():
+	return Input.get_joy_axis(0,1) < -0.3 || Input.get_joy_axis(0,3) < -0.3;
+
+func down_wider():
+	return Input.get_joy_axis(0,1) > 0.3 || Input.get_joy_axis(0,3) > 0.3;
+
+func left():
+	return Input.is_action_just_pressed("left") || Input.is_action_just_pressed("rleft")
+
+func right():
+	return Input.is_action_just_pressed("right") || Input.is_action_just_pressed("rright")
+
+func up():
+	return Input.is_action_just_pressed("up") || Input.is_action_just_pressed("rup")
+
+func down():
+	return Input.is_action_just_pressed("down") || Input.is_action_just_pressed("rdown")
 
 func execute(delta):
 	pass;
@@ -52,7 +101,16 @@ func launch(deg = -90):
 	for t in tethers:
 		t.launch(deg);
 
+func exit_g_or_a():
+	match(host.on_floor()):
+		true:
+			exit(ground)
+		false:
+			exit(air);
+
 func exit(state):
+	host.activate_grav();
+	host.activate_fric();
 	end = false;
 	if(!host.on_floor()):
 		host.jump();

@@ -19,17 +19,20 @@ position = Vector2( 885.792, -55.3012 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="Woodeater_Worker" parent="." instance=ExtResource( 3 )]
-position = Vector2( 401.295, 146.475 )
-
-[node name="Woodeater_Worker2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 269.629, -73.6866 )
-
 [node name="Woodeater_Worker3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1022.09, -61.3232 )
+position = Vector2( 1089.63, -49.9757 )
+
+[node name="Woodeater_Worker4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1015.07, -68.8882 )
 
 [node name="Woodeater_Worker5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 295.531, -278.739 )
+position = Vector2( 1062.08, -89.9621 )
 
 [node name="Woodeater_Worker6" parent="." instance=ExtResource( 3 )]
-position = Vector2( 43.8494, 156.152 )
+position = Vector2( 1040.46, -44.5721 )
+
+[node name="Woodeater_Worker7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 927.528, -47.2739 )
+
+[node name="Woodeater_Worker8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 969.675, -70.5092 )

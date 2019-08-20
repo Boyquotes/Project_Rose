@@ -23,6 +23,7 @@ func execute(delta):
 	pass
 
 func exit(state):
+	$Damage_Timer.stop();
 	.exit(state)
 	pass;
 

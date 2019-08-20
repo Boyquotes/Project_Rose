@@ -48,7 +48,8 @@ func handleInput():
 	
 	if(leave && (attack_controller.interrupt || attack_controller.attack_end)):
 		attack_controller.attack_done();
-		exit_g_or_a();
+		if(host.move_state == "attack"):
+			exit_g_or_a();
 	if(leave && attack_broken):
 		attack_controller.attack_done();
 		exit_g_or_a();

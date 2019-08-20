@@ -24,10 +24,9 @@ func _physics_process(delta):
 
 var host;
 
-func _on_RigidBody2D_body_entered(body):
-	pass;
 
 func _on_Area2D_area_entered(area):
 	hits += 1;
 	if(hits >= hit_limit && hit_limit > 0):
 		get_child(0).call_deferred("disabled",true);
+	host.get_node("Movement_States/Attack/Attack_Controller").on_hit(area);

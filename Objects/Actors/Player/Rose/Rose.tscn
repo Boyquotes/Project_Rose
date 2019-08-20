@@ -230,14 +230,11 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.05, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "Hurricane"
-}, {
-"args": [  ],
-"method": "emit_off"
+"method": "BashPlusDodge"
 } ]
 }
 tracks/3/type = "method"
@@ -1703,7 +1700,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=17]
 resource_name = "Event_RangedSlash"
 length = 1.15
 step = 0.01
@@ -1796,7 +1793,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=18]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -1924,7 +1921,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=19]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -2005,7 +2002,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=20]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -2118,7 +2115,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=21]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -2199,7 +2196,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=22]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -2312,7 +2309,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=23]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -2393,7 +2390,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=24]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -2506,7 +2503,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=25]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -2587,7 +2584,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=26]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -2700,8 +2697,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=26]
-resource_name = "Event_UpgradedPierce"
+[sub_resource type="Animation" id=27]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -3660,6 +3656,7 @@ balancing_harness = true
 reinforced_fabric = true
 mana_fabric = true
 rock_rune = true
+explosive_rune = true
 magus_sleeve = true
 
 [node name="TopAnim" type="AnimationPlayer" parent="."]
@@ -3679,17 +3676,17 @@ anims/Event_HitDodge = SubResource( 13 )
 anims/Event_HitSlash+Dodge = SubResource( 14 )
 anims/Event_Pierce = SubResource( 15 )
 anims/Event_RangedBash = SubResource( 16 )
-anims/Event_RangedSlash = SubResource( 27 )
-anims/Event_Slash+Dodge = SubResource( 17 )
-anims/Event_SlashQuick_Air = SubResource( 18 )
-anims/Event_SlashQuick_Ground = SubResource( 19 )
-anims/Event_SlashSlashQuick_Air = SubResource( 20 )
-anims/Event_SlashSlashQuick_Ground = SubResource( 21 )
-anims/Event_SlashSlash_Air = SubResource( 22 )
-anims/Event_SlashSlash_Ground = SubResource( 23 )
-anims/Event_Slash_Air = SubResource( 24 )
-anims/Event_Slash_Ground = SubResource( 25 )
-anims/Event_UpgradedPierce = SubResource( 26 )
+anims/Event_RangedSlash = SubResource( 17 )
+anims/Event_Slash+Dodge = SubResource( 18 )
+anims/Event_SlashQuick_Air = SubResource( 19 )
+anims/Event_SlashQuick_Ground = SubResource( 20 )
+anims/Event_SlashSlashQuick_Air = SubResource( 21 )
+anims/Event_SlashSlashQuick_Ground = SubResource( 22 )
+anims/Event_SlashSlash_Air = SubResource( 23 )
+anims/Event_SlashSlash_Ground = SubResource( 24 )
+anims/Event_Slash_Air = SubResource( 25 )
+anims/Event_Slash_Ground = SubResource( 26 )
+anims/Event_UpgradedPierce = SubResource( 27 )
 anims/Hurricane = SubResource( 28 )
 anims/Wind_Dance_HoldY = SubResource( 29 )
 anims/air_idle = SubResource( 30 )
@@ -3871,7 +3868,7 @@ editor/display_folded = true
 width = 20.0
 default_color = Color( 1, 0.4, 0.4, 1 )
 texture = ExtResource( 13 )
-texture_mode = 1948262819
+texture_mode = 4128
 round_precision = 1
 script = ExtResource( 14 )
 targetPath = NodePath("../Sprites/Sprite/Position2D")

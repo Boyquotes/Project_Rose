@@ -26,7 +26,7 @@ position = Vector2( 401.295, 146.475 )
 position = Vector2( 269.629, -73.6866 )
 
 [node name="Woodeater_Worker3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1077.21, -58.0811 )
+position = Vector2( 1022.09, -61.3232 )
 
 [node name="Woodeater_Worker5" parent="." instance=ExtResource( 3 )]
 position = Vector2( 295.531, -278.739 )

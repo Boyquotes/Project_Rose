@@ -173,7 +173,7 @@ func deativate_fric():
 func deactivate_grav():
 	.deactivate_grav();
 
-func add_velocity(speed : float, degrees : float = $Movement_States/Attack/Attack_Manager.attack_degrees):
+func add_velocity(speed : float, degrees : float = $Movement_States/Attack/Attack_Controller.attack_degrees):
 	hspd = speed * cos(deg2rad(degrees)) * Direction;
 	vspd = speed * sin(deg2rad(degrees))
 
@@ -206,15 +206,22 @@ func tween_scale(node: NodePath, new: Vector2, time: float = .1):
 
 func tween_sprite_rot(var node: NodePath, time: float = .1):
 	var deg;
-	if(abs($Movement_States/Attack/Attack_Manager.attack_degrees) == 45):
-		deg = $Movement_States/Attack/Attack_Manager.attack_degrees * Direction;
+	if(abs($Movement_States/Attack/Attack_Controller.attack_degrees) == 45):
+		deg = $Movement_States/Attack/Attack_Controller.attack_degrees * Direction;
 	else:
-		deg = $Movement_States/Attack/Attack_Manager.attack_degrees;
+		deg = $Movement_States/Attack/Attack_Controller.attack_degrees;
 	$Tween.stop(get_node(node));
 	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,deg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 
 func change_grav(g):
 	true_gravity = g;
+
 func change_fric(f):
 	true_friction = f;
+
+func bounce():
+	var deg;
+	deg = $Movement_States/Attack/Attack_Controller.attack_degrees;
+	deg = deg + 180;
+	add_velocity(400,deg);

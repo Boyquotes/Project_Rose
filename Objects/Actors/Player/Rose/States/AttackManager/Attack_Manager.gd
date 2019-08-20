@@ -38,6 +38,7 @@ var done_if_not_held = false;
 var attack_type = "";
 var bash_plus_dodge_procs = 0;
 var max_bash_plus_dodge_procs = 1;
+var bounce = false;
 
 ### attack codes ###
 var event_prefix = "Event";
@@ -469,6 +470,8 @@ func attack_done():
 	host.activate_fric();
 	host.true_gravity = host.base_gravity;
 	host.true_friction = host.base_friction;
+	$Attack_Instancing.clear();
+	bounce = false;
 
 func clear_enter_vars():
 	enterSlash = false;
@@ -508,18 +511,22 @@ handle freeing all the "visual indicator" scenes. Exiting the "tethering" state 
 clear all the arrays.
 """
 
-func on_hit(area):
-	if(area.hittable):
-		host.get_node("Camera2D").shake(.1, 15, 8);
-		hit = true;
-		if(eventArr[0] == "Slash" && !host.on_floor() && vdir == "_Down"):
-			attack_state.hop = true;
-			host.jump()
-			host.activate_grav();
-			hit = false;
-		elif(!host.on_floor() && !attack_state.attack_dashing):
-			attack_state.hover = true;
-			host.mitigate_grav();
+func on_hit(col):
+	print(bounce);
+	if(bounce):
+		host.bounce();
+	if("hittable" in col):
+		if(col.hittable):
+			host.get_node("Camera2D").shake(.1, 15, 8);
+			hit = true;
+			if(eventArr[0] == "Slash" && !host.on_floor() && vdir == "_Down"):
+				attack_state.hop = true;
+				host.jump()
+				host.activate_grav();
+				hit = false;
+			elif(!host.on_floor() && !attack_state.attack_dashing):
+				attack_state.hover = true;
+				host.mitigate_grav();
 
 func set_save_event():
 	save_event = true;

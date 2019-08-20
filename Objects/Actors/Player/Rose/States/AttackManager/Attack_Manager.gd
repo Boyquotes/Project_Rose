@@ -4,6 +4,7 @@ onready var ground_state = get_parent().get_parent().get_node("Move_On_Ground");
 onready var air_state = get_parent().get_parent().get_node("Move_In_Air");
 onready var ledge_state = get_parent().get_parent().get_node("Ledge_Grab");
 onready var attack_state = get_parent().get_parent().get_node("Attack");
+onready var tethering_state = get_parent().get_parent().get_node("Tethering");
 onready var powerups = get_parent().get_parent().get_parent().get_node("Powerups");
 signal attack;
 
@@ -39,6 +40,8 @@ var attack_type = "";
 var bash_plus_dodge_procs = 0;
 var max_bash_plus_dodge_procs = 1;
 var bounce = false;
+var tether = false;
+var tethered_creature;
 
 ### attack codes ###
 var event_prefix = "Event";
@@ -473,6 +476,9 @@ func attack_done():
 	host.true_friction = host.base_friction;
 	$Attack_Instancing.clear();
 	bounce = false;
+	if(Input.is_action_pressed("pierce_attack") && tethered_creature):
+		attack_state.exit(tethering_state);
+		attack_state.get_node("ComboTimer").stop();
 
 func clear_enter_vars():
 	enterSlash = false;
@@ -489,30 +495,9 @@ func clear_charged_vars():
 	chargedSlash = false;
 	chargedPierce = false;
 
-#Potential tether design:
-"""
-On pierce hit, save creature to an array owned by a new state called the "tethering" 
-state.
-If after the hitbox is deactivated the player is holding the pierce button, 
-change player state to the "tethering" state. Once in the tethering state, the player
-has a few seconds to give input. If the pierce button is released or the time elapses,
-the creatures are struck upwards by default. If the player gives any directional input, 
-the creatures are struck in that direction.
-If the player is in the air, give the player a small jump before exiting the state.
-
-The player getting hit out of the state and into the hurt state should trigger 
-default behavior, but it should be easy to cancel everything.
-
-This strike is not an attack; upon entering the tethering state, the creatures will be
-sent to their default stun states and a number of visual indicators will be instanced, 
-marking the creatures as tethered. When the player's input or lackthereof is indicated,
-each of these indicators will get a signal. The signal triggers the "attack."
-This attack should work on all creatures that can be tethered. The attacks should also
-handle freeing all the "visual indicator" scenes. Exiting the "tethering" state should
-clear all the arrays.
-"""
-
 func on_hit(col):
+	if(tether):
+		tethering_state.creatures.push_back(tethered_creature);
 	if(bounce):
 		host.bounce();
 	if("hittable" in col):

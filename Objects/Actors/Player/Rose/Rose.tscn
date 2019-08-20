@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/Powerups.gd" type="Script" id=2]
@@ -12,8 +12,9 @@
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=10]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=11]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=12]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/small.png" type="Texture" id=13]
-[ext_resource path="res://Objects/Actors/Player/Rose/Cape.gd" type="Script" id=14]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Tethering_State.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/small.png" type="Texture" id=14]
+[ext_resource path="res://Objects/Actors/Player/Rose/Cape.gd" type="Script" id=15]
 
 [sub_resource type="Animation" id=1]
 length = 0.6
@@ -526,7 +527,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=49]
+[sub_resource type="Animation" id=6]
 resource_name = "Event_ChargedSlashQuick_Down_Ground"
 length = 1.2
 step = 0.01
@@ -635,7 +636,7 @@ tracks/4/keys = {
 "values": [ 2.0 ]
 }
 
-[sub_resource type="Animation" id=50]
+[sub_resource type="Animation" id=7]
 resource_name = "Event_ChargedSlashQuick_Hor_Air"
 length = 1.8
 step = 0.01
@@ -3879,8 +3880,8 @@ anims/Event_Bash = SubResource( 2 )
 anims/Event_Bash+Dodge = SubResource( 3 )
 anims/Event_BashBash = SubResource( 4 )
 anims/Event_Bash_Directional = SubResource( 5 )
-anims/Event_ChargedSlashQuick_Down_Ground = SubResource( 49 )
-anims/Event_ChargedSlashQuick_Hor_Air = SubResource( 50 )
+anims/Event_ChargedSlashQuick_Down_Ground = SubResource( 6 )
+anims/Event_ChargedSlashQuick_Hor_Air = SubResource( 7 )
 anims/Event_ChargedSlashQuick_Hor_Ground = SubResource( 8 )
 anims/Event_ChargedSlash_Down_Ground = SubResource( 9 )
 anims/Event_ChargedSlash_Hor_Air = SubResource( 10 )
@@ -4040,6 +4041,13 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="Tethering" type="Node2D" parent="Movement_States"]
+script = ExtResource( 13 )
+
+[node name="tetherTimer" type="Timer" parent="Movement_States/Tethering"]
+wait_time = 1.5
+one_shot = true
+
 [node name="DetectHitboxArea" type="Area2D" parent="."]
 editor/display_folded = true
 visible = false
@@ -4083,10 +4091,10 @@ shape = SubResource( 48 )
 editor/display_folded = true
 width = 20.0
 default_color = Color( 1, 0.4, 0.4, 1 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 texture_mode = 4128
 round_precision = 1
-script = ExtResource( 14 )
+script = ExtResource( 15 )
 targetPath = NodePath("../Sprites/Sprite/Position2D")
 
 [node name="WindxTimer" type="Timer" parent="Cape"]
@@ -4120,6 +4128,7 @@ autostart = true
 [connection signal="timeout" from="Movement_States/Attack/Attack_Controller/HitGravTimer" to="Movement_States/Attack/Attack_Controller" method="_on_HitGravTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/Attack_Controller/Attack_Instancing/particleTimer" to="Movement_States/Attack/Attack_Controller/Attack_Instancing" method="_on_particleTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/ComboTimer" to="Movement_States/Attack" method="_on_ComboTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Tethering/tetherTimer" to="Movement_States/Tethering" method="_on_tetherTimer_timeout"]
 [connection signal="area_entered" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
 [connection signal="area_exited" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
 [connection signal="timeout" from="Cape/WindxTimer" to="Cape" method="_on_WindxTimer_timeout"]

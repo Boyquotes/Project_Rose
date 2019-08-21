@@ -29,11 +29,12 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[node name="BashPlusDodge" index="0" instance=ExtResource( 1 )]
+[node name="BashPlusDodge" instance=ExtResource( 1 )]
 
 [node name="Area2D" parent="." index="0"]
 knockback = 250.0
 knockback_type = 1
+absorbing = false
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 scale = Vector2( 1, 0.65 )

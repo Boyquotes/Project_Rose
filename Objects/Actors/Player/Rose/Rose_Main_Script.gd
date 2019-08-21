@@ -1,6 +1,8 @@
 extends "res://Objects/Actors/Actor.gd"
 
-signal consume_resource;
+signal hp_changed;
+signal mana_changed;
+signal focus_changed;
 
 ###states###
 #TODO: hurt_state
@@ -24,10 +26,8 @@ onready var cam = get_node("Camera2D");
 
 ###Player Vars###
 export(int) var max_mana = 100;
-var mana
-export(int) var max_stamina = 100;
-var stamina = 100;
-var resource = 0;
+var mana = 100;
+var mana_recov = 1;
 
 var g_max_temp;
 
@@ -53,8 +53,18 @@ func _input(event):
 
 
 func execute(delta):
+	### DEBUGGING, NEED TO REMOVE ###
 	if(Input.is_action_just_pressed("soft_reset")):
 		global_position = Vector2(0,0);
+	if(Input.is_action_just_pressed("test_hp_gain")):
+		change_hp(10);
+	if(Input.is_action_just_pressed("test_hp_loss")):
+		change_hp(-10);
+	if(Input.is_action_just_pressed("test_mana_gain")):
+		change_mana(10);
+	if(Input.is_action_just_pressed("test_mana_loss")):
+		change_mana(-10);
+	
 	if(ActiveInput == InputType.KEYMOUSE):
 		rad = atan2(get_global_mouse_position().y - global_position.y , get_global_mouse_position().x - global_position.x);
 	elif(ActiveInput == InputType.GAMEPAD):
@@ -226,3 +236,29 @@ func bounce():
 	deg = $Movement_States/Attack/Attack_Controller.attack_degrees;
 	deg = deg + 180;
 	add_velocity(400,deg);
+
+func change_hp(health):
+	hp += health;
+	if(hp > max_hp):
+		hp = max_hp;
+	emit_signal("hp_changed",hp);
+
+func change_mana(man):
+	mana += man;
+	if(mana > max_mana):
+		mana = max_mana;
+	emit_signal("mana_changed", mana);
+
+func _on_Player_System_hit_zero():
+	enabled = false;
+	$TopAnim.play("death");
+
+func _on_manaTimer_timeout():
+	if(mana < max_mana):
+		mana += mana_recov;
+	if(mana > max_mana):
+		mana = max_mana;
+	emit_signal("mana_changed",mana);
+
+func _on_PopupMenu_update_powerup(idx, activate):
+	$Powerups.powerups_idx[idx] = activate;

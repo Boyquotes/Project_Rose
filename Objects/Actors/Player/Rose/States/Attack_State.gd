@@ -95,6 +95,8 @@ func exit(state):
 	attack_controller.clear_slotted_vars();
 	attack_controller.animate = false;
 	attack_controller.combo = "";
+	attack_controller.eventArr = ["current_event", "saved_event"];
+	attack_controller.clear_slotted_vars();
 	host.true_mspd = host.base_mspd;
 	.exit(state);
 

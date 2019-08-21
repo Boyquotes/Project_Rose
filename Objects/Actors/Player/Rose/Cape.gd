@@ -11,9 +11,9 @@ var h = 0;
 var arrPoints;
 var randxk = 0;
 var randxa = 0;
-var randxb = 0;
+var randxb = 1;
 var randya = 0;
-var randyb = 0;
+var randyb = 1;
 var ydamp = 0;
 var just_stopped = false;
 

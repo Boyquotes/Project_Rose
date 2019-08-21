@@ -1,0 +1,192 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://Objects/UI and Menus/Player System/Player System.gd" type="Script" id=1]
+[ext_resource path="res://Objects/UI and Menus/Player System/Pause_System.gd" type="Script" id=2]
+[ext_resource path="res://Objects/UI and Menus/Player System/PauseMenu.gd" type="Script" id=3]
+[ext_resource path="res://Prototyping/hptexture.png" type="Texture" id=4]
+[ext_resource path="res://Prototyping/petal-3462233_960_720.png" type="Texture" id=5]
+[ext_resource path="res://Prototyping/1.png" type="Texture" id=6]
+[ext_resource path="res://Prototyping/2.png" type="Texture" id=7]
+[ext_resource path="res://Prototyping/3.png" type="Texture" id=8]
+[ext_resource path="res://Prototyping/4.png" type="Texture" id=9]
+[ext_resource path="res://Prototyping/manatexture.png" type="Texture" id=10]
+[ext_resource path="res://Prototyping/bubble.png" type="Texture" id=11]
+[ext_resource path="res://Prototyping/focustexture.png" type="Texture" id=12]
+[ext_resource path="res://Prototyping/whitepettle.png" type="Texture" id=13]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.714801, 0.99639, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.130796, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.24827, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.375813, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.496644, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.62083, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.748374, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.879273, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 4.0
+flag_disable_z = true
+gravity = Vector3( 98, 0, 0 )
+angular_velocity = 455.7
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 1.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="AnimatedTexture" id=6]
+frame_0/texture = ExtResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 1
+emission_sphere_radius = 4.0
+flag_disable_z = true
+gravity = Vector3( 98, 0, 0 )
+angular_velocity = 455.7
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 1.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="AnimatedTexture" id=8]
+frames = 4
+fps = 20.0
+frame_0/texture = ExtResource( 6 )
+frame_1/texture = ExtResource( 7 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 8 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 9 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0.718412, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.324219, 0.334778, 1, 0 )
+
+[sub_resource type="GradientTexture" id=14]
+gradient = SubResource( 13 )
+
+[sub_resource type="Curve" id=15]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0, 0.009873 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5121 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+emission_shape = 1
+emission_sphere_radius = 4.0
+flag_disable_z = true
+flatness = 1.0
+gravity = Vector3( 50, 0, 0 )
+angular_velocity = 455.7
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 1.0
+scale_curve = SubResource( 16 )
+color_ramp = SubResource( 14 )
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="GradientTexture" id=11]
+
+[sub_resource type="ParticlesMaterial" id=18]
+trail_color_modifier = SubResource( 11 )
+emission_shape = 1
+emission_sphere_radius = 4.0
+flag_disable_z = true
+gravity = Vector3( 35, 0, 0 )
+angular_velocity = 455.7
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 1.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 10 )
+
+[node name="Player System" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 27.0
+margin_bottom = 19.0
+script = ExtResource( 1 )
+
+[node name="Pause System" type="Control" parent="."]
+pause_mode = 2
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+
+[node name="PopupMenu" type="PopupMenu" parent="Pause System"]
+margin_left = 66.0188
+margin_top = 64.6984
+margin_right = 86.0188
+margin_bottom = 84.6984
+mouse_filter = 1
+hide_on_item_selection = false
+hide_on_checkable_item_selection = false
+script = ExtResource( 3 )
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+value = 100.0
+texture_progress = ExtResource( 4 )
+
+[node name="Particles2D" type="Particles2D" parent="HealthBar"]
+position = Vector2( 0, 8 )
+amount = 20
+lifetime = 2.0
+process_material = SubResource( 5 )
+texture = SubResource( 6 )
+
+[node name="Particles2D2" type="Particles2D" parent="HealthBar"]
+visible = false
+position = Vector2( 0, 8 )
+amount = 20
+lifetime = 2.0
+process_material = SubResource( 7 )
+texture = SubResource( 8 )
+
+[node name="ManaBar" type="TextureProgress" parent="."]
+margin_top = 16.0
+margin_right = 160.0
+margin_bottom = 48.0
+value = 100.0
+texture_progress = ExtResource( 10 )
+
+[node name="Particles2D" type="Particles2D" parent="ManaBar"]
+position = Vector2( 0, 8 )
+amount = 20
+lifetime = 2.5
+process_material = SubResource( 17 )
+texture = ExtResource( 11 )
+
+[node name="FocusBar" type="TextureProgress" parent="."]
+visible = false
+margin_top = 32.0
+margin_right = 160.0
+margin_bottom = 64.0
+value = 100.0
+texture_progress = ExtResource( 12 )
+
+[node name="Particles2D" type="Particles2D" parent="FocusBar"]
+position = Vector2( 0, 8 )
+amount = 15
+lifetime = 3.5
+process_material = SubResource( 18 )
+texture = ExtResource( 13 )
+[connection signal="index_pressed" from="Pause System/PopupMenu" to="Pause System/PopupMenu" method="_on_PopupMenu_index_pressed"]

@@ -5,7 +5,6 @@ var true_time = 1;
 func enter():
 	host.state = 'stun';
 	if(true_time != 0):
-		print(true_time);
 		$stunTimer.start(true_time);
 	pass;
 

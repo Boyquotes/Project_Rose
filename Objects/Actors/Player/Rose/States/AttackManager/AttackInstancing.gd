@@ -9,8 +9,7 @@ onready var host = get_parent().get_parent().get_parent().get_parent();
 ### GENERAL FUNCTIONS ### 
 
 func connect_entered(hitbox):
-	var attack_controller = attack_state.attack_controller;
-	hitbox.connect("area_entered",attack_controller,"on_hit");
+	hitbox.attack_controller = attack_controller;
 	hitbox.connect("body_entered",attack_controller,"on_hit");
 
 func initialize_hitbox(hitNodeIdx):
@@ -53,6 +52,7 @@ func set_rot(hitNodeIdx):
 func SlashPlusDodge():
 	instance_SlashPlusDodge_hitbox();
 	hitNode[hitNode.size()-1].init(.4);
+	host.change_mana(-10);
 
 func Slash():
 	instance_Slash_hitbox();
@@ -114,6 +114,7 @@ func UpgradedPierce():
 	instance_UpgradedPierce_hitbox();
 	set_rot(hitNode[hitNode.size()-1]);
 	hitNode[hitNode.size()-1].init(.25);
+	host.change_mana(-10);
 
 func BashPlusDodge():
 	instance_BashPlusDodge_Forward();
@@ -123,6 +124,7 @@ func BashPlusDodge():
 	set_rot(hitNode[hitNode.size()-1]);
 	hitNode[hitNode.size()-2].init(.3);
 	hitNode[hitNode.size()-1].init(.2);
+	host.change_mana(-40);
 
 ### RANGED ATTACKS ###
 
@@ -131,12 +133,14 @@ func RangedSlash():
 	set_rot(hitNode[hitNode.size()-1]);
 	throw(250);
 	hitNode[hitNode.size()-1].init(1.5);
-	
+	host.change_mana(-30);
+
 func RangedBash():
 	instance_RangedBash();
 	set_rot(hitNode[hitNode.size()-1]);
 	throw(800);
 	hitNode[hitNode.size()-1].init(1);
+	host.change_mana(-30);
 
 func throw(force):
 	var hitbox = get_hitbox(hitNode[hitNode.size()-1]);

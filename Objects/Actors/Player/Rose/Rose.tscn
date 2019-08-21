@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/Powerups.gd" type="Script" id=2]
@@ -3306,6 +3306,52 @@ tracks/2/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=49]
+resource_name = "death"
+length = 1.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 360.0, 1.5 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 0 ), 1.5 ],
+"method": "tween_scale"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("../CanvasLayer/Transitions")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "deadend"
+} ]
+}
+
 [sub_resource type="Animation" id=35]
 loop = true
 step = 0.2
@@ -3860,19 +3906,13 @@ max_hp = 5
 base_mspd = 200.0
 jspd = 400.0
 tag = "Player"
+enabled = false
 base_gravity = 20.0
 g_max = 300.0
 
 [node name="Powerups" type="Node2D" parent="."]
+pause_mode = 2
 script = ExtResource( 2 )
-reinforced_casing = true
-balancing_harness = true
-reinforced_fabric = true
-mana_fabric = true
-rock_rune = true
-explosive_rune = true
-magus_sleeve = true
-quick_mechanism = true
 
 [node name="TopAnim" type="AnimationPlayer" parent="."]
 anims/Closed_Fan_QuickX_Hor = SubResource( 1 )
@@ -3909,6 +3949,7 @@ anims/air_move_down = SubResource( 31 )
 anims/air_move_up = SubResource( 32 )
 anims/airjump = SubResource( 33 )
 anims/climb = SubResource( 34 )
+anims/death = SubResource( 49 )
 anims/idle = SubResource( 35 )
 anims/jump = SubResource( 36 )
 anims/land = SubResource( 37 )
@@ -4115,7 +4156,10 @@ autostart = true
 [node name="WindybTimer" type="Timer" parent="Cape"]
 wait_time = 0.1
 autostart = true
-[connection signal="consume_resource" from="." to="." method="_on_Rose_consume_resource"]
+
+[node name="manaTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
 [connection signal="timeout" from="Camera2D/StopTimer" to="Camera2D" method="_on_StopTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Move_On_Ground/Jump_Timer" to="Movement_States/Move_On_Ground" method="_on_JumpTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Move_On_Ground/Jump_Timeout" to="Movement_States/Move_On_Ground" method="_on_Jump_Timeout_timeout"]
@@ -4135,3 +4179,4 @@ autostart = true
 [connection signal="timeout" from="Cape/WindxbTimer" to="Cape" method="_on_WindxbTimer_timeout"]
 [connection signal="timeout" from="Cape/WindyaTimer" to="Cape" method="_on_WindyaTimer_timeout"]
 [connection signal="timeout" from="Cape/WindybTimer" to="Cape" method="_on_WindybTimer_timeout"]
+[connection signal="timeout" from="manaTimer" to="." method="_on_manaTimer_timeout"]

@@ -8,6 +8,7 @@ export(float) var base_mspd = 100;
 var true_mspd;
 export(float) var jspd = 50;
 export(String) var tag = "NPC";
+export(bool) var enabled = true;
 
 var hp;
 
@@ -39,11 +40,13 @@ func _ready():
 	pass;
 
 func _process(delta):
-	execute(delta);
+	if(enabled):
+		execute(delta);
 	pass;
 
 func _physics_process(delta):
-	phys_execute(delta);
+	if(enabled):
+		phys_execute(delta);
 	pass;
 
 func execute(delta):

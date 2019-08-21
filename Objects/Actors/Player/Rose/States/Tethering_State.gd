@@ -26,7 +26,7 @@ clear all the arrays.
 var creatures = [];
 var tethers = [];
 var end = false;
-var time = 1.5;
+var time = 2;
 var direction;
 
 func enter():
@@ -36,16 +36,18 @@ func enter():
 	host.hspd = 0;
 	host.vspd = 0;
 	for c in creatures:
-		c.states['stun'].true_time = 0;
+		c.states['stun'].true_time = time;
 		c.states[c.state].exit('stun');
 		c.deactivate_grav();
+		c.deactivate_fric();
 		c.hspd = 0;
 		c.vspd = 0;
+		c.velocity = Vector2(0,0);
 		tethers.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Tether/Tether.tscn").instance());
 		tethers[tethers.size()-1].host = host;
 		host.get_parent().add_child(tethers[tethers.size()-1]);
 		tethers[tethers.size()-1].global_position = c.global_position;
-	#$tetherTimer.start();
+	$tetherTimer.start();
 
 func handleAnimation():
 	host.get_node("TopAnim").stop();
@@ -62,12 +64,14 @@ func handleInput():
 		direction = int(left_wider()) * 180;
 	if(left() || right() || up() || down()):
 		launch(direction);
+		host.change_mana(-30);
 		if(get_attack_pressed()):
 			exit(attack);
 		else:
 			exit_g_or_a();
 	elif(!Input.is_action_pressed("ChannelLeft") || end):
 		launch();
+		host.change_mana(-30);
 		exit_g_or_a();
 
 func left_wider():
@@ -109,6 +113,7 @@ func exit_g_or_a():
 			exit(air);
 
 func exit(state):
+	$tetherTimer.stop();
 	host.activate_grav();
 	host.activate_fric();
 	end = false;

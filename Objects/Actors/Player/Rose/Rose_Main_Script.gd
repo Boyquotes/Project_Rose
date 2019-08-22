@@ -260,5 +260,6 @@ func _on_manaTimer_timeout():
 		mana = max_mana;
 	emit_signal("mana_changed",mana);
 
-func _on_PopupMenu_update_powerup(idx, activate):
+func _on_UpgradeMenu_update_powerup(idx,activate):
+	print("!!!");
 	$Powerups.powerups_idx[idx] = activate;

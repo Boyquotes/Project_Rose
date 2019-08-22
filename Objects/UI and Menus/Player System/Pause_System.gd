@@ -1,14 +1,14 @@
 extends Control
 
-
 func _process(delta):
 	if(Input.is_action_just_pressed("pause") && !get_tree().paused):
 		get_tree().paused = true;
-		$PopupMenu.popup();
-		$PopupMenu.popup_centered_ratio(.5);
+		$PauseMenu.show();
 	elif((Input.is_action_just_pressed("ui_cancel") || Input.is_action_just_pressed("pause")) && get_tree().paused):
 		get_tree().paused = false;
-		$PopupMenu.hide();
+		$PauseMenu.hide();
+		$PauseMenu/ControlsMenu.hide();
+		$PauseMenu/UpgradeMenu.hide();
 
 #TODO:
 #Create pause menu on pause action

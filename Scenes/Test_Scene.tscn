@@ -9,6 +9,7 @@
 [node name="Test" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
 
 [node name="Player System" parent="CanvasLayer" instance=ExtResource( 1 )]
 
@@ -35,7 +36,7 @@ position = Vector2( 93.7379, -225.891 )
 [node name="Woodeater_Worker3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1183.37, -275.867 )
 [connection signal="hit_zero" from="CanvasLayer/Player System" to="Rose" method="_on_Player_System_hit_zero"]
-[connection signal="update_powerup" from="CanvasLayer/Player System/Pause System/PopupMenu" to="Rose" method="_on_PopupMenu_update_powerup"]
+[connection signal="update_powerup" from="CanvasLayer/Player System/Pause System/PauseMenu/UpgradeMenu" to="Rose" method="_on_UpgradeMenu_update_powerup"]
 [connection signal="focus_changed" from="Rose" to="CanvasLayer/Player System" method="_on_Rose_focus_changed"]
 [connection signal="hp_changed" from="Rose" to="CanvasLayer/Player System" method="_on_Rose_hp_changed"]
 [connection signal="mana_changed" from="Rose" to="CanvasLayer/Player System" method="_on_Rose_mana_changed"]

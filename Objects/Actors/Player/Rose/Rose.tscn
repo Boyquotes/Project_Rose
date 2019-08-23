@@ -1,20 +1,22 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/Powerups.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_top.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_bot.png" type="Texture" id=4]
-[ext_resource path="res://Objects/Actors/Player/Rose/Shake.gd" type="Script" id=5]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_On_Ground_State.gd" type="Script" id=6]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_In_Air_State.gd" type="Script" id=7]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Ledge_Grab_State.gd" type="Script" id=8]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Vault_State.gd" type="Script" id=9]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=10]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=11]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=12]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Tethering_State.gd" type="Script" id=13]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/small.png" type="Texture" id=14]
-[ext_resource path="res://Objects/Actors/Player/Rose/Cape.gd" type="Script" id=15]
+[ext_resource path="res://Objects/Actors/Player/Rose/Hitbox.gd" type="Script" id=5]
+[ext_resource path="res://Objects/Actors/Player/Rose/Shake.gd" type="Script" id=6]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_On_Ground_State.gd" type="Script" id=7]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_In_Air_State.gd" type="Script" id=8]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Ledge_Grab_State.gd" type="Script" id=9]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Vault_State.gd" type="Script" id=10]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=11]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=12]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=13]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Tethering_State.gd" type="Script" id=14]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Hurt_State.gd" type="Script" id=15]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/small.png" type="Texture" id=16]
+[ext_resource path="res://Objects/Actors/Player/Rose/Cape.gd" type="Script" id=17]
 
 [sub_resource type="Animation" id=1]
 length = 0.6
@@ -3306,7 +3308,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=49]
+[sub_resource type="Animation" id=35]
 resource_name = "death"
 length = 1.5
 tracks/0/type = "method"
@@ -3352,7 +3354,95 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=36]
+resource_name = "hurt"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Camera2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.2, 15.0, 8.0 ],
+"method": "shake"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -35.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.0, 0.05 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Hurt")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "exit_g_or_a"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox/Hitbox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ -350.0, 45.0 ],
+"method": "add_velocity"
+} ]
+}
+
+[sub_resource type="Animation" id=37]
 loop = true
 step = 0.2
 tracks/0/type = "method"
@@ -3396,7 +3486,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=38]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -3442,7 +3532,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=39]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -3505,7 +3595,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=40]
 length = 0.3
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -3562,7 +3652,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=39]
+[sub_resource type="Animation" id=41]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -3722,7 +3812,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=40]
+[sub_resource type="Animation" id=42]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -3748,7 +3838,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=41]
+[sub_resource type="Animation" id=43]
 length = 0.4
 loop = true
 tracks/0/type = "method"
@@ -3798,7 +3888,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=42]
+[sub_resource type="Animation" id=44]
 length = 0.4
 loop = true
 step = 0.01
@@ -3834,7 +3924,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=43]
+[sub_resource type="Animation" id=45]
 length = 0.4
 loop = true
 step = 0.01
@@ -3884,25 +3974,24 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="RectangleShape2D" id=44]
-extents = Vector2( 10, 20 )
-
-[sub_resource type="RectangleShape2D" id=45]
-extents = Vector2( 10, 20 )
-
 [sub_resource type="RectangleShape2D" id=46]
 extents = Vector2( 10, 20 )
 
 [sub_resource type="RectangleShape2D" id=47]
-extents = Vector2( 256, 150 )
+extents = Vector2( 10, 20 )
 
 [sub_resource type="RectangleShape2D" id=48]
+extents = Vector2( 10, 20 )
+
+[sub_resource type="RectangleShape2D" id=49]
+extents = Vector2( 256, 150 )
+
+[sub_resource type="RectangleShape2D" id=50]
 extents = Vector2( 10, 2 )
 
 [node name="Rose" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
-max_hp = 5
 base_mspd = 200.0
 jspd = 400.0
 tag = "Player"
@@ -3949,28 +4038,24 @@ anims/air_move_down = SubResource( 31 )
 anims/air_move_up = SubResource( 32 )
 anims/airjump = SubResource( 33 )
 anims/climb = SubResource( 34 )
-anims/death = SubResource( 49 )
-anims/idle = SubResource( 35 )
-anims/jump = SubResource( 36 )
-anims/land = SubResource( 37 )
-anims/ledgegrab = SubResource( 38 )
-"anims/old dash" = SubResource( 39 )
-anims/reset = SubResource( 40 )
-anims/run = SubResource( 41 )
-anims/up_to_down_idle = SubResource( 42 )
-anims/up_to_down_moving = SubResource( 43 )
+anims/death = SubResource( 35 )
+anims/hurt = SubResource( 36 )
+anims/idle = SubResource( 37 )
+anims/jump = SubResource( 38 )
+anims/land = SubResource( 39 )
+anims/ledgegrab = SubResource( 40 )
+"anims/old dash" = SubResource( 41 )
+anims/reset = SubResource( 42 )
+anims/run = SubResource( 43 )
+anims/up_to_down_idle = SubResource( 44 )
+anims/up_to_down_moving = SubResource( 45 )
 
 [node name="Sprites" type="Node2D" parent="."]
-editor/display_folded = true
 z_index = 1
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
 z_index = 1
 texture = ExtResource( 3 )
-
-[node name="SpriteBot" type="Sprite" parent="Sprites/Sprite"]
-z_index = -1
-texture = ExtResource( 4 )
 
 [node name="SpriteFan" type="Sprite" parent="Sprites/Sprite"]
 z_index = -1
@@ -3980,25 +4065,26 @@ texture = ExtResource( 4 )
 position = Vector2( 0, -8 )
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
-shape = SubResource( 44 )
+shape = SubResource( 46 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-editor/display_folded = true
 position = Vector2( 0, -20 )
 collision_layer = 2
 collision_mask = 8
+script = ExtResource( 5 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
 scale = Vector2( 0.8, 1 )
-shape = SubResource( 45 )
+shape = SubResource( 47 )
+disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
 editor/display_folded = true
 current = true
 zoom = Vector2( 0.5, 0.5 )
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="StopTimer" type="Timer" parent="Camera2D"]
 pause_mode = 2
@@ -4010,7 +4096,7 @@ one_shot = true
 
 [node name="Move_On_Ground" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Move_On_Ground"]
 one_shot = true
@@ -4021,7 +4107,7 @@ one_shot = true
 
 [node name="Move_In_Air" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [node name="Land_Timer" type="Timer" parent="Movement_States/Move_In_Air"]
 one_shot = true
@@ -4036,29 +4122,30 @@ cast_to = Vector2( 15, 0 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
 position = Vector2( 14, -40 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 46 )
+shape = SubResource( 48 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Ledge_Grab"]
 wait_time = 0.1
 one_shot = true
 
 [node name="Vault" type="Node2D" parent="Movement_States"]
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 
 [node name="Attack" type="Node2D" parent="Movement_States"]
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 attack_dashing = true
 mobile = false
 
 [node name="Attack_Controller" type="Node2D" parent="Movement_States/Attack"]
-script = ExtResource( 11 )
+editor/display_folded = true
+script = ExtResource( 12 )
 
 [node name="ChargeSlashTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller"]
 wait_time = 0.5
@@ -4073,7 +4160,7 @@ one_shot = true
 
 [node name="Attack_Instancing" type="Node2D" parent="Movement_States/Attack/Attack_Controller"]
 z_index = 1
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 
 [node name="particleTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller/Attack_Instancing"]
 one_shot = true
@@ -4083,10 +4170,18 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Tethering" type="Node2D" parent="Movement_States"]
-script = ExtResource( 13 )
+editor/display_folded = true
+script = ExtResource( 14 )
 
 [node name="tetherTimer" type="Timer" parent="Movement_States/Tethering"]
 wait_time = 1.5
+one_shot = true
+
+[node name="Hurt" type="Node2D" parent="Movement_States"]
+script = ExtResource( 15 )
+
+[node name="hurtTimer" type="Timer" parent="Movement_States/Hurt"]
+wait_time = 0.75
 one_shot = true
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]
@@ -4096,7 +4191,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 47 )
+shape = SubResource( 49 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0
@@ -4118,7 +4213,7 @@ position = Vector2( 10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_R"]
-shape = SubResource( 48 )
+shape = SubResource( 50 )
 
 [node name="Ledgebox_L" type="Area2D" parent="."]
 editor/display_folded = true
@@ -4126,15 +4221,16 @@ position = Vector2( -10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_L"]
-shape = SubResource( 48 )
+shape = SubResource( 50 )
 
 [node name="Cape" type="Line2D" parent="."]
 editor/display_folded = true
 width = 20.0
 default_color = Color( 1, 0.4, 0.4, 1 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
+texture_mode = 1634623853
 round_precision = 1
-script = ExtResource( 15 )
+script = ExtResource( 17 )
 targetPath = NodePath("../Sprites/Sprite/Position2D")
 
 [node name="WindxTimer" type="Timer" parent="Cape"]
@@ -4160,6 +4256,7 @@ autostart = true
 [node name="manaTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+[connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_area_entered"]
 [connection signal="timeout" from="Camera2D/StopTimer" to="Camera2D" method="_on_StopTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Move_On_Ground/Jump_Timer" to="Movement_States/Move_On_Ground" method="_on_JumpTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Move_On_Ground/Jump_Timeout" to="Movement_States/Move_On_Ground" method="_on_Jump_Timeout_timeout"]
@@ -4172,6 +4269,7 @@ autostart = true
 [connection signal="timeout" from="Movement_States/Attack/Attack_Controller/Attack_Instancing/particleTimer" to="Movement_States/Attack/Attack_Controller/Attack_Instancing" method="_on_particleTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/ComboTimer" to="Movement_States/Attack" method="_on_ComboTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Tethering/tetherTimer" to="Movement_States/Tethering" method="_on_tetherTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Hurt/hurtTimer" to="Movement_States/Hurt" method="_on_hurtTimer_timeout"]
 [connection signal="area_entered" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
 [connection signal="area_exited" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
 [connection signal="timeout" from="Cape/WindxTimer" to="Cape" method="_on_WindxTimer_timeout"]

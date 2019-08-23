@@ -51,11 +51,11 @@ func handleInput():
 	if(get_attack_just_pressed()):
 		exit(attack);
 		return;
-	if(jumped && !Input.is_action_pressed("jump") && !cutoff):
+	if(jumped && !Input.is_action_pressed("Jump") && !cutoff):
 		cutoff = true;
 		host.vspd += host.jspd/2;
 	
-	if(Input.is_action_pressed("jump") && powerups.glide):
+	if(Input.is_action_pressed("Jump") && powerups.glide):
 		host.g_max = host.g_max_temp / 3;
 	else:
 		host.g_max = host.g_max_temp;
@@ -86,7 +86,7 @@ func handleInput():
 		ledge.dir = -1;
 		exit(ledge);
 		return;
-	if(host.is_on_wall() && powerups.mounting_hook && $hook_cast.is_colliding()):
+	if(host.is_on_wall() && powerups.get_powerup('mounting_hook') && $hook_cast.is_colliding()):
 		if(host.Direction == -1):
 			ledge.ledge_cast = ledge_cast_L;
 			ledge.ledge_box = Ledgebox_L;

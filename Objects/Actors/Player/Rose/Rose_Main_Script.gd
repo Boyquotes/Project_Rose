@@ -4,16 +4,16 @@ signal hp_changed;
 signal mana_changed;
 signal focus_changed;
 
+export(int) var damage;
+
 ###states###
-#TODO: hurt_state
-###states###
-#TODO: hurt_state
 onready var move_states = {
 	'move_on_ground' : $Movement_States/Move_On_Ground,
 	'move_in_air' : $Movement_States/Move_In_Air,
 	'ledge_grab' : $Movement_States/Ledge_Grab,
 	'attack' : $Movement_States/Attack,
-	'tethering' : $Movement_States/Tethering
+	'tethering' : $Movement_States/Tethering,
+	'hurt' : $Movement_States/Hurt
 }
 var move_state = 'move_on_ground';
 
@@ -261,5 +261,4 @@ func _on_manaTimer_timeout():
 	emit_signal("mana_changed",mana);
 
 func _on_UpgradeMenu_update_powerup(idx,activate):
-	print("!!!");
 	$Powerups.powerups_idx[idx] = activate;

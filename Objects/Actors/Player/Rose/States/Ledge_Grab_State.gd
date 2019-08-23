@@ -30,12 +30,14 @@ func handleAnimation():
 
 func handleInput():
 	var dir = get_input_direction();
-	if(Input.is_action_pressed("down") && Input.is_action_just_pressed("jump")):
+	if(Input.is_action_pressed("Move_Down") && Input.is_action_just_pressed("Jump")):
 		host.position.y += 1;
 		exit(air);
-	elif(((Input.is_action_pressed("up") && dir != host.Direction * -1) || dir == host.Direction) && Input.is_action_just_pressed("jump") && ($Climbbox.get_overlapping_areas().size() == 0 && $Climbbox.get_overlapping_bodies().size() == 0)):
+	elif(((Input.is_action_pressed("Move_Up") && dir != host.Direction * -1) || dir == host.Direction) && 
+	Input.is_action_just_pressed("Jump") && 
+	($Climbbox.get_overlapping_areas().size() == 0 && $Climbbox.get_overlapping_bodies().size() == 0)):
 		climb = true;
-	elif(Input.is_action_just_pressed("jump")):
+	elif(Input.is_action_just_pressed("Jump")):
 		turn(host.Direction * -1);
 		host.vspd = -host.jspd*2/5;
 		host.hspd = host.true_mspd * host.Direction;

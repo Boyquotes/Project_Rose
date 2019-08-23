@@ -1,9 +1,8 @@
 extends KinematicBody2D
 
 ###actor_data###
-export(int) var max_hp = 1;
+export(int) var max_hp = 100;
 #warning-ignore-
-export(int) var damage = 1;
 export(float) var base_mspd = 100;
 var true_mspd;
 export(float) var jspd = 50;
@@ -32,6 +31,7 @@ func _ready():
 	true_friction = base_friction;
 	true_mspd = base_mspd;
 	hp = max_hp;
+	print(max_hp);
 	### default movement controller vars ###
 	#1 = right, -1 = left
 	Direction = 1;

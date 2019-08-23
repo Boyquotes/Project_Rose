@@ -4,6 +4,7 @@ onready var host = get_parent();
 var hittable = false;
 
 enum HIT_TYPE {AWAY, LINEAR, DIRECTIONAL, VORTEX};
+export(bool) var Vulnerable = false;
 var hit_type;
 var inch = -50;
 
@@ -29,6 +30,8 @@ func _on_HitBox_area_entered(area):
 				HIT_TYPE.DIRECTIONAL:
 					host.hspd = cos(deg2rad(area.direction)) * knockback;
 					host.vspd = ((sin(deg2rad(area.direction)) * knockback) + tinch);
-				
-			host.states[host.state].exit('hurt');
+			
+			host.hp -= area.damage + (area.damage * .5 * int(Vulnerable));
+			host.states['hurt'].damage_type = area.attack_type;
+			host.states[host.state].exit(host.states['hurt']);
 	pass;

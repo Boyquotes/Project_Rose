@@ -1,7 +1,7 @@
 extends "res://Objects/Actors/Actor.gd"
 
 onready var actionTimer = get_node("Action_Timer");
-onready var player = get_tree().get_root().get_children()[0].get_node("Rose");
+onready var player = get_tree().get_root().get_children()[1].get_node("Rose");
 
 #range which the enemy attacks
 export(float) var attack_range = 50;
@@ -12,7 +12,7 @@ export(float) var chase_range = 150;
 var decision;
 var wait;
 
-onready var states;
+var states;
 var state;
 
 var friction = 10;

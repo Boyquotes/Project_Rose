@@ -10,6 +10,7 @@ export(float) var direction;
 export(float) var inchdir = 1;
 export(int) var hit_limit = 0;
 export(bool) var absorbing = true;
+export(int) var damage;
 var hits = 0;
 var true_knockback = 0;
 var calc_direction = true;

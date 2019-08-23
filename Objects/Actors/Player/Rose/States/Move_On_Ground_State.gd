@@ -17,7 +17,7 @@ func handleInput():
 	if(get_attack_just_pressed()):
 		exit(attack);
 		return;
-	elif(Input.is_action_just_pressed("jump")):
+	elif(Input.is_action_just_pressed("Jump")):
 		jump = true;
 		air.jumped = true;
 	elif(!host.on_floor() && !jump):

@@ -5,6 +5,7 @@ onready var air_state = get_parent().get_parent().get_node("Move_In_Air");
 onready var ledge_state = get_parent().get_parent().get_node("Ledge_Grab");
 onready var attack_state = get_parent().get_parent().get_node("Attack");
 onready var tethering_state = get_parent().get_parent().get_node("Tethering");
+onready var hurt_state = get_parent().get_parent().get_node("Hurt");
 onready var powerups = get_parent().get_parent().get_parent().get_node("Powerups");
 signal attack;
 
@@ -67,21 +68,21 @@ func _ready():
 	host = get_parent().get_parent().get_parent();
 
 func execute(delta):
-	if(Input.is_action_just_pressed("dodge")):
+	if(Input.is_action_just_pressed("Dodge")):
 		change_dodge_dir();
-	if(!Input.is_action_pressed("slash_attack") && !activateSlash):
+	if(!Input.is_action_pressed("Slash_Attack") && !activateSlash):
 		chargedSlash = false;
 		$ChargeSlashTimer.stop();
 	else:
 		attack_state.ComboTimer.start();
-	if(!Input.is_action_pressed("pierce_attack")):
+	if(!Input.is_action_pressed("Pierce_Attack")):
 		chargedPierce = false;
 		$ChargePierceTimer.stop();
 	else:
 		attack_state.ComboTimer.start();
 	if(done_if_not_held):
 		if(attack_type == "dodge"):
-			if(!Input.is_action_pressed("dodge")):
+			if(!Input.is_action_pressed("Dodge")):
 				attack_done();
 				attack_state.exit_g_or_a();
 	if(host.on_floor()):
@@ -96,17 +97,17 @@ func change_dodge_dir():
 		dodgeDir = 0;
 
 func enter():
-	if(Input.is_action_just_pressed("slash_attack")):
+	if(Input.is_action_just_pressed("Slash_Attack")):
 		enterSlash = true;
-	if(Input.is_action_just_released("slash_attack")):
+	if(Input.is_action_just_released("Slash_Attack")):
 		if(!chargedSlash):
 			enterSlash = true;
 		activateSlash = true;
-	elif(Input.is_action_just_pressed("dodge")):
+	elif(Input.is_action_just_pressed("Dodge")):
 		enterDodge = true;
-	elif(Input.is_action_just_pressed("pierce_attack")):
+	elif(Input.is_action_just_pressed("Pierce_Attack")):
 		enterPierce = true;
-	elif(Input.is_action_just_pressed("bash_attack")):
+	elif(Input.is_action_just_pressed("Bash_Attack")):
 		enterBash = true;
 
 ### Handles animation, incomplete ###
@@ -136,7 +137,7 @@ func handleInput():
 	"""
 		print(String(interrupt) + " || " + String(!started_save) + ") && " + String(attack_is_saved));
 		print(busy);
-	if(Input.is_action_just_released("slash_attack")):
+	if(Input.is_action_just_released("Slash_Attack")):
 		print(String(interrupt) + " || " + String(!started_save) + ") && " + String(attack_is_saved));
 		print(busy);
 		print("____________________");"""
@@ -158,25 +159,29 @@ func parse_attack(idx):
 		if(powerups.get_powerup('reinforced_fabric')):
 			$ChargeSlashTimer.start();
 		slottedSlash = true;
-	if((Input.is_action_just_released("slash_attack") || activateSlash) && slottedSlash && (eventArr[idx] == "Slash" || eventArr[idx] == "ChargedSlash")):
+	if((Input.is_action_just_released("Slash_Attack") || activateSlash) && slottedSlash && (eventArr[idx] == "Slash" || eventArr[idx] == "ChargedSlash")):
 		activateSlash = false;
 		$ChargeSlashTimer.stop();
 		attack_type = "slash";
 		return true;
 	
 	if(Dodge_pressed()):
-		if(powerups.get_powerup('explosive_rune') && Input.is_action_pressed("bash_attack")):
+		if(powerups.get_powerup('explosive_rune') && Input.is_action_pressed("Bash_Attack")):
 			eventArr[idx] = "Bash+Dodge";
-		elif(powerups.get_powerup('balancing_harness') && Input.is_action_pressed("slash_attack") && hit):
+		elif(powerups.get_powerup('balancing_harness') && Input.is_action_pressed("Slash_Attack") && hit):
 			eventArr[idx] = "HitSlash+Dodge";
-		elif(powerups.get_powerup('balancing_harness') && Input.is_action_pressed("slash_attack")):
+		elif(powerups.get_powerup('balancing_harness') && Input.is_action_pressed("Slash_Attack")):
 			eventArr[idx] = "Slash+Dodge";
 		elif(hit):
 			eventArr[idx] = "HitDodge";
 		else:
 			eventArr[idx] = "Dodge";
 		
-		if(eventArr[idx] == "Dodge" || eventArr[idx] == "HitDodge"  || eventArr[idx] == "Slash+Dodge" || eventArr[idx] == "HitSlash+Dodge" || eventArr[idx] == "Bash+Dodge"):
+		if(eventArr[idx] == "Dodge" || 
+		eventArr[idx] == "HitDodge"  || 
+		eventArr[idx] == "Slash+Dodge" || 
+		eventArr[idx] == "HitSlash+Dodge" || 
+		eventArr[idx] == "Bash+Dodge"):
 			change_dodge_dir();
 			if(!host.on_floor() && 
 			((!hit && !attack_state.hop) && 
@@ -212,7 +217,7 @@ func parse_attack(idx):
 			eventArr[idx] = "Pierce";
 		$ChargePierceTimer.start();
 		slottedPierce = true;
-	if(Input.is_action_just_released("pierce_attack") && slottedPierce && (eventArr[idx] == "Pierce" || eventArr[idx] == "HoldPierce"|| eventArr[idx] == "UpgradedPierce")):
+	if(Input.is_action_just_released("Pierce_Attack") && slottedPierce && (eventArr[idx] == "Pierce" || eventArr[idx] == "HoldPierce"|| eventArr[idx] == "UpgradedPierce")):
 		combo = "";
 		$ChargePierceTimer.stop();
 		attack_type = "pierce";
@@ -227,18 +232,20 @@ func parse_attack(idx):
 			combo = "Bash";
 		eventArr[idx] = "Bash";
 		slottedBash = true;
-	if(Input.is_action_just_released("bash_attack") && slottedBash && eventArr[idx] == "Bash"):
+	if(Input.is_action_just_released("Bash_Attack") && slottedBash && eventArr[idx] == "Bash"):
 		attack_type = "bash";
 		return true;
 	
-	if(((slottedPierce && Input.is_action_pressed("slash_attack")) || (slottedSlash && Input.is_action_pressed("pierce_attack"))) && powerups.get_powerup('mana_fabric') && host.mana > 0):
+	if(((slottedPierce && Input.is_action_pressed("Slash_Attack")) || (slottedSlash && Input.is_action_pressed("Pierce_Attack"))) && 
+	powerups.get_powerup('mana_fabric') && host.mana > 0):
 		combo = "";
 		eventArr[idx] = "RangedSlash";
 		$ChargePierceTimer.stop();
 		$ChargeSlashTimer.stop();
 		attack_type = "slash";
 		return true;
-	if(((slottedPierce && Input.is_action_pressed("bash_attack")) || (slottedBash && Input.is_action_pressed("pierce_attack"))) && powerups.get_powerup('rock_rune') && host.mana > 0):
+	if(((slottedPierce && Input.is_action_pressed("Bash_Attack")) || (slottedBash && Input.is_action_pressed("Pierce_Attack"))) && 
+	powerups.get_powerup('rock_rune') && host.mana > 0):
 		combo = "";
 		eventArr[idx] = "RangedBash";
 		$ChargePierceTimer.stop();
@@ -248,33 +255,49 @@ func parse_attack(idx):
 	return false;
 
 func Slash_pressed():
-	return enterSlash || Input.is_action_just_pressed("slash_attack");
+	return enterSlash || Input.is_action_just_pressed("Slash_Attack");
 
 func Dodge_pressed():
-	return enterDodge || Input.is_action_just_pressed("dodge") || abs(Input.get_joy_axis(0,2)) >= .5 || abs(Input.get_joy_axis(0,3)) >= .5;
+	return enterDodge || Input.is_action_just_pressed("Dodge") || abs(Input.get_joy_axis(0,2)) >= .5 || abs(Input.get_joy_axis(0,3)) >= .5;
 
 func Pierce_pressed():
-	return enterPierce || Input.is_action_just_pressed("pierce_attack");
+	return enterPierce || Input.is_action_just_pressed("Pierce_Attack");
 
 func Bash_pressed():
-	return enterBash || Input.is_action_just_pressed("bash_attack");
+	return enterBash || Input.is_action_just_pressed("Bash_Attack");
 
 
 ### Determines direction of attack ###
 func atk_left():
-	return Input.is_action_pressed("dleft") || Input.is_action_pressed("rleft") || Input.is_action_pressed("left") || (host.mouse_l() && host.ActiveInput == host.InputType.KEYMOUSE);
+	return (Input.is_action_pressed("Aim_Left") || 
+	Input.is_action_pressed("Dodge_Move_Left") || 
+	Input.is_action_pressed("Move_Left") || 
+	(host.mouse_l() && host.ActiveInput == host.InputType.KEYMOUSE));
 
 func atk_right():
-	return Input.is_action_pressed("dright") || Input.is_action_pressed("rright") || Input.is_action_pressed("right") || (host.mouse_r() && host.ActiveInput == host.InputType.KEYMOUSE);
+	return (Input.is_action_pressed("Aim_Right") || 
+	Input.is_action_pressed("Dodge_Move_Right") || 
+	Input.is_action_pressed("Move_Right") || 
+	(host.mouse_r() && host.ActiveInput == host.InputType.KEYMOUSE));
 
 func atk_up():
-	return Input.is_action_pressed("dup") || Input.is_action_pressed("rup") || Input.is_action_pressed("up") || (host.mouse_u() && host.ActiveInput == host.InputType.KEYMOUSE);
+	return (Input.is_action_pressed("Aim_Up") || 
+	Input.is_action_pressed("Dodge_Move_Up") || 
+	Input.is_action_pressed("Move_Up") || 
+	(host.mouse_u() && host.ActiveInput == host.InputType.KEYMOUSE));
 
 func atk_down():
-	return Input.is_action_pressed("ddown") || Input.is_action_pressed("rdown") || Input.is_action_pressed("down") || (host.mouse_d() && host.ActiveInput == host.InputType.KEYMOUSE);
+	return (Input.is_action_pressed("Aim_Down") || 
+	Input.is_action_pressed("Dodge_Move_Down") || 
+	Input.is_action_pressed("Move_Down") || 
+	(host.mouse_d() && host.ActiveInput == host.InputType.KEYMOUSE));
 
 func atk_is_dodge():
-	return (eventArr[0] == "Dodge" || eventArr[0] == "HitDodge"  || eventArr[0] == "Slash+Dodge" || eventArr[0] == "HitSlash+Dodge" || eventArr[0] == "Bash+Dodge")
+	return (eventArr[0] == "Dodge" || 
+	eventArr[0] == "HitDodge" || 
+	eventArr[0] == "Slash+Dodge" || 
+	eventArr[0] == "HitSlash+Dodge" || 
+	eventArr[0] == "Bash+Dodge")
 
 ### Handles all player input to decide what attack to trigger ###
 func set_position_vars():
@@ -427,9 +450,9 @@ func construct_attack_string():
 func attack_done():
 	host.get_node("TopAnim").playback_speed = 1;
 	if(!attack_is_saved):
-		if(!Input.is_action_pressed("slash_attack")):
+		if(!Input.is_action_pressed("Slash_Attack")):
 			chargedSlash = false;
-		if(!Input.is_action_pressed("pierce_attack")):
+		if(!Input.is_action_pressed("Pierce_Attack")):
 			chargedPierce = false;
 		clear_slotted_vars();
 	if(eventArr[0] != "Slash" && eventArr[0] != "Bash"):
@@ -459,7 +482,7 @@ func attack_done():
 	host.true_friction = host.base_friction;
 	$Attack_Instancing.clear();
 	bounce = false;
-	if(Input.is_action_pressed("ChannelLeft") && tether && host.mana > 0):
+	if(Input.is_action_pressed("Use_Mana") && tether && host.mana > 0):
 		tether = false;
 		attack_state.exit(tethering_state);
 		attack_state.get_node("ComboTimer").stop();

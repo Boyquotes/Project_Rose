@@ -29,19 +29,21 @@ func handleInput():
 	### for leaving the attack state early ###
 	if(!get_attack_pressed() && (attack_controller.interrupt || attack_controller.attack_end)):
 		if(!attack_controller.attack_is_saved):
-			if(Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("up") || Input.is_action_pressed("down")):
-				
+			if(Input.is_action_pressed("Move_Left") || 
+			Input.is_action_pressed("Move_Right") || 
+			Input.is_action_pressed("Move_Up") || 
+			Input.is_action_pressed("Move_Down")):
 				leave = true;
 			else:
 				leave = false;
 	if(get_attack_just_pressed() || get_attack_pressed() || attack_controller.attack_start):
 		leave = false;
 	if(attack_controller.dodge_interrupt || !busy):
-		if(Input.is_action_just_pressed("jump") && attack_controller.hit && !host.on_floor()):
+		if(Input.is_action_just_pressed("Jump") && attack_controller.hit && !host.on_floor()):
 			air.jump = true;
 			leave = true;
 			attack_broken = true;
-		if(Input.is_action_just_pressed("jump") && host.on_floor()):
+		if(Input.is_action_just_pressed("Jump") && host.on_floor()):
 			ground.jump = true;
 			leave = true;
 			attack_broken = true;
@@ -80,13 +82,6 @@ func execute(delta):
 				host.hspd = 0;
 	
 	attack_controller.execute(delta);
-
-func exit_g_or_a():
-	match(host.on_floor()):
-		true:
-			exit(ground)
-		false:
-			exit(air);
 
 func exit(state):
 	leave = false;

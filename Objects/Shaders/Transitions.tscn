@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/transition1.png" type="Texture" id=2]
 [ext_resource path="res://Objects/Shaders/Transitions.gd" type="Script" id=3]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "deadend"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Transitions/ColorRect:material:shader_param/cutoff")
@@ -45,7 +45,7 @@ tracks/2/keys = {
 "values": [ ExtResource( 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "start"
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Rose:enabled")
@@ -84,7 +84,7 @@ tracks/2/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -99,19 +99,19 @@ void fragment()
 	COLOR = vec4(COLOR.rgb, alpha);
 }"
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/cutoff = 0.0
 shader_param/smooth_size = 0.293
 shader_param/mask = ExtResource( 2 )
 
 [node name="Transitions" type="AnimationPlayer"]
-anims/deadend = SubResource( 4 )
-anims/start = SubResource( 3 )
+anims/deadend = SubResource( 1 )
+anims/start = SubResource( 2 )
 script = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )

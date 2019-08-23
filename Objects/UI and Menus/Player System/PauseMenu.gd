@@ -1,20 +1,23 @@
-extends PopupMenu
+extends PanelContainer
 
 func _ready():
-	add_item("Close Menu");
-	add_submenu_item("Upgrades","UpgradeMenu");
-	add_submenu_item("Controls", "ControlsMenu");
-	add_item("Main Menu(not implemented)");
-	add_item("Exit Game");
+	hide();
 
-func _on_PauseMenu_index_pressed(index):
-	match index:
-		0: 
-			hide();
-			$UpgradeMenu.hide();
-			$ControlsMenu.hide();
-			get_tree().paused = false;
-		3:
-			pass;
-		4:
-			get_tree().quit();
+func _on_CloseMenuButton_pressed():
+	hide();
+	$VBoxContainer/UpgradeMenuButton/UpgradeMenu.hide();
+	$VBoxContainer/ControlsMenuButton/ControlsMenu.hide();
+	get_tree().paused = false;
+
+func _on_MainMenuButton_pressed():
+	pass # Replace with function body.
+
+func _on_ExitGameButton_pressed():
+	get_tree().quit();
+
+func _on_UpgradeMenuButton_pressed():
+	$VBoxContainer/UpgradeMenuButton/UpgradeMenu.popup();
+
+
+func _on_ControlsMenuButton_pressed():
+	$VBoxContainer/ControlsMenuButton/ControlsMenu.popup();

@@ -69,7 +69,7 @@ func handleInput():
 			exit(attack);
 		else:
 			exit_g_or_a();
-	elif(!Input.is_action_pressed("ChannelLeft") || end):
+	elif(!Input.is_action_pressed("Use_Mana") || end):
 		launch();
 		host.change_mana(-30);
 		exit_g_or_a();
@@ -87,16 +87,16 @@ func down_wider():
 	return Input.get_joy_axis(0,1) > 0.3 || Input.get_joy_axis(0,3) > 0.3;
 
 func left():
-	return Input.is_action_just_pressed("left") || Input.is_action_just_pressed("rleft")
+	return Input.is_action_just_pressed("Move_Left") || Input.is_action_just_pressed("Dodge_Move_Left")
 
 func right():
-	return Input.is_action_just_pressed("right") || Input.is_action_just_pressed("rright")
+	return Input.is_action_just_pressed("Move_Right") || Input.is_action_just_pressed("Dodge_Move_Right")
 
 func up():
-	return Input.is_action_just_pressed("up") || Input.is_action_just_pressed("rup")
+	return Input.is_action_just_pressed("Move_Up") || Input.is_action_just_pressed("Dodge_Move_Up")
 
 func down():
-	return Input.is_action_just_pressed("down") || Input.is_action_just_pressed("rdown")
+	return Input.is_action_just_pressed("Move_Down") || Input.is_action_just_pressed("Dodge_Move_Down")
 
 func execute(delta):
 	pass;
@@ -104,13 +104,6 @@ func execute(delta):
 func launch(deg = -90):
 	for t in tethers:
 		t.launch(deg);
-
-func exit_g_or_a():
-	match(host.on_floor()):
-		true:
-			exit(ground)
-		false:
-			exit(air);
 
 func exit(state):
 	$tetherTimer.stop();

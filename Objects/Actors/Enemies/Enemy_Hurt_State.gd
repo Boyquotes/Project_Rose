@@ -1,5 +1,8 @@
 extends "res://Objects/Actors/Enemies/Enemy_State.gd"
 
+enum ATTACK_TYPE {SLASH, BASH, PIERCE, TRUE};
+var damage_type;
+
 func enter():
 	host.state = 'hurt';
 	$Damage_Timer.start();
@@ -23,12 +26,13 @@ func execute(delta):
 	pass
 
 func exit(state):
+	damage_type = null;
 	$Damage_Timer.stop();
 	.exit(state)
 	pass;
 
 func _on_Damage_Timer_timeout():
-	exit('default');
+	exit(default);
 	host.activate_fric();
 	host.activate_grav();
 	pass;

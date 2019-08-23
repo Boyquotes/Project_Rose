@@ -37,6 +37,7 @@ tracks/1/keys = {
 [node name="Area2D" parent="." index="0"]
 knockback = 75.0
 knockback_type = 2
+damage = 10
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 scale = Vector2( 1, 0.65 )

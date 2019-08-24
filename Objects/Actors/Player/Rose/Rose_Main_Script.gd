@@ -238,6 +238,7 @@ func bounce():
 	add_velocity(400,deg);
 
 func change_hp(health):
+	print(health);
 	hp += health;
 	if(hp > max_hp):
 		hp = max_hp;

@@ -4077,7 +4077,6 @@ script = ExtResource( 5 )
 position = Vector2( 0, 20 )
 scale = Vector2( 0.8, 1 )
 shape = SubResource( 47 )
-disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2

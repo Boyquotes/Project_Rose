@@ -71,7 +71,7 @@ func exit(state):
 	played = false;
 	stickVar = 5;
 	climb = false;
-	jumped = false;
+	jumped = false; 
 	going_up = false;
 	going_down = false;
 	.exit(state);

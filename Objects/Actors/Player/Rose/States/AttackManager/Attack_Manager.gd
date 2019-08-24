@@ -201,6 +201,7 @@ func parse_attack(idx):
 			if(dodge_interrupt):
 				attack_state.attack_broken = true;
 			attack_type = "dodge";
+			host.get_node("Hitbox/Hitbox").disabled = true;
 			return true;
 	
 	if(chargedPierce):
@@ -448,6 +449,7 @@ func construct_attack_string():
 				attack_str = event_prefix + "_" + combo + place;
 
 func attack_done():
+	host.get_node("Hitbox/Hitbox").disabled = false;
 	host.get_node("TopAnim").playback_speed = 1;
 	if(!attack_is_saved):
 		if(!Input.is_action_pressed("Slash_Attack")):

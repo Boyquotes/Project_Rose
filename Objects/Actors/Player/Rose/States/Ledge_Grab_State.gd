@@ -9,6 +9,7 @@ var ledge_box;
 var played = false;
 var going_up = false;
 var going_down = false;
+var jumped = false;
 
 func enter():
 	host.move_state = 'ledge_grab';
@@ -33,16 +34,15 @@ func handleInput():
 	if(Input.is_action_pressed("Move_Down") && Input.is_action_just_pressed("Jump")):
 		host.position.y += 1;
 		exit(air);
-	elif(((Input.is_action_pressed("Move_Up") && dir != host.Direction * -1) || dir == host.Direction) && 
-	Input.is_action_just_pressed("Jump") && 
+	elif(!jumped && !climb && ((Input.is_action_pressed("Move_Up") && dir != host.Direction * -1) || dir == host.Direction) && 
 	($Climbbox.get_overlapping_areas().size() == 0 && $Climbbox.get_overlapping_bodies().size() == 0)):
 		climb = true;
-	elif(Input.is_action_just_pressed("Jump")):
+	elif(!jumped && !climb && Input.is_action_just_pressed("Jump")):
+		jumped = true;
 		turn(host.Direction * -1);
 		host.vspd = -host.jspd*2/5;
 		host.hspd = host.true_mspd * host.Direction;
 		$Jump_Timer.start();
-	pass
 
 func execute(delta):
 	#Snap to ledge side
@@ -71,6 +71,7 @@ func exit(state):
 	played = false;
 	stickVar = 5;
 	climb = false;
+	jumped = false;
 	going_up = false;
 	going_down = false;
 	.exit(state);

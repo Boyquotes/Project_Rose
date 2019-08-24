@@ -10,7 +10,7 @@ func _on_CloseMenuButton_pressed():
 	get_tree().paused = false;
 
 func _on_MainMenuButton_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://Scenes/MainMenu/MainMenu.tscn")
 
 func _on_ExitGameButton_pressed():
 	get_tree().quit();

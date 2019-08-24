@@ -37,7 +37,7 @@ func enter():
 	host.vspd = 0;
 	for c in creatures:
 		c.states['stun'].true_time = time;
-		c.states[c.state].exit('stun');
+		c.states[c.state].exit(c.states['stun']);
 		c.deactivate_grav();
 		c.deactivate_fric();
 		c.hspd = 0;

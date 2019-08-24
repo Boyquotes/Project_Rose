@@ -544,7 +544,11 @@ func set_interrupt():
 	follow_up = true;
 
 func _on_ChargeSlashTimer_timeout():
+	
 	chargedSlash = true;
 
 func _on_ChargePierceTimer_timeout():
 	chargedPierce = true;
+
+func _on_ChargedSlashTimer_timeout():
+	pass # Replace with function body.

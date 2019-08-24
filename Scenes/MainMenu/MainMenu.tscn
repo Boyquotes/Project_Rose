@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/MainMenu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://audio/effects/menu_move.wav" type="AudioStream" id=2]
@@ -16,13 +16,11 @@
 [ext_resource path="res://audio/music/menu.wav" type="AudioStream" id=14]
 [ext_resource path="res://Assets/8-Bit Madness.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://Menu Items/VolumeController.tscn" type="PackedScene" id=16]
-[ext_resource path="res://volume.gd" type="Script" id=17]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 15 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "New Anim"
+[sub_resource type="Animation" id=2]
 length = 6.0
 loop = true
 step = 0.25
@@ -51,8 +49,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "start"
+[sub_resource type="Animation" id=3]
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite3:modulate")
@@ -170,7 +167,7 @@ margin_right = 512.0
 margin_bottom = 50.0
 rect_scale = Vector2( 3, 3 )
 rect_pivot_offset = Vector2( 256, 0 )
-custom_fonts/normal_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center][color=red]Rose And Thorn"
 text = "Rose And Thorn"
@@ -180,20 +177,19 @@ margin_top = 38.0
 margin_right = 512.0
 margin_bottom = 80.0
 rect_pivot_offset = Vector2( 256, 0 )
-custom_fonts/normal_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center][color=red]Tech Demo 2"
 text = "Tech Demo 2"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-"anims/New Anim" = SubResource( 1 )
+"anims/New Anim" = SubResource( 2 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-anims/start = SubResource( 2 )
+anims/start = SubResource( 3 )
 
 [node name="volumeController" parent="." instance=ExtResource( 16 )]
 position = Vector2( 41.1771, 7.33431 )
-script = ExtResource( 17 )
 [connection signal="mouse_entered" from="Sprite/StartButton" to="." method="_on_StartButton_mouse_entered"]
 [connection signal="pressed" from="Sprite/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Sprite/patreonButton" to="." method="_on_patreonButton_pressed"]

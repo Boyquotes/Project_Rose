@@ -32,7 +32,11 @@ func _input(event):
 	if(listening):
 		var eventString = parse_event(event);
 		if(eventString != ""):
-			UserSettings.replace_keybinding(action,listen_button.get_index(),event);
+			if(listen_button.get_index()) == InputMap.get_action_list(action).size():
+				UserSettings.add_keybinding(action,event);
+			else:
+				UserSettings.replace_keybinding(action,listen_button.get_index(),event);
+			get_child(get_child_count()-1).disabled = false;
 			listen_button.text = eventString;
 			listening = false;
 			listen_button = null;
@@ -52,16 +56,21 @@ func on_button_pressed():
 	for idx in get_child_count():
 		if(get_child(idx).pressed):
 			if(idx == get_child_count() - 1 && get_child_count() < 10):
+				get_child(idx).disabled = true;
 				var button = Button.new();
 				add_child(button);
 				button.text = "add new input";
 				get_child(idx).text = "null";
 				init_button(button);
+				listen_for_input(idx);
 			else:
-				get_child(idx).text = "Listening for input..."
-				listen_button = get_child(idx);
-				listening = true;
-				emit_signal("disable_all");
+				listen_for_input(idx);
+
+func listen_for_input(idx):
+	get_child(idx).text = "Listening for input..."
+	listen_button = get_child(idx);
+	listening = true;
+	emit_signal("disable_all");
 
 func parse_event(event : InputEvent):
 	

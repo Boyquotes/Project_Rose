@@ -3,22 +3,22 @@
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/HitBoxParent.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/TetherSpear.png" type="Texture" id=2]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 [node name="TetherSpear" type="RigidBody2D"]
 collision_layer = 0
 collision_mask = 0
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 4
+collision_mask = 40
 script = ExtResource( 1 )
 knockback = 200.0
 knockback_type = 2

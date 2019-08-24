@@ -49,6 +49,7 @@ hide_on_checkable_item_selection = false
 script = ExtResource( 3 )
 
 [node name="ControlsMenuButton" type="Button" parent="PauseMenu/VBoxContainer"]
+editor/display_folded = true
 margin_top = 48.0
 margin_right = 1266.0
 margin_bottom = 68.0
@@ -600,7 +601,7 @@ script = ExtResource( 8 )
 margin_top = 72.0
 margin_right = 1266.0
 margin_bottom = 92.0
-text = "Exit To Main Menu (not implemented)"
+text = "Exit To Main Menu"
 
 [node name="ExitGameButton" type="Button" parent="PauseMenu/VBoxContainer"]
 margin_top = 96.0

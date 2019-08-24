@@ -31,7 +31,6 @@ func _ready():
 	true_friction = base_friction;
 	true_mspd = base_mspd;
 	hp = max_hp;
-	print(max_hp);
 	### default movement controller vars ###
 	#1 = right, -1 = left
 	Direction = 1;
@@ -59,7 +58,6 @@ var first = false;
 func animate(animator, anim, cont = true):
 	animator.stop(cont);
 	animator.play(anim);
-	pass;
 
 func Kill():
 	#TODO: death anims and effects

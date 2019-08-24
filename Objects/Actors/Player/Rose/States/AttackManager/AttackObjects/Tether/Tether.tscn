@@ -78,8 +78,6 @@ texture = ExtResource( 2 )
 [node name="TetherSpear" parent="." instance=ExtResource( 3 )]
 
 [node name="Area2D" parent="TetherSpear" index="1"]
-collision_layer = 2
-collision_mask = 40
 knockback = 250.0
 
 [node name="CollisionPolygon2D" parent="TetherSpear/Area2D" index="0"]

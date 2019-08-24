@@ -93,6 +93,9 @@ func exit(state):
 	attack_controller.eventArr = ["current_event", "saved_event"];
 	attack_controller.clear_slotted_vars();
 	host.true_mspd = host.base_mspd;
+	host.activate_grav();
+	host.activate_fric();
+	host.normalize_grav();
 	.exit(state);
 
 func _on_ComboTimer_timeout():

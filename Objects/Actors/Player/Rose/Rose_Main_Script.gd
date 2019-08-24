@@ -262,3 +262,6 @@ func _on_manaTimer_timeout():
 
 func _on_UpgradeMenu_update_powerup(idx,activate):
 	$Powerups.powerups_idx[idx] = activate;
+
+func animate(animator, anim, cont = true):
+	.animate(animator, anim, cont);

@@ -5,12 +5,16 @@ const USER_SETTINGS_PATH = "user://user_settings.cfg"
 
 const KEY_BINDING_SECTION = "key_binding"
 
+const UPGRADES_SECTION = "upgrades"
+
 var _user_settings
 
 func _ready():
 	load_settings()
 	if not _user_settings.has_section(KEY_BINDING_SECTION):
 		_create_default_key_bindings()
+	#if not _user_settings.has_section(UPGRADES_SECTION):
+	#	_create_default_upgrades()
 	_load_key_bindings()
 
 func load_settings():
@@ -35,16 +39,23 @@ func get_keybindings(action):
     
 func replace_keybinding(action, idx, input):
 	var previous = InputMap.get_action_list(action)
-	previous[idx] = input
+	previous[idx] = input;
 	_user_settings.set_value(KEY_BINDING_SECTION, action, previous)
 	save_settings()
 	_load_key_bindings()
-    
+
+func add_keybinding(action, input):
+	var previous = InputMap.get_action_list(action)
+	previous.push_back(input);
+	_user_settings.set_value(KEY_BINDING_SECTION, action, previous)
+	save_settings()
+	_load_key_bindings()
+
 func _create_default_key_bindings():
 	for idx in InputMap.get_actions().size():
 		_user_settings.set_value(KEY_BINDING_SECTION, InputMap.get_actions()[idx], InputMap.get_action_list(InputMap.get_actions()[idx]))
 	save_settings()
-        
+ 
 func _load_key_bindings():
 	var bindings = _user_settings.get_section_keys(KEY_BINDING_SECTION)
 	for binding in bindings:
@@ -53,3 +64,10 @@ func _load_key_bindings():
 		var inputs = _user_settings.get_value(KEY_BINDING_SECTION, binding)
 		for input in inputs:
 			InputMap.action_add_event(binding, input)
+"""
+func _create_default_upgrades():
+	
+
+func add_upgrade(upgrade, idx, activated):
+	for
+	_user_settings.set_value"""

@@ -3904,7 +3904,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=44]
 length = 0.4
-loop = true
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -3940,7 +3939,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=45]
 length = 0.4
-loop = true
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -4006,12 +4004,12 @@ extents = Vector2( 10, 2 )
 [node name="Rose" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
-base_mspd = 200.0
-jspd = 400.0
+base_mspd = 250.0
+jspd = 450.0
 tag = "Player"
 enabled = false
 base_gravity = 20.0
-g_max = 300.0
+g_max = 350.0
 
 [node name="Powerups" type="Node2D" parent="."]
 pause_mode = 2
@@ -4267,6 +4265,7 @@ autostart = true
 [node name="manaTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+[connection signal="animation_finished" from="TopAnim" to="Movement_States/Move_In_Air" method="_on_TopAnim_animation_finished"]
 [connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_area_entered"]
 [connection signal="timeout" from="Camera2D/StopTimer" to="Camera2D" method="_on_StopTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Move_On_Ground/Jump_Timer" to="Movement_States/Move_On_Ground" method="_on_JumpTimer_timeout"]

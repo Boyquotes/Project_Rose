@@ -11,6 +11,7 @@ var doneUp = false;
 var doneDown = false;
 var jump = false;
 var cutoff = false;
+var transitioned = false;
 
 onready var ledge_cast_R = host.get_node("ledge_cast_right");
 onready var ledge_cast_L = host.get_node("ledge_cast_left");
@@ -28,7 +29,7 @@ func handleAnimation():
 		land = true;
 		host.animate(host.get_node("TopAnim"),"land", false);
 	elif(!land):
-		if(host.vspd > -300 && host.vspd < host.g_max/2):
+		if((cutoff && !transitioned) || (host.vspd > -250 && !transitioned)):
 			if(abs(host.hspd) > 0):
 				host.animate(host.get_node("TopAnim"),"up_to_down_moving", false);
 			else:
@@ -51,9 +52,11 @@ func handleInput():
 	if(get_attack_just_pressed()):
 		exit(attack);
 		return;
-	if(jumped && !Input.is_action_pressed("Jump") && !cutoff):
+	print(host.vspd)
+	if(jumped && !Input.is_action_pressed("Jump") && host.vspd < 0):
+		
 		cutoff = true;
-		host.vspd += host.jspd/2;
+		host.vspd += 60;
 	
 	if(Input.is_action_pressed("Jump") && powerups.glide):
 		host.g_max = host.g_max_temp / 3;
@@ -111,6 +114,7 @@ func exit(state):
 	doneDown = false;
 	jumped = false;
 	cutoff = false;
+	transitioned = false;
 	.exit(state);
 	pass
 
@@ -124,3 +128,8 @@ func _on_Land_Timer_timeout():
 
 func _on_Jump_Timer_timeout():
 	jump = false;
+
+
+func _on_TopAnim_animation_finished(anim_name):
+	if(anim_name == "up_to_down_moving" || anim_name == "up_to_down_idle"):
+		transitioned = true;

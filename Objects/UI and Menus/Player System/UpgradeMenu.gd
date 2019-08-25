@@ -15,7 +15,11 @@ func _ready():
 	add_check_item("Hurricane Rune: Not implemented yet");
 	add_check_item("Breaker Rune: Not implemented yet");
 	add_check_item("Huntress Rune: Not implemented yet");
+	for idx in get_item_count():
+		var switch = GameFlags.powerups.values()[idx]
+		set_item_checked(idx, switch);
 
 func _on_PopupMenu_index_pressed(index):
 	set_item_checked(index, !is_item_checked(index));
+	UserSettings.set_upgrade(GameFlags.powerups.keys()[index], is_item_checked(index));
 	emit_signal("update_powerup",index, is_item_checked(index));

@@ -1,0 +1,616 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Objects/UI and Menus/Player System/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://Objects/UI and Menus/Player System/UpgradeMenu.gd" type="Script" id=2]
+[ext_resource path="res://Objects/UI and Menus/Player System/Input_List.gd" type="Script" id=3]
+[ext_resource path="res://Objects/UI and Menus/Player System/Padded_Label.gd" type="Script" id=4]
+[ext_resource path="res://Objects/UI and Menus/Player System/ActionName.gd" type="Script" id=5]
+[ext_resource path="res://Objects/UI and Menus/Player System/Padded_Action_Label.gd" type="Script" id=6]
+[ext_resource path="res://Objects/UI and Menus/Player System/Control_Input_Buttons.gd" type="Script" id=7]
+
+[node name="OptionsMenu" type="PanelContainer"]
+anchor_right = 1.0
+margin_right = -740.0
+margin_bottom = 300.0
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 533.0
+margin_bottom = 293.0
+
+[node name="CloseMenuButton" type="Button" parent="VBoxContainer"]
+margin_right = 526.0
+margin_bottom = 20.0
+text = "Close Options Menu"
+
+[node name="UpgradeMenuButton" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 526.0
+margin_bottom = 44.0
+text = "Upgrades"
+
+[node name="UpgradeMenu" type="PopupMenu" parent="VBoxContainer/UpgradeMenuButton"]
+margin_left = 66.0188
+margin_top = 64.6984
+margin_right = 1346.02
+margin_bottom = 84.6984
+mouse_filter = 1
+hide_on_item_selection = false
+hide_on_checkable_item_selection = false
+script = ExtResource( 2 )
+
+[node name="ControlsMenuButton" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 526.0
+margin_bottom = 68.0
+text = "Controls"
+
+[node name="ControlsMenu" type="Popup" parent="VBoxContainer/ControlsMenuButton"]
+visible = true
+margin_top = -48.0
+margin_right = 750.0
+margin_bottom = 252.0
+
+[node name="ControlsPanel" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu"]
+margin_right = 750.0
+margin_bottom = 300.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 743.0
+margin_bottom = 293.0
+
+[node name="InputActionList" type="VBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer"]
+margin_right = 286.0
+margin_bottom = 666.0
+custom_constants/separation = 5
+script = ExtResource( 3 )
+hostpath = NodePath("../../../../../../..")
+
+[node name="HeaderHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_right = 286.0
+margin_bottom = 14.0
+custom_constants/separation = 150
+
+[node name="InputActionHeader" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/HeaderHBox"]
+margin_right = 48.0
+margin_bottom = 14.0
+text = "Actions"
+align = 1
+script = ExtResource( 4 )
+
+[node name="InputButtonHeader" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/HeaderHBox"]
+margin_left = 198.0
+margin_right = 286.0
+margin_bottom = 14.0
+text = "Input Buttons"
+align = 1
+
+[node name="DefaultButton" type="Button" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+margin_top = 19.0
+margin_right = 286.0
+margin_bottom = 39.0
+text = "Reset to Defaults"
+
+[node name="ActionElementPanel" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+margin_top = 44.0
+margin_right = 286.0
+margin_bottom = 72.0
+script = ExtResource( 5 )
+Action_Name = "Move_Left"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel2" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 77.0
+margin_right = 286.0
+margin_bottom = 105.0
+script = ExtResource( 5 )
+Action_Name = "Move_Right"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel2/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel2/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel3" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 110.0
+margin_right = 286.0
+margin_bottom = 138.0
+script = ExtResource( 5 )
+Action_Name = "Move_Up"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel3"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel3/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel3/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel4" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 143.0
+margin_right = 286.0
+margin_bottom = 171.0
+script = ExtResource( 5 )
+Action_Name = "Move_Down"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel4"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel4/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel4/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel5" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 176.0
+margin_right = 286.0
+margin_bottom = 204.0
+script = ExtResource( 5 )
+Action_Name = "Jump"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel5"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel5/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel5/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel6" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 209.0
+margin_right = 286.0
+margin_bottom = 237.0
+script = ExtResource( 5 )
+Action_Name = "Dodge"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel6"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel6/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel6/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel7" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 242.0
+margin_right = 286.0
+margin_bottom = 270.0
+script = ExtResource( 5 )
+Action_Name = "Dodge_Move_Left"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel7"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel7/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel7/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel8" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 275.0
+margin_right = 286.0
+margin_bottom = 303.0
+script = ExtResource( 5 )
+Action_Name = "Dodge_Move_Right"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel8"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel8/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel8/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel9" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 308.0
+margin_right = 286.0
+margin_bottom = 336.0
+script = ExtResource( 5 )
+Action_Name = "Dodge_Move_Up"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel9"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel9/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel9/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel10" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 341.0
+margin_right = 286.0
+margin_bottom = 369.0
+script = ExtResource( 5 )
+Action_Name = "Dodge_Move_Down"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel10"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel10/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel10/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel11" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 374.0
+margin_right = 286.0
+margin_bottom = 402.0
+script = ExtResource( 5 )
+Action_Name = "Slash_Attack"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel11"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel11/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel11/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel12" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 407.0
+margin_right = 286.0
+margin_bottom = 435.0
+script = ExtResource( 5 )
+Action_Name = "Pierce_Attack"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel12"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel12/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel12/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel13" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 440.0
+margin_right = 286.0
+margin_bottom = 468.0
+script = ExtResource( 5 )
+Action_Name = "Bash_Attack"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel13"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel13/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel13/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel14" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 473.0
+margin_right = 286.0
+margin_bottom = 501.0
+script = ExtResource( 5 )
+Action_Name = "Aim_Left"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel14"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel14/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel14/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel15" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 506.0
+margin_right = 286.0
+margin_bottom = 534.0
+script = ExtResource( 5 )
+Action_Name = "Aim_Right"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel15"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel15/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel15/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel16" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 539.0
+margin_right = 286.0
+margin_bottom = 567.0
+script = ExtResource( 5 )
+Action_Name = "Aim_Up"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel16"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel16/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel16/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel17" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 572.0
+margin_right = 286.0
+margin_bottom = 600.0
+script = ExtResource( 5 )
+Action_Name = "Aim_Down"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel17"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel17/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel17/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel19" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 605.0
+margin_right = 286.0
+margin_bottom = 633.0
+script = ExtResource( 5 )
+Action_Name = "Use_Mana"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel19"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel19/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel19/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+
+[node name="ActionElementPanel20" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+editor/display_folded = true
+margin_top = 638.0
+margin_right = 286.0
+margin_bottom = 666.0
+script = ExtResource( 5 )
+Action_Name = "Focus"
+
+[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel20"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 279.0
+margin_bottom = 21.0
+custom_constants/separation = 75
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel20/ActionHBox"]
+margin_bottom = 14.0
+grow_horizontal = 0
+script = ExtResource( 6 )
+
+[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel20/ActionHBox"]
+margin_left = 75.0
+margin_right = 75.0
+margin_bottom = 14.0
+script = ExtResource( 7 )
+[connection signal="pressed" from="VBoxContainer/CloseMenuButton" to="." method="_on_CloseMenuButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpgradeMenuButton" to="." method="_on_UpgradeMenuButton_pressed"]
+[connection signal="index_pressed" from="VBoxContainer/UpgradeMenuButton/UpgradeMenu" to="VBoxContainer/UpgradeMenuButton/UpgradeMenu" method="_on_PopupMenu_index_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsMenuButton" to="." method="_on_ControlsMenuButton_pressed"]
+[connection signal="disable_all" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel/ActionHBox/InputButtonList" method="_on_disable_all"]
+[connection signal="enable_all" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel/ActionHBox/InputButtonList" method="_on_enable_all"]
+[connection signal="pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/DefaultButton" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList" method="_on_DefaultButton_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel2/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel2/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel3/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel3/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel4/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel4/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel5/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel5/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel6/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel6/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel7/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel7/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel8/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel8/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel9/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel9/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel10/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel10/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel11/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel11/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel12/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel12/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel13/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel13/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel14/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel14/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel15/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel15/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel16/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel16/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel17/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel17/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel19/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel19/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
+[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel20/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel20/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]

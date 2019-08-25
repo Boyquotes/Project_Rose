@@ -16,6 +16,7 @@ func _process(delta):
 			started = false;
 			can_exit = false;
 		if(Input.is_action_just_pressed("Pause") && !get_tree().paused):
+			$PauseMenu/VBoxContainer/CloseMenuButton.grab_focus()
 			get_tree().paused = true;
 			$PauseMenu.show();
 		elif(can_exit && ((Input.is_action_just_pressed("ui_cancel") || Input.is_action_just_pressed("Pause")) && get_tree().paused)):
@@ -26,15 +27,7 @@ func _process(delta):
 		#elif((Input.is_action_just_pressed("ui_cancel") || Input.is_action_just_pressed("Pause")) && get_tree().paused):
 		#	print(get_focus_owner());
 		#	get_focus_owner().hide();
-#TODO:
-#Create pause menu on pause action
-#Pause menu should:
-	#Allow player to edit inputs
-		#InputMap singleton will be needed for this
-	#Allow player to exit the game to menu
-	#Allow player to quit game
-	#Allow player to adjust game volume
-	#Temporarily allow player to set different upgrades
+#TODO: Volume control
 
 
 func _on_Pause_System_set_disabled(disabled):

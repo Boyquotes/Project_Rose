@@ -43,6 +43,7 @@ script = ExtResource( 2 )
 knockback = 200.0
 attack_type = 1
 absorbing = false
+damage = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )

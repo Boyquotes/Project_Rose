@@ -5,7 +5,7 @@ const USER_SETTINGS_PATH = "user://user_settings.cfg"
 
 const KEY_BINDING_SECTION = "key_binding"
 
-const UPGRADES_SECTION = "upgrades"
+const GAMEFLAGS_SECTION = "game_flags"
 
 var _user_settings
 
@@ -13,9 +13,10 @@ func _ready():
 	load_settings()
 	if not _user_settings.has_section(KEY_BINDING_SECTION):
 		_create_default_key_bindings()
-	#if not _user_settings.has_section(UPGRADES_SECTION):
-	#	_create_default_upgrades()
+	if not _user_settings.has_section(GAMEFLAGS_SECTION):
+		_create_game_flags();
 	_load_key_bindings()
+	_load_upgrades()
 
 func load_settings():
 	# We create an empty file if not present to avoid error while loading settings
@@ -64,10 +65,21 @@ func _load_key_bindings():
 		var inputs = _user_settings.get_value(KEY_BINDING_SECTION, binding)
 		for input in inputs:
 			InputMap.action_add_event(binding, input)
-"""
-func _create_default_upgrades():
-	
 
-func add_upgrade(upgrade, idx, activated):
-	for
-	_user_settings.set_value"""
+func _create_game_flags():
+	for idx in GameFlags.powerups.keys().size():
+		_user_settings.set_value(GAMEFLAGS_SECTION, GameFlags.powerups.keys()[idx], GameFlags.powerups.values()[idx])
+	save_settings()
+
+func set_upgrade(upgrade, activated):
+	var previous = GameFlags.powerups;
+	previous[upgrade] = activated;
+	_user_settings.set_value(GAMEFLAGS_SECTION, upgrade, activated);
+	save_settings();
+	_load_upgrades()
+
+func _load_upgrades():
+	var upgrades = _user_settings.get_section_keys(GAMEFLAGS_SECTION)
+	for upgrade in upgrades:
+		var switch = _user_settings.get_value(GAMEFLAGS_SECTION, upgrade)
+		GameFlags.powerups[upgrade] = switch;

@@ -87,6 +87,7 @@ func exit(state):
 	leave = false;
 	busy = false;
 	attack_broken = false;
+	attack_controller.clear_save_vars();
 	attack_controller.clear_slotted_vars();
 	attack_controller.animate = false;
 	attack_controller.combo = "";

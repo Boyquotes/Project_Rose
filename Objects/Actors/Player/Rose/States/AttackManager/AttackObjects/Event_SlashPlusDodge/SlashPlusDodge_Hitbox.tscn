@@ -32,7 +32,10 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[node name="HitBoxParent" index="0" instance=ExtResource( 1 )]
+[node name="HitBoxParent" instance=ExtResource( 1 )]
+
+[node name="Area2D" parent="." index="0"]
+damage = 15
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 polygon = PoolVector2Array( 8, 20, -8, 20, -50, 4, -50, -4, -8, -20, 8, -20, 50, -4, 50, 4 )

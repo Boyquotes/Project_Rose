@@ -37,11 +37,12 @@ tracks/1/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[node name="Pierce" index="0" instance=ExtResource( 1 )]
+[node name="Pierce" instance=ExtResource( 1 )]
 
 [node name="Area2D" parent="." index="0"]
 script = ExtResource( 2 )
 hit_limit = 1
+damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( 128, 0 )

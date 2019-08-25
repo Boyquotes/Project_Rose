@@ -31,6 +31,9 @@ onready var powerups_idx = {
 var glide;
 
 func _ready():
+	for idx in powerups_idx.size():
+		var switch = GameFlags.powerups.values()[idx]
+		powerups_idx[idx] = switch;
 	glide = get_powerup('mana_fabric') && get_powerup('reinforced_fabric');
 
 func _process(delta):

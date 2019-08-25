@@ -39,7 +39,7 @@ tile_data = PoolIntArray( -1245141, 0, 0, -1179605, 0, 0, -1048617, 0, 0, -11140
 
 [node name="Rose" parent="." instance=ExtResource( 5 )]
 editor/display_folded = true
-position = Vector2( -820.42, -102.079 )
+position = Vector2( -811.64, -87.9067 )
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2( 93.7379, -225.891 )
@@ -67,6 +67,17 @@ position = Vector2( 558.027, -389.113 )
 
 [node name="Woodeater_Worker8" parent="Node2D" instance=ExtResource( 6 )]
 position = Vector2( 1006.33, -88.4832 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -914.82
+margin_top = -151.072
+margin_right = -668.82
+margin_bottom = -69.0715
+text = "by the way you can press pause
+(escape or start on controller)
+
+theres a controls menu there,
+ and also an upgrades menu and stuff"
 [connection signal="hit_zero" from="CanvasLayer/Player System" to="Rose" method="_on_Player_System_hit_zero"]
 [connection signal="update_powerup" from="CanvasLayer/Pause System/PauseMenu/VBoxContainer/UpgradeMenuButton/UpgradeMenu" to="Rose" method="_on_UpgradeMenu_update_powerup"]
 [connection signal="focus_changed" from="Rose" to="CanvasLayer/Player System" method="_on_Rose_focus_changed"]

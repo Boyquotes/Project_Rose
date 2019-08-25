@@ -1,7 +1,7 @@
 extends "res://Objects/Actors/Actor.gd"
 
 onready var actionTimer = get_node("Action_Timer");
-onready var player = get_tree().get_root().get_children()[1].get_node("Rose");
+onready var player = get_tree().get_root().get_node("Test/Rose");
 
 #range which the enemy attacks
 export(float) var attack_range = 50;

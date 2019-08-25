@@ -124,6 +124,7 @@ func handleInput():
 		attack_state.attack_broken = false;
 		eventArr[0] = eventArr[1];
 		combo += eventArr[1];
+		attack_is_saved = false;
 		set_position_vars();
 	if(!attack_state.busy && !started_save):
 		if(parse_attack(0)):
@@ -188,7 +189,8 @@ func parse_attack(idx):
 			(eventArr[idx] != "Bash+Dodge" || bash_plus_dodge_procs >= max_bash_plus_dodge_procs))
 			):
 				started_save = false;
-				eventArr[idx] = "current_event";
+				eventArr[0] = "current_event";
+				eventArr[1] = "saved_event";
 				clear_slotted_vars();
 				enterDodge = false;
 				attack_done();
@@ -318,12 +320,15 @@ func set_position_vars():
 	else:
 		place = "_Air";
 	if(eventArr[0] == "Slash"):
-		if(dir == "_Hor"):
-			vdir = "";
 		if(host.on_floor()):
 			if(vdir == "_Down"):
 				dir = "_Hor";
 				vdir = "";
+			if(dir == "_Hor"):
+				vdir = "";
+		else:
+			if(vdir == "_Up" || vdir == "_Down"):
+				dir = "";
 	if(eventArr[0] == "ChargedSlash"):
 		if(host.on_floor()):
 			if(vdir == "_Down"):
@@ -435,7 +440,6 @@ func construct_attack_string():
 	if(input_testing):
 		attack_str = event_prefix + "_" + combo+dir+vdir+place;
 	else:
-		
 		if(powerups.get_powerup('quick_mechanism') && (eventArr[0] == "Slash" || eventArr[0] == "ChargedSlash")):
 			if(eventArr[0] == "ChargedSlash"):
 				combo += "Quick" + dir + vdir;
@@ -506,6 +510,11 @@ func clear_slotted_vars():
 func clear_charged_vars():
 	chargedSlash = false;
 	chargedPierce = false;
+
+func clear_save_vars():
+	started_save = false;
+	attack_is_saved = false;
+	save_event = false;
 
 func on_hit(col):
 	if(tether):

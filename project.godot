@@ -16,12 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Project_Rose"
-run/main_scene="res://Scenes/Test_Scene.tscn"
+run/main_scene="res://Scenes/MainMenu/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 UserSettings="*res://user_settings.gd"
+GameFlags="*res://game_flags.gd"
 
 [debug]
 

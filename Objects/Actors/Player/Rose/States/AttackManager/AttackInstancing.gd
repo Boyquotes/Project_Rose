@@ -122,7 +122,7 @@ func BashPlusDodge():
 	set_rot(hitNode[hitNode.size()-2]);
 	hitNode[hitNode.size()-1].scale.x = host.Direction;
 	set_rot(hitNode[hitNode.size()-1]);
-	hitNode[hitNode.size()-2].init(.3);
+	hitNode[hitNode.size()-2].init(.25);
 	hitNode[hitNode.size()-1].init(.2);
 	host.change_mana(-40);
 

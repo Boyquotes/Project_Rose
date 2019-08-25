@@ -1,16 +1,17 @@
 [gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Objects/UI and Menus/Player System/Player System.gd" type="Script" id=1]
-[ext_resource path="res://Prototyping/hptexture.png" type="Texture" id=2]
-[ext_resource path="res://Prototyping/petal-3462233_960_720.png" type="Texture" id=3]
-[ext_resource path="res://Prototyping/1.png" type="Texture" id=4]
-[ext_resource path="res://Prototyping/2.png" type="Texture" id=5]
-[ext_resource path="res://Prototyping/3.png" type="Texture" id=6]
-[ext_resource path="res://Prototyping/4.png" type="Texture" id=7]
-[ext_resource path="res://Prototyping/manatexture.png" type="Texture" id=8]
-[ext_resource path="res://Prototyping/bubble.png" type="Texture" id=9]
-[ext_resource path="res://Prototyping/focustexture.png" type="Texture" id=10]
-[ext_resource path="res://Prototyping/whitepettle.png" type="Texture" id=11]
+[ext_resource path="res://Design and Prototypes/hptexture.png" type="Texture" id=2]
+[ext_resource path="res://Design and Prototypes/petal-3462233_960_720.png" type="Texture" id=3]
+[ext_resource path="res://Design and Prototypes/1.png" type="Texture" id=4]
+[ext_resource path="res://Design and Prototypes/2.png" type="Texture" id=5]
+[ext_resource path="res://Design and Prototypes/3.png" type="Texture" id=6]
+[ext_resource path="res://Design and Prototypes/4.png" type="Texture" id=7]
+[ext_resource path="res://Design and Prototypes/manatexture.png" type="Texture" id=8]
+[ext_resource path="res://Design and Prototypes/bubble.png" type="Texture" id=9]
+[ext_resource path="res://Design and Prototypes/focustexture.png" type="Texture" id=10]
+[ext_resource path="res://Design and Prototypes/whitepettle.png" type="Texture" id=11]
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.714801, 0.99639, 1 )

@@ -201,7 +201,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.03, 0.04, 0.05, 0.06, 0.07, 0.25, 0.26 ),
+"times": PoolRealArray( 0.03, 0.04, 0.05, 0.06, 0.07, 0.35, 0.36 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -1310,7 +1310,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 0.21, 0.35, 0.6 ),
+"times": PoolRealArray( 0, 0.21, 0.22, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -3307,6 +3307,20 @@ tracks/2/keys = {
 "method": "Climb"
 } ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites"), 0.1 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
 
 [sub_resource type="Animation" id=35]
 resource_name = "death"
@@ -4140,10 +4154,8 @@ script = ExtResource( 10 )
 [node name="Attack" type="Node2D" parent="Movement_States"]
 script = ExtResource( 11 )
 attack_dashing = true
-mobile = false
 
 [node name="Attack_Controller" type="Node2D" parent="Movement_States/Attack"]
-editor/display_folded = true
 script = ExtResource( 12 )
 
 [node name="ChargeSlashTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller"]

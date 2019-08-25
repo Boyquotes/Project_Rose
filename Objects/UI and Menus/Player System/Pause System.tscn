@@ -130,7 +130,6 @@ margin_bottom = 14.0
 script = ExtResource( 8 )
 
 [node name="ActionElementPanel2" type="PanelContainer" parent="PauseMenu/VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
-editor/display_folded = true
 margin_top = 77.0
 margin_right = 286.0
 margin_bottom = 105.0

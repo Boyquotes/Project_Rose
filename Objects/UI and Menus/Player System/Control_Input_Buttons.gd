@@ -8,8 +8,7 @@ onready var host = get_parent().get_parent().get_parent().get_parent();
 onready var action = get_parent().get_parent().Action_Name
 
 func init():
-	for child in get_children():
-		child.queue_free();
+	disabled = false;
 	for event in InputMap.get_action_list(action):
 		var button = Button.new();
 		add_child(button);
@@ -19,6 +18,24 @@ func init():
 	add_child(button);
 	button.text = "add new input";
 	init_button(button);
+	for idx in get_child_count():
+		if(get_child_count() <= 1):
+			pass;
+		elif(idx == 0):
+			get_child(idx).focus_neighbour_right = get_child(idx+1).get_path();
+		elif(idx == get_child_count()-1):
+			get_child(idx).focus_neighbour_right = get_child(0).get_path();
+			get_child(idx).focus_neighbour_left = get_child(idx-1).get_path();
+		else:
+			get_child(idx).focus_neighbour_right = get_child(idx+1).get_path();
+			get_child(idx).focus_neighbour_left = get_child(idx-1).get_path();
+
+func set_reinit():
+	disabled = true;
+	get_parent().get_node("initTimer").start();
+
+func on_timeout():
+	init();
 
 func init_button(button : Button):
 	button.connect("pressed",self,"on_button_pressed");
@@ -41,7 +58,7 @@ func _input(event):
 			listening = false;
 			listen_button = null;
 			emit_signal("enable_all");
-	else:
+	elif(!disabled):
 		if(get_child(get_child_count()-1).is_hovered()):
 			if(event.get_class() == "InputEventMouseButton"):
 				if(event.button_index == BUTTON_RIGHT && event.pressed):
@@ -50,6 +67,9 @@ func _input(event):
 			pressed = false;
 
 func _on_HBoxContainer_right_mouse_button_pressed():
+	if(get_child(get_child_count()-3)):
+		get_child(get_child_count()-3).focus_neighbour_right = get_child(get_child_count()-1).get_path();
+		get_child(get_child_count()-1).focus_neighbour_left = get_child(get_child_count()-3).get_path();
 	get_child(get_child_count()-2).queue_free();
 
 func on_button_pressed():
@@ -61,6 +81,11 @@ func on_button_pressed():
 				add_child(button);
 				button.text = "add new input";
 				get_child(idx).text = "null";
+				get_child(idx).focus_neighbour_right = get_child(idx+1).get_path();
+				get_child(idx).focus_neighbour_left = get_child(idx-1).get_path();
+				get_child(idx+1).focus_neighbour_left = get_child(idx).get_path();
+				get_child(idx+1).focus_neighbour_right = get_child(0).get_path();
+				get_child(idx-1).focus_neighbour_right = get_child(idx).get_path();
 				init_button(button);
 				listen_for_input(idx);
 			else:

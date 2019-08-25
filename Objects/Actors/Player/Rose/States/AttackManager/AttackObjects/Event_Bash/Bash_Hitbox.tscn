@@ -37,12 +37,16 @@ tracks/1/keys = {
 [node name="Area2D" parent="." index="0"]
 knockback = 75.0
 attack_type = 1
+damage = 5
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 scale = Vector2( 1, 0.65 )
 polygon = PoolVector2Array( -17.8738, 41.3643, 4.90739, 27.4992, 18.6762, 9.78261, 17.6749, -5.62311, 9.41356, -16.022, 2.90464, -58.3877, 28.4396, -52.6105, 49.7188, -24.4951, 54.7256, 14.4043, 32.4452, 47.5267, -0.850502, 55.9998 )
 
 [node name="Node2D" parent="Area2D" index="1" instance=ExtResource( 2 )]
+
+[node name="Particles2D" parent="Area2D/Node2D" index="0"]
+emitting = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 "anims/New Anim" = SubResource( 1 )

@@ -52,7 +52,7 @@ func handleInput():
 	if(get_attack_just_pressed()):
 		exit(attack);
 		return;
-	print(host.vspd)
+	
 	if(jumped && !Input.is_action_pressed("Jump") && host.vspd < 0):
 		
 		cutoff = true;

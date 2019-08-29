@@ -1,7 +1,31 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Objects/Actors/Enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Enemies/EnemyHitbox.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float cutoff : hint_range(0.0, 0.5);
+uniform float smooth_size : hint_range(0.0,0.5);
+
+void fragment()
+{
+	float r_value = texture(TEXTURE, UV).r;
+	float g_value = texture(TEXTURE, UV).g;
+	float b_value = texture(TEXTURE, UV).b;
+	float r = smoothstep(cutoff, cutoff + smooth_size, r_value * (1.0 - smooth_size) + smooth_size);
+	float g = smoothstep(cutoff, cutoff + smooth_size, g_value * (1.0 - smooth_size) + smooth_size);
+	float b = smoothstep(cutoff, cutoff + smooth_size, b_value * (1.0 - smooth_size) + smooth_size);
+	COLOR = vec4(r, g, b, texture(TEXTURE, UV).a);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 6 )
+shader_param/cutoff = 0.5
+shader_param/smooth_size = 0.5
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 8
@@ -13,7 +37,12 @@ max_hp = 35
 
 [node name="animator" type="AnimationPlayer" parent="."]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="shaderAnimator" type="AnimationPlayer" parent="."]
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Sprites"]
+material = SubResource( 2 )
 
 [node name="Action_Timer" type="Timer" parent="."]
 wait_time = 0.1

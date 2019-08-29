@@ -7,7 +7,7 @@ func enter():
 	pass;
 
 func handleAnimation():
-	pass;
+	host.animate(host.get_node("animator"),"move", false);
 
 func handleInput(event):
 	"""

@@ -3,6 +3,9 @@ extends "res://Objects/Actors/Actor.gd"
 onready var actionTimer = get_node("Action_Timer");
 onready var player = get_tree().get_root().get_node("Test/Rose");
 
+export(int) var stun_threshold = 10;
+var stun_damage = 0;
+
 #range which the enemy attacks
 export(float) var attack_range = 50;
 #range which the enemy chases
@@ -24,7 +27,6 @@ func _ready():
 	decision = 0;
 	wait = 0;
 	state = 'default';
-	pass
 
 func execute(delta):
 	#assumes the enemy is stored in a Node2D

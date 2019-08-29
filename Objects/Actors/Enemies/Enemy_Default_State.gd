@@ -7,11 +7,10 @@ func enter():
 	host.state = 'default';
 
 func handleAnimation():
-	pass;
-
-func handleInput(event):
-	if(host.canSeePlayer()):
-		exit(chase);
+	if(host.hspd == 0):
+		host.animate(host.get_node("animator"),"idle", false);
+	else:
+		host.animate(host.get_node("animator"),"move", false);
 
 func execute(delta):
 	if(host.on_floor()):
@@ -56,10 +55,8 @@ func go():
 func move():
 	if(!halt):
 		host.hspd = tspd * host.Direction;
-		host.get_node("animator").playback_speed = abs(host.hspd/host.true_mspd);
 	else:
 		host.hspd = 0;
-		host.get_node("animator").playback_speed = 1;
 
 func exit(state):
 	halt = false;

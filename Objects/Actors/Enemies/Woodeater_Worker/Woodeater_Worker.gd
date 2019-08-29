@@ -1,5 +1,7 @@
 extends "res://Objects/Actors/Enemies/Enemy.gd"
 
+export(bool) var injured = false;
+
 func _ready():
 	states = {
 	'default' : $States/Default,
@@ -8,12 +10,27 @@ func _ready():
 	'stun' : $States/Stun
 	};
 	._ready();
+	if(injured):
+		break_shell();
 
 func Kill():
 	enabled = false;
-	$Sprite.visible = false;
-	var part = preload("res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Death_Particle.tscn").instance();
+	$Sprites.visible = false;
+	if(!injured):
+		break_shell();
+	var part = preload("res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Death_Particle.tscn").instance();
 	get_parent().add_child(part);
 	part.global_position = global_position;
 	part.scale.x = Direction;
 	.Kill();
+
+func break_shell():
+	injured = true;
+	var part = preload("res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Shell_Particle.tscn").instance();
+	get_parent().add_child(part);
+	part.global_position = global_position;
+	part.scale.x = Direction;
+	
+	$States/Hurt.vulnerable[0] = true;
+	$States/Hurt.armor = [0,0,0,0];
+	$Sprites/Sprite.texture = load("res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Injured_Prototype.png");

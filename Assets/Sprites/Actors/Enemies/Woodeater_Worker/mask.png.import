@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Woodeater_Worker.png-9df33dda82cc9baff074472998caa77e.stex"
+path="res://.import/mask.png-ea0b3a4b68c7bea0d10ff2bce839b055.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/Woodeater_Worker.png"
-dest_files=[ "res://.import/Woodeater_Worker.png-9df33dda82cc9baff074472998caa77e.stex" ]
+source_file="res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/mask.png"
+dest_files=[ "res://.import/mask.png-ea0b3a4b68c7bea0d10ff2bce839b055.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

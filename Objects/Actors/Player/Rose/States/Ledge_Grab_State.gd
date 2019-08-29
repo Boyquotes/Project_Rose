@@ -31,7 +31,7 @@ func handleAnimation():
 
 func handleInput():
 	var dir = get_input_direction();
-	if(Input.is_action_pressed("Move_Down") && Input.is_action_just_pressed("Jump")):
+	if(!jumped && !climb && Input.is_action_pressed("Move_Down")):
 		host.position.y += 1;
 		exit(air);
 	elif(!jumped && !climb && ((Input.is_action_pressed("Move_Up") && dir != host.Direction * -1) || dir == host.Direction) && 

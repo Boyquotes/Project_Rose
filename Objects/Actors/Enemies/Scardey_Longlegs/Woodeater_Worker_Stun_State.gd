@@ -9,3 +9,4 @@ func handleInput(event):
 
 func continue_stun():
 	.continue_stun();
+	hurt.get_node("Damage_Timer").wait_time += $stunTimer.time_left;

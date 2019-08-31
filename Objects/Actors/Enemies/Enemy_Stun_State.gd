@@ -33,6 +33,7 @@ func exit(state):
 
 func continue_stun():
 	stunned = false;
+	hurt.get_node("Damage_Timer").wait_time += $stunTimer.time_left;
 
 func _on_stunTimer_timeout():
 	stunned = false;

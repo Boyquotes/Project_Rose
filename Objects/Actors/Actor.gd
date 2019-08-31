@@ -5,7 +5,8 @@ export(int) var max_hp = 100;
 #warning-ignore-
 export(float) var base_mspd = 100;
 var true_mspd;
-export(float) var jspd = 50;
+export(float) var base_jspd = 50;
+var true_jspd = 50;
 export(String) var tag = "NPC";
 export(bool) var enabled = true;
 
@@ -30,6 +31,7 @@ func _ready():
 	true_gravity = base_gravity;
 	true_friction = base_friction;
 	true_mspd = base_mspd;
+	true_jspd = base_jspd;
 	hp = max_hp;
 	### default movement controller vars ###
 	#1 = right, -1 = left

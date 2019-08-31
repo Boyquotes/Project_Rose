@@ -1,5 +1,6 @@
 extends "res://Objects/Actors/Enemies/Enemy_State.gd"
 
+export(float) var Min_Movement_Denom = 10.0
 var halt = false;
 var tspd = 0;
 var jumped = false;
@@ -35,10 +36,10 @@ func execute(delta):
 	#TODO: create timer so they dont immediately turn towards the wall again.
 	if(host.get_node("Casts").get_node("jump_cast_feet").is_colliding() && !jumped):
 		
-		var jump = randi() % 5 + 1
-		if(!host.get_node("Casts").get_node("jump_cast_head").is_colliding() && jump > 2 && host.jspd > 0):
+		var jump = 3#randi() % 5 + 1
+		if(!host.get_node("Casts").get_node("jump_cast_head").is_colliding() && jump > 2 && host.base_jspd > 0):
 			jumped = true;
-			host.vspd = -host.jspd;
+			host.vspd = -host.true_jspd;
 		else:
 			turn_around();
 
@@ -46,7 +47,7 @@ func go():
 	if(!halt):
 		host.actionTimer.wait_time = host.wait;
 		host.actionTimer.start();
-		tspd = rand_range(host.true_mspd/10, host.true_mspd);
+		tspd = rand_range(host.true_mspd/Min_Movement_Denom, host.true_mspd);
 	else:
 		host.actionTimer.wait_time = host.wait+1;
 		host.actionTimer.start();

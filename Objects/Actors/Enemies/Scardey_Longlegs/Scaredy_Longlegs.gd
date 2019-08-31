@@ -1,5 +1,7 @@
 extends "res://Objects/Actors/Enemies/Enemy.gd"
 
+export(bool) var injured = false;
+
 func _ready():
 	states = {
 	'default' : $States/Default,

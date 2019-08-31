@@ -1,22 +1,23 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
-[ext_resource path="res://Objects/Actors/Player/Rose/Powerups.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_top.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_bot.png" type="Texture" id=4]
-[ext_resource path="res://Objects/Actors/Player/Rose/Hitbox.gd" type="Script" id=5]
-[ext_resource path="res://Objects/Actors/Player/Rose/Shake.gd" type="Script" id=6]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_On_Ground_State.gd" type="Script" id=7]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_In_Air_State.gd" type="Script" id=8]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Ledge_Grab_State.gd" type="Script" id=9]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Vault_State.gd" type="Script" id=10]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=11]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=12]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=13]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Tethering_State.gd" type="Script" id=14]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Hurt_State.gd" type="Script" id=15]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/small.png" type="Texture" id=16]
-[ext_resource path="res://Objects/Actors/Player/Rose/Cape.gd" type="Script" id=17]
+[ext_resource path="res://Objects/Actors/Player/Rose/StatusEffects.gd" type="Script" id=2]
+[ext_resource path="res://Objects/Actors/Player/Rose/Powerups.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_top.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_bot.png" type="Texture" id=5]
+[ext_resource path="res://Objects/Actors/Player/Rose/Hitbox.gd" type="Script" id=6]
+[ext_resource path="res://Objects/Actors/Player/Rose/Shake.gd" type="Script" id=7]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_On_Ground_State.gd" type="Script" id=8]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_In_Air_State.gd" type="Script" id=9]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Ledge_Grab_State.gd" type="Script" id=10]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Vault_State.gd" type="Script" id=11]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=12]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=13]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=14]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Tethering_State.gd" type="Script" id=15]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Hurt_State.gd" type="Script" id=16]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/small.png" type="Texture" id=17]
+[ext_resource path="res://Objects/Actors/Player/Rose/Cape.gd" type="Script" id=18]
 
 [sub_resource type="Animation" id=1]
 length = 0.6
@@ -4005,15 +4006,22 @@ extents = Vector2( 10, 2 )
 collision_layer = 2
 script = ExtResource( 1 )
 base_mspd = 250.0
-jspd = 450.0
+base_jspd = 450.0
 tag = "Player"
 enabled = false
 base_gravity = 20.0
 g_max = 350.0
 
+[node name="StatusEffects" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="slowTimer" type="Timer" parent="StatusEffects"]
+wait_time = 0.5
+one_shot = true
+
 [node name="Powerups" type="Node2D" parent="."]
 pause_mode = 2
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="TopAnim" type="AnimationPlayer" parent="."]
 anims/Closed_Fan_QuickX_Hor = SubResource( 1 )
@@ -4063,15 +4071,16 @@ anims/up_to_down_idle = SubResource( 44 )
 anims/up_to_down_moving = SubResource( 45 )
 
 [node name="Sprites" type="Node2D" parent="."]
+editor/display_folded = true
 z_index = 1
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
 z_index = 1
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="SpriteFan" type="Sprite" parent="Sprites/Sprite"]
 z_index = -1
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="Position2D" type="Position2D" parent="Sprites/Sprite"]
 position = Vector2( 0, -8 )
@@ -4080,10 +4089,11 @@ position = Vector2( 0, -8 )
 shape = SubResource( 46 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+editor/display_folded = true
 position = Vector2( 0, -20 )
 collision_layer = 2
 collision_mask = 8
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
@@ -4095,7 +4105,7 @@ pause_mode = 2
 editor/display_folded = true
 current = true
 zoom = Vector2( 0.5, 0.5 )
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="StopTimer" type="Timer" parent="Camera2D"]
 pause_mode = 2
@@ -4107,7 +4117,7 @@ one_shot = true
 
 [node name="Move_On_Ground" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Move_On_Ground"]
 one_shot = true
@@ -4118,7 +4128,7 @@ one_shot = true
 
 [node name="Move_In_Air" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 8 )
+script = ExtResource( 9 )
 
 [node name="Land_Timer" type="Timer" parent="Movement_States/Move_In_Air"]
 one_shot = true
@@ -4133,7 +4143,7 @@ cast_to = Vector2( 15, 0 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
 position = Vector2( 14, -40 )
@@ -4147,14 +4157,14 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Vault" type="Node2D" parent="Movement_States"]
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="Attack" type="Node2D" parent="Movement_States"]
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 attack_dashing = true
 
 [node name="Attack_Controller" type="Node2D" parent="Movement_States/Attack"]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 
 [node name="ChargeSlashTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller"]
 wait_time = 0.5
@@ -4169,7 +4179,7 @@ one_shot = true
 
 [node name="Attack_Instancing" type="Node2D" parent="Movement_States/Attack/Attack_Controller"]
 z_index = 1
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 
 [node name="particleTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller/Attack_Instancing"]
 one_shot = true
@@ -4180,14 +4190,14 @@ one_shot = true
 
 [node name="Tethering" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 14 )
+script = ExtResource( 15 )
 
 [node name="tetherTimer" type="Timer" parent="Movement_States/Tethering"]
 wait_time = 1.5
 one_shot = true
 
 [node name="Hurt" type="Node2D" parent="Movement_States"]
-script = ExtResource( 15 )
+script = ExtResource( 16 )
 
 [node name="hurtTimer" type="Timer" parent="Movement_States/Hurt"]
 wait_time = 0.75
@@ -4236,10 +4246,10 @@ shape = SubResource( 50 )
 editor/display_folded = true
 width = 20.0
 default_color = Color( 1, 0.4, 0.4, 1 )
-texture = ExtResource( 16 )
-texture_mode = 1634623853
+texture = ExtResource( 17 )
+texture_mode = 2
 round_precision = 1
-script = ExtResource( 17 )
+script = ExtResource( 18 )
 targetPath = NodePath("../Sprites/Sprite/Position2D")
 
 [node name="WindxTimer" type="Timer" parent="Cape"]
@@ -4265,6 +4275,8 @@ autostart = true
 [node name="manaTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+[connection signal="slow" from="StatusEffects" to="StatusEffects" method="_on_StatusEffects_slow"]
+[connection signal="timeout" from="StatusEffects/slowTimer" to="StatusEffects" method="_on_slowTimer_timeout"]
 [connection signal="animation_finished" from="TopAnim" to="Movement_States/Move_In_Air" method="_on_TopAnim_animation_finished"]
 [connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_area_entered"]
 [connection signal="timeout" from="Camera2D/StopTimer" to="Camera2D" method="_on_StopTimer_timeout"]

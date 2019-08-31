@@ -87,3 +87,8 @@ func canSeePlayer():
 	elif((global_position.distance_to(player.global_position) <= chase_range)):
 		return true;
 	return false;
+
+func Kill():
+	enabled = false;
+	$Sprites.visible = false;
+	.Kill();

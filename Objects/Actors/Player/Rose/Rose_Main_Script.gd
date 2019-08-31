@@ -51,7 +51,6 @@ func _input(event):
 	elif(event.get_class() == "InputEventJoypadMotion" || event.get_class() == "InputEventJoypadButton"):
 		ActiveInput = InputType.GAMEPAD;
 
-
 func execute(delta):
 	### DEBUGGING, NEED TO REMOVE ###
 	if(Input.is_action_just_pressed("soft_reset")):
@@ -209,7 +208,7 @@ func tween_rotation_to_origin(var node: NodePath, time: float = .1):
 	$Tween.start();
 
 func jump():
-	vspd = -jspd;
+	vspd = -true_jspd;
 
 func tween_scale(node: NodePath, new: Vector2, time: float = .1):
 	$Tween.interpolate_property(get_node(node),"scale",get_node(node).scale,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)

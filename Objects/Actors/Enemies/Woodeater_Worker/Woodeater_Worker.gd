@@ -14,11 +14,9 @@ func _ready():
 		break_shell();
 
 func Kill():
-	enabled = false;
-	$Sprites.visible = false;
 	if(!injured):
 		break_shell();
-	var part = preload("res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Death_Particle.tscn").instance();
+	var part = preload("./Death_Particle.tscn").instance();
 	get_parent().add_child(part);
 	part.global_position = global_position;
 	part.scale.x = Direction;

@@ -44,6 +44,7 @@ func _ready():
 	g_max_temp = g_max;
 	$Camera2D.current = true;
 	move_states[move_state].enter();
+	$PhysicsCollider.disabled = false;
 
 func _input(event):
 	if(event.get_class() == "InputEventMouseButton" || event.get_class() == "InputEventKey" || Input.get_connected_joypads().size() == 0):
@@ -222,6 +223,12 @@ func tween_sprite_rot(var node: NodePath, time: float = .1):
 		deg = $Movement_States/Attack/Attack_Controller.attack_degrees;
 	$Tween.stop(get_node(node));
 	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,deg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	$Tween.start();
+
+func tween_global_position(new: Vector2, time: float = .1):
+	new.x = new.x * Direction;
+	new = global_position + new;
+	$Tween.interpolate_property(self,"global_position",global_position,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 
 func change_grav(g):

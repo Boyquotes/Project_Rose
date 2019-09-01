@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Objects/Actors/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Worker.gd" type="Script" id=2]
@@ -6,10 +6,11 @@
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Default_State.gd" type="Script" id=4]
 [ext_resource path="res://Objects/Actors/Enemies/Enemy_Chase_State.gd" type="Script" id=5]
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Hurt_State.gd" type="Script" id=6]
-[ext_resource path="res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Stun_State.gd" type="Script" id=7]
+[ext_resource path="res://Objects/Actors/Enemies/Enemy_Stun_State.gd" type="Script" id=7]
 [ext_resource path="res://Objects/Actors/Enemies/DamagePlayerHitbox.gd" type="Script" id=8]
 
-[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=46]
 extents = Vector2( 18, 10 )
 
 [sub_resource type="Animation" id=2]
@@ -100,13 +101,17 @@ shader = SubResource( 6 )
 shader_param/cutoff = 0.5
 shader_param/smooth_size = 0.5
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 18, 10 )
+
 [node name="Woodeater_Worker" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 base_mspd = 75.0
+base_jspd = 200.0
 stun_threshold = 5
 
 [node name="Physics_Collider" parent="." index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 46 )
 
 [node name="animator" parent="." index="1"]
 anims/hurt = SubResource( 2 )
@@ -157,12 +162,12 @@ script = ExtResource( 8 )
 damage = 10
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DamagePlayerHitbox" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 8 )
 
 [node name="HitBox" parent="." index="8"]
 collision_layer = 7168
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 8 )
 [connection signal="timeout" from="States/Hurt/Damage_Timer" to="States/Hurt" method="_on_Damage_Timer_timeout"]
 [connection signal="timeout" from="States/Stun/stunTimer" to="States/Stun" method="_on_stunTimer_timeout"]

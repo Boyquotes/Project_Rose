@@ -48,7 +48,6 @@ func phys_execute(delta):
 	velocity.x = hspd;
 	velocity.y = vspd;
 	velocity = move_and_slide(velocity,floor_normal);
-	
 	#no gravity acceleration when on floor
 	if(on_floor()):
 		velocity.y = 0
@@ -61,7 +60,7 @@ func phys_execute(delta):
 	#cap gravity
 	if(vspd > 900):
 		vspd = 900;
-	if(is_on_ceiling()):
+	if(is_on_ceiling() && base_jspd > 0):
 		vspd = 500;
 	
 	if(fric_activated && !moving):
@@ -71,9 +70,6 @@ func phys_execute(delta):
 			hspd += friction;
 		if((hspd <= 44 && hspd > 0) || (hspd >= 44 && hspd < 0)):
 			hspd = 0;
-	pass;
-
-var done_knockback = false;
 
 func makeDecision():
 	var dec = randi() % 100 + 1;

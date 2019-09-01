@@ -12,13 +12,16 @@ var knockback_type;
 var damage_area;
 var mitigation;
 var knockback;
+var animated = false;
 
 func enter():
 	host.deactivate_fric();
 	host.deactivate_grav();
 	host.state = 'hurt';
 	$Damage_Timer.start();
-	damage = damage + damage * .5 * int(vulnerable[damage_type]) - armor[damage_type];
+	
+	damage = damage - armor[damage_type] + damage * .5 * int(vulnerable[damage_type]);
+	
 	if(damage < 0):
 		damage = 0;
 	match(damage_type):
@@ -33,7 +36,10 @@ func enter():
 	host.hp -= damage;
 
 func handleAnimation():
-	pass;
+	if(!animated):
+		animated = true;
+		host.animate(host.get_node("animator"),"hurt", false);
+		host.animate(host.get_node("shaderAnimator"),"hurt", true);
 
 func handleInput(event):
 	if(host.stun_damage >= host.stun_threshold):
@@ -50,6 +56,7 @@ func execute(delta):
 		host.vspd -= 3 * sign(host.vspd);
 
 func exit(state):
+	.exit(state);
 	if(state != hurt):
 		damage_type = null;
 		damage = 0;
@@ -58,6 +65,7 @@ func exit(state):
 		mitigation = null;
 		knockback = null;
 	$Damage_Timer.stop();
+	animated = false;
 	.exit(state)
 
 func _on_Damage_Timer_timeout():

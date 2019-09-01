@@ -1,17 +1,5 @@
 extends "../Enemy_Hurt_State.gd"
 
-var animated = false;
-
-func handleAnimation():
-	if(!animated):
-		animated = true;
-		host.animate(host.get_node("animator"),"hurt", false);
-		host.animate(host.get_node("shaderAnimator"),"hurt", true);
-
-func exit(state):
-	animated = false;
-	.exit(state);
-
 func slash_damage():
 	if(host.injured):
 		normal_knockback();

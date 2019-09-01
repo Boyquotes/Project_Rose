@@ -66,6 +66,7 @@ func execute(delta):
 	pass
 
 func exit(state):
+	host.get_node("PhysicsCollider").disabled = false;
 	host.grav_activated = true;
 	hstop = false;
 	played = false;
@@ -80,12 +81,8 @@ func exit(state):
 func done_ledge_grab():
 	played = true;
 
-func Climb(node: NodePath):
-	var sprite = host.get_node(node)
-	host.global_position = $Climbbox.global_position;
-	sprite.global_position = host.global_position;
-	exit(ground)
-	pass
+func Climb():
+	exit(ground);
 
 
 func _on_Jump_Timer_timeout():

@@ -41,6 +41,7 @@ tracks/1/keys = {
 
 [node name="Area2D" parent="." index="0"]
 script = ExtResource( 2 )
+attack_type = 2
 hit_limit = 1
 damage = 5
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/StatusEffects.gd" type="Script" id=2]
@@ -3265,25 +3265,13 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=34]
 length = 0.3
 step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Sprite:position")
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 14, -40 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -3294,18 +3282,32 @@ tracks/1/keys = {
 "method": "tween_scale"
 } ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Ledge_Grab")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Climb"
+} ]
+}
 tracks/2/type = "method"
-tracks/2/path = NodePath("Movement_States/Ledge_Grab")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.3 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
-"method": "Climb"
+"args": [ NodePath("Sprites"), 0.1 ],
+"method": "tween_rotation_to_origin"
 } ]
 }
 tracks/3/type = "method"
@@ -3318,9 +3320,21 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites"), 0.1 ],
-"method": "tween_rotation_to_origin"
+"args": [ Vector2( 14, -40 ), 0.25 ],
+"method": "tween_global_position"
 } ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PhysicsCollider:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=35]
@@ -3994,12 +4008,9 @@ extents = Vector2( 10, 20 )
 extents = Vector2( 10, 20 )
 
 [sub_resource type="RectangleShape2D" id=48]
-extents = Vector2( 10, 20 )
-
-[sub_resource type="RectangleShape2D" id=49]
 extents = Vector2( 256, 150 )
 
-[sub_resource type="RectangleShape2D" id=50]
+[sub_resource type="RectangleShape2D" id=49]
 extents = Vector2( 10, 2 )
 
 [node name="Rose" type="KinematicBody2D"]
@@ -4142,7 +4153,6 @@ enabled = true
 cast_to = Vector2( 15, 0 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
-editor/display_folded = true
 script = ExtResource( 10 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
@@ -4150,7 +4160,7 @@ position = Vector2( 14, -40 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 48 )
+shape = SubResource( 46 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Ledge_Grab"]
 wait_time = 0.1
@@ -4210,7 +4220,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 49 )
+shape = SubResource( 48 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0
@@ -4232,7 +4242,7 @@ position = Vector2( 10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_R"]
-shape = SubResource( 50 )
+shape = SubResource( 49 )
 
 [node name="Ledgebox_L" type="Area2D" parent="."]
 editor/display_folded = true
@@ -4240,7 +4250,7 @@ position = Vector2( -10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_L"]
-shape = SubResource( 50 )
+shape = SubResource( 49 )
 
 [node name="Cape" type="Line2D" parent="."]
 editor/display_folded = true

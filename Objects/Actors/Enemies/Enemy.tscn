@@ -3,7 +3,7 @@
 [ext_resource path="res://Objects/Actors/Enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Enemies/EnemyHitbox.gd" type="Script" id=2]
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -23,13 +23,13 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
-shader = SubResource( 6 )
+shader = SubResource( 1 )
 shader_param/cutoff = 0.5
 shader_param/smooth_size = 0.5
 
 [node name="Enemy" type="KinematicBody2D"]
-collision_layer = 8
-collision_mask = 49
+collision_layer = 16
+collision_mask = 33
 script = ExtResource( 1 )
 max_hp = 35
 

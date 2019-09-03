@@ -1,4 +1,5 @@
 extends Node2D
+var attached = false;
 
 func init(time):
 	var anim = $AnimationPlayer.get_animation("New Anim");

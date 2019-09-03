@@ -3925,16 +3925,13 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 1.6, 0.2 ), 0.2 ],
-"method": "tween_scale"
-}, {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.2 ],
-"method": "tween_scale"
+"args": [ NodePath("Sprites/Sprite"), 0.2 ],
+"method": "tween_rotation_to_origin"
 } ]
 }
 tracks/1/type = "method"
@@ -4210,7 +4207,7 @@ one_shot = true
 script = ExtResource( 16 )
 
 [node name="hurtTimer" type="Timer" parent="Movement_States/Hurt"]
-wait_time = 0.75
+wait_time = 1.25
 one_shot = true
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]

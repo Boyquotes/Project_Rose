@@ -484,7 +484,6 @@ func attack_done():
 	host.normalize_grav();
 	host.activate_grav();
 	host.activate_fric();
-	host.true_gravity = host.base_gravity;
 	host.true_friction = host.base_friction;
 	$Attack_Instancing.clear();
 	bounce = false;
@@ -531,6 +530,7 @@ func on_hit(col):
 				host.activate_grav();
 				hit = false;
 			elif(!host.on_floor() && !attack_state.attack_dashing):
+				#NOTE: This might mess up; if the grav screws up again this is probably at fault
 				attack_state.hover = true;
 				host.mitigate_grav();
 

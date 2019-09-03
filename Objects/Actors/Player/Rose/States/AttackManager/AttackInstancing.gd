@@ -39,6 +39,7 @@ func initialize_hitbox_attach(hitNodeIdx):
 	host.get_parent().remove_child(hitNodeIdx);
 	get_parent().add_child(hitNodeIdx);
 	hitNodeIdx.global_position = get_parent().global_position;
+	hitNodeIdx.attached = true;
 
 func set_rot(hitNodeIdx):
 	var hitbox = get_hitbox(hitNodeIdx);
@@ -244,4 +245,7 @@ func instance_bash_QuickX_hitbox():
 	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
 
 func clear():
+	for node in hitNode:
+		if(is_instance_valid(node) && node.attached):
+			node.queue_free();
 	hitNode.clear();

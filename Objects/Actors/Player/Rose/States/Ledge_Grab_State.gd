@@ -66,7 +66,7 @@ func execute(delta):
 	pass
 
 func exit(state):
-	host.get_node("PhysicsCollider").disabled = false;
+	host.get_node("PhysicsCollider").call_deferred("set_disabled", false);
 	host.grav_activated = true;
 	hstop = false;
 	played = false;

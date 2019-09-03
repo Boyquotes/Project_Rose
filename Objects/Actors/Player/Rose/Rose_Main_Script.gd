@@ -74,6 +74,7 @@ func execute(delta):
 	hitboxLoop();
 
 func phys_execute(delta):
+	
 	_stretch_based_on_velocity();
 	#state machine
 	#print(move_state);

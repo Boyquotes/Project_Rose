@@ -9,8 +9,7 @@
 [ext_resource path="res://Objects/Actors/Enemies/Enemy_Stun_State.gd" type="Script" id=7]
 [ext_resource path="res://Objects/Actors/Enemies/DamagePlayerHitbox.gd" type="Script" id=8]
 
-
-[sub_resource type="RectangleShape2D" id=46]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 10 )
 
 [sub_resource type="Animation" id=2]
@@ -111,7 +110,7 @@ base_jspd = 200.0
 stun_threshold = 5
 
 [node name="Physics_Collider" parent="." index="0"]
-shape = SubResource( 46 )
+shape = SubResource( 1 )
 
 [node name="animator" parent="." index="1"]
 anims/hurt = SubResource( 2 )

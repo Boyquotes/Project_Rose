@@ -1,12 +1,16 @@
 extends "res://Objects/Actors/Enemies/Enemy.gd"
 
+export(float) var orbit_threshold = 50;
+
 func _ready():
 	states = {
 	'default' : $States/Default,
 	'chase' : $States/Chase,
-	'orbit' : $States/Orbit,
 	'hurt' : $States/Hurt,
-	'stun' : $States/Stun
+	'stun' : $States/Stun,
+	'orbit' : $States/Orbit,
+	'backup' : $States/Backup,
+	'attack' : $States/Attack
 	};
 	grav_activated = false;
 	._ready();

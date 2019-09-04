@@ -1,4 +1,4 @@
-extends "res://Objects/Actors/Enemies/Enemy_RandMove_Default_State.gd"
+extends "res://Objects/Actors/Enemies/Enemy_BackAndForth_Default_State.gd"
 
 onready var chase = get_parent().get_node("Chase");
 

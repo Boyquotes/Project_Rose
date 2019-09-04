@@ -13,7 +13,6 @@ export(float) var chase_range = 150;
 
 ###background_enemy_data###
 var decision;
-var wait;
 
 var states;
 var state;
@@ -25,14 +24,12 @@ var moving = false;
 ### Enemy ###
 func _ready():
 	decision = 0;
-	wait = 0;
 	state = 'default';
 
 func execute(delta):
 	#assumes the enemy is stored in a Node2D
 	if(actionTimer.time_left <= 0.1):
 		decision = makeDecision();
-	wait = rand_range(.5, 2);
 	
 	if(hp <= 0):
 		Kill();

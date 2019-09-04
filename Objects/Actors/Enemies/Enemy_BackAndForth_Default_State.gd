@@ -1,4 +1,9 @@
-extends "res://Objects/Actors/Enemies/Enemy_Default_State.gd"
+extends "res://Objects/Actors/Enemies/Enemy_State.gd"
+
+export(float) var Min_Movement_Denom = 10.0
+var halt = false;
+var tspd = 0;
+var jumped = false;
 
 func enter():
 	host.state = 'default';

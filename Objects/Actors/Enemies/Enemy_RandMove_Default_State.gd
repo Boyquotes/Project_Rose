@@ -1,17 +1,4 @@
-extends "res://Objects/Actors/Enemies/Enemy_State.gd"
-
-export(float) var Min_Movement_Denom = 10.0
-var halt = false;
-var tspd = 0;
-var jumped = false;
-func enter():
-	host.state = 'default';
-
-func handleAnimation():
-	if(host.hspd == 0):
-		host.animate(host.get_node("animator"),"idle", false);
-	else:
-		host.animate(host.get_node("animator"),"move", false);
+extends "res://Objects/Actors/Enemies/Enemy_BackAndForth_Default_State.gd"
 
 func execute(delta):
 	if(host.on_floor()):
@@ -45,11 +32,11 @@ func execute(delta):
 
 func go():
 	if(!halt):
-		host.actionTimer.wait_time = host.wait;
+		host.actionTimer.wait_time = rand_range(.5, 2);
 		host.actionTimer.start();
 		tspd = rand_range(host.true_mspd/Min_Movement_Denom, host.true_mspd);
 	else:
-		host.actionTimer.wait_time = host.wait+1;
+		host.actionTimer.wait_time = rand_range(.5, 2)+1;
 		host.actionTimer.start();
 		tspd = 0;
 
@@ -58,8 +45,3 @@ func move():
 		host.hspd = tspd * host.Direction;
 	else:
 		host.hspd = 0;
-
-func exit(state):
-	halt = false;
-	tspd = 0;
-	.exit(state)

@@ -1,7 +1,7 @@
-extends "res://Objects/Actors/Enemies/Enemy_Default_State.gd"
+extends "res://Objects/Actors/Enemies/Enemy_RandMove_Default_State.gd"
 
-onready var chase = get_parent().get_node("Chase");
 var angle = 0;
+
 func handleAnimation():
 	host.animate(host.get_node("animator"),"idle", false);
 
@@ -32,28 +32,9 @@ func execute(delta):
 		else:
 			turn_around();
 
-func go():
-	if(!halt):
-		host.actionTimer.wait_time = host.wait;
-		host.actionTimer.start();
-		tspd = rand_range(host.true_mspd/Min_Movement_Denom, host.true_mspd);
-	else:
-		host.actionTimer.wait_time = host.wait+1;
-		host.actionTimer.start();
-		tspd = 0;
-
 func move():
 	if(!halt):
 		host.hspd = cos(deg2rad(angle)) * tspd * host.Direction;
 		host.vspd = sin(deg2rad(angle)) * tspd;
 	else:
 		host.hspd = 0;
-
-func exit(state):
-	halt = false;
-	tspd = 0;
-	.exit(state)
-
-func handleInput(event):
-	if(host.canSeePlayer()):
-		exit(chase);

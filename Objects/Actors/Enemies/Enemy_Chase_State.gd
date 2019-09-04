@@ -10,11 +10,6 @@ func handleAnimation():
 	host.animate(host.get_node("animator"),"move", false);
 
 func handleInput(event):
-	"""
-	if(global_position.distance_to(host.player.global_position) <= host.attack_range && attack.on_cooldown):
-		host.hspd = 0;
-		host.velocity.x = 0;
-		exit(attack);"""
 	if(!host.canSeePlayer()):
 		exit(default);
 

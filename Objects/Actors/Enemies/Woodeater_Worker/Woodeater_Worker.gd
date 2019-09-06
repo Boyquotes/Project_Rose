@@ -5,7 +5,9 @@ export(bool) var injured = false;
 func _ready():
 	states = {
 	'default' : $States/Default,
-	'hurt' : $States/Hurt
+	'chase' : $States/Chase,
+	'hurt' : $States/Hurt,
+	'stun' : $States/Stun
 	};
 	._ready();
 	if(injured):

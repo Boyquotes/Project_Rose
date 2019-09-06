@@ -101,12 +101,12 @@ script = ExtResource( 1 )
 position = Vector2( 22, 0 )
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
-self_modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 2 )
 centered = false
 offset = Vector2( 0, 23 )
 
 [node name="Area2D" parent="Sprites/Sprite" instance=ExtResource( 3 )]
+collision_layer = 0
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Sprite/Area2D"]
@@ -114,7 +114,7 @@ position = Vector2( 16, 39 )
 shape = SubResource( 1 )
 
 [node name="Sprite2" type="Sprite" parent="Sprites"]
-self_modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0.75 )
 position = Vector2( 22, 0 )
 scale = Vector2( 1, 2 )
 texture = ExtResource( 2 )
@@ -122,6 +122,7 @@ centered = false
 offset = Vector2( 0, -4.5 )
 
 [node name="Area2D2" parent="Sprites/Sprite2" instance=ExtResource( 3 )]
+collision_layer = 0
 damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Sprite2/Area2D2"]
@@ -137,6 +138,7 @@ centered = false
 offset = Vector2( 0, -13.667 )
 
 [node name="Area2D3" parent="Sprites/Sprite3" instance=ExtResource( 3 )]
+collision_layer = 0
 damage = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Sprite3/Area2D3"]

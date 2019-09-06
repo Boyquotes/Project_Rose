@@ -7,6 +7,3 @@ func _ready():
 	$Sprites/Sprite2/Area2D2/CollisionShape2D.disabled = true;
 	$Sprites/Sprite3.self_modulate.a = 0;
 	$Sprites/Sprite3/Area2D3/CollisionShape2D.disabled = true;
-
-func cleanup():
-	queue_free();

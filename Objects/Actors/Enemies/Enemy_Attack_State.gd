@@ -11,6 +11,12 @@ func _ready():
 func enter():
 	on_cooldown = true;
 	host.state = 'attack';
+	if(host.player.global_position.x > host.global_position.x):
+		if(host.Direction != 1):
+			turn_around();
+	elif(host.player.global_position.x < host.global_position.x):
+		if(host.Direction != -1):
+			turn_around();
 
 func exit(state):
 	trigger = false;

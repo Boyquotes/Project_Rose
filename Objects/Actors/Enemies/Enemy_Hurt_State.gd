@@ -97,17 +97,17 @@ func normal_knockback():
 			host.vspd = ((sin(deg2rad(damage_area.direction)) * knockback) + tinch);
 
 func slash_damage():
-	host.hspd = cos(deg2rad(damage_area.direction)) * knockback;
+	normal_knockback();
 
 func bash_damage():
-	host.hspd = cos(deg2rad(damage_area.direction)) * knockback;
-	host.stun_damage += damage;
+	normal_knockback();
+	host.stun_damage += stun_damage;
 
 func pierce_damage():
-	host.hspd = cos(deg2rad(damage_area.direction)) * knockback;
+	normal_knockback();
 
 func true_damage():
-	host.hspd = cos(deg2rad(damage_area.direction)) * knockback;
+	normal_knockback();
 
 func stunned():
 	host.stun_damage = 0;

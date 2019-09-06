@@ -23,7 +23,7 @@ func execute(delta):
 	#TODO: create timer so they dont immediately turn towards the wall again.
 	if(host.get_node("Casts").get_node("jump_cast_feet").is_colliding() && !jumped):
 		
-		var jump = 3#randi() % 5 + 1
+		var jump = randi() % 5 + 1
 		if(!host.get_node("Casts").get_node("jump_cast_head").is_colliding() && jump > 2 && host.base_jspd > 0):
 			jumped = true;
 			host.vspd = -host.true_jspd;

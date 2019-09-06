@@ -1,16 +1,42 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Objects/Actors/Enemies/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Worker.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Prototype.png" type="Texture" id=3]
-[ext_resource path="res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Default_State.gd" type="Script" id=4]
-[ext_resource path="res://Objects/Actors/Enemies/Enemy_Chase_State.gd" type="Script" id=5]
-[ext_resource path="res://Objects/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Hurt_State.gd" type="Script" id=6]
+[ext_resource path="res://Objects/Actors/Enemies/Crickey/Crickey.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Actors/Enemies/Crickey/Crickey_Prototype.png" type="Texture" id=3]
+[ext_resource path="res://Objects/Actors/Enemies/Crickey/Crickey_Default_State.gd" type="Script" id=4]
+[ext_resource path="res://Objects/Actors/Enemies/Enemy_Hopaway_State.gd" type="Script" id=5]
+[ext_resource path="res://Objects/Actors/Enemies/Enemy_Hurt_State.gd" type="Script" id=6]
 [ext_resource path="res://Objects/Actors/Enemies/Enemy_Stun_State.gd" type="Script" id=7]
-[ext_resource path="res://Objects/Actors/Enemies/DamagePlayerHitbox.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 10 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "hurt"
@@ -42,6 +68,45 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "move"
@@ -58,6 +123,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.1, 0.9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -103,18 +180,22 @@ shader_param/smooth_size = 0.5
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 18, 10 )
 
-[node name="Woodeater_Worker" instance=ExtResource( 1 )]
+[node name="Crickey" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-base_mspd = 75.0
-base_jspd = 200.0
-stun_threshold = 5
+max_hp = 20
+base_mspd = 200.0
+base_jspd = 300.0
+base_gravity = 15.0
+chase_range = 300.0
 
 [node name="Physics_Collider" parent="." index="0"]
 shape = SubResource( 1 )
 
 [node name="animator" parent="." index="1"]
+anims/fall = SubResource( 9 )
 anims/hurt = SubResource( 2 )
 anims/idle = SubResource( 3 )
+anims/jump = SubResource( 10 )
 anims/move = SubResource( 4 )
 
 [node name="shaderAnimator" parent="." index="2"]
@@ -123,19 +204,21 @@ anims/hurt = SubResource( 5 )
 [node name="Sprite" parent="Sprites" index="0"]
 material = SubResource( 7 )
 texture = ExtResource( 3 )
+hframes = 4
+frame = 1
 
 [node name="States" type="Node2D" parent="." index="4"]
 
 [node name="Default" type="Node2D" parent="States" index="0"]
 script = ExtResource( 4 )
-Min_Movement_Denom = 2.0
 
-[node name="Chase" type="Node2D" parent="States" index="1"]
+[node name="Runaway" type="Node2D" parent="States" index="1"]
 script = ExtResource( 5 )
 
 [node name="Hurt" type="Node2D" parent="States" index="2"]
 script = ExtResource( 6 )
-armor = [ 5, 0, 5, 0 ]
+vulnerable = [ false, false, true, false ]
+armor = [ 0, 0, -15, 0 ]
 
 [node name="Damage_Timer" type="Timer" parent="States/Hurt" index="0"]
 wait_time = 0.5
@@ -155,19 +238,15 @@ cast_to = Vector2( 40, 0 )
 position = Vector2( 0, 5 )
 cast_to = Vector2( 40, 0 )
 
-[node name="DamagePlayerHitbox" type="Area2D" parent="." index="7"]
-collision_layer = 0
-collision_mask = 2
-script = ExtResource( 8 )
-damage = 10
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="DamagePlayerHitbox" index="0"]
-shape = SubResource( 8 )
-
-[node name="HitBox" parent="." index="8"]
+[node name="HitBox" parent="." index="7"]
 collision_layer = 7168
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 8 )
+
+[node name="getawayTimer" type="Timer" parent="." index="8"]
+wait_time = 5.0
+one_shot = true
 [connection signal="timeout" from="States/Hurt/Damage_Timer" to="States/Hurt" method="_on_Damage_Timer_timeout"]
 [connection signal="timeout" from="States/Stun/stunTimer" to="States/Stun" method="_on_stunTimer_timeout"]
+[connection signal="timeout" from="getawayTimer" to="." method="_on_getawayTimer_timeout"]

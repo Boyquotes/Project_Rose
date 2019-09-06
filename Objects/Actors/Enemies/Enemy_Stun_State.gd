@@ -1,13 +1,17 @@
 extends "res://Objects/Actors/Enemies/Enemy_State.gd"
-var base_time = 1;
-var true_time = 1;
+export(float) var base_time = 1;
+var true_time = 0;
 var stunned = false;
+
+func _ready():
+	true_time = base_time;
 
 func enter():
 	host.state = 'stun';
-	stunned = true;
-	if(true_time != 0):
-		$stunTimer.start(true_time);
+	if(!stunned):
+		stunned = true;
+		if(true_time != 0):
+			$stunTimer.start(true_time);
 
 func handleAnimation():
 	pass;
@@ -29,13 +33,12 @@ func exit(state):
 	if(stunned):
 		continue_stun();
 	.exit(state)
-	pass;
 
 func continue_stun():
-	stunned = false;
 	hurt.get_node("Damage_Timer").wait_time += $stunTimer.time_left;
 
 func _on_stunTimer_timeout():
+	#hurt.Armor = [0,0,0,0];
 	stunned = false;
 	true_time = base_time;
 	host.activate_grav();

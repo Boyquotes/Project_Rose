@@ -1,9 +1,10 @@
 extends Node2D
 var attached = false;
 
-func init(time):
+func init():
+	var time;
 	var anim = $AnimationPlayer.get_animation("New Anim");
-	anim.length = time;
+	time = anim.length;
 	anim.track_insert_key(0,time,{"method": "cleanup", "args": []});
 	$AnimationPlayer.play("New Anim");
 

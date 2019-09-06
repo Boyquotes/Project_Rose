@@ -1,8 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/HitBoxCleanup.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Actors/HitBoxCleanup.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/HitBoxParent.gd" type="Script" id=2]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_RangedSlash/RangedSlash_Particle.tscn" type="PackedScene" id=3]
+
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.5

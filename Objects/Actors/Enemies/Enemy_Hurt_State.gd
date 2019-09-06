@@ -7,6 +7,7 @@ export(Array, bool) var vulnerable = [false,false,false,false];
 export(Array, int) var armor = [0,0,0,0];
 var tinch = 0;
 var damage = 0;
+var stun_damage = 0;
 var damage_type;
 var knockback_type;
 var damage_area;
@@ -20,6 +21,10 @@ func enter():
 	host.state = 'hurt';
 	$Damage_Timer.start();
 	
+	if(stun.stunned):
+		stun_damage = 0;
+	else:
+		stun_damage = damage;
 	damage = damage - armor[damage_type] + damage * .5 * int(vulnerable[damage_type]);
 	
 	if(damage < 0):
@@ -60,6 +65,7 @@ func exit(state):
 	if(state != hurt):
 		damage_type = null;
 		damage = 0;
+		stun_damage = 0;
 		knockback_type = null;
 		damage_area = null;
 		mitigation = null;
@@ -70,9 +76,12 @@ func exit(state):
 
 func _on_Damage_Timer_timeout():
 	$Damage_Timer.wait_time = 0.5;
-	exit(default);
 	host.activate_fric();
 	host.activate_grav();
+	if(stun.stunned):
+		exit(stun);
+	else:
+		exit(default);
 
 func normal_knockback():
 	match(knockback_type):

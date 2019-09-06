@@ -52,12 +52,12 @@ func set_rot(hitNodeIdx):
 
 func SlashPlusDodge():
 	instance_SlashPlusDodge_hitbox();
-	hitNode[hitNode.size()-1].init(.4);
+	hitNode[hitNode.size()-1].init();
 	host.change_mana(-10);
 
 func Slash():
 	instance_Slash_hitbox();
-	hitNode[hitNode.size()-1].init(.2);
+	hitNode[hitNode.size()-1].init();
 	set_rot(hitNode[hitNode.size()-1]);
 
 func SlashSlash():
@@ -68,16 +68,16 @@ func SlashSlash():
 
 func ChargedSlash_Down_Ground():
 	instance_ChargedSlash_Down_Ground_hitbox();
-	hitNode[hitNode.size()-1].init(.3);
+	hitNode[hitNode.size()-1].init();
 
 func ChargedSlash_Down_Ground_Quick():
 	instance_ChargedSlash_Down_Ground_hitbox();
 	hitNode[hitNode.size()-1].scale /= 2;
-	hitNode[hitNode.size()-1].init(.3);
+	hitNode[hitNode.size()-1].init();
 
 func ChargedSlash_Hor():
 	instance_ChargedSlash_Hor_hitbox();
-	hitNode[hitNode.size()-1].init(.3);
+	hitNode[hitNode.size()-1].init();
 
 func Bash_Directional():
 	instance_Bash_Directional_hitbox();
@@ -93,11 +93,11 @@ func Bash_Directional():
 		hitNode[hitNode.size()-1].scale *= Vector2(-1,1);
 	if(round(hitbox.global_rotation_degrees) == -90 && host.Direction == -1):
 		hitNode[hitNode.size()-1].scale *= Vector2(-1,1);
-	hitNode[hitNode.size()-1].init(.4);
+	hitNode[hitNode.size()-1].init();
 
 func Bash():
 	instance_Bash_hitbox();
-	hitNode[hitNode.size()-1].init(.3);
+	hitNode[hitNode.size()-1].init();
 
 func BashBash():
 	Bash();
@@ -109,12 +109,12 @@ func BashBash():
 func Pierce():
 	instance_Pierce_hitbox();
 	set_rot(hitNode[hitNode.size()-1]);
-	hitNode[hitNode.size()-1].init(.25);
+	hitNode[hitNode.size()-1].init();
 
 func UpgradedPierce():
 	instance_UpgradedPierce_hitbox();
 	set_rot(hitNode[hitNode.size()-1]);
-	hitNode[hitNode.size()-1].init(.25);
+	hitNode[hitNode.size()-1].init();
 	host.change_mana(-10);
 
 func BashPlusDodge():
@@ -123,8 +123,8 @@ func BashPlusDodge():
 	set_rot(hitNode[hitNode.size()-2]);
 	hitNode[hitNode.size()-1].scale.x = host.Direction;
 	set_rot(hitNode[hitNode.size()-1]);
-	hitNode[hitNode.size()-2].init(.25);
-	hitNode[hitNode.size()-1].init(.2);
+	hitNode[hitNode.size()-2].init();
+	hitNode[hitNode.size()-1].init();
 	host.change_mana(-40);
 
 ### RANGED ATTACKS ###
@@ -133,14 +133,14 @@ func RangedSlash():
 	instance_RangedSlash();
 	set_rot(hitNode[hitNode.size()-1]);
 	throw(250);
-	hitNode[hitNode.size()-1].init(1.5);
+	hitNode[hitNode.size()-1].init();
 	host.change_mana(-30);
 
 func RangedBash():
 	instance_RangedBash();
 	set_rot(hitNode[hitNode.size()-1]);
 	throw(800);
-	hitNode[hitNode.size()-1].init(1);
+	hitNode[hitNode.size()-1].init();
 	host.change_mana(-30);
 
 func throw(force):

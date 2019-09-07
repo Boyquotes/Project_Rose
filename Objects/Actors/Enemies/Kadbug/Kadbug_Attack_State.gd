@@ -1,36 +1,38 @@
 extends "res://Objects/Actors/Enemies/Enemy_Attack_State.gd"
 
+onready var backoff = get_parent().get_node("Backoff");
+
 var inst;
 
 func handleAnimation():
+	host.makeDecision();
 	if(!trigger):
 		trigger = true;
-		if(1 <= host.decision && host.decision <= 50 && host.actionTimer.time_left <= 0.1):
+		host.hspd = 200 * host.Direction;
+		if(1 <= host.decision && host.decision <= 50):
 			host.animate(host.get_node("animator"),"Vslice", true);
-			$cooldownTimer.wait_time = rand_range(1,3);
+			$cooldownTimer.wait_time = rand_range(.2,1);
 			$cooldownTimer.start();
-		elif(51 <= host.decision && host.decision <= 100 && host.actionTimer.time_left <= 0.1):
+		elif(51 <= host.decision && host.decision <= 100):
 			host.animate(host.get_node("animator"),"Hslice", true);
-			$cooldownTimer.wait_time = rand_range(1,3);
+			$cooldownTimer.wait_time = rand_range(.2,1);
 			$cooldownTimer.start();
-		else:
-			trigger = false;
 
-func execute(delta):
-	pass;
+func handleInput(event):
+	if(Input.is_action_just_pressed("Jump") && host.player.on_floor()):
+		on_cooldown = false;
+		exit(backoff);
 
-
-func stomp():
-	inst = preload("./StompAttack.tscn").instance();
-	host.get_parent().add_child(inst);
-	inst.global_position = global_position + Vector2(0,-32)
+func vslice():
+	inst = preload("./vslice.tscn").instance();
+	add_child(inst);
+	inst.global_position = global_position;
 	inst.scale.x = host.Direction;
 	inst.init();
 
-func charge():
+func hslice():
 	host.deactivate_fric();
-	host.hspd = host.true_mspd * 4 * host.Direction;
-	inst = preload("./ChargeAttack.tscn").instance();
+	inst = preload("./hslice.tscn").instance();
 	add_child(inst);
 	inst.global_position = global_position;
 	inst.scale.x = host.Direction;

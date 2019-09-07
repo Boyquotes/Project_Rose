@@ -9,6 +9,4 @@ func init():
 	$AnimationPlayer.play("New Anim");
 
 func cleanup():
-	#$Area2D.rotation_degrees = 0
-	#$Area2D.inchdir = 1;
 	queue_free();

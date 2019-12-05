@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Basic_Slash_Attacks_Edit2.png" type="Texture" id=1]
+[ext_resource path="res://SliceTexture.gd" type="Script" id=2]
+[ext_resource path="res://Basic_Slash_Attacks_Edit.png" type="Texture" id=3]
+
+[sub_resource type="AnimatedTexture" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+texture = ExtResource( 1 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( 108.397, 116.285, 80.1527, 116.285, 81.6794, 104.58, 87.2774, 101.018, 75.827, 104.835, 65.9033, 117.557, 20.3562, 117.812, 21.374, 80.916, 48.0916, 45.5471, 146.565, 45.5471, 172.265, 80.6616, 173.282, 118.321, 124.936, 117.557, 109.924, 103.562, 99.4911, 100.763, 106.616, 105.344 )
+uv = PoolVector2Array( 108.397, 116.285, 80.1527, 116.285, 81.6794, 104.58, 87.2774, 101.018, 75.827, 104.835, 65.9033, 117.557, 20.3562, 117.812, 21.374, 80.916, 48.0916, 45.5471, 146.565, 45.5471, 172.265, 80.6616, 173.282, 118.321, 124.936, 117.557, 109.924, 103.562, 99.4911, 100.763, 106.616, 105.344 )
+bones = [ NodePath("Bone2D"), PoolRealArray( 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5 ), NodePath("Bone2D/Bone2D"), PoolRealArray( 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0 ) ]
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+texture = SubResource( 1 )
+skeleton = NodePath("../Skeleton2D")
+polygon = PoolVector2Array( 108.397, 116.285, 80.1527, 116.285, 81.6794, 104.58, 87.2774, 101.018, 75.827, 104.835, 65.9033, 117.557, 20.3562, 117.812, 21.374, 80.916, 48.0916, 45.5471, 146.565, 45.5471, 172.265, 80.6616, 173.282, 118.321, 124.936, 117.557, 109.924, 103.562, 99.4911, 100.763, 106.616, 105.344 )
+uv = PoolVector2Array( 108.397, 116.285, 80.1527, 116.285, 81.6794, 104.58, 87.2774, 101.018, 75.827, 104.835, 65.9033, 117.557, 20.3562, 117.812, 21.374, 80.916, 48.0916, 45.5471, 146.565, 45.5471, 172.265, 80.6616, 173.282, 118.321, 124.936, 117.557, 109.924, 103.562, 99.4911, 100.763, 106.616, 105.344 )
+bones = [ NodePath("Bone2D"), PoolRealArray( 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.5 ), NodePath("Bone2D/Bone2D"), PoolRealArray( 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0 ) ]
+script = ExtResource( 2 )
+tex = ExtResource( 3 )
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D"]
+position = Vector2( 95.1308, 115.144 )
+rest = Transform2D( 1, 0, 0, 1, 95.1308, 115.144 )
+
+[node name="Bone2D" type="Bone2D" parent="Skeleton2D/Bone2D"]
+position = Vector2( -0.0425339, -13.0401 )
+rotation = -1.56478
+rest = Transform2D( 0.00601319, -0.999982, 0.999982, 0.00601319, -0.0425339, -13.0401 )

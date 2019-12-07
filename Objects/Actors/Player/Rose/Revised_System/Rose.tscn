@@ -1,0 +1,4316 @@
+[gd_scene load_steps=68 format=2]
+
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/Rose_Main_Script.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/StatusEffects.gd" type="Script" id=2]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/Powerups.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_top.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/whitebox_bot.png" type="Texture" id=5]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/Hitbox.gd" type="Script" id=6]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/Shake.gd" type="Script" id=7]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/States/Move_On_Ground_State.gd" type="Script" id=8]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/States/Move_In_Air_State.gd" type="Script" id=9]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/States/Ledge_Grab_State.gd" type="Script" id=10]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/States/Vault_State.gd" type="Script" id=11]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/States/Attack_State.gd" type="Script" id=12]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/States/AttackManager/Attack_Manager.gd" type="Script" id=13]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/States/AttackManager/AttackInstancing.gd" type="Script" id=14]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/States/Tethering_State.gd" type="Script" id=15]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/States/Hurt_State.gd" type="Script" id=16]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/small.png" type="Texture" id=17]
+[ext_resource path="res://Objects/Actors/Player/Rose/State_System/Cape.gd" type="Script" id=18]
+
+
+[sub_resource type="Animation" id=1]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Closed_Fan_QuickX_Hor"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 15.0, 0.05 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -145.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Event_Bash"
+length = 0.65
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Bash"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 15.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -145.0, 0.3 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.3 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Event_Bash+Dodge"
+length = 1.15
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.35, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.03, 0.04, 0.05, 0.06, 0.07, 0.35, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deactivate_grav"
+}, {
+"args": [  ],
+"method": "deactivate_fric"
+}, {
+"args": [ 500.0 ],
+"method": "add_velocity"
+}, {
+"args": [ 30.0 ],
+"method": "change_grav"
+}, {
+"args": [ 30.0 ],
+"method": "change_fric"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [  ],
+"method": "activate_grav"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "BashPlusDodge"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 45.0, 0.05 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.05 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.25, 0.35, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.4, 0.6 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1.4 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1.4 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.2 ],
+"method": "tween_scale"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites") ],
+"method": "tween_sprite_rot"
+}, {
+"args": [ NodePath("Sprites") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Movement_States/Attack:mobile")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Movement_States/Attack:attack_dashing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.65
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "BashBash"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -15.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 145.0, 0.3 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.3 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.6 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.45, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.9
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Bash_Directional"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.33, 0.53 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1.2 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.4, 1.6 ), 0.35 ],
+"method": "tween_scale"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.33, 0.53 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 25.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -45.0, 0.35 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.53, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Event_ChargedSlashQuick_Down_Ground"
+length = 1.2
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.15, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "ChargedSlash_Down_Ground_Quick"
+}, {
+"args": [  ],
+"method": "ChargedSlash_Down_Ground"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.15 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.1 ],
+"method": "tween_rotation_to_origin"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.15 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.1 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.85, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("TopAnim:playback_speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Event_ChargedSlashQuick_Hor_Air"
+length = 1.8
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 1.37, 1.72 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15, 1.02 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "ChargedSlash_Hor"
+}, {
+"args": [  ],
+"method": "ChargedSlash_Hor"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.33, 0.53, 0.87, 1.07, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1.2 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.4, 1.6 ), 0.35 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1.2 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.4, 1.6 ), 0.35 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.14, 0.15, 0.2, 0.33, 0.45, 0.53, 0.87, 1.01, 1.02, 1.07, 1.2, 1.32, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 25.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -45.0, 0.35 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 25.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -45.0, 0.35 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("TopAnim:playback_speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.87 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.14, 0.15, 0.5, 1.01, 1.02, 1.33 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 250.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 250.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 1.8
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 1.37, 1.72 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15, 1.02 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "ChargedSlash_Hor"
+}, {
+"args": [  ],
+"method": "ChargedSlash_Hor"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.33, 0.53, 0.87, 1.07, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1.2 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.4, 1.6 ), 0.35 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1.2 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.4, 1.6 ), 0.35 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.14, 0.15, 0.2, 0.33, 0.45, 0.53, 0.87, 1.01, 1.02, 1.07, 1.2, 1.32, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 25.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -45.0, 0.35 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 25.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -45.0, 0.35 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.87 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("TopAnim:playback_speed")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.87 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.14, 0.15, 0.5, 1.01, 1.02, 1.33 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 250.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 250.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "ChargedSlash_Down_Ground"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.15 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.1 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.15, 0.27, 0.5, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.9
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.15, 0.27, 0.5, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "ChargedSlash_Hor"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.33, 0.53 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1.2 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.4, 1.6 ), 0.35 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.33, 0.53 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 25.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -45.0, 0.35 ],
+"method": "tween_rotation"
+} ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.9
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.15, 0.27, 0.5, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "ChargedSlash_Hor"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.33, 0.53 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.3, 0.7 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1.2 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.4, 1.6 ), 0.35 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.14, 0.15, 0.2, 0.33, 0.45, 0.53 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 25.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -25.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -45.0, 0.35 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.61
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.21, 0.22, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_done_if_not_held"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deactivate_fric"
+}, {
+"args": [ 400.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Movement_States/Attack:attack_dashing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Movement_States/Attack/Attack_Controller:attack_start")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.04 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.61
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.21, 0.35, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_done_if_not_held"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.01, 0.04, 0.3, 0.31 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deactivate_fric"
+}, {
+"args": [  ],
+"method": "deactivate_grav"
+}, {
+"args": [ 400.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [  ],
+"method": "activate_grav"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:attack_dashing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Movement_States/Attack:mobile")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Movement_States/Attack/Attack_Controller:attack_start")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.04 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.61
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.21, 0.35, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_done_if_not_held"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.01, 0.04, 0.3, 0.31 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deactivate_fric"
+}, {
+"args": [  ],
+"method": "deactivate_grav"
+}, {
+"args": [ 400.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [  ],
+"method": "activate_grav"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.04 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "SlashPlusDodge"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Movement_States/Attack:attack_dashing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Movement_States/Attack:mobile")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 1.15
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Pierce"
+} ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Event_RangedBash"
+length = 1.15
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.85, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -25.0 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.2 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.31 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "RangedBash"
+} ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "Event_RangedSlash"
+length = 1.15
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.55, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -25.0 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.2 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "RangedSlash"
+} ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.61
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.44, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deactivate_fric"
+}, {
+"args": [ 400.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+}, {
+"args": [ Vector2( 0, 0 ) ],
+"method": "add_velocity"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.04 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "SlashPlusDodge"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Movement_States/Attack:attack_dashing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Movement_States/Attack:mobile")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Slash"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 15.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -145.0, 0.3 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.3 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("TopAnim:playback_speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.5 ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Slash"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 15.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -145.0, 0.3 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.3 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.01, 0.02, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("TopAnim:playback_speed")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.5 ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "SlashSlash"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -15.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 145.0, 0.3 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.3 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.6 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("TopAnim:playback_speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.5 ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "SlashSlash"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -15.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 145.0, 0.3 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.3 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.6 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.02, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("TopAnim:playback_speed")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.5 ]
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "SlashSlash"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -15.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 145.0, 0.3 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.3 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.6 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+
+[sub_resource type="Animation" id=24]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "SlashSlash"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -15.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 145.0, 0.3 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.3 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.6 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.12, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Slash"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 15.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -145.0, 0.3 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.3 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+
+[sub_resource type="Animation" id=26]
+length = 0.6
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.02 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Slash"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 15.0, 0.1 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -145.0, 0.3 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), -155.0, 0.1 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.8 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.3 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Movement_States/Attack:mobile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.01, 0.12, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deativate_fric"
+}, {
+"args": [ 100.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
+}
+
+[sub_resource type="Animation" id=27]
+length = 1.15
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_dodge_interrupt"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "UpgradedPierce"
+} ]
+}
+
+[sub_resource type="Animation" id=28]
+length = 1.15
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.17, 0.28, 0.65, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.18, 0.19, 0.2, 0.44, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deactivate_grav"
+}, {
+"args": [  ],
+"method": "deactivate_fric"
+}, {
+"args": [ 600.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_grav"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "Wind_Dance_Y"
+}, {
+"args": [  ],
+"method": "emit_off"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 45.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.05 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.0, 0.2 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.5, 0.65, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.4, 0.6 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1.4 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1.4 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.2 ],
+"method": "tween_scale"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.65 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites") ],
+"method": "tween_sprite_rot"
+}, {
+"args": [ NodePath("Sprites") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Movement_States/Attack:mobile")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=29]
+length = 0.65
+loop = true
+step = 0.02
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.56 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+
+[sub_resource type="Animation" id=30]
+length = 0.4
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+
+[sub_resource type="Animation" id=31]
+length = 0.4
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -25.0 ],
+"method": "tween_rotation"
+} ]
+}
+
+[sub_resource type="Animation" id=32]
+length = 0.4
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 25.0 ],
+"method": "tween_rotation"
+} ]
+}
+
+[sub_resource type="Animation" id=33]
+length = 0.3
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "jump"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Move_In_Air/Air_Jump_Timer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.1 ],
+"method": "start"
+} ]
+}
+
+[sub_resource type="Animation" id=34]
+length = 0.3
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 0.5 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Ledge_Grab")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Climb"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites"), 0.1 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector2( 14, -40 ), 0.25 ],
+"method": "tween_global_position"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("PhysicsCollider:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "death"
+length = 1.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 360.0, 1.5 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 0 ), 1.5 ],
+"method": "tween_scale"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("../CanvasLayer/Transitions")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "deadend"
+} ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "hurt"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Camera2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.2, 15.0, 8.0 ],
+"method": "shake"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), -35.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.0, 0.05 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Movement_States/Hurt")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "exit_g_or_a"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox/Hitbox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ -350.0, 45.0 ],
+"method": "add_velocity"
+} ]
+}
+
+[sub_resource type="Animation" id=37]
+loop = true
+step = 0.2
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ) ],
+"method": "tween_scale"
+} ]
+}
+
+[sub_resource type="Animation" id=38]
+length = 0.3
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 0.15 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Move_On_Ground/Jump_Timer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.05 ],
+"method": "start"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "jump"
+} ]
+}
+
+[sub_resource type="Animation" id=39]
+length = 0.3
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.2, 0.5 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movement_States/Move_In_Air/Land_Timer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.25 ],
+"method": "start"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Movement_States/Move_On_Ground") ],
+"method": "change_move_state"
+} ]
+}
+
+[sub_resource type="Animation" id=40]
+length = 0.3
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite") ],
+"method": "tween_rotation_to_origin"
+}, {
+"args": [ NodePath("Sprites"), 15.0 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.8, 1 ), 0.5 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.5 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.1 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movement_States/Ledge_Grab")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "done_ledge_grab"
+} ]
+}
+
+[sub_resource type="Animation" id=41]
+length = 1.15
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.17, 0.28, 0.65, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "unset_dodge_interrupt"
+}, {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.18, 0.19, 0.2, 0.44, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deactivate_grav"
+}, {
+"args": [  ],
+"method": "deactivate_fric"
+}, {
+"args": [ 600.0 ],
+"method": "add_velocity"
+}, {
+"args": [  ],
+"method": "activate_grav"
+}, {
+"args": [  ],
+"method": "activate_fric"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "Wind_Dance_Y"
+}, {
+"args": [  ],
+"method": "emit_off"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 45.0, 0.2 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 90.0, 0.05 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.0, 0.2 ],
+"method": "tween_rotation"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.25, 0.3, 0.4, 0.5, 0.65, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.4, 0.6 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1.4 ), 0.05 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1.4 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0.6, 1.4 ), 0.15 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.2 ],
+"method": "tween_scale"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.65 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites") ],
+"method": "tween_sprite_rot"
+}, {
+"args": [ NodePath("Sprites") ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Movement_States/Attack:mobile")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=42]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=43]
+length = 0.4
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 25.0 ],
+"method": "tween_rotation"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 25.0, 10.0 ],
+"method": "tween_rotation_from_specified"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 10.0, 25.0 ],
+"method": "tween_rotation_from_specified"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.2, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.2, 0.8 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.2, 1 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.2, 0.8 ), 0.1 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.2, 1 ), 0.1 ],
+"method": "tween_scale"
+} ]
+}
+
+[sub_resource type="Animation" id=44]
+length = 0.4
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 0.2 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Move_In_Air")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "up_to_down_done"
+} ]
+}
+
+[sub_resource type="Animation" id=45]
+length = 0.4
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 25.0, -25.0, 0.3 ],
+"method": "tween_rotation_from_specified"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1.6, 0.2 ), 0.2 ],
+"method": "tween_scale"
+}, {
+"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
+"method": "tween_scale"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movement_States/Move_In_Air")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0.39 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "up_to_down_done"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=46]
+extents = Vector2( 10, 20 )
+
+[sub_resource type="RectangleShape2D" id=47]
+extents = Vector2( 10, 20 )
+
+[sub_resource type="RectangleShape2D" id=48]
+extents = Vector2( 256, 150 )
+
+[sub_resource type="RectangleShape2D" id=49]
+extents = Vector2( 10, 2 )
+
+[node name="Rose" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 1 )
+max_hp = null
+base_mspd = 250.0
+base_jspd = 450.0
+tag = "Player"
+enabled = false
+base_gravity = 20.0
+base_friction = null
+g_max = 350.0
+damage = null
+max_mana = null
+
+[node name="StatusEffects" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="slowTimer" type="Timer" parent="StatusEffects"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Powerups" type="Node2D" parent="."]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="TopAnim" type="AnimationPlayer" parent="."]
+anims/Closed_Fan_QuickX_Hor = SubResource( 1 )
+anims/Event_Bash = SubResource( 2 )
+anims/Event_Bash+Dodge = SubResource( 3 )
+anims/Event_BashBash = SubResource( 4 )
+anims/Event_Bash_Directional = SubResource( 5 )
+anims/Event_ChargedSlashQuick_Down_Ground = SubResource( 6 )
+anims/Event_ChargedSlashQuick_Hor_Air = SubResource( 7 )
+anims/Event_ChargedSlashQuick_Hor_Ground = SubResource( 8 )
+anims/Event_ChargedSlash_Down_Ground = SubResource( 9 )
+anims/Event_ChargedSlash_Hor_Air = SubResource( 10 )
+anims/Event_ChargedSlash_Hor_Ground = SubResource( 11 )
+anims/Event_Dodge = SubResource( 12 )
+anims/Event_HitDodge = SubResource( 13 )
+anims/Event_HitSlash+Dodge = SubResource( 14 )
+anims/Event_Pierce = SubResource( 15 )
+anims/Event_RangedBash = SubResource( 16 )
+anims/Event_RangedSlash = SubResource( 17 )
+anims/Event_Slash+Dodge = SubResource( 18 )
+anims/Event_SlashQuick_Air = SubResource( 19 )
+anims/Event_SlashQuick_Ground = SubResource( 20 )
+anims/Event_SlashSlashQuick_Air = SubResource( 21 )
+anims/Event_SlashSlashQuick_Ground = SubResource( 22 )
+anims/Event_SlashSlash_Air = SubResource( 23 )
+anims/Event_SlashSlash_Ground = SubResource( 24 )
+anims/Event_Slash_Air = SubResource( 25 )
+anims/Event_Slash_Ground = SubResource( 26 )
+anims/Event_UpgradedPierce = SubResource( 27 )
+anims/Hurricane = SubResource( 28 )
+anims/Wind_Dance_HoldY = SubResource( 29 )
+anims/air_idle = SubResource( 30 )
+anims/air_move_down = SubResource( 31 )
+anims/air_move_up = SubResource( 32 )
+anims/airjump = SubResource( 33 )
+anims/climb = SubResource( 34 )
+anims/death = SubResource( 35 )
+anims/hurt = SubResource( 36 )
+anims/idle = SubResource( 37 )
+anims/jump = SubResource( 38 )
+anims/land = SubResource( 39 )
+anims/ledgegrab = SubResource( 40 )
+"anims/old dash" = SubResource( 41 )
+anims/reset = SubResource( 42 )
+anims/run = SubResource( 43 )
+anims/up_to_down_idle = SubResource( 44 )
+anims/up_to_down_moving = SubResource( 45 )
+
+[node name="Sprites" type="Node2D" parent="."]
+editor/display_folded = true
+z_index = 1
+
+[node name="Sprite" type="Sprite" parent="Sprites"]
+z_index = 1
+texture = ExtResource( 4 )
+
+[node name="SpriteFan" type="Sprite" parent="Sprites/Sprite"]
+z_index = -1
+texture = ExtResource( 5 )
+
+[node name="Position2D" type="Position2D" parent="Sprites/Sprite"]
+position = Vector2( 0, -8 )
+
+[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
+shape = SubResource( 46 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 0, -20 )
+collision_layer = 2
+collision_mask = 8
+script = ExtResource( 6 )
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, 20 )
+scale = Vector2( 0.8, 1 )
+shape = SubResource( 47 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+pause_mode = 2
+editor/display_folded = true
+current = true
+zoom = Vector2( 0.5, 0.5 )
+script = ExtResource( 7 )
+
+[node name="StopTimer" type="Timer" parent="Camera2D"]
+pause_mode = 2
+one_shot = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Movement_States" type="Node2D" parent="."]
+
+[node name="Move_On_Ground" type="Node2D" parent="Movement_States"]
+editor/display_folded = true
+script = ExtResource( 8 )
+
+[node name="Jump_Timer" type="Timer" parent="Movement_States/Move_On_Ground"]
+one_shot = true
+
+[node name="Jump_Timeout" type="Timer" parent="Movement_States/Move_On_Ground"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Move_In_Air" type="Node2D" parent="Movement_States"]
+editor/display_folded = true
+script = ExtResource( 9 )
+
+[node name="Land_Timer" type="Timer" parent="Movement_States/Move_In_Air"]
+one_shot = true
+
+[node name="Air_Jump_Timer" type="Timer" parent="Movement_States/Move_In_Air"]
+one_shot = true
+
+[node name="hook_cast" type="RayCast2D" parent="Movement_States/Move_In_Air"]
+position = Vector2( 0, -8 )
+enabled = true
+cast_to = Vector2( 15, 0 )
+
+[node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
+script = ExtResource( 10 )
+
+[node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
+position = Vector2( 14, -40 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
+shape = SubResource( 46 )
+
+[node name="Jump_Timer" type="Timer" parent="Movement_States/Ledge_Grab"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Vault" type="Node2D" parent="Movement_States"]
+script = ExtResource( 11 )
+
+[node name="Attack" type="Node2D" parent="Movement_States"]
+editor/display_folded = true
+script = ExtResource( 12 )
+attack_dashing = true
+
+[node name="Attack_Controller" type="Node2D" parent="Movement_States/Attack"]
+script = ExtResource( 13 )
+
+[node name="ChargeSlashTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller"]
+wait_time = 0.5
+one_shot = true
+
+[node name="ChargePierceTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller"]
+one_shot = true
+
+[node name="HitGravTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Attack_Instancing" type="Node2D" parent="Movement_States/Attack/Attack_Controller"]
+z_index = 1
+script = ExtResource( 14 )
+
+[node name="particleTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller/Attack_Instancing"]
+one_shot = true
+
+[node name="ComboTimer" type="Timer" parent="Movement_States/Attack"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Tethering" type="Node2D" parent="Movement_States"]
+editor/display_folded = true
+script = ExtResource( 15 )
+
+[node name="tetherTimer" type="Timer" parent="Movement_States/Tethering"]
+wait_time = 1.5
+one_shot = true
+
+[node name="Hurt" type="Node2D" parent="Movement_States"]
+editor/display_folded = true
+script = ExtResource( 16 )
+
+[node name="hurtTimer" type="Timer" parent="Movement_States/Hurt"]
+wait_time = 1.25
+one_shot = true
+
+[node name="DetectHitboxArea" type="Area2D" parent="."]
+editor/display_folded = true
+visible = false
+collision_layer = 0
+collision_mask = 7424
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
+shape = SubResource( 48 )
+
+[node name="RayCastCollision" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 7169
+
+[node name="ledge_cast_right" type="RayCast2D" parent="."]
+position = Vector2( 0, -20 )
+enabled = true
+cast_to = Vector2( 15, 0 )
+
+[node name="ledge_cast_left" type="RayCast2D" parent="."]
+position = Vector2( 0, -20 )
+enabled = true
+cast_to = Vector2( -15, 0 )
+
+[node name="Ledgebox_R" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 10, -27 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_R"]
+shape = SubResource( 49 )
+
+[node name="Ledgebox_L" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( -10, -27 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_L"]
+shape = SubResource( 49 )
+
+[node name="Cape" type="Line2D" parent="."]
+editor/display_folded = true
+width = 20.0
+default_color = Color( 1, 0.4, 0.4, 1 )
+texture = ExtResource( 17 )
+texture_mode = 2
+round_precision = 1
+script = ExtResource( 18 )
+targetPath = NodePath("../Sprites/Sprite/Position2D")
+
+[node name="WindxTimer" type="Timer" parent="Cape"]
+wait_time = 0.1
+autostart = true
+
+[node name="WindxaTimer" type="Timer" parent="Cape"]
+wait_time = 0.1
+autostart = true
+
+[node name="WindxbTimer" type="Timer" parent="Cape"]
+wait_time = 0.1
+autostart = true
+
+[node name="WindyaTimer" type="Timer" parent="Cape"]
+wait_time = 0.1
+autostart = true
+
+[node name="WindybTimer" type="Timer" parent="Cape"]
+wait_time = 0.1
+autostart = true
+
+[node name="manaTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+[connection signal="slow" from="StatusEffects" to="StatusEffects" method="_on_StatusEffects_slow"]
+[connection signal="timeout" from="StatusEffects/slowTimer" to="StatusEffects" method="_on_slowTimer_timeout"]
+[connection signal="animation_finished" from="TopAnim" to="Movement_States/Move_In_Air" method="_on_TopAnim_animation_finished"]
+[connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_area_entered"]
+[connection signal="timeout" from="Camera2D/StopTimer" to="Camera2D" method="_on_StopTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Move_On_Ground/Jump_Timer" to="Movement_States/Move_On_Ground" method="_on_JumpTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Move_On_Ground/Jump_Timeout" to="Movement_States/Move_On_Ground" method="_on_Jump_Timeout_timeout"]
+[connection signal="timeout" from="Movement_States/Move_In_Air/Land_Timer" to="Movement_States/Move_In_Air" method="_on_Land_Timer_timeout"]
+[connection signal="timeout" from="Movement_States/Move_In_Air/Air_Jump_Timer" to="Movement_States/Move_In_Air" method="_on_Jump_Timer_timeout"]
+[connection signal="timeout" from="Movement_States/Ledge_Grab/Jump_Timer" to="Movement_States/Ledge_Grab" method="_on_Jump_Timer_timeout"]
+[connection signal="timeout" from="Movement_States/Attack/Attack_Controller/ChargeSlashTimer" to="Movement_States/Attack/Attack_Controller" method="_on_ChargeSlashTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Attack/Attack_Controller/ChargePierceTimer" to="Movement_States/Attack/Attack_Controller" method="_on_ChargePierceTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Attack/Attack_Controller/HitGravTimer" to="Movement_States/Attack/Attack_Controller" method="_on_HitGravTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Attack/Attack_Controller/Attack_Instancing/particleTimer" to="Movement_States/Attack/Attack_Controller/Attack_Instancing" method="_on_particleTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Attack/ComboTimer" to="Movement_States/Attack" method="_on_ComboTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Tethering/tetherTimer" to="Movement_States/Tethering" method="_on_tetherTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Hurt/hurtTimer" to="Movement_States/Hurt" method="_on_hurtTimer_timeout"]
+[connection signal="area_entered" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
+[connection signal="area_exited" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
+[connection signal="timeout" from="Cape/WindxTimer" to="Cape" method="_on_WindxTimer_timeout"]
+[connection signal="timeout" from="Cape/WindxaTimer" to="Cape" method="_on_WindxaTimer_timeout"]
+[connection signal="timeout" from="Cape/WindxbTimer" to="Cape" method="_on_WindxbTimer_timeout"]
+[connection signal="timeout" from="Cape/WindyaTimer" to="Cape" method="_on_WindyaTimer_timeout"]
+[connection signal="timeout" from="Cape/WindybTimer" to="Cape" method="_on_WindybTimer_timeout"]
+[connection signal="timeout" from="manaTimer" to="." method="_on_manaTimer_timeout"]

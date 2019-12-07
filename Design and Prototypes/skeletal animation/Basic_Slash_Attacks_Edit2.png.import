@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Basic_Slash_Attacks_Edit2.png-4c50ce5cdb093b971b20c0e89aab923b.stex"
+path="res://.import/Basic_Slash_Attacks_Edit2.png-d5204a0d10beb4b2ed5846fdac38dd49.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Design and Prototypes/3d and skeletal animation/Basic_Slash_Attacks_Edit2.png"
-dest_files=[ "res://.import/Basic_Slash_Attacks_Edit2.png-4c50ce5cdb093b971b20c0e89aab923b.stex" ]
+source_file="res://Design and Prototypes/skeletal animation/Basic_Slash_Attacks_Edit2.png"
+dest_files=[ "res://.import/Basic_Slash_Attacks_Edit2.png-d5204a0d10beb4b2ed5846fdac38dd49.stex" ]
 
 [params]
 

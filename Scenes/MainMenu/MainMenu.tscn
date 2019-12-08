@@ -96,7 +96,7 @@ focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../CloseMenuButton")
 
 [node name="InputActionList" parent="CanvasLayer/Control/PanelContainer/MainMenu/OptionsButton/OptionsMenu/VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer" index="0"]
-margin_bottom = 400.0
+margin_bottom = 324.0
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Control/PanelContainer/MainMenu"]
 margin_top = 48.0

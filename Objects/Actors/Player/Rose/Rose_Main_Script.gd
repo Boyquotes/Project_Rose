@@ -79,8 +79,6 @@ func execute(delta):
 
 func phys_execute(delta):
 	
-	_stretch_based_on_velocity();
-	
 	#state machine
 	#print(move_state);
 	move_states[move_state].handleInput();

@@ -7,7 +7,7 @@ const KEY_BINDING_SECTION = "key_binding"
 
 const GAMEFLAGS_SECTION = "game_flags"
 
-var _user_settings
+var _user_settings : ConfigFile;
 
 func _ready():
 	load_settings()
@@ -60,11 +60,14 @@ func _create_default_key_bindings():
 func _load_key_bindings():
 	var bindings = _user_settings.get_section_keys(KEY_BINDING_SECTION)
 	for binding in bindings:
-		InputMap.erase_action(binding)
-		InputMap.add_action(binding)
-		var inputs = _user_settings.get_value(KEY_BINDING_SECTION, binding)
-		for input in inputs:
-			InputMap.action_add_event(binding, input)
+		if(InputMap.has_action(binding)):
+			InputMap.erase_action(binding)
+			InputMap.add_action(binding)
+			var inputs = _user_settings.get_value(KEY_BINDING_SECTION, binding)
+			for input in inputs:
+				InputMap.action_add_event(binding, input)
+		else:
+			print(binding);
 
 func _create_game_flags():
 	for idx in GameFlags.powerups.keys().size():

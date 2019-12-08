@@ -35,7 +35,7 @@ var activateSlash = false;
 var animate = false;
 var switchUp = false;
 var switchDown = false;
-var dodgeDir = 0;
+var attackDir = 0;
 var done_if_not_held = false;
 var attack_type = "";
 var bash_plus_dodge_procs = 0;
@@ -46,11 +46,8 @@ var tethered_creature;
 
 ### attack codes ###
 var event_prefix = "Event";
-var dir = "";
-var vdir = "";
 var eventArr = ["current_event", "saved_event"];
 var combo = "";
-var place = "";
 var attack_str = "attack_str";
 var bot_str = "bot_str";
 var previous_event = "previous_event";
@@ -68,8 +65,6 @@ func _ready():
 	host = get_parent().get_parent().get_parent();
 
 func execute(delta):
-	if(Input.is_action_just_pressed("Dodge")):
-		change_dodge_dir();
 	if(!Input.is_action_pressed("Slash_Attack") && !activateSlash):
 		chargedSlash = false;
 		$ChargeSlashTimer.stop();
@@ -87,14 +82,6 @@ func execute(delta):
 				attack_state.exit_g_or_a();
 	if(host.on_floor()):
 		bash_plus_dodge_procs = 0;
-
-func change_dodge_dir():
-	if(Input.is_joy_button_pressed(0,4) || Input.get_joy_axis(0,2) <= -0.5):
-		dodgeDir = -1;
-	elif(Input.is_joy_button_pressed(0,5) || Input.get_joy_axis(0,2) >= 0.5):
-		dodgeDir = 1;
-	else:
-		dodgeDir = 0;
 
 func enter():
 	if(Input.is_action_just_pressed("Slash_Attack")):
@@ -125,11 +112,11 @@ func handleInput():
 		eventArr[0] = eventArr[1];
 		combo += eventArr[1];
 		attack_is_saved = false;
-		set_position_vars();
+		attack();
 	if(!attack_state.busy && !started_save):
 		if(parse_attack(0)):
 			combo += eventArr[0];
-			set_position_vars();
+			attack();
 	if(save_event || started_save):
 		if(parse_attack(1)):
 			started_save = false;
@@ -183,7 +170,6 @@ func parse_attack(idx):
 		eventArr[idx] == "Slash+Dodge" || 
 		eventArr[idx] == "HitSlash+Dodge" || 
 		eventArr[idx] == "Bash+Dodge"):
-			change_dodge_dir();
 			if(!host.on_floor() && 
 			((!hit && !attack_state.hop) && 
 			(eventArr[idx] != "Bash+Dodge" || bash_plus_dodge_procs >= max_bash_plus_dodge_procs))
@@ -261,7 +247,7 @@ func Slash_pressed():
 	return enterSlash || Input.is_action_just_pressed("Slash_Attack");
 
 func Dodge_pressed():
-	return enterDodge || Input.is_action_just_pressed("Dodge") || abs(Input.get_joy_axis(0,2)) >= .5 || abs(Input.get_joy_axis(0,3)) >= .5;
+	return enterDodge || Input.is_action_just_pressed("Dodge");
 
 func Pierce_pressed():
 	return enterPierce || Input.is_action_just_pressed("Pierce_Attack");
@@ -273,121 +259,26 @@ func Bash_pressed():
 ### Determines direction of attack ###
 func atk_left():
 	return (Input.is_action_pressed("Aim_Left") || 
-	Input.is_action_pressed("Dodge_Move_Left") || 
 	Input.is_action_pressed("Move_Left") || 
 	(host.mouse_l() && host.ActiveInput == host.InputType.KEYMOUSE));
 
 func atk_right():
 	return (Input.is_action_pressed("Aim_Right") || 
-	Input.is_action_pressed("Dodge_Move_Right") || 
 	Input.is_action_pressed("Move_Right") || 
 	(host.mouse_r() && host.ActiveInput == host.InputType.KEYMOUSE));
 
 func atk_up():
 	return (Input.is_action_pressed("Aim_Up") || 
-	Input.is_action_pressed("Dodge_Move_Up") || 
 	Input.is_action_pressed("Move_Up") || 
 	(host.mouse_u() && host.ActiveInput == host.InputType.KEYMOUSE));
 
 func atk_down():
 	return (Input.is_action_pressed("Aim_Down") || 
-	Input.is_action_pressed("Dodge_Move_Down") || 
 	Input.is_action_pressed("Move_Down") || 
 	(host.mouse_d() && host.ActiveInput == host.InputType.KEYMOUSE));
 
-func atk_is_dodge():
-	return (eventArr[0] == "Dodge" || 
-	eventArr[0] == "HitDodge" || 
-	eventArr[0] == "Slash+Dodge" || 
-	eventArr[0] == "HitSlash+Dodge" || 
-	eventArr[0] == "Bash+Dodge")
-
-### Handles all player input to decide what attack to trigger ###
-func set_position_vars():
-	if(atk_left()):
-		dir = "_Hor"
-	elif(atk_right()):
-		dir = "_Hor";
-	if(atk_down() || atk_up()):
-		if(!atk_left() && !atk_right()):
-			dir = "";
-	if(atk_up()):
-		vdir = "_Up";
-	if(atk_down()):
-		vdir = "_Down";
-	if(host.on_floor()):
-		place = "_Ground";
-	else:
-		place = "_Air";
-	if(eventArr[0] == "Slash"):
-		if(host.on_floor()):
-			if(vdir == "_Down"):
-				dir = "_Hor";
-				vdir = "";
-			if(dir == "_Hor"):
-				vdir = "";
-		else:
-			if(vdir == "_Up" || vdir == "_Down"):
-				dir = "";
-	if(eventArr[0] == "ChargedSlash"):
-		if(host.on_floor()):
-			if(vdir == "_Down"):
-				dir = "";
-			else:
-				dir = "_Hor";
-				vdir = "";
-			place = "_Ground";
-		else:
-			dir = "_Hor"
-			vdir = "";
-			place = "_Air";
-	if(eventArr[0] == "RangedSlash"):
-		if(dir == "_Hor"):
-			vdir = "";
-		place = "";
-	if(eventArr[0] == "RangedBash"):
-		if(host.on_floor()):
-			if(vdir == "_Down"):
-				dir = "_Hor";
-				vdir = "";
-		place = "";
-	if(eventArr[0] == "Dodge"):
-		dir = "";
-		vdir = "";
-		place = "";
-	if(eventArr[0] == "HitDodge"):
-		place = "";
-	if(eventArr[0] == "HitSlash+Dodge"):
-		place = "";
-	if(eventArr[0] == "Slash+Dodge"):
-		place = "";
-	if(eventArr[0] == "Bash+Dodge"):
-		place = "";
-	if(eventArr[0] == "Pierce"):
-		if(host.on_floor()):
-			if(vdir == "_Down"):
-				dir = "_Hor";
-				vdir = "";
-		place = "";
-	if(eventArr[0] == "UpgradedPierce"):
-		if(host.on_floor()):
-			if(vdir == "_Down"):
-				dir = "_Hor";
-				vdir = "";
-		place = "";
-	if(eventArr[0] == "Bash"):
-		if(host.on_floor()):
-			if(vdir == "_Down"):
-				dir = "_Hor";
-				vdir = "";
-		place = ""
-	attack();
-
 ### Resets attack strings ###
 func reset_strings():
-	dir = "";
-	vdir = "";
-	place = "";
 	eventArr[0] = 'current_event';
 	attack_str = "attack_str";
 	bot_str = "bot_str";
@@ -397,21 +288,8 @@ func reset_strings():
 func attack():
 	construct_attack_string();
 	var input_direction = get_parent().get_aim_direction();
-	if(vdir == "_Up"):
-		attack_degrees = -90;
-		if(dir == "_Hor"):
-			attack_degrees = -45;
-	elif(vdir == "_Down"):
-		attack_degrees = 90;
-		if(dir == "_Hor"):
-			attack_degrees = 45;
-	else:
-		attack_degrees = 0;
-	
-	if(atk_is_dodge() && dodgeDir != 0):
-		get_parent().update_look_direction_and_scale(dodgeDir);
-	else:
-		get_parent().update_look_direction_and_scale(input_direction);
+	attack_degrees = host.deg;
+	get_parent().update_look_direction_and_scale(input_direction);
 	
 	clear_charged_vars();
 	clear_slotted_vars();
@@ -431,26 +309,24 @@ func attack():
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
 	if(eventArr[0] == "Bash"):
-		if(dir == "" && vdir == ""):
-			pass;
-		elif(powerups.get_powerup('reinforced_casing')):
+		if(powerups.get_powerup('reinforced_casing')):
 			if(combo == "BashBash"):
 				combo = "Bash";
 			combo += "_Directional";
 	if(input_testing):
-		attack_str = event_prefix + "_" + combo+dir+vdir+place;
+		attack_str = event_prefix + "_" + combo;
 	else:
 		if(powerups.get_powerup('quick_mechanism') && (eventArr[0] == "Slash" || eventArr[0] == "ChargedSlash")):
 			if(eventArr[0] == "ChargedSlash"):
-				combo += "Quick" + dir + vdir;
-				attack_str = event_prefix + "_" + combo + place;
+				combo += "Quick"
+				attack_str = event_prefix + "_" + combo;
 			else:
-				attack_str = event_prefix + "_" + combo + "Quick" + place;
+				attack_str = event_prefix + "_" + combo + "Quick";
 		else:
 			if(eventArr[0] == "ChargedSlash"):
-				attack_str = event_prefix + "_" + combo + dir + vdir + place;
+				attack_str = event_prefix + "_" + combo;
 			else:
-				attack_str = event_prefix + "_" + combo + place;
+				attack_str = event_prefix + "_" + combo;
 
 func attack_done():
 	host.get_node("Hitbox/Hitbox").disabled = false;
@@ -524,7 +400,7 @@ func on_hit(col):
 	if("hittable" in col):
 		if(col.hittable):
 			hit = true;
-			if(eventArr[0] == "Slash" && !host.on_floor() && vdir == "_Down"):
+			if(eventArr[0] == "Slash" && !host.on_floor() && attack_degrees >= 30 && attack_degrees <= 150):
 				attack_state.hop = true;
 				host.jump()
 				host.activate_grav();

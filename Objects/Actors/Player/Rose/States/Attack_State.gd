@@ -59,10 +59,7 @@ func handleInput():
 func execute(delta):
 	### Determining player movement from attacks ###
 	if(mobile):
-		if(!host.on_floor()):
-			host.true_mspd = host.base_mspd/2;
-		else:
-			host.true_mspd = host.base_mspd;
+		host.true_mspd = host.base_mspd;
 		.execute(delta);
 	else:
 		host.true_mspd = host.base_mspd;

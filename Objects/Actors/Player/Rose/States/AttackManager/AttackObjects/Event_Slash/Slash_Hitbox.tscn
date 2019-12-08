@@ -3,7 +3,6 @@
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/HitBoxParent.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_Slash/Slash_Particles.tscn" type="PackedScene" id=2]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "New Anim"
 tracks/0/type = "method"

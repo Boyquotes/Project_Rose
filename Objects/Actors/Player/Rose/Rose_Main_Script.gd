@@ -68,9 +68,13 @@ func execute(delta):
 	if(ActiveInput == InputType.KEYMOUSE):
 		rad = atan2(get_global_mouse_position().y - global_position.y , get_global_mouse_position().x - global_position.x);
 	elif(ActiveInput == InputType.GAMEPAD):
-		rad = atan2(Input.get_joy_axis(0, JOY_ANALOG_RY), Input.get_joy_axis(0, JOY_ANALOG_RX));
+		if(abs(Input.get_joy_axis(0,JOY_ANALOG_RY))>.4 || abs(Input.get_joy_axis(0,JOY_ANALOG_RX))>.4):
+			rad = atan2(Input.get_joy_axis(0, JOY_ANALOG_RY), Input.get_joy_axis(0, JOY_ANALOG_RX));
+		else:
+			rad = atan2(Input.get_joy_axis(0, JOY_ANALOG_LY), Input.get_joy_axis(0, JOY_ANALOG_LX));
 	deg = rad2deg(rad);
 	
+	$Target.global_rotation_degrees = deg;
 	hitboxLoop();
 
 func phys_execute(delta):
@@ -105,6 +109,7 @@ func phys_execute(delta):
 	#cap gravity
 	if(vspd > g_max && grav_activated) :
 		vspd = g_max;
+	
 
 func _on_DetectHitboxArea_area_entered(area):
 	if(!targettableHitboxes.has(area)):
@@ -187,7 +192,7 @@ func deactivate_grav():
 	.deactivate_grav();
 
 func add_velocity(speed : float, degrees : float = $Movement_States/Attack/Attack_Controller.attack_degrees):
-	hspd = speed * cos(deg2rad(degrees)) * Direction;
+	hspd = speed * cos(deg2rad(degrees));
 	vspd = speed * sin(deg2rad(degrees))
 
 func subtract_velocity(vec: Vector2 = Vector2(0,0)):

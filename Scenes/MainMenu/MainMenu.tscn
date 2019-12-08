@@ -95,9 +95,6 @@ focus_neighbour_top = NodePath("../UpgradeMenuButton")
 focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../CloseMenuButton")
 
-[node name="ControlsMenu" parent="CanvasLayer/Control/PanelContainer/MainMenu/OptionsButton/OptionsMenu/VBoxContainer/ControlsMenuButton" index="0"]
-visible = false
-
 [node name="InputActionList" parent="CanvasLayer/Control/PanelContainer/MainMenu/OptionsButton/OptionsMenu/VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer" index="0"]
 margin_bottom = 400.0
 

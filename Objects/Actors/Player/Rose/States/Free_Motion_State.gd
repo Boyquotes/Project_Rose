@@ -13,8 +13,12 @@ func get_move_direction():
 
 func get_aim_direction():
 	var input_direction = (
-	int(Input.is_action_pressed("Aim_Right") || Input.is_action_pressed("Move_Right") || Input.is_action_pressed("Dodge_Move_Right") || host.mouse_r()) - 
-	int(Input.is_action_pressed("Aim_Left") || Input.is_action_pressed("Move_Left") || Input.is_action_pressed("Dodge_Move_Left") || host.mouse_l()));
+	int(Input.is_action_pressed("Aim_Right") || host.mouse_r()) - 
+	int(Input.is_action_pressed("Aim_Left") || Input.is_action_pressed("Move_Left") || host.mouse_l()));
+	if(input_direction == 0):
+		input_direction = (
+		int(Input.is_action_pressed("Move_Right") || host.mouse_r()) -
+		int(Input.is_action_pressed("Move_Left") || host.mouse_l()));
 	return input_direction;
 
 func get_look_direction():

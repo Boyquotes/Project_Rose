@@ -36,9 +36,7 @@ func get_particle(hitNodeIdx):
 
 func initialize_hitbox_attach(hitNodeIdx):
 	initialize_hitbox(hitNodeIdx);
-	host.get_parent().remove_child(hitNodeIdx);
-	get_parent().add_child(hitNodeIdx);
-	hitNodeIdx.global_position = get_parent().global_position;
+	hitNodeIdx.follow = host;
 	hitNodeIdx.attached = true;
 
 func set_rot(hitNodeIdx):
@@ -63,7 +61,6 @@ func Slash():
 func SlashSlash():
 	Slash();
 	var particle = get_particle(hitNode[hitNode.size()-1]);
-	particle.rotation_degrees = -10;
 	particle.scale = Vector2(2.5, -1);
 
 func ChargedSlash_Down_Ground():
@@ -83,16 +80,6 @@ func Bash_Directional():
 	instance_Bash_Directional_hitbox();
 	set_rot(hitNode[hitNode.size()-1]);
 	var hitbox = get_hitbox(hitNode[hitNode.size()-1]);
-	if(hitbox.global_rotation_degrees == -135):
-		hitNode[hitNode.size()-1].scale *= Vector2(1,-1);
-		hitNode[hitNode.size()-1].rotation_degrees += 90;
-	if(hitbox.global_rotation_degrees == 45):
-		hitNode[hitNode.size()-1].scale *= Vector2(1,-1);
-		hitNode[hitNode.size()-1].rotation_degrees += 90;
-	if(round(hitbox.global_rotation_degrees) == 90 && host.Direction == 1):
-		hitNode[hitNode.size()-1].scale *= Vector2(-1,1);
-	if(round(hitbox.global_rotation_degrees) == -90 && host.Direction == -1):
-		hitNode[hitNode.size()-1].scale *= Vector2(-1,1);
 	hitNode[hitNode.size()-1].init();
 
 func Bash():
@@ -247,5 +234,6 @@ func instance_bash_QuickX_hitbox():
 func clear():
 	for node in hitNode:
 		if(is_instance_valid(node) && node.attached):
+			node.global_rotation_degrees = 0;
 			node.queue_free();
 	hitNode.clear();

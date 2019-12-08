@@ -76,7 +76,7 @@ func deactivate_grav():
 func mitigate_grav():
 	vspd = 0;
 	velocity.y = 0;
-	true_gravity = base_gravity * .1;
+	true_gravity = base_gravity * .5;
 
 func normalize_grav():
 	true_gravity = base_gravity;

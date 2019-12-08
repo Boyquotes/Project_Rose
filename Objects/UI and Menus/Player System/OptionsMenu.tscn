@@ -65,7 +65,7 @@ margin_bottom = 293.0
 
 [node name="InputActionList" type="VBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer"]
 margin_right = 286.0
-margin_bottom = 666.0
+margin_bottom = 534.0
 custom_constants/separation = 5
 script = ExtResource( 3 )
 hostpath = NodePath("../../../../../../..")
@@ -251,115 +251,11 @@ margin_right = 75.0
 margin_bottom = 14.0
 script = ExtResource( 7 )
 
-[node name="ActionElementPanel7" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
+[node name="ActionElementPanel11" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
 editor/display_folded = true
 margin_top = 242.0
 margin_right = 286.0
 margin_bottom = 270.0
-script = ExtResource( 5 )
-Action_Name = "Dodge_Move_Left"
-
-[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel7"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 279.0
-margin_bottom = 21.0
-custom_constants/separation = 75
-
-[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel7/ActionHBox"]
-margin_bottom = 14.0
-grow_horizontal = 0
-script = ExtResource( 6 )
-
-[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel7/ActionHBox"]
-margin_left = 75.0
-margin_right = 75.0
-margin_bottom = 14.0
-script = ExtResource( 7 )
-
-[node name="ActionElementPanel8" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
-editor/display_folded = true
-margin_top = 275.0
-margin_right = 286.0
-margin_bottom = 303.0
-script = ExtResource( 5 )
-Action_Name = "Dodge_Move_Right"
-
-[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel8"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 279.0
-margin_bottom = 21.0
-custom_constants/separation = 75
-
-[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel8/ActionHBox"]
-margin_bottom = 14.0
-grow_horizontal = 0
-script = ExtResource( 6 )
-
-[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel8/ActionHBox"]
-margin_left = 75.0
-margin_right = 75.0
-margin_bottom = 14.0
-script = ExtResource( 7 )
-
-[node name="ActionElementPanel9" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
-editor/display_folded = true
-margin_top = 308.0
-margin_right = 286.0
-margin_bottom = 336.0
-script = ExtResource( 5 )
-Action_Name = "Dodge_Move_Up"
-
-[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel9"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 279.0
-margin_bottom = 21.0
-custom_constants/separation = 75
-
-[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel9/ActionHBox"]
-margin_bottom = 14.0
-grow_horizontal = 0
-script = ExtResource( 6 )
-
-[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel9/ActionHBox"]
-margin_left = 75.0
-margin_right = 75.0
-margin_bottom = 14.0
-script = ExtResource( 7 )
-
-[node name="ActionElementPanel10" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
-editor/display_folded = true
-margin_top = 341.0
-margin_right = 286.0
-margin_bottom = 369.0
-script = ExtResource( 5 )
-Action_Name = "Dodge_Move_Down"
-
-[node name="ActionHBox" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel10"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 279.0
-margin_bottom = 21.0
-custom_constants/separation = 75
-
-[node name="ActionLabel" type="Label" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel10/ActionHBox"]
-margin_bottom = 14.0
-grow_horizontal = 0
-script = ExtResource( 6 )
-
-[node name="InputButtonList" type="HBoxContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel10/ActionHBox"]
-margin_left = 75.0
-margin_right = 75.0
-margin_bottom = 14.0
-script = ExtResource( 7 )
-
-[node name="ActionElementPanel11" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
-editor/display_folded = true
-margin_top = 374.0
-margin_right = 286.0
-margin_bottom = 402.0
 script = ExtResource( 5 )
 Action_Name = "Slash_Attack"
 
@@ -383,9 +279,9 @@ script = ExtResource( 7 )
 
 [node name="ActionElementPanel12" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
 editor/display_folded = true
-margin_top = 407.0
+margin_top = 275.0
 margin_right = 286.0
-margin_bottom = 435.0
+margin_bottom = 303.0
 script = ExtResource( 5 )
 Action_Name = "Pierce_Attack"
 
@@ -409,9 +305,9 @@ script = ExtResource( 7 )
 
 [node name="ActionElementPanel13" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
 editor/display_folded = true
-margin_top = 440.0
+margin_top = 308.0
 margin_right = 286.0
-margin_bottom = 468.0
+margin_bottom = 336.0
 script = ExtResource( 5 )
 Action_Name = "Bash_Attack"
 
@@ -435,9 +331,9 @@ script = ExtResource( 7 )
 
 [node name="ActionElementPanel14" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
 editor/display_folded = true
-margin_top = 473.0
+margin_top = 341.0
 margin_right = 286.0
-margin_bottom = 501.0
+margin_bottom = 369.0
 script = ExtResource( 5 )
 Action_Name = "Aim_Left"
 
@@ -461,9 +357,9 @@ script = ExtResource( 7 )
 
 [node name="ActionElementPanel15" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
 editor/display_folded = true
-margin_top = 506.0
+margin_top = 374.0
 margin_right = 286.0
-margin_bottom = 534.0
+margin_bottom = 402.0
 script = ExtResource( 5 )
 Action_Name = "Aim_Right"
 
@@ -487,9 +383,9 @@ script = ExtResource( 7 )
 
 [node name="ActionElementPanel16" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
 editor/display_folded = true
-margin_top = 539.0
+margin_top = 407.0
 margin_right = 286.0
-margin_bottom = 567.0
+margin_bottom = 435.0
 script = ExtResource( 5 )
 Action_Name = "Aim_Up"
 
@@ -513,9 +409,9 @@ script = ExtResource( 7 )
 
 [node name="ActionElementPanel17" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
 editor/display_folded = true
-margin_top = 572.0
+margin_top = 440.0
 margin_right = 286.0
-margin_bottom = 600.0
+margin_bottom = 468.0
 script = ExtResource( 5 )
 Action_Name = "Aim_Down"
 
@@ -539,9 +435,9 @@ script = ExtResource( 7 )
 
 [node name="ActionElementPanel19" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
 editor/display_folded = true
-margin_top = 605.0
+margin_top = 473.0
 margin_right = 286.0
-margin_bottom = 633.0
+margin_bottom = 501.0
 script = ExtResource( 5 )
 Action_Name = "Use_Mana"
 
@@ -565,9 +461,9 @@ script = ExtResource( 7 )
 
 [node name="ActionElementPanel20" type="PanelContainer" parent="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList"]
 editor/display_folded = true
-margin_top = 638.0
+margin_top = 506.0
 margin_right = 286.0
-margin_bottom = 666.0
+margin_bottom = 534.0
 script = ExtResource( 5 )
 Action_Name = "Focus"
 
@@ -601,10 +497,6 @@ script = ExtResource( 7 )
 [connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel4/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel4/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
 [connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel5/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel5/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
 [connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel6/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel6/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
-[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel7/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel7/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
-[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel8/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel8/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
-[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel9/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel9/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
-[connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel10/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel10/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
 [connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel11/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel11/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
 [connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel12/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel12/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]
 [connection signal="right_mouse_button_pressed" from="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel13/ActionHBox/InputButtonList" to="VBoxContainer/ControlsMenuButton/ControlsMenu/ControlsPanel/ScrollContainer/InputActionList/ActionElementPanel13/ActionHBox/InputButtonList" method="_on_HBoxContainer_right_mouse_button_pressed"]

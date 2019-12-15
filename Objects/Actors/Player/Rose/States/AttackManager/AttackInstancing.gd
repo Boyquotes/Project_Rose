@@ -22,6 +22,7 @@ func initialize_hitbox(hitNodeIdx):
 	hitNodeIdx.scale = scale;
 	host.get_parent().add_child(hitNodeIdx);
 	hitNodeIdx.global_position = get_parent().global_position;
+	set_rot(hitNode[hitNode.size()-1]);
 
 func get_hitbox(hitNodeIdx):
 	return hitNodeIdx.get_child(0);
@@ -56,7 +57,7 @@ func SlashPlusDodge():
 func Slash():
 	instance_Slash_hitbox();
 	hitNode[hitNode.size()-1].init();
-	set_rot(hitNode[hitNode.size()-1]);
+	
 
 func SlashSlash():
 	Slash();
@@ -78,12 +79,13 @@ func ChargedSlash_Hor():
 
 func Bash_Directional():
 	instance_Bash_Directional_hitbox();
-	set_rot(hitNode[hitNode.size()-1]);
+	
 	var hitbox = get_hitbox(hitNode[hitNode.size()-1]);
 	hitNode[hitNode.size()-1].init();
 
 func Bash():
 	instance_Bash_hitbox();
+	
 	hitNode[hitNode.size()-1].init();
 
 func BashBash():
@@ -95,12 +97,12 @@ func BashBash():
 
 func Pierce():
 	instance_Pierce_hitbox();
-	set_rot(hitNode[hitNode.size()-1]);
+	
 	hitNode[hitNode.size()-1].init();
 
 func UpgradedPierce():
 	instance_UpgradedPierce_hitbox();
-	set_rot(hitNode[hitNode.size()-1]);
+	
 	hitNode[hitNode.size()-1].init();
 	host.change_mana(-10);
 
@@ -109,7 +111,7 @@ func BashPlusDodge():
 	instance_BashPlusDodge_Backward();
 	set_rot(hitNode[hitNode.size()-2]);
 	hitNode[hitNode.size()-1].scale.x = host.Direction;
-	set_rot(hitNode[hitNode.size()-1]);
+	
 	hitNode[hitNode.size()-2].init();
 	hitNode[hitNode.size()-1].init();
 	host.change_mana(-40);
@@ -118,14 +120,14 @@ func BashPlusDodge():
 
 func RangedSlash():
 	instance_RangedSlash();
-	set_rot(hitNode[hitNode.size()-1]);
+	
 	throw(250);
 	hitNode[hitNode.size()-1].init();
 	host.change_mana(-30);
 
 func RangedBash():
 	instance_RangedBash();
-	set_rot(hitNode[hitNode.size()-1]);
+	
 	throw(800);
 	hitNode[hitNode.size()-1].init();
 	host.change_mana(-30);
@@ -221,7 +223,7 @@ func Hurricane():
 	hitNode.time = .35;
 	hitNode.init();
 	partNode.init();
-	set_rot(hitNode[hitNode.size()-1]);
+	
 
 func instance_Hurricane_hitbox():
 	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Old_Hitboxes/Wind_Dance/Y.tscn").instance());

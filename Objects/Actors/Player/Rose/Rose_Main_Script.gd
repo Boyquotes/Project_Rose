@@ -210,7 +210,7 @@ func tween_rotation_from_specified(node: NodePath, cur: float, new: float, time:
 
 func tween_rotation_to_origin(var node: NodePath, time: float = .1):
 	$Tween.stop(get_node(node));
-	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,0,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,0,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 
 func jump():
@@ -222,12 +222,12 @@ func tween_scale(node: NodePath, new: Vector2, time: float = .1):
 
 func tween_sprite_rot(var node: NodePath, time: float = .1):
 	var deg;
-	if(abs($Movement_States/Attack/Attack_Controller.attack_degrees) == 45):
-		deg = $Movement_States/Attack/Attack_Controller.attack_degrees * Direction;
-	else:
+	if(Direction == 1):
 		deg = $Movement_States/Attack/Attack_Controller.attack_degrees;
+	else:
+		deg = -$Movement_States/Attack/Attack_Controller.attack_degrees;
 	$Tween.stop(get_node(node));
-	$Tween.interpolate_property(get_node(node),"rotation_degrees",get_node(node).rotation_degrees,deg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,deg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 
 func tween_global_position(new: Vector2, time: float = .1):

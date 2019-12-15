@@ -35,6 +35,7 @@ var activateSlash = false;
 var animate = false;
 var switchUp = false;
 var switchDown = false;
+var rotate = true;
 var attackDir = 0;
 var done_if_not_held = false;
 var attack_type = "";
@@ -59,7 +60,7 @@ var cool = 1;
 var attack_degrees = 0;
 
 ### debug_vars ###
-export(bool) var input_testing = false;
+export(bool) var input_testing = true;
 
 func _ready():
 	host = get_parent().get_parent().get_parent();
@@ -133,11 +134,15 @@ func handleInput():
 ###begins parsing player attack if an attack is triggered##
 func parse_attack(idx):
 	if(chargedSlash):
-		eventArr[idx] = "ChargedSlash";
+		if(host.deg >= 30 && host.deg <= 150):
+			eventArr[idx] = "ChargedSlash_Down";
+			rotate = false;
+		else:
+			eventArr[idx] = "ChargedSlash";
 		slottedSlash = true;
 		combo = "";
 	elif(Slash_pressed() && $ChargeSlashTimer.is_stopped() && !slottedSlash):
-		if(combo == "SlashSlash"):
+		if(combo == "Slash"):
 			combo = "";
 		if(combo == "BashBash"):
 			combo = "";
@@ -147,7 +152,7 @@ func parse_attack(idx):
 		if(powerups.get_powerup('reinforced_fabric')):
 			$ChargeSlashTimer.start();
 		slottedSlash = true;
-	if((Input.is_action_just_released("Slash_Attack") || activateSlash) && slottedSlash && (eventArr[idx] == "Slash" || eventArr[idx] == "ChargedSlash")):
+	if((Input.is_action_just_released("Slash_Attack") || activateSlash) && slottedSlash):
 		activateSlash = false;
 		$ChargeSlashTimer.stop();
 		attack_type = "slash";
@@ -289,6 +294,8 @@ func attack():
 	construct_attack_string();
 	var input_direction = get_parent().get_aim_direction();
 	attack_degrees = host.deg;
+	if(!rotate):
+		attack_degrees = 0;
 	get_parent().update_look_direction_and_scale(input_direction);
 	
 	clear_charged_vars();
@@ -363,6 +370,7 @@ func attack_done():
 	host.true_friction = host.base_friction;
 	$Attack_Instancing.clear();
 	bounce = false;
+	rotate = true;
 	if(Input.is_action_pressed("Use_Mana") && tether && host.mana > 0):
 		tether = false;
 		attack_state.exit(tethering_state);

@@ -70,7 +70,7 @@ func execute(delta):
 	elif(ActiveInput == InputType.GAMEPAD):
 		if(abs(Input.get_joy_axis(0,JOY_ANALOG_RY))>.4 || abs(Input.get_joy_axis(0,JOY_ANALOG_RX))>.4):
 			rad = atan2(Input.get_joy_axis(0, JOY_ANALOG_RY), Input.get_joy_axis(0, JOY_ANALOG_RX));
-		else:
+		elif(abs(Input.get_joy_axis(0,JOY_ANALOG_LY))>.4 || abs(Input.get_joy_axis(0,JOY_ANALOG_LX))>.4):
 			rad = atan2(Input.get_joy_axis(0, JOY_ANALOG_LY), Input.get_joy_axis(0, JOY_ANALOG_LX));
 	deg = rad2deg(rad);
 	
@@ -78,9 +78,9 @@ func execute(delta):
 	hitboxLoop();
 
 func phys_execute(delta):
-	
 	#state machine
 	#print(move_state);
+	#print($Sprites/Sprite.global_rotation_degrees);
 	move_states[move_state].handleInput();
 	move_states[move_state].handleAnimation();
 	move_states[move_state].execute(delta);
@@ -208,9 +208,34 @@ func tween_rotation_from_specified(node: NodePath, cur: float, new: float, time:
 	$Tween.interpolate_property(get_node(node),"rotation_degrees",cur,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 
+func set_rotation_to_origin(var node: NodePath):
+	var tDeg;
+	if(Direction == 1):
+		tDeg = 0;
+	else:
+		if(get_node(node).global_rotation_degrees > 0):
+			if($Movement_States/Attack/Attack_Controller.attack_degrees > 0):
+				tDeg = -179
+			else:
+				tDeg = 179;
+		else:
+			if($Movement_States/Attack/Attack_Controller.attack_degrees < 0):
+				tDeg = 179;
+			else:
+				tDeg = -179;
+	get_node(node).global_rotation_degrees=tDeg;
+
 func tween_rotation_to_origin(var node: NodePath, time: float = .1):
 	$Tween.stop(get_node(node));
-	$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,0,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	var tDeg;
+	if(Direction == 1):
+		tDeg = 0;
+	else:
+		if(get_node(node).global_rotation_degrees > 0):
+			tDeg = 180;
+		else:
+			tDeg = -180;
+	$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,tDeg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 
 func jump():
@@ -221,13 +246,13 @@ func tween_scale(node: NodePath, new: Vector2, time: float = .1):
 	$Tween.start();
 
 func tween_sprite_rot(var node: NodePath, time: float = .1):
-	var deg;
+	var tDeg;
 	if(Direction == 1):
-		deg = $Movement_States/Attack/Attack_Controller.attack_degrees;
+		tDeg = $Movement_States/Attack/Attack_Controller.attack_degrees;
 	else:
-		deg = -$Movement_States/Attack/Attack_Controller.attack_degrees;
+		tDeg = -$Movement_States/Attack/Attack_Controller.attack_degrees;
 	$Tween.stop(get_node(node));
-	$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,deg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,tDeg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 
 func tween_global_position(new: Vector2, time: float = .1):

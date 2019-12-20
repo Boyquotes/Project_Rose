@@ -296,7 +296,9 @@ func attack():
 	attack_degrees = host.deg;
 	if(!rotate):
 		attack_degrees = 0;
+	attack_state.canTurn = true;
 	get_parent().update_look_direction_and_scale(input_direction);
+	attack_state.canTurn = false;
 	
 	clear_charged_vars();
 	clear_slotted_vars();
@@ -363,6 +365,7 @@ func attack_done():
 	attack_state.hover = false;
 	attack_state.mobile = true;
 	attack_state.attack_dashing = false;
+	attack_state.canTurn = true;
 	done_if_not_held = false;
 	host.normalize_grav();
 	host.activate_grav();
@@ -420,6 +423,7 @@ func on_hit(col):
 
 func set_save_event():
 	save_event = true;
+	attack_state.canTurn = false;
 
 func set_dodge_interrupt():
 	dodge_interrupt = true;

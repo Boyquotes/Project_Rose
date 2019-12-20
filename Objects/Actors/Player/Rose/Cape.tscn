@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Sprites/Actors/Rose/small.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Actors/Player/Rose/Cape.gd" type="Script" id=2]
+
+[node name="Cape" type="Line2D"]
+width = 20.0
+default_color = Color( 1, 0.4, 0.4, 1 )
+texture = ExtResource( 1 )
+texture_mode = 2
+round_precision = 1
+script = ExtResource( 2 )
+
+[node name="WindxTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="WindxaTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="WindxbTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="WindyaTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="WindybTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+[connection signal="timeout" from="WindxTimer" to="." method="_on_WindxTimer_timeout"]
+[connection signal="timeout" from="WindxaTimer" to="." method="_on_WindxaTimer_timeout"]
+[connection signal="timeout" from="WindxbTimer" to="." method="_on_WindxbTimer_timeout"]
+[connection signal="timeout" from="WindyaTimer" to="." method="_on_WindyaTimer_timeout"]
+[connection signal="timeout" from="WindybTimer" to="." method="_on_WindybTimer_timeout"]

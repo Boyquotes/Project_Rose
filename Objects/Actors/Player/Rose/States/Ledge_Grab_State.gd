@@ -25,9 +25,9 @@ func enter():
 
 func handleAnimation():
 	if(!played):
-		host.animate(host.get_node("TopAnim"),"ledgegrab", false);
+		host.animate(host.spr_anim,"ledgegrab", false);
 	elif(climb):
-		host.animate(host.get_node("TopAnim"),"climb", false);
+		host.animate(host.spr_anim,"climb", false);
 
 func handleInput():
 	var dir = get_input_direction();

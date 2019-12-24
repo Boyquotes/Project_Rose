@@ -5,7 +5,7 @@ var target;
 
 var i = 0;
 var j = 1;
-var length = 100;
+export(int) var length = 300;
 var switch = true;
 var h = 0;
 var arrPoints;
@@ -50,9 +50,9 @@ func _process(delta):
 				set_point_position(i, get_point_position(i) - direction * 1);
 		h += .5;
 		j = 0;
-	if(get_point_position(0).distance_to(target.global_position) > 150):
+	if(get_point_position(0).distance_to(target.global_position) > length):
 		remove_point(0);
-	if(get_point_position(0).distance_to(target.global_position) < 150):
+	if(get_point_position(0).distance_to(target.global_position) < length):
 		while(get_point_count() > 25):
 			remove_point(0);
 

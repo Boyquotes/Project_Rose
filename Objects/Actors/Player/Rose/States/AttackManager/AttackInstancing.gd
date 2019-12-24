@@ -13,6 +13,7 @@ func connect_entered(hitbox):
 	hitbox.connect("body_entered",attack_controller,"on_hit");
 
 func initialize_hitbox(hitNodeIdx):
+	hitNodeIdx.z_index = 2;
 	attack_controller.attack_start = false;
 	var hitbox = get_hitbox(hitNodeIdx);
 	hitbox.host = get_parent().get_parent().host;
@@ -43,9 +44,15 @@ func initialize_hitbox_attach(hitNodeIdx):
 func set_rot(hitNodeIdx):
 	var hitbox = get_hitbox(hitNodeIdx);
 	if(is_instance_valid(hitbox)):
-		hitbox.global_rotation_degrees += attack_controller.attack_degrees;
-		if(hitbox.direction == 0):
+		if(attack_controller.rotate):
+			hitbox.global_rotation_degrees += attack_controller.attack_degrees;
+			if(hitbox.direction == 0):
+				hitbox.direction = hitbox.global_rotation_degrees * host.Direction
+				
+		else:
+			hitbox.scale.x = host.Direction;
 			hitbox.direction = hitbox.global_rotation_degrees * host.Direction
+			print(hitbox.direction);
 
 ### MELEE ATTACKS ###
 

@@ -14,14 +14,12 @@ gravity = Vector3( 0, 0, 0 )
 angular_velocity = 500.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-angle = -30.0
 color_ramp = SubResource( 2 )
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( 0, -9.11 )
-scale = Vector2( 1.5, 0.34 )
+scale = Vector2( 1.5, 1 )
 emitting = false
 amount = 1
 lifetime = 0.3

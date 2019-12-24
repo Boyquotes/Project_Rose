@@ -9,10 +9,14 @@ onready var hurt_state = get_parent().get_parent().get_node("Hurt");
 onready var powerups = get_parent().get_parent().get_parent().get_node("Powerups");
 signal attack;
 
+### properties for animation ###
+export(bool) var rotate = true;
+
+
 ### temp inits ###
 var on_cooldown = false;
 var hit = false;
-export(bool) var attack_start = false;
+var attack_start = false;
 var attack_end = false;
 var attack_is_saved = false;
 var attack_triggered = false;
@@ -35,7 +39,6 @@ var activateSlash = false;
 var animate = false;
 var switchUp = false;
 var switchDown = false;
-var rotate = true;
 var attackDir = 0;
 var done_if_not_held = false;
 var attack_type = "";
@@ -64,6 +67,7 @@ export(bool) var input_testing = true;
 
 func _ready():
 	host = get_parent().get_parent().get_parent();
+	rotate = true;
 
 func execute(delta):
 	if(!Input.is_action_pressed("Slash_Attack") && !activateSlash):
@@ -102,7 +106,7 @@ func enter():
 func handleAnimation():
 	if(!input_testing):
 		if(attack_state.busy && animate):
-			host.animate(host.get_node("TopAnim"),attack_str, true);
+			host.animate(host.spr_anim,attack_str, true);
 			animate = false;
 
 ### Prepares next move if user input is detected ###
@@ -136,18 +140,12 @@ func parse_attack(idx):
 	if(chargedSlash):
 		if(host.deg >= 30 && host.deg <= 150):
 			eventArr[idx] = "ChargedSlash_Down";
-			rotate = false;
 		else:
 			eventArr[idx] = "ChargedSlash";
 		slottedSlash = true;
 		combo = "";
 	elif(Slash_pressed() && $ChargeSlashTimer.is_stopped() && !slottedSlash):
-		if(combo == "Slash"):
-			combo = "";
-		if(combo == "BashBash"):
-			combo = "";
-		if(combo == "Bash"):
-			combo = "Slash";
+		combo = "";
 		eventArr[idx] = "Slash";
 		if(powerups.get_powerup('reinforced_fabric')):
 			$ChargeSlashTimer.start();
@@ -218,12 +216,10 @@ func parse_attack(idx):
 		return true;
 	
 	if(Bash_pressed() && !slottedBash):
-		if(combo == "BashBash"):
-			combo = "";
-		if(combo == "SlashSlash"):
+		if(combo == "Bash"):
 			combo = "";
 		if(combo == "Slash"):
-			combo = "Bash";
+			combo = "";
 		eventArr[idx] = "Bash";
 		slottedBash = true;
 	if(Input.is_action_just_released("Bash_Attack") && slottedBash && eventArr[idx] == "Bash"):
@@ -317,14 +313,20 @@ func attack():
 
 ### Constructs the string used to look up attack hitboxes and animations ###
 func construct_attack_string():
-	if(eventArr[0] == "Bash"):
-		if(powerups.get_powerup('reinforced_casing')):
-			if(combo == "BashBash"):
-				combo = "Bash";
-			combo += "_Directional";
 	if(input_testing):
 		attack_str = event_prefix + "_" + combo;
 	else:
+		if(Input.is_action_pressed("Hold_Focus")):
+			pass
+			#do hold focus stuff
+		elif(Input.is_action_pressed("Quick_Focus")):
+			pass
+			#do quick focus stuff
+		if(eventArr[0] == "Bash"):
+			if(powerups.get_powerup('reinforced_casing')):
+				if(combo == "BashBash"):
+					combo = "Bash";
+				combo += "_Directional";
 		if(powerups.get_powerup('quick_mechanism') && (eventArr[0] == "Slash" || eventArr[0] == "ChargedSlash")):
 			if(eventArr[0] == "ChargedSlash"):
 				combo += "Quick"
@@ -339,7 +341,7 @@ func construct_attack_string():
 
 func attack_done():
 	host.get_node("Hitbox/Hitbox").disabled = false;
-	host.get_node("TopAnim").playback_speed = 1;
+	host.spr_anim.playback_speed = 1;
 	if(!attack_is_saved):
 		if(!Input.is_action_pressed("Slash_Attack")):
 			chargedSlash = false;

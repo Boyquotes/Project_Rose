@@ -70,13 +70,12 @@ func execute(delta):
 			var input_direction = get_aim_direction();
 			update_look_direction_and_scale(input_direction);
 			host.hspd += true_acceleration * host.Direction;
-		elif(!host.on_floor() && !(abs(host.hspd) > host.true_mspd) && attack_controller.hit && attack_controller.vdir == "_Up"):
-			host.vspd -= true_acceleration/15;
 		else:
-			if(host.hspd != 0 && abs(host.hspd) > host.true_mspd && host.fric_activated):
-				host.hspd -= 20 * sign(host.hspd);
-			elif(host.fric_activated):
-				host.hspd = 0;
+			if(host.hspd != 0 && host.fric_activated):
+				if(abs(host.hspd) <= host.true_friction):
+					host.hspd = 0;
+				elif(host.on_floor()):
+						host.hspd -= host.true_friction * sign(host.hspd);
 	
 	attack_controller.execute(delta);
 

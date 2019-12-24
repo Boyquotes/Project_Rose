@@ -7,11 +7,11 @@ func enter():
 
 func handleAnimation():
 	if(jump):
-		host.animate(host.get_node("TopAnim"),"jump", false);
+		host.animate(host.spr_anim,"jump", false);
 	elif(host.hspd > 0 || host.hspd < 0):
-		host.animate(host.get_node("TopAnim"),"run", false);
+		host.animate(host.spr_anim,"run", false);
 	else: 
-		host.animate(host.get_node("TopAnim"),"idle", false);
+		host.animate(host.spr_anim,"idle", false);
 
 func handleInput():
 	if(get_attack_just_pressed()):

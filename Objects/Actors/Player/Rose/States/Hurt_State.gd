@@ -11,7 +11,7 @@ func enter():
 	$hurtTimer.start();
 
 func handleAnimation():
-	host.animate(host.get_node("TopAnim"),"hurt", false);
+	host.animate(host.spr_anim,"hurt", false);
 
 func handleInput():
 	pass;

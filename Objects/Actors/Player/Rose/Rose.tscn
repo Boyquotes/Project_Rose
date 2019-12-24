@@ -26,7 +26,7 @@
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Tethering_State.gd" type="Script" id=24]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Hurt_State.gd" type="Script" id=25]
 
-[sub_resource type="Animation" id=42]
+[sub_resource type="Animation" id=1]
 resource_name = "Activate_Soft_Focus"
 step = 0.05
 tracks/0/type = "value"
@@ -78,7 +78,7 @@ tracks/3/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="Animation" id=43]
+[sub_resource type="Animation" id=2]
 resource_name = "Deactivate_Soft_Focus"
 step = 0.05
 tracks/0/type = "value"
@@ -130,7 +130,7 @@ tracks/3/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=3]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -188,8 +188,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Event_Bash"
+[sub_resource type="Animation" id=4]
 length = 0.65
 step = 0.01
 tracks/0/type = "method"
@@ -321,8 +320,7 @@ tracks/8/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Event_Bash+Dodge"
+[sub_resource type="Animation" id=5]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -488,7 +486,7 @@ tracks/7/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 length = 0.65
 step = 0.01
 tracks/0/type = "method"
@@ -581,7 +579,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=7]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
@@ -680,8 +678,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Event_ChargedSlash"
+[sub_resource type="Animation" id=8]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
@@ -831,8 +828,7 @@ tracks/7/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "Event_ChargedSlash_Down"
+[sub_resource type="Animation" id=9]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -928,7 +924,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -1054,7 +1050,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -1186,7 +1182,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=12]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -1320,7 +1316,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=13]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -1403,8 +1399,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "Event_RangedBash"
+[sub_resource type="Animation" id=14]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -1496,8 +1491,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "Event_RangedSlash"
+[sub_resource type="Animation" id=15]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -1589,8 +1583,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=14]
-resource_name = "Event_Slash"
+[sub_resource type="Animation" id=16]
 length = 0.4
 step = 0.01
 tracks/0/type = "method"
@@ -1698,7 +1691,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=17]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -1826,8 +1819,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=16]
-resource_name = "Event_SlashSlash"
+[sub_resource type="Animation" id=18]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -1908,7 +1900,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=19]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -1991,7 +1983,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=20]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -2151,7 +2143,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=21]
 length = 0.65
 loop = true
 step = 0.02
@@ -2170,11 +2162,11 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=22]
 length = 0.4
 loop = true
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=23]
 length = 0.4
 loop = true
 step = 0.01
@@ -2215,7 +2207,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=24]
 length = 0.4
 loop = true
 step = 0.01
@@ -2256,7 +2248,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=25]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2288,7 +2280,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=26]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2332,8 +2324,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=25]
-resource_name = "death"
+[sub_resource type="Animation" id=27]
 length = 1.5
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -2378,8 +2369,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=26]
-resource_name = "hurt"
+[sub_resource type="Animation" id=28]
 length = 0.25
 step = 0.01
 tracks/0/type = "value"
@@ -2449,7 +2439,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=29]
 length = 0.75
 loop = true
 step = 0.15
@@ -2490,7 +2480,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=30]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2522,7 +2512,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=31]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2554,7 +2544,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=32]
 length = 0.3
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Ledge_Grab")
@@ -2571,7 +2561,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=33]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -2731,7 +2721,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=34]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -2757,7 +2747,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=35]
 length = 0.8
 loop = true
 step = 0.05
@@ -2798,7 +2788,7 @@ tracks/2/keys = {
 "values": [ ExtResource( 12 ) ]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=36]
 length = 0.2
 step = 0.01
 tracks/0/type = "method"
@@ -2852,7 +2842,7 @@ tracks/3/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=37]
 length = 0.2
 step = 0.01
 tracks/0/type = "method"
@@ -2906,27 +2896,27 @@ tracks/3/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Shader" id=40]
+[sub_resource type="Shader" id=38]
 code = "shader_type canvas_item;
 
 uniform float eye_cutoff : hint_range(0.0, 1.0);
-uniform vec4 curr_eye_color : hint_color;
+uniform vec4 orig_eye_color : hint_color;
+uniform vec4 foc_eye_color : hint_color;
+
+vec4 trunc_vec(vec4 v, float n){
+    v.x=floor(pow(10,n) * v.x) / pow(10,n);
+    v.y=floor(pow(10,n) * v.x) / pow(10,n);
+    v.z=floor(pow(10,n) * v.x) / pow(10,n);
+    return v;
+}
 
 vec4 changeEyes(vec4 curr_color)
 {
-	if(curr_eye_color == curr_color)
+	if(trunc_vec(orig_eye_color,5) == trunc_vec(curr_color,5))
 	{
-		float r = 12.0/255.0;
-		float g = 123.0/255.0;
-		float b = 30.0/255.0;
-		
-		float r2 = 90.0/255.0;
-		float g2 = 145.0/255.0;
-		float b2 = 255.0/255.0;
-		
-		float r_int = r * (1.0 - eye_cutoff) + r2 * eye_cutoff;
-		float g_int = g * (1.0 - eye_cutoff) + g2 * eye_cutoff;
-		float b_int = b * (1.0 - eye_cutoff) + b2 * eye_cutoff;
+		float r_int = orig_eye_color.r * (1.0 - eye_cutoff) + foc_eye_color.r * eye_cutoff;
+		float g_int = orig_eye_color.g * (1.0 - eye_cutoff) + foc_eye_color.g * eye_cutoff;
+		float b_int = orig_eye_color.b * (1.0 - eye_cutoff) + foc_eye_color.b * eye_cutoff;
 		
 		return vec4(r_int,g_int,b_int,1);
 	}
@@ -2940,21 +2930,22 @@ void fragment() {
 	COLOR = changeEyes(curr_color);
 }"
 
-[sub_resource type="ShaderMaterial" id=41]
-shader = SubResource( 40 )
+[sub_resource type="ShaderMaterial" id=39]
+shader = SubResource( 38 )
 shader_param/eye_cutoff = 0.0
-shader_param/curr_eye_color = Color( 0.0470588, 0.482353, 0.117647, 1 )
+shader_param/orig_eye_color = Color( 0.0470588, 0.482353, 0.117647, 1 )
+shader_param/foc_eye_color = Color( 0.388235, 0.607843, 1, 1 )
 
-[sub_resource type="RectangleShape2D" id=36]
+[sub_resource type="RectangleShape2D" id=40]
 extents = Vector2( 10, 19 )
 
-[sub_resource type="RectangleShape2D" id=37]
+[sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 10, 19 )
 
-[sub_resource type="RectangleShape2D" id=38]
+[sub_resource type="RectangleShape2D" id=42]
 extents = Vector2( 256, 150 )
 
-[sub_resource type="RectangleShape2D" id=39]
+[sub_resource type="RectangleShape2D" id=43]
 extents = Vector2( 10, 2 )
 
 [node name="Rose" type="KinematicBody2D"]
@@ -2979,57 +2970,56 @@ pause_mode = 2
 script = ExtResource( 3 )
 
 [node name="EffectsAnim" type="AnimationPlayer" parent="."]
-anims/Activate_Soft_Focus = SubResource( 42 )
-anims/Deactivate_Soft_Focus = SubResource( 43 )
+anims/Activate_Soft_Focus = SubResource( 1 )
+anims/Deactivate_Soft_Focus = SubResource( 2 )
 script = ExtResource( 5 )
 
 [node name="SpriteAnim" type="AnimationPlayer" parent="."]
-anims/Closed_Fan_QuickX_Hor = SubResource( 1 )
-anims/Event_Bash = SubResource( 2 )
-anims/Event_Bash+Dodge = SubResource( 3 )
-anims/Event_BashBash = SubResource( 4 )
-anims/Event_Bash_Directional = SubResource( 5 )
-anims/Event_ChargedSlash = SubResource( 6 )
-anims/Event_ChargedSlash_Down = SubResource( 7 )
-anims/Event_Dodge = SubResource( 8 )
-anims/Event_HitDodge = SubResource( 9 )
-anims/Event_HitSlash+Dodge = SubResource( 10 )
-anims/Event_Pierce = SubResource( 11 )
-anims/Event_RangedBash = SubResource( 12 )
-anims/Event_RangedSlash = SubResource( 13 )
-anims/Event_Slash = SubResource( 14 )
-anims/Event_Slash+Dodge = SubResource( 15 )
-anims/Event_SlashSlash = SubResource( 16 )
-anims/Event_UpgradedPierce = SubResource( 17 )
-anims/Hurricane = SubResource( 18 )
-anims/Wind_Dance_HoldY = SubResource( 19 )
-anims/air_idle = SubResource( 20 )
-anims/air_move_down = SubResource( 21 )
-anims/air_move_up = SubResource( 22 )
-anims/airjump = SubResource( 23 )
-anims/climb = SubResource( 24 )
-anims/death = SubResource( 25 )
-anims/hurt = SubResource( 26 )
-anims/idle = SubResource( 27 )
-anims/jump = SubResource( 28 )
-anims/land = SubResource( 29 )
-anims/ledgegrab = SubResource( 30 )
-"anims/old dash" = SubResource( 31 )
-anims/reset = SubResource( 32 )
-anims/run = SubResource( 33 )
-anims/up_to_down_idle = SubResource( 34 )
-anims/up_to_down_moving = SubResource( 35 )
+anims/Closed_Fan_QuickX_Hor = SubResource( 3 )
+anims/Event_Bash = SubResource( 4 )
+anims/Event_Bash+Dodge = SubResource( 5 )
+anims/Event_BashBash = SubResource( 6 )
+anims/Event_Bash_Directional = SubResource( 7 )
+anims/Event_ChargedSlash = SubResource( 8 )
+anims/Event_ChargedSlash_Down = SubResource( 9 )
+anims/Event_Dodge = SubResource( 10 )
+anims/Event_HitDodge = SubResource( 11 )
+anims/Event_HitSlash+Dodge = SubResource( 12 )
+anims/Event_Pierce = SubResource( 13 )
+anims/Event_RangedBash = SubResource( 14 )
+anims/Event_RangedSlash = SubResource( 15 )
+anims/Event_Slash = SubResource( 16 )
+anims/Event_Slash+Dodge = SubResource( 17 )
+anims/Event_SlashSlash = SubResource( 18 )
+anims/Event_UpgradedPierce = SubResource( 19 )
+anims/Hurricane = SubResource( 20 )
+anims/Wind_Dance_HoldY = SubResource( 21 )
+anims/air_idle = SubResource( 22 )
+anims/air_move_down = SubResource( 23 )
+anims/air_move_up = SubResource( 24 )
+anims/airjump = SubResource( 25 )
+anims/climb = SubResource( 26 )
+anims/death = SubResource( 27 )
+anims/hurt = SubResource( 28 )
+anims/idle = SubResource( 29 )
+anims/jump = SubResource( 30 )
+anims/land = SubResource( 31 )
+anims/ledgegrab = SubResource( 32 )
+"anims/old dash" = SubResource( 33 )
+anims/reset = SubResource( 34 )
+anims/run = SubResource( 35 )
+anims/up_to_down_idle = SubResource( 36 )
+anims/up_to_down_moving = SubResource( 37 )
 
 [node name="Sprites" type="Node2D" parent="."]
 z_index = 1
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
 editor/display_folded = true
-material = SubResource( 41 )
+material = SubResource( 39 )
 z_index = 1
-texture = ExtResource( 6 )
-hframes = 4
-frame = 3
+texture = ExtResource( 11 )
+hframes = 5
 
 [node name="Position2D" type="Position2D" parent="Sprites/Sprite"]
 position = Vector2( 0, -8 )
@@ -3049,7 +3039,7 @@ texture = ExtResource( 4 )
 hframes = 10
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
-shape = SubResource( 36 )
+shape = SubResource( 40 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( 0, -20 )
@@ -3060,7 +3050,7 @@ script = ExtResource( 15 )
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
 scale = Vector2( 0.8, 1 )
-shape = SubResource( 37 )
+shape = SubResource( 41 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
@@ -3112,7 +3102,7 @@ position = Vector2( 14, -40 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 36 )
+shape = SubResource( 40 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Ledge_Grab"]
 wait_time = 0.1
@@ -3175,7 +3165,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 38 )
+shape = SubResource( 42 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0
@@ -3197,7 +3187,7 @@ position = Vector2( 10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_R"]
-shape = SubResource( 39 )
+shape = SubResource( 43 )
 
 [node name="Ledgebox_L" type="Area2D" parent="."]
 editor/display_folded = true
@@ -3205,7 +3195,7 @@ position = Vector2( -10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_L"]
-shape = SubResource( 39 )
+shape = SubResource( 43 )
 
 [node name="manaTimer" type="Timer" parent="."]
 wait_time = 0.5

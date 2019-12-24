@@ -1,5 +1,7 @@
 extends "res://Objects/Actors/Actor.gd"
 
+enum ATTACK_TYPE {SLASH, BASH, PIERCE, TRUE};
+var mark = null;
 onready var actionTimer = get_node("Action_Timer");
 onready var player = get_tree().get_root().get_node("Test/Rose");
 
@@ -36,6 +38,8 @@ func execute(delta):
 	pass
 
 func phys_execute(delta):
+	if(mark != null):
+		print(mark);
 	#state machine
 	#state = 'default' by default
 	states[state].handleAnimation();

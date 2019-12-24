@@ -11,6 +11,7 @@ export(float) var inchdir = 1;
 export(int) var hit_limit = 0;
 export(bool) var absorbing = true;
 export(int) var damage;
+export(bool) var mark = true;
 var hits = 0;
 var true_knockback = 0;
 var calc_direction = true;
@@ -36,3 +37,5 @@ func _on_Area2D_area_entered(area):
 			host.change_mana(5);
 		if(attack_controller):
 			attack_controller.on_hit(area);
+		if(mark):
+			area.host.mark = attack_type;

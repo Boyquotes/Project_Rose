@@ -39,7 +39,8 @@ func execute(delta):
 
 func phys_execute(delta):
 	if(mark != null):
-		print(mark);
+		#print(mark);
+		pass;
 	#state machine
 	#state = 'default' by default
 	states[state].handleAnimation();

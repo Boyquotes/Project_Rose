@@ -30,11 +30,8 @@ func handleAnimation():
 		host.animate(host.spr_anim,"land", false);
 	elif(!land):
 		if((cutoff && !transitioned) || (host.vspd > -250 && !transitioned)):
-			if(abs(host.hspd) > 0):
-				host.animate(host.spr_anim,"up_to_down_moving", false);
-			else:
-				host.animate(host.spr_anim,"up_to_down_idle", false);
-		elif((!doneUp || !doneDown) && abs(host.hspd) > 0):
+			host.animate(host.spr_anim,"up_to_down", false);
+		elif((!doneUp || !doneDown)):
 			if(host.vspd < 0 && !doneUp):
 				host.animate(host.spr_anim,"air_move_up", false);
 				doneUp = true;
@@ -43,10 +40,6 @@ func handleAnimation():
 				host.animate(host.spr_anim,"air_move_down", false);
 				doneDown = true;
 				doneUp = false;
-		elif(host.hspd == 0):
-			host.animate(host.spr_anim,"air_idle", false);
-			doneUp = false;
-			doneDown = false;
 
 func handleInput():
 	if(get_attack_just_pressed()):
@@ -131,5 +124,5 @@ func _on_Jump_Timer_timeout():
 
 
 func _on_TopAnim_animation_finished(anim_name):
-	if(anim_name == "up_to_down_moving" || anim_name == "up_to_down_idle"):
+	if(anim_name == "up_to_down"):
 		transitioned = true;

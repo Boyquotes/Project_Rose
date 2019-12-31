@@ -39,7 +39,7 @@ func handleInput():
 	if(get_attack_just_pressed() || get_attack_pressed() || attack_controller.attack_start):
 		leave = false;
 	if(attack_controller.dodge_interrupt || !busy):
-		if(Input.is_action_just_pressed("Jump") && attack_controller.hit && !host.on_floor()):
+		if(Input.is_action_just_pressed("Jump") && hop && !host.on_floor()):
 			air.jump = true;
 			leave = true;
 			attack_broken = true;
@@ -84,6 +84,7 @@ func exit(state):
 		pass;
 	leave = false;
 	busy = false;
+	hop = false;
 	attack_broken = false;
 	attack_controller.clear_save_vars();
 	attack_controller.clear_slotted_vars();

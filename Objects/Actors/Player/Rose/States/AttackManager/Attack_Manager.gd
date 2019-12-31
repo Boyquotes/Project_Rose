@@ -287,6 +287,7 @@ func reset_strings():
 
 ### Triggers appropriate attack based on the strings constructed by player input ###
 func attack():
+	attack_state.hop = false;
 	construct_attack_string();
 	var input_direction = get_parent().get_aim_direction();
 	attack_degrees = host.deg;
@@ -363,7 +364,6 @@ func attack_done():
 	dodge_interrupt = false;
 	reset_strings();
 	attack_state.ComboTimer.start();
-	attack_state.hop = false;
 	attack_state.hover = false;
 	attack_state.mobile = true;
 	attack_state.attack_dashing = false;
@@ -413,15 +413,14 @@ func on_hit(col):
 	if("hittable" in col):
 		if(col.hittable):
 			hit = true;
-			if(eventArr[0] == "Slash" && !host.on_floor() && attack_degrees >= 30 && attack_degrees <= 150):
+			if(eventArr[0] == "Slash" && !host.on_floor()):
 				attack_state.hop = true;
-				host.jump()
-				host.activate_grav();
 				hit = false;
+			"""
 			elif(!host.on_floor() && !attack_state.attack_dashing):
 				#NOTE: This might mess up; if the grav screws up again this is probably at fault
 				attack_state.hover = true;
-				host.mitigate_grav();
+				host.mitigate_grav();"""
 
 func set_save_event():
 	save_event = true;

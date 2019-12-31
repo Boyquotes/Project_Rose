@@ -52,7 +52,6 @@ func set_rot(hitNodeIdx):
 		else:
 			hitbox.scale.x = host.Direction;
 			hitbox.direction = hitbox.global_rotation_degrees * host.Direction
-			print(hitbox.direction);
 
 ### MELEE ATTACKS ###
 

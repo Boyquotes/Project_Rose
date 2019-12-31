@@ -33,7 +33,7 @@ func _process(delta):
 		var newx = cos(rad);
 		var newy = sin(rad);
 		add_point(get_point_position(get_point_count()-1) - Vector2(newx,newy));
-	if(get_point_count() > 150):
+	while(get_point_count() > 250):
 		remove_point(0);
 	if(decay):
 		if(get_point_count() > 1):

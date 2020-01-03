@@ -12,7 +12,6 @@ func get_attack_pressed():
 func get_attack_just_pressed():
 	return (
 	Input.is_action_just_pressed("Slash_Attack") || 
-	Input.is_action_just_released("Slash_Attack") ||
 	Input.is_action_just_pressed("Dodge") ||
 	Input.is_action_just_pressed("Pierce_Attack") ||
 	Input.is_action_just_pressed("Bash_Attack"));

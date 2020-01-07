@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Rose_QuickFocus_Effect.png-44a5e70bf928ca5563b504e787630892.stex"
+path="res://.import/Rose_Pull.png-6615e529cb6478ed68eb4970b4743650.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Actors/Rose/Rose_QuickFocus_Effect.png"
-dest_files=[ "res://.import/Rose_QuickFocus_Effect.png-44a5e70bf928ca5563b504e787630892.stex" ]
+source_file="res://Assets/Sprites/Actors/Rose/new/Rose_Pull.png"
+dest_files=[ "res://.import/Rose_Pull.png-6615e529cb6478ed68eb4970b4743650.stex" ]
 
 [params]
 

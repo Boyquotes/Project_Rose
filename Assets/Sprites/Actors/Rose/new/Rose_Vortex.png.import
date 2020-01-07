@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Rose_Run.png-f42dd918b4174561d6810f06fc8f24aa.stex"
+path="res://.import/Rose_Vortex.png-e496a79024b9bd392aac911e0a3974ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Actors/Rose/Rose_Run.png"
-dest_files=[ "res://.import/Rose_Run.png-f42dd918b4174561d6810f06fc8f24aa.stex" ]
+source_file="res://Assets/Sprites/Actors/Rose/new/Rose_Vortex.png"
+dest_files=[ "res://.import/Rose_Vortex.png-e496a79024b9bd392aac911e0a3974ba.stex" ]
 
 [params]
 

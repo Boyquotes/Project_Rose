@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Rose_Slash.png-1d880721803196330541e7aed9b7f101.stex"
+path="res://.import/Rose_Dash.png-6b213b2bfab9025969b19147aa8e2234.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Actors/Rose/Rose_Slash.png"
-dest_files=[ "res://.import/Rose_Slash.png-1d880721803196330541e7aed9b7f101.stex" ]
+source_file="res://Assets/Sprites/Actors/Rose/new/Rose_Dash.png"
+dest_files=[ "res://.import/Rose_Dash.png-6b213b2bfab9025969b19147aa8e2234.stex" ]
 
 [params]
 

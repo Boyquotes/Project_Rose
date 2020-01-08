@@ -121,12 +121,9 @@ func parse_attack(idx):
 			eventArr[idx] = "Vortex";
 		slottedSlash = true;
 	elif(Pierce_pressed() && !slottedPierce):
-		if(powerups.get_powerup('magus_sleeve') && host.mana > 0):
-			eventArr[idx] = "UpgradedPierce";
-		else:
-			eventArr[idx] = "Pierce";
+		eventArr[idx] = "Pierce";
 		if(powerups.get_powerup('magus_sleeve') && Input.is_action_pressed("Quick_Focus")):
-			eventArr[idx] = "DashPierce";
+			eventArr[idx] = "Dash";
 		if(powerups.get_powerup('mounting_hook') && Input.is_action_pressed("Hold_Focus")):
 			eventArr[idx] = "PullPierce";
 		if(powerups.get_powerup('huntress_rune') && Input.is_action_pressed("Hold_Focus") && Input.is_action_pressed("Quick_Focus")):
@@ -149,9 +146,9 @@ func parse_attack(idx):
 	
 	if(Input.is_action_just_released("Slash_Attack") && slottedSlash):
 		return record_event("slash");
-	if(Input.is_action_just_released("Pierce_Attack") && slottedPierce && (eventArr[idx] == "Pierce" || eventArr[idx] == "HoldPierce"|| eventArr[idx] == "UpgradedPierce")):
+	if(Input.is_action_just_released("Pierce_Attack") && slottedPierce):
 		return record_event("pierce");
-	if(Input.is_action_just_released("Bash_Attack") && slottedBash && eventArr[idx] == "Bash"):
+	if(Input.is_action_just_released("Bash_Attack") && slottedBash):
 		return record_event("bash");
 	if(eventArr[idx] == "Dodge" || 
 		eventArr[idx] == "HitDodge"):

@@ -8,6 +8,8 @@ const KEY_BINDING_SECTION = "key_binding"
 const GAMEFLAGS_SECTION = "game_flags"
 
 var _user_settings : ConfigFile;
+### IMPORTANT: TURN THIS FALSE WHEN EXPORTING ###
+var load_defaults = true;
 
 func _ready():
 	load_settings()
@@ -17,6 +19,8 @@ func _ready():
 		_create_game_flags();
 	_load_key_bindings()
 	_load_upgrades()
+	if(load_defaults):
+		_create_default_key_bindings();
 
 func load_settings():
 	# We create an empty file if not present to avoid error while loading settings

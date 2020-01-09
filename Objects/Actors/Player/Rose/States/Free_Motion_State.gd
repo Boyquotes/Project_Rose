@@ -55,7 +55,7 @@ func execute(delta):
 	var input_direction = get_input_direction();
 	if(canTurn):
 		update_look_direction_and_scale(input_direction);
-	if(input_direction != 0 && (host.true_mspd >= abs(host.hspd))):
+	if(input_direction != 0 && (host.true_mspd >= abs(host.hspd)) && !host.hold_focus):
 		if(input_direction != sign(host.hspd)):
 			true_acceleration = base_acceleration * 1.5;
 		else:

@@ -58,7 +58,6 @@ func set_rot(hitNodeIdx):
 func SlashPlusDodge():
 	instance_SlashPlusDodge_hitbox();
 	hitNode[hitNode.size()-1].init();
-	host.change_mana(-10);
 
 func Slash():
 	instance_Slash_hitbox();
@@ -106,12 +105,6 @@ func Pierce():
 	
 	hitNode[hitNode.size()-1].init();
 
-func UpgradedPierce():
-	instance_UpgradedPierce_hitbox();
-	
-	hitNode[hitNode.size()-1].init();
-	host.change_mana(-10);
-
 func BashPlusDodge():
 	instance_BashPlusDodge_Forward();
 	instance_BashPlusDodge_Backward();
@@ -120,7 +113,6 @@ func BashPlusDodge():
 	
 	hitNode[hitNode.size()-2].init();
 	hitNode[hitNode.size()-1].init();
-	host.change_mana(-40);
 
 ### RANGED ATTACKS ###
 
@@ -129,14 +121,12 @@ func RangedSlash():
 	
 	throw(250);
 	hitNode[hitNode.size()-1].init();
-	host.change_mana(-30);
 
 func RangedBash():
 	instance_RangedBash();
 	
 	throw(800);
 	hitNode[hitNode.size()-1].init();
-	host.change_mana(-30);
 
 func throw(force):
 	var hitbox = get_hitbox(hitNode[hitNode.size()-1]);
@@ -189,11 +179,6 @@ func instance_ChargedSlash_Down_Ground_hitbox():
 func instance_Pierce_hitbox():
 	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_Pierce/Pierce_Hitbox.tscn").instance());
 	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
-
-func instance_UpgradedPierce_hitbox():
-	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_UpgradedPierce/UpgradedPierce_Hitbox.tscn").instance());
-	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
-
 ### NEEDS FIXING ###
 
 func Closed_Fan_QuickX_Hor():
@@ -241,7 +226,11 @@ func instance_bash_QuickX_hitbox():
 
 func clear():
 	for node in hitNode:
-		if(is_instance_valid(node) && node.attached):
-			node.global_rotation_degrees = 0;
-			node.queue_free();
+		if(is_instance_valid(node)):
+			if("attached" in node):
+				if(node.attached == true):
+					node.global_rotation_degrees = 0;
+					node.queue_free();
+			else:
+				node.queue_free();
 	hitNode.clear();

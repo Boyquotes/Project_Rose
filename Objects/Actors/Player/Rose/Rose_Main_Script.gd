@@ -16,6 +16,8 @@ onready var move_states = {
 	'hurt' : $Movement_States/Hurt
 }
 var move_state = 'move_on_ground';
+var hold_focus = false;
+var tweened = true;
 
 ###hitbox detection###
 var targettable_hitboxes = [];
@@ -34,7 +36,6 @@ var g_max_temp;
 var rad = 0.0;
 var deg = 0.0;
 
-
 enum InputType {GAMEPAD, KEYMOUSE};
 var active_input = InputType.GAMEPAD;
 
@@ -52,6 +53,10 @@ func _ready():
 #hotswitch between keyboard and controller input
 #should be able to expand this to detect different types of controllers
 func _input(event):
+	if(Input.is_action_pressed("Hold_Focus")):
+		hold_focus = true;
+	else:
+		hold_focus = false;
 	if(event.get_class() == "InputEventMouseButton" || event.get_class() == "InputEventKey" || Input.get_connected_joypads().size() == 0):
 		active_input = InputType.KEYMOUSE;
 	elif(event.get_class() == "InputEventJoypadMotion" || event.get_class() == "InputEventJoypadButton"):
@@ -235,6 +240,7 @@ func set_rotation_to_origin(var node: NodePath):
 	get_node(node).global_rotation_degrees=tDeg;
 #tweens the rotation to a convenient faux-origin based on input direction and player direction
 func tween_rotation_to_origin(var node: NodePath, time: float = .1):
+	tweened = true;
 	$Tween.stop(get_node(node));
 	var tDeg;
 	if(Direction == 1):
@@ -319,4 +325,3 @@ func bounce():
 	deg = $Movement_States/Attack/Attack_Controller.attack_degrees;
 	deg = deg + 180;
 	add_velocity(400,deg);
-

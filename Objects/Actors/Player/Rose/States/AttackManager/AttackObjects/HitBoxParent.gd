@@ -9,9 +9,9 @@ export(ATTACK_TYPE) var attack_type;
 export(float) var direction;
 export(float) var inchdir = 1;
 export(int) var hit_limit = 0;
-export(bool) var absorbing = true;
 export(int) var damage;
 export(bool) var mark = true;
+export(float) var cost = 0;
 var hits = 0;
 var true_knockback = 0;
 var calc_direction = true;
@@ -33,8 +33,7 @@ func _on_Area2D_area_entered(area):
 		hits += 1;
 		if(hits >= hit_limit && hit_limit > 0):
 			get_child(0).call_deferred("disabled",true);
-		if(absorbing):
-			host.change_mana(5);
+		host.change_mana(cost);
 		if(attack_controller):
 			attack_controller.on_hit(area);
 		if(mark):

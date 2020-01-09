@@ -96,6 +96,7 @@ func exit(state):
 	.exit(state);
 
 func _on_ComboTimer_timeout():
+	attack_controller.twirl = false;
 	attack_controller.combo = "";
 	if(host.move_state == 'attack'):
 		exit_g_or_a();

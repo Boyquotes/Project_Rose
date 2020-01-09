@@ -43,6 +43,8 @@ var bash_plus_dodge_procs = 0;
 var max_bash_plus_dodge_procs = 1;
 var bounce = false;
 var tether = false;
+var twirl = false;
+
 var tethered_creature;
 
 ### attack codes ###
@@ -92,12 +94,15 @@ func handleAnimation():
 
 ### Prepares next move if user input is detected ###
 func handleInput():
-	if((attack_state.attack_broken || interrupt || (follow_up && !started_save)) && attack_is_saved):
+	if(((dodge_interrupt && twirl) || interrupt || (follow_up && !started_save)) && attack_is_saved):
+		attack_is_saved = false;
+		if(!twirl && eventArr[1] == "Dodge"):
+			return;
 		attack_done();
-		attack_state.attack_broken = false;
+		if(twirl && eventArr[1] == "Dodge"):
+			eventArr[1] = "HitDodge";
 		eventArr[0] = eventArr[1];
 		combo += eventArr[1];
-		attack_is_saved = false;
 		attack();
 	if(!attack_state.busy && !started_save):
 		if(parse_attack(0)):
@@ -139,9 +144,7 @@ func parse_attack(idx):
 			eventArr[idx] = "Charge";
 		slottedBash = true;
 	elif(Dodge_pressed()):
-		if(hit):
-			eventArr[idx] = "HitDodge";
-		else:
+		if(idx == 0 && host.on_floor() || idx == 1):
 			eventArr[idx] = "Dodge";
 	
 	if(Input.is_action_just_released("Slash_Attack") && slottedSlash):
@@ -150,16 +153,15 @@ func parse_attack(idx):
 		return record_event("pierce");
 	if(Input.is_action_just_released("Bash_Attack") && slottedBash):
 		return record_event("bash");
-	if(eventArr[idx] == "Dodge" || 
-		eventArr[idx] == "HitDodge"):
-			if(dodge_interrupt):
-				attack_state.attack_broken = true;
-			host.get_node("Hitbox/Hitbox").disabled = true;
-			return record_event("dodge");
+	if(eventArr[idx] == "Dodge"):
+		host.get_node("Hitbox/Hitbox").disabled = true;
+		return record_event("dodge");
 	
+	clear_enter_vars();
 	return false;
 
 func record_event(atk):
+	clear_enter_vars();
 	combo = "";
 	attack_type = atk;
 	return true;
@@ -185,7 +187,9 @@ func reset_strings():
 
 ### Triggers appropriate attack based on the strings constructed by player input ###
 func attack():
+	host.tweened = false;
 	attack_state.hop = false;
+	twirl = false;
 	construct_attack_string();
 	var input_direction = get_parent().get_aim_direction();
 	attack_degrees = host.deg;
@@ -214,6 +218,8 @@ func construct_attack_string():
 	attack_str = event_prefix + "_" + combo;
 
 func attack_done():
+	if(!host.tweened):
+		host.tween_rotation_to_origin("Sprites/Sprite");
 	host.get_node("Hitbox/Hitbox").disabled = false;
 	if(!attack_is_saved):
 		clear_slotted_vars();
@@ -227,7 +233,6 @@ func attack_done():
 	interrupt = false;
 	dodge_interrupt = false;
 	reset_strings();
-	attack_state.ComboTimer.start();
 	attack_state.hover = false;
 	attack_state.mobile = true;
 	attack_state.attack_dashing = false;
@@ -238,6 +243,7 @@ func attack_done():
 	host.activate_fric();
 	host.true_friction = host.base_friction;
 	$Attack_Instancing.clear();
+	attack_state.ComboTimer.start();
 	bounce = false;
 	rotate = true;
 	if(Input.is_action_pressed("Use_Mana") && tether && host.mana > 0):
@@ -247,6 +253,10 @@ func attack_done():
 	else:
 		tether = false;
 		tethering_state.creatures.clear();
+
+func attack_done_reset():
+	twirl = false;
+	attack_done();
 
 func clear_enter_vars():
 	enterSlash = false;
@@ -275,6 +285,9 @@ func on_hit(col):
 			hit = true;
 			if(eventArr[0] == "Slash" && !host.on_floor()):
 				attack_state.hop = true;
+				hit = false;
+			if(eventArr[0] == "Pierce"):
+				twirl = true;
 				hit = false;
 			"""
 			elif(!host.on_floor() && !attack_state.attack_dashing):

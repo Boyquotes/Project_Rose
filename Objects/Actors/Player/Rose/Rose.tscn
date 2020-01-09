@@ -890,19 +890,19 @@ tracks/3/keys = {
 "values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Movement_States/Attack/Attack_Controller:attack_start")
+tracks/4/path = NodePath("Sprites/Sprite:texture")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.04 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ ExtResource( 8 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Sprites/Sprite:texture")
+tracks/5/path = NodePath("Sprites/Sprite:hframes")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -911,35 +911,24 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 8 ) ]
+"values": [ 4 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Sprites/Sprite:hframes")
+tracks/6/path = NodePath("Sprites/Sprite:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 4 ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Sprites/Sprite:frame")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 0, 1 ]
 }
 
-[sub_resource type="Animation" id=10]
-length = 0.61
+[sub_resource type="Animation" id=44]
+resource_name = "Event_HitDodge"
+length = 0.45
 step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
@@ -948,7 +937,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 0.21, 0.35, 0.6 ),
+"times": PoolRealArray( 0, 0.118125, 0.12375, 0.3375 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -971,56 +960,33 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.01, 0.04, 0.3, 0.31 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0225, 0.16875 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "deactivate_fric"
-}, {
-"args": [  ],
-"method": "deactivate_grav"
 }, {
 "args": [ 400.0 ],
 "method": "add_velocity"
 }, {
 "args": [  ],
 "method": "activate_fric"
-}, {
-"args": [  ],
-"method": "activate_grav"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
+tracks/2/type = "value"
+tracks/2/path = NodePath("Movement_States/Attack:mobile")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.05 ],
-"method": "tween_scale"
-}, {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.05 ],
-"method": "tween_scale"
-}, {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
-"method": "tween_scale"
-}, {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
-"method": "tween_scale"
-}, {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.15 ],
-"method": "tween_scale"
-}, {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.15 ],
-"method": "tween_scale"
-} ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
+tracks/3/type = "value"
+tracks/3/path = NodePath("Movement_States/Attack:attack_dashing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1028,13 +994,11 @@ tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ NodePath("Sprites/Sprite"), 0.05 ],
-"method": "tween_rotation_to_origin"
-} ]
+"update": 1,
+"values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Movement_States/Attack:attack_dashing")
+tracks/4/path = NodePath("Sprites/Sprite:texture")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -1043,10 +1007,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ ExtResource( 8 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Movement_States/Attack:mobile")
+tracks/5/path = NodePath("Sprites/Sprite:hframes")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -1055,19 +1019,36 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ 4 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Movement_States/Attack/Attack_Controller:attack_start")
+tracks/6/path = NodePath("Sprites/Sprite:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.04 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.028125, 0.05625, 0.1125, 0.16875, 0.253125 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ 0, 1, 2, 3, 0, 1 ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.16875 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "deactivate_grav"
+}, {
+"args": [  ],
+"method": "activate_grav"
+} ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -1234,7 +1215,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
+"times": PoolRealArray( 0.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -1248,7 +1229,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.1 ),
+"times": PoolRealArray( 0.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -1274,7 +1255,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.05 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
@@ -1315,7 +1296,7 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.25 ),
+"times": PoolRealArray( 0.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ NodePath("Sprites/Sprite"), 0.05 ],
@@ -1732,7 +1713,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=44]
+[sub_resource type="Animation" id=17]
 resource_name = "Event_SwirlSlash"
 length = 0.4
 step = 0.01
@@ -3063,7 +3044,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=39]
 shader = SubResource( 38 )
-shader_param/eye_cutoff = 1.0
+shader_param/eye_cutoff = 0.0
 shader_param/orig_eye_color = Color( 0.0470588, 0.482353, 0.117647, 1 )
 shader_param/foc_eye_color = Color( 0.388235, 0.607843, 1, 1 )
 
@@ -3113,14 +3094,14 @@ anims/Event_BashBash = SubResource( 6 )
 anims/Event_Bash_Directional = SubResource( 7 )
 anims/Event_Dash = SubResource( 8 )
 anims/Event_Dodge = SubResource( 9 )
-anims/Event_HitDodge = SubResource( 10 )
+anims/Event_HitDodge = SubResource( 44 )
 anims/Event_HitSlash+Dodge = SubResource( 11 )
 anims/Event_Pierce = SubResource( 12 )
 anims/Event_RangedBash = SubResource( 13 )
 anims/Event_Slash = SubResource( 14 )
 anims/Event_Slash+Dodge = SubResource( 15 )
 anims/Event_SlashSlash = SubResource( 16 )
-anims/Event_SwirlSlash = SubResource( 44 )
+anims/Event_SwirlSlash = SubResource( 17 )
 anims/Event_UpgradedPierce = SubResource( 18 )
 anims/Event_Vortex = SubResource( 19 )
 anims/Event_WindSlash = SubResource( 20 )
@@ -3149,9 +3130,9 @@ z_index = 1
 editor/display_folded = true
 material = SubResource( 39 )
 z_index = 1
-texture = ExtResource( 7 )
-hframes = 6
-frame = 3
+texture = ExtResource( 9 )
+hframes = 2
+frame = 1
 
 [node name="Position2D" type="Position2D" parent="Sprites/Sprite"]
 position = Vector2( 0, -8 )
@@ -3169,7 +3150,7 @@ texture = ExtResource( 18 )
 z_index = 1
 texture = ExtResource( 4 )
 hframes = 10
-frame = 2
+frame = 8
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 shape = SubResource( 40 )

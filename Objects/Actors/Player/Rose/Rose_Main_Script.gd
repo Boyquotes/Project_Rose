@@ -13,11 +13,13 @@ onready var move_states = {
 	'ledge_grab' : $Movement_States/Ledge_Grab,
 	'attack' : $Movement_States/Attack,
 	'tethering' : $Movement_States/Tethering,
-	'hurt' : $Movement_States/Hurt
+	'hurt' : $Movement_States/Hurt,
+	'vortex' : $Movement_States/Vortex
 }
 var move_state = 'move_on_ground';
 var hold_focus = false;
 var tweened = true;
+var can_channel_and_focus = true;
 
 ###hitbox detection###
 var targettable_hitboxes = [];
@@ -27,9 +29,10 @@ var item_trace = [];
 onready var CamNode = get_node("Camera2D");
 
 ###Player Vars###
-export(int) var max_mana = 100;
-var mana = 100;
-var mana_recov = 1;
+export(float) var max_mana = 100;
+export(float) var mana_recov = 1.0;
+var mana = 100.0;
+var regain_mana = true;
 
 var g_max_temp;
 
@@ -228,16 +231,17 @@ func set_rotation_to_origin(var node: NodePath):
 		tDeg = 0;
 	else:
 		if(get_node(node).global_rotation_degrees > 0):
-			if($Movement_States/Attack/Attack_Controller.attack_degrees > 0):
-				tDeg = -179
+			if(deg > 0):
+				tDeg = -179;
 			else:
 				tDeg = 179;
 		else:
-			if($Movement_States/Attack/Attack_Controller.attack_degrees < 0):
+			if(deg < 0):
 				tDeg = 179;
 			else:
 				tDeg = -179;
-	get_node(node).global_rotation_degrees=tDeg;
+	get_node(node).global_rotation_degrees = tDeg;
+
 #tweens the rotation to a convenient faux-origin based on input direction and player direction
 func tween_rotation_to_origin(var node: NodePath, time: float = .1):
 	tweened = true;
@@ -284,7 +288,7 @@ func change_mana(man):
 	emit_signal("mana_changed", mana);
 #replenish mana over time
 func _on_manaTimer_timeout():
-	if(mana < max_mana):
+	if(mana < max_mana && regain_mana):
 		mana += mana_recov;
 	if(mana > max_mana):
 		mana = max_mana;

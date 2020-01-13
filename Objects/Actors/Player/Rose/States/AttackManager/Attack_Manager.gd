@@ -5,6 +5,7 @@ onready var air_state = get_parent().get_parent().get_node("Move_In_Air");
 onready var ledge_state = get_parent().get_parent().get_node("Ledge_Grab");
 onready var attack_state = get_parent().get_parent().get_node("Attack");
 onready var tethering_state = get_parent().get_parent().get_node("Tethering");
+onready var vortex_state = get_parent().get_parent().get_node("Vortex");
 onready var hurt_state = get_parent().get_parent().get_node("Hurt");
 onready var powerups = get_parent().get_parent().get_parent().get_node("Powerups");
 signal attack;
@@ -118,29 +119,29 @@ func handleInput():
 func parse_attack(idx):
 	if(Slash_pressed() && !slottedSlash):
 		eventArr[idx] = "Slash";
-		if(powerups.get_powerup('reinforced_fabric') && Input.is_action_pressed("Quick_Focus")):
+		if(powerups.get_powerup('reinforced_fabric') && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "SwirlSlash";
-		if(powerups.get_powerup('mana_fabric') && Input.is_action_pressed("Hold_Focus")):
+		if(powerups.get_powerup('mana_fabric') && Input.is_action_pressed("Channel")):
 			eventArr[idx] = "WindSlash";
-		if(powerups.get_powerup('hurricane_rune') && Input.is_action_pressed("Hold_Focus") && Input.is_action_pressed("Quick_Focus")):
-			eventArr[idx] = "Vortex";
+		if(powerups.get_powerup('hurricane_rune') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
+			eventArr[idx] = "ToVortex";
 		slottedSlash = true;
 	elif(Pierce_pressed() && !slottedPierce):
 		eventArr[idx] = "Pierce";
-		if(powerups.get_powerup('magus_sleeve') && Input.is_action_pressed("Quick_Focus")):
+		if(powerups.get_powerup('magus_sleeve') && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "Dash";
-		if(powerups.get_powerup('mounting_hook') && Input.is_action_pressed("Hold_Focus")):
+		if(powerups.get_powerup('mounting_hook') && Input.is_action_pressed("Channel")):
 			eventArr[idx] = "PullPierce";
-		if(powerups.get_powerup('huntress_rune') && Input.is_action_pressed("Hold_Focus") && Input.is_action_pressed("Quick_Focus")):
+		if(powerups.get_powerup('huntress_rune') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "Stasis";
 		slottedPierce = true;
 	elif(Bash_pressed() && !slottedBash):
 		eventArr[idx] = "Bash";
-		if(powerups.get_powerup('reinforced_casing') && Input.is_action_pressed("Quick_Focus")):
+		if(powerups.get_powerup('reinforced_casing') && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "LungeBash";
-		if(powerups.get_powerup('reinforced_casing') && Input.is_action_pressed("Hold_Focus")):
+		if(powerups.get_powerup('reinforced_casing') && Input.is_action_pressed("Channel")):
 			eventArr[idx] = "LaunchBash";
-		if(powerups.get_powerup('breaker_rune') && Input.is_action_pressed("Hold_Focus") && Input.is_action_pressed("Quick_Focus")):
+		if(powerups.get_powerup('breaker_rune') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "Charge";
 		slottedBash = true;
 	elif(Dodge_pressed()):
@@ -246,6 +247,13 @@ func attack_done():
 	attack_state.ComboTimer.start();
 	bounce = false;
 	rotate = true;
+	change_state();
+	
+
+func change_state():
+	if(previous_event == "ToVortex"):
+		attack_state.exit(vortex_state);
+		attack_state.get_node("ComboTimer").stop();
 	if(Input.is_action_pressed("Use_Mana") && tether && host.mana > 0):
 		tether = false;
 		attack_state.exit(tethering_state);

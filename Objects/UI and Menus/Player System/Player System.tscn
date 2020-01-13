@@ -12,7 +12,6 @@
 [ext_resource path="res://Design and Prototypes/focustexture.png" type="Texture" id=10]
 [ext_resource path="res://Design and Prototypes/whitepettle.png" type="Texture" id=11]
 
-
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.714801, 0.99639, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 )

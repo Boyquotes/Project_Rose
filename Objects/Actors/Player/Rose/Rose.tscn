@@ -1,41 +1,49 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/StatusEffects.gd" type="Script" id=2]
 [ext_resource path="res://Objects/Actors/Player/Rose/Powerups.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_QuickFocus_Effect.png" type="Texture" id=4]
-[ext_resource path="res://Objects/Actors/Player/Rose/EffectsAnimController.gd" type="Script" id=5]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Bash.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Dash.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Spin.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Pierce.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Slash.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_ToVortex.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Gust.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Pull.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Move_Down.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Move_Up.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Idle.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Run.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Up_To_Down.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Pierce_Projectile.png" type="Texture" id=19]
-[ext_resource path="res://Objects/Actors/Player/Rose/Hitbox.gd" type="Script" id=20]
-[ext_resource path="res://Objects/Actors/Player/Rose/Shake.gd" type="Script" id=21]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_On_Ground_State.gd" type="Script" id=22]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_In_Air_State.gd" type="Script" id=23]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Ledge_Grab_State.gd" type="Script" id=24]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Vault_State.gd" type="Script" id=25]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=26]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=27]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=28]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Tethering_State.gd" type="Script" id=29]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Hurt_State.gd" type="Script" id=30]
+[ext_resource path="res://Objects/Actors/Player/Rose/FocusAnimController.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Channel_Start_Front.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Channel_Start_Back.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Channel_End_Back.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Channel_Loop_Front.png" type="Texture" id=9]
+[ext_resource path="res://Objects/Actors/Player/Rose/ChannelAnimController.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Bash.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Dash.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Spin.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Pierce.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Slash.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_ToVortex.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Gust.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Pull.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Vortex.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Move_Down.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Move_Up.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Idle.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Run.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Up_To_Down.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Pierce_Projectile.png" type="Texture" id=25]
+[ext_resource path="res://Objects/Actors/Player/Rose/Hitbox.gd" type="Script" id=26]
+[ext_resource path="res://Objects/Actors/Player/Rose/Shake.gd" type="Script" id=27]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_On_Ground_State.gd" type="Script" id=28]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_In_Air_State.gd" type="Script" id=29]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Ledge_Grab_State.gd" type="Script" id=30]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Vault_State.gd" type="Script" id=31]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=32]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=33]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=34]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Tethering_State.gd" type="Script" id=35]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Hurt_State.gd" type="Script" id=36]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Vortex_State.gd" type="Script" id=37]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Activate_Soft_Focus"
-step = 0.05
+resource_name = "Activate_Focus"
+length = 0.38
+step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Sprite:material:shader_param/eye_cutoff")
+tracks/0/path = NodePath("Sprites/FocusSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -43,11 +51,11 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
+"update": 1,
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites/EffectSprite:texture")
+tracks/1/path = NodePath("Sprites/FocusSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -56,36 +64,117 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ 10 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprites/EffectSprite:hframes")
+tracks/2/path = NodePath("Sprites/FocusSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 10 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprites/EffectSprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.0375, 0.075, 0.1125, 0.15, 0.1875, 0.225, 0.2625, 0.3, 0.3375 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Sprite:material:shader_param/focus_color_factor")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
 
 [sub_resource type="Animation" id=2]
-resource_name = "Deactivate_Soft_Focus"
+resource_name = "Deactivate_Focus"
+length = 0.38
 step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/FocusSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/FocusSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/FocusSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0375, 0.075, 0.1125, 0.15, 0.1875, 0.225, 0.2625, 0.3, 0.3375 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Sprite:material:shader_param/focus_color_factor")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprites/Sprite:material:shader_param/width")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Hold_Focus"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Sprite:material:shader_param/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Inactive"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:material:shader_param/eye_cutoff")
 tracks/0/interp = 1
@@ -99,7 +188,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites/EffectSprite:texture")
+tracks/1/path = NodePath("Sprites/FocusSprite:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -108,34 +197,218 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ null ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Activate_Channel"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/ChannelSpriteFront:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/ChannelSpriteBack:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprites/EffectSprite:hframes")
+tracks/2/path = NodePath("Sprites/ChannelSpriteFront:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 10 ]
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprites/EffectSprite:frame")
+tracks/3/path = NodePath("Sprites/ChannelSpriteFront:hframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.0375, 0.075, 0.1125, 0.15, 0.1875, 0.225, 0.2625, 0.3, 0.3375 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+"values": [ 6 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprites/ChannelSpriteBack:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprites/ChannelSpriteBack:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=6]
+resource_name = "Deactivate_Channel"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/ChannelSpriteFront:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ null ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/ChannelSpriteBack:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/ChannelSpriteBack:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/ChannelSpriteBack:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Hold_Channel"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/ChannelSpriteFront:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/ChannelSpriteFront:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/ChannelSpriteFront:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/ChannelSpriteBack:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ null ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Inactive"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/ChannelSpriteFront:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ null ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/ChannelSpriteBack:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ null ]
+}
+
+[sub_resource type="Animation" id=9]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -193,7 +466,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=10]
 length = 0.65
 step = 0.01
 tracks/0/type = "method"
@@ -255,7 +528,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.01 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 6 ), ExtResource( 6 ) ]
+"values": [ ExtResource( 11 ), ExtResource( 11 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprites/Sprite:hframes")
@@ -325,7 +598,7 @@ tracks/8/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=11]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -491,7 +764,7 @@ tracks/7/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=12]
 length = 0.65
 step = 0.01
 tracks/0/type = "method"
@@ -584,7 +857,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=13]
 length = 0.9
 step = 0.01
 tracks/0/type = "method"
@@ -683,8 +956,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "Event_Dash"
+[sub_resource type="Animation" id=14]
 length = 0.35
 step = 0.01
 tracks/0/type = "method"
@@ -742,7 +1014,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 7 ) ]
+"values": [ ExtResource( 12 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprites/Sprite:frame")
@@ -820,7 +1092,7 @@ tracks/8/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=15]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -900,7 +1172,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 8 ) ]
+"values": [ ExtResource( 13 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Sprites/Sprite:hframes")
@@ -927,8 +1199,7 @@ tracks/6/keys = {
 "values": [ 0, 1, 2, 3, 0, 1 ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "Event_HitDodge"
+[sub_resource type="Animation" id=16]
 length = 0.45
 step = 0.01
 tracks/0/type = "method"
@@ -1008,7 +1279,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 8 ) ]
+"values": [ ExtResource( 13 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Sprites/Sprite:hframes")
@@ -1052,7 +1323,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=17]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -1186,7 +1457,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=18]
 length = 0.35
 step = 0.01
 tracks/0/type = "method"
@@ -1247,7 +1518,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 9 ) ]
+"values": [ ExtResource( 14 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprites/Sprite:frame")
@@ -1305,7 +1576,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=19]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -1397,7 +1668,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=20]
 length = 0.4
 step = 0.01
 tracks/0/type = "method"
@@ -1447,7 +1718,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 10 ) ]
+"values": [ ExtResource( 15 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprites/Sprite:hframes")
@@ -1505,7 +1776,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=21]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -1633,7 +1904,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=22]
 length = 0.6
 step = 0.01
 tracks/0/type = "method"
@@ -1714,8 +1985,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=17]
-resource_name = "Event_SwirlSlash"
+[sub_resource type="Animation" id=23]
 length = 0.4
 step = 0.01
 tracks/0/type = "method"
@@ -1765,7 +2035,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 10 ) ]
+"values": [ ExtResource( 15 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprites/Sprite:hframes")
@@ -1823,8 +2093,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=18]
-resource_name = "Event_ToVortex"
+[sub_resource type="Animation" id=24]
 length = 0.7
 step = 0.01
 tracks/0/type = "method"
@@ -1876,7 +2145,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 11 ) ]
+"values": [ ExtResource( 16 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprites/Sprite:frame")
@@ -1909,13 +2178,13 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.01 ),
+"times": PoolRealArray( 0, 0.44 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ NodePath("Sprites/Sprite") ],
 "method": "set_rotation_to_origin"
 }, {
-"args": [ NodePath("Sprites/Sprite"), 0.09 ],
+"args": [ NodePath("Sprites/Sprite"), 0.01 ],
 "method": "tween_sprite_rot"
 } ]
 }
@@ -1926,7 +2195,7 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.2, 0.65 ),
+"times": PoolRealArray( 0.45, 0.65 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ 500.0 ],
@@ -1936,8 +2205,20 @@ tracks/7/keys = {
 "method": "tween_rotation_to_origin"
 } ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("Movement_States/Attack:mobile")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=25]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -2020,7 +2301,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=26]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -2044,52 +2325,12 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("Movement_States/Attack/Attack_Controller")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
-tracks/1/enabled = false
+tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ NodePath("Sprites/Sprite"), -25.0 ],
-"method": "tween_rotation"
-}, {
-"args": [ NodePath("Sprites/Sprite") ],
-"method": "tween_rotation_to_origin"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15, 0.35 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"values": [ {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.1 ],
-"method": "tween_scale"
-}, {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.1 ],
-"method": "tween_scale"
-}, {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 0, 1 ), 0.2 ],
-"method": "tween_scale"
-}, {
-"args": [ NodePath("Sprites/Sprite"), Vector2( 1, 1 ), 0.2 ],
-"method": "tween_scale"
-} ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("Movement_States/Attack/Attack_Controller")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -2097,13 +2338,13 @@ tracks/3/keys = {
 "method": "set_dodge_interrupt"
 } ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0.15 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -2111,44 +2352,75 @@ tracks/4/keys = {
 "method": "RangedSlash"
 } ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("Sprites/Sprite:texture")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Sprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 12 ) ]
+"values": [ ExtResource( 17 ) ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("Sprites/Sprite:hframes")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprites/Sprite:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 5 ]
 }
-tracks/7/type = "value"
-tracks/7/path = NodePath("Sprites/Sprite:frame")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprites/Sprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0, 0.1, 0.15, 0.25, 0.35 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite") ],
+"method": "set_rotation_to_origin"
+}, {
+"args": [ NodePath("Sprites/Sprite"), 0.09 ],
+"method": "tween_sprite_rot"
+} ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"method": "tween_rotation_to_origin"
+} ]
+}
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=27]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -2308,8 +2580,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=22]
-resource_name = "Pull"
+[sub_resource type="Animation" id=28]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:texture")
 tracks/0/interp = 1
@@ -2320,7 +2591,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 13 ) ]
+"values": [ ExtResource( 18 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprites/Sprite:frame")
@@ -2347,7 +2618,49 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=50]
+resource_name = "Vortex"
+length = 0.29
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 19 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=29]
 length = 0.65
 loop = true
 step = 0.02
@@ -2366,7 +2679,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=30]
 length = 0.4
 loop = true
 step = 0.01
@@ -2380,7 +2693,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 14 ) ]
+"values": [ ExtResource( 20 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprites/Sprite:hframes")
@@ -2407,7 +2720,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=31]
 length = 0.4
 loop = true
 step = 0.01
@@ -2421,7 +2734,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 15 ) ]
+"values": [ ExtResource( 21 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprites/Sprite:hframes")
@@ -2448,7 +2761,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=32]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2480,7 +2793,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=33]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2524,7 +2837,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=34]
 length = 1.5
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -2569,7 +2882,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=35]
 length = 0.25
 step = 0.01
 tracks/0/type = "value"
@@ -2639,7 +2952,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=36]
 length = 0.75
 loop = true
 step = 0.15
@@ -2653,7 +2966,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 16 ) ]
+"values": [ ExtResource( 22 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprites/Sprite:hframes")
@@ -2680,7 +2993,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=37]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2712,7 +3025,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=38]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2744,7 +3057,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=39]
 length = 0.3
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Ledge_Grab")
@@ -2761,7 +3074,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=40]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -2921,7 +3234,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=41]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -2947,7 +3260,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=42]
 length = 0.8
 loop = true
 step = 0.05
@@ -2985,10 +3298,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 17 ) ]
+"values": [ ExtResource( 23 ) ]
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=43]
 length = 0.2
 step = 0.01
 tracks/0/type = "method"
@@ -3015,7 +3328,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 18 ) ]
+"values": [ ExtResource( 24 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprites/Sprite:frame")
@@ -3042,12 +3355,17 @@ tracks/3/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Shader" id=38]
+[sub_resource type="Shader" id=44]
 code = "shader_type canvas_item;
 
-uniform float eye_cutoff : hint_range(0.0, 1.0);
+
+uniform float width : hint_range(0.0, 1.0);
+uniform vec4 outline_color : hint_color;
+
+uniform float precision_threshold : hint_range(0.0, 1.0);
+uniform float focus_color_factor : hint_range(0.0, 1.0);
 uniform vec4 orig_eye_color : hint_color;
-uniform vec4 foc_eye_color : hint_color;
+uniform vec4 foc_color : hint_color;
 
 vec4 trunc_vec(vec4 v, float n){
     v.x=floor(pow(10,n) * v.x) / pow(10,n);
@@ -3056,13 +3374,13 @@ vec4 trunc_vec(vec4 v, float n){
     return v;
 }
 
-vec4 changeEyes(vec4 curr_color)
+vec4 focColor(vec4 curr_color)
 {
-	if(trunc_vec(orig_eye_color,5) == trunc_vec(curr_color,5))
+	if(orig_eye_color.r + precision_threshold >= curr_color.r && orig_eye_color.r - precision_threshold <= curr_color.r )
 	{
-		float r_int = orig_eye_color.r * (1.0 - eye_cutoff) + foc_eye_color.r * eye_cutoff;
-		float g_int = orig_eye_color.g * (1.0 - eye_cutoff) + foc_eye_color.g * eye_cutoff;
-		float b_int = orig_eye_color.b * (1.0 - eye_cutoff) + foc_eye_color.b * eye_cutoff;
+		float r_int = orig_eye_color.r * (1.0 - focus_color_factor) + foc_color.r * focus_color_factor;
+		float g_int = orig_eye_color.g * (1.0 - focus_color_factor) + foc_color.g * focus_color_factor;
+		float b_int = orig_eye_color.b * (1.0 - focus_color_factor) + foc_color.b * focus_color_factor;
 		
 		return vec4(r_int,g_int,b_int,1);
 	}
@@ -3070,28 +3388,57 @@ vec4 changeEyes(vec4 curr_color)
 		return curr_color;
 }
 
-void fragment() {
+vec4 outline(sampler2D tex, in vec2 uv)
+{
+	vec2 size = vec2(width) / vec2(textureSize(tex, 0));
+	vec4 sprite_color = texture(tex,uv);
+	
+	float alpha = sprite_color.a;
+	alpha += texture(tex, uv + vec2(0.0, -size.y)).a;
+	alpha += texture(tex, uv + vec2(size.x, -size.y)).a;
+	alpha += texture(tex, uv + vec2(size.x, 0.0)).a;
+	alpha += texture(tex, uv + vec2(size.x, size.y)).a;
+	alpha += texture(tex, uv + vec2(0.0, size.y)).a;
+	alpha += texture(tex, uv + vec2(-size.x, size.y)).a;
+	alpha += texture(tex, uv + vec2(-size.x, 0.0)).a;
+	alpha += texture(tex, uv + vec2(-size.x, -size.y)).a;
+	   
+	vec3 final_color = mix(outline_color.rgb, sprite_color.rgb, sprite_color.a);
+	vec4 alpha_color = vec4(final_color, clamp(alpha, 0.0, 1.0));
+	//alpha_color.a = sprite_color.a;
+	return alpha_color;
+}
+
+void fragment() 
+{
 	vec4 curr_color = texture(TEXTURE,UV); // Get current color of pixel
 	
-	COLOR = changeEyes(curr_color);
-}"
+	curr_color = outline(TEXTURE,UV);
+	
+	COLOR = focColor(curr_color);
+}
 
-[sub_resource type="ShaderMaterial" id=39]
-shader = SubResource( 38 )
-shader_param/eye_cutoff = 0.0
+"
+
+[sub_resource type="ShaderMaterial" id=45]
+shader = SubResource( 44 )
+shader_param/width = 0.0
+shader_param/outline_color = Color( 0.65098, 0.764706, 1, 0 )
+shader_param/precision_threshold = 0.001
+shader_param/focus_color_factor = 0.0
 shader_param/orig_eye_color = Color( 0.0470588, 0.482353, 0.117647, 1 )
-shader_param/foc_eye_color = Color( 0.388235, 0.607843, 1, 1 )
+shader_param/foc_color = Color( 0.352941, 0.568627, 1, 1 )
 
-[sub_resource type="RectangleShape2D" id=40]
+[sub_resource type="RectangleShape2D" id=46]
 extents = Vector2( 10, 19 )
 
-[sub_resource type="RectangleShape2D" id=41]
+[sub_resource type="RectangleShape2D" id=47]
 extents = Vector2( 10, 19 )
 
-[sub_resource type="RectangleShape2D" id=42]
+[sub_resource type="RectangleShape2D" id=48]
 extents = Vector2( 256, 150 )
 
-[sub_resource type="RectangleShape2D" id=43]
+[sub_resource type="RectangleShape2D" id=49]
 extents = Vector2( 10, 2 )
 
 [node name="Rose" type="KinematicBody2D"]
@@ -3115,58 +3462,67 @@ one_shot = true
 pause_mode = 2
 script = ExtResource( 3 )
 
-[node name="EffectsAnim" type="AnimationPlayer" parent="."]
-anims/Activate_Soft_Focus = SubResource( 1 )
-anims/Deactivate_Soft_Focus = SubResource( 2 )
+[node name="FocusAnim" type="AnimationPlayer" parent="."]
+anims/Activate_Focus = SubResource( 1 )
+anims/Deactivate_Focus = SubResource( 2 )
+anims/Hold_Focus = SubResource( 3 )
+anims/Inactive = SubResource( 4 )
 script = ExtResource( 5 )
 
+[node name="ChannelAnim" type="AnimationPlayer" parent="."]
+anims/Activate_Channel = SubResource( 5 )
+anims/Deactivate_Channel = SubResource( 6 )
+anims/Hold_Channel = SubResource( 7 )
+anims/Inactive = SubResource( 8 )
+script = ExtResource( 10 )
+
 [node name="SpriteAnim" type="AnimationPlayer" parent="."]
-anims/Closed_Fan_QuickX_Hor = SubResource( 3 )
-anims/Event_Bash = SubResource( 4 )
-anims/Event_Bash+Dodge = SubResource( 5 )
-anims/Event_BashBash = SubResource( 6 )
-anims/Event_Bash_Directional = SubResource( 7 )
-anims/Event_Dash = SubResource( 8 )
-anims/Event_Dodge = SubResource( 9 )
-anims/Event_HitDodge = SubResource( 10 )
-anims/Event_HitSlash+Dodge = SubResource( 11 )
-anims/Event_Pierce = SubResource( 12 )
-anims/Event_RangedBash = SubResource( 13 )
-anims/Event_Slash = SubResource( 14 )
-anims/Event_Slash+Dodge = SubResource( 15 )
-anims/Event_SlashSlash = SubResource( 16 )
-anims/Event_SwirlSlash = SubResource( 17 )
-anims/Event_ToVortex = SubResource( 18 )
-anims/Event_UpgradedPierce = SubResource( 19 )
-anims/Event_WindSlash = SubResource( 20 )
-anims/Hurricane = SubResource( 21 )
-anims/Pull = SubResource( 22 )
-anims/Wind_Dance_HoldY = SubResource( 23 )
-anims/air_move_down = SubResource( 24 )
-anims/air_move_up = SubResource( 25 )
-anims/airjump = SubResource( 26 )
-anims/climb = SubResource( 27 )
-anims/death = SubResource( 28 )
-anims/hurt = SubResource( 29 )
-anims/idle = SubResource( 30 )
-anims/jump = SubResource( 31 )
-anims/land = SubResource( 32 )
-anims/ledgegrab = SubResource( 33 )
-"anims/old dash" = SubResource( 34 )
-anims/reset = SubResource( 35 )
-anims/run = SubResource( 36 )
-anims/up_to_down = SubResource( 37 )
+anims/Closed_Fan_QuickX_Hor = SubResource( 9 )
+anims/Event_Bash = SubResource( 10 )
+anims/Event_Bash+Dodge = SubResource( 11 )
+anims/Event_BashBash = SubResource( 12 )
+anims/Event_Bash_Directional = SubResource( 13 )
+anims/Event_Dash = SubResource( 14 )
+anims/Event_Dodge = SubResource( 15 )
+anims/Event_HitDodge = SubResource( 16 )
+anims/Event_HitSlash+Dodge = SubResource( 17 )
+anims/Event_Pierce = SubResource( 18 )
+anims/Event_RangedBash = SubResource( 19 )
+anims/Event_Slash = SubResource( 20 )
+anims/Event_Slash+Dodge = SubResource( 21 )
+anims/Event_SlashSlash = SubResource( 22 )
+anims/Event_SwirlSlash = SubResource( 23 )
+anims/Event_ToVortex = SubResource( 24 )
+anims/Event_UpgradedPierce = SubResource( 25 )
+anims/Event_WindSlash = SubResource( 26 )
+anims/Hurricane = SubResource( 27 )
+anims/Pull = SubResource( 28 )
+anims/Vortex = SubResource( 50 )
+anims/Wind_Dance_HoldY = SubResource( 29 )
+anims/air_move_down = SubResource( 30 )
+anims/air_move_up = SubResource( 31 )
+anims/airjump = SubResource( 32 )
+anims/climb = SubResource( 33 )
+anims/death = SubResource( 34 )
+anims/hurt = SubResource( 35 )
+anims/idle = SubResource( 36 )
+anims/jump = SubResource( 37 )
+anims/land = SubResource( 38 )
+anims/ledgegrab = SubResource( 39 )
+"anims/old dash" = SubResource( 40 )
+anims/reset = SubResource( 41 )
+anims/run = SubResource( 42 )
+anims/up_to_down = SubResource( 43 )
 
 [node name="Sprites" type="Node2D" parent="."]
 z_index = 1
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
 editor/display_folded = true
-material = SubResource( 39 )
+material = SubResource( 45 )
 z_index = 1
-texture = ExtResource( 12 )
-hframes = 5
-frame = 4
+texture = ExtResource( 19 )
+hframes = 2
 
 [node name="Position2D" type="Position2D" parent="Sprites/Sprite"]
 position = Vector2( 0, -8 )
@@ -3178,33 +3534,43 @@ editor/display_folded = true
 visible = false
 modulate = Color( 0, 0.0392157, 1, 1 )
 position = Vector2( 50, 0 )
-texture = ExtResource( 19 )
+texture = ExtResource( 25 )
 
-[node name="EffectSprite" type="Sprite" parent="Sprites"]
+[node name="FocusSprite" type="Sprite" parent="Sprites"]
 z_index = 1
-texture = ExtResource( 4 )
 hframes = 10
+frame = 9
+
+[node name="ChannelSpriteFront" type="Sprite" parent="Sprites"]
+z_index = 1
+texture = ExtResource( 9 )
+hframes = 6
+frame = 4
+
+[node name="ChannelSpriteBack" type="Sprite" parent="Sprites"]
+hframes = 6
+frame = 2
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
-shape = SubResource( 40 )
+shape = SubResource( 46 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( 0, -20 )
 collision_layer = 2
 collision_mask = 8
-script = ExtResource( 20 )
+script = ExtResource( 26 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
 scale = Vector2( 0.8, 1 )
-shape = SubResource( 41 )
+shape = SubResource( 47 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
 editor/display_folded = true
 current = true
 zoom = Vector2( 0.5, 0.5 )
-script = ExtResource( 21 )
+script = ExtResource( 27 )
 
 [node name="StopTimer" type="Timer" parent="Camera2D"]
 pause_mode = 2
@@ -3216,7 +3582,7 @@ one_shot = true
 
 [node name="Move_On_Ground" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 22 )
+script = ExtResource( 28 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Move_On_Ground"]
 one_shot = true
@@ -3227,7 +3593,7 @@ one_shot = true
 
 [node name="Move_In_Air" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 23 )
+script = ExtResource( 29 )
 
 [node name="Land_Timer" type="Timer" parent="Movement_States/Move_In_Air"]
 one_shot = true
@@ -3242,29 +3608,30 @@ cast_to = Vector2( 15, 0 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 24 )
+script = ExtResource( 30 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
 position = Vector2( 14, -40 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 40 )
+shape = SubResource( 46 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Ledge_Grab"]
 wait_time = 0.1
 one_shot = true
 
 [node name="Vault" type="Node2D" parent="Movement_States"]
-script = ExtResource( 25 )
+script = ExtResource( 31 )
 
 [node name="Attack" type="Node2D" parent="Movement_States"]
-script = ExtResource( 26 )
+editor/display_folded = true
+script = ExtResource( 32 )
 attack_dashing = true
 mobile = false
 
 [node name="Attack_Controller" type="Node2D" parent="Movement_States/Attack"]
-script = ExtResource( 27 )
+script = ExtResource( 33 )
 input_testing = false
 
 [node name="HitGravTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller"]
@@ -3273,7 +3640,7 @@ one_shot = true
 
 [node name="Attack_Instancing" type="Node2D" parent="Movement_States/Attack/Attack_Controller"]
 z_index = 1
-script = ExtResource( 28 )
+script = ExtResource( 34 )
 
 [node name="particleTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller/Attack_Instancing"]
 one_shot = true
@@ -3284,7 +3651,7 @@ one_shot = true
 
 [node name="Tethering" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 29 )
+script = ExtResource( 35 )
 
 [node name="tetherTimer" type="Timer" parent="Movement_States/Tethering"]
 wait_time = 1.5
@@ -3292,11 +3659,17 @@ one_shot = true
 
 [node name="Hurt" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 30 )
+script = ExtResource( 36 )
 
 [node name="hurtTimer" type="Timer" parent="Movement_States/Hurt"]
 wait_time = 1.25
 one_shot = true
+
+[node name="Vortex" type="Node2D" parent="Movement_States"]
+script = ExtResource( 37 )
+
+[node name="costTimer" type="Timer" parent="Movement_States/Vortex"]
+wait_time = 0.1
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]
 editor/display_folded = true
@@ -3305,7 +3678,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 42 )
+shape = SubResource( 48 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0
@@ -3327,7 +3700,7 @@ position = Vector2( 10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_R"]
-shape = SubResource( 43 )
+shape = SubResource( 49 )
 
 [node name="Ledgebox_L" type="Area2D" parent="."]
 editor/display_folded = true
@@ -3335,7 +3708,7 @@ position = Vector2( -10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_L"]
-shape = SubResource( 43 )
+shape = SubResource( 49 )
 
 [node name="manaTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -3345,9 +3718,11 @@ autostart = true
 
 [node name="Sprite" type="Sprite" parent="Target"]
 position = Vector2( 50, 0 )
-texture = ExtResource( 19 )
+texture = ExtResource( 25 )
 [connection signal="slow" from="StatusEffects" to="StatusEffects" method="_on_StatusEffects_slow"]
 [connection signal="timeout" from="StatusEffects/slowTimer" to="StatusEffects" method="_on_slowTimer_timeout"]
+[connection signal="animation_finished" from="FocusAnim" to="FocusAnim" method="_on_FocusAnim_animation_finished"]
+[connection signal="animation_finished" from="ChannelAnim" to="ChannelAnim" method="_on_ChannelAnim_animation_finished"]
 [connection signal="animation_finished" from="SpriteAnim" to="Movement_States/Move_In_Air" method="_on_TopAnim_animation_finished"]
 [connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_area_entered"]
 [connection signal="timeout" from="Camera2D/StopTimer" to="Camera2D" method="_on_StopTimer_timeout"]
@@ -3361,6 +3736,7 @@ texture = ExtResource( 19 )
 [connection signal="timeout" from="Movement_States/Attack/ComboTimer" to="Movement_States/Attack" method="_on_ComboTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Tethering/tetherTimer" to="Movement_States/Tethering" method="_on_tetherTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Hurt/hurtTimer" to="Movement_States/Hurt" method="_on_hurtTimer_timeout"]
+[connection signal="timeout" from="Movement_States/Vortex/costTimer" to="Movement_States/Vortex" method="_on_costTimer_timeout"]
 [connection signal="area_entered" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
 [connection signal="area_exited" from="DetectHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
 [connection signal="timeout" from="manaTimer" to="." method="_on_manaTimer_timeout"]

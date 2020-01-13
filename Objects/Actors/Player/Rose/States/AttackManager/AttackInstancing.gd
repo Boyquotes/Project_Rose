@@ -132,7 +132,7 @@ func throw(force):
 	var hitbox = get_hitbox(hitNode[hitNode.size()-1]);
 	var x = cos(hitbox.rotation) * force;
 	var y = sin(hitbox.rotation) * force;
-	hitbox.get_parent().apply_impulse(Vector2(0,0),Vector2(x * get_parent().get_parent().host.Direction,y));
+	hitbox.get_parent().apply_impulse(Vector2(0,0),Vector2(x,y));
 
 ### INSTANCING ###
 

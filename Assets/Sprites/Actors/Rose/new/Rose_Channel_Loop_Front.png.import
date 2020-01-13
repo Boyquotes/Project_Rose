@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Rose_ChannelFocus_Effect_Start.png-7f93989cbb79996255cc036be23cc2bf.stex"
+path="res://.import/Rose_Channel_Loop_Front.png-7b09f563d4f82fb762e75a32e43e0ccd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Actors/Rose/new/Rose_ChannelFocus_Effect_Start.png"
-dest_files=[ "res://.import/Rose_ChannelFocus_Effect_Start.png-7f93989cbb79996255cc036be23cc2bf.stex" ]
+source_file="res://Assets/Sprites/Actors/Rose/new/Rose_Channel_Loop_Front.png"
+dest_files=[ "res://.import/Rose_Channel_Loop_Front.png-7b09f563d4f82fb762e75a32e43e0ccd.stex" ]
 
 [params]
 

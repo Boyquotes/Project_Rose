@@ -2,8 +2,7 @@
 
 [ext_resource path="res://Objects/Actors/HitBoxCleanup.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/HitBoxParent.gd" type="Script" id=2]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_RangedSlash/RangedSlash_Particle.tscn" type="PackedScene" id=3]
-
+[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_SlashWind/SlashWind_Particle.tscn" type="PackedScene" id=3]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.5
@@ -58,7 +57,6 @@ position = Vector2( 0, 22 )
 collision_layer = 4
 collision_mask = 24
 script = ExtResource( 2 )
-absorbing = false
 damage = 10
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
@@ -67,6 +65,9 @@ polygon = PoolVector2Array( -4, -2, 4, -2, 40, -50, -40, -50 )
 [node name="Node2D" parent="Area2D" instance=ExtResource( 3 )]
 position = Vector2( 0, -2 )
 scale = Vector2( 0.75, 1 )
+
+[node name="Particles2D" parent="Area2D/Node2D" index="0"]
+emitting = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, 12 )

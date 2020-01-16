@@ -14,7 +14,8 @@ onready var move_states = {
 	'attack' : $Movement_States/Attack,
 	'tethering' : $Movement_States/Tethering,
 	'hurt' : $Movement_States/Hurt,
-	'vortex' : $Movement_States/Vortex
+	'vortex' : $Movement_States/Vortex,
+	'charge' : $Movement_States/Charge
 }
 var move_state = 'move_on_ground';
 var hold_focus = false;
@@ -51,6 +52,7 @@ func _ready():
 	$Camera2D.current = true;
 	move_states[move_state].enter();
 	$PhysicsCollider.disabled = false;
+	$Hitbox/Hitbox.disabled = false;
 
 
 #hotswitch between keyboard and controller input
@@ -212,7 +214,7 @@ func change_fric(f):
 #useful for easily adding or subtracting velocity to an ability through animation
 func add_velocity(speed : float, degrees : float = $Movement_States/Attack/Attack_Controller.attack_degrees):
 	hspd = speed * cos(deg2rad(degrees));
-	vspd = speed * sin(deg2rad(degrees))
+	vspd = speed * sin(deg2rad(degrees));
 #useful for having the player jump from any state
 func jump():
 	vspd = -true_jspd;

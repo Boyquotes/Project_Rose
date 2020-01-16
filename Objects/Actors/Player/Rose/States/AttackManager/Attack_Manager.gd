@@ -6,6 +6,7 @@ onready var ledge_state = get_parent().get_parent().get_node("Ledge_Grab");
 onready var attack_state = get_parent().get_parent().get_node("Attack");
 onready var tethering_state = get_parent().get_parent().get_node("Tethering");
 onready var vortex_state = get_parent().get_parent().get_node("Vortex");
+onready var charge_state = get_parent().get_parent().get_node("Charge");
 onready var hurt_state = get_parent().get_parent().get_node("Hurt");
 onready var powerups = get_parent().get_parent().get_parent().get_node("Powerups");
 signal attack;
@@ -119,30 +120,30 @@ func handleInput():
 func parse_attack(idx):
 	if(Slash_pressed() && !slottedSlash):
 		eventArr[idx] = "Slash";
-		if(powerups.get_powerup('reinforced_fabric') && Input.is_action_pressed("Focus")):
-			eventArr[idx] = "SwirlSlash";
-		if(powerups.get_powerup('mana_fabric') && Input.is_action_pressed("Channel")):
-			eventArr[idx] = "WindSlash";
-		if(powerups.get_powerup('hurricane_rune') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
+		if(powerups.get_powerup('focus') && Input.is_action_pressed("Focus")):
+			eventArr[idx] = "SlashSwirl";
+		if(powerups.get_powerup('reinforced_stitching') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel")):
+			eventArr[idx] = "SlashWind";
+		if(powerups.get_powerup('vortex_rune') && powerups.get_powerup('focus') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "ToVortex";
 		slottedSlash = true;
 	elif(Pierce_pressed() && !slottedPierce):
 		eventArr[idx] = "Pierce";
-		if(powerups.get_powerup('magus_sleeve') && Input.is_action_pressed("Focus")):
-			eventArr[idx] = "Dash";
-		if(powerups.get_powerup('mounting_hook') && Input.is_action_pressed("Channel")):
-			eventArr[idx] = "PullPierce";
-		if(powerups.get_powerup('huntress_rune') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
-			eventArr[idx] = "Stasis";
+		if(powerups.get_powerup('magus_sleeve') && powerups.get_powerup('focus') && Input.is_action_pressed("Focus")):
+			eventArr[idx] = "PierceDash";
+		if(powerups.get_powerup('bounding_sleeve') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel")):
+			eventArr[idx] = "PierceStasis";
+		if(powerups.get_powerup('lightning_rune') && powerups.get_powerup('focus') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
+			eventArr[idx] = "PierceHoming";
 		slottedPierce = true;
 	elif(Bash_pressed() && !slottedBash):
 		eventArr[idx] = "Bash";
-		if(powerups.get_powerup('reinforced_casing') && Input.is_action_pressed("Focus")):
-			eventArr[idx] = "LungeBash";
-		if(powerups.get_powerup('reinforced_casing') && Input.is_action_pressed("Channel")):
-			eventArr[idx] = "LaunchBash";
-		if(powerups.get_powerup('breaker_rune') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
-			eventArr[idx] = "Charge";
+		if(powerups.get_powerup('reinforced_casing') && powerups.get_powerup('focus') && Input.is_action_pressed("Focus")):
+			eventArr[idx] = "BashLaunch";
+		if(powerups.get_powerup('regrowth_casing')  && powerups.get_powerup('channel') && Input.is_action_pressed("Channel")):
+			eventArr[idx] = "BashLunge";
+		if(powerups.get_powerup('boulder_rune') && powerups.get_powerup('focus') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
+			eventArr[idx] = "ToCharge";
 		slottedBash = true;
 	elif(Dodge_pressed()):
 		if(idx == 0 && host.on_floor() || idx == 1):
@@ -155,7 +156,6 @@ func parse_attack(idx):
 	if(Input.is_action_just_released("Bash_Attack") && slottedBash):
 		return record_event("bash");
 	if(eventArr[idx] == "Dodge"):
-		host.get_node("Hitbox/Hitbox").disabled = true;
 		return record_event("dodge");
 	
 	clear_enter_vars();
@@ -243,7 +243,6 @@ func attack_done():
 	host.activate_grav();
 	host.activate_fric();
 	host.true_friction = host.base_friction;
-	$Attack_Instancing.clear();
 	attack_state.ComboTimer.start();
 	bounce = false;
 	rotate = true;
@@ -253,6 +252,9 @@ func attack_done():
 func change_state():
 	if(previous_event == "ToVortex"):
 		attack_state.exit(vortex_state);
+		attack_state.get_node("ComboTimer").stop();
+	if(previous_event == "ToCharge"):
+		attack_state.exit(charge_state);
 		attack_state.get_node("ComboTimer").stop();
 	if(Input.is_action_pressed("Use_Mana") && tether && host.mana > 0):
 		tether = false;
@@ -297,6 +299,8 @@ func on_hit(col):
 			if(eventArr[0] == "Pierce"):
 				twirl = true;
 				hit = false;
+			if(eventArr[0] == "BashLunge"):
+				host.add_velocity(500, attack_degrees+180);
 			"""
 			elif(!host.on_floor() && !attack_state.attack_dashing):
 				#NOTE: This might mess up; if the grav screws up again this is probably at fault

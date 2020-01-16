@@ -3,18 +3,19 @@ extends PopupMenu
 signal update_powerup
 
 func _ready():
-	add_check_item("Reinforced Casing: Adds directional launches to bash attacks");
-	add_check_item("Balancing Harness: Allows you to slash attacks while dodging if you hold attack button beforehand");
-	add_check_item("Reinforced Fabric: Allows you to do charged slash attacks");
-	add_check_item("Mana Fabric: Allows you to do ranged tornado attacks by pressing the pierce and slash attacks simultaneously");
-	add_check_item("Rock Rune: Allows you to do ranged rock attacks by pressing the pierce and bash attacks simultaneously");
-	add_check_item("Explosive Rune: Allows you to do a short explosive dash if you dodge while you hold the bash attack button beforehand");
-	add_check_item("Magus Sleeve: Upgrades pierce attacks and allows you to tether and launch enemies by holding the Left Channel button when enemies are struck");
-	add_check_item("Mounting Hook: Allows you to cling to all walls, not just ledges");
-	add_check_item("Quick Mechanism: Upgrades slash attacks to be much faster; adds a double-hit to charged slash attacks");
-	add_check_item("Hurricane Rune: Not implemented yet");
-	add_check_item("Breaker Rune: Not implemented yet");
-	add_check_item("Huntress Rune: Not implemented yet");
+	add_check_item("Focus Training: Allows use of several expanded abilities with other powerups. Unlocks swirling attacks, which attacks in both directions and triggers a jump when an enemy is hit.");
+	add_check_item("Channel Training: While standing still and channeling, double mana regen. Allows use of several expanded abilities with other powerups.");
+	add_check_item("Reinforced Stitching: Allows you to use ranged wind attacks with Channeling.");
+	add_check_item("Vortex Circuit: Allows you to take the form of wind, damaging enemies, becoming immune to most damage, and constantly drain mana.");
+	add_check_item("Magus Sleeve: Upgrades pierce attacks and allows you to use dash attacks if an enemy can be hit.");
+	add_check_item("Binding Sleeve: Allows you to use an attack which puts all marked enemies in stasis and pierce them all again.");
+	add_check_item("Lightning Rune: Allows you to take the form of lightning, seeking out enemies and dispatching them instantaneously");
+	add_check_item("Reinforced Casing: Allows you to use launching bash attacks.");
+	add_check_item("Regrowth Casing: Allows you to use lunging bash attacks which bounce off enemies and surfaces.");
+	add_check_item("Boulder Rune: Allows you to take the form of molten earth, charging forward with reckless abandon.");
+	add_check_item("Cape Circuit: Allows you to glide and dodge in mid-air while channeling");
+	add_check_item("Aether Hook: Allows you to cling to all walls, not just ledges, while focusing");
+	
 	for idx in get_item_count():
 		var switch = GameFlags.powerups.values()[idx]
 		set_item_checked(idx, switch);

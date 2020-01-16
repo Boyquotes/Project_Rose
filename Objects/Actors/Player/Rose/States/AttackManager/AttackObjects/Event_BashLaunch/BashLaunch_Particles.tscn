@@ -11,19 +11,20 @@ gradient = SubResource( 1 )
 [sub_resource type="ParticlesMaterial" id=3]
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
-angular_velocity = 500.0
+angular_velocity = 600.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+angle = 70.0
 color_ramp = SubResource( 2 )
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Particles2D" type="Particles2D" parent="."]
 rotation = 1.5708
-scale = Vector2( 1.5, 4 )
+scale = Vector2( 0.75, 2.5 )
 emitting = false
 amount = 1
-lifetime = 0.4
+lifetime = 0.25
 one_shot = true
 process_material = SubResource( 3 )
 texture = ExtResource( 1 )

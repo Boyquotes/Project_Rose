@@ -1,16 +1,16 @@
 extends Node
 
 var powerups = {
-	'reinforced_casing' : false,
-	'balancing_harness' : false,
-	'reinforced_fabric' : false,
-	'mana_fabric' : false,
-	'rock_rune' : false,
-	'explosive_rune' : false,
+	'focus' : false,
+	'channel' : false,
+	'reinforced_stitching' : false,
+	'vortex_rune' : false,
 	'magus_sleeve' : false,
-	'mounting_hook' : false,
-	'quick_mechanism' : false,
-	'hurricane_rune' : false,
-	'breaker_rune' : false,
-	'huntress_rune' : false
+	'bounding_sleeve' : false,
+	'lightning_rune' : false,
+	'reinforced_casing' : false,
+	'regrowth_casing' : false,
+	'boulder_rune' : false,
+	'cape_circuit' : false,
+	'aether_hook' : false
 }

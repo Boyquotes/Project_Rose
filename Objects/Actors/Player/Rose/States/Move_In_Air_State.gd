@@ -12,6 +12,7 @@ var doneDown = false;
 var jump = false;
 var cutoff = false;
 var transitioned = false;
+var hooking = false;
 
 onready var ledge_cast_R = host.get_node("ledge_cast_right");
 onready var ledge_cast_L = host.get_node("ledge_cast_left");
@@ -33,11 +34,17 @@ func handleAnimation():
 			host.animate(host.spr_anim,"up_to_down", false);
 		elif((!doneUp || !doneDown)):
 			if(host.vspd < 0 && !doneUp):
-				host.animate(host.spr_anim,"air_move_up", false);
+				if(hooking):
+					host.animate(host.spr_anim,"air_move_up", false);
+				else:
+					host.animate(host.spr_anim,"air_move_up", false);
 				doneUp = true;
 				doneDown = false;
 			if(host.vspd > 0 && !doneDown):
-				host.animate(host.spr_anim,"air_move_down", false);
+				if(hooking):
+					host.animate(host.spr_anim,"air_move_down", false);
+				else:
+					host.animate(host.spr_anim,"air_move_down", false);
 				doneDown = true;
 				doneUp = false;
 
@@ -51,10 +58,15 @@ func handleInput():
 		cutoff = true;
 		host.vspd += 60;
 	
-	if(Input.is_action_pressed("Jump") && powerups.glide):
+	if(Input.is_action_pressed("Channel") && powerups.get_powerup('cape_circuit')):
 		host.g_max = host.g_max_temp / 3;
 	else:
 		host.g_max = host.g_max_temp;
+	
+	if(Input.is_action_pressed("Focus") && powerups.get_powerup('aether_hook')):
+		hooking = true;
+	else:
+		hooking = false;
 	
 	if(!ledge_cast_R.is_colliding()):
 		wasnt_wall_R = true;
@@ -82,7 +94,7 @@ func handleInput():
 		ledge.dir = -1;
 		exit(ledge);
 		return;
-	if(host.is_on_wall() && powerups.get_powerup('mounting_hook') && $hook_cast.is_colliding()):
+	if(host.is_on_wall() && hooking && $hook_cast.is_colliding()):
 		if(host.Direction == -1):
 			ledge.ledge_cast = ledge_cast_L;
 			ledge.ledge_box = Ledgebox_L;
@@ -108,6 +120,7 @@ func exit(state):
 	jumped = false;
 	cutoff = false;
 	transitioned = false;
+	hooking = false;
 	.exit(state);
 	pass
 

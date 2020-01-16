@@ -18,7 +18,8 @@ func initialize_hitbox(hitNodeIdx):
 	var hitbox = get_hitbox(hitNodeIdx);
 	hitbox.host = get_parent().get_parent().host;
 	var partNode = get_partNode(hitNodeIdx);
-	partNode.scale = scale
+	if(partNode != null):
+		partNode.scale = scale
 	connect_entered(hitbox);
 	hitNodeIdx.scale = scale;
 	host.get_parent().add_child(hitNodeIdx);
@@ -30,7 +31,10 @@ func get_hitbox(hitNodeIdx):
 
 func get_partNode(hitNodeIdx):
 	var hitbox = get_hitbox(hitNodeIdx);
-	return hitbox.get_node("Node2D");
+	if(hitbox.has_node("Node2D")):
+		return hitbox.get_node("Node2D");
+	else:
+		return null
 
 func get_particle(hitNodeIdx):
 	var partNode = get_partNode(hitNodeIdx)
@@ -48,7 +52,7 @@ func set_rot(hitNodeIdx):
 			hitbox.global_rotation_degrees += attack_controller.attack_degrees;
 			if(hitbox.direction == 0):
 				hitbox.direction = hitbox.global_rotation_degrees * host.Direction
-				
+			hitbox.scale.y = host.Direction;
 		else:
 			hitbox.scale.x = host.Direction;
 			hitbox.direction = hitbox.global_rotation_degrees * host.Direction
@@ -62,28 +66,13 @@ func SlashPlusDodge():
 func Slash():
 	instance_Slash_hitbox();
 	hitNode[hitNode.size()-1].init();
-	
 
-func SlashSlash():
-	Slash();
-	var particle = get_particle(hitNode[hitNode.size()-1]);
-	particle.scale = Vector2(2.5, -1);
-
-func ChargedSlash_Down_Ground():
-	instance_ChargedSlash_Down_Ground_hitbox();
+func SlashSwirl():
+	instance_SlashSwirl_hitbox();
 	hitNode[hitNode.size()-1].init();
 
-func ChargedSlash_Down_Ground_Quick():
-	instance_ChargedSlash_Down_Ground_hitbox();
-	hitNode[hitNode.size()-1].scale /= 2;
-	hitNode[hitNode.size()-1].init();
-
-func ChargedSlash_Hor():
-	instance_ChargedSlash_Hor_hitbox();
-	hitNode[hitNode.size()-1].init();
-
-func Bash_Directional():
-	instance_Bash_Directional_hitbox();
+func BashLaunch():
+	instance_BashLaunch_hitbox();
 	
 	var hitbox = get_hitbox(hitNode[hitNode.size()-1]);
 	hitNode[hitNode.size()-1].init();
@@ -93,16 +82,8 @@ func Bash():
 	
 	hitNode[hitNode.size()-1].init();
 
-func BashBash():
-	Bash();
-	var particle = get_particle(hitNode[hitNode.size()-1]);
-	var hitbox = get_hitbox(hitNode[hitNode.size()-1]);
-	particle.scale *= Vector2(1, -1);
-	hitbox.inchdir = -1;
-
 func Pierce():
 	instance_Pierce_hitbox();
-	
 	hitNode[hitNode.size()-1].init();
 
 func BashPlusDodge():
@@ -116,16 +97,20 @@ func BashPlusDodge():
 
 ### RANGED ATTACKS ###
 
-func RangedSlash():
-	instance_RangedSlash();
+func SlashWind():
+	instance_SlashWind();
 	
 	throw(250);
 	hitNode[hitNode.size()-1].init();
 
-func RangedBash():
-	instance_RangedBash();
+func PierceDash():
+	instance_PierceDash_hitbox();
 	
-	throw(800);
+	hitNode[hitNode.size()-1].init();
+
+func BashLunge():
+	instance_BashLunge_hitbox();
+	
 	hitNode[hitNode.size()-1].init();
 
 func throw(force):
@@ -136,12 +121,8 @@ func throw(force):
 
 ### INSTANCING ###
 
-func instance_RangedSlash():
-	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_RangedSlash/RangedSlash_Hitbox.tscn").instance());
-	initialize_hitbox(hitNode[hitNode.size()-1]);
-
-func instance_RangedBash():
-	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_RangedBash/RangedBash_Hitbox.tscn").instance());
+func instance_SlashWind():
+	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_SlashWind/SlashWind_Hitbox.tscn").instance());
 	initialize_hitbox(hitNode[hitNode.size()-1]);
 
 func instance_Slash_hitbox():
@@ -152,16 +133,12 @@ func instance_SlashPlusDodge_hitbox():
 	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_SlashPlusDodge/SlashPlusDodge_Hitbox.tscn").instance());
 	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
 
-func instance_Bash_Directional_hitbox():
-	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_BashDirectional/BashDirectional_Hitbox.tscn").instance());
+func instance_BashLaunch_hitbox():
+	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_BashLaunch/BashLaunch_Hitbox.tscn").instance());
 	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
 
 func instance_Bash_hitbox():
 	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_Bash/Bash_Hitbox.tscn").instance());
-	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
-
-func instance_ChargedSlash_Hor_hitbox():
-	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_ChargedSlash_Hor/ChargedSlash_Hor_Hitbox.tscn").instance());
 	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
 
 func instance_BashPlusDodge_Forward():
@@ -172,56 +149,20 @@ func instance_BashPlusDodge_Backward():
 	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_BashPlusDodge/BashPlusDodge_Hitbox_Backward.tscn").instance());
 	initialize_hitbox(hitNode[hitNode.size()-1]);
 
-func instance_ChargedSlash_Down_Ground_hitbox():
-	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_ChargedSlash_Down_Ground/ChargedSlash_Down_Ground_Hitbox.tscn").instance());
+func instance_SlashSwirl_hitbox():
+	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_SlashSwirl/SlashSwirl_Hitbox.tscn").instance());
 	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
 
 func instance_Pierce_hitbox():
 	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_Pierce/Pierce_Hitbox.tscn").instance());
 	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
-### NEEDS FIXING ###
 
-func Closed_Fan_QuickX_Hor():
-	instance_bash_QuickX_hitbox();
-	var particle = get_particle(hitNode[hitNode.size()-1]);
-	particle.lifetime = .2;
-	particle.process_material.angular_velocity = 500;
-	particle.rotation_degrees = 0;
-	particle.scale = Vector2(2, .5);
-	particle.emitting = true;
-	$particleTimer.start(.2);
-
-func Hurricane():
-	instance_Hurricane_hitbox();
-	var particle = get_particle(hitNode[hitNode.size()-1]);
-	var partNode = get_partNode(hitNode[hitNode.size()-1]);
-	particle.one_shot = false;
-	particle.z_index = 5;
-	particle.amount = 10
-	particle.lifetime = .3;
-	particle.process_material.gravity = Vector3(-500,0,0);
-	particle.process_material.angular_velocity = 1000;
-	particle.process_material.angular_velocity_random = 1;
-	particle.process_material.scale = 1;
-	particle.process_material.scale_random = 0.4;
-	particle.process_material.scale_curve = CurveTexture.new();
-	particle.process_material.scale_curve.curve.add_point(Vector2(0,0.5));
-	particle.process_material.scale_curve.curve.add_point(Vector2(1,1));
-	particle.rotation_degrees = 0;
-	particle.scale = Vector2(3, 1);
-	particle.emitting = true;
-	partNode.time = .35;
-	hitNode.time = .35;
-	hitNode.init();
-	partNode.init();
-	
-
-func instance_Hurricane_hitbox():
-	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Old_Hitboxes/Wind_Dance/Y.tscn").instance());
+func instance_PierceDash_hitbox():
+	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_PierceDash/PierceDash_Hitbox.tscn").instance());
 	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
 
-func instance_bash_QuickX_hitbox():
-	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Old_Hitboxes/Closed_Fan/QuickX.tscn").instance());
+func instance_BashLunge_hitbox():
+	hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Event_BashLunge/BashLunge_Hitbox.tscn").instance());
 	initialize_hitbox_attach(hitNode[hitNode.size()-1]);
 
 func clear():

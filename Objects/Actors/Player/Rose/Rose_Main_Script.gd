@@ -102,7 +102,6 @@ func execute(delta):
 func phys_execute(delta):
 	#state machine
 	#print(move_state);
-	#print($Sprites/Sprite.global_rotation_degrees);
 	move_states[move_state].handleInput();
 	move_states[move_state].handleAnimation();
 	move_states[move_state].execute(delta);

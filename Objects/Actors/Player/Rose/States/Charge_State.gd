@@ -23,7 +23,7 @@ func enter():
 func handleAnimation():
 	host.animate(host.spr_anim,"Charge", false);
 	deg = attack.get_child(0).attack_degrees;
-	host.get_node("Sprites/Sprite").rotation_degrees = deg;
+	host.get_node("Sprites").rotation_degrees = deg;
 
 func handleInput():
 	if(Input.is_action_just_pressed("Jump")):
@@ -47,7 +47,7 @@ func exit(state):
 	host.can_channel_and_focus = true;
 	host.regain_mana = true;
 	$costTimer.stop();
-	host.set_rotation_to_origin("Sprites/Sprite");
+	host.set_rotation_to_origin("Sprites");
 	.exit(state);
 
 func _on_costTimer_timeout():

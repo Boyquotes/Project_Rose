@@ -220,7 +220,7 @@ func construct_attack_string():
 
 func attack_done():
 	if(!host.tweened):
-		host.tween_rotation_to_origin("Sprites/Sprite");
+		host.tween_rotation_to_origin("Sprites");
 	host.get_node("Hitbox/Hitbox").disabled = false;
 	if(!attack_is_saved):
 		clear_slotted_vars();

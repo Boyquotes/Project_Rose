@@ -573,14 +573,11 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 0.01 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
+"args": [ NodePath("Sprites") ],
 "method": "set_rotation_to_origin"
-}, {
-"args": [ NodePath("Sprites/Sprite"), 0.09 ],
-"method": "tween_sprite_rot"
 } ]
 }
 tracks/8/type = "method"
@@ -590,10 +587,13 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0.28 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.01, 0.28 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"args": [ NodePath("Sprites"), 0.09 ],
+"method": "tween_sprite_rot"
+}, {
+"args": [ NodePath("Sprites"), 0.05 ],
 "method": "tween_rotation_to_origin"
 } ]
 }
@@ -658,14 +658,11 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.01 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
+"args": [ NodePath("Sprites") ],
 "method": "set_rotation_to_origin"
-}, {
-"args": [ NodePath("Sprites/Sprite"), 0.09 ],
-"method": "tween_sprite_rot"
 } ]
 }
 tracks/4/type = "method"
@@ -675,10 +672,13 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.45 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.01, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"args": [ NodePath("Sprites"), 0.09 ],
+"method": "tween_sprite_rot"
+}, {
+"args": [ NodePath("Sprites"), 0.05 ],
 "method": "tween_rotation_to_origin"
 } ]
 }
@@ -814,14 +814,11 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.01 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
+"args": [ NodePath("Sprites") ],
 "method": "set_rotation_to_origin"
-}, {
-"args": [ NodePath("Sprites/Sprite"), 0.09 ],
-"method": "tween_sprite_rot"
 } ]
 }
 tracks/7/type = "method"
@@ -831,10 +828,13 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.25 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.01, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"args": [ NodePath("Sprites"), 0.09 ],
+"method": "tween_sprite_rot"
+}, {
+"args": [ NodePath("Sprites"), 0.05 ],
 "method": "tween_rotation_to_origin"
 } ]
 }
@@ -1220,14 +1220,11 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.01 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
+"args": [ NodePath("Sprites") ],
 "method": "set_rotation_to_origin"
-}, {
-"args": [ NodePath("Sprites/Sprite"), 0.09 ],
-"method": "tween_sprite_rot"
 } ]
 }
 tracks/7/type = "method"
@@ -1237,10 +1234,13 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.01, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"args": [ NodePath("Sprites"), 0.09 ],
+"method": "tween_sprite_rot"
+}, {
+"args": [ NodePath("Sprites"), 0.05 ],
 "method": "tween_rotation_to_origin"
 } ]
 }
@@ -1336,14 +1336,11 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.01 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
+"args": [ NodePath("Sprites") ],
 "method": "set_rotation_to_origin"
-}, {
-"args": [ NodePath("Sprites/Sprite"), 0.09 ],
-"method": "tween_sprite_rot"
 } ]
 }
 tracks/7/type = "method"
@@ -1353,10 +1350,13 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.25 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.01, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"args": [ NodePath("Sprites"), 0.09 ],
+"method": "tween_sprite_rot"
+}, {
+"args": [ NodePath("Sprites"), 0.05 ],
 "method": "tween_rotation_to_origin"
 } ]
 }
@@ -1488,14 +1488,11 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.01 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
+"args": [ NodePath("Sprites") ],
 "method": "set_rotation_to_origin"
-}, {
-"args": [ NodePath("Sprites/Sprite"), 0.09 ],
-"method": "tween_sprite_rot"
 } ]
 }
 tracks/6/type = "method"
@@ -1505,10 +1502,13 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.17 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.01, 0.17 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"args": [ NodePath("Sprites"), 0.09 ],
+"method": "tween_sprite_rot"
+}, {
+"args": [ NodePath("Sprites"), 0.05 ],
 "method": "tween_rotation_to_origin"
 } ]
 }
@@ -1725,14 +1725,11 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.01 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
+"args": [ NodePath("Sprites") ],
 "method": "set_rotation_to_origin"
-}, {
-"args": [ NodePath("Sprites/Sprite"), 0.09 ],
-"method": "tween_sprite_rot"
 } ]
 }
 tracks/6/type = "method"
@@ -1742,10 +1739,13 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.17 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.01, 0.17 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"args": [ NodePath("Sprites"), 0.09 ],
+"method": "tween_sprite_rot"
+}, {
+"args": [ NodePath("Sprites"), 0.05 ],
 "method": "tween_rotation_to_origin"
 } ]
 }
@@ -1848,10 +1848,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
+"args": [ NodePath("Sprites") ],
 "method": "set_rotation_to_origin"
 }, {
-"args": [ NodePath("Sprites/Sprite"), 0.09 ],
+"args": [ NodePath("Sprites"), 0.09 ],
 "method": "tween_sprite_rot"
 } ]
 }
@@ -1865,7 +1865,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0.25 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"args": [ NodePath("Sprites"), 0.05 ],
 "method": "tween_rotation_to_origin"
 } ]
 }
@@ -1954,10 +1954,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.79 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
+"args": [ NodePath("Sprites") ],
 "method": "set_rotation_to_origin"
 }, {
-"args": [ NodePath("Sprites/Sprite"), 0.01 ],
+"args": [ NodePath("Sprites"), 0.01 ],
 "method": "tween_sprite_rot"
 } ]
 }
@@ -2093,10 +2093,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.44 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ NodePath("Sprites/Sprite") ],
+"args": [ NodePath("Sprites") ],
 "method": "set_rotation_to_origin"
 }, {
-"args": [ NodePath("Sprites/Sprite"), 0.01 ],
+"args": [ NodePath("Sprites"), 0.01 ],
 "method": "tween_sprite_rot"
 } ]
 }
@@ -2113,7 +2113,7 @@ tracks/7/keys = {
 "args": [ 500.0 ],
 "method": "add_velocity"
 }, {
-"args": [ NodePath("Sprites/Sprite"), 0.05 ],
+"args": [ NodePath("Sprites"), 0.05 ],
 "method": "tween_rotation_to_origin"
 } ]
 }
@@ -2934,22 +2934,22 @@ shader_param/focus_color_factor = 0.0
 shader_param/orig_eye_color = Color( 0.0470588, 0.482353, 0.117647, 1 )
 shader_param/foc_color = Color( 0.352941, 0.568627, 1, 1 )
 
-[sub_resource type="RectangleShape2D" id=42]
-extents = Vector2( 8, 14 )
-
 [sub_resource type="RectangleShape2D" id=40]
-extents = Vector2( 10, 19 )
+extents = Vector2( 8, 14 )
 
 [sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 10, 19 )
 
-[sub_resource type="CircleShape2D" id=45]
+[sub_resource type="RectangleShape2D" id=42]
+extents = Vector2( 10, 19 )
+
+[sub_resource type="CircleShape2D" id=43]
 radius = 25.0
 
-[sub_resource type="RectangleShape2D" id=43]
+[sub_resource type="RectangleShape2D" id=44]
 extents = Vector2( 256, 150 )
 
-[sub_resource type="RectangleShape2D" id=44]
+[sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 10, 2 )
 
 [node name="Rose" type="KinematicBody2D"]
@@ -3022,11 +3022,11 @@ anims/up_to_down = SubResource( 37 )
 z_index = 1
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
+modulate = Color( 1, 0, 0, 1 )
 material = SubResource( 39 )
 z_index = 1
 texture = ExtResource( 13 )
 hframes = 4
-frame = 2
 
 [node name="Position2D" type="Position2D" parent="Sprites/Sprite"]
 position = Vector2( 0, -8 )
@@ -3045,7 +3045,7 @@ position = Vector2( 16, 0 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Sprite/ChargePhysBox"]
-shape = SubResource( 42 )
+shape = SubResource( 40 )
 
 [node name="FocusSprite" type="Sprite" parent="Sprites"]
 z_index = 1
@@ -3064,7 +3064,7 @@ hframes = 6
 frame = 5
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
-shape = SubResource( 40 )
+shape = SubResource( 41 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( 0, -20 )
@@ -3075,7 +3075,8 @@ script = ExtResource( 29 )
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
 scale = Vector2( 0.8, 1 )
-shape = SubResource( 41 )
+shape = SubResource( 42 )
+disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
@@ -3126,7 +3127,7 @@ position = Vector2( 14, -40 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 40 )
+shape = SubResource( 41 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Ledge_Grab"]
 wait_time = 0.1
@@ -3193,7 +3194,7 @@ collision_mask = 40
 script = ExtResource( 42 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Charge/ChargeAttackBox"]
-shape = SubResource( 45 )
+shape = SubResource( 43 )
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]
 editor/display_folded = true
@@ -3202,7 +3203,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 43 )
+shape = SubResource( 44 )
 
 [node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 0
@@ -3224,7 +3225,7 @@ position = Vector2( 10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_R"]
-shape = SubResource( 44 )
+shape = SubResource( 45 )
 
 [node name="Ledgebox_L" type="Area2D" parent="."]
 editor/display_folded = true
@@ -3232,7 +3233,7 @@ position = Vector2( -10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_L"]
-shape = SubResource( 44 )
+shape = SubResource( 45 )
 
 [node name="manaTimer" type="Timer" parent="."]
 wait_time = 0.5

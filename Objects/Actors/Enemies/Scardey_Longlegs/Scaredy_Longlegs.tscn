@@ -8,9 +8,7 @@
 [ext_resource path="res://Objects/Actors/Enemies/Enemy_Stun_State.gd" type="Script" id=6]
 [ext_resource path="res://Objects/Actors/Enemies/DamagePlayerHitbox.gd" type="Script" id=7]
 
-
-
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 32 )
 
 [sub_resource type="Animation" id=2]
@@ -102,7 +100,7 @@ shader = SubResource( 6 )
 shader_param/cutoff = 0.5
 shader_param/smooth_size = 0.5
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 18, 32.0775 )
 
 [node name="Scaredy_Longlegs" instance=ExtResource( 1 )]
@@ -111,7 +109,7 @@ base_mspd = 300.0
 base_jspd = 350.0
 
 [node name="Physics_Collider" parent="." index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 
 [node name="animator" parent="." index="1"]
 anims/hurt = SubResource( 2 )
@@ -159,12 +157,9 @@ collision_mask = 2
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DamagePlayerHitbox" index="0"]
-shape = SubResource( 1 )
-
-[node name="HitBox" parent="." index="8"]
-collision_layer = 7168
+shape = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 8 )
 [connection signal="timeout" from="States/Hurt/Damage_Timer" to="States/Hurt" method="_on_Damage_Timer_timeout"]
 [connection signal="timeout" from="States/Stun/stunTimer" to="States/Stun" method="_on_stunTimer_timeout"]

@@ -164,9 +164,6 @@ damage = 10
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DamagePlayerHitbox" index="0"]
 shape = SubResource( 8 )
 
-[node name="HitBox" parent="." index="8"]
-collision_layer = 7168
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 8 )
 [connection signal="timeout" from="States/Hurt/Damage_Timer" to="States/Hurt" method="_on_Damage_Timer_timeout"]

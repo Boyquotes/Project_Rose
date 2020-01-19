@@ -3,6 +3,9 @@ extends Area2D
 onready var host = get_parent();
 var hittable = false;
 
+enum ATTACK_TYPE {SLASH, BASH, PIERCE, TRUE};
+export(ATTACK_TYPE) var attack_type;
+
 func _on_HitBox_area_entered(area):
 	if("knockback" in area):
 		if(hittable):

@@ -3,7 +3,6 @@
 [ext_resource path="res://Objects/Actors/HitBoxCleanup.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/HitBoxParent.gd" type="Script" id=2]
 
-
 [node name="HitBoxParent" type="Node2D"]
 script = ExtResource( 1 )
 

@@ -11,7 +11,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 10 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=2]
 resource_name = "fall"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:frame")
@@ -38,8 +38,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "hurt"
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:scale")
@@ -54,7 +53,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:scale")
@@ -81,7 +80,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=5]
 resource_name = "jump"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:frame")
@@ -108,8 +107,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "move"
+[sub_resource type="Animation" id=6]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -137,8 +135,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "hurt"
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:material:shader_param/cutoff")
@@ -153,7 +150,7 @@ tracks/0/keys = {
 "values": [ 0.0, 0.5 ]
 }
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=8]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -171,16 +168,16 @@ void fragment()
 	COLOR = vec4(r, g, b, texture(TEXTURE, UV).a);
 }"
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=9]
 resource_local_to_scene = true
-shader = SubResource( 6 )
+shader = SubResource( 8 )
 shader_param/cutoff = 0.5
 shader_param/smooth_size = 0.5
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 18, 10 )
 
-[node name="Crickey" index="0" instance=ExtResource( 1 )]
+[node name="Crickey" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 max_hp = 20
 base_mspd = 200.0
@@ -192,17 +189,17 @@ chase_range = 300.0
 shape = SubResource( 1 )
 
 [node name="animator" parent="." index="1"]
-anims/fall = SubResource( 9 )
-anims/hurt = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/jump = SubResource( 10 )
-anims/move = SubResource( 4 )
+anims/fall = SubResource( 2 )
+anims/hurt = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/jump = SubResource( 5 )
+anims/move = SubResource( 6 )
 
 [node name="shaderAnimator" parent="." index="2"]
-anims/hurt = SubResource( 5 )
+anims/hurt = SubResource( 7 )
 
 [node name="Sprite" parent="Sprites" index="0"]
-material = SubResource( 7 )
+material = SubResource( 9 )
 texture = ExtResource( 3 )
 hframes = 4
 frame = 1
@@ -238,11 +235,8 @@ cast_to = Vector2( 40, 0 )
 position = Vector2( 0, 5 )
 cast_to = Vector2( 40, 0 )
 
-[node name="HitBox" parent="." index="7"]
-collision_layer = 7168
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 
 [node name="getawayTimer" type="Timer" parent="." index="8"]
 wait_time = 5.0

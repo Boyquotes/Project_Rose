@@ -229,9 +229,6 @@ cast_to = Vector2( 40, 0 )
 position = Vector2( 0, 22 )
 cast_to = Vector2( 40, 0 )
 
-[node name="HitBox" parent="." index="7"]
-collision_layer = 7168
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 1 )
 [connection signal="timeout" from="States/Hurt/Damage_Timer" to="States/Hurt" method="_on_Damage_Timer_timeout"]

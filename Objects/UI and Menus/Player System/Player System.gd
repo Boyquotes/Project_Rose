@@ -35,5 +35,5 @@ func _on_Rose_mana_changed(mana):
 	else:
 		$ManaBar/Particles2D.emitting = true;
 
-func _on_Rose_focus_changed():
-	pass
+func _on_Rose_focus_changed(focus):
+	$FocusSprite.frame = int(focus);

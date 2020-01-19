@@ -13,10 +13,12 @@ func connect_entered(hitbox):
 	hitbox.connect("body_entered",attack_controller,"on_hit");
 
 func initialize_hitbox(hitNodeIdx):
+	hitNodeIdx.host = host;
 	hitNodeIdx.z_index = 2;
 	attack_controller.attack_start = false;
 	var hitbox = get_hitbox(hitNodeIdx);
 	hitbox.host = get_parent().get_parent().host;
+	host.change_mana(-hitbox.cost);
 	var partNode = get_partNode(hitNodeIdx);
 	if(partNode != null):
 		partNode.scale = scale
@@ -85,6 +87,27 @@ func Bash():
 func Pierce():
 	instance_Pierce_hitbox();
 	hitNode[hitNode.size()-1].init();
+
+func PierceStasis():
+	for hb in host.targettable_hitboxes:
+		var c = hb.host;
+		if(c.mark == 2):
+			c.states['stun'].true_time = 2;
+			c.states[c.state].exit(c.states['stun']);
+			c.deactivate_grav();
+			c.deactivate_fric();
+			c.hspd = 0;
+			c.vspd = 0;
+			c.velocity = Vector2(0,0);
+			hitNode.push_back(preload("res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Tether/Tether.tscn").instance());
+			hitNode[hitNode.size()-1].host = host;
+			hitNode[hitNode.size()-1].get_child(0).get_child(0).host = host;
+			host.get_parent().add_child(hitNode[hitNode.size()-1]);
+			hitNode[hitNode.size()-1].global_position = c.global_position;
+
+func PierceLaunch():
+	for t in hitNode:
+		t.launch(host.deg);
 
 func BashPlusDodge():
 	instance_BashPlusDodge_Forward();
@@ -175,3 +198,5 @@ func clear():
 			else:
 				node.queue_free();
 	hitNode.clear();
+
+

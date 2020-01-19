@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/StatusEffects.gd" type="Script" id=2]
@@ -37,7 +37,7 @@
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=35]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=36]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=37]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Tethering_State.gd" type="Script" id=38]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Homing_State.gd" type="Script" id=38]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Hurt_State.gd" type="Script" id=39]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Vortex_State.gd" type="Script" id=40]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Charge_State.gd" type="Script" id=41]
@@ -1406,6 +1406,120 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=17]
+resource_name = "Event_PierceStasis"
+length = 0.35
+step = 0.01
+tracks/0/type = "method"
+tracks/0/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.26, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_save_event"
+}, {
+"args": [  ],
+"method": "set_interrupt"
+}, {
+"args": [  ],
+"method": "attack_done"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Movement_States/Attack/Attack_Controller")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Movement_States/Attack/Attack_Controller/Attack_Instancing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "PierceStasis"
+}, {
+"args": [  ],
+"method": "PierceLaunch"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Sprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 16 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprites/Sprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprites/Sprite:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ NodePath("Sprites") ],
+"method": "set_rotation_to_origin"
+} ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=18]
 length = 0.4
 step = 0.01
 tracks/0/type = "method"
@@ -1513,7 +1627,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=19]
 length = 0.61
 step = 0.01
 tracks/0/type = "method"
@@ -1641,8 +1755,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=19]
-resource_name = "Event_SlashSwirl"
+[sub_resource type="Animation" id=20]
 length = 0.4
 step = 0.01
 tracks/0/type = "method"
@@ -1750,8 +1863,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=20]
-resource_name = "Event_SlashWind"
+[sub_resource type="Animation" id=21]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -1870,8 +1982,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=21]
-resource_name = "Event_ToCharge"
+[sub_resource type="Animation" id=22]
 length = 0.8
 step = 0.01
 tracks/0/type = "value"
@@ -2005,7 +2116,7 @@ tracks/9/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=23]
 length = 0.7
 step = 0.01
 tracks/0/type = "method"
@@ -2142,8 +2253,7 @@ tracks/9/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=23]
-resource_name = "Vortex"
+[sub_resource type="Animation" id=24]
 length = 0.29
 loop = true
 step = 0.15
@@ -2184,7 +2294,7 @@ tracks/2/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=25]
 length = 0.4
 loop = true
 step = 0.01
@@ -2225,7 +2335,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=26]
 length = 0.4
 loop = true
 step = 0.01
@@ -2266,7 +2376,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=27]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2298,7 +2408,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=28]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2342,7 +2452,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=29]
 length = 1.5
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -2387,7 +2497,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=30]
 length = 0.25
 step = 0.01
 tracks/0/type = "value"
@@ -2457,7 +2567,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=31]
 length = 0.75
 loop = true
 step = 0.15
@@ -2498,7 +2608,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=32]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2530,7 +2640,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=33]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2562,7 +2672,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=34]
 length = 0.3
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Ledge_Grab")
@@ -2579,7 +2689,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=35]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -2739,7 +2849,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=36]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -2765,7 +2875,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=37]
 length = 0.8
 loop = true
 step = 0.05
@@ -2806,7 +2916,7 @@ tracks/2/keys = {
 "values": [ ExtResource( 26 ) ]
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=38]
 length = 0.2
 step = 0.01
 tracks/0/type = "method"
@@ -2860,7 +2970,7 @@ tracks/3/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Shader" id=38]
+[sub_resource type="Shader" id=39]
 code = "shader_type canvas_item;
 
 
@@ -2925,8 +3035,8 @@ void fragment()
 
 "
 
-[sub_resource type="ShaderMaterial" id=39]
-shader = SubResource( 38 )
+[sub_resource type="ShaderMaterial" id=40]
+shader = SubResource( 39 )
 shader_param/width = 0.0
 shader_param/outline_color = Color( 0.65098, 0.764706, 1, 0 )
 shader_param/precision_threshold = 0.001
@@ -2934,22 +3044,22 @@ shader_param/focus_color_factor = 0.0
 shader_param/orig_eye_color = Color( 0.0470588, 0.482353, 0.117647, 1 )
 shader_param/foc_color = Color( 0.352941, 0.568627, 1, 1 )
 
-[sub_resource type="RectangleShape2D" id=40]
-extents = Vector2( 8, 14 )
-
 [sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 10, 19 )
+extents = Vector2( 8, 14 )
 
 [sub_resource type="RectangleShape2D" id=42]
 extents = Vector2( 10, 19 )
 
-[sub_resource type="CircleShape2D" id=43]
+[sub_resource type="RectangleShape2D" id=43]
+extents = Vector2( 10, 19 )
+
+[sub_resource type="CircleShape2D" id=44]
 radius = 25.0
 
-[sub_resource type="RectangleShape2D" id=44]
+[sub_resource type="RectangleShape2D" id=45]
 extents = Vector2( 256, 150 )
 
-[sub_resource type="RectangleShape2D" id=45]
+[sub_resource type="RectangleShape2D" id=46]
 extents = Vector2( 10, 2 )
 
 [node name="Rose" type="KinematicBody2D"]
@@ -2996,37 +3106,38 @@ anims/Event_Dodge = SubResource( 13 )
 anims/Event_HitDodge = SubResource( 14 )
 anims/Event_Pierce = SubResource( 15 )
 anims/Event_PierceDash = SubResource( 16 )
-anims/Event_Slash = SubResource( 17 )
-anims/Event_Slash+Dodge = SubResource( 18 )
-anims/Event_SlashSwirl = SubResource( 19 )
-anims/Event_SlashWind = SubResource( 20 )
-anims/Event_ToCharge = SubResource( 21 )
-anims/Event_ToVortex = SubResource( 22 )
-anims/Vortex = SubResource( 23 )
-anims/air_move_down = SubResource( 24 )
-anims/air_move_up = SubResource( 25 )
-anims/airjump = SubResource( 26 )
-anims/climb = SubResource( 27 )
-anims/death = SubResource( 28 )
-anims/hurt = SubResource( 29 )
-anims/idle = SubResource( 30 )
-anims/jump = SubResource( 31 )
-anims/land = SubResource( 32 )
-anims/ledgegrab = SubResource( 33 )
-"anims/old dash" = SubResource( 34 )
-anims/reset = SubResource( 35 )
-anims/run = SubResource( 36 )
-anims/up_to_down = SubResource( 37 )
+anims/Event_PierceStasis = SubResource( 17 )
+anims/Event_Slash = SubResource( 18 )
+anims/Event_Slash+Dodge = SubResource( 19 )
+anims/Event_SlashSwirl = SubResource( 20 )
+anims/Event_SlashWind = SubResource( 21 )
+anims/Event_ToCharge = SubResource( 22 )
+anims/Event_ToVortex = SubResource( 23 )
+anims/Vortex = SubResource( 24 )
+anims/air_move_down = SubResource( 25 )
+anims/air_move_up = SubResource( 26 )
+anims/airjump = SubResource( 27 )
+anims/climb = SubResource( 28 )
+anims/death = SubResource( 29 )
+anims/hurt = SubResource( 30 )
+anims/idle = SubResource( 31 )
+anims/jump = SubResource( 32 )
+anims/land = SubResource( 33 )
+anims/ledgegrab = SubResource( 34 )
+"anims/old dash" = SubResource( 35 )
+anims/reset = SubResource( 36 )
+anims/run = SubResource( 37 )
+anims/up_to_down = SubResource( 38 )
 
 [node name="Sprites" type="Node2D" parent="."]
 z_index = 1
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
-modulate = Color( 1, 0, 0, 1 )
-material = SubResource( 39 )
+material = SubResource( 40 )
 z_index = 1
-texture = ExtResource( 13 )
-hframes = 4
+texture = ExtResource( 16 )
+hframes = 2
+frame = 1
 
 [node name="Position2D" type="Position2D" parent="Sprites/Sprite"]
 position = Vector2( 0, -8 )
@@ -3045,7 +3156,7 @@ position = Vector2( 16, 0 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Sprite/ChargePhysBox"]
-shape = SubResource( 40 )
+shape = SubResource( 41 )
 
 [node name="FocusSprite" type="Sprite" parent="Sprites"]
 z_index = 1
@@ -3064,7 +3175,7 @@ hframes = 6
 frame = 5
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
-shape = SubResource( 41 )
+shape = SubResource( 42 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( 0, -20 )
@@ -3075,7 +3186,7 @@ script = ExtResource( 29 )
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
 scale = Vector2( 0.8, 1 )
-shape = SubResource( 42 )
+shape = SubResource( 43 )
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -3127,7 +3238,7 @@ position = Vector2( 14, -40 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 41 )
+shape = SubResource( 42 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Ledge_Grab"]
 wait_time = 0.1
@@ -3161,12 +3272,7 @@ wait_time = 0.01
 one_shot = true
 
 [node name="Tethering" type="Node2D" parent="Movement_States"]
-editor/display_folded = true
 script = ExtResource( 38 )
-
-[node name="tetherTimer" type="Timer" parent="Movement_States/Tethering"]
-wait_time = 1.5
-one_shot = true
 
 [node name="Hurt" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
@@ -3194,7 +3300,7 @@ collision_mask = 40
 script = ExtResource( 42 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Charge/ChargeAttackBox"]
-shape = SubResource( 43 )
+shape = SubResource( 44 )
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]
 editor/display_folded = true
@@ -3203,11 +3309,11 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 44 )
+shape = SubResource( 45 )
 
-[node name="RayCastCollision" type="Area2D" parent="."]
+[node name="AttackCollision" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 7169
+collision_mask = 1025
 
 [node name="ledge_cast_right" type="RayCast2D" parent="."]
 position = Vector2( 0, -20 )
@@ -3225,7 +3331,7 @@ position = Vector2( 10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_R"]
-shape = SubResource( 45 )
+shape = SubResource( 46 )
 
 [node name="Ledgebox_L" type="Area2D" parent="."]
 editor/display_folded = true
@@ -3233,7 +3339,7 @@ position = Vector2( -10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_L"]
-shape = SubResource( 45 )
+shape = SubResource( 46 )
 
 [node name="manaTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -3261,7 +3367,6 @@ texture = ExtResource( 28 )
 [connection signal="timeout" from="Movement_States/Attack/Attack_Controller/HitGravTimer" to="Movement_States/Attack/Attack_Controller" method="_on_HitGravTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/Attack_Controller/Attack_Instancing/particleTimer" to="Movement_States/Attack/Attack_Controller/Attack_Instancing" method="_on_particleTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Attack/ComboTimer" to="Movement_States/Attack" method="_on_ComboTimer_timeout"]
-[connection signal="timeout" from="Movement_States/Tethering/tetherTimer" to="Movement_States/Tethering" method="_on_tetherTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Hurt/hurtTimer" to="Movement_States/Hurt" method="_on_hurtTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Vortex/costTimer" to="Movement_States/Vortex" method="_on_costTimer_timeout"]
 [connection signal="timeout" from="Movement_States/Charge/costTimer" to="Movement_States/Charge" method="_on_costTimer_timeout"]

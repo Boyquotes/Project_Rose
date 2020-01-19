@@ -161,7 +161,6 @@ cast_to = Vector2( 40, 0 )
 
 [node name="HitBox" parent="." index="7"]
 position = Vector2( 0, 4 )
-collision_layer = 7168
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 1 )

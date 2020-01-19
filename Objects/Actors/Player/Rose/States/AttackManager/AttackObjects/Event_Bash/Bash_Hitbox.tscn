@@ -33,7 +33,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[node name="Bash" index="0" instance=ExtResource( 1 )]
+[node name="Bash" instance=ExtResource( 1 )]
 
 [node name="Area2D" parent="." index="0"]
 knockback = 75.0

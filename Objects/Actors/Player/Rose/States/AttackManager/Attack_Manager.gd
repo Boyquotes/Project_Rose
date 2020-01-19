@@ -4,7 +4,6 @@ onready var ground_state = get_parent().get_parent().get_node("Move_On_Ground");
 onready var air_state = get_parent().get_parent().get_node("Move_In_Air");
 onready var ledge_state = get_parent().get_parent().get_node("Ledge_Grab");
 onready var attack_state = get_parent().get_parent().get_node("Attack");
-onready var tethering_state = get_parent().get_parent().get_node("Tethering");
 onready var vortex_state = get_parent().get_parent().get_node("Vortex");
 onready var charge_state = get_parent().get_parent().get_node("Charge");
 onready var hurt_state = get_parent().get_parent().get_node("Hurt");
@@ -44,10 +43,8 @@ var attack_type = "";
 var bash_plus_dodge_procs = 0;
 var max_bash_plus_dodge_procs = 1;
 var bounce = false;
-var tether = false;
 var twirl = false;
-
-var tethered_creature;
+var focus_attack = false;
 
 ### attack codes ###
 var event_prefix = "Event";
@@ -120,30 +117,36 @@ func handleInput():
 func parse_attack(idx):
 	if(Slash_pressed() && !slottedSlash):
 		eventArr[idx] = "Slash";
-		if(powerups.get_powerup('focus') && Input.is_action_pressed("Focus")):
+		if(host.has_focus && powerups.get_powerup('focus') && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "SlashSwirl";
+			focus_attack = true;
 		if(powerups.get_powerup('reinforced_stitching') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel")):
 			eventArr[idx] = "SlashWind";
-		if(powerups.get_powerup('vortex_rune') && powerups.get_powerup('focus') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
+		if(host.has_focus && powerups.get_powerup('vortex_rune') && powerups.get_powerup('focus') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "ToVortex";
+			host.change_focus(false);
 		slottedSlash = true;
 	elif(Pierce_pressed() && !slottedPierce):
 		eventArr[idx] = "Pierce";
-		if(powerups.get_powerup('magus_sleeve') && powerups.get_powerup('focus') && Input.is_action_pressed("Focus")):
+		if(host.has_focus && powerups.get_powerup('magus_sleeve') && powerups.get_powerup('focus') && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "PierceDash";
+			focus_attack = true;
 		if(powerups.get_powerup('bounding_sleeve') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel")):
 			eventArr[idx] = "PierceStasis";
-		if(powerups.get_powerup('lightning_rune') && powerups.get_powerup('focus') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
+		if(host.has_focus && powerups.get_powerup('lightning_rune') && powerups.get_powerup('focus') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "PierceHoming";
+			host.change_focus(false);
 		slottedPierce = true;
 	elif(Bash_pressed() && !slottedBash):
 		eventArr[idx] = "Bash";
-		if(powerups.get_powerup('reinforced_casing') && powerups.get_powerup('focus') && Input.is_action_pressed("Focus")):
+		if(host.has_focus && powerups.get_powerup('reinforced_casing') && powerups.get_powerup('focus') && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "BashLaunch";
+			focus_attack = true;
 		if(powerups.get_powerup('regrowth_casing')  && powerups.get_powerup('channel') && Input.is_action_pressed("Channel")):
 			eventArr[idx] = "BashLunge";
-		if(powerups.get_powerup('boulder_rune') && powerups.get_powerup('focus') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
+		if(host.has_focus && powerups.get_powerup('boulder_rune') && powerups.get_powerup('focus') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
 			eventArr[idx] = "ToCharge";
+			host.change_focus(false);
 		slottedBash = true;
 	elif(Dodge_pressed()):
 		if(idx == 0 && host.on_floor() || idx == 1):
@@ -224,6 +227,8 @@ func attack_done():
 	host.get_node("Hitbox/Hitbox").disabled = false;
 	if(!attack_is_saved):
 		clear_slotted_vars();
+	if(!hit && focus_attack):
+		host.change_focus(false);
 	hit = false;
 	clear_enter_vars();
 	attack_end = true;
@@ -247,7 +252,6 @@ func attack_done():
 	bounce = false;
 	rotate = true;
 	change_state();
-	
 
 func change_state():
 	if(previous_event == "ToVortex"):
@@ -256,13 +260,6 @@ func change_state():
 	if(previous_event == "ToCharge"):
 		attack_state.exit(charge_state);
 		attack_state.get_node("ComboTimer").stop();
-	if(Input.is_action_pressed("Use_Mana") && tether && host.mana > 0):
-		tether = false;
-		attack_state.exit(tethering_state);
-		attack_state.get_node("ComboTimer").stop();
-	else:
-		tether = false;
-		tethering_state.creatures.clear();
 
 func attack_done_reset():
 	twirl = false;
@@ -285,9 +282,6 @@ func clear_save_vars():
 	save_event = false;
 
 func on_hit(col):
-	if(tether):
-		tethering_state.creatures.push_back(tethered_creature);
-		tethered_creature = null;
 	if(bounce):
 		host.bounce();
 	if("hittable" in col):
@@ -301,6 +295,8 @@ func on_hit(col):
 				hit = false;
 			if(eventArr[0] == "BashLunge"):
 				host.add_velocity(500, attack_degrees+180);
+			if(eventArr[0] == "SlashSwirl"):
+				host.jump();
 			"""
 			elif(!host.on_floor() && !attack_state.attack_dashing):
 				#NOTE: This might mess up; if the grav screws up again this is probably at fault

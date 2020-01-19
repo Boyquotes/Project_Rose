@@ -24,7 +24,7 @@ var can_channel_and_focus = true;
 
 ###hitbox detection###
 var targettable_hitboxes = [];
-var item_trace = [];
+onready var AttackCollision = $AttackCollision;
 
 ###camera control###
 onready var CamNode = get_node("Camera2D");
@@ -34,6 +34,7 @@ export(float) var max_mana = 100;
 export(float) var mana_recov = 1.0;
 var mana = 100.0;
 var regain_mana = true;
+var has_focus = true;
 
 var g_max_temp;
 
@@ -95,7 +96,6 @@ func execute(delta):
 	deg = rad2deg(rad);
 	
 	$Target.global_rotation_degrees = deg;
-	hitboxLoop();
 
 
 #moves the player and runs state logic
@@ -129,6 +129,9 @@ func phys_execute(delta):
 	if(vspd > g_max && grav_activated) :
 		vspd = g_max;
 
+#cleans up attack instancing
+func cleanup():
+	$Movement_States/Attack/Attack_Controller/Attack_Instancing.clear();
 
 #trigger for detecting a hitbox entering player sight zone
 func _on_DetectHitboxArea_area_entered(area):
@@ -138,37 +141,6 @@ func _on_DetectHitboxArea_area_entered(area):
 func _on_DetectHitboxArea_area_exited(area):
 	if(targettable_hitboxes.has(area)):
 		targettable_hitboxes.erase(area);
-#determines if a player can hit a hitbox
-#likely needs revisiting
-func hitboxLoop():
-	var space_state = get_world_2d().direct_space_state;
-	for item in targettable_hitboxes:
-		var slash = nextRay(self,item,10,space_state);
-		var bash = nextRay(self,item,11,space_state);
-		var pierce = nextRay(self,item,12,space_state);
-		if(slash || bash || pierce):
-			item.hittable = true;
-		else:
-			item.hittable = false;
-#the logic to determine if a specific hitbox van be hit
-func nextRay(origin,dest,col_layer,spc):
-	if(!item_trace.has(origin)):
-		item_trace.push_back(origin);
-	var result = spc.intersect_ray(origin.global_position, dest.global_position, item_trace, $RayCastCollision.collision_mask);
-	if(result.empty()):
-		item_trace.clear();
-		return true;
-	
-	elif(result.collider.get_collision_layer_bit(col_layer)):
-		if(result.collider != dest):
-			return nextRay(result.collider,dest,col_layer,spc);
-		else:
-			item_trace.clear();
-			return true;
-	
-	else:
-		item_trace.clear();
-		return false;
 
 #useful for easily getting the general direction of the mouse
 func mouse_r():
@@ -294,7 +266,9 @@ func _on_manaTimer_timeout():
 	if(mana > max_mana):
 		mana = max_mana;
 	emit_signal("mana_changed",mana);
-
+func change_focus(focus):
+	has_focus = focus;
+	emit_signal("focus_changed", focus);
 
 #Death trigger
 func _on_Player_System_hit_zero():

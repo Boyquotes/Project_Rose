@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Objects/UI and Menus/Player System/Player System.gd" type="Script" id=1]
 [ext_resource path="res://Design and Prototypes/hptexture.png" type="Texture" id=2]
@@ -9,8 +9,7 @@
 [ext_resource path="res://Design and Prototypes/4.png" type="Texture" id=7]
 [ext_resource path="res://Design and Prototypes/manatexture.png" type="Texture" id=8]
 [ext_resource path="res://Design and Prototypes/bubble.png" type="Texture" id=9]
-[ext_resource path="res://Design and Prototypes/focustexture.png" type="Texture" id=10]
-[ext_resource path="res://Design and Prototypes/whitepettle.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Focus_Sprite.png" type="Texture" id=10]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.714801, 0.99639, 1 )
@@ -91,28 +90,6 @@ scale_random = 1.0
 scale_curve = SubResource( 12 )
 color_ramp = SubResource( 10 )
 
-[sub_resource type="Gradient" id=14]
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=15]
-gradient = SubResource( 14 )
-
-[sub_resource type="GradientTexture" id=16]
-
-[sub_resource type="ParticlesMaterial" id=17]
-trail_color_modifier = SubResource( 16 )
-emission_shape = 1
-emission_sphere_radius = 4.0
-flag_disable_z = true
-gravity = Vector3( 35, 0, 0 )
-angular_velocity = 455.7
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale_random = 1.0
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 15 )
-
 [node name="Player System" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -157,17 +134,9 @@ lifetime = 2.5
 process_material = SubResource( 13 )
 texture = ExtResource( 9 )
 
-[node name="FocusBar" type="TextureProgress" parent="."]
-visible = false
-margin_top = 32.0
-margin_right = 160.0
-margin_bottom = 64.0
-value = 100.0
-texture_progress = ExtResource( 10 )
-
-[node name="Particles2D" type="Particles2D" parent="FocusBar"]
-position = Vector2( 0, 8 )
-amount = 15
-lifetime = 3.5
-process_material = SubResource( 17 )
-texture = ExtResource( 11 )
+[node name="FocusSprite" type="Sprite" parent="."]
+position = Vector2( 16, 48 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 10 )
+hframes = 2
+frame = 1

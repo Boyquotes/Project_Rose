@@ -190,14 +190,12 @@ test_hp_loss={
 2d_physics/layer_1="Floors And Walls"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Player Attacks"
-2d_physics/layer_4="Enemy_Hitboxes"
+2d_physics/layer_4="Enemy_Attacks"
 2d_physics/layer_5="Enemy_Physics"
 2d_physics/layer_6="Obstacles"
 2d_physics/layer_7="Platforms"
 2d_physics/layer_8="Enemy_Floors_And_Walls"
-2d_physics/layer_11="SlashHitboxes"
-2d_physics/layer_12="BashHitboxes"
-2d_physics/layer_13="PierceHitboxes"
+2d_physics/layer_11="Enemy_Hitboxes"
 
 [rendering]
 

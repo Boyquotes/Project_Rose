@@ -21,12 +21,13 @@ tracks/0/keys = {
 } ]
 }
 
-[node name="BashLunge" index="0" instance=ExtResource( 1 )]
+[node name="BashLunge" instance=ExtResource( 1 )]
 
 [node name="Area2D" parent="." index="0"]
 knockback = 75.0
 knockback_type = 2
 damage = 10
+cost = 20.0
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 scale = Vector2( 1, 0.65 )

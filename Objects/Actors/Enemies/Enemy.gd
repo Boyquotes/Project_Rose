@@ -1,5 +1,7 @@
 extends "res://Objects/Actors/Actor.gd"
 
+signal marked;
+
 enum ATTACK_TYPE {SLASH, BASH, PIERCE, TRUE};
 var mark = null;
 onready var actionTimer = get_node("Action_Timer");
@@ -38,9 +40,6 @@ func execute(delta):
 	pass
 
 func phys_execute(delta):
-	if(mark != null):
-		#print(mark);
-		pass;
 	#state machine
 	#state = 'default' by default
 	states[state].handleAnimation();
@@ -90,3 +89,11 @@ func Kill():
 	enabled = false;
 	$Sprites.visible = false;
 	.Kill();
+
+func _on_MarkTimer_timeout():
+	mark = null;
+
+
+func _on_Enemy_marked(type):
+	mark = type;
+	$MarkTimer.start();

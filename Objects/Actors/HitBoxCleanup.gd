@@ -18,7 +18,5 @@ func _process(delta):
 func cleanup():
 	host.cleanup();
 
-
-
 func _on_AnimationPlayer_animation_finished(anim_name):
 	cleanup();

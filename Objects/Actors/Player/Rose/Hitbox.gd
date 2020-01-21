@@ -8,6 +8,8 @@ func _ready():
 	$Hitbox.disabled = false;
 
 func _on_Hitbox_area_entered(area):
+	if(get_parent().iframe):
+		return;
 	match(area.hit_type):
 		HIT_TYPE.DAMAGE:
 			hurt.damage = area.damage;

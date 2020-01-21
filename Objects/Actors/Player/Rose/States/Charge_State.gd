@@ -44,6 +44,7 @@ func exit(state):
 	physbox.disabled = true;
 	hitbox.disabled = true;
 	hit_wall = false;
+	host.iframe = true;
 	host.can_channel_and_focus = true;
 	host.regain_mana = true;
 	$costTimer.stop();

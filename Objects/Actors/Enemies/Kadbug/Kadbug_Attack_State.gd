@@ -28,7 +28,6 @@ func vslice():
 	add_child(inst);
 	inst.global_position = global_position;
 	inst.scale.x = host.Direction;
-	inst.init();
 
 func hslice():
 	host.deactivate_fric();
@@ -36,7 +35,6 @@ func hslice():
 	add_child(inst);
 	inst.global_position = global_position;
 	inst.scale.x = host.Direction;
-	inst.init();
 
 
 func exit_default():

@@ -5,6 +5,7 @@ var attack_target;
 var charged = false;
 
 func enter():
+	attack_target = host.player.global_position;
 	$cooldownTimer.wait_time = rand_range(1.5,4);
 	$cooldownTimer.start();
 	.enter();
@@ -16,7 +17,6 @@ func handleAnimation():
 		host.animate(host.get_node("animator"),"charge", true);
 	if(trigger):
 		trigger = false;
-		attack_target = host.player.global_position;
 		host.animate(host.get_node("animator"),"attack", true);
 
 func thrust():
@@ -32,5 +32,5 @@ func exit_orbit():
 
 func exit(state):
 	charged = false;
-	attack_target = null;
+	#attack_target = null;
 	.exit(state);

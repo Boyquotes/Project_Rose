@@ -6,6 +6,7 @@ onready var ledge_state = get_parent().get_parent().get_node("Ledge_Grab");
 onready var attack_state = get_parent().get_parent().get_node("Attack");
 onready var vortex_state = get_parent().get_parent().get_node("Vortex");
 onready var charge_state = get_parent().get_parent().get_node("Charge");
+onready var homing_state = get_parent().get_parent().get_node("Homing");
 onready var hurt_state = get_parent().get_parent().get_node("Hurt");
 onready var powerups = get_parent().get_parent().get_parent().get_node("Powerups");
 signal attack;
@@ -134,7 +135,7 @@ func parse_attack(idx):
 		if(powerups.get_powerup('bounding_sleeve') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel")):
 			eventArr[idx] = "PierceStasis";
 		if(host.has_focus && powerups.get_powerup('lightning_rune') && powerups.get_powerup('focus') && powerups.get_powerup('channel') && Input.is_action_pressed("Channel") && Input.is_action_pressed("Focus")):
-			eventArr[idx] = "PierceHoming";
+			eventArr[idx] = "ToHoming";
 			host.change_focus(false);
 		slottedPierce = true;
 	elif(Bash_pressed() && !slottedBash):
@@ -224,7 +225,7 @@ func construct_attack_string():
 func attack_done():
 	if(!host.tweened):
 		host.tween_rotation_to_origin("Sprites");
-	host.get_node("Hitbox/Hitbox").disabled = false;
+	host.iframe = false;
 	if(!attack_is_saved):
 		clear_slotted_vars();
 	if(!hit && focus_attack):
@@ -259,6 +260,9 @@ func change_state():
 		attack_state.get_node("ComboTimer").stop();
 	if(previous_event == "ToCharge"):
 		attack_state.exit(charge_state);
+		attack_state.get_node("ComboTimer").stop();
+	if(previous_event == "ToHoming"):
+		attack_state.exit(homing_state);
 		attack_state.get_node("ComboTimer").stop();
 
 func attack_done_reset():

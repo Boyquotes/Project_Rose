@@ -12,11 +12,11 @@ onready var move_states = {
 	'move_in_air' : $Movement_States/Move_In_Air,
 	'ledge_grab' : $Movement_States/Ledge_Grab,
 	'attack' : $Movement_States/Attack,
-	'tethering' : $Movement_States/Tethering,
 	'hurt' : $Movement_States/Hurt,
 	'vortex' : $Movement_States/Vortex,
-	'charge' : $Movement_States/Charge
-}
+	'charge' : $Movement_States/Charge,
+	'homing' : $Movement_States/Homing
+	}
 var move_state = 'move_on_ground';
 var hold_focus = false;
 var tweened = true;
@@ -25,6 +25,7 @@ var can_channel_and_focus = true;
 ###hitbox detection###
 var targettable_hitboxes = [];
 onready var AttackCollision = $AttackCollision;
+export(bool) var iframe = false;
 
 ###camera control###
 onready var CamNode = get_node("Camera2D");
@@ -86,22 +87,19 @@ func execute(delta):
 	if(Input.is_action_just_pressed("test_mana_loss")):
 		change_mana(-10);
 	
-	if(active_input == InputType.KEYMOUSE):
-		rad = atan2(get_global_mouse_position().y - global_position.y , get_global_mouse_position().x - global_position.x);
-	elif(active_input == InputType.GAMEPAD):
-		if(abs(Input.get_joy_axis(0,JOY_ANALOG_RY))>.4 || abs(Input.get_joy_axis(0,JOY_ANALOG_RX))>.4):
-			rad = atan2(Input.get_joy_axis(0, JOY_ANALOG_RY), Input.get_joy_axis(0, JOY_ANALOG_RX));
-		elif(abs(Input.get_joy_axis(0,JOY_ANALOG_LY))>.4 || abs(Input.get_joy_axis(0,JOY_ANALOG_LX))>.4):
-			rad = atan2(Input.get_joy_axis(0, JOY_ANALOG_LY), Input.get_joy_axis(0, JOY_ANALOG_LX));
+	rad = $Target.rad;
 	deg = rad2deg(rad);
-	
-	$Target.global_rotation_degrees = deg;
 
 
 #moves the player and runs state logic
 func phys_execute(delta):
+	if(get_tree().paused):
+		paused_phys_execute(delta);
+	else:
+		unpaused_phys_execute(delta);
+
+func unpaused_phys_execute(delta):
 	#state machine
-	#print(move_state);
 	move_states[move_state].handleInput();
 	move_states[move_state].handleAnimation();
 	move_states[move_state].execute(delta);
@@ -128,6 +126,11 @@ func phys_execute(delta):
 	#cap gravity
 	if(vspd > g_max && grav_activated) :
 		vspd = g_max;
+
+func paused_phys_execute(delta):
+	move_states[move_state].pausedHandleInput();
+	move_states[move_state].pausedHandleAnimation();
+	move_states[move_state].pausedExecute(delta);
 
 #cleans up attack instancing
 func cleanup():

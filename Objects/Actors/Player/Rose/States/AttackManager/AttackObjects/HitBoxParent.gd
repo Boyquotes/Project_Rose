@@ -21,6 +21,9 @@ func _ready():
 	true_knockback = knockback;
 
 func _physics_process(delta):
+	phys_execute();
+
+func phys_execute():
 	true_knockback -= 3;
 	if(true_knockback <= 0):
 		true_knockback = 0;

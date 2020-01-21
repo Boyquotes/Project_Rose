@@ -95,6 +95,7 @@ func normal_knockback():
 		KNOCKBACK_TYPE.DIRECTIONAL:
 			host.hspd = cos(deg2rad(damage_area.direction)) * knockback;
 			host.vspd = ((sin(deg2rad(damage_area.direction)) * knockback) + tinch);
+			print(knockback);
 
 func slash_damage():
 	normal_knockback();

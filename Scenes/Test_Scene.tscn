@@ -31,9 +31,6 @@ editor/display_folded = true
 [node name="ManaBar" parent="CanvasLayer/Player System" index="1"]
 editor/display_folded = true
 
-[node name="FocusBar" parent="CanvasLayer/Player System" index="2"]
-editor/display_folded = true
-
 [node name="Transitions" parent="CanvasLayer" instance=ExtResource( 2 )]
 
 [node name="Pause System" parent="CanvasLayer" instance=ExtResource( 3 )]
@@ -63,6 +60,12 @@ position = Vector2( -2080, -80 )
 
 [node name="Woodeater_Scout" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( -1264, -608 )
+
+[node name="Woodeater_Scout2" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( -1128.52, -550.039 )
+
+[node name="Woodeater_Scout3" parent="Enemies" instance=ExtResource( 9 )]
+position = Vector2( -1279.36, -507.441 )
 
 [node name="Woodeater_Worker" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( -1632, -48 )

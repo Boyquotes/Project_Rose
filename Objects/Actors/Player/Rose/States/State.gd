@@ -28,6 +28,16 @@ func handleInput():
 func execute(delta):
 	pass;
 
+func pausedExecute(delta):
+	pass;
+
+func pausedHandleAnimation():
+	pass;
+
+func pausedHandleInput():
+	pass;
+
+
 func exit(state):
 	state.enter();
 	pass;

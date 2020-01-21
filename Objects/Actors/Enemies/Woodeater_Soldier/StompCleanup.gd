@@ -1,4 +1,4 @@
-extends "res://Objects/Actors/HitBoxCleanup.gd"
+extends "res://Objects/Actors/Enemies/EnemyAttack.gd"
 
 func _ready():
 	$Sprites/Sprite.self_modulate.a = 0;

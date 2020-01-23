@@ -20,22 +20,51 @@ func enter():
 func handleAnimation():
 	pass;
 
+func search_nearest_target(x,y):
+	var shortest = 1000.0;
+	var shortest_targ = next;
+	for hitbox in host.targettable_hitboxes:
+		if(x == 1):
+			if(prev.global_position.x < hitbox.global_position.x):
+				var dis = prev.global_position.distance_to(hitbox.global_position);
+				if(shortest < dis):
+					shortest = dis;
+					shortest_targ = hitbox;
+		if(x == -1):
+			if(prev.global_position.x > hitbox.global_position.x):
+				var dis = prev.global_position.distance_to(hitbox.global_position);
+				if(shortest < dis):
+					shortest = dis;
+					shortest_targ = hitbox;
+		if(y == 1):
+			if(prev.global_position.y < hitbox.global_position.y):
+				var dis = prev.global_position.distance_to(hitbox.global_position);
+				if(shortest < dis):
+					shortest = dis;
+					shortest_targ = hitbox;
+		if(y == -1):
+			if(prev.global_position.y > hitbox.global_position.y):
+				var dis = prev.global_position.distance_to(hitbox.global_position);
+				if(shortest < dis):
+					shortest = dis;
+					shortest_targ = hitbox;
+	targ.global_position = shortest_targ.globa_position;
+	return shortest_targ;
+
 func pausedHandleInput():
-	var space_state = get_world_2d().direct_space_state;
-	var result = space_state.intersect_ray(prev.global_position, 
-	Vector2(prev.global_position.x + (cos(host.get_node("Target").rad) * 200),prev.global_position.y + (sin(host.get_node("Target").rad) * 200)), 
-	[], host.AttackCollision.collision_mask,false,true);
-	if(result.empty()):
-		pass
-	elif(host.targettable_hitboxes.has(result.collider) && !locked.has(result.collider)):
-		targ.global_position = result.collider.global_position;
-		next = result.collider;
-	else: 
-		pass;
+	if(Input.is_action_pressed("Move_Left") || Input.is_action_pressed("Aim_Left")):
+		next = search_nearest_target(-1,0);
+	if(Input.is_action_pressed("Move_Right") || Input.is_action_pressed("Aim_Right")):
+		next = search_nearest_target(1,0);
+	if(Input.is_action_pressed("Move_Up") || Input.is_action_pressed("Aim_Up")):
+		next = search_nearest_target(-1,0);
+	if(Input.is_action_pressed("Move_Down") || Input.is_action_pressed("Aim_Down")):
+		next = search_nearest_target(1,0);
 	if(Input.is_action_just_pressed("Jump")):
 		if(next == null):
 			HomingAttack();
 		if(next != null):
+			var space_state = get_world_2d().direct_space_state;
 			if(wallRay(prev,next,space_state) || next.host.mark == 2):
 				locked.push_back(next);
 				prev = next;

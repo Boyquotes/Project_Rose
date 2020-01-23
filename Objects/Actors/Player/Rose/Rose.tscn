@@ -2130,7 +2130,7 @@ tracks/9/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=48]
+[sub_resource type="Animation" id=23]
 resource_name = "Event_ToHoming"
 length = 0.8
 step = 0.01
@@ -2237,7 +2237,7 @@ tracks/7/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=24]
 length = 0.7
 step = 0.01
 tracks/0/type = "method"
@@ -2374,7 +2374,7 @@ tracks/9/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=25]
 length = 0.29
 loop = true
 step = 0.15
@@ -2415,7 +2415,7 @@ tracks/2/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=26]
 length = 0.4
 loop = true
 step = 0.01
@@ -2456,7 +2456,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=27]
 length = 0.4
 loop = true
 step = 0.01
@@ -2497,7 +2497,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=28]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2529,7 +2529,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=29]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2573,7 +2573,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=30]
 length = 1.5
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
@@ -2618,7 +2618,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=31]
 length = 0.25
 step = 0.01
 tracks/0/type = "value"
@@ -2688,7 +2688,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=32]
 length = 0.75
 loop = true
 step = 0.15
@@ -2729,7 +2729,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=33]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2761,7 +2761,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=34]
 length = 0.3
 step = 0.05
 tracks/0/type = "method"
@@ -2793,7 +2793,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=35]
 length = 0.3
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Ledge_Grab")
@@ -2810,7 +2810,7 @@ tracks/0/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=36]
 length = 1.15
 step = 0.01
 tracks/0/type = "method"
@@ -2970,7 +2970,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=37]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:rotation_degrees")
 tracks/0/interp = 1
@@ -2996,7 +2996,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=38]
 length = 0.8
 loop = true
 step = 0.05
@@ -3037,7 +3037,7 @@ tracks/2/keys = {
 "values": [ ExtResource( 26 ) ]
 }
 
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=39]
 length = 0.2
 step = 0.01
 tracks/0/type = "method"
@@ -3091,7 +3091,7 @@ tracks/3/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Shader" id=39]
+[sub_resource type="Shader" id=40]
 code = "shader_type canvas_item;
 
 
@@ -3156,8 +3156,8 @@ void fragment()
 
 "
 
-[sub_resource type="ShaderMaterial" id=40]
-shader = SubResource( 39 )
+[sub_resource type="ShaderMaterial" id=41]
+shader = SubResource( 40 )
 shader_param/width = 0.0
 shader_param/outline_color = Color( 0.65098, 0.764706, 1, 0 )
 shader_param/precision_threshold = 0.001
@@ -3165,26 +3165,26 @@ shader_param/focus_color_factor = 0.0
 shader_param/orig_eye_color = Color( 0.0470588, 0.482353, 0.117647, 1 )
 shader_param/foc_color = Color( 0.352941, 0.568627, 1, 1 )
 
-[sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 8, 14 )
-
 [sub_resource type="RectangleShape2D" id=42]
-extents = Vector2( 10, 19 )
+extents = Vector2( 8, 14 )
 
 [sub_resource type="RectangleShape2D" id=43]
 extents = Vector2( 10, 19 )
 
-[sub_resource type="CapsuleShape2D" id=44]
+[sub_resource type="RectangleShape2D" id=44]
+extents = Vector2( 10, 19 )
+
+[sub_resource type="CapsuleShape2D" id=45]
 radius = 8.37312
 height = 26.0055
 
-[sub_resource type="CircleShape2D" id=45]
+[sub_resource type="CircleShape2D" id=46]
 radius = 16.126
 
-[sub_resource type="RectangleShape2D" id=46]
+[sub_resource type="RectangleShape2D" id=47]
 extents = Vector2( 256, 150 )
 
-[sub_resource type="RectangleShape2D" id=47]
+[sub_resource type="RectangleShape2D" id=48]
 extents = Vector2( 10, 2 )
 
 [node name="Rose" type="KinematicBody2D"]
@@ -3244,23 +3244,23 @@ anims/Event_Slash+Dodge = SubResource( 19 )
 anims/Event_SlashSwirl = SubResource( 20 )
 anims/Event_SlashWind = SubResource( 21 )
 anims/Event_ToCharge = SubResource( 22 )
-anims/Event_ToHoming = SubResource( 48 )
-anims/Event_ToVortex = SubResource( 23 )
-anims/Vortex = SubResource( 24 )
-anims/air_move_down = SubResource( 25 )
-anims/air_move_up = SubResource( 26 )
-anims/airjump = SubResource( 27 )
-anims/climb = SubResource( 28 )
-anims/death = SubResource( 29 )
-anims/hurt = SubResource( 30 )
-anims/idle = SubResource( 31 )
-anims/jump = SubResource( 32 )
-anims/land = SubResource( 33 )
-anims/ledgegrab = SubResource( 34 )
-"anims/old dash" = SubResource( 35 )
-anims/reset = SubResource( 36 )
-anims/run = SubResource( 37 )
-anims/up_to_down = SubResource( 38 )
+anims/Event_ToHoming = SubResource( 23 )
+anims/Event_ToVortex = SubResource( 24 )
+anims/Vortex = SubResource( 25 )
+anims/air_move_down = SubResource( 26 )
+anims/air_move_up = SubResource( 27 )
+anims/airjump = SubResource( 28 )
+anims/climb = SubResource( 29 )
+anims/death = SubResource( 30 )
+anims/hurt = SubResource( 31 )
+anims/idle = SubResource( 32 )
+anims/jump = SubResource( 33 )
+anims/land = SubResource( 34 )
+anims/ledgegrab = SubResource( 35 )
+"anims/old dash" = SubResource( 36 )
+anims/reset = SubResource( 37 )
+anims/run = SubResource( 38 )
+anims/up_to_down = SubResource( 39 )
 
 [node name="Sprites" type="Node2D" parent="."]
 pause_mode = 1
@@ -3269,7 +3269,7 @@ z_index = 1
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
 editor/display_folded = true
-material = SubResource( 40 )
+material = SubResource( 41 )
 z_index = 1
 texture = ExtResource( 20 )
 hframes = 7
@@ -3291,7 +3291,7 @@ position = Vector2( 16, 0 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Sprite/ChargePhysBox"]
-shape = SubResource( 41 )
+shape = SubResource( 42 )
 
 [node name="FocusSprite" type="Sprite" parent="Sprites"]
 z_index = 1
@@ -3311,7 +3311,7 @@ frame = 5
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 pause_mode = 1
-shape = SubResource( 42 )
+shape = SubResource( 43 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 pause_mode = 1
@@ -3324,7 +3324,7 @@ script = ExtResource( 29 )
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
 scale = Vector2( 0.8, 1 )
-shape = SubResource( 43 )
+shape = SubResource( 44 )
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -3343,7 +3343,6 @@ pause_mode = 1
 
 [node name="Movement_States" type="Node2D" parent="."]
 pause_mode = 1
-editor/display_folded = true
 
 [node name="Move_On_Ground" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
@@ -3372,6 +3371,7 @@ enabled = true
 cast_to = Vector2( 15, 0 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
+editor/display_folded = true
 script = ExtResource( 33 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
@@ -3379,7 +3379,7 @@ position = Vector2( 14, -40 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Ledge_Grab/Climbbox"]
-shape = SubResource( 42 )
+shape = SubResource( 43 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Ledge_Grab"]
 wait_time = 0.1
@@ -3389,6 +3389,7 @@ one_shot = true
 script = ExtResource( 34 )
 
 [node name="Attack" type="Node2D" parent="Movement_States"]
+editor/display_folded = true
 script = ExtResource( 35 )
 attack_dashing = true
 mobile = false
@@ -3448,7 +3449,7 @@ mark = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Vortex/VortexAttackBox"]
 position = Vector2( 0, 2 )
 rotation = 1.5708
-shape = SubResource( 44 )
+shape = SubResource( 45 )
 disabled = true
 
 [node name="hitTimer" type="Timer" parent="Movement_States/Vortex"]
@@ -3472,7 +3473,7 @@ attack_type = 1
 mark = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_States/Charge/ChargeAttackBox"]
-shape = SubResource( 45 )
+shape = SubResource( 46 )
 disabled = true
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]
@@ -3483,7 +3484,7 @@ collision_layer = 0
 collision_mask = 7424
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
-shape = SubResource( 46 )
+shape = SubResource( 47 )
 
 [node name="AttackCollision" type="Area2D" parent="."]
 pause_mode = 1
@@ -3509,7 +3510,7 @@ position = Vector2( 10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_R"]
-shape = SubResource( 47 )
+shape = SubResource( 48 )
 
 [node name="Ledgebox_L" type="Area2D" parent="."]
 pause_mode = 1
@@ -3518,7 +3519,7 @@ position = Vector2( -10, -27 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ledgebox_L"]
-shape = SubResource( 47 )
+shape = SubResource( 48 )
 
 [node name="manaTimer" type="Timer" parent="."]
 pause_mode = 1

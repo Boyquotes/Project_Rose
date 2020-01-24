@@ -80,9 +80,9 @@ func _on_Area2D_area_entered(area):
 		if(hits >= hit_limit && hit_limit > 0):
 			get_child(0).call_deferred("disabled",true);
 		if(area.attack_type == attack_type):
-			host.change_mana(10);
 			host.change_focus(true);
+			if(mark):
+				area.host.emit_signal("marked",attack_type);
 		if(attack_controller):
 			attack_controller.on_hit(area);
-		if(mark):
-			area.host.emit_signal("marked",attack_type);
+		

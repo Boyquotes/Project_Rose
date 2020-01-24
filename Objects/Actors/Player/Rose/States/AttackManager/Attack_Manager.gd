@@ -230,6 +230,7 @@ func attack_done():
 		clear_slotted_vars();
 	if(!hit && focus_attack):
 		host.change_focus(false);
+	focus_attack = false;
 	hit = false;
 	clear_enter_vars();
 	attack_end = true;

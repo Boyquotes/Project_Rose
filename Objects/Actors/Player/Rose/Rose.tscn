@@ -3389,7 +3389,6 @@ one_shot = true
 script = ExtResource( 34 )
 
 [node name="Attack" type="Node2D" parent="Movement_States"]
-editor/display_folded = true
 script = ExtResource( 35 )
 attack_dashing = true
 mobile = false

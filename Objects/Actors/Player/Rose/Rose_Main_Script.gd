@@ -50,6 +50,7 @@ onready var spr_anim = get_node("SpriteAnim");
 #sets up some variables and initializes the state machine
 func _ready():
 	._ready();
+	iframe = false;
 	g_max_temp = g_max;
 	$Camera2D.current = true;
 	move_states[move_state].enter();
@@ -246,6 +247,10 @@ func tween_sprite_rot(var node: NodePath, time: float = .1):
 func tween_global_position(new: Vector2, time: float = .1):
 	new.x = new.x * Direction;
 	new = global_position + new;
+	$Tween.interpolate_property(self,"global_position",global_position,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	$Tween.start();
+
+func tween_global_position2(new: Vector2, time: float = .1):
 	$Tween.interpolate_property(self,"global_position",global_position,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 

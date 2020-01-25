@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Objects/Actors/Enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Enemies/EnemyHitbox.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/target2.png" type="Texture" id=3]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -66,6 +67,13 @@ script = ExtResource( 2 )
 [node name="MarkTimer" type="Timer" parent="."]
 wait_time = 3.5
 one_shot = true
+
+[node name="marks" type="Node2D" parent="."]
+
+[node name="target" type="Sprite" parent="marks"]
+visible = false
+texture = ExtResource( 3 )
 [connection signal="marked" from="." to="." method="_on_Enemy_marked"]
+[connection signal="targetted" from="." to="." method="_on_Enemy_targetted"]
 [connection signal="area_entered" from="HitBox" to="HitBox" method="_on_HitBox_area_entered"]
 [connection signal="timeout" from="MarkTimer" to="." method="_on_MarkTimer_timeout"]

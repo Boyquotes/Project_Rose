@@ -21,7 +21,7 @@ func _process(delta):
 			get_tree().paused = true;
 			$PauseMenu.show();
 			is_paused = true;
-		elif(can_exit && ((Input.is_action_just_pressed("ui_cancel") || Input.is_action_just_pressed("Pause")) && get_tree().paused)):
+		elif(is_paused && can_exit && ((Input.is_action_just_pressed("ui_cancel") || Input.is_action_just_pressed("Pause")) && get_tree().paused)):
 			get_tree().paused = false;
 			is_paused = false;
 			$PauseMenu.hide();

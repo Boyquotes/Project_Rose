@@ -1,6 +1,7 @@
 extends "res://Objects/Actors/Actor.gd"
 
 signal marked;
+signal targetted;
 
 enum ATTACK_TYPE {SLASH, BASH, PIERCE, TRUE};
 var mark = null;
@@ -97,3 +98,6 @@ func _on_MarkTimer_timeout():
 func _on_Enemy_marked(type):
 	mark = type;
 	$MarkTimer.start();
+
+func _on_Enemy_targetted():
+	$marks/target.visible = !$marks/target.visible;

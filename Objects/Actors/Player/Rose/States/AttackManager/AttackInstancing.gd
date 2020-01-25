@@ -89,6 +89,7 @@ func Pierce():
 	hitNode[hitNode.size()-1].init();
 
 func PierceStasis():
+
 	for hb in host.targettable_hitboxes:
 		var c = hb.host;
 		if(c.mark == 2):

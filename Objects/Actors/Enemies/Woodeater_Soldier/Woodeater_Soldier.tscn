@@ -9,6 +9,8 @@
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Soldier/Woodeater_Soldier_Stun_State.gd" type="Script" id=7]
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Soldier/Woodeater_Soldier_Attack_State.gd" type="Script" id=8]
 
+
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27, 23 )
 

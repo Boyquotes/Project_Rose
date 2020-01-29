@@ -2,6 +2,7 @@ extends "./Free_Motion_State.gd"
 
 var damage = 0;
 var direction = 0;
+var compare_to;
 
 func enter():
 	host.move_state = 'hurt';
@@ -31,3 +32,9 @@ func exit(state):
 
 func _on_hurtTimer_timeout():
 	host.get_node("Hitbox").get_child(0).disabled = false;
+
+func KnockBack(var speed, var angle):
+	var buffer = 0;
+	if(compare_to.x > host.global_position.x):
+		buffer = 90;
+	host.add_velocity(speed,angle-buffer);

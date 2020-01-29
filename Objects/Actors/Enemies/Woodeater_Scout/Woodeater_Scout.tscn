@@ -10,7 +10,7 @@
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Scout/Woodeater_Scout_Orbit_State.gd" type="Script" id=8]
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Scout/Woodeater_Scout_Backup_State.gd" type="Script" id=9]
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Scout/Woodeater_Scout_Attack_State.gd" type="Script" id=10]
-[ext_resource path="res://Objects/Actors/Enemies/DamagePlayerHitbox.gd" type="Script" id=11]
+[ext_resource path="res://Objects/Actors/Enemies/ContactDamagePlayerHitbox.gd" type="Script" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.4762

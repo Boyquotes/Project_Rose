@@ -13,6 +13,7 @@ func _on_Hitbox_area_entered(area):
 	match(area.hit_type):
 		HIT_TYPE.DAMAGE:
 			hurt.damage = area.damage;
+			hurt.compare_to = area.comparison;
 			get_parent().move_states[get_parent().move_state].exit(hurt);
 			hurt.direction = sign(area.global_position.x - global_position.x);
 		HIT_TYPE.SLOW:

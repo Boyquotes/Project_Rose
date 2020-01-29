@@ -25,8 +25,7 @@ func execute(delta):
 func stomp():
 	inst = preload("./StompAttack.tscn").instance();
 	host.get_parent().add_child(inst);
-	inst.global_position = global_position + Vector2(0,-32)
-	inst.scale.x = host.Direction;
+	set_hitbox_attached(inst);
 	inst.init();
 
 func charge():
@@ -34,8 +33,7 @@ func charge():
 	host.hspd = host.true_mspd * 4 * host.Direction;
 	inst = preload("./ChargeAttack.tscn").instance();
 	add_child(inst);
-	inst.global_position = global_position;
-	inst.scale.x = host.Direction;
+	set_hitbox_attached(inst);
 	inst.init();
 
 func exit_default():

@@ -137,7 +137,6 @@ one_shot = true
 
 [node name="Attack" type="Node2D" parent="States" index="2"]
 script = ExtResource( 6 )
-attack_speed = 300.0
 
 [node name="cooldownTimer" type="Timer" parent="States/Attack" index="0"]
 one_shot = true

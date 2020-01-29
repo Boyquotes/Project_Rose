@@ -3,21 +3,21 @@
 [ext_resource path="res://Objects/Actors/Enemies/ProjectileAffectPlayerHitbox.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Actors/Enemies/Woodeater_Larva/spit.png" type="Texture" id=2]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 0.5
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 5.0
 
 [node name="RigidBody2D" type="RigidBody2D"]
 collision_layer = 0
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.5
 contacts_reported = 1
 contact_monitor = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -26,7 +26,7 @@ script = ExtResource( 1 )
 damage = 5
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="spit" type="Sprite" parent="."]
 texture = ExtResource( 2 )

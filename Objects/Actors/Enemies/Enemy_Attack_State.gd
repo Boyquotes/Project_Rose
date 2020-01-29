@@ -25,3 +25,11 @@ func exit(state):
 
 func _on_cooldownTimer_timeout():
 	on_cooldown = false;
+
+func set_hitbox_attached(var inst):
+	set_hitbox(inst);
+	inst.host = host;
+
+func set_hitbox(var inst):
+	inst.global_position = global_position;
+	inst.scale.x = host.Direction;

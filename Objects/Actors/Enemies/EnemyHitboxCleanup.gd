@@ -10,7 +10,9 @@ func init():
 	anim.track_insert_key(0,time,{"method": "cleanup", "args": []});
 	$AnimationPlayer.play("New Anim");
 	$AnimationPlayer.connect("animation_finished",self,"_on_AnimationPlayer_animation_finished");
-
+	$Area2D.host = host;
+	if($Area2D.comparison == null):
+		$Area2D.comparison = self.global_position;
 
 func _process(delta):
 	if(attached):

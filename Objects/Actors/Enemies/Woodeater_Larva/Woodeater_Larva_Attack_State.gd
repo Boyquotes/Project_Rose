@@ -1,9 +1,6 @@
-extends "res://Objects/Actors/Enemies/Enemy_State.gd"
+extends "res://Objects/Actors/Enemies/Enemy_Attack_State.gd"
 
-var animated = false;
-var on_cooldown = false;
 var attack_target;
-export(float) var attack_speed = 400;
 
 
 func enter():
@@ -24,6 +21,7 @@ func spawn_projectile():
 	var ball = preload("./Spit.tscn").instance();
 	host.get_parent().add_child(ball);
 	ball.global_position = global_position;
+	set_hitbox(ball);
 	var tx = -cos(global_position.angle_to_point(attack_target)) * attack_speed;
 	var ty = -sin(global_position.angle_to_point(attack_target)) * attack_speed;
 	ball.apply_impulse(Vector2(0,0),Vector2(tx,ty - 25));

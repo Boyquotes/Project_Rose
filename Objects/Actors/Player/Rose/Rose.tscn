@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/StatusEffects.gd" type="Script" id=2]
@@ -25,31 +25,33 @@
 [ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Vortex.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Move_Down.png" type="Texture" id=24]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Move_Up.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Hurt.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Idle.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Run.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Up_To_Down.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Pierce_Projectile.png" type="Texture" id=30]
-[ext_resource path="res://Objects/Actors/Player/Rose/Hitbox.gd" type="Script" id=31]
-[ext_resource path="res://Objects/Actors/Player/Rose/Shake.gd" type="Script" id=32]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_On_Ground_State.gd" type="Script" id=33]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_In_Air_State.gd" type="Script" id=34]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Ledge_Grab_State.gd" type="Script" id=35]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Vault_State.gd" type="Script" id=36]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=37]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=38]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=39]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Homing_State.gd" type="Script" id=40]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_damage_mask.png" type="Texture" id=41]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_damage.png" type="Texture" id=42]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/target.png" type="Texture" id=43]
-[ext_resource path="res://Objects/Actors/Player/Rose/ChargeAttackBox.gd" type="Script" id=44]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_home_mask.png" type="Texture" id=45]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_next.png" type="Texture" id=46]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Hurt_State.gd" type="Script" id=47]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Vortex_State.gd" type="Script" id=48]
-[ext_resource path="res://Objects/Actors/Player/Rose/States/Charge_State.gd" type="Script" id=49]
-[ext_resource path="res://Objects/Actors/Player/Rose/Target.gd" type="Script" id=50]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Climb.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Hurt.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Idle.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Grab.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Run.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Up_To_Down.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Pierce_Projectile.png" type="Texture" id=32]
+[ext_resource path="res://Objects/Actors/Player/Rose/Hitbox.gd" type="Script" id=33]
+[ext_resource path="res://Objects/Actors/Player/Rose/Shake.gd" type="Script" id=34]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_On_Ground_State.gd" type="Script" id=35]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Move_In_Air_State.gd" type="Script" id=36]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Ledge_Grab_State.gd" type="Script" id=37]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Vault_State.gd" type="Script" id=38]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Attack_State.gd" type="Script" id=39]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=40]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=41]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Homing_State.gd" type="Script" id=42]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_damage_mask.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_damage.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/target.png" type="Texture" id=45]
+[ext_resource path="res://Objects/Actors/Player/Rose/ChargeAttackBox.gd" type="Script" id=46]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_home_mask.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_next.png" type="Texture" id=48]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Hurt_State.gd" type="Script" id=49]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Vortex_State.gd" type="Script" id=50]
+[ext_resource path="res://Objects/Actors/Player/Rose/States/Charge_State.gd" type="Script" id=51]
+[ext_resource path="res://Objects/Actors/Player/Rose/Target.gd" type="Script" id=52]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Activate_Focus"
@@ -2554,7 +2556,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=30]
 length = 0.3
-step = 0.05
+step = 0.01
 tracks/0/type = "method"
 tracks/0/path = NodePath("Movement_States/Ledge_Grab")
 tracks/0/interp = 1
@@ -2594,6 +2596,42 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Sprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 26 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprites/Sprite:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprites/Sprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
 }
 
 [sub_resource type="Animation" id=31]
@@ -2709,7 +2747,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 26 ) ]
+"values": [ ExtResource( 27 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Sprites/Sprite:hframes")
@@ -2750,7 +2788,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 27 ) ]
+"values": [ ExtResource( 28 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprites/Sprite:hframes")
@@ -2856,6 +2894,42 @@ tracks/0/keys = {
 "args": [  ],
 "method": "done_ledge_grab"
 } ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 29 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=37]
@@ -3082,7 +3156,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 28 ) ]
+"values": [ ExtResource( 30 ) ]
 }
 
 [sub_resource type="Animation" id=40]
@@ -3112,7 +3186,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 29 ) ]
+"values": [ ExtResource( 31 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprites/Sprite:frame")
@@ -3242,7 +3316,7 @@ void fragment()
 shader = SubResource( 46 )
 shader_param/cutoff = 0.25
 shader_param/smooth_size = 0.2
-shader_param/mask = ExtResource( 41 )
+shader_param/mask = ExtResource( 43 )
 
 [sub_resource type="CapsuleShape2D" id=48]
 radius = 5.0
@@ -3268,7 +3342,7 @@ void fragment()
 shader = SubResource( 49 )
 shader_param/cutoff = 0.0
 shader_param/smooth_size = 0.2
-shader_param/mask = ExtResource( 45 )
+shader_param/mask = ExtResource( 47 )
 
 [sub_resource type="Animation" id=51]
 resource_name = "Home"
@@ -3446,6 +3520,7 @@ editor/display_folded = true
 material = SubResource( 42 )
 z_index = 1
 texture = ExtResource( 26 )
+hframes = 3
 
 [node name="Position2D" type="Position2D" parent="Sprites/Sprite"]
 position = Vector2( 0, -8 )
@@ -3457,7 +3532,7 @@ editor/display_folded = true
 visible = false
 modulate = Color( 0, 0.0392157, 1, 1 )
 position = Vector2( 50, 0 )
-texture = ExtResource( 30 )
+texture = ExtResource( 32 )
 
 [node name="ChargePhysBox" type="Area2D" parent="Sprites/Sprite"]
 position = Vector2( 16, 0 )
@@ -3477,8 +3552,7 @@ texture = ExtResource( 6 )
 hframes = 6
 
 [node name="ChannelSpriteBack" type="Sprite" parent="Sprites"]
-texture = ExtResource( 8 )
-hframes = 2
+hframes = 6
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 pause_mode = 1
@@ -3491,7 +3565,7 @@ editor/display_folded = true
 position = Vector2( 0, -20 )
 collision_layer = 2
 collision_mask = 8
-script = ExtResource( 31 )
+script = ExtResource( 33 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 20 )
@@ -3504,7 +3578,7 @@ pause_mode = 1
 editor/display_folded = true
 current = true
 zoom = Vector2( 0.5, 0.5 )
-script = ExtResource( 32 )
+script = ExtResource( 34 )
 
 [node name="StopTimer" type="Timer" parent="Camera2D"]
 pause_mode = 2
@@ -3518,7 +3592,7 @@ pause_mode = 1
 
 [node name="Move_On_Ground" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 33 )
+script = ExtResource( 35 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Move_On_Ground"]
 one_shot = true
@@ -3529,7 +3603,7 @@ one_shot = true
 
 [node name="Move_In_Air" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 34 )
+script = ExtResource( 36 )
 
 [node name="Land_Timer" type="Timer" parent="Movement_States/Move_In_Air"]
 one_shot = true
@@ -3544,7 +3618,7 @@ cast_to = Vector2( 15, 0 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 35 )
+script = ExtResource( 37 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
 position = Vector2( 14, -40 )
@@ -3558,15 +3632,15 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Vault" type="Node2D" parent="Movement_States"]
-script = ExtResource( 36 )
+script = ExtResource( 38 )
 
 [node name="Attack" type="Node2D" parent="Movement_States"]
-script = ExtResource( 37 )
+script = ExtResource( 39 )
 attack_dashing = true
 mobile = false
 
 [node name="Attack_Controller" type="Node2D" parent="Movement_States/Attack"]
-script = ExtResource( 38 )
+script = ExtResource( 40 )
 input_testing = false
 
 [node name="HitGravTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller"]
@@ -3575,7 +3649,7 @@ one_shot = true
 
 [node name="Attack_Instancing" type="Node2D" parent="Movement_States/Attack/Attack_Controller"]
 z_index = 1
-script = ExtResource( 39 )
+script = ExtResource( 41 )
 
 [node name="particleTimer" type="Timer" parent="Movement_States/Attack/Attack_Controller/Attack_Instancing"]
 one_shot = true
@@ -3586,23 +3660,23 @@ one_shot = true
 
 [node name="Homing" type="Node2D" parent="Movement_States"]
 pause_mode = 2
-script = ExtResource( 40 )
+script = ExtResource( 42 )
 timer_time = 0.16
 
 [node name="Shock" type="Sprite" parent="Movement_States/Homing"]
 visible = false
 material = SubResource( 47 )
-texture = ExtResource( 42 )
+texture = ExtResource( 44 )
 
 [node name="Target" type="Sprite" parent="Movement_States/Homing"]
 visible = false
 z_index = 3
-texture = ExtResource( 43 )
+texture = ExtResource( 45 )
 
 [node name="HomingAttackBox" type="Area2D" parent="Movement_States/Homing"]
 collision_layer = 4
 collision_mask = 40
-script = ExtResource( 44 )
+script = ExtResource( 46 )
 knockback_type = 2
 attack_type = 2
 damage = 10
@@ -3619,12 +3693,12 @@ visible = false
 material = SubResource( 50 )
 points = PoolVector2Array( 0, 0, -43.23, -15.134 )
 default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 46 )
+texture = ExtResource( 48 )
 texture_mode = 2
 
 [node name="Sprite" type="Sprite" parent="Movement_States/Homing/HomingLine"]
 z_index = 3
-texture = ExtResource( 30 )
+texture = ExtResource( 32 )
 
 [node name="HomeTimer" type="Timer" parent="Movement_States/Homing"]
 one_shot = true
@@ -3635,14 +3709,14 @@ anims/Shock = SubResource( 52 )
 
 [node name="Hurt" type="Node2D" parent="Movement_States"]
 editor/display_folded = true
-script = ExtResource( 47 )
+script = ExtResource( 49 )
 
 [node name="hurtTimer" type="Timer" parent="Movement_States/Hurt"]
 wait_time = 1.25
 one_shot = true
 
 [node name="Vortex" type="Node2D" parent="Movement_States"]
-script = ExtResource( 48 )
+script = ExtResource( 50 )
 
 [node name="costTimer" type="Timer" parent="Movement_States/Vortex"]
 wait_time = 0.1
@@ -3650,7 +3724,7 @@ wait_time = 0.1
 [node name="VortexAttackBox" type="Area2D" parent="Movement_States/Vortex"]
 collision_layer = 4
 collision_mask = 40
-script = ExtResource( 44 )
+script = ExtResource( 46 )
 knockback = 250.0
 knockback_type = 2
 damage = 1
@@ -3667,7 +3741,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="Charge" type="Node2D" parent="Movement_States"]
-script = ExtResource( 49 )
+script = ExtResource( 51 )
 
 [node name="costTimer" type="Timer" parent="Movement_States/Charge"]
 wait_time = 0.1
@@ -3675,7 +3749,7 @@ wait_time = 0.1
 [node name="ChargeAttackBox" type="Area2D" parent="Movement_States/Charge"]
 collision_layer = 4
 collision_mask = 40
-script = ExtResource( 44 )
+script = ExtResource( 46 )
 knockback = 250.0
 knockback_type = 2
 attack_type = 1
@@ -3738,11 +3812,11 @@ autostart = true
 [node name="Target" type="Node2D" parent="."]
 pause_mode = 2
 editor/display_folded = true
-script = ExtResource( 50 )
+script = ExtResource( 52 )
 
 [node name="Sprite" type="Sprite" parent="Target"]
 position = Vector2( 50, 0 )
-texture = ExtResource( 30 )
+texture = ExtResource( 32 )
 [connection signal="slow" from="StatusEffects" to="StatusEffects" method="_on_StatusEffects_slow"]
 [connection signal="timeout" from="StatusEffects/slowTimer" to="StatusEffects" method="_on_slowTimer_timeout"]
 [connection signal="animation_finished" from="FocusAnim" to="FocusAnim" method="_on_FocusAnim_animation_finished"]

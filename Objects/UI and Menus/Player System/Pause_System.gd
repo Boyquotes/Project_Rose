@@ -2,13 +2,13 @@
 
 signal set_disabled;
 
-var disabled = false;
+var is_disabled = false;
 var can_exit = false;
 var started = false;
 var is_paused = false;
 
 func _process(delta):
-	if(!disabled):
+	if(!is_disabled):
 		if(!started && (get_focus_owner() == null || $PauseMenu/VBoxContainer.get_children().has(get_focus_owner()))):
 			started = true;
 			$Timer.start();
@@ -33,10 +33,10 @@ func _process(delta):
 #TODO: Volume control
 
 
-func _on_Pause_System_set_disabled(disabled):
+func _on_Pause_System_set_disabled(status):
 	for child in $PauseMenu/VBoxContainer.get_children():
-			child.disabled = disabled;
-	disabled = disabled
+			child.disabled = status;
+	is_disabled = status;
 
 
 func _on_Timer_timeout():

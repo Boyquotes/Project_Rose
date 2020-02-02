@@ -306,9 +306,3 @@ func tween_rotation_from_specified(node: NodePath, cur: float, new: float, time:
 func tween_scale(node: NodePath, new: Vector2, time: float = .1):
 	$Tween.interpolate_property(get_node(node),"scale",get_node(node).scale,new,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
-#might not need anymore
-func bounce():
-	var deg;
-	deg = $Movement_States/Attack/Attack_Controller.attack_degrees;
-	deg = deg + 180;
-	add_velocity(400,deg);

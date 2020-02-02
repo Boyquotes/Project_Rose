@@ -30,7 +30,7 @@ func handleAnimation():
 		host.animate(host.spr_anim,"climb", false);
 
 func handleInput():
-	var dir = get_input_direction();
+	dir = get_input_direction();
 	if(!jumped && !climb && Input.is_action_pressed("Move_Down")):
 		host.position.y += 1;
 		exit(air);

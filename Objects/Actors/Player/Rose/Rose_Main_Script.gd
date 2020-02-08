@@ -223,14 +223,7 @@ func set_rotation_to_origin(var node: NodePath):
 func tween_rotation_to_origin(var node: NodePath, time: float = .1):
 	tweened = true;
 	$Tween.stop(get_node(node));
-	var tDeg;
-	if(Direction == 1):
-		tDeg = 0;
-	else:
-		if(get_node(node).global_rotation_degrees > 0):
-			tDeg = 180;
-		else:
-			tDeg = -180;
+	var tDeg = 0;
 	$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,tDeg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 #tweens rotation of node in Nodepath to the direction of the attack
@@ -239,7 +232,7 @@ func tween_sprite_rot(var node: NodePath, time: float = .1):
 	if(Direction == 1):
 		tDeg = $Movement_States/Attack/Attack_Controller.attack_degrees;
 	else:
-		tDeg = -$Movement_States/Attack/Attack_Controller.attack_degrees;
+		tDeg = $Movement_States/Attack/Attack_Controller.attack_degrees - 180 * sign($Movement_States/Attack/Attack_Controller.attack_degrees);
 	$Tween.stop(get_node(node));
 	$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,tDeg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();

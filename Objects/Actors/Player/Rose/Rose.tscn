@@ -3516,7 +3516,6 @@ pause_mode = 1
 z_index = 1
 
 [node name="Sprite" type="Sprite" parent="Sprites"]
-editor/display_folded = true
 material = SubResource( 42 )
 z_index = 1
 texture = ExtResource( 26 )

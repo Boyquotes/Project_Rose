@@ -103,7 +103,7 @@ shader_param/smooth_size = 0.5
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 18, 10 )
 
-[node name="Woodeater_Worker" instance=ExtResource( 1 )]
+[node name="Woodeater_Worker" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 base_mspd = 75.0
 base_jspd = 200.0

@@ -18,7 +18,7 @@ onready var move_states = {
 	'homing' : $Movement_States/Homing
 	}
 var move_state = 'move_on_ground';
-var hold_focus = false;
+var lock = false;
 var tweened = true;
 var can_channel_and_focus = true;
 
@@ -61,10 +61,10 @@ func _ready():
 #hotswitch between keyboard and controller input
 #should be able to expand this to detect different types of controllers
 func _input(event):
-	if(Input.is_action_pressed("Hold_Focus")):
-		hold_focus = true;
+	if(Input.is_action_pressed("Lock")):
+		lock = true;
 	else:
-		hold_focus = false;
+		lock = false;
 	if(event.get_class() == "InputEventMouseButton" || event.get_class() == "InputEventKey" || Input.get_connected_joypads().size() == 0):
 		active_input = InputType.KEYMOUSE;
 	elif(event.get_class() == "InputEventJoypadMotion" || event.get_class() == "InputEventJoypadButton"):
@@ -88,8 +88,9 @@ func execute(delta):
 	if(Input.is_action_just_pressed("test_mana_loss")):
 		change_mana(-10);
 	
-	rad = $Target.rad;
+	rad = $Target.execute(delta);
 	deg = rad2deg(rad);
+	$Target.global_rotation_degrees = deg;
 
 
 #moves the player and runs state logic
@@ -274,7 +275,8 @@ func change_focus(focus):
 #Death trigger
 func _on_Player_System_hit_zero():
 	enabled = false;
-	$TopAnim.play("death");
+	get_tree().change_scene("res://Scenes/Test_Scene.tscn");
+	#$TopAnim.play("death");
 
 
 #trigger for updating powerup flags

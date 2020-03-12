@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Soldier/StompCleanup.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Actors/Enemies/Woodeater_Soldier/stompeffect.png" type="Texture" id=2]
 [ext_resource path="res://Objects/Actors/Enemies/AffectPlayerArea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/Actors/Enemies/ContactDamagePlayerHitbox.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 16 )
@@ -107,6 +108,7 @@ offset = Vector2( 0, 23 )
 
 [node name="Area2D" parent="Sprites/Sprite" instance=ExtResource( 3 )]
 collision_layer = 0
+script = ExtResource( 4 )
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Sprite/Area2D"]
@@ -123,6 +125,7 @@ offset = Vector2( 0, -4.5 )
 
 [node name="Area2D2" parent="Sprites/Sprite2" instance=ExtResource( 3 )]
 collision_layer = 0
+script = ExtResource( 4 )
 damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Sprite2/Area2D2"]
@@ -139,6 +142,7 @@ offset = Vector2( 0, -13.667 )
 
 [node name="Area2D3" parent="Sprites/Sprite3" instance=ExtResource( 3 )]
 collision_layer = 0
+script = ExtResource( 4 )
 damage = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/Sprite3/Area2D3"]

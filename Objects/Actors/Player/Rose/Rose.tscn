@@ -3761,9 +3761,8 @@ disabled = true
 [node name="DetectHitboxArea" type="Area2D" parent="."]
 pause_mode = 1
 editor/display_folded = true
-visible = false
 collision_layer = 0
-collision_mask = 7424
+collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectHitboxArea"]
 shape = SubResource( 54 )
@@ -3771,7 +3770,7 @@ shape = SubResource( 54 )
 [node name="AttackCollision" type="Area2D" parent="."]
 pause_mode = 1
 collision_layer = 0
-collision_mask = 1025
+collision_mask = 1024
 
 [node name="ledge_cast_right" type="RayCast2D" parent="."]
 pause_mode = 1
@@ -3810,11 +3809,14 @@ autostart = true
 
 [node name="Target" type="Node2D" parent="."]
 pause_mode = 2
-editor/display_folded = true
 script = ExtResource( 52 )
 
 [node name="Sprite" type="Sprite" parent="Target"]
 position = Vector2( 50, 0 )
+texture = ExtResource( 32 )
+
+[node name="Sprite2" type="Sprite" parent="Target"]
+position = Vector2( 150, 0 )
 texture = ExtResource( 32 )
 [connection signal="slow" from="StatusEffects" to="StatusEffects" method="_on_StatusEffects_slow"]
 [connection signal="timeout" from="StatusEffects/slowTimer" to="StatusEffects" method="_on_slowTimer_timeout"]

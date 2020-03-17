@@ -3518,8 +3518,9 @@ z_index = 1
 [node name="Sprite" type="Sprite" parent="Sprites"]
 material = SubResource( 42 )
 z_index = 1
-texture = ExtResource( 26 )
-hframes = 3
+texture = ExtResource( 18 )
+hframes = 4
+frame = 2
 
 [node name="Position2D" type="Position2D" parent="Sprites/Sprite"]
 position = Vector2( 0, -8 )

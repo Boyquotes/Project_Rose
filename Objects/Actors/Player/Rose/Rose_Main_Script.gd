@@ -203,38 +203,33 @@ func change_move_state(var state: NodePath):
 #These all will probably always target the sprite - might remove the NodePath argument
 #sets the rotation to a convenient faux-origin based on input direction and player direction
 func set_rotation_to_origin(var node: NodePath):
-	var tDeg;
-	if(Direction == 1):
-		tDeg = 0;
-	else:
-		if(get_node(node).global_rotation_degrees > 0):
-			if(deg > 0):
-				tDeg = -179;
-			else:
-				tDeg = 179;
-		else:
-			if(deg < 0):
-				tDeg = 179;
-			else:
-				tDeg = -179;
-	get_node(node).global_rotation_degrees = tDeg;
+	get_node(node).global_rotation_degrees = 0;
 
 #tweens the rotation to a convenient faux-origin based on input direction and player direction
 func tween_rotation_to_origin(var node: NodePath, time: float = .1):
+	print(get_node(node).global_rotation_degrees)
 	tweened = true;
 	$Tween.stop(get_node(node));
-	var tDeg = 0;
-	$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,tDeg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	var tDeg
+	if(Direction == 1):
+		tDeg = $Movement_States/Attack/Attack_Controller.attack_degrees;
+		$Tween.interpolate_property(get_node(node),"global_rotation_degrees",tDeg,0,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	else:
+		tDeg = $Movement_States/Attack/Attack_Controller.attack_degrees - 180 * sign($Movement_States/Attack/Attack_Controller.attack_degrees);
+		$Tween.interpolate_property(get_node(node),"global_rotation_degrees",tDeg,0,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	
+
 	$Tween.start();
 #tweens rotation of node in Nodepath to the direction of the attack
 func tween_sprite_rot(var node: NodePath, time: float = .1):
 	var tDeg;
+	$Tween.stop(get_node(node));
 	if(Direction == 1):
 		tDeg = $Movement_States/Attack/Attack_Controller.attack_degrees;
+		$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,tDeg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	else:
 		tDeg = $Movement_States/Attack/Attack_Controller.attack_degrees - 180 * sign($Movement_States/Attack/Attack_Controller.attack_degrees);
-	$Tween.stop(get_node(node));
-	$Tween.interpolate_property(get_node(node),"global_rotation_degrees",get_node(node).global_rotation_degrees,tDeg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
+		$Tween.interpolate_property(get_node(node),"global_rotation_degrees",0,tDeg,time,Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	$Tween.start();
 #tweens position of player to a new position from its current position. Useful for abilities with set movement.
 func tween_global_position(new: Vector2, time: float = .1):

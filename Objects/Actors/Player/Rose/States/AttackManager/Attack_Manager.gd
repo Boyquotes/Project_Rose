@@ -224,7 +224,7 @@ func construct_attack_string():
 
 func attack_done():
 	if(!host.tweened):
-		host.tween_rotation_to_origin("Sprites");
+		host.set_rotation_to_origin("Sprites");
 	host.iframe = false;
 	if(!attack_is_saved):
 		clear_slotted_vars();

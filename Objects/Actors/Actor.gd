@@ -94,3 +94,6 @@ func activate_grav():
 
 func activate_fric():
 	fric_activated = true;
+
+func cleanup():
+	pass;

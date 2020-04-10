@@ -6,7 +6,7 @@ signal targetted;
 enum ATTACK_TYPE {SLASH, BASH, PIERCE, TRUE};
 var mark = null;
 onready var actionTimer = get_node("Action_Timer");
-onready var player = get_tree().get_root().get_node("Test/Rose");
+onready var player = get_tree().get_root().get_child(get_tree().get_root().get_child_count()-1).get_node("Rose");
 
 export(int) var stun_threshold = 10;
 var stun_damage = 0;
@@ -28,6 +28,7 @@ var moving = false;
 
 ### Enemy ###
 func _ready():
+	print(get_tree().get_root().get_child(get_tree().get_root().get_child_count()-1).name)
 	decision = 0;
 	state = 'default';
 

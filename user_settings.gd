@@ -33,15 +33,15 @@ func load_settings():
 	var err = _user_settings.load(USER_SETTINGS_PATH)
 	if err != OK:
 		print("[ERROR] Cannot load user settings")
-    
+	
 func save_settings():
 	var err = _user_settings.save(USER_SETTINGS_PATH)
 	if err != OK:
 		print("[ERROR] Cannot save user settings")
-        
+		
 func get_keybindings(action):
 	return _user_settings.get_value(KEY_BINDING_SECTION, action)
-    
+	
 func replace_keybinding(action, idx, input):
 	var previous = InputMap.get_action_list(action)
 	previous[idx] = input;

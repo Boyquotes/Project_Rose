@@ -9,7 +9,9 @@
 [ext_resource path="res://Design and Prototypes/4.png" type="Texture" id=7]
 [ext_resource path="res://Design and Prototypes/manatexture.png" type="Texture" id=8]
 [ext_resource path="res://Design and Prototypes/bubble.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Focus_Sprite.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_Focus_Sprite.png" type="Texture" id=10]
+
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.714801, 0.99639, 1 )

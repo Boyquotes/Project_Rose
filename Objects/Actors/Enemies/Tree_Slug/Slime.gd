@@ -59,6 +59,6 @@ func _on_Tree_Slug_tree_exiting():
 	#get_parent().remove_child(self);
 	#scene
 	target = Position2D.new();
-	get_parent().get_parent().add_child(target);
+	get_parent().get_parent().call_deferred("add_child",target);
 	target.global_position = get_point_position(get_point_count()-1) + Vector2(65,0) * -host.Direction;
 	decay = true;

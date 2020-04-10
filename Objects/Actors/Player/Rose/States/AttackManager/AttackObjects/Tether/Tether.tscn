@@ -2,7 +2,9 @@
 
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Tether/Tether.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackObjects/Tether/TetherSpear.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Tether.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Tether.png" type="Texture" id=3]
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "New Anim"

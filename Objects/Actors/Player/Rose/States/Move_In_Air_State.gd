@@ -49,7 +49,7 @@ func handleAnimation():
 				doneUp = false;
 
 func handleInput():
-	if(get_attack_just_pressed()):
+	if(get_attack_just_pressed() && !Input.is_action_just_pressed("Dodge")):
 		exit(attack);
 		return;
 	

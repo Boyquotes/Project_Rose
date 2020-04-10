@@ -3,35 +3,35 @@
 [ext_resource path="res://Objects/Actors/Player/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Player/Rose/StatusEffects.gd" type="Script" id=2]
 [ext_resource path="res://Objects/Actors/Player/Rose/Powerups.gd" type="Script" id=3]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_QuickFocus_Effect.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_QuickFocus_Effect.png" type="Texture" id=4]
 [ext_resource path="res://Objects/Actors/Player/Rose/FocusAnimController.gd" type="Script" id=5]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Channel_Start_Front.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Channel_Start_Back.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Channel_End_Back.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Channel_Loop_Front.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_Channel_Start_Front.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_Channel_Start_Back.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_Channel_End_Back.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_Channel_Loop_Front.png" type="Texture" id=9]
 [ext_resource path="res://Objects/Actors/Player/Rose/ChannelAnimController.gd" type="Script" id=10]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Charge.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Bash.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Launch.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Lunge.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Spin.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Pierce.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Dash.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Slash.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Gust.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_ToCharge.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_ToHoming.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_ToVortex.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Vortex.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Move_Down.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Move_Up.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Climb.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Hurt.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Idle.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Grab.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Run.png" type="Texture" id=30]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Rose_Air_Up_To_Down.png" type="Texture" id=31]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Pierce_Projectile.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_Charge.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_Bash.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_Launch.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_Lunge.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Rose_Spin.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_Pierce.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_Dash.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_Slash.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_Gust.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_ToCharge.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_ToHoming.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_ToVortex.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_Vortex.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Rose_Fall.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Rose_Jump.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Attacks/Rose_Climb.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Rose_Hurt.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Rose_Idle.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Rose_Grab.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Rose_Run.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Rose_Jump_To_Fall.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Pierce_Projectile.png" type="Texture" id=32]
 [ext_resource path="res://Objects/Actors/Player/Rose/Hitbox.gd" type="Script" id=33]
 [ext_resource path="res://Objects/Actors/Player/Rose/Shake.gd" type="Script" id=34]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Move_On_Ground_State.gd" type="Script" id=35]
@@ -42,12 +42,12 @@
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/Attack_Manager.gd" type="Script" id=40]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/AttackManager/AttackInstancing.gd" type="Script" id=41]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Homing_State.gd" type="Script" id=42]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_damage_mask.png" type="Texture" id=43]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_damage.png" type="Texture" id=44]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/target.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_Homing_damage_mask.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_Homing_damage.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/target.png" type="Texture" id=45]
 [ext_resource path="res://Objects/Actors/Player/Rose/ChargeAttackBox.gd" type="Script" id=46]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_home_mask.png" type="Texture" id=47]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/Rose_Homing_next.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_Homing_home_mask.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_Homing_next.png" type="Texture" id=48]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Hurt_State.gd" type="Script" id=49]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Vortex_State.gd" type="Script" id=50]
 [ext_resource path="res://Objects/Actors/Player/Rose/States/Charge_State.gd" type="Script" id=51]
@@ -3449,7 +3449,6 @@ iframe = true
 
 [node name="StatusEffects" type="Node2D" parent="."]
 pause_mode = 1
-editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="slowTimer" type="Timer" parent="StatusEffects"]
@@ -3520,13 +3519,11 @@ material = SubResource( 42 )
 z_index = 1
 texture = ExtResource( 18 )
 hframes = 4
-frame = 2
 
 [node name="Position2D" type="Position2D" parent="Sprites/Sprite"]
 position = Vector2( 0, -8 )
 
 [node name="Target2" type="Node2D" parent="Sprites/Sprite"]
-editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="Sprites/Sprite/Target2"]
 visible = false
@@ -3561,7 +3558,6 @@ disabled = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 pause_mode = 1
-editor/display_folded = true
 position = Vector2( 0, -20 )
 collision_layer = 2
 collision_mask = 8
@@ -3575,9 +3571,7 @@ disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 1
-editor/display_folded = true
 current = true
-zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 34 )
 
 [node name="StopTimer" type="Timer" parent="Camera2D"]
@@ -3591,7 +3585,6 @@ pause_mode = 1
 pause_mode = 1
 
 [node name="Move_On_Ground" type="Node2D" parent="Movement_States"]
-editor/display_folded = true
 script = ExtResource( 35 )
 
 [node name="Jump_Timer" type="Timer" parent="Movement_States/Move_On_Ground"]
@@ -3602,7 +3595,6 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Move_In_Air" type="Node2D" parent="Movement_States"]
-editor/display_folded = true
 script = ExtResource( 36 )
 
 [node name="Land_Timer" type="Timer" parent="Movement_States/Move_In_Air"]
@@ -3617,7 +3609,6 @@ enabled = true
 cast_to = Vector2( 15, 0 )
 
 [node name="Ledge_Grab" type="Node2D" parent="Movement_States"]
-editor/display_folded = true
 script = ExtResource( 37 )
 
 [node name="Climbbox" type="Area2D" parent="Movement_States/Ledge_Grab"]
@@ -3708,7 +3699,6 @@ anims/Home = SubResource( 51 )
 anims/Shock = SubResource( 52 )
 
 [node name="Hurt" type="Node2D" parent="Movement_States"]
-editor/display_folded = true
 script = ExtResource( 49 )
 
 [node name="hurtTimer" type="Timer" parent="Movement_States/Hurt"]
@@ -3761,7 +3751,6 @@ disabled = true
 
 [node name="DetectHitboxArea" type="Area2D" parent="."]
 pause_mode = 1
-editor/display_folded = true
 collision_layer = 0
 collision_mask = 1024
 
@@ -3771,7 +3760,7 @@ shape = SubResource( 54 )
 [node name="AttackCollision" type="Area2D" parent="."]
 pause_mode = 1
 collision_layer = 0
-collision_mask = 1024
+collision_mask = 1025
 
 [node name="ledge_cast_right" type="RayCast2D" parent="."]
 pause_mode = 1
@@ -3787,7 +3776,6 @@ cast_to = Vector2( -15, 0 )
 
 [node name="Ledgebox_R" type="Area2D" parent="."]
 pause_mode = 1
-editor/display_folded = true
 position = Vector2( 10, -27 )
 collision_layer = 0
 
@@ -3796,7 +3784,6 @@ shape = SubResource( 55 )
 
 [node name="Ledgebox_L" type="Area2D" parent="."]
 pause_mode = 1
-editor/display_folded = true
 position = Vector2( -10, -27 )
 collision_layer = 0
 

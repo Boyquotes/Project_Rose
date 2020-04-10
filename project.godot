@@ -23,19 +23,21 @@ config/icon="res://icon.png"
 
 UserSettings="*res://user_settings.gd"
 GameFlags="*res://game_flags.gd"
+pixel_perfect_viewport="*res://pixel_perfect_viewport.gd"
 
 [debug]
 
 gdscript/warnings/unused_variable=false
-gdscript/warnings/unused_class_variable=false
 gdscript/warnings/unused_argument=false
 gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
 
 [display]
 
+window/size/width=480
+window/size/height=270
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 
@@ -208,4 +210,6 @@ Lock={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false

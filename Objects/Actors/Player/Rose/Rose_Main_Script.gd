@@ -208,7 +208,6 @@ func set_rotation_to_origin(var node: NodePath):
 
 #tweens the rotation to a convenient faux-origin based on input direction and player direction
 func tween_rotation_to_origin(var node: NodePath, time: float = .1):
-	print(get_node(node).global_rotation_degrees)
 	tweened = true;
 	$Tween.stop(get_node(node));
 	var tDeg

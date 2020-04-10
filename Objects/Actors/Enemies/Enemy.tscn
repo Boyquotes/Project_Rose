@@ -2,7 +2,9 @@
 
 [ext_resource path="res://Objects/Actors/Enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Actors/Enemies/EnemyHitbox.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/new/target2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/target2.png" type="Texture" id=3]
+
+
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;

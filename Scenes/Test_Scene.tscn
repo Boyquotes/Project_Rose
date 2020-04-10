@@ -14,8 +14,6 @@
 [ext_resource path="res://Objects/Actors/Enemies/Crickey/Crickey.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Objects/Actors/Enemies/Kadbug/Kadbug.tscn" type="PackedScene" id=13]
 
-
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
@@ -25,18 +23,10 @@ extents = Vector2( 16, 16 )
 layer = 100
 
 [node name="Player System" parent="CanvasLayer" instance=ExtResource( 1 )]
-editor/display_folded = true
-
-[node name="HealthBar" parent="CanvasLayer/Player System" index="0"]
-editor/display_folded = true
-
-[node name="ManaBar" parent="CanvasLayer/Player System" index="1"]
-editor/display_folded = true
 
 [node name="Transitions" parent="CanvasLayer" instance=ExtResource( 2 )]
 
 [node name="Pause System" parent="CanvasLayer" instance=ExtResource( 3 )]
-editor/display_folded = true
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 32, -320 )
@@ -50,7 +40,6 @@ tile_data = PoolIntArray( -1245141, 0, 0, -1179605, 0, 0, -1114069, 0, 0, -10485
 position = Vector2( -1200.72, -383.641 )
 
 [node name="HomingLine" parent="Rose/Movement_States/Homing" index="3"]
-visible = false
 points = PoolVector2Array( 0, 0, -50.76, -15.134 )
 
 [node name="Enemies" type="Node2D" parent="."]

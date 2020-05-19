@@ -84,21 +84,17 @@ margin_right = 164.079
 margin_bottom = 50.9836
 
 [node name="VBoxContainer" parent="CanvasLayer/Control/PanelContainer/MainMenu/OptionsButton/OptionsMenu" index="0"]
-margin_right = 149.0
 margin_bottom = 75.0
 
 [node name="CloseMenuButton" parent="CanvasLayer/Control/PanelContainer/MainMenu/OptionsButton/OptionsMenu/VBoxContainer" index="0"]
-margin_right = 142.0
 focus_neighbour_top = NodePath("../ControlsMenuButton")
 focus_neighbour_right = NodePath(".")
 
 [node name="UpgradeMenuButton" parent="CanvasLayer/Control/PanelContainer/MainMenu/OptionsButton/OptionsMenu/VBoxContainer" index="1"]
-margin_right = 142.0
 focus_neighbour_top = NodePath("../CloseMenuButton")
 focus_neighbour_right = NodePath(".")
 
 [node name="ControlsMenuButton" parent="CanvasLayer/Control/PanelContainer/MainMenu/OptionsButton/OptionsMenu/VBoxContainer" index="2"]
-margin_right = 142.0
 focus_neighbour_top = NodePath("../UpgradeMenuButton")
 focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath("../CloseMenuButton")

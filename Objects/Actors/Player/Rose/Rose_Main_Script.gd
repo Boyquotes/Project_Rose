@@ -81,8 +81,9 @@ func execute(delta):
 		global_position = Vector2(0,0);
 	if(Input.is_action_just_pressed("test_hp_gain")):
 		change_hp(10);
-	if(Input.is_action_just_pressed("test_hp_loss")):
-		change_hp(-10);
+	if(Input.is_key_pressed(KEY_I)):
+		move_states['hurt'].compare_to = global_position;
+		move_states[move_state].exit(move_states['hurt']);
 	if(Input.is_action_just_pressed("test_mana_gain")):
 		change_mana(10);
 	if(Input.is_action_just_pressed("test_mana_loss")):

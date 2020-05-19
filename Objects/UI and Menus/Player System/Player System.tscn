@@ -11,8 +11,6 @@
 [ext_resource path="res://Design and Prototypes/bubble.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Rose_Focus_Sprite.png" type="Texture" id=10]
 
-
-
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.714801, 0.99639, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 )
@@ -93,6 +91,7 @@ scale_curve = SubResource( 12 )
 color_ramp = SubResource( 10 )
 
 [node name="Player System" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
@@ -100,6 +99,9 @@ margin_top = 16.0
 margin_right = 27.0
 margin_bottom = 19.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HealthBar" type="TextureProgress" parent="."]
 margin_right = 40.0

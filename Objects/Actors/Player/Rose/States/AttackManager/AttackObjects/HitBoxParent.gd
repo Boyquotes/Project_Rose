@@ -1,7 +1,7 @@
 extends Area2D
 
 enum ATTACK_TYPE {SLASH, BASH, PIERCE, TRUE};
-enum KNOCKBACK_TYPE {AWAY, LINEAR, DIRECTIONAL, VORTEX};
+enum KNOCKBACK_TYPE {AWAY, LINEAR, DIRECTIONAL, VORTEX, NILL};
 
 export(float) var knockback;
 export(KNOCKBACK_TYPE) var knockback_type;
@@ -79,8 +79,8 @@ func _on_Area2D_area_entered(area):
 		hits += 1;
 		if(hits >= hit_limit && hit_limit > 0):
 			get_child(0).call_deferred("disabled",true);
-		if(area.attack_type == attack_type):
-			host.change_focus(true);
+		#if(area.attack_type == attack_type):
+		#	host.change_focus(true);
 		if(mark):
 			area.host.emit_signal("marked",attack_type);
 		if(attack_controller):

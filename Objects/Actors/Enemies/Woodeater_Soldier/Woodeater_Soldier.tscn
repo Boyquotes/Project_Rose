@@ -22,7 +22,7 @@ tracks/0/path = NodePath("Sprites/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 0.85 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
@@ -42,6 +42,18 @@ tracks/1/keys = {
 "args": [  ],
 "method": "charge"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.85, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.85, 1.1 ), Vector2( 1.25, 0.9 ), Vector2( 1.25, 0.9 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -68,12 +80,24 @@ tracks/0/path = NodePath("Sprites/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.9 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -107,6 +131,18 @@ tracks/1/keys = {
 "args": [  ],
 "method": "exit_default"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 0.8 ), Vector2( 1, 1.2 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -158,6 +194,7 @@ void fragment()
 	float b = smoothstep(cutoff, cutoff + smooth_size, b_value * (1.0 - smooth_size) + smooth_size);
 	COLOR = vec4(r, g, b, texture(TEXTURE, UV).a);
 }"
+custom_defines = ""
 
 [sub_resource type="ShaderMaterial" id=9]
 resource_local_to_scene = true
@@ -189,8 +226,6 @@ anims/hurt = SubResource( 7 )
 [node name="Sprite" parent="Sprites" index="0"]
 material = SubResource( 9 )
 texture = ExtResource( 3 )
-hframes = 12
-frame = 8
 
 [node name="States" type="Node2D" parent="." index="4"]
 

@@ -28,7 +28,8 @@ func break_shell():
 	get_parent().add_child(part);
 	part.global_position = global_position;
 	part.scale.x = Direction;
-	
+	"""
 	$States/Hurt.vulnerable[0] = true;
-	$States/Hurt.armor = [0,0,0,0];
+	$States/Hd.armor = [0,0,0,0];
 	$Sprites/Sprite.texture = load("res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/Woodeater_Worker_Injured_Prototype.png");
+"""

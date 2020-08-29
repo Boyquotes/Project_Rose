@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Objects/Actors/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Scout/Woodeater_Scout.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Sprites/Actors/Enemies/Woodeater_Scout/Woodeater_Scout_Prototype.png" type="Texture" id=3]
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Scout/Woodeater_Scout_Default.gd" type="Script" id=4]
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Scout/Woodeater_Scout_Chase_State.gd" type="Script" id=5]
-[ext_resource path="res://Objects/Actors/Enemies/Woodeater_Scout/Woodeater_Scout_Hurt_State.gd" type="Script" id=6]
 [ext_resource path="res://Objects/Actors/Enemies/Enemy_Stun_State.gd" type="Script" id=7]
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Scout/Woodeater_Scout_Orbit_State.gd" type="Script" id=8]
 [ext_resource path="res://Objects/Actors/Enemies/Woodeater_Scout/Woodeater_Scout_Backup_State.gd" type="Script" id=9]
@@ -188,31 +187,19 @@ script = ExtResource( 4 )
 [node name="Chase" type="Node2D" parent="States" index="1"]
 script = ExtResource( 5 )
 
-[node name="Hurt" type="Node2D" parent="States" index="2"]
-editor/display_folded = true
-script = ExtResource( 6 )
-vulnerable = [ false, false, true, false ]
-armor = [ 5, 5, -15, 0 ]
-
-[node name="Damage_Timer" type="Timer" parent="States/Hurt" index="0"]
-wait_time = 0.5
-one_shot = true
-
-[node name="Stun" type="Node2D" parent="States" index="3"]
-editor/display_folded = true
+[node name="Stun" type="Node2D" parent="States" index="2"]
 script = ExtResource( 7 )
 
 [node name="stunTimer" type="Timer" parent="States/Stun" index="0"]
 one_shot = true
 
-[node name="Orbit" type="Node2D" parent="States" index="4"]
+[node name="Orbit" type="Node2D" parent="States" index="3"]
 script = ExtResource( 8 )
 
-[node name="Backup" type="Node2D" parent="States" index="5"]
+[node name="Backup" type="Node2D" parent="States" index="4"]
 script = ExtResource( 9 )
 
-[node name="Attack" type="Node2D" parent="States" index="6"]
-editor/display_folded = true
+[node name="Attack" type="Node2D" parent="States" index="5"]
 script = ExtResource( 10 )
 trigger = true
 
@@ -236,8 +223,27 @@ damage = 10
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DamagePlayerHitbox" index="0"]
 shape = SubResource( 9 )
 
+[node name="HitBox" parent="." index="8"]
+info = {
+"BASH": {
+"Armor": 0,
+"Resistance Type": 1
+},
+"PIERCE": {
+"Armor": -5,
+"Resistance Type": 2
+},
+"SLASH": {
+"Armor": 0,
+"Resistance Type": 1
+},
+"TRUE": {
+"Armor": 0,
+"Resistance Type": 2
+}
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 1 )
-[connection signal="timeout" from="States/Hurt/Damage_Timer" to="States/Hurt" method="_on_Damage_Timer_timeout"]
 [connection signal="timeout" from="States/Stun/stunTimer" to="States/Stun" method="_on_stunTimer_timeout"]
 [connection signal="timeout" from="States/Attack/cooldownTimer" to="States/Attack" method="_on_cooldownTimer_timeout"]

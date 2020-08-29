@@ -2,16 +2,26 @@ extends "res://Objects/Actors/Enemies/Enemy_State.gd"
 export(float) var base_time = 1;
 var true_time = 0;
 var stunned = false;
+enum STUN_TYPE {KNOCKED, FLINCHED, STUNNED, NILL}
+enum KNOCKBACK_TYPE {AWAY, LINEAR, DIRECTIONAL, VORTEX, NILL};
+
+var stun_type = STUN_TYPE.NILL;
+var knockback_type = KNOCKBACK_TYPE.NILL;
+
+var knockback;
 
 func _ready():
 	true_time = base_time;
 
 func enter():
+	if(stun_type == STUN_TYPE.NILL):
+		exit(default);
+		return;
+	if(stun_type == STUN_TYPE.KNOCKED):
+		knockback();
+		exit(default);
+		return;
 	host.state = 'stun';
-	if(!stunned):
-		stunned = true;
-		if(true_time != 0):
-			$stunTimer.start(true_time);
 
 func handleAnimation():
 	pass;
@@ -20,25 +30,17 @@ func handleInput(event):
 	pass;
 
 func execute(delta):
-	if(abs(host.hspd) > 0):
-		if(abs(host.hspd) < 2):
-			host.hspd = 0;
-		host.hspd -= 2 * sign(host.hspd);
-	if(abs(host.vspd) > 0):
-		if(abs(host.vspd) < 3):
-			host.vspd = 0;
-		host.vspd -= 3 * sign(host.vspd);
+	pass;
 
 func exit(state):
-	if(stunned):
-		continue_stun();
+	stun_type = STUN_TYPE.NILL;
+	knockback_type = KNOCKBACK_TYPE.NILL;
 	.exit(state)
 
-func continue_stun():
-	hurt.get_node("Damage_Timer").wait_time += $stunTimer.time_left;
+func knockback():
+	pass;
 
 func _on_stunTimer_timeout():
-	#hurt.Armor = [0,0,0,0];
 	stunned = false;
 	true_time = base_time;
 	host.activate_grav();

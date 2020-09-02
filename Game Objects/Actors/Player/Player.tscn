@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game Objects/Actors/Actor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Actors/Player/player.gd" type="Script" id=2]
+
+[node name="Player" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="DetectOtherArea" type="Area2D" parent="." index="6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectOtherArea" index="0"]
+
+[node name="Camera" type="Camera2D" parent="." index="7"]
+
+[node name="AttackCollision" type="Area2D" parent="." index="8"]

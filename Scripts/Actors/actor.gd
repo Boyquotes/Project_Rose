@@ -6,7 +6,7 @@ extends KinematicBody2D
 ###actor_exoport_data###
 export(String) var tag = "NPC" # TODO: Make into enum in global context
 export(int) var max_hp := 100
-export(float) var base_move_spd := 100.0
+export(float) var base_soft_speed_cap := 100.0
 export(float) var base_jump_spd := 50.0
 export(int) var attack_damage := 5
 export(bool) var enabled := true
@@ -14,9 +14,10 @@ export(bool) var enabled := true
 export(float) var base_grav := 10.0
 export(float) var base_fric := 50.0
 export(float) var grav_max := 250.0
+export(float) var base_acceleration := 30.0
 
 ###actor_data###
-var true_move_spd: float
+var true_soft_speed_cap: float
 var true_jump_spd: float
 var hp: float 
 var iframe := false
@@ -34,15 +35,17 @@ var floor_normal := Vector2(0, -1)
 var grav_activated := true
 var fric_activated := true
 var grav_max_temp: float
-
-onready var base_anim = get_node("BaseAnimator")
+var true_acceleration: float
+onready var move_states := {}
+onready var base_anim = $Animators/BaseAnimator
 
 func _ready():
 	true_grav = base_grav
 	grav_max_temp = grav_max
 	true_fric = base_fric
-	true_move_spd = base_move_spd
+	true_soft_speed_cap = base_soft_speed_cap
 	true_jump_spd = base_jump_spd
+	true_acceleration = base_acceleration
 	hp = max_hp
 	### default movement controller vars ###
 	#1 = right, -1 = left
@@ -51,23 +54,40 @@ func _ready():
 	floor_normal = Vector2(0, -1)
 
 
+func _input(event):
+	if enabled:
+		_in(event)
+
+
 func _process(delta):
-	if(enabled):
+	if enabled:
 		_execute(delta)
 
 
 func _physics_process(delta):
-	if(enabled):
+	if enabled:
 		_phys_execute(delta)
 
+
+func _in(event):
+	pass
 
 func _execute(delta):
 	pass
 
 
+#moves the player and runs state logic
 func _phys_execute(delta):
+	if(get_tree().paused):
+		_paused_phys_execute(delta)
+	else:
+		_unpaused_phys_execute(delta)
+
+func _paused_phys_execute(delta):
 	pass
 
+func _unpaused_phys_execute(delta):
+	pass
 
 func _cleanup():
 	pass

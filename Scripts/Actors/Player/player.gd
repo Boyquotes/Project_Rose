@@ -7,8 +7,11 @@ signal hp_changed
 signal mana_changed
 signal focus_changed
 
+
+
 # TODO: move to globals perhaps
 enum InputType {GAMEPAD, KEYMOUSE}
+
 var active_input = InputType.GAMEPAD
 
 var targettable_hitboxes := []
@@ -16,36 +19,34 @@ var rad := 0.0
 var deg := 0.0
 var move_state := "move_on_ground"
 
-onready var AttackCollision = $AttackCollision
-###states###
-onready var move_states = {
-	'move_on_ground' : $Movement_States/Move_On_Ground,
-	'move_in_air' : $Movement_States/Move_In_Air,
-	'ledge_grab' : $Movement_States/Ledge_Grab,
-	'attack' : $Movement_States/Attack,
-	'hurt' : $Movement_States/Hurt,
-	'vortex' : $Movement_States/Vortex,
-	'charge' : $Movement_States/Charge,
-	'homing' : $Movement_States/Homing
-	}
-onready var CamNode = $Camera
+onready var AttackCollision = $Utilities/AttackCollision
+onready var Cam = $Camera
 
 
 #sets up some variables and initializes the state machine
 func _ready():
 	._ready()
-	$Camera2D.current = true
-	move_states[move_state].enter()
-	$PhysicsCollider.disabled = false
-	$HitArea/Hitbox.disabled = false
+	move_states['move_on_ground'] = $MoveStates/MoveOnGround
+	move_states['move_in_air'] = $MoveStates/MoveInAir
+	move_states['ledge_grab'] = $MoveStates/LedgeGrab
+	move_states['hit'] = $MoveStates/Hit
+	
+	if not Engine.editor_hint:
+		Cam = true
+		#move_states[move_state].enter()
+		$CollisionBox.disabled = false
+		$HitArea/HitBox.disabled = false
 
 
 #hotswitch between keyboard and controller input
 #should be able to expand this to detect different types of controllers
-func _input(event):
-	if(event.get_class() == "InputEventMouseButton" || event.get_class() == "InputEventKey" || Input.get_connected_joypads().size() == 0):
+func _in(event):
+	if(event.get_class() == "InputEventMouseButton"
+			or event.get_class() == "InputEventKey"
+			or Input.get_connected_joypads().size() == 0):
 		active_input = InputType.KEYMOUSE
-	elif(event.get_class() == "InputEventJoypadMotion" || event.get_class() == "InputEventJoypadButton"):
+	elif(event.get_class() == "InputEventJoypadMotion"
+			or event.get_class() == "InputEventJoypadButton"):
 		active_input = InputType.GAMEPAD
 
 
@@ -66,14 +67,6 @@ func _execute(delta):
 	# $Target.global_rotation_degrees = deg
 
 
-#moves the player and runs state logic
-func _phys_execute(delta):
-	if(get_tree().paused):
-		_paused_phys_execute(delta)
-	else:
-		_unpaused_phys_execute(delta)
-
-
 func _unpaused_phys_execute(delta):
 	#state machine
 	move_states[move_state]._handle_input()
@@ -82,7 +75,6 @@ func _unpaused_phys_execute(delta):
 	
 	#count time in air
 	air_time += delta
-	
 	#move across surfaces
 	vel.y = vert_spd
 	vel.x = hor_spd
@@ -156,26 +148,6 @@ func mouse_d() -> bool:
 		return false
 
 
-#activates fric to deccelerate the player
-func activate_fric():
-	.activate_fric()
-
-
-#activates grav to pull the player down
-func activate_grav():
-	.activate_grav()
-
-
-#deactivates fric for abilities where grav is inconvenient
-func deativate_fric():
-	.deactivate_fric()
-
-
-#deactivates grav for abilities where grav is inconvenient
-func deactivate_grav():
-	.deactivate_grav()
-
-
 #Temporarily change grav for the convenience of some abilities.
 func change_grav(g):
 	true_grav = g
@@ -220,9 +192,4 @@ func _on_Player_System_hit_zero():
 #trigger for updating powerup flags
 func _on_UpgradeMenu_update_powerup(idx,activate):
 	$Powerups.powerups_idx[idx] = activate
-
-
-#animates the animator with a new animation anim
-func animate(animator, anim, cont = true):
-	.animate(animator, anim, cont)
 

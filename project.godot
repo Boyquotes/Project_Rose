@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Action",
 "language": "GDScript",
-"path": "res://Scripts/Actions/Player Actions/Generic/Action.gd"
+"path": "res://Scripts/Actions/Player Actions/Generic/action.gd"
 }, {
 "base": "Node2D",
 "class": "ActionController",

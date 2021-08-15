@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Game Objects/Actors/Players/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Rose_Idle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Crouch.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/LookUp.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Run.png" type="Texture" id=5]
@@ -9,7 +9,7 @@
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/AscendToDescend.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Ascend.png" type="Texture" id=8]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 resource_name = "Ascend"
 length = 0.45
 loop = true
@@ -63,7 +63,7 @@ tracks/3/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "AscendToDescend"
 length = 0.2
 tracks/0/type = "value"
@@ -115,8 +115,7 @@ tracks/3/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Crouch"
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprites/Sprite:texture")
@@ -167,7 +166,7 @@ tracks/3/keys = {
 "values": [ Vector2( 5, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "Descend"
 length = 0.45
 loop = true
@@ -221,8 +220,7 @@ tracks/3/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Idle"
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprites/Sprite:texture")
@@ -273,8 +271,7 @@ tracks/3/keys = {
 "values": [ Vector2( 2, -1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "LookUp"
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprites/Sprite:texture")
@@ -325,8 +322,7 @@ tracks/3/keys = {
 "values": [ Vector2( 3, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Run"
+[sub_resource type="Animation" id=7]
 length = 1.2
 loop = true
 step = 0.15
@@ -389,18 +385,18 @@ move_states = {
 }
 
 [node name="Sprite" type="Sprite" parent="Sprites" index="0"]
-texture = ExtResource( 6 )
-offset = Vector2( 1, 2 )
-hframes = 3
+texture = ExtResource( 2 )
+offset = Vector2( 2, -1 )
+hframes = 5
 
 [node name="BaseAnimator" parent="Animators" index="0"]
-anims/Ascend = SubResource( 5 )
-anims/AscendToDescend = SubResource( 6 )
-anims/Crouch = SubResource( 2 )
-anims/Descend = SubResource( 7 )
-anims/Idle = SubResource( 1 )
-anims/LookUp = SubResource( 3 )
-anims/Run = SubResource( 4 )
+anims/Ascend = SubResource( 1 )
+anims/AscendToDescend = SubResource( 2 )
+anims/Crouch = SubResource( 3 )
+anims/Descend = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/LookUp = SubResource( 6 )
+anims/Run = SubResource( 7 )
 
 [node name="PlayerCamera" parent="." index="7"]
 drag_margin_h_enabled = true

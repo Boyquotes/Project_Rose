@@ -134,7 +134,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="2D_Platformer_Skeleton"
+config/name="Project_Rose"
 run/main_scene="res://Rooms/TestRoom.tscn"
 config/icon="res://icon.png"
 
@@ -143,6 +143,13 @@ config/icon="res://icon.png"
 ActionEnums="*res://Scripts/Globals/action_enums.gd"
 SceneController="*res://Scripts/Globals/scene_controller.gd"
 UserSettings="*res://Scripts/Globals/user_settings.gd"
+
+[display]
+
+window/size/width=480
+window/size/height=270
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 
@@ -273,3 +280,4 @@ Lock={
 [rendering]
 
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false

@@ -50,11 +50,12 @@ func _handle_animation():
 			host.animate(host.base_anim,"AscendToDescend", false)
 		elif !done_ascent || !done_descent:
 			if host.vert_spd < 0 && !done_ascent:
-				host.animate(host.base_anim,"Ascend", false)
+				print("!!!")
+				host.animate(host.base_anim, "Ascend", false)
 				done_ascent = true
 				done_descent = false
 			if host.vert_spd > 0 && !done_descent:
-				host.animate(host.base_anim,"Descend", false)
+				host.animate(host.base_anim, "Descend", false)
 				done_descent = true
 				done_ascent = false
 	._handle_animation()
@@ -99,3 +100,8 @@ func ledge_detection_switch():
 
 func _on_LedgeDisableTimer_timeout():
 	ledge_detection_switch()
+
+
+func _on_BaseAnimator_animation_finished(anim_name):
+	if(anim_name == "AscendToDescend"):
+		transitioned = true;

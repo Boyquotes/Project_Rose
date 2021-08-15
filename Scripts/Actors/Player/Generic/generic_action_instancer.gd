@@ -1,6 +1,7 @@
 class_name GenericActionInstancer
 extends ActionInstancer
 
+"""
 func swipe():
 	var action = instance_swipe()
 	# add additional functionality if desired
@@ -21,6 +22,7 @@ func potion():
 func dash():
 	var action = instance_dash()
 	action.start()
+
 
 func instance_swipe():
 	action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Swipe.tscn").instance())
@@ -63,3 +65,4 @@ func instance_dash():
 	initialize_particles(action)
 	initialize_sprite(action)
 	return action
+"""

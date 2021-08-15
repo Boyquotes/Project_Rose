@@ -3,12 +3,13 @@ extends Actor
 # desc
 # long desc
 
+"""
 signal hp_changed
 signal resource_1_changed
 signal resource_2_changed
 signal resource_3_changed
 signal item_changed
-
+"""
 
 # TODO: move to globals perhaps
 enum InputType {GAMEPAD, KEYMOUSE}
@@ -51,9 +52,6 @@ func _in(event):
 #calculates the player's input rotation for aiming abilities
 #also runs player hitbox "sight" to determine if an attack can hit an enemy
 func _execute(_delta):
-	### DEBUGGING, NEED TO REMOVE ###
-	if Input.is_action_just_pressed("soft_reset"):
-		global_position = Vector2(0,0)
 	if Input.is_key_pressed(KEY_I) && iframes <= 0:
 		move_states['hit'].compare_to = global_position + Vector2(hor_dir * 25,0)
 		move_states[move_state]._exit(move_states['hit'])
@@ -66,6 +64,8 @@ func _execute(_delta):
 func _unpaused_phys_execute(delta):
 	._unpaused_phys_execute(delta)
 	#state machine
+	print(move_state)
+	print($Animators/BaseAnimator.current_animation)
 	move_states[move_state]._handle_input()
 	move_states[move_state]._handle_animation()
 	move_states[move_state]._execute(delta)

@@ -1,12 +1,14 @@
 class_name RestState
 extends PlayerState
 
+"""
 signal exit_rest
 
-
 func _ready():
-	connect("exit_rest", self, "on_exit_rest")
-
+	var err = connect("exit_rest", self, "on_exit_rest")
+	if err:
+		print(err)
+"""
 
 func _enter():
 	host.move_state = 'rest'
@@ -21,7 +23,7 @@ func _handle_animation():
 	._handle_animation()
 
 
-func _execute(delta):
+func _execute(_delta):
 	pass
 
 

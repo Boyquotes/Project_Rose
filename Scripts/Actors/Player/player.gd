@@ -33,6 +33,7 @@ func init():
 		player_camera = true
 		$CollisionBox.disabled = false
 		$HitArea/HitBox.disabled = false
+	iframe = false
 
 
 #hotswitch between keyboard and controller input

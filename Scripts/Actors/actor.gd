@@ -16,6 +16,7 @@ export(float) var base_fric := 50.0
 export(float) var grav_max := 250.0
 export(float) var base_acceleration := 30.0
 export(Dictionary) var move_states := {}
+export(bool) var iframe := false
 
 ###actor_data###
 var hp: float 

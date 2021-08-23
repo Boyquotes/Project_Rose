@@ -9,10 +9,10 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
+"base": "Reference",
 "class": "Action",
 "language": "GDScript",
-"path": "res://Scripts/Actions/Player Actions/Generic/action.gd"
+"path": "res://Scripts/Actions/Player Actions/Generic/Action.gd"
 }, {
 "base": "Node2D",
 "class": "ActionController",
@@ -43,6 +43,11 @@ _global_script_classes=[ {
 "class": "Actor",
 "language": "GDScript",
 "path": "res://Scripts/Actors/actor.gd"
+}, {
+"base": "Node2D",
+"class": "ClothSim",
+"language": "GDScript",
+"path": "res://Scripts/Objects/Cape/cape.gd"
 }, {
 "base": "Area2D",
 "class": "EnemyHitbox",
@@ -117,6 +122,7 @@ _global_script_class_icons={
 "ActionInstancer": "",
 "ActionState": "",
 "Actor": "",
+"ClothSim": "",
 "EnemyHitbox": "",
 "EnemyHitboxContainer": "",
 "GenChildButton": "",
@@ -144,6 +150,10 @@ ActionEnums="*res://Scripts/Globals/action_enums.gd"
 SceneController="*res://Scripts/Globals/scene_controller.gd"
 UserSettings="*res://Scripts/Globals/user_settings.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/width=480
@@ -154,6 +164,10 @@ window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray( "Hitbox Generator", "Palette Swap" )
+
+[global]
+
+fps=false
 
 [input]
 
@@ -260,6 +274,11 @@ Left_Trigger={
 Lock={
 "deadzone": 0.5,
 "events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

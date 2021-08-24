@@ -1,21 +1,28 @@
 class_name ClothSim
 extends Node2D
 
+export(NodePath) var phys_obj_path
+export(NodePath) var targets_path
+export(NodePath) var influencers_path
+
+var influencers_node
+var phys_obj_node
+var targets_node : Node2D
 var physics : ClothPhysics
 var pointmasses : Array
+var targets : Array
 
 # every PointMass within this many pixels will be influenced by the cursor
-var mouse_influence_size := 2.0
+var mouse_influence_size := 10.0
 # minimum distance for tearing when user is right clicking
 var mouse_tear_size := 1.0
-var mouse_influence_scalar := 1.0
+var mouse_influence_scalar := 10.0
 
-var gravity := 980.0
+var gravity := 480.0
 
-var cloth_height := 5
-var cloth_width := 5
-var y_start = 25 # where will the curtain start on the y axis?
-var resting_distances := 10
+var cloth_height := 10
+var cloth_width := 10
+var resting_distances := 4
 var stiffnesses := 1
 var tear_sensitivity := 500 # distance the PointMasss have to go before ripping
 
@@ -35,7 +42,13 @@ func _ready():
 	mouse_position = get_local_mouse_position()
 	prev_mouse_position = Vector2(0, 0)
 	
-	create_cloth(100.0, self)
+	phys_obj_node = get_node(phys_obj_path)
+	
+	influencers_node = get_node(influencers_path)
+	
+	targets_node = get_node(targets_path)
+	
+	create_cloth(0.0, self)
 
 func create_cloth(translation : float, this : ClothSim):
 	# mid_width: amount to translate the curtain along x-axis for it to be centered
@@ -44,8 +57,9 @@ func create_cloth(translation : float, this : ClothSim):
 	
 	# Since this our fabric is basically a grid of points, we have two loops
 	for y in cloth_height: # due to the way PointMasss are attached, we need the y loop on the outside
+		pointmasses.push_back([])
 		for x in cloth_width:
-			var pointmass = PointMass.new(translation + x * this.resting_distances, y * this.resting_distances + this.y_start)
+			var pointmass = PointMass.new(translation + x * this.resting_distances, y * this.resting_distances)
 			# attach to 
 			# x - 1  and
 			# y - 1  
@@ -57,22 +71,28 @@ func create_cloth(translation : float, this : ClothSim):
 			# PointMass attach_to parameters: PointMass PointMass, float restingDistance, float stiffness
 			# try disabling the next 2 lines (the if statement and attach_to part) to create a hairy effect
 			if x != 0:
-				pointmass.attach_to(pointmasses[pointmasses.size()-1], this)
+				pointmass.attach_to(pointmasses[y][pointmasses[y].size()-1], this)
 			# the index for the PointMasss are one dimensions, 
 			# so we convert x,y coordinates to 1 dimension using the formula y*width+x  
 			if y != 0:
-				pointmass.attach_to(pointmasses[(y - 1) * (this.cloth_width+1) + x], this)
+				pointmass.attach_to(pointmasses[y-1][x], this)
 				
 			# we pin the very top PointMasss to where they are
 			if y == 0:
-				pointmass.pin_to(pointmass.pos.x, pointmass.pos.y)
+				var target = Position2D.new()
+				target.global_position = to_global(pointmass.pos)
+				this.targets_node.add_child(target)
+				this.targets.push_back(target)
+				pointmass.pin_to(target)
 			# add to PointMass array  
-			pointmasses.push_back(pointmass)
+			pointmasses[y].push_back(pointmass)
+
 
 func _draw():
-	for pointmass in pointmasses:
-		for link in pointmass.links:
-			draw_line(link.p1.pos, link.p2.pos, Color.red)
+	for pointmass_arr in pointmasses:
+		for pointmass in pointmass_arr:
+			for link in pointmass.links:
+				draw_line(link.p1.pos, link.p2.pos, Color.red)
 
 var mouse_moved := false
 
@@ -81,9 +101,11 @@ func _physics_process(_delta):
 		mouse_moved = true
 		prev_mouse_position = mouse_position
 		mouse_position = get_local_mouse_position()
+	
+	
 	update()
 	
-	#physics.update(self)
+	physics.update(self)
 	
 
 
@@ -125,13 +147,15 @@ class ClothPhysics:
 			# solve the constraints multiple times
 			# the more it's solved, the more accurate.
 			for x in constraint_accuracy:
-				for pointmass in this.pointmasses:
-					pointmass.solve_constraints()
+				for pointmass_arr in this.pointmasses:
+					for pointmass in pointmass_arr:
+						pointmass.solve_constraints(this)
 			
 			# update each PointMass's position
-			for pointmass in this.pointmasses:
-				pointmass.update_interactions(this)
-				pointmass.update_physics(fixed_deltatime_seconds, this)
+			for pointmass_arr in this.pointmasses:
+				for pointmass in pointmass_arr:
+					pointmass.update_interactions(this)
+					pointmass.update_physics(fixed_deltatime_seconds, this)
 
 class PointMass:
 	# for calculating position change (velocity)
@@ -142,14 +166,13 @@ class PointMass:
 	var acc_y := 0.0
 	
 	var mass := 1.0
-	var damping := 20.0
+	var damping := 50.0
 	
 	# An Array for links, so we can have as many links as we want to this PointMass
 	var links = []
 	
 	var pinned := false
-	var pin_x
-	var pin_y
+	var pin : Position2D
 	
 	# PointMass constructor
 	func _init(var x_pos : float, var y_pos):
@@ -163,7 +186,7 @@ class PointMass:
 	# motion is applied, and links are drawn here
 	# timeStep should be in elapsed seconds (deltaTime)
 	func update_physics(var timestep : float, this : ClothSim):
-		apply_force(0, mass * this.gravity)
+		apply_force(mass * -this.phys_obj_node.vel.x, mass * this.gravity + mass * -this.phys_obj_node.vel.y)
 		
 		var vel_x = pos.x - last_x
 		var vel_y = pos.y - last_y
@@ -190,19 +213,22 @@ class PointMass:
 	
 	func update_interactions(this : ClothSim):
 		# this is where our interaction comes in.
-		if Input.is_action_pressed("click"):
-			var distance_squared = dist_line_to_point_sq(this.prev_mouse_position, this.mouse_position, pos)
-			if distance_squared < this.mouse_influence_size:
-				# remember mouseInfluenceSize was squared in setup()
-				# To change the velocity of our PointMass, we subtract that change from the lastPosition.
-				# When the physics gets integrated (see updatePhysics()), the change is calculated
-				# Here, the velocity is set equal to the cursor's velocity
-				last_x = pos.x - (this.mouse_position.x - this.prev_mouse_position.x) * this.mouse_influence_scalar
-				last_y = pos.y - (this.mouse_position.y - this.prev_mouse_position.y) * this.mouse_influence_scalar
-			else:  
-			# if the right mouse button is clicking, we tear the cloth by removing links
-				if distance_squared < this.mouse_tear_size:
-					links.clear()
+		for influencer in this.influencers_node.get_children():
+			if influencer.moved:
+				var inf_pos = this.to_local(influencer.global_position)
+				var inf_prev_pos = this.to_local(influencer.prev_glob_position)
+				var distance_squared = dist_line_to_point_sq(inf_prev_pos, inf_pos, pos)
+				if distance_squared < this.mouse_influence_size:
+					# remember mouseInfluenceSize was squared in setup()
+					# To change the velocity of our PointMass, we subtract that change from the lastPosition.
+					# When the physics gets integrated (see updatePhysics()), the change is calculated
+					# Here, the velocity is set equal to the cursor's velocity
+					last_x = pos.x - (inf_pos.x - inf_prev_pos.x) * this.mouse_influence_scalar
+					last_y = pos.y - (inf_pos.y - inf_prev_pos.y) * this.mouse_influence_scalar
+				else:  
+				# if the right mouse button is clicking, we tear the cloth by removing links
+					if distance_squared < this.mouse_tear_size:
+						links.clear()
 	
 	func _draw():
 		# draw the links and points
@@ -215,7 +241,7 @@ class PointMass:
 			pass
 	
 	""" Constraints """
-	func solve_constraints():
+	func solve_constraints(this : ClothSim):
 		""" Link Constraints """
 		# Links make sure PointMasss connected to this one is at a set distance away
 		for link in links:
@@ -224,8 +250,7 @@ class PointMass:
 		""" Other Constraints """
 		# make sure the PointMass stays in its place if it's pinned
 		if pinned:
-			pos.x = pin_x
-			pos.y = pin_y 
+			pos = this.to_local(pin.global_position)
 
 	# attach_to can be used to create links between this PointMass and other PointMasss
 	func attach_to(P : PointMass, this : ClothSim, drawLink : bool = true):
@@ -235,10 +260,9 @@ class PointMass:
 	func remove_link(link : Link):
 		links.erase(link)
 	
-	func pin_to(px : float, py : float):
+	func pin_to(target : Position2D):
 		pinned = true
-		pin_x = px
-		pin_y = py
+		pin = target
 	
 	func apply_force(fx : float, fy : float):
 		# acceleration = (1/mass) * force
@@ -289,7 +313,7 @@ class Link:
 		# calculate the distance between the two PointMasss
 		var diffX = p1.pos.x - p2.pos.x
 		var diffY = p1.pos.y - p2.pos.y
-		var d = sqrt(diffX * diffX + diffY * diffY)
+		var d = max(sqrt(diffX * diffX + diffY * diffY), .01)
 
 		# find the difference, or the ratio of how far along the restingDistance the actual distance is.
 		var difference = (resting_distance - d) / d

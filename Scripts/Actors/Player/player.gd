@@ -20,6 +20,7 @@ var targettable_hitboxes := []
 var rad := 0.0
 var deg := 0.0
 var move_state := "move_on_ground"
+var speed_mag
 
 onready var attack_collision = $Utilities/AttackCollision
 onready var player_camera = $PlayerCamera
@@ -57,9 +58,13 @@ func _execute(_delta):
 		move_states['hit'].compare_to = global_position + Vector2(hor_dir * 25,0)
 		move_states[move_state]._exit(move_states['hit'])
 	
-	# rad = $Target.execute(delta)
-	# deg = rad2deg(rad)
-	# $Target.global_rotation_degrees = deg
+	print(vel)
+	"""
+	var rad = $Target.execute(_delta)
+	
+	deg = rad2deg(rad)
+	$Target.global_rotation_degrees = deg
+	"""
 
 
 func _unpaused_phys_execute(delta):

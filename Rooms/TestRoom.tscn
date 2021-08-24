@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/Tilesets/PrimititveTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Game Objects/Actors/Players/Rose/Rose.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Tilesets/Ledges.tres" type="TileSet" id=3]
 [ext_resource path="res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd" type="Script" id=4]
 [ext_resource path="res://Game Objects/Testing/Cape.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Effects/Pierce_Projectile.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/Actors/Player/targetting.gd" type="Script" id=7]
 
 [node name="TestRoom" type="Node2D"]
 
@@ -25,8 +23,13 @@ collision_mask = 0
 format = 1
 script = ExtResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 36, 45 )
+[node name="Cape" parent="." instance=ExtResource( 5 )]
+phys_obj_path = NodePath("../Rose")
+targets_path = NodePath("../Rose/Utilities/CapeTarget")
+influencers_path = NodePath("../Rose/Utilities/CapeInfluencers")
+
+[node name="Rose" parent="." instance=ExtResource( 2 )]
+position = Vector2( 93, 29 )
 move_states = {
 "action": NodePath("MoveStates/Action"),
 "hit": NodePath("MoveStates/Hit"),
@@ -35,23 +38,4 @@ move_states = {
 "move_on_ground": NodePath("MoveStates/MoveOnGround")
 }
 
-[node name="Sprite" parent="Player/Sprites" index="0"]
-frame = 7
-
-[node name="ActionTarget" parent="Player/Utilities" index="7"]
-position = Vector2( 0, 0 )
-script = ExtResource( 7 )
-
-[node name="Sprite" type="Sprite" parent="Player/Utilities/ActionTarget" index="0"]
-position = Vector2( 64, 0 )
-texture = ExtResource( 6 )
-
-[node name="CapeTarget" parent="Player/Utilities" index="8"]
-position = Vector2( -0.166855, -5.17251 )
-
-[node name="Cape" parent="." instance=ExtResource( 5 )]
-phys_obj_path = NodePath("../Player")
-targets_path = NodePath("../Player/Utilities/CapeTarget")
-influencers_path = NodePath("../Player/Utilities/CapeInfluencers")
-
-[editable path="Player"]
+[editable path="Rose"]

@@ -20,10 +20,10 @@ var mouse_influence_scalar := 10.0
 
 var gravity := 480.0
 
-var cloth_height := 10
-var cloth_width := 10
+var cloth_height := 8
+var cloth_width := 4
 var resting_distances := 4
-var stiffnesses := 1
+var stiffnesses := .75
 var tear_sensitivity := 500 # distance the PointMasss have to go before ripping
 
 var mouse_position := Vector2()
@@ -48,9 +48,9 @@ func _ready():
 	
 	targets_node = get_node(targets_path)
 	
-	create_cloth(0.0, self)
+	create_cloth(targets_node.global_position, self)
 
-func create_cloth(translation : float, this : ClothSim):
+func create_cloth(translation : Vector2, this : ClothSim):
 	# mid_width: amount to translate the curtain along x-axis for it to be centered
 	# (curtainWidth * restingDistances) = curtain's pixel width
 	#var mid_width = int(width/2 - (curtainWidth * restingDistances)/2)
@@ -59,7 +59,7 @@ func create_cloth(translation : float, this : ClothSim):
 	for y in cloth_height: # due to the way PointMasss are attached, we need the y loop on the outside
 		pointmasses.push_back([])
 		for x in cloth_width:
-			var pointmass = PointMass.new(translation + x * this.resting_distances, y * this.resting_distances)
+			var pointmass = PointMass.new(translation.x + x * this.resting_distances, translation.y + y * this.resting_distances, x, y)
 			# attach to 
 			# x - 1  and
 			# y - 1  
@@ -79,9 +79,9 @@ func create_cloth(translation : float, this : ClothSim):
 				
 			# we pin the very top PointMasss to where they are
 			if y == 0:
-				var target = Position2D.new()
+				var target = targets_node.get_child(x)
 				target.global_position = to_global(pointmass.pos)
-				this.targets_node.add_child(target)
+				print(target.position)
 				this.targets.push_back(target)
 				pointmass.pin_to(target)
 			# add to PointMass array  
@@ -92,16 +92,59 @@ func _draw():
 	for pointmass_arr in pointmasses:
 		for pointmass in pointmass_arr:
 			for link in pointmass.links:
-				draw_line(link.p1.pos, link.p2.pos, Color.red)
-
+				draw_line(link.p1.pos, link.p2.pos, Color("a7292d"))
+	for y in pointmasses.size():
+		for x in pointmasses[y].size():
+			var points
+			var colors
+			if y > 0 and x > 0 and y < pointmasses.size()-1 and x < pointmasses[y].size()-1:
+				points = [pointmasses[y][x].pos, pointmasses[y-1][x].pos, pointmasses[y][x+1].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+				points = [pointmasses[y][x].pos, pointmasses[y-1][x].pos, pointmasses[y][x-1].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+				points = [pointmasses[y][x].pos, pointmasses[y+1][x].pos, pointmasses[y][x+1].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+				points = [pointmasses[y][x].pos, pointmasses[y+1][x].pos, pointmasses[y][x-1].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+			if x == 0 and y > 0 and y < pointmasses.size()-1:
+				points = [pointmasses[y][x].pos, pointmasses[y-1][x].pos, pointmasses[y-1][x+1].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+				points = [pointmasses[y][x].pos, pointmasses[y+1][x].pos, pointmasses[y+1][x+1].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+			if x == pointmasses[y].size()-1 and y > 0 and y < pointmasses.size()-1:
+				points = [pointmasses[y][x].pos, pointmasses[y-1][x].pos, pointmasses[y-1][x-1].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+				points = [pointmasses[y][x].pos, pointmasses[y+1][x].pos, pointmasses[y+1][x-1].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+			if y == 0 and x > 0 and x < pointmasses[y].size()-1:
+				points = [pointmasses[y][x].pos, pointmasses[y][x-1].pos, pointmasses[y+1][x].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+				points = [pointmasses[y][x].pos, pointmasses[y][x+1].pos, pointmasses[y+1][x].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+			if y == pointmasses.size()-1 and x > 0 and x < pointmasses[y].size()-1:
+				points = [pointmasses[y][x].pos, pointmasses[y][x-1].pos, pointmasses[y-1][x].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+				points = [pointmasses[y][x].pos, pointmasses[y][x+1].pos, pointmasses[y-1][x].pos]
+				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
+				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
+			if y == pointmasses.size()-1 and x < pointmasses[y].size()-1:
+				draw_line(pointmasses[y][x].pos, pointmasses[y][x+1].pos, Color("f8ffde"), 2)
+	
 var mouse_moved := false
 
 func _physics_process(_delta):
-	if mouse_position != get_local_mouse_position():
-		mouse_moved = true
-		prev_mouse_position = mouse_position
-		mouse_position = get_local_mouse_position()
-	
+	z_index = targets_node.z_index
 	
 	update()
 	
@@ -165,6 +208,9 @@ class PointMass:
 	var acc_x := 0.0
 	var acc_y := 0.0
 	
+	var xplace := 0
+	var yplace := 0
+	 
 	var mass := 1.0
 	var damping := 50.0
 	
@@ -175,12 +221,15 @@ class PointMass:
 	var pin : Position2D
 	
 	# PointMass constructor
-	func _init(var x_pos : float, var y_pos):
+	func _init(var x_pos : float, var y_pos : float, var x : int, y : int):
 		pos.x = x_pos
 		pos.y = y_pos
 		
 		last_x = pos.x
 		last_y = pos.y
+		
+		xplace = x
+		yplace = y
 
 	# The update function is used to update the physics of the PointMass.
 	# motion is applied, and links are drawn here
@@ -251,7 +300,11 @@ class PointMass:
 		# make sure the PointMass stays in its place if it's pinned
 		if pinned:
 			pos = this.to_local(pin.global_position)
-
+		
+		if xplace == 4:
+			if pos.x > 16 and pos.y > 1:
+				pos.x = 2 * (16 - 1) - pos.x;
+		
 	# attach_to can be used to create links between this PointMass and other PointMasss
 	func attach_to(P : PointMass, this : ClothSim, drawLink : bool = true):
 		var link = Link.new(self, P, this, drawLink)

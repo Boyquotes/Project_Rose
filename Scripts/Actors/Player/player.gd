@@ -58,7 +58,6 @@ func _execute(_delta):
 		move_states['hit'].compare_to = global_position + Vector2(hor_dir * 25,0)
 		move_states[move_state]._exit(move_states['hit'])
 	
-	print(vel)
 	"""
 	var rad = $Target.execute(_delta)
 	
@@ -70,8 +69,6 @@ func _execute(_delta):
 func _unpaused_phys_execute(delta):
 	._unpaused_phys_execute(delta)
 	#state machine
-	print(move_state)
-	print($Animators/BaseAnimator.current_animation)
 	move_states[move_state]._handle_input()
 	move_states[move_state]._handle_animation()
 	move_states[move_state]._execute(delta)

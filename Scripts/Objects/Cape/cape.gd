@@ -13,15 +13,15 @@ var pointmasses : Array
 var targets : Array
 
 # every PointMass within this many pixels will be influenced by the cursor
-var mouse_influence_size := 10.0
+var mouse_influence_size := 2.0
 # minimum distance for tearing when user is right clicking
 var mouse_tear_size := 1.0
-var mouse_influence_scalar := 10.0
+var mouse_influence_scalar := .25
 
 var gravity := 480.0
 
 var cloth_height := 8
-var cloth_width := 4
+var cloth_width := 5
 var resting_distances := 4
 var stiffnesses := .75
 var tear_sensitivity := 500 # distance the PointMasss have to go before ripping
@@ -140,15 +140,22 @@ func _draw():
 				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
 			if y == pointmasses.size()-1 and x < pointmasses[y].size()-1:
 				draw_line(pointmasses[y][x].pos, pointmasses[y][x+1].pos, Color("f8ffde"), 2)
-	
-var mouse_moved := false
+
+
+var deltatime := 0.0
+var draw = true
 
 func _physics_process(_delta):
+	deltatime += _delta
 	z_index = targets_node.z_index
 	
+	if fmod(deltatime, _delta * 10) == 0:
+		draw = true
+	else:
+		draw = false
 	update()
 	
-	physics.update(self)
+	physics.update(self, draw)
 	
 
 
@@ -166,7 +173,7 @@ class ClothPhysics:
 	var constraint_accuracy := 0
 	
 	# Update physics
-	func update(this : ClothSim):
+	func update(this : ClothSim, _draw : bool):
 		# calculate elapsed time
 		current_time = OS.get_system_time_msecs()
 		var deltatime_ms = current_time - previous_time
@@ -211,8 +218,8 @@ class PointMass:
 	var xplace := 0
 	var yplace := 0
 	 
-	var mass := 1.0
-	var damping := 50.0
+	var mass := .5
+	var damping := .95
 	
 	# An Array for links, so we can have as many links as we want to this PointMass
 	var links = []
@@ -241,8 +248,8 @@ class PointMass:
 		var vel_y = pos.y - last_y
 		
 		# dampen velocity
-		vel_x *= 0.99
-		vel_y *= 0.99
+		vel_x *= damping
+		vel_y *= damping
 		
 		var timestep_sq = timestep * timestep
 		
@@ -301,10 +308,38 @@ class PointMass:
 		if pinned:
 			pos = this.to_local(pin.global_position)
 		
+		var space_state : Physics2DDirectSpaceState = this.get_world_2d().direct_space_state
+		var coll = 33
+		var collision_event = space_state.intersect_point(pos, 1, [], coll)
+		var intersecting = collision_event.size() > 0
+		
+		var north = 0
+		var south = 0
+		var east = 0
+		var west = 0
+		while(intersecting):
+			north += 1
+			south += 1
+			east += 1
+			west += 1
+			if space_state.intersect_point(Vector2(pos.x,pos.y-north), 1, [], coll).size() == 0:
+				pos = Vector2(pos.x,pos.y-north)
+				intersecting = false
+			elif space_state.intersect_point(Vector2(pos.x,pos.y+south), 1, [], coll).size() == 0:
+				pos = Vector2(pos.x,pos.y+south)
+				intersecting = false
+			elif space_state.intersect_point(Vector2(pos.x-east,pos.y), 1, [], coll).size() == 0:
+				pos = Vector2(pos.x-east,pos.y)
+				intersecting = false
+			elif space_state.intersect_point(Vector2(pos.x+west,pos.y), 1, [], coll).size() == 0:
+				pos = Vector2(pos.x+west,pos.y)
+				intersecting = false
+			
+		"""
 		if xplace == 4:
 			if pos.x > 16 and pos.y > 1:
 				pos.x = 2 * (16 - 1) - pos.x;
-		
+		"""
 	# attach_to can be used to create links between this PointMass and other PointMasss
 	func attach_to(P : PointMass, this : ClothSim, drawLink : bool = true):
 		var link = Link.new(self, P, this, drawLink)

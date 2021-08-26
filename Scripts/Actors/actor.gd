@@ -155,7 +155,7 @@ func add_vel(speed : float, degrees : float):
 	vert_spd = speed * sin(deg2rad(degrees))
 
 
-func iframe(frames : int):
+func i_frame(frames : int):
 	iframes = frames
 
 

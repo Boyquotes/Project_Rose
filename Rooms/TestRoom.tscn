@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Tilesets/PrimititveTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Game Objects/Actors/Players/Rose/Rose.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Tilesets/Ledges.tres" type="TileSet" id=3]
 [ext_resource path="res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd" type="Script" id=4]
 [ext_resource path="res://Game Objects/Testing/Cape.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Sprites/Actors/Enemies/Woodeater_Soldier/Woodeater_Soldier_Prototype.png" type="Texture" id=6]
 
 [node name="TestRoom" type="Node2D"]
 
@@ -29,7 +30,8 @@ targets_path = NodePath("../Rose/Utilities/CapeTarget")
 influencers_path = NodePath("../Rose/Utilities/CapeInfluencers")
 
 [node name="Rose" parent="." instance=ExtResource( 2 )]
-position = Vector2( 93, 29 )
+position = Vector2( 123, 1 )
+collision_layer = 4
 move_states = {
 "action": NodePath("MoveStates/Action"),
 "hit": NodePath("MoveStates/Hit"),
@@ -37,5 +39,9 @@ move_states = {
 "move_in_air": NodePath("MoveStates/MoveInAir"),
 "move_on_ground": NodePath("MoveStates/MoveOnGround")
 }
+
+[node name="Woodeater_Soldier_Prototype" type="Sprite" parent="."]
+position = Vector2( -96, 31 )
+texture = ExtResource( 6 )
 
 [editable path="Rose"]

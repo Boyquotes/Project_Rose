@@ -65,6 +65,7 @@ func turn(direction):
 		host.get_node("HitArea").scale.x = host.get_node("HitArea").scale.x * -1
 		host.get_node("Utilities/CapeInfluencers").scale.x = host.get_node("Utilities/CapeInfluencers").scale.x * -1
 		host.get_node("Utilities/CapeTarget").scale.x = host.get_node("Utilities/CapeTarget").scale.x * -1
+		host.get_node("Utilities/WindNode").scale.x = host.get_node("Utilities/WindNode").scale.x * -1
 	host.hor_dir = direction
 
 

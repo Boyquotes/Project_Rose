@@ -4,7 +4,9 @@ extends Node2D
 export(NodePath) var phys_obj_path
 export(NodePath) var targets_path
 export(NodePath) var influencers_path
+export(NodePath) var wind_path
 
+var wind_node
 var influencers_node
 var phys_obj_node
 var targets_node : Node2D
@@ -13,16 +15,16 @@ var pointmasses : Array
 var targets : Array
 
 # every PointMass within this many pixels will be influenced by the cursor
-var mouse_influence_size := 2.0
+var mouse_influence_size := 5.0
 # minimum distance for tearing when user is right clicking
 var mouse_tear_size := 1.0
-var mouse_influence_scalar := .25
+var mouse_influence_scalar := 1.0
 
 var gravity := 480.0
 
 var cloth_height := 8
 var cloth_width := 5
-var resting_distances := 4
+var resting_distances := 3.0
 var stiffnesses := .75
 var tear_sensitivity := 500 # distance the PointMasss have to go before ripping
 
@@ -48,6 +50,7 @@ func _ready():
 	
 	targets_node = get_node(targets_path)
 	
+	wind_node = get_node(wind_path)
 	create_cloth(targets_node.global_position, self)
 
 func create_cloth(translation : Vector2, this : ClothSim):
@@ -58,6 +61,7 @@ func create_cloth(translation : Vector2, this : ClothSim):
 	# Since this our fabric is basically a grid of points, we have two loops
 	for y in cloth_height: # due to the way PointMasss are attached, we need the y loop on the outside
 		pointmasses.push_back([])
+		this.resting_distances += .25
 		for x in cloth_width:
 			var pointmass = PointMass.new(translation.x + x * this.resting_distances, translation.y + y * this.resting_distances, x, y)
 			# attach to 
@@ -97,6 +101,7 @@ func _draw():
 		for x in pointmasses[y].size():
 			var points
 			var colors
+			
 			if y > 0 and x > 0 and y < pointmasses.size()-1 and x < pointmasses[y].size()-1:
 				points = [pointmasses[y][x].pos, pointmasses[y-1][x].pos, pointmasses[y][x+1].pos]
 				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
@@ -155,7 +160,7 @@ func _physics_process(_delta):
 		draw = false
 	update()
 	
-	physics.update(self, draw)
+	physics.update(self, draw, wind_node.wind, deltatime)
 	
 
 
@@ -173,7 +178,7 @@ class ClothPhysics:
 	var constraint_accuracy := 0
 	
 	# Update physics
-	func update(this : ClothSim, _draw : bool):
+	func update(this : ClothSim, _draw : bool, wind : Vector2, time : float):
 		# calculate elapsed time
 		current_time = OS.get_system_time_msecs()
 		var deltatime_ms = current_time - previous_time
@@ -194,18 +199,19 @@ class ClothPhysics:
 		
 		# update physics
 		for itt in time_step_amt:
+			# update each PointMass's position
+			for pointmass_arr in this.pointmasses:
+				for pointmass in pointmass_arr:
+					pointmass.update_interactions(this)
+					pointmass.update_physics(fixed_deltatime_seconds, this, wind)
 			# solve the constraints multiple times
 			# the more it's solved, the more accurate.
 			for x in constraint_accuracy:
 				for pointmass_arr in this.pointmasses:
 					for pointmass in pointmass_arr:
-						pointmass.solve_constraints(this)
-			
-			# update each PointMass's position
-			for pointmass_arr in this.pointmasses:
-				for pointmass in pointmass_arr:
-					pointmass.update_interactions(this)
-					pointmass.update_physics(fixed_deltatime_seconds, this)
+						pointmass.solve_constraints(this, wind, time)
+		
+		return
 
 class PointMass:
 	# for calculating position change (velocity)
@@ -218,8 +224,8 @@ class PointMass:
 	var xplace := 0
 	var yplace := 0
 	 
-	var mass := .5
-	var damping := .95
+	var mass := .01
+	var damping := .91
 	
 	# An Array for links, so we can have as many links as we want to this PointMass
 	var links = []
@@ -241,8 +247,8 @@ class PointMass:
 	# The update function is used to update the physics of the PointMass.
 	# motion is applied, and links are drawn here
 	# timeStep should be in elapsed seconds (deltaTime)
-	func update_physics(var timestep : float, this : ClothSim):
-		apply_force(mass * -this.phys_obj_node.vel.x, mass * this.gravity + mass * -this.phys_obj_node.vel.y)
+	func update_physics(var timestep : float, this : ClothSim, wind : Vector2):
+		apply_force(mass * wind.x + mass * -this.phys_obj_node.vel.x, mass * wind.y + mass * this.gravity + mass * -this.phys_obj_node.vel.y)
 		
 		var vel_x = pos.x - last_x
 		var vel_y = pos.y - last_y
@@ -297,7 +303,12 @@ class PointMass:
 			pass
 	
 	""" Constraints """
-	func solve_constraints(this : ClothSim):
+	func solve_constraints(this : ClothSim, wind : Vector2, time : float):
+		
+		if this.phys_obj_node.vel.length() > 0 and wind.length() != 0:
+			pos.y = (sin((time + yplace) / (1/wind.length()) * 1000) * .1) + pos.y
+		elif wind.length() != 0:
+			pos.x = (sin((time + xplace) / (1/wind.length()) * 1000) * .1) + pos.x
 		""" Link Constraints """
 		# Links make sure PointMasss connected to this one is at a set distance away
 		for link in links:
@@ -308,9 +319,12 @@ class PointMass:
 		if pinned:
 			pos = this.to_local(pin.global_position)
 		
+		
+		
+		var tempos = Vector2(pos.x, ceil(pos.y))
 		var space_state : Physics2DDirectSpaceState = this.get_world_2d().direct_space_state
 		var coll = 33
-		var collision_event = space_state.intersect_point(pos, 1, [], coll)
+		var collision_event = space_state.intersect_point(tempos, 1, [], coll)
 		var intersecting = collision_event.size() > 0
 		
 		var north = 0
@@ -322,19 +336,19 @@ class PointMass:
 			south += 1
 			east += 1
 			west += 1
-			if space_state.intersect_point(Vector2(pos.x,pos.y-north), 1, [], coll).size() == 0:
-				pos = Vector2(pos.x,pos.y-north)
+			if space_state.intersect_point(Vector2(tempos.x,tempos.y-north), 1, [], coll).size() == 0:
+				pos = Vector2(tempos.x,tempos.y-north)
 				intersecting = false
-			elif space_state.intersect_point(Vector2(pos.x,pos.y+south), 1, [], coll).size() == 0:
-				pos = Vector2(pos.x,pos.y+south)
+			elif space_state.intersect_point(Vector2(tempos.x,tempos.y+south), 1, [], coll).size() == 0:
+				pos = Vector2(tempos.x,tempos.y+south)
 				intersecting = false
-			elif space_state.intersect_point(Vector2(pos.x-east,pos.y), 1, [], coll).size() == 0:
-				pos = Vector2(pos.x-east,pos.y)
+			elif space_state.intersect_point(Vector2(tempos.x-east,tempos.y), 1, [], coll).size() == 0:
+				pos = Vector2(tempos.x-east,tempos.y)
 				intersecting = false
-			elif space_state.intersect_point(Vector2(pos.x+west,pos.y), 1, [], coll).size() == 0:
-				pos = Vector2(pos.x+west,pos.y)
+			elif space_state.intersect_point(Vector2(tempos.x+west,tempos.y), 1, [], coll).size() == 0:
+				pos = Vector2(tempos.x+west,tempos.y)
 				intersecting = false
-			
+		
 		"""
 		if xplace == 4:
 			if pos.x > 16 and pos.y > 1:

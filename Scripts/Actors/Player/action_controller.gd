@@ -95,7 +95,7 @@ func _execute(_delta):
 	if exit_dodge_early and action_stack[0] == "Dodge":
 		if !Input.is_action_pressed("Dodge"):
 			clear_action()
-			action_state.exit_g_or_a()
+			action_state.exit_ground_or_air()
 
 
 ### begins parsing player action if an action is triggered ###
@@ -171,7 +171,7 @@ func construct_action_string():
 	action_str = action_prefix + "_" + combo
 
 func clear_action():
-	host.iframe(0)
+	host.i_frame(0)
 	if(!action_is_saved):
 		clear_slotted_vars()
 	hit = false

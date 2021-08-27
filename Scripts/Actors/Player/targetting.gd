@@ -1,7 +1,7 @@
 extends Node2D
 
 
-onready var host = get_parent();
+onready var host = get_parent().get_parent();
 var rad=0;
 var trad=0;
 var x = 0;

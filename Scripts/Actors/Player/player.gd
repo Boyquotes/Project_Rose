@@ -58,12 +58,11 @@ func _execute(_delta):
 		move_states['hit'].compare_to = global_position + Vector2(hor_dir * 25,0)
 		move_states[move_state]._exit(move_states['hit'])
 	
-	"""
-	var rad = $Target.execute(_delta)
+	var rad = $Utilities/ActionTarget.execute(_delta)
 	
 	deg = rad2deg(rad)
-	$Target.global_rotation_degrees = deg
-	"""
+	$Utilities/ActionTarget.global_rotation_degrees = deg
+
 
 
 func _unpaused_phys_execute(delta):
@@ -152,7 +151,7 @@ func change_fric(f):
 
 
 #useful for easily adding or subtracting vel to an or effect ability through animation
-func add_vel(speed : float, degrees : float = $Movement_States/Attack/Attack_Controller.attack_degrees):
+func add_vel(speed : float, degrees : float = $MoveStates/Action/ActionController.action_degrees):
 	hor_spd = speed * cos(deg2rad(degrees))
 	vert_spd = speed * sin(deg2rad(degrees))
 

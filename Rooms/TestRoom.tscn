@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Resources/Tilesets/PrimititveTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Game Objects/Actors/Players/Rose/Rose.tscn" type="PackedScene" id=2]
@@ -6,14 +6,122 @@
 [ext_resource path="res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd" type="Script" id=4]
 [ext_resource path="res://Game Objects/Testing/Cape.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sprites/Actors/Enemies/Woodeater_Soldier/Woodeater_Soldier_Prototype.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Lights/light2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Lights/background.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Lights/spot.png" type="Texture" id=9]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 root_pos = vec2(0,0);
+uniform float normfac = 1.0;
+uniform float first_stage : hint_range(0.0, 1.0) = 0.5; 
+uniform float first_smooth : hint_range(0.0, 1.0) = 0.0; // Lengthens the color transition
+uniform float second_stage : hint_range(0.0, 1.0) = 0.0;   // If left at 0, only level 1 is used.
+uniform float second_smooth : hint_range(0.0, 1.0) = 0.0;
+uniform float min_light : hint_range(0.0, 1.0) = 0.0;
+uniform float mid_light : hint_range(0.0, 1.0) = 0.0;
+uniform float max_light : hint_range(0.0, 1.0) = 1.0;
+uniform float obj_light_add : hint_range(0.0, 1.0) = 0.0;
+
+float light_calc(float light_strength, float would_be_strength) {
+	float target_strength = light_strength + would_be_strength * obj_light_add;
+	if (target_strength == 0.0) {target_strength = 0.000001;}
+	if (would_be_strength == 0.0) {would_be_strength = 1.0;}
+	return(target_strength / would_be_strength);
+}
+void fragment() {
+	NORMAL.z = normfac;
+}
+void light(){
+	//LIGHT_COLOR = COLOR;
+	LIGHT = COLOR;
+}
+/*
+void light() {
+	float level_1 = first_stage;
+	float level_1_smooth = first_smooth;
+	float level_2 = second_stage;
+	float level_2_smooth = second_smooth;
+	
+	float mid_range_light = mid_light;
+	if (mid_light == 0.0) { mid_range_light = max_light * 0.5; }
+	vec3 light_normal = normalize(vec3(LIGHT_VEC, -LIGHT_HEIGHT));
+	float would_be_strength = max(dot(-light_normal, NORMAL), 0.0);
+	if (would_be_strength > level_1 && level_2 == 0.0 ) {
+		float diff = smoothstep(level_1, (level_1 + level_1_smooth), would_be_strength) + min_light;
+		if (diff >= max_light) {diff = max_light;}
+		LIGHT *= light_calc(diff, would_be_strength);
+	} else if (would_be_strength > level_1 && would_be_strength < level_2 && level_2 != 0.0 ) {
+		float diff = smoothstep(level_1, (level_1 + level_1_smooth), would_be_strength) + min_light;
+		if (diff >= mid_range_light ) {diff = mid_range_light;}
+		LIGHT *= light_calc(diff, would_be_strength);
+	} else if (would_be_strength >= level_2 && level_2 != 0.0 ) {
+		float diff = smoothstep(level_2, (level_2 + level_2_smooth), would_be_strength) + mid_range_light;
+		if (diff < mid_range_light ) {diff = mid_range_light;}
+		if (diff >= max_light) {diff = max_light;}
+		LIGHT *= light_calc(diff, would_be_strength);
+	} else { 
+		if (min_light != 0.0) { 
+			LIGHT_VEC = -NORMAL.xy*length(LIGHT_VEC); 
+		}
+		LIGHT *= min_light;   
+		                                                                                                                               
+	}
+}
+*/
+/*
+uniform sampler2D norm;
+uniform float theta = 0.0;
+uniform vec2 root_pos = vec2(0,0);
+
+void fragment() {
+	NORMAL = vec3(0, 0, sign(root_pos.y - FRAGCOORD.y) * 2.0 );
+	
+	// Get the vertex color or the color from the texture if set
+	vec4 finalColor = min(texture(TEXTURE, UV), COLOR);
+	COLOR = finalColor;
+}
+
+
+void light()
+{
+	//float tempx = LIGHT_VEC.x;
+	//float tempy = -LIGHT_VEC.y;
+	//LIGHT_VEC.x = tempx * cos(theta) - tempy * sin(theta);
+	//LIGHT_VEC.y = tempx * sin(theta) + tempy * cos(theta);
+	LIGHT = COLOR;
+	SHADOW_COLOR = vec4(83, 31, 31, 255);
+}
+*/"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/root_pos = Vector2( 0, 0 )
+shader_param/normfac = 17.625
+shader_param/first_stage = 0.0
+shader_param/first_smooth = 0.0
+shader_param/second_stage = 0.0
+shader_param/second_smooth = 0.0
+shader_param/min_light = 0.0
+shader_param/mid_light = 0.0
+shader_param/max_light = 0.805
+shader_param/obj_light_add = 0.0
 
 [node name="TestRoom" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 20, 20 )
+texture = ExtResource( 8 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0, 0, 0, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -327684, 0, 0, -262145, 0, 0, -196612, 0, 0, -131073, 0, 0, -65540, 0, 0, -131064, 0, 0, -1, 0, 0, -65528, 0, 0, 8, 0, 0, 131046, 4, 0, 131047, 4, 1, 131048, 4, 2, 131049, 4, 3, 131052, 3, 0, 131053, 3, 1, 131054, 3, 2, 131059, 2, 0, 131060, 2, 1, 65544, 0, 0, 196554, 0, 0, 196555, 0, 0, 196556, 0, 0, 196557, 0, 0, 196558, 0, 0, 196559, 0, 0, 196560, 0, 0, 196561, 0, 0, 196562, 0, 0, 196563, 0, 0, 196564, 0, 0, 196565, 0, 0, 196566, 0, 0, 196567, 0, 0, 196568, 0, 0, 196569, 0, 0, 196570, 0, 0, 196571, 0, 0, 196572, 0, 0, 196573, 0, 0, 196574, 0, 0, 196575, 0, 0, 196576, 0, 0, 196577, 0, 0, 196578, 0, 0, 196579, 0, 0, 196580, 0, 0, 196581, 0, 0, 196582, 0, 0, 196583, 0, 0, 196584, 0, 0, 196585, 0, 0, 196586, 0, 0, 196587, 0, 0, 196588, 0, 0, 196589, 0, 0, 196590, 0, 0, 196591, 0, 0, 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 196597, 0, 0, 196598, 0, 0, 196599, 0, 0, 196600, 0, 0, 196601, 0, 0, 196602, 0, 0, 196603, 0, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0 )
+tile_data = PoolIntArray( -327684, 0, 0, -262145, 0, 0, -196612, 0, 0, -131073, 0, 0, -65540, 0, 0, 131046, 4, 0, 131047, 4, 1, 131048, 4, 2, 131049, 4, 3, 131052, 3, 0, 131053, 3, 1, 131054, 3, 2, 131059, 2, 0, 131060, 2, 1, 196554, 0, 0, 196555, 0, 0, 196556, 0, 0, 196557, 0, 0, 196558, 0, 0, 196559, 0, 0, 196560, 0, 0, 196561, 0, 0, 196562, 0, 0, 196563, 0, 0, 196564, 0, 0, 196565, 0, 0, 196566, 0, 0, 196567, 0, 0, 196568, 0, 0, 196569, 0, 0, 196570, 0, 0, 196571, 0, 0, 196572, 0, 0, 196573, 0, 0, 196574, 0, 0, 196575, 0, 0, 196576, 0, 0, 196577, 0, 0, 196578, 0, 0, 196579, 0, 0, 196580, 0, 0, 196581, 0, 0, 196582, 0, 0, 196583, 0, 0, 196584, 0, 0, 196585, 0, 0, 196586, 0, 0, 196587, 0, 0, 196588, 0, 0, 196589, 0, 0, 196590, 0, 0, 196591, 0, 0, 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 196597, 0, 0, 196598, 0, 0, 196599, 0, 0, 196600, 0, 0, 196601, 0, 0, 196602, 0, 0, 196603, 0, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0 )
 
 [node name="Ledges" type="TileMap" parent="TileMap"]
 visible = false
@@ -25,14 +133,27 @@ collision_mask = 0
 format = 1
 script = ExtResource( 4 )
 
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 68, -242 )
+texture = ExtResource( 7 )
+texture_scale = 5.0
+energy = 2.0
+mode = 2
+range_height = 10.0
+
+[node name="Sprite" type="Sprite" parent="Light2D"]
+visible = false
+texture = ExtResource( 9 )
+
 [node name="Cape" parent="." instance=ExtResource( 5 )]
+material = SubResource( 2 )
 phys_obj_path = NodePath("../Rose")
 targets_path = NodePath("../Rose/Utilities/CapeTarget")
 influencers_path = NodePath("../Rose/Utilities/CapeInfluencers")
 wind_path = NodePath("../Rose/Utilities/WindNode")
 
 [node name="Rose" parent="." instance=ExtResource( 2 )]
-position = Vector2( 123, 1 )
+position = Vector2( 113, -109 )
 collision_layer = 4
 move_states = {
 "action": NodePath("MoveStates/Action"),

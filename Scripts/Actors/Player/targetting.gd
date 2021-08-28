@@ -11,7 +11,7 @@ var tween = Tween.new();
 func _ready():
 	add_child(tween);
 
-func execute(delta):
+func execute(_delta):
 	
 	if(host.active_input == host.InputType.KEYMOUSE):
 		y = get_global_mouse_position().y - global_position.y

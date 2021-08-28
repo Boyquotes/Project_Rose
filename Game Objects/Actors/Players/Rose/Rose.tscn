@@ -14,7 +14,7 @@
 [ext_resource path="res://Scripts/Actors/Player/targetting.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/Actors/Player/wind.gd" type="Script" id=13]
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=1]
 resource_name = "Action_Dodge"
 length = 0.61
 step = 0.05
@@ -116,7 +116,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -2, -3 ), Vector2( -3, -4 ), Vector2( 3, -4 ), Vector2( -2, -4 ), Vector2( -2, -4 ), Vector2( -3, -4 ) ]
+"values": [ Vector2( -2, 5 ), Vector2( -3, 4 ), Vector2( 3, 4 ), Vector2( -2, 4 ), Vector2( -2, 4 ), Vector2( -3, 4 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("../Utilities/CapeTarget/Position2D2:position")
@@ -128,7 +128,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -1, -4 ), Vector2( -1, -4 ), Vector2( 2, -4 ), Vector2( -1, -4 ), Vector2( 0, -4 ), Vector2( -1, -4 ) ]
+"values": [ Vector2( -1, 4 ), Vector2( -1, 4 ), Vector2( 2, 4 ), Vector2( -1, 4 ), Vector2( 0, 4 ), Vector2( -1, 4 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("../Utilities/CapeTarget/Position2D3:position")
@@ -140,7 +140,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, -5 ), Vector2( 0, -5 ), Vector2( 1, -4 ), Vector2( 1, -4 ), Vector2( 1, -5 ), Vector2( 0, -5 ) ]
+"values": [ Vector2( 1, 3 ), Vector2( 0, 3 ), Vector2( 1, 4 ), Vector2( 1, 4 ), Vector2( 1, 3 ), Vector2( 0, 3 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("../Utilities/CapeTarget/Position2D4:position")
@@ -152,7 +152,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 3, -5 ), Vector2( 2, -5 ), Vector2( 0, -4 ), Vector2( 2, -4 ), Vector2( 3, -5 ), Vector2( 2, -5 ) ]
+"values": [ Vector2( 3, 3 ), Vector2( 2, 3 ), Vector2( 0, 4 ), Vector2( 2, 4 ), Vector2( 3, 3 ), Vector2( 2, 3 ) ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("../Utilities/CapeTarget/Position2D5:position")
@@ -164,7 +164,7 @@ tracks/11/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 5, -4 ), Vector2( 4, -4 ), Vector2( -1, -4 ), Vector2( 3, -4 ), Vector2( 5, -4 ), Vector2( 4, -4 ) ]
+"values": [ Vector2( 5, 4 ), Vector2( 4, 4 ), Vector2( -1, 4 ), Vector2( 3, 4 ), Vector2( 5, 4 ), Vector2( 4, 4 ) ]
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("../Utilities/CapeTarget:z_index")
@@ -193,8 +193,7 @@ tracks/13/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Ascend"
+[sub_resource type="Animation" id=2]
 length = 0.45
 loop = true
 step = 0.15
@@ -256,7 +255,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -5, -5 ) ]
+"values": [ Vector2( -5, 2 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("../Utilities/CapeTarget/Position2D2:position")
@@ -268,7 +267,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -2, -6 ) ]
+"values": [ Vector2( -2, 1 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("../Utilities/CapeTarget/Position2D3:position")
@@ -280,7 +279,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, -6 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("../Utilities/CapeTarget/Position2D4:position")
@@ -292,7 +291,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4, -6 ) ]
+"values": [ Vector2( 4, 1 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("../Utilities/CapeTarget/Position2D5:position")
@@ -304,7 +303,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 6, -5 ) ]
+"values": [ Vector2( 6, 2 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("../Utilities/CapeTarget:z_index")
@@ -319,8 +318,7 @@ tracks/9/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "AscendToDescend"
+[sub_resource type="Animation" id=3]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprites/Sprite:texture")
@@ -371,8 +369,7 @@ tracks/3/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Climb"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "method"
 tracks/0/path = NodePath("../MoveStates/LedgeGrab")
 tracks/0/interp = 1
@@ -474,7 +471,7 @@ tracks/7/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprites/Sprite:texture")
@@ -525,7 +522,7 @@ tracks/3/keys = {
 "values": [ Vector2( 5, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.45
 loop = true
 step = 0.15
@@ -587,7 +584,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -5, -6 ) ]
+"values": [ Vector2( -5, 1 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("../Utilities/CapeTarget/Position2D2:position")
@@ -599,7 +596,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -2, -6 ) ]
+"values": [ Vector2( -2, 1 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("../Utilities/CapeTarget/Position2D3:position")
@@ -611,7 +608,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, -6 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("../Utilities/CapeTarget/Position2D4:position")
@@ -623,7 +620,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 4, -6 ) ]
+"values": [ Vector2( 4, 1 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("../Utilities/CapeTarget/Position2D5:position")
@@ -635,7 +632,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 6, -6 ) ]
+"values": [ Vector2( 6, 1 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("../Utilities/CapeTarget:z_index")
@@ -650,7 +647,7 @@ tracks/9/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprites/Sprite:texture")
@@ -710,7 +707,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -6, -5 ), Vector2( -6, -6 ) ]
+"values": [ Vector2( -6, 3 ), Vector2( -6, 1 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("../Utilities/CapeTarget/Position2D2:position")
@@ -722,7 +719,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -4, -5 ), Vector2( -4, -7 ) ]
+"values": [ Vector2( -4, 3 ), Vector2( -4, 0 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("../Utilities/CapeTarget/Position2D3:position")
@@ -734,7 +731,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -1, -5 ), Vector2( -2, -8 ) ]
+"values": [ Vector2( -1, 3 ), Vector2( -2, -1 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("../Utilities/CapeTarget/Position2D4:position")
@@ -746,7 +743,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 2, -5 ), Vector2( 1, -8 ) ]
+"values": [ Vector2( 2, 3 ), Vector2( 1, -1 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("../Utilities/CapeTarget/Position2D5:position")
@@ -758,7 +755,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 4, -5 ), Vector2( 3, -7 ) ]
+"values": [ Vector2( 4, 3 ), Vector2( 3, 0 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("../Utilities/CapeTarget:z_index")
@@ -773,8 +770,7 @@ tracks/9/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "LedgeGrab"
+[sub_resource type="Animation" id=8]
 tracks/0/type = "method"
 tracks/0/path = NodePath("../MoveStates/LedgeGrab")
 tracks/0/interp = 1
@@ -910,7 +906,7 @@ tracks/10/keys = {
 "values": [ Vector2( 6, -10 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprites/Sprite:texture")
@@ -961,10 +957,10 @@ tracks/3/keys = {
 "values": [ Vector2( 3, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 1.2
 loop = true
-step = 0.15
+step = 0.14
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprites/Sprite:texture")
 tracks/0/interp = 1
@@ -1023,7 +1019,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -6, -5 ), Vector2( 5, -5 ), Vector2( 4, -3 ), Vector2( -1, -2 ), Vector2( -7, -7 ), Vector2( -6, -6 ) ]
+"values": [ Vector2( -6, 3 ), Vector2( 5, 3 ), Vector2( 4, -3 ), Vector2( -1, 6 ), Vector2( -7, 1 ), Vector2( -7, 1 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("../Utilities/CapeTarget/Position2D2:position")
@@ -1035,7 +1031,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -3, -5 ), Vector2( 2, -6 ), Vector2( 2, -4 ), Vector2( -1, -4 ), Vector2( -4, -8 ), Vector2( -3, -7 ) ]
+"values": [ Vector2( -3, 3 ), Vector2( 2, 2 ), Vector2( 2, 4 ), Vector2( -1, 4 ), Vector2( -4, 0 ), Vector2( -4, 0 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("../Utilities/CapeTarget/Position2D3:position")
@@ -1047,7 +1043,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -5 ), Vector2( -1, -6 ), Vector2( -9.53674e-07, -5 ), Vector2( -1, -6 ), Vector2( 0, -8 ), Vector2( 0, -7 ) ]
+"values": [ Vector2( 0, 3 ), Vector2( -1, 2 ), Vector2( -1.90735e-06, 3 ), Vector2( -1, 2 ), Vector2( 0, 0 ), Vector2( -1, 0 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("../Utilities/CapeTarget/Position2D4:position")
@@ -1059,7 +1055,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 3, -5 ), Vector2( -4, -6 ), Vector2( -2, -5 ), Vector2( 0, -6 ), Vector2( 3, -7 ), Vector2( 3, -6 ) ]
+"values": [ Vector2( 3, 3 ), Vector2( -4, 2 ), Vector2( -2, 3 ), Vector2( 0, 2 ), Vector2( 3, 1 ), Vector2( 2, 1 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("../Utilities/CapeTarget/Position2D5:position")
@@ -1071,7 +1067,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 6, -5 ), Vector2( -7, -5 ), Vector2( -4, -5 ), Vector2( 1, -6 ), Vector2( 7, -6 ), Vector2( 6, -5 ) ]
+"values": [ Vector2( 6, 3 ), Vector2( -5, 3 ), Vector2( -4, 3 ), Vector2( 1, 2 ), Vector2( 7, 2 ), Vector2( 5, 2 ) ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("../Utilities/CapeTarget:z_index")
@@ -1094,24 +1090,23 @@ move_states = {
 "move_in_air": NodePath("MoveStates/MoveInAir"),
 "move_on_ground": NodePath("MoveStates/MoveOnGround")
 }
-iframe = true
 
 [node name="Sprite" type="Sprite" parent="Sprites" index="0"]
-texture = ExtResource( 2 )
-offset = Vector2( 2, -1 )
-hframes = 5
+texture = ExtResource( 5 )
+offset = Vector2( 2, 0 )
+hframes = 8
 
 [node name="BaseAnimator" parent="Animators" index="0"]
-anims/Action_Dodge = SubResource( 10 )
-anims/Ascend = SubResource( 1 )
-anims/AscendToDescend = SubResource( 2 )
-anims/Climb = SubResource( 3 )
-anims/Crouch = SubResource( 4 )
-anims/Descend = SubResource( 5 )
-anims/Idle = SubResource( 6 )
-anims/LedgeGrab = SubResource( 7 )
-anims/LookUp = SubResource( 8 )
-anims/Run = SubResource( 9 )
+anims/Action_Dodge = SubResource( 1 )
+anims/Ascend = SubResource( 2 )
+anims/AscendToDescend = SubResource( 3 )
+anims/Climb = SubResource( 4 )
+anims/Crouch = SubResource( 5 )
+anims/Descend = SubResource( 6 )
+anims/Idle = SubResource( 7 )
+anims/LedgeGrab = SubResource( 8 )
+anims/LookUp = SubResource( 9 )
+anims/Run = SubResource( 10 )
 
 [node name="PlayerCamera" parent="." index="7"]
 drag_margin_h_enabled = true
@@ -1123,21 +1118,22 @@ smoothing_speed = 10.0
 script = ExtResource( 12 )
 
 [node name="CapeTarget" type="Node2D" parent="Utilities" index="8"]
+position = Vector2( 0, -8 )
 
 [node name="Position2D" type="Position2D" parent="Utilities/CapeTarget" index="0"]
-position = Vector2( -6, -5 )
+position = Vector2( -0.866667, 3 )
 
 [node name="Position2D2" type="Position2D" parent="Utilities/CapeTarget" index="1"]
-position = Vector2( -4, -5 )
+position = Vector2( -0.666667, 2.53333 )
 
 [node name="Position2D3" type="Position2D" parent="Utilities/CapeTarget" index="2"]
-position = Vector2( -1, -5 )
+position = Vector2( -0.466667, 2.53333 )
 
 [node name="Position2D4" type="Position2D" parent="Utilities/CapeTarget" index="3"]
-position = Vector2( 2, -5 )
+position = Vector2( -0.266666, 2.53333 )
 
 [node name="Position2D5" type="Position2D" parent="Utilities/CapeTarget" index="4"]
-position = Vector2( 4, -5 )
+position = Vector2( 0.866667, 3 )
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities" index="9"]
 

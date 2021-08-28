@@ -5,6 +5,7 @@ export(NodePath) var phys_obj_path
 export(NodePath) var targets_path
 export(NodePath) var influencers_path
 export(NodePath) var wind_path
+export(float) var gravity := 480.0
 
 var wind_node
 var influencers_node
@@ -20,7 +21,7 @@ var mouse_influence_size := 5.0
 var mouse_tear_size := 1.0
 var mouse_influence_scalar := 1.0
 
-var gravity := 480.0
+
 
 var cloth_height := 8
 var cloth_width := 5
@@ -93,10 +94,6 @@ func create_cloth(translation : Vector2, this : ClothSim):
 
 
 func _draw():
-	for pointmass_arr in pointmasses:
-		for pointmass in pointmass_arr:
-			for link in pointmass.links:
-				draw_line(link.p1.pos, link.p2.pos, Color("a7292d"))
 	for y in pointmasses.size():
 		for x in pointmasses[y].size():
 			var points
@@ -151,6 +148,8 @@ var deltatime := 0.0
 var draw = true
 
 func _physics_process(_delta):
+	print(targets_node.get_global_transform_with_canvas()[2])
+	material.set_shader_param("root_pos", targets_node.get_global_transform_with_canvas()[2])
 	deltatime += _delta
 	z_index = targets_node.z_index
 	

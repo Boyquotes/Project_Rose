@@ -152,7 +152,6 @@ UserSettings="*res://Scripts/Globals/user_settings.gd"
 
 [debug]
 
-settings/fps/force_fps=16
 settings/stdout/print_fps=true
 
 [display]

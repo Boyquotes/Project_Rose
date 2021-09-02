@@ -6,6 +6,7 @@ export(NodePath) var targets_path
 export(NodePath) var influencers_path
 export(NodePath) var wind_path
 export(float) var gravity := 480.0
+export(Texture) var texture
 
 var wind_node
 var influencers_node
@@ -14,7 +15,10 @@ var targets_node : Node2D
 var physics : ClothPhysics
 var pointmasses : Array
 var targets : Array
-
+var line_arr : Array
+var trim_line : Line2D
+var light_gradient := Color.white
+var shadow_gradient := Color("848484")
 # every PointMass within this many pixels will be influenced by the cursor
 var mouse_influence_size := 5.0
 # minimum distance for tearing when user is right clicking
@@ -25,7 +29,7 @@ var mouse_influence_scalar := 1.0
 
 var cloth_height := 8
 var cloth_width := 5
-var resting_distances := 3.0
+var resting_distances := 2.0
 var stiffnesses := .75
 var tear_sensitivity := 500 # distance the PointMasss have to go before ripping
 
@@ -53,6 +57,32 @@ func _ready():
 	
 	wind_node = get_node(wind_path)
 	create_cloth(targets_node.global_position, self)
+	for x in cloth_width:
+		var gradient := Gradient.new()
+		var line := Line2D.new()
+		line.z_index = cloth_width - (x + 1)
+		line.texture = texture
+		line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
+		line.joint_mode = Line2D.LINE_JOINT_ROUND
+		line.width = resting_distances
+		line.default_color = Color.white
+		#line.width_curve = Curve.new()
+		add_child(line)
+		for y in cloth_height:
+			line.add_point(pointmasses[y][x].pos)
+			gradient.add_point(y/(cloth_height-1), light_gradient)
+		line.gradient = gradient
+		line_arr.push_back(line)
+	trim_line = Line2D.new()
+	trim_line.z_index = 6
+	trim_line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
+	trim_line.joint_mode = Line2D.LINE_JOINT_ROUND
+	trim_line.width = resting_distances
+	trim_line.default_color = Color("f8ffde")
+	#line.width_curve = Curve.new()
+	#add_child(trim_line)
+	for x in cloth_width:
+		trim_line.add_point(pointmasses[pointmasses.size()-1][x].pos)
 
 func create_cloth(translation : Vector2, this : ClothSim):
 	# mid_width: amount to translate the curtain along x-axis for it to be centered
@@ -63,6 +93,7 @@ func create_cloth(translation : Vector2, this : ClothSim):
 	for y in cloth_height: # due to the way PointMasss are attached, we need the y loop on the outside
 		pointmasses.push_back([])
 		this.resting_distances += .25
+		print(this.resting_distances)
 		for x in cloth_width:
 			var pointmass = PointMass.new(translation.x + x * this.resting_distances, translation.y + y * this.resting_distances, x, y)
 			# attach to 
@@ -86,81 +117,30 @@ func create_cloth(translation : Vector2, this : ClothSim):
 			if y == 0:
 				var target = targets_node.get_child(x)
 				target.global_position = to_global(pointmass.pos)
-				print(target.position)
 				this.targets.push_back(target)
 				pointmass.pin_to(target)
 			# add to PointMass array  
 			pointmasses[y].push_back(pointmass)
 
-
 func _draw():
+	"""
 	for y in pointmasses.size():
 		for x in pointmasses[y].size():
-			var points
-			var colors
-			
-			if y > 0 and x > 0 and y < pointmasses.size()-1 and x < pointmasses[y].size()-1:
-				points = [pointmasses[y][x].pos, pointmasses[y-1][x].pos, pointmasses[y][x+1].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-				points = [pointmasses[y][x].pos, pointmasses[y-1][x].pos, pointmasses[y][x-1].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-				points = [pointmasses[y][x].pos, pointmasses[y+1][x].pos, pointmasses[y][x+1].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-				points = [pointmasses[y][x].pos, pointmasses[y+1][x].pos, pointmasses[y][x-1].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-			if x == 0 and y > 0 and y < pointmasses.size()-1:
-				points = [pointmasses[y][x].pos, pointmasses[y-1][x].pos, pointmasses[y-1][x+1].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-				points = [pointmasses[y][x].pos, pointmasses[y+1][x].pos, pointmasses[y+1][x+1].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-			if x == pointmasses[y].size()-1 and y > 0 and y < pointmasses.size()-1:
-				points = [pointmasses[y][x].pos, pointmasses[y-1][x].pos, pointmasses[y-1][x-1].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-				points = [pointmasses[y][x].pos, pointmasses[y+1][x].pos, pointmasses[y+1][x-1].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-			if y == 0 and x > 0 and x < pointmasses[y].size()-1:
-				points = [pointmasses[y][x].pos, pointmasses[y][x-1].pos, pointmasses[y+1][x].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-				points = [pointmasses[y][x].pos, pointmasses[y][x+1].pos, pointmasses[y+1][x].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-			if y == pointmasses.size()-1 and x > 0 and x < pointmasses[y].size()-1:
-				points = [pointmasses[y][x].pos, pointmasses[y][x-1].pos, pointmasses[y-1][x].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
-				points = [pointmasses[y][x].pos, pointmasses[y][x+1].pos, pointmasses[y-1][x].pos]
-				colors = [Color("a7292d"), Color("a7292d"), Color("a7292d")]
-				draw_polygon(PoolVector2Array(points), PoolColorArray(colors))
 			if y == pointmasses.size()-1 and x < pointmasses[y].size()-1:
 				draw_line(pointmasses[y][x].pos, pointmasses[y][x+1].pos, Color("f8ffde"), 2)
-
-
+	"""
+	
 var deltatime := 0.0
-var draw = true
 
 func _physics_process(_delta):
-	print(targets_node.get_global_transform_with_canvas()[2])
-	material.set_shader_param("root_pos", targets_node.get_global_transform_with_canvas()[2])
+	#material.set_shader_param("root_pos", targets_node.get_global_transform_with_canvas()[2])
 	deltatime += _delta
-	z_index = targets_node.z_index
+	#z_index += targets_node.z_index
 	
-	if fmod(deltatime, _delta * 10) == 0:
-		draw = true
-	else:
-		draw = false
-	update()
 	
-	physics.update(self, draw, wind_node.wind, deltatime)
+	physics.update(self, wind_node.wind, deltatime)
 	
+	#update()
 
 
 # Physics
@@ -174,10 +154,10 @@ class ClothPhysics:
 	
 	var leftover_deltatime := 0
 	
-	var constraint_accuracy := 0
+	var constraint_accuracy := 2
 	
 	# Update physics
-	func update(this : ClothSim, _draw : bool, wind : Vector2, time : float):
+	func update(this : ClothSim, wind : Vector2, time : float):
 		# calculate elapsed time
 		current_time = OS.get_system_time_msecs()
 		var deltatime_ms = current_time - previous_time
@@ -209,7 +189,21 @@ class ClothPhysics:
 				for pointmass_arr in this.pointmasses:
 					for pointmass in pointmass_arr:
 						pointmass.solve_constraints(this, wind, time)
-		
+			for x in this.cloth_width:
+				for y in this.cloth_height:
+					this.line_arr[x].set_point_position(y, this.pointmasses[y][x].pos)
+					#TODO: Dynamic shadow
+					if x == 0:
+						for i in this.line_arr[x].gradient.get_point_count():
+							this.line_arr[x].gradient.set_color(i, this.light_gradient)
+					elif y == 0:
+						this.line_arr[x].gradient.set_color(y, this.light_gradient)
+					elif this.pointmasses[y][x-1].pos.y < this.pointmasses[y][x].pos.y:
+						this.line_arr[x].gradient.set_color(y, this.shadow_gradient)
+					elif this.pointmasses[y][x-1].pos.y > this.pointmasses[y][x].pos.y:
+						this.line_arr[x].gradient.set_color(y, this.light_gradient)
+				#TODO: Limit Dynamic Shadow to right/left for now
+				this.trim_line.set_point_position(x, this.pointmasses[this.pointmasses.size() - 1][x].pos)
 		return
 
 class PointMass:
@@ -291,16 +285,6 @@ class PointMass:
 					if distance_squared < this.mouse_tear_size:
 						links.clear()
 	
-	func _draw():
-		# draw the links and points
-		#stroke(0)
-		if links:
-			for link in links:
-				link.draw()
-		else:
-			#point(x, y)
-			pass
-	
 	""" Constraints """
 	func solve_constraints(this : ClothSim, wind : Vector2, time : float):
 		
@@ -354,8 +338,8 @@ class PointMass:
 				pos.x = 2 * (16 - 1) - pos.x;
 		"""
 	# attach_to can be used to create links between this PointMass and other PointMasss
-	func attach_to(P : PointMass, this : ClothSim, drawLink : bool = true):
-		var link = Link.new(self, P, this, drawLink)
+	func attach_to(P : PointMass, this : ClothSim):
+		var link = Link.new(self, P, this)
 		links.push_back(link)
 	
 	func remove_link(link : Link):
@@ -396,16 +380,13 @@ class Link:
 	var p1 : PointMass
 	var p2 : PointMass
 	
-	# if you want this link to be invisible, set this to false
-	var draw_this := true
 	
-	func _init(which1 : PointMass, which2 : PointMass, this : ClothSim, drawMe : bool):
+	func _init(which1 : PointMass, which2 : PointMass, this : ClothSim):
 		p1 = which1 # when you set one object to another, it's pretty much a reference. 
 		p2 = which2 # Anything that'll happen to p1 or p2 in here will happen to the paticles in our ArrayList
 		
 		resting_distance = this.resting_distances
 		stiffness = this.stiffnesses
-		draw_this = drawMe
 		
 		tear_sensitivity = this.tear_sensitivity
 	
@@ -436,9 +417,8 @@ class Link:
 
 		p2.pos.x -= diffX * scalar_p2 * difference
 		p2.pos.y -= diffY * scalar_p2 * difference
-	
-	
-	# Draw if it's visible
-	func debug_draw():
-		if draw_this:
-			pass#line(p1.x, p1.y, p2.x, p2.y)
+
+
+func _on_CapeTarget_z_index_changed():
+	z_index += targets_node.z_change
+	targets_node.z_change = 0

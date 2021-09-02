@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Game Objects/Actors/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/Actors/Player/targetting.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/Actors/Player/wind.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/Actors/Player/cape_target.gd" type="Script" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Action_Dodge"
@@ -757,18 +758,6 @@ tracks/8/keys = {
 "update": 0,
 "values": [ Vector2( 4, 3 ), Vector2( 3, 0 ) ]
 }
-tracks/9/type = "value"
-tracks/9/path = NodePath("../Utilities/CapeTarget:z_index")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
 
 [sub_resource type="Animation" id=8]
 tracks/0/type = "method"
@@ -960,7 +949,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=10]
 length = 1.2
 loop = true
-step = 0.14
+step = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Sprites/Sprite:texture")
 tracks/0/interp = 1
@@ -1019,7 +1008,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -6, 3 ), Vector2( 5, 3 ), Vector2( 4, -3 ), Vector2( -1, 6 ), Vector2( -7, 1 ), Vector2( -7, 1 ) ]
+"values": [ Vector2( -6, 3 ), Vector2( 5, 3 ), Vector2( 4, 5 ), Vector2( -1, 6 ), Vector2( -7, 1 ), Vector2( -7, 1 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("../Utilities/CapeTarget/Position2D2:position")
@@ -1069,20 +1058,26 @@ tracks/8/keys = {
 "update": 0,
 "values": [ Vector2( 6, 3 ), Vector2( -5, 3 ), Vector2( -4, 3 ), Vector2( 1, 2 ), Vector2( 7, 2 ), Vector2( 5, 2 ) ]
 }
-tracks/9/type = "value"
-tracks/9/path = NodePath("../Utilities/CapeTarget:z_index")
+tracks/9/type = "method"
+tracks/9/path = NodePath("../Utilities/CapeTarget")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 0.15, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 0 ]
+"times": PoolRealArray( 0.15, 0.75 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "add_z_index"
+}, {
+"args": [ -1 ],
+"method": "add_z_index"
+} ]
 }
 
 [node name="Rose" instance=ExtResource( 1 )]
+z_index = 10
 move_states = {
 "action": NodePath("MoveStates/Action"),
 "hit": NodePath("MoveStates/Hit"),
@@ -1095,6 +1090,7 @@ move_states = {
 texture = ExtResource( 5 )
 offset = Vector2( 2, 0 )
 hframes = 8
+frame = 2
 
 [node name="BaseAnimator" parent="Animators" index="0"]
 anims/Action_Dodge = SubResource( 1 )
@@ -1119,21 +1115,22 @@ script = ExtResource( 12 )
 
 [node name="CapeTarget" type="Node2D" parent="Utilities" index="8"]
 position = Vector2( 0, -8 )
+script = ExtResource( 14 )
 
 [node name="Position2D" type="Position2D" parent="Utilities/CapeTarget" index="0"]
-position = Vector2( -0.866667, 3 )
+position = Vector2( 5, 3 )
 
 [node name="Position2D2" type="Position2D" parent="Utilities/CapeTarget" index="1"]
-position = Vector2( -0.666667, 2.53333 )
+position = Vector2( 2, 2 )
 
 [node name="Position2D3" type="Position2D" parent="Utilities/CapeTarget" index="2"]
-position = Vector2( -0.466667, 2.53333 )
+position = Vector2( -1, 2 )
 
 [node name="Position2D4" type="Position2D" parent="Utilities/CapeTarget" index="3"]
-position = Vector2( -0.266666, 2.53333 )
+position = Vector2( -4, 2 )
 
 [node name="Position2D5" type="Position2D" parent="Utilities/CapeTarget" index="4"]
-position = Vector2( 0.866667, 3 )
+position = Vector2( -5, 3 )
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities" index="9"]
 
@@ -1143,5 +1140,4 @@ script = ExtResource( 13 )
 
 [node name="Timer" type="Timer" parent="Utilities/WindNode" index="0"]
 
-[connection signal="animation_finished" from="Animators/BaseAnimator" to="MoveStates/MoveInAir" method="_on_BaseAnimator_animation_finished"]
 [connection signal="timeout" from="Utilities/WindNode/Timer" to="Utilities/WindNode" method="_on_Timer_timeout"]

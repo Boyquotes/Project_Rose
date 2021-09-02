@@ -9,10 +9,10 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
+"base": "Reference",
 "class": "Action",
 "language": "GDScript",
-"path": "res://Scripts/Actions/Player Actions/Generic/action.gd"
+"path": "res://Scripts/Actions/Player Actions/Generic/Action.gd"
 }, {
 "base": "Node2D",
 "class": "ActionController",
@@ -152,7 +152,6 @@ UserSettings="*res://Scripts/Globals/user_settings.gd"
 
 [debug]
 
-settings/fps/force_fps=16
 settings/stdout/print_fps=true
 
 [display]

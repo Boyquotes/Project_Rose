@@ -1087,9 +1087,10 @@ move_states = {
 }
 
 [node name="Sprite" type="Sprite" parent="Sprites" index="0"]
-texture = ExtResource( 7 )
-offset = Vector2( 1, 2 )
-hframes = 2
+texture = ExtResource( 5 )
+offset = Vector2( 2, 0 )
+hframes = 8
+frame = 6
 
 [node name="BaseAnimator" parent="Animators" index="0"]
 anims/Action_Dodge = SubResource( 1 )
@@ -1117,19 +1118,19 @@ position = Vector2( 0, -8 )
 script = ExtResource( 14 )
 
 [node name="Position2D" type="Position2D" parent="Utilities/CapeTarget" index="0"]
-position = Vector2( -5, 1 )
+position = Vector2( -7, 1 )
 
 [node name="Position2D2" type="Position2D" parent="Utilities/CapeTarget" index="1"]
-position = Vector2( -2, 1 )
+position = Vector2( -4, 0 )
 
 [node name="Position2D3" type="Position2D" parent="Utilities/CapeTarget" index="2"]
-position = Vector2( 1, 1 )
+position = Vector2( -1.98682e-07, 0 )
 
 [node name="Position2D4" type="Position2D" parent="Utilities/CapeTarget" index="3"]
-position = Vector2( 4, 1 )
+position = Vector2( 3, 1 )
 
 [node name="Position2D5" type="Position2D" parent="Utilities/CapeTarget" index="4"]
-position = Vector2( 6, 1 )
+position = Vector2( 7, 2 )
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities" index="9"]
 

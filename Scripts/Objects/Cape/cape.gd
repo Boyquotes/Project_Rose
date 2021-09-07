@@ -188,17 +188,17 @@ class ClothPhysics:
 				for y in this.cloth_height:
 					this.line_arr[x].set_point_position(y, this.pointmasses[y][x].pos)
 					this.shadows[y][x].position = this.pointmasses[y][x].pos
-					var loc = this.phys_obj_node.to_local(this.to_global(this.shadows[1][x].position))
+					var loc = this.phys_obj_node.to_local(this.to_global(this.shadows[y][x].position))
+					var intersect = Geometry.segment_intersects_segment_2d(this.shadows[0][x-1].position, this.shadows[y][x-1].position, this.shadows[0][x].position, this.shadows[y][x].position)
 					if x != 0:
-						if this.shadows[y][x].position.y < this.shadows[y][x-1].position.y:
+						if intersect:
 							this.shadows[y][x].visible = false
 						else:
 							this.shadows[y][x].visible = true
 					else:
-						this.shadows[y][x].visible = false
+						this.shadows[y][x].visible = true
 					
-					
-					if loc.y < -10:
+					if loc.y - this.line_arr[x].z_index < -5:
 						this.shadows[y][x].visible = !this.shadows[y][x].visible
 		return
 

@@ -1087,10 +1087,9 @@ move_states = {
 }
 
 [node name="Sprite" type="Sprite" parent="Sprites" index="0"]
-texture = ExtResource( 5 )
-offset = Vector2( 2, 0 )
-hframes = 8
-frame = 2
+texture = ExtResource( 7 )
+offset = Vector2( 1, 2 )
+hframes = 2
 
 [node name="BaseAnimator" parent="Animators" index="0"]
 anims/Action_Dodge = SubResource( 1 )
@@ -1118,19 +1117,19 @@ position = Vector2( 0, -8 )
 script = ExtResource( 14 )
 
 [node name="Position2D" type="Position2D" parent="Utilities/CapeTarget" index="0"]
-position = Vector2( 5, 3 )
+position = Vector2( -5, 1 )
 
 [node name="Position2D2" type="Position2D" parent="Utilities/CapeTarget" index="1"]
-position = Vector2( 2, 2 )
+position = Vector2( -2, 1 )
 
 [node name="Position2D3" type="Position2D" parent="Utilities/CapeTarget" index="2"]
-position = Vector2( -1, 2 )
+position = Vector2( 1, 1 )
 
 [node name="Position2D4" type="Position2D" parent="Utilities/CapeTarget" index="3"]
-position = Vector2( -4, 2 )
+position = Vector2( 4, 1 )
 
 [node name="Position2D5" type="Position2D" parent="Utilities/CapeTarget" index="4"]
-position = Vector2( -5, 3 )
+position = Vector2( 6, 1 )
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities" index="9"]
 
@@ -1140,4 +1139,5 @@ script = ExtResource( 13 )
 
 [node name="Timer" type="Timer" parent="Utilities/WindNode" index="0"]
 
+[connection signal="animation_finished" from="Animators/BaseAnimator" to="MoveStates/MoveInAir" method="_on_BaseAnimator_animation_finished"]
 [connection signal="timeout" from="Utilities/WindNode/Timer" to="Utilities/WindNode" method="_on_Timer_timeout"]

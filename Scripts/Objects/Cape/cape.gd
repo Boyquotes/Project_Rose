@@ -14,22 +14,22 @@ var phys_obj_node
 var targets_node : Node2D
 var physics : ClothPhysics
 var pointmasses : Array
+var shadows : Array
 var targets : Array
 var line_arr : Array
 var trim_line : Line2D
-var light_gradient := Color.white
-var shadow_gradient := Color("848484")
 # every PointMass within this many pixels will be influenced by the cursor
 var mouse_influence_size := 5.0
 # minimum distance for tearing when user is right clicking
 var mouse_tear_size := 1.0
 var mouse_influence_scalar := 1.0
-
+onready var shadow_node = preload("res://Game Objects/Actors/Players/Rose/CapeShadow.tscn")
 
 
 var cloth_height := 8
 var cloth_width := 5
-var resting_distances := 2.0
+var initial_rest_distance := 2.0
+var resting_distance := 2.0
 var stiffnesses := .75
 var tear_sensitivity := 500 # distance the PointMasss have to go before ripping
 
@@ -57,32 +57,26 @@ func _ready():
 	
 	wind_node = get_node(wind_path)
 	create_cloth(targets_node.global_position, self)
+	var light_bit = 16384
 	for x in cloth_width:
-		var gradient := Gradient.new()
 		var line := Line2D.new()
 		line.z_index = cloth_width - (x + 1)
 		line.texture = texture
 		line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 		line.joint_mode = Line2D.LINE_JOINT_ROUND
-		line.width = resting_distances
+		line.width = resting_distance
 		line.default_color = Color.white
-		#line.width_curve = Curve.new()
+		line.light_mask = light_bit
 		add_child(line)
 		for y in cloth_height:
 			line.add_point(pointmasses[y][x].pos)
-			gradient.add_point(y/(cloth_height-1), light_gradient)
-		line.gradient = gradient
+			shadows[y][x].range_item_cull_mask = light_bit
+			var factor = pointmasses[y][x].resting_distance / initial_rest_distance
+			shadows[y][x].scale *= (factor + .75)
+			line.add_child(shadows[y][x])
+			shadows[y][x].position = pointmasses[y][x].pos
+		light_bit = light_bit / 2
 		line_arr.push_back(line)
-	trim_line = Line2D.new()
-	trim_line.z_index = 6
-	trim_line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
-	trim_line.joint_mode = Line2D.LINE_JOINT_ROUND
-	trim_line.width = resting_distances
-	trim_line.default_color = Color("f8ffde")
-	#line.width_curve = Curve.new()
-	#add_child(trim_line)
-	for x in cloth_width:
-		trim_line.add_point(pointmasses[pointmasses.size()-1][x].pos)
 
 func create_cloth(translation : Vector2, this : ClothSim):
 	# mid_width: amount to translate the curtain along x-axis for it to be centered
@@ -92,10 +86,10 @@ func create_cloth(translation : Vector2, this : ClothSim):
 	# Since this our fabric is basically a grid of points, we have two loops
 	for y in cloth_height: # due to the way PointMasss are attached, we need the y loop on the outside
 		pointmasses.push_back([])
-		this.resting_distances += .25
-		print(this.resting_distances)
+		shadows.push_back([])
+		this.resting_distance += .25
 		for x in cloth_width:
-			var pointmass = PointMass.new(translation.x + x * this.resting_distances, translation.y + y * this.resting_distances, x, y)
+			var pointmass = PointMass.new(translation.x + x * this.resting_distance, translation.y + y * this.resting_distance, x, y, this.resting_distance)
 			# attach to 
 			# x - 1  and
 			# y - 1  
@@ -121,6 +115,7 @@ func create_cloth(translation : Vector2, this : ClothSim):
 				pointmass.pin_to(target)
 			# add to PointMass array  
 			pointmasses[y].push_back(pointmass)
+			shadows[y].push_back(shadow_node.instance())
 
 func _draw():
 	"""
@@ -192,18 +187,19 @@ class ClothPhysics:
 			for x in this.cloth_width:
 				for y in this.cloth_height:
 					this.line_arr[x].set_point_position(y, this.pointmasses[y][x].pos)
-					#TODO: Dynamic shadow
-					if x == 0:
-						for i in this.line_arr[x].gradient.get_point_count():
-							this.line_arr[x].gradient.set_color(i, this.light_gradient)
-					elif y == 0:
-						this.line_arr[x].gradient.set_color(y, this.light_gradient)
-					elif this.pointmasses[y][x-1].pos.y < this.pointmasses[y][x].pos.y:
-						this.line_arr[x].gradient.set_color(y, this.shadow_gradient)
-					elif this.pointmasses[y][x-1].pos.y > this.pointmasses[y][x].pos.y:
-						this.line_arr[x].gradient.set_color(y, this.light_gradient)
-				#TODO: Limit Dynamic Shadow to right/left for now
-				this.trim_line.set_point_position(x, this.pointmasses[this.pointmasses.size() - 1][x].pos)
+					this.shadows[y][x].position = this.pointmasses[y][x].pos
+					var loc = this.phys_obj_node.to_local(this.to_global(this.shadows[1][x].position))
+					if x != 0:
+						if this.shadows[y][x].position.y < this.shadows[y][x-1].position.y:
+							this.shadows[y][x].visible = false
+						else:
+							this.shadows[y][x].visible = true
+					else:
+						this.shadows[y][x].visible = false
+					
+					
+					if loc.y < -10:
+						this.shadows[y][x].visible = !this.shadows[y][x].visible
 		return
 
 class PointMass:
@@ -226,8 +222,9 @@ class PointMass:
 	var pinned := false
 	var pin : Position2D
 	
+	var resting_distance : float
 	# PointMass constructor
-	func _init(var x_pos : float, var y_pos : float, var x : int, y : int):
+	func _init(var x_pos : float, var y_pos : float, var x : int, y : int, rest : float):
 		pos.x = x_pos
 		pos.y = y_pos
 		
@@ -236,6 +233,8 @@ class PointMass:
 		
 		xplace = x
 		yplace = y
+		
+		resting_distance = rest
 
 	# The update function is used to update the physics of the PointMass.
 	# motion is applied, and links are drawn here
@@ -385,7 +384,7 @@ class Link:
 		p1 = which1 # when you set one object to another, it's pretty much a reference. 
 		p2 = which2 # Anything that'll happen to p1 or p2 in here will happen to the paticles in our ArrayList
 		
-		resting_distance = this.resting_distances
+		resting_distance = this.resting_distance
 		stiffness = this.stiffnesses
 		
 		tear_sensitivity = this.tear_sensitivity

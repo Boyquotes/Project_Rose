@@ -50,7 +50,6 @@ func _handle_animation():
 			host.animate(host.base_anim,"AscendToDescend", false)
 		elif !done_ascent || !done_descent:
 			if host.vert_spd < 0 && !done_ascent:
-				print("!!!")
 				host.animate(host.base_anim, "Ascend", false)
 				done_ascent = true
 				done_descent = false

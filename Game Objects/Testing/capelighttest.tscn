@@ -8,11 +8,11 @@
 offsets = PoolRealArray( 0, 0.28022, 0.631868, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 )
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.225275, 0.543956, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 )
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.359756, 0.681319, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0.517647, 0.517647, 0.517647, 1, 1, 1, 1, 1 )
 
@@ -30,13 +30,14 @@ joint_mode = 2
 [node name="Line2D3" type="Line2D" parent="."]
 light_mask = 524288
 position = Vector2( 1, 6 )
-points = PoolVector2Array( 15, -20, 14.1706, -6.49741, 13.0468, 2.72655, 13.1873, 10.6863 )
-width = 3.0
+points = PoolVector2Array( -1, -6, -1, 19 )
+width = 4.0
 default_color = Color( 1, 1, 1, 1 )
-gradient = SubResource( 3 )
+gradient = SubResource( 2 )
 texture = ExtResource( 1 )
-texture_mode = 2
+texture_mode = 1
 joint_mode = 2
+round_precision = 50
 
 [node name="Shadow" parent="Line2D3" instance=ExtResource( 2 )]
 light_mask = 0
@@ -47,7 +48,7 @@ position = Vector2( -0.842796, -10.0667 )
 points = PoolVector2Array( 19.8428, -3.9333, 19.8428, 5.0667, 19.3678, 14.198, 19.6956, 25.7162 )
 width = 3.0
 default_color = Color( 1, 1, 1, 1 )
-gradient = SubResource( 2 )
+gradient = SubResource( 3 )
 texture = ExtResource( 1 )
 texture_mode = 2
 joint_mode = 2

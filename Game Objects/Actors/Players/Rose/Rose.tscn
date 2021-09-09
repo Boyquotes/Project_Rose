@@ -1005,10 +1005,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -6, 3 ), Vector2( 5, 3 ), Vector2( 4, 5 ), Vector2( -1, 6 ), Vector2( -7, 1 ), Vector2( -7, 1 ) ]
+"values": [ Vector2( -6, 3 ), Vector2( 6, 3 ), Vector2( 11, 3 ), Vector2( 8, 5 ), Vector2( 5, 6 ), Vector2( -7, 1 ), Vector2( -7, 1 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("../Utilities/CapeTarget/Position2D2:position")
@@ -1020,7 +1020,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -3, 3 ), Vector2( 2, 2 ), Vector2( 2, 4 ), Vector2( -1, 4 ), Vector2( -4, 0 ), Vector2( -4, 0 ) ]
+"values": [ Vector2( -3, 3 ), Vector2( 7, 2 ), Vector2( 6, 4 ), Vector2( 5, 4 ), Vector2( -4, 0 ), Vector2( -4, 0 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("../Utilities/CapeTarget/Position2D3:position")
@@ -1029,10 +1029,10 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 3 ), Vector2( -1, 2 ), Vector2( -1.90735e-06, 3 ), Vector2( -1, 2 ), Vector2( 0, 0 ), Vector2( -1, 0 ) ]
+"values": [ Vector2( 0, 3 ), Vector2( 2, 1 ), Vector2( 2, 2 ), Vector2( 3, 3 ), Vector2( 4, 2 ), Vector2( 0, 0 ), Vector2( -1, 0 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("../Utilities/CapeTarget/Position2D4:position")
@@ -1041,10 +1041,10 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 3, 3 ), Vector2( -4, 2 ), Vector2( -2, 3 ), Vector2( 0, 2 ), Vector2( 3, 1 ), Vector2( 2, 1 ) ]
+"values": [ Vector2( 3, 3 ), Vector2( 1, 1 ), Vector2( -1, 2 ), Vector2( 1, 3 ), Vector2( 0, 2 ), Vector2( 3, 1 ), Vector2( 2, 1 ) ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("../Utilities/CapeTarget/Position2D5:position")
@@ -1053,10 +1053,10 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 0.3, 0.45, 0.6, 0.9, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 6, 3 ), Vector2( -5, 3 ), Vector2( -4, 3 ), Vector2( 1, 2 ), Vector2( 7, 2 ), Vector2( 5, 2 ) ]
+"values": [ Vector2( 6, 3 ), Vector2( -1, 1 ), Vector2( -3, 3 ), Vector2( -2, 3 ), Vector2( -1, 2 ), Vector2( 7, 2 ), Vector2( 5, 2 ) ]
 }
 tracks/9/type = "method"
 tracks/9/path = NodePath("../Utilities/CapeTarget")
@@ -1068,10 +1068,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0.15, 0.75 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ 1 ],
+"args": [ 10 ],
 "method": "add_z_index"
 }, {
-"args": [ -1 ],
+"args": [ 0 ],
 "method": "add_z_index"
 } ]
 }
@@ -1090,7 +1090,7 @@ move_states = {
 texture = ExtResource( 5 )
 offset = Vector2( 2, 0 )
 hframes = 8
-frame = 6
+frame = 1
 
 [node name="BaseAnimator" parent="Animators" index="0"]
 anims/Action_Dodge = SubResource( 1 )
@@ -1118,19 +1118,19 @@ position = Vector2( 0, -8 )
 script = ExtResource( 14 )
 
 [node name="Position2D" type="Position2D" parent="Utilities/CapeTarget" index="0"]
-position = Vector2( -7, 1 )
+position = Vector2( 6, 3 )
 
 [node name="Position2D2" type="Position2D" parent="Utilities/CapeTarget" index="1"]
-position = Vector2( -4, 0 )
+position = Vector2( 2, 2.5 )
 
 [node name="Position2D3" type="Position2D" parent="Utilities/CapeTarget" index="2"]
-position = Vector2( -1.98682e-07, 0 )
+position = Vector2( 2, 1 )
 
 [node name="Position2D4" type="Position2D" parent="Utilities/CapeTarget" index="3"]
-position = Vector2( 3, 1 )
+position = Vector2( 1, 1 )
 
 [node name="Position2D5" type="Position2D" parent="Utilities/CapeTarget" index="4"]
-position = Vector2( 7, 2 )
+position = Vector2( -1, 1 )
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities" index="9"]
 
@@ -1140,5 +1140,6 @@ script = ExtResource( 13 )
 
 [node name="Timer" type="Timer" parent="Utilities/WindNode" index="0"]
 
+[connection signal="animation_changed" from="." to="Utilities/CapeTarget" method="_on_Rose_animation_changed"]
 [connection signal="animation_finished" from="Animators/BaseAnimator" to="MoveStates/MoveInAir" method="_on_BaseAnimator_animation_finished"]
 [connection signal="timeout" from="Utilities/WindNode/Timer" to="Utilities/WindNode" method="_on_Timer_timeout"]

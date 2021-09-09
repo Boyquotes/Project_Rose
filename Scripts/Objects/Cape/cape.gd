@@ -7,6 +7,7 @@ export(NodePath) var influencers_path
 export(NodePath) var wind_path
 export(float) var gravity := 480.0
 export(Texture) var texture
+export(Texture) var trim_texture
 
 var wind_node
 var influencers_node
@@ -58,6 +59,15 @@ func _ready():
 	wind_node = get_node(wind_path)
 	create_cloth(targets_node.global_position, self)
 	var light_bit = 16384
+	var light_bit_sum = light_bit
+	trim_line = Line2D.new()
+	trim_line.z_index = 10
+	trim_line.texture = trim_texture
+	trim_line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
+	trim_line.joint_mode = Line2D.LINE_JOINT_ROUND
+	trim_line.width = 0
+	trim_line.default_color = Color.white
+
 	for x in cloth_width:
 		var line := Line2D.new()
 		line.z_index = cloth_width - (x + 1)
@@ -65,6 +75,7 @@ func _ready():
 		line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 		line.joint_mode = Line2D.LINE_JOINT_ROUND
 		line.width = resting_distance
+		print(resting_distance)
 		line.default_color = Color.white
 		line.light_mask = light_bit
 		add_child(line)
@@ -77,17 +88,23 @@ func _ready():
 			shadows[y][x].position = pointmasses[y][x].pos
 		light_bit = light_bit / 2
 		line_arr.push_back(line)
+		light_bit_sum += light_bit
+		trim_line.add_point(pointmasses[cloth_height-1][x].pos)
+	trim_line.light_mask = light_bit_sum
+	add_child(trim_line)
+
 
 func create_cloth(translation : Vector2, this : ClothSim):
 	# mid_width: amount to translate the curtain along x-axis for it to be centered
 	# (curtainWidth * restingDistances) = curtain's pixel width
 	#var mid_width = int(width/2 - (curtainWidth * restingDistances)/2)
-	
+	var sum := 0.0
 	# Since this our fabric is basically a grid of points, we have two loops
 	for y in cloth_height: # due to the way PointMasss are attached, we need the y loop on the outside
 		pointmasses.push_back([])
 		shadows.push_back([])
 		this.resting_distance += .25
+		sum += this.resting_distance
 		for x in cloth_width:
 			var pointmass = PointMass.new(translation.x + x * this.resting_distance, translation.y + y * this.resting_distance, x, y, this.resting_distance)
 			# attach to 
@@ -116,6 +133,7 @@ func create_cloth(translation : Vector2, this : ClothSim):
 			# add to PointMass array  
 			pointmasses[y].push_back(pointmass)
 			shadows[y].push_back(shadow_node.instance())
+	print(sum)
 
 func _draw():
 	"""
@@ -149,7 +167,7 @@ class ClothPhysics:
 	
 	var leftover_deltatime := 0
 	
-	var constraint_accuracy := 2
+	var constraint_accuracy := 5
 	
 	# Update physics
 	func update(this : ClothSim, wind : Vector2, time : float):
@@ -200,6 +218,7 @@ class ClothPhysics:
 					
 					if loc.y - this.line_arr[x].z_index < -5:
 						this.shadows[y][x].visible = !this.shadows[y][x].visible
+				this.trim_line.set_point_position(x, this.pointmasses[this.cloth_height-1][x].pos)
 		return
 
 class PointMass:
@@ -297,12 +316,6 @@ class PointMass:
 			link.solve()
 	
 		""" Other Constraints """
-		# make sure the PointMass stays in its place if it's pinned
-		if pinned:
-			pos = this.to_local(pin.global_position)
-		
-		
-		
 		var tempos = Vector2(pos.x, ceil(pos.y))
 		var space_state : Physics2DDirectSpaceState = this.get_world_2d().direct_space_state
 		var coll = 33
@@ -331,11 +344,11 @@ class PointMass:
 				pos = Vector2(tempos.x+west,tempos.y)
 				intersecting = false
 		
-		"""
-		if xplace == 4:
-			if pos.x > 16 and pos.y > 1:
-				pos.x = 2 * (16 - 1) - pos.x;
-		"""
+		# make sure the PointMass stays in its place if it's pinned
+		if pinned:
+			pos = this.to_local(pin.global_position)
+		
+		
 	# attach_to can be used to create links between this PointMass and other PointMasss
 	func attach_to(P : PointMass, this : ClothSim):
 		var link = Link.new(self, P, this)
@@ -418,6 +431,6 @@ class Link:
 		p2.pos.y -= diffY * scalar_p2 * difference
 
 
-func _on_CapeTarget_z_index_changed():
-	z_index += targets_node.z_change
-	targets_node.z_change = 0
+func _on_CapeTarget_z_index_changed(z : int):
+	z_index = z
+	print(z_index)

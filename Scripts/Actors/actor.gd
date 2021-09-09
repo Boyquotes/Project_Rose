@@ -3,6 +3,8 @@ extends KinematicBody2D
 # desc
 # long_desc
 
+signal animation_changed
+
 ###actor_exoport_data###
 export(String) var tag = "NPC" # TODO: Make into enum in global context
 export(int) var max_hp := 100
@@ -38,6 +40,7 @@ var true_grav : float
 var floor_normal := Vector2(0, -1)
 var grav_activated := true
 var fric_activated := true
+var prev_anim := ""
 
 onready var base_anim = $Animators/BaseAnimator
 onready var hit_box = $HitArea/HitBox
@@ -105,8 +108,12 @@ func _cleanup():
 	pass
 
 func animate(animator, anim, cont = true):
+	if prev_anim != anim:
+		emit_signal("animation_changed")
+		prev_anim = anim
 	animator.stop(cont)
 	animator.play(anim)
+
 
 
 func kill():

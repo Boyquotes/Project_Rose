@@ -77,7 +77,7 @@ func _ready():
 		line.width = resting_distance
 		print(resting_distance)
 		line.default_color = Color.white
-		line.light_mask = light_bit
+		line.light_mask = light_bit + 2
 		add_child(line)
 		for y in cloth_height:
 			line.add_point(pointmasses[y][x].pos)

@@ -11,8 +11,8 @@
 [ext_resource path="res://Assets/Lights/spot.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/cape.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/capetrim.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n2.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" type="Texture" id=15]
 [ext_resource path="res://Game Objects/Testing/mouse_follow.gd" type="Script" id=16]
 
 [sub_resource type="Shader" id=1]
@@ -240,29 +240,29 @@ void light() {
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 3 )
-shader_param/first_stage = 0.0
+shader_param/first_stage = 0.75
 shader_param/first_smooth = 0.0
-shader_param/second_stage = 0.026
-shader_param/second_smooth = 0.0
+shader_param/second_stage = 0.5
+shader_param/second_smooth = 0.1
 shader_param/rim_light = true
-shader_param/rim_thickness = 40.0
-shader_param/rim_intense = 0.207
+shader_param/rim_thickness = 1.0
+shader_param/rim_intense = 0.1
 shader_param/rim_extra_thick = true
 shader_param/min_light = 0.0
 shader_param/mid_light = 0.0
-shader_param/max_light = 0.874
+shader_param/max_light = 1.0
 shader_param/obj_light_add = 0.0
 shader_param/fake_light_depth = true
-shader_param/obj_height = 36.902
+shader_param/obj_height = -200.0
 shader_param/min_scale = 0.2
 shader_param/max_scale = 2.0
-shader_param/light_change_thresh = 0.0
-shader_param/light_fade = false
-shader_param/light_fade_end = 0.0
+shader_param/light_change_thresh = 1000.0
+shader_param/light_fade = true
+shader_param/light_fade_end = 2000.0
 shader_param/fake_spot_light = false
-shader_param/first_shrink_speed = 0.0
-shader_param/second_shrink_speed = 0.0
-shader_param/before_light_modulate = Color( 1, 1, 1, 1 )
+shader_param/first_shrink_speed = 1.0
+shader_param/second_shrink_speed = 2.0
+shader_param/before_light_modulate = Color( 0.498039, 0.364706, 0.364706, 1 )
 
 [node name="TestRoom" type="Node2D"]
 
@@ -273,6 +273,7 @@ scale = Vector2( 20, 20 )
 texture = ExtResource( 8 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0.496094, 0.496094, 0.496094, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -291,21 +292,8 @@ collision_mask = 0
 format = 1
 script = ExtResource( 4 )
 
-[node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 238, -282 )
-z_index = 4
-texture = ExtResource( 7 )
-texture_scale = 10.0
-mode = 2
-range_height = 10.0
-range_item_cull_mask = 2
-shadow_item_cull_mask = 2
-script = ExtResource( 16 )
-
-[node name="Sprite" type="Sprite" parent="Light2D"]
-texture = ExtResource( 9 )
-
 [node name="Cape" parent="." instance=ExtResource( 5 )]
+visible = false
 material = SubResource( 2 )
 z_index = 5
 phys_obj_path = NodePath("../Rose")
@@ -317,7 +305,7 @@ trim_texture = ExtResource( 11 )
 
 [node name="Rose" parent="." instance=ExtResource( 2 )]
 light_mask = 2
-position = Vector2( 248, 37 )
+position = Vector2( -135, 15 )
 collision_layer = 4
 move_states = {
 "action": NodePath("MoveStates/Action"),
@@ -362,14 +350,32 @@ wind_type = 0
 position = Vector2( -96, 31 )
 texture = ExtResource( 6 )
 
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 163, 13 )
+z_index = 4
+texture = ExtResource( 7 )
+texture_scale = 10.0
+mode = 2
+range_height = 5.0
+range_item_cull_mask = 2
+shadow_item_cull_mask = 2
+script = ExtResource( 16 )
+
+[node name="Sprite" type="Sprite" parent="Light2D"]
+texture = ExtResource( 9 )
+
 [node name="RoseStill" type="Sprite" parent="."]
+visible = false
 light_mask = 2
 material = SubResource( 4 )
-position = Vector2( 428, 41 )
+position = Vector2( 251, 41 )
 texture = ExtResource( 14 )
-normal_map = ExtResource( 15 )
+normal_map = ExtResource( 12 )
 hframes = 5
 frame = 2
+
+[node name="Camera2D" type="Camera2D" parent="RoseStill"]
+smoothing_enabled = true
 
 [connection signal="z_index_changed" from="Rose/Utilities/CapeTarget" to="Cape" method="_on_CapeTarget_z_index_changed"]
 

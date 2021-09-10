@@ -11,8 +11,8 @@
 [ext_resource path="res://Assets/Lights/spot.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/cape.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/capetrim.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/RoseStill_n.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/RoseStill.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" type="Texture" id=15]
 [ext_resource path="res://Game Objects/Testing/mouse_follow.gd" type="Script" id=16]
 
 [sub_resource type="Shader" id=1]
@@ -292,7 +292,7 @@ format = 1
 script = ExtResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 294, -25 )
+position = Vector2( 238, -282 )
 z_index = 4
 texture = ExtResource( 7 )
 texture_scale = 10.0
@@ -335,10 +335,25 @@ visible = false
 
 [node name="Sprite" parent="Rose/Sprites" index="0"]
 light_mask = 2
-position = Vector2( -68, -11 )
+frame = 2
 
 [node name="Utilities" parent="Rose" index="8"]
 visible = false
+
+[node name="Position2D" parent="Rose/Utilities/CapeTarget" index="0"]
+position = Vector2( -6, 1.85714 )
+
+[node name="Position2D2" parent="Rose/Utilities/CapeTarget" index="1"]
+position = Vector2( -4, 1.28571 )
+
+[node name="Position2D3" parent="Rose/Utilities/CapeTarget" index="2"]
+position = Vector2( -1.57143, 0.714286 )
+
+[node name="Position2D4" parent="Rose/Utilities/CapeTarget" index="3"]
+position = Vector2( 1.42857, 0.714286 )
+
+[node name="Position2D5" parent="Rose/Utilities/CapeTarget" index="4"]
+position = Vector2( 3.42857, 1.28571 )
 
 [node name="WindNode" parent="Rose/Utilities" index="10"]
 wind_type = 0
@@ -348,12 +363,13 @@ position = Vector2( -96, 31 )
 texture = ExtResource( 6 )
 
 [node name="RoseStill" type="Sprite" parent="."]
-visible = false
 light_mask = 2
 material = SubResource( 4 )
 position = Vector2( 428, 41 )
-texture = ExtResource( 13 )
-normal_map = ExtResource( 12 )
+texture = ExtResource( 14 )
+normal_map = ExtResource( 15 )
+hframes = 5
+frame = 2
 
 [connection signal="z_index_changed" from="Rose/Utilities/CapeTarget" to="Cape" method="_on_CapeTarget_z_index_changed"]
 

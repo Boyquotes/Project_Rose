@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Resources/Tilesets/PrimititveTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Game Objects/Actors/Players/Rose/Rose.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Assets/Sprites/Actors/Rose/capetrim.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/RoseStill_n.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/RoseStill.png" type="Texture" id=13]
+[ext_resource path="res://Game Objects/Testing/mouse_follow.gd" type="Script" id=16]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -158,7 +159,7 @@ float light_calc(float light_strength, float would_be_strength) {
 }
 
 void light() {
-	vec3 norm = vec3(NORMAL.x, -1.0 * NORMAL.y, NORMAL.z);
+	vec3 norm = vec3(NORMAL.x, -1.0 * NORMAL.y, -1.0 * NORMAL.z);
 	float level_1 = first_stage;
 	float level_1_smooth = first_smooth;
 	float level_2 = second_stage;
@@ -291,7 +292,7 @@ format = 1
 script = ExtResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 556, 15 )
+position = Vector2( 294, -25 )
 z_index = 4
 texture = ExtResource( 7 )
 texture_scale = 10.0
@@ -299,6 +300,7 @@ mode = 2
 range_height = 10.0
 range_item_cull_mask = 2
 shadow_item_cull_mask = 2
+script = ExtResource( 16 )
 
 [node name="Sprite" type="Sprite" parent="Light2D"]
 texture = ExtResource( 9 )
@@ -315,7 +317,7 @@ trim_texture = ExtResource( 11 )
 
 [node name="Rose" parent="." instance=ExtResource( 2 )]
 light_mask = 2
-position = Vector2( 113, -109 )
+position = Vector2( 248, 37 )
 collision_layer = 4
 move_states = {
 "action": NodePath("MoveStates/Action"),
@@ -325,8 +327,18 @@ move_states = {
 "move_on_ground": NodePath("MoveStates/MoveOnGround")
 }
 
+[node name="CollisionBox" parent="Rose" index="0"]
+visible = false
+
+[node name="HitArea" parent="Rose" index="2"]
+visible = false
+
 [node name="Sprite" parent="Rose/Sprites" index="0"]
 light_mask = 2
+position = Vector2( -68, -11 )
+
+[node name="Utilities" parent="Rose" index="8"]
+visible = false
 
 [node name="WindNode" parent="Rose/Utilities" index="10"]
 wind_type = 0
@@ -336,6 +348,7 @@ position = Vector2( -96, 31 )
 texture = ExtResource( 6 )
 
 [node name="RoseStill" type="Sprite" parent="."]
+visible = false
 light_mask = 2
 material = SubResource( 4 )
 position = Vector2( 428, 41 )

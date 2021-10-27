@@ -1,62 +1,55 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Sprites/Actors/Rose/cape.png" type="Texture" id=1]
 [ext_resource path="res://Game Objects/Actors/Players/Rose/CapeShadow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/cape_n.png" type="Texture" id=3]
+[ext_resource path="res://Game Objects/Testing/line2d_normal.gd" type="Script" id=4]
+[ext_resource path="res://Game Objects/Testing/CapeLine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Lights/light.png" type="Texture" id=7]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.28022, 0.631868, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 )
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
 
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.225275, 0.543956, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 )
+uniform sampler2D norm;
+/*
+void fragment() {
+	NORMAL = 2.0 * texture(norm, UV).rgb - 1.0;
+}
 
-[sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.359756, 0.681319, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 0.517647, 0.517647, 0.517647, 1, 1, 1, 1, 1 )
+void light() {
+	LIGHT_VEC.x = -LIGHT_VEC.x;
+	LIGHT = LIGHT;
+}*/"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/norm = ExtResource( 3 )
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( 22.2708, -14.4572, 21.9899, -4.48406, 22.6454, 4.31849, 23.2072, 15.5558 )
-width = 3.0
+[node name="Line2D3" type="Line2D" parent="."]
+light_mask = 524290
+material = SubResource( 2 )
+position = Vector2( 1, 6 )
+points = PoolVector2Array( -1, -6, 3, -6, 7, -6, 11, -6, 15, -6, 19, -6, 23, -6 )
+width = 4.0
 default_color = Color( 1, 1, 1, 1 )
-gradient = SubResource( 1 )
 texture = ExtResource( 1 )
 texture_mode = 2
 joint_mode = 2
-
-[node name="Line2D3" type="Line2D" parent="."]
-light_mask = 524288
-position = Vector2( 1, 6 )
-points = PoolVector2Array( -1, -6, -1, 19 )
-width = 4.0
-default_color = Color( 1, 1, 1, 1 )
-gradient = SubResource( 2 )
-texture = ExtResource( 1 )
-texture_mode = 1
-joint_mode = 2
-round_precision = 50
+script = ExtResource( 4 )
+normals = ExtResource( 3 )
 
 [node name="Shadow" parent="Line2D3" instance=ExtResource( 2 )]
+visible = false
 light_mask = 0
 position = Vector2( 15, -13 )
 
-[node name="Line2D2" type="Line2D" parent="."]
-position = Vector2( -0.842796, -10.0667 )
-points = PoolVector2Array( 19.8428, -3.9333, 19.8428, 5.0667, 19.3678, 14.198, 19.6956, 25.7162 )
-width = 3.0
-default_color = Color( 1, 1, 1, 1 )
-gradient = SubResource( 3 )
-texture = ExtResource( 1 )
-texture_mode = 2
-joint_mode = 2
-
 [node name="Light2D" type="Light2D" parent="."]
-visible = false
 light_mask = 0
-position = Vector2( 83, 96 )
+position = Vector2( 12, -51 )
 texture = ExtResource( 7 )
 mode = 2
-range_item_cull_mask = 262145
+range_item_cull_mask = 2
+
+[node name="CapeLine" parent="." instance=ExtResource( 5 )]

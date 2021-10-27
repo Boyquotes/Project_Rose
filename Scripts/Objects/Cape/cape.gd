@@ -25,7 +25,7 @@ var mouse_influence_size := 5.0
 var mouse_tear_size := 1.0
 var mouse_influence_scalar := 1.0
 onready var shadow_node = preload("res://Game Objects/Actors/Players/Rose/CapeShadow.tscn")
-
+onready var cape_line_node = preload("res://Game Objects/Testing/CapeLine.tscn")
 
 var cloth_height := 8
 var cloth_width := 5
@@ -69,7 +69,7 @@ func _ready():
 	trim_line.default_color = Color.white
 
 	for x in cloth_width:
-		var line := Line2D.new()
+		var line = cape_line_node.instance()
 		line.z_index = cloth_width - (x + 1)
 		line.texture = texture
 		line.texture_mode = Line2D.LINE_TEXTURE_STRETCH

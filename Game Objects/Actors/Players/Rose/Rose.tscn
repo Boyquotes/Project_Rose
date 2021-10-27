@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Game Objects/Actors/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scripts/Actors/Player/wind.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/Actors/Player/cape_target.gd" type="Script" id=14]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Run_n.png" type="Texture" id=16]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -146,11 +147,11 @@ shader = SubResource( 1 )
 shader_param/first_stage = 0.75
 shader_param/first_smooth = 0.0
 shader_param/second_stage = 0.5
-shader_param/second_smooth = 0.25
-shader_param/rim_light = true
-shader_param/rim_thickness = 1.0
-shader_param/rim_intense = 0.1
-shader_param/rim_extra_thick = true
+shader_param/second_smooth = 0.0
+shader_param/rim_light = false
+shader_param/rim_thickness = 5.0
+shader_param/rim_intense = 1.0
+shader_param/rim_extra_thick = false
 shader_param/min_light = 0.0
 shader_param/mid_light = 0.0
 shader_param/max_light = 1.0
@@ -1239,6 +1240,18 @@ tracks/9/keys = {
 "method": "add_z_index"
 } ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("../Sprites/Sprite:normal_map")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 16 ) ]
+}
 
 [node name="Rose" instance=ExtResource( 1 )]
 z_index = 10
@@ -1252,10 +1265,10 @@ move_states = {
 
 [node name="Sprite" type="Sprite" parent="Sprites" index="0"]
 material = SubResource( 2 )
-texture = ExtResource( 2 )
-normal_map = ExtResource( 15 )
-offset = Vector2( 2, -1 )
-hframes = 5
+texture = ExtResource( 5 )
+normal_map = ExtResource( 16 )
+offset = Vector2( 2, 0 )
+hframes = 8
 
 [node name="BaseAnimator" parent="Animators" index="0"]
 anims/Action_Dodge = SubResource( 3 )
@@ -1286,16 +1299,16 @@ script = ExtResource( 14 )
 position = Vector2( -6, 3 )
 
 [node name="Position2D2" type="Position2D" parent="Utilities/CapeTarget" index="1"]
-position = Vector2( -4, 3 )
+position = Vector2( -3, 3 )
 
 [node name="Position2D3" type="Position2D" parent="Utilities/CapeTarget" index="2"]
-position = Vector2( -1, 3 )
+position = Vector2( 0, 3 )
 
 [node name="Position2D4" type="Position2D" parent="Utilities/CapeTarget" index="3"]
-position = Vector2( 2, 3 )
+position = Vector2( 3, 3 )
 
 [node name="Position2D5" type="Position2D" parent="Utilities/CapeTarget" index="4"]
-position = Vector2( 4, 3 )
+position = Vector2( 6, 3 )
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities" index="9"]
 

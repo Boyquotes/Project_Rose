@@ -3,13 +3,13 @@ extends Actor
 # desc
 # long desc
 
-"""
+
 signal hp_changed
 signal resource_1_changed
 signal resource_2_changed
 signal resource_3_changed
 signal item_changed
-"""
+
 
 # TODO: move to globals perhaps
 enum InputType {GAMEPAD, KEYMOUSE}
@@ -22,15 +22,21 @@ var deg := 0.0
 var move_state := "move_on_ground"
 var speed_mag
 
-onready var attack_collision = $Utilities/AttackCollision
-onready var player_camera = $PlayerCamera
+@onready var attack_collision = $Utilities/AttackCollision
+@onready var player_camera = $PlayerCamera
+
+func _ready():
+	init()
 
 #sets up some variables and initializes the state machine
 func init():
-	.init()
+	super.init()
+	base_anim = $Animators/BaseAnimator
+	hit_box = $HitArea/HitBox
+	
 	for key in move_states.keys():
 		move_states[key] = get_node(move_states[key])
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		player_camera = true
 		$CollisionBox.disabled = false
 		$HitArea/HitBox.disabled = false
@@ -61,12 +67,12 @@ func _execute(_delta):
 	rad = $Utilities/ActionTarget.execute(_delta)
 	
 	deg = rad2deg(rad)
-	$Utilities/ActionTarget.global_rotation_degrees = deg
+	#$Utilities/ActionTarget.global_rotation_degrees = deg
 
 
 
 func _unpaused_phys_execute(delta):
-	._unpaused_phys_execute(delta)
+	super._unpaused_phys_execute(delta)
 	#state machine
 	move_states[move_state]._handle_input()
 	move_states[move_state]._handle_animation()
@@ -76,7 +82,8 @@ func _unpaused_phys_execute(delta):
 	#move across surfaces
 	vel.y = vert_spd
 	vel.x = hor_spd
-	vel = move_and_slide(vel, floor_normal)
+	#move_and_collide(vel)
+	move_and_slide()
 	#no grav acceleration when on floor
 	if on_floor():
 		air_time = 0
@@ -100,16 +107,16 @@ func _paused_phys_execute(delta):
 	move_states[move_state]._paused_execute(delta)
 
 
-"""
+
 #trigger for detecting a hitbox entering player sight zone
-func _on_detect_DetectOtherArea_area_entered(area):
-	if(!targettable_hitboxes.has(area)):
-		targettable_hitboxes.push_back(area)
+#func _on_detect_DetectOtherArea_area_entered(area):
+#	if(!targettable_hitboxes.has(area)):
+#		targettable_hitboxes.push_back(area)
 #trigger for detecting a hitbox leaving player sight zone
-func _on_detect_DetectOtherArea_area_exited(area):
-	if(targettable_hitboxes.has(area)):
-		targettable_hitboxes.erase(area)
-"""
+#func _on_detect_DetectOtherArea_area_exited(area):
+#	if(targettable_hitboxes.has(area)):
+#		targettable_hitboxes.erase(area)
+
 
 #useful for easily getting the general hor_dir of the mouse
 func mouse_r() -> bool:
@@ -171,12 +178,12 @@ func tween_global_position(new: Vector2, time: float = .1):
 
 
 #useful for easily changing states without having a lot of local references
-func change_move_state(var state: NodePath):
+func change_move_state(state : NodePath):
 	move_states[move_state].exit(get_node(state))
 
 
 #convenient for changing the player's health, whether it is a heal or damage
-func change_hp(health):
+func change_hp(health : int):
 	hp += health
 	if hp > max_hp:
 		hp = max_hp

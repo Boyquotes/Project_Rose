@@ -2,7 +2,7 @@ class_name ActionController
 extends Node2D
 
 ### debug_vars ###
-export(bool) var debug_input := true
+@export var debug_input := true
 
 
 var enter_primary := false
@@ -41,7 +41,7 @@ var action_state
 
 ### action codes ###
 var action_prefix := "Action"
-var action_stack := ["current_action", "saved_action"]
+var action_stack = ["current_action", "saved_action"]
 var combo := ""
 var action_str := "action_str"
 var previous_action := "previous_action"

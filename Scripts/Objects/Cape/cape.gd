@@ -1,17 +1,17 @@
 class_name ClothSim
 extends Node2D
 
-export(NodePath) var phys_obj_path
-export(NodePath) var targets_path
-export(NodePath) var influencers_path
-export(NodePath) var wind_path
-export(float) var gravity := 480.0
-export(Texture) var texture
-export(Texture) var trim_texture
+@export var phys_obj_path : NodePath
+@export var targets_path : NodePath
+@export var influencers_path : NodePath
+@export var wind_path : NodePath
+@export var gravity := 480.0
+@export var texture : Texture
+@export var trim_texture : Texture
 
-var wind_node
-var influencers_node
-var phys_obj_node
+var wind_node : Node
+var influencers_node : Node
+var phys_obj_node : Node
 var targets_node : Node2D
 var physics : ClothPhysics
 var pointmasses : Array
@@ -24,8 +24,8 @@ var mouse_influence_size := 5.0
 # minimum distance for tearing when user is right clicking
 var mouse_tear_size := 1.0
 var mouse_influence_scalar := 1.0
-onready var shadow_node = preload("res://Game Objects/Actors/Players/Rose/CapeShadow.tscn")
-onready var cape_line_node = preload("res://Game Objects/Testing/CapeLine.tscn")
+@onready var shadow_node = preload("res://Game Objects/Actors/Players/Rose/CapeShadow.tscn")
+@onready var cape_line_node = preload("res://Game Objects/Testing/CapeLine.tscn")
 
 var cloth_height := 8
 var cloth_width := 5
@@ -66,17 +66,17 @@ func _ready():
 	trim_line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 	trim_line.joint_mode = Line2D.LINE_JOINT_ROUND
 	trim_line.width = 0
-	trim_line.default_color = Color.white
+	trim_line.default_color = Color.WHITE
 
 	for x in cloth_width:
-		var line = cape_line_node.instance()
+		var line = cape_line_node.instantiate()
 		line.z_index = cloth_width - (x + 1)
 		line.texture = texture
 		line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 		line.joint_mode = Line2D.LINE_JOINT_ROUND
 		line.width = resting_distance
 		print(resting_distance)
-		line.default_color = Color.white
+		line.default_color = Color.WHITE
 		line.light_mask = light_bit + 2
 		add_child(line)
 		for y in cloth_height:
@@ -132,7 +132,7 @@ func create_cloth(translation : Vector2, this : ClothSim):
 				pointmass.pin_to(target)
 			# add to PointMass array  
 			pointmasses[y].push_back(pointmass)
-			shadows[y].push_back(shadow_node.instance())
+			shadows[y].push_back(shadow_node.instantiate())
 	print(sum)
 
 func _draw():
@@ -172,7 +172,7 @@ class ClothPhysics:
 	# Update physics
 	func update(this : ClothSim, wind : Vector2, time : float):
 		# calculate elapsed time
-		current_time = OS.get_system_time_msecs()
+		current_time = time
 		var deltatime_ms = current_time - previous_time
 		
 		previous_time = current_time # reset previous time
@@ -207,7 +207,7 @@ class ClothPhysics:
 					this.line_arr[x].set_point_position(y, this.pointmasses[y][x].pos)
 					this.shadows[y][x].position = this.pointmasses[y][x].pos
 					var loc = this.phys_obj_node.to_local(this.to_global(this.shadows[y][x].position))
-					var intersect = Geometry.segment_intersects_segment_2d(this.shadows[0][x-1].position, this.shadows[y][x-1].position, this.shadows[0][x].position, this.shadows[y][x].position)
+					var intersect = Geometry2D.segment_intersects_segment(this.shadows[0][x-1].position, this.shadows[y][x-1].position, this.shadows[0][x].position, this.shadows[y][x].position)
 					if x != 0:
 						if intersect:
 							this.shadows[y][x].visible = false
@@ -222,7 +222,54 @@ class ClothPhysics:
 		return
 
 class PointMass:
+	class Link:
+		var resting_distance := 0.0
+		var stiffness := 0.0
+		var tear_sensitivity := 0.0
+		
+		var p1 : PointMass
+		var p2 : PointMass
+		
+		
+		func _init(which1 : PointMass, which2 : PointMass, this : ClothSim):
+			p1 = which1 # when you set one object to another, it's pretty much a reference. 
+			p2 = which2 # Anything that'll happen to p1 or p2 in here will happen to the paticles in our ArrayList
+			
+			resting_distance = this.resting_distance
+			stiffness = this.stiffnesses
+			
+			tear_sensitivity = this.tear_sensitivity
+		
+		# Solve the link constraint
+		func solve():
+			# calculate the distance between the two PointMasss
+			var diffX = p1.pos.x - p2.pos.x
+			var diffY = p1.pos.y - p2.pos.y
+			var d = max(sqrt(diffX * diffX + diffY * diffY), .01)
+
+			# find the difference, or the ratio of how far along the restingDistance the actual distance is.
+			var difference = (resting_distance - d) / d
+
+			# if the distance is more than curtainTearSensitivity, the cloth tears
+			if d > tear_sensitivity:
+				p1.remove_link(self)
+
+			# Inverse the mass quantities
+			var im1 = 1 / p1.mass
+			var im2 = 1 / p2.mass
+			var scalar_p1 = (im1 / (im1 + im2)) * stiffness
+			var scalar_p2 = stiffness - scalar_p1
+
+			# Push/pull based on mass
+			# heavier objects will be pushed/pulled less than attached light objects
+			p1.pos.x += diffX * scalar_p1 * difference
+			p1.pos.y += diffY * scalar_p1 * difference
+
+			p2.pos.x -= diffX * scalar_p2 * difference
+			p2.pos.y -= diffY * scalar_p2 * difference
+		
 	# for calculating position change (velocity)
+
 	var last_x := 0.0
 	var last_y := 0.0
 	var pos := Vector2()
@@ -231,7 +278,7 @@ class PointMass:
 	
 	var xplace := 0
 	var yplace := 0
-	 
+	
 	var mass := .01
 	var damping := .91
 	
@@ -243,7 +290,8 @@ class PointMass:
 	
 	var resting_distance : float
 	# PointMass constructor
-	func _init(var x_pos : float, var y_pos : float, var x : int, y : int, rest : float):
+
+	func _init(x_pos : float, y_pos : float, x : int, y : int, rest : float):
 		pos.x = x_pos
 		pos.y = y_pos
 		
@@ -258,7 +306,7 @@ class PointMass:
 	# The update function is used to update the physics of the PointMass.
 	# motion is applied, and links are drawn here
 	# timeStep should be in elapsed seconds (deltaTime)
-	func update_physics(var timestep : float, this : ClothSim, wind : Vector2):
+	func update_physics(timestep : float, this : ClothSim, wind : Vector2):
 		apply_force(mass * wind.x + mass * -this.phys_obj_node.vel.x, mass * wind.y + mass * this.gravity + mass * -this.phys_obj_node.vel.y)
 		
 		var vel_x = pos.x - last_x
@@ -303,7 +351,7 @@ class PointMass:
 					if distance_squared < this.mouse_tear_size:
 						links.clear()
 	
-	""" Constraints """
+	# Constraints
 	func solve_constraints(this : ClothSim, wind : Vector2, time : float):
 		
 		if this.phys_obj_node.vel.length() > 0 and wind.length() != 0:
@@ -317,7 +365,7 @@ class PointMass:
 	
 		""" Other Constraints """
 		var tempos = Vector2(pos.x, ceil(pos.y))
-		var space_state : Physics2DDirectSpaceState = this.get_world_2d().direct_space_state
+		var space_state : PhysicsDirectSpaceState2D = this.get_world_2d().direct_space_state
 		var coll = 33
 		var collision_event = space_state.intersect_point(tempos, 1, [], coll)
 		var intersecting = collision_event.size() > 0
@@ -351,6 +399,7 @@ class PointMass:
 		
 	# attach_to can be used to create links between this PointMass and other PointMasss
 	func attach_to(P : PointMass, this : ClothSim):
+		
 		var link = Link.new(self, P, this)
 		links.push_back(link)
 	
@@ -383,52 +432,6 @@ class PointMass:
 		
 		det = ux * vy - uy * vx
 		return det * det / length
-
-class Link:
-	var resting_distance := 0.0
-	var stiffness := 0.0
-	var tear_sensitivity := 0.0
-	
-	var p1 : PointMass
-	var p2 : PointMass
-	
-	
-	func _init(which1 : PointMass, which2 : PointMass, this : ClothSim):
-		p1 = which1 # when you set one object to another, it's pretty much a reference. 
-		p2 = which2 # Anything that'll happen to p1 or p2 in here will happen to the paticles in our ArrayList
-		
-		resting_distance = this.resting_distance
-		stiffness = this.stiffnesses
-		
-		tear_sensitivity = this.tear_sensitivity
-	
-	# Solve the link constraint
-	func solve():
-		# calculate the distance between the two PointMasss
-		var diffX = p1.pos.x - p2.pos.x
-		var diffY = p1.pos.y - p2.pos.y
-		var d = max(sqrt(diffX * diffX + diffY * diffY), .01)
-
-		# find the difference, or the ratio of how far along the restingDistance the actual distance is.
-		var difference = (resting_distance - d) / d
-
-		# if the distance is more than curtainTearSensitivity, the cloth tears
-		if d > tear_sensitivity:
-			p1.remove_link(self)
-
-		# Inverse the mass quantities
-		var im1 = 1 / p1.mass
-		var im2 = 1 / p2.mass
-		var scalar_p1 = (im1 / (im1 + im2)) * stiffness
-		var scalar_p2 = stiffness - scalar_p1
-
-		# Push/pull based on mass
-		# heavier objects will be pushed/pulled less than attached light objects
-		p1.pos.x += diffX * scalar_p1 * difference
-		p1.pos.y += diffY * scalar_p1 * difference
-
-		p2.pos.x -= diffX * scalar_p2 * difference
-		p2.pos.y -= diffY * scalar_p2 * difference
 
 
 func _on_CapeTarget_z_index_changed(z : int):

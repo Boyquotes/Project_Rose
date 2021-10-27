@@ -53,7 +53,7 @@ func add_keybinding(action, input):
 
 func _create_default_key_bindings():
 	for idx in InputMap.get_actions().size():
-		_user_settings.set_value(KEY_BINDING_SECTION, InputMap.get_actions()[idx], InputMap.get_action_list(InputMap.get_actions()[idx]))
+		_user_settings.set_value(KEY_BINDING_SECTION, InputMap.get_actions()[idx], InputMap.action_get_events(InputMap.get_actions()[idx]))
 	save_settings()
  
 func _load_key_bindings():

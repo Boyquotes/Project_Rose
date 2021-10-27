@@ -2,8 +2,8 @@ extends Position2D
 
 enum WindType {NONE, GENTLE, MILD, STRONG, TORRENT}
 
-export (Vector2) var wind := Vector2(0.0, 0.0)
-export (WindType) var wind_type = WindType.GENTLE
+@export var wind := Vector2(0.0, 0.0)
+@export var wind_type : WindType = WindType.GENTLE
 var prev_type = WindType.GENTLE
 var rng = RandomNumberGenerator.new()
 var roll_wind = false

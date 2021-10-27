@@ -1,13 +1,13 @@
 class_name HitState
 extends PlayerState
 
-export(int) var crit_thresh := 50
-export(int) var iframes := 30
-export(float) var crit_iframe_factor := 2
+@export var crit_thresh := 50
+@export var iframes := 30
+@export var crit_iframe_factor := 2
 # at move_thresh = iframes, player has total control of movement
 # at move_thresh = 0, player has no control over movement in the hit state
-export(int) var move_thresh := 20
-export(bool) var fall_flag := false
+@export var move_thresh := 20
+@export var fall_flag := false
 
 
 var hit_flag := true
@@ -51,7 +51,7 @@ func _handle_animation():
 
 
 func _execute(delta):
-	._execute(delta)
+	super._execute(delta)
 
 
 func _exit(state):
@@ -59,7 +59,7 @@ func _exit(state):
 	damage = 0
 	fall_flag = false
 	hit_flag = true
-	._exit(state)
+	super._exit(state)
 
 
 func knock_back(speed : float, angle : float):

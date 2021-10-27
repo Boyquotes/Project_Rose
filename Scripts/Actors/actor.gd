@@ -1,24 +1,24 @@
 class_name Actor
-extends KinematicBody2D
+extends CharacterBody2D
 # desc
 # long_desc
 
 signal animation_changed
 
 ###actor_exoport_data###
-export(String) var tag = "NPC" # TODO: Make into enum in global context
-export(int) var max_hp := 100
-export(float) var base_soft_speed_cap := 100.0
-export(float) var base_jump_spd := 50.0
-export(int) var attack_damage := 5
-export(bool) var enabled := true
+@export var tag := "NPC" # TODO: Make into enum in global context
+@export var max_hp := 100
+@export var base_soft_speed_cap := 100.0
+@export var base_jump_spd := 50.0
+@export var attack_damage := 5
+@export var enabled := true
 ##physics_export_vars###
-export(float) var base_grav := 10.0
-export(float) var base_fric := 50.0
-export(float) var grav_max := 250.0
-export(float) var base_acceleration := 30.0
-export(Dictionary) var move_states := {}
-export(bool) var iframe := false
+@export var base_grav := 10.0
+@export var base_fric := 50.0
+@export var grav_max := 250.0
+@export var base_acceleration := 30.0
+@export var move_states := {}
+@export var iframe := false
 
 ###actor_data###
 var hp: float 
@@ -42,8 +42,8 @@ var grav_activated := true
 var fric_activated := true
 var prev_anim := ""
 
-onready var base_anim = $Animators/BaseAnimator
-onready var hit_box = $HitArea/HitBox
+var base_anim
+var hit_box
 
 func _ready():
 	init()

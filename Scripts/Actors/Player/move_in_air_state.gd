@@ -1,11 +1,11 @@
 class_name MoveInAirState
 extends PlayerState
 
-export(bool) var jumped := false
-export(bool) var transitioned := false
-export(bool) var jump := false
-export(NodePath) var ledge_cast_l_path
-export(NodePath) var ledge_cast_r_path
+@export var jumped := false
+@export var transitioned := false
+@export var jump := false
+@export var ledge_cast_l_path : NodePath
+@export var ledge_cast_r_path : NodePath
 
 
 var cutoff := false
@@ -19,10 +19,10 @@ var is_wall_l := false
 var ledge_cast_l
 var ledge_cast_r
 
-onready var ledge_disable_timer = $LedgeDisableTimer
+@onready var ledge_disable_timer = $LedgeDisableTimer
 
 func init():
-	.init()
+	super.init()
 	ledge_cast_r = get_node(ledge_cast_r_path)
 	ledge_cast_l = get_node(ledge_cast_l_path)
 
@@ -37,7 +37,7 @@ func _handle_input():
 	if jumped && !Input.is_action_pressed("Jump") && host.vert_spd < 0:
 		cutoff = true
 		host.vert_spd += 60
-	._handle_input()
+	super._handle_input()
 
 func _handle_animation():
 	if(jump):
@@ -57,7 +57,7 @@ func _handle_animation():
 				host.animate(host.base_anim, "Descend", false)
 				done_descent = true
 				done_ascent = false
-	._handle_animation()
+	super._handle_animation()
 
 
 func _execute(delta):
@@ -66,7 +66,7 @@ func _execute(delta):
 	if detect_ledge(ledge_cast_l, -1):
 		return
 	
-	._execute(delta)
+	super._execute(delta)
 
 
 func _exit(state):
@@ -81,7 +81,7 @@ func _exit(state):
 	is_wall_r = false
 	wasnt_wall_l = false
 	is_wall_l = false
-	._exit(state)
+	super._exit(state)
 
 func detect_ledge(ledge_cast, dir : int):
 	if ledge_cast.is_colliding():

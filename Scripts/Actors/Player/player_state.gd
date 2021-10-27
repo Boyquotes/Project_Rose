@@ -39,15 +39,6 @@ func get_aim_direction():
 		input_direction = int(host.mouse_r()) - int(host.mouse_l())
 	return input_direction
 
-"""
-func get_look_direction():
-	var right := int(Input.is_action_pressed("Aim_Right") or host.mouse_r()) 
-	var left := int(Input.is_action_pressed("Aim_Left") or host.mouse_l())
-	
-	var input_direction := right - left 
-	
-	return input_direction
-"""
 
 #sets direction and turns the player appropriately
 func update_look_direction_and_scale(direction):
@@ -111,7 +102,7 @@ func _exit(state):
 	state.can_move = can_move
 	can_turn = true
 	can_move = true
-	._exit(state)
+	super._exit(state)
 
 
 func exit_ground_or_air():

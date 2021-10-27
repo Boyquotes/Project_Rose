@@ -1,7 +1,7 @@
 class_name GenericActionInstancer
 extends ActionInstancer
 
-"""
+
 func swipe():
 	var action = instance_swipe()
 	# add additional functionality if desired
@@ -25,7 +25,7 @@ func dash():
 
 
 func instance_swipe():
-	action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Swipe.tscn").instance())
+	#action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Swipe.tscn").instance())
 	var action = action_queue.back()
 	# use the initialization functions that make sense for the action
 	initialize_action(action, action_target)
@@ -34,7 +34,7 @@ func instance_swipe():
 	return action
 
 func instance_pew():
-	action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Pew.tscn").instance())
+	#action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Pew.tscn").instance())
 	var action = action_queue.back()
 	initialize_action(action)
 	initialize_hitboxes(action)
@@ -42,7 +42,7 @@ func instance_pew():
 	return action
 
 func instance_bomb():
-	action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Bomb.tscn").instance())
+	#action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Bomb.tscn").instance())
 	var action = action_queue.back()
 	initialize_action(action)
 	initialize_hitboxes(action)
@@ -51,7 +51,7 @@ func instance_bomb():
 	return action
 
 func instance_potion():
-	action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Potion.tscn").instance())
+	#action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Potion.tscn").instance())
 	var action = action_queue.back()
 	initialize_action(action, action_target)
 	initialize_particles(action)
@@ -59,10 +59,10 @@ func instance_potion():
 	return action
 
 func instance_dash():
-	action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Dash.tscn").instance())
+	#action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Generic/Dash.tscn").instance())
 	var action = action_queue.back()
 	initialize_action(action, action_target)
 	initialize_particles(action)
 	initialize_sprite(action)
 	return action
-"""
+

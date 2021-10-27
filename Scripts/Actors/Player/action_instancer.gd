@@ -4,7 +4,7 @@ extends Node2D
 
 var action_queue := []
 
-export(NodePath) var action_target_path
+@export var action_target_path : NodePath
 
 var action_controller
 var action_state
@@ -50,7 +50,7 @@ func initialize_sprite(action):
 
 func set_rot(_action, _hitboxes):
 	pass
-"""
+	"""
 	for hitbox in hitboxes.get_children():
 		if(is_instance_valid(hitbox)):
 			if(action_controller.rotate):
@@ -61,7 +61,7 @@ func set_rot(_action, _hitboxes):
 			else:
 				hitbox.scale.x = host.Direction
 				hitbox.direction = hitbox.global_rotation_degrees * host.Direction
-"""
+	"""
 
 func clear_actions():
 	for node in action_queue:

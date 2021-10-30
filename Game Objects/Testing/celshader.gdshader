@@ -48,38 +48,9 @@ void light() {
 	float level_1_smooth = first_smooth;
 	float level_2 = second_stage;
 	float level_2_smooth = second_smooth;
-	//---- Light height calc start ------------------------------------
-	//-----------------------------------------------------------------
-	if (fake_light_depth) {
-		float base_height = LIGHT_HEIGHT;
-		float new_height = base_height - obj_height;
-		LIGHT_HEIGHT = new_height;
-		if (fake_spot_light && obj_height < base_height && light_change_thresh < new_height ){
-			if (level_1 != 1.0) {
-				level_1 -= (light_change_thresh - new_height) * (first_shrink_speed * .0001);
-				if (level_2 != 0.0 && level_2 != 1.0) {
-					level_2 -= (light_change_thresh - new_height) * (second_shrink_speed * .0001);
-				}
-			}
-		}
-		if (light_fade && new_height > light_change_thresh) {
-			float n_height_safety = new_height;
-			if (n_height_safety == 0.0) { n_height_safety += 0.01; }
-			float light_dist_safety = light_change_thresh;
-			if (light_dist_safety == 0.0) { light_dist_safety += 0.001; }
-			float new_intens = 1.0;
-			float dark_distance = light_fade_end;
-			if (dark_distance == 0.0) {dark_distance = 1.0;}
-			new_intens = 1.0 - abs(abs(light_dist_safety) - abs(n_height_safety)) / dark_distance;
-			float light_drop_a = clamp(LIGHT_COLOR.a * new_intens, 0.0, 1.0);
-			LIGHT_COLOR *= light_drop_a;
-		}
-	}
-	//---- Light height calc end --------------------------------------
-	
 	float mid_range_light = mid_light;
 	if (mid_light == 0.0) { mid_range_light = max_light * 0.5; }
-	vec3 light_normal = normalize(vec3(LIGHT_VEC, -LIGHT_HEIGHT));
+	vec3 light_normal = normalize(vec3(FRAGCOORD.xy - LIGHT_POSITION.xy, -LIGHT_POSITION.z));
 	float would_be_strength = max(dot(-light_normal, NORMAL), 0.0);
 //-----Light Rim start------------------------------------------------------
 	if (rim_light) {
@@ -115,9 +86,9 @@ void light() {
 		if (diff >= max_light) {diff = max_light;}
 		LIGHT *= light_calc(diff, would_be_strength);
 	} else { 
-		if (min_light != 0.0) { 
-			LIGHT_VEC = -NORMAL.xy*length(LIGHT_VEC); 
-		}
+		//if (min_light != 0.0) { 
+		//	LIGHT_VEC = -NORMAL.xy*length(LIGHT_VEC); 
+		//}
 		LIGHT *= min_light;                                                                                                                                  
 	}
 }

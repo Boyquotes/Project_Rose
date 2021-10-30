@@ -83,6 +83,7 @@ func _unpaused_phys_execute(delta):
 	vel.y = vert_spd
 	vel.x = hor_spd
 	#move_and_collide(vel)
+	motion_velocity = vel
 	move_and_slide()
 	#no grav acceleration when on floor
 	if on_floor():

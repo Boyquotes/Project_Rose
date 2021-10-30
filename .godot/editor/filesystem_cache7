@@ -1,5 +1,5 @@
 102b54792f6b2ef812636a2bdaeb9d34
-::res://::1635299370
+::res://::1635522575
 default_env.tres::Environment::-1::1631764061::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1631157048::0::1::::<><>::
 icon.png::StreamTexture2D::1110971023103259563::1624883689::1635296327::1::::<><>::
@@ -11,7 +11,7 @@ hitbox_generator.gd::GDScript::-1::1624883689::0::1::::<><>::
 hitbox_generator_inspector.gd::GDScript::-1::1624883689::0::1::::<>EditorInspectorPlugin<>::
 plugin.cfg::TextFile::-1::1624883689::0::1::::<><>::
 ::res://Assets/::1630161977
-::res://Assets/Lights/::1635296327
+::res://Assets/Lights/::1635301963
 background.png::StreamTexture2D::2826299391353051960::1589748093::1635301963::1::::<><>::
 light2.png::StreamTexture2D::2361535879418817775::1630180970::1635301963::1::::<><>::
 light.png::StreamTexture2D::9157747199158918170::1614143332::1635301963::1::::<><>::
@@ -258,29 +258,31 @@ Actor.tscn::PackedScene::6575792423589883467::1635301214::0::1::::<><>::res://Sc
 ::res://Game Objects/Actors/Enemies/Generic/::1624883689
 EnemyHitbox.tscn::PackedScene::-1::1624883689::0::1::::<><>::res://Scripts/Actors/Enemies/Generic/enemy_hitbox.gd
 EnemyHitboxContainer.tscn::PackedScene::-1::1624883689::0::1::::<><>::res://Scripts/Actors/Enemies/Generic/enemy_hitbox_container.gd
-::res://Game Objects/Actors/Players/::1635301866
-Player.tscn::PackedScene::3432253477289055196::1635301866::0::1::::<><>::uid://c0xmltujk8v20<>res://Scripts/Actors/Player/player.gd<>res://Scripts/Actors/Player/move_on_ground_state.gd<>res://Scripts/Actors/Player/move_in_air_state.gd<>res://Scripts/Actors/Player/ledge_grab_state.gd<>res://Scripts/Actors/Player/hit_state.gd<>res://Scripts/Objects/Camera/camera.gd<>res://Scripts/Actors/Player/action_state.gd<>res://Scripts/Actors/Player/action_controller.gd<>res://Scripts/Actors/Player/Generic/generic_action_instancer.gd<>res://Scripts/Actors/Player/finite_state_machine.gd<>res://Scripts/Actors/Player/rest_state.gd<>res://Scripts/Actors/Player/Generic/powerups.gd<>uid://cgcfr8c5y1f5w<>uid://xj4tsv7ukyax<>uid://dvc00ckjvix2q
-::res://Game Objects/Actors/Players/Rose/::1635301866
+::res://Game Objects/Actors/Players/::1635302449
+Player.tscn::PackedScene::3432253477289055196::1635302449::0::1::::<><>::uid://c0xmltujk8v20<>res://Scripts/Actors/Player/player.gd<>res://Scripts/Actors/Player/move_on_ground_state.gd<>res://Scripts/Actors/Player/move_in_air_state.gd<>res://Scripts/Actors/Player/ledge_grab_state.gd<>res://Scripts/Actors/Player/hit_state.gd<>res://Scripts/Objects/Camera/camera.gd<>res://Scripts/Actors/Player/action_state.gd<>res://Scripts/Actors/Player/action_controller.gd<>res://Scripts/Actors/Player/Generic/generic_action_instancer.gd<>res://Scripts/Actors/Player/finite_state_machine.gd<>res://Scripts/Actors/Player/rest_state.gd<>res://Scripts/Actors/Player/Generic/powerups.gd<>uid://cgcfr8c5y1f5w<>uid://xj4tsv7ukyax<>uid://dvc00ckjvix2q
+::res://Game Objects/Actors/Players/Rose/::1635489150
 CapeShadow.tscn::PackedScene::-1::1631763465::0::1::::<><>::res://Assets/Sprites/Actors/Rose/cape_shadow.png
-Rose.tscn::PackedScene::2241317887942365300::1635301866::0::1::::<><>::uid://bo5uyiubdikxw<>uid://dgkbfdjg6qm5j<>uid://c56dt0mqivg5v<>uid://b25b1eyl18lp6<>uid://0cugmfeb84vl<>uid://d1rkyi1vynlqb<>uid://c455nrpp354a0<>uid://e5cjrjy351gk<>uid://xj4tsv7ukyax<>uid://cfv0o8veyv4t6<>uid://cgcfr8c5y1f5w<>res://Scripts/Actors/Player/targetting.gd<>res://Scripts/Actors/Player/wind.gd<>res://Scripts/Actors/Player/cape_target.gd<>uid://dq4f0mk51m8ui<>uid://cxaiyfwnu08q7
-::res://Game Objects/Testing/::1635299457
-Cape.tscn::PackedScene::-1::1631153323::0::1::::<><>::res://Scripts/Objects/Cape/cape.gd
-capelighttest.gdshader::Shader::-1::1630988285::0::1::::<><>::
-capelighttest.tscn::PackedScene::-1::1631763465::0::1::::<><>::res://Assets/Sprites/Actors/Rose/cape.png<>res://Game Objects/Actors/Players/Rose/CapeShadow.tscn<>res://Assets/Sprites/Actors/Rose/cape_n.png<>res://Game Objects/Testing/line2d_normal.gd<>res://Game Objects/Testing/CapeLine.tscn<>res://Assets/Lights/light.png
-CapeLine.tscn::PackedScene::-1::1631764061::0::1::::<><>::res://Assets/Sprites/Actors/Rose/cape.png
-Influencer.tscn::PackedScene::-1::1629847933::0::1::::<><>::res://Scripts/Actors/Player/influencer.gd<>res://Assets/Sprites/Actors/Rose/Effects/Pierce_Projectile.png
+Rose.tscn::PackedScene::2241317887942365300::1635489150::0::1::::<><>::uid://bo5uyiubdikxw<>uid://dgkbfdjg6qm5j<>uid://c56dt0mqivg5v<>uid://b25b1eyl18lp6<>uid://bhju5n8r6x01t<>uid://0cugmfeb84vl<>uid://d1rkyi1vynlqb<>uid://c455nrpp354a0<>uid://clumfss4fkajq<>uid://e5cjrjy351gk<>uid://xj4tsv7ukyax<>uid://cinvab003yy0r<>uid://cfv0o8veyv4t6<>uid://cgcfr8c5y1f5w<>uid://do6wkcwoa0yqy<>res://Scripts/Actors/Player/targetting.gd<>res://Scripts/Actors/Player/wind.gd<>uid://c067q0lpfeirw<>res://Scripts/Actors/Player/cape_target.gd<>uid://dq4f0mk51m8ui<>uid://6n7wtulq3sw3<>uid://cxaiyfwnu08q7<>uid://8ugg47v36ysu
+::res://Game Objects/Testing/::1635489357
+Cape.tscn::PackedScene::7513035552102151629::1635487292::0::1::::<><>::res://Scripts/Objects/Cape/cape.gd
+capelighttest.gdshader::Shader::-1::1635489357::0::1::::<><>::
+capelighttest.tscn::PackedScene::1607963596861102936::1635489150::0::1::::<><>::uid://bttdv057u2u1c<>uid://bgjc0dgihi4to<>res://Game Objects/Testing/capelighttest.gdshader<>res://Game Objects/Actors/Players/Rose/CapeShadow.tscn<>uid://dop8saxb4fm1i<>res://Game Objects/Testing/line2d_normal.gd<>uid://cs3u5tumnjwjo<>uid://d3qc01yn7toqk<>res://Game Objects/Testing/CapeLine.gdshader
+CapeLine.gdshader::Shader::-1::1635488112::0::1::::<><>::
+CapeLine.tscn::PackedScene::6095312073059652912::1635487292::0::1::::<><>::uid://bttdv057u2u1c
+celshader.gdshader::Shader::-1::1635487657::0::1::::<><>::
+Influencer.tscn::PackedScene::2565097292254442554::1635487292::0::1::::<><>::res://Scripts/Actors/Player/influencer.gd<>uid://mxeiwruncbyg
 lighting logic.png::StreamTexture2D::6313926269143760056::1630987528::1635296328::1::::<><>::
 light_fade.gd::GDScript::-1::1630639205::0::1::::<><>::
-line2d_normal.gd::GDScript::-1::1631760529::0::1::::<><>::
-mouse_follow.gd::GDScript::-1::1635299457::0::1::::<>PointLight2D<>::
+line2d_normal.gd::GDScript::-1::1635488745::0::1::::<>Line2D<>::
+mouse_follow.gd::GDScript::-1::1635302943::0::1::::<>PointLight2D<>::
 ::res://Resources/::1624883689
 ::res://Resources/Custom/::1624883689
 pair.tres::Resource::-1::1624883689::0::1::::<><>::res://Scripts/Resources/pair.gd
-::res://Resources/Tilesets/::1631763099
+::res://Resources/Tilesets/::1635483730
 Ledges.tres::TileSet::-1::1631763099::0::1::::<><>::res://Assets/Primitive Tiles/DarkGrey/DarkGrey_Box32x32.png
-PrimititveTileset.tres::TileSet::-1::1631763099::0::1::::<><>::res://Assets/Primitive Tiles/LightGrey/LightGrey_Box32x32.png<>res://Assets/Primitive Tiles/LightGrey/LightGrey_Ramp_72.png<>res://Assets/Primitive Tiles/LightGrey/LightGrey_Ramp_63.png<>res://Assets/Primitive Tiles/LightGrey/LightGrey_Ramp_76.png
-::res://Rooms/::1635301866
-TestRoom.tscn::PackedScene::4715555219612152063::1635301866::0::1::::<><>::res://Resources/Tilesets/PrimititveTileset.tres<>uid://66ygb7fkbk5i<>res://Resources/Tilesets/Ledges.tres<>res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd<>res://Game Objects/Testing/Cape.tscn<>uid://cmfubhpbjx123<>res://Scripts/Objects/Camera/camera.gd<>uid://d3qc01yn7toqk<>uid://bgjc0dgihi4to<>uid://lbs46gau1u64<>uid://bttdv057u2u1c<>uid://uc57t5owk1lq<>res://Game Objects/Testing/CapeLine.tscn<>uid://dgkbfdjg6qm5j<>res://Game Objects/Testing/mouse_follow.gd
+PrimititveTileset.tres::TileSet::2325598152416913896::1635483730::0::1::::<><>::uid://b4omfl7t1ktrt
+::res://Rooms/::1635489150
+TestRoom.tscn::PackedScene::4715555219612152063::1635489150::0::1::::<><>::uid://66ygb7fkbk5i<>uid://b4omfl7t1ktrt<>uid://dfbmule40f014<>uid://cmfubhpbjx123<>uid://d3qc01yn7toqk<>uid://bgjc0dgihi4to<>uid://lbs46gau1u64<>uid://bttdv057u2u1c<>uid://uc57t5owk1lq<>res://Game Objects/Testing/mouse_follow.gd
 ::res://Scripts/::1624883689
 ::res://Scripts/Actions/::1624883689
 ::res://Scripts/Actions/Player Actions/::1624883689
@@ -295,7 +297,7 @@ state.gd::GDScript::-1::1624883689::0::1::::State<>Node2D<>::
 ::res://Scripts/Actors/Enemies/Generic/::1624883689
 enemy_hitbox.gd::GDScript::-1::1624883689::0::1::::<><>::
 enemy_hitbox_container.gd::GDScript::-1::1624883689::0::1::::<><>::
-::res://Scripts/Actors/Player/::1635301866
+::res://Scripts/Actors/Player/::1635483730
 action_controller.gd::GDScript::-1::1635297751::0::1::::ActionController<>Node2D<>::
 action_instancer.gd::GDScript::-1::1635297903::0::1::::ActionInstancer<>Node2D<>::
 action_state.gd::GDScript::-1::1635297714::0::1::::ActionState<>PlayerState<>::
@@ -306,7 +308,7 @@ influencer.gd::GDScript::-1::1629847823::0::1::::<>Position2D<>::
 ledge_grab_state.gd::GDScript::-1::1635297602::0::1::::LedgeGrabState<>PlayerState<>::
 move_in_air_state.gd::GDScript::-1::1635297578::0::1::::MoveInAirState<>PlayerState<>::
 move_on_ground_state.gd::GDScript::-1::1635297444::0::1::::MoveOnGroundState<>PlayerState<>::
-player.gd::GDScript::-1::1635301866::0::1::::Player<>Actor<>::
+player.gd::GDScript::-1::1635483730::0::1::::Player<>Actor<>::
 player_state.gd::GDScript::-1::1635297483::0::1::::PlayerState<>State<>::
 rest_state.gd::GDScript::-1::1635298123::0::1::::RestState<>PlayerState<>::
 targetting.gd::GDScript::-1::1635301850::0::1::::<>Node2D<>::
@@ -324,8 +326,8 @@ user_settings.gd::GDScript::-1::1635299771::0::1::::<>Node<>::
 camera.gd::GDScript::-1::1635297688::0::1::::<>Camera2D<>::
 ::res://Scripts/Objects/Cape/::1635301213
 cape.gd::GDScript::-1::1635301213::0::1::::ClothSim<>Node2D<>::
-::res://Scripts/Objects/TileMap/::1635300637
-ledge_tilemap_gen.gd::GDScript::-1::1635300637::0::1::::<>TileMap<>::
+::res://Scripts/Objects/TileMap/::1635302360
+ledge_tilemap_gen.gd::GDScript::-1::1635302360::0::1::::<>TileMap<>::
 ::res://Scripts/Resources/::1624883689
 mouse_follow.gd::GDScript::-1::1624883689::0::1::::<>Area2D<>::
 pair.gd::GDScript::-1::1624883689::0::1::::<><>::

@@ -62,7 +62,7 @@ func init():
 	vel = Vector2(0, 0)
 	floor_normal = Vector2(0, -1)
 	$CollisionBox.disabled = false
-	call_init_in_children(self)
+	call_init_in_children(self, self)
 
 
 func _input(_event):
@@ -166,7 +166,10 @@ func i_frame(frames : int):
 	iframes = frames
 
 
-func call_init_in_children(parent):
+func call_init_in_children(host, parent):
 	for child in parent.get_children():
+		if "host" in child:
+			child.host = host
 		if child.has_method("init"):
 			child.init()
+		host.call_init_in_children(host, child)

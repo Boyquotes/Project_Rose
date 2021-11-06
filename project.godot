@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "ClothSim",
 "language": "GDScript",
-"path": "res://Scripts/Objects/Cape/cape.gd"
+"path": "res://Scripts/Objects/Cape/line_cape.gd"
 }, {
 "base": "Area2D",
 "class": "EnemyHitbox",
@@ -110,6 +110,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/Actors/Player/rest_state.gd"
 }, {
 "base": "Node2D",
+"class": "SkeletonClothSim",
+"language": "GDScript",
+"path": "res://Scripts/Objects/Cape/skeleton_cape.gd"
+}, {
+"base": "Node2D",
 "class": "State",
 "language": "GDScript",
 "path": "res://Scripts/Actors/state.gd"
@@ -135,6 +140,7 @@ _global_script_class_icons={
 "Player": "",
 "PlayerState": "",
 "RestState": "",
+"SkeletonClothSim": "",
 "State": ""
 }
 

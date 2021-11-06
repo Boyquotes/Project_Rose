@@ -51,5 +51,4 @@ func execute(_delta):
 	elif(rad < -PI):
 		rad = PI + (rad + PI);
 		tween.stop(self,"rad")
-		print(String(rad) + " " + String(trad));
 	return rad;

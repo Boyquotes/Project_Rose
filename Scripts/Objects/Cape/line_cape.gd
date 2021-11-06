@@ -8,6 +8,7 @@ export(NodePath) var wind_path
 export(float) var gravity := 480.0
 export(Texture) var texture
 export(Texture) var trim_texture
+export(bool) var active := true
 
 var wind_node
 var influencers_node
@@ -38,60 +39,61 @@ var mouse_position := Vector2()
 var prev_mouse_position := Vector2()
 
 func _ready():
-	physics = ClothPhysics.new()
-	physics.fixed_deltatime = 16
-	physics.fixed_deltatime_seconds = float(physics.fixed_deltatime) / 1000.0
-	physics.leftover_deltatime = 0
-	physics.constraint_accuracy = 3
-	
-	mouse_influence_size *= mouse_influence_size 
-	mouse_tear_size *= mouse_tear_size
-	
-	mouse_position = get_local_mouse_position()
-	prev_mouse_position = Vector2(0, 0)
-	
-	phys_obj_node = get_node(phys_obj_path)
-	
-	influencers_node = get_node(influencers_path)
-	
-	targets_node = get_node(targets_path)
-	
-	wind_node = get_node(wind_path)
-	create_cloth(targets_node.global_position, self)
-	var light_bit = 16384
-	var light_bit_sum = light_bit
-	trim_line = Line2D.new()
-	trim_line.z_index = 10
-	trim_line.texture = trim_texture
-	trim_line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
-	trim_line.joint_mode = Line2D.LINE_JOINT_ROUND
-	trim_line.width = 0
-	trim_line.default_color = Color.white
+	if active:
+		physics = ClothPhysics.new()
+		physics.fixed_deltatime = 16
+		physics.fixed_deltatime_seconds = float(physics.fixed_deltatime) / 1000.0
+		physics.leftover_deltatime = 0
+		physics.constraint_accuracy = 3
+		
+		mouse_influence_size *= mouse_influence_size 
+		mouse_tear_size *= mouse_tear_size
+		
+		mouse_position = get_local_mouse_position()
+		prev_mouse_position = Vector2(0, 0)
+		
+		phys_obj_node = get_node(phys_obj_path)
+		
+		influencers_node = get_node(influencers_path)
+		
+		targets_node = get_node(targets_path)
+		
+		wind_node = get_node(wind_path)
+		create_cloth(targets_node.global_position, self)
+		var light_bit = 16384
+		var light_bit_sum = light_bit
+		trim_line = Line2D.new()
+		trim_line.z_index = 10
+		trim_line.texture = trim_texture
+		trim_line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
+		trim_line.joint_mode = Line2D.LINE_JOINT_ROUND
+		trim_line.width = 0
+		trim_line.default_color = Color.white
 
-	for x in cloth_width:
-		var line = cape_line_node.instance()
-		line.z_index = cloth_width - (x + 1)
-		line.texture = texture
-		line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
-		line.joint_mode = Line2D.LINE_JOINT_ROUND
-		line.width = resting_distance
-		print(resting_distance)
-		line.default_color = Color.white
-		line.light_mask = light_bit + 2
-		add_child(line)
-		for y in cloth_height:
-			line.add_point(pointmasses[y][x].pos)
-			shadows[y][x].range_item_cull_mask = light_bit
-			var factor = pointmasses[y][x].resting_distance / initial_rest_distance
-			shadows[y][x].scale *= (factor + .75)
-			line.add_child(shadows[y][x])
-			shadows[y][x].position = pointmasses[y][x].pos
-		light_bit = light_bit / 2
-		line_arr.push_back(line)
-		light_bit_sum += light_bit
-		trim_line.add_point(pointmasses[cloth_height-1][x].pos)
-	trim_line.light_mask = light_bit_sum
-	add_child(trim_line)
+		for x in cloth_width:
+			var line = cape_line_node.instance()
+			line.z_index = cloth_width - (x + 1)
+			line.texture = texture
+			line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
+			line.joint_mode = Line2D.LINE_JOINT_ROUND
+			line.width = resting_distance
+			print(resting_distance)
+			line.default_color = Color.white
+			line.light_mask = light_bit + 2
+			add_child(line)
+			for y in cloth_height:
+				line.add_point(pointmasses[y][x].pos)
+				shadows[y][x].range_item_cull_mask = light_bit
+				var factor = pointmasses[y][x].resting_distance / initial_rest_distance
+				shadows[y][x].scale *= (factor + .75)
+				line.add_child(shadows[y][x])
+				shadows[y][x].position = pointmasses[y][x].pos
+			light_bit = light_bit / 2
+			line_arr.push_back(line)
+			light_bit_sum += light_bit
+			trim_line.add_point(pointmasses[cloth_height-1][x].pos)
+		trim_line.light_mask = light_bit_sum
+		add_child(trim_line)
 
 
 func create_cloth(translation : Vector2, this : ClothSim):
@@ -146,14 +148,15 @@ func _draw():
 var deltatime := 0.0
 
 func _physics_process(_delta):
-	#material.set_shader_param("root_pos", targets_node.get_global_transform_with_canvas()[2])
-	deltatime += _delta
-	#z_index += targets_node.z_index
-	
-	
-	physics.update(self, wind_node.wind, deltatime)
-	
-	#update()
+	if active:
+		#material.set_shader_param("root_pos", targets_node.get_global_transform_with_canvas()[2])
+		deltatime += _delta
+		#z_index += targets_node.z_index
+		
+		
+		physics.update(self, wind_node.wind, deltatime)
+		
+		#update()
 
 
 # Physics

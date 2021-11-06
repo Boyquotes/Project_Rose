@@ -50,7 +50,7 @@ var previous_action := "previous_action"
 func init():
 	action_state = get_parent()
 	host = action_state.host
-	host.call_init_in_children(self)
+	host.call_init_in_children(host, self)
 
 
 func _enter():

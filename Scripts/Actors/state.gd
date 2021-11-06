@@ -7,7 +7,7 @@ var FSM
 func init():
 	FSM = get_parent()
 	host = FSM.host
-	host.call_init_in_children(self)
+	host.call_init_in_children(host, self)
 
 func _enter():
 	pass;

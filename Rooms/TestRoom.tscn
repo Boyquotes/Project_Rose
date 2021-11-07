@@ -1,50 +1,22 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Resources/Tilesets/PrimititveTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Game Objects/Actors/Players/Rose/Rose.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Tilesets/Ledges.tres" type="TileSet" id=3]
 [ext_resource path="res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd" type="Script" id=4]
-[ext_resource path="res://Game Objects/Testing/Cape.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Game Objects/Testing/rotlight.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Sprites/Actors/Enemies/Woodeater_Soldier/Woodeater_Soldier_Prototype.png" type="Texture" id=6]
 [ext_resource path="res://Game Objects/Testing/Light2D.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Lights/background.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Lights/light_nopix.png" type="Texture" id=9]
 [ext_resource path="res://Game Objects/Testing/CampeSkeletonController.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" type="Texture" id=12]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -19, 10, 3, -5, 26, -5, 38, 7, 38, 16, -19, 15 )
 
 [node name="TestRoom" type="Node2D"]
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 134, -3696 )
-
-[node name="Light2D" parent="Node2D" instance=ExtResource( 7 )]
-position = Vector2( -173, 931 )
-texture = ExtResource( 9 )
-texture_scale = 50.0
-range_height = 800.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-speed = 0.0
-
-[node name="Light2D2" parent="Node2D" instance=ExtResource( 7 )]
-position = Vector2( -5171, 709 )
-texture = ExtResource( 9 )
-texture_scale = 50.0
-range_height = 800.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-speed = 0.0
-
-[node name="Light2D3" parent="Node2D" instance=ExtResource( 7 )]
-position = Vector2( 4366, 931 )
-texture = ExtResource( 9 )
-texture_scale = 50.0
-range_height = 800.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-speed = 0.0
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.27451, 0.27451, 0.27451, 1 )
@@ -60,7 +32,7 @@ color = Color( 0.496094, 0.496094, 0.496094, 1 )
 light_mask = 3
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
-occluder_light_mask = 3
+occluder_light_mask = 0
 format = 1
 tile_data = PoolIntArray( -327684, 0, 0, -262145, 0, 0, -196612, 0, 0, -131073, 0, 0, -65540, 0, 0, 131046, 4, 0, 131047, 4, 1, 131048, 4, 2, 131049, 4, 3, 131052, 3, 0, 131053, 3, 1, 131054, 3, 2, 131059, 2, 0, 131060, 2, 1, 196554, 0, 0, 196555, 0, 0, 196556, 0, 0, 196557, 0, 0, 196558, 0, 0, 196559, 0, 0, 196560, 0, 0, 196561, 0, 0, 196562, 0, 0, 196563, 0, 0, 196564, 0, 0, 196565, 0, 0, 196566, 0, 0, 196567, 0, 0, 196568, 0, 0, 196569, 0, 0, 196570, 0, 0, 196571, 0, 0, 196572, 0, 0, 196573, 0, 0, 196574, 0, 0, 196575, 0, 0, 196576, 0, 0, 196577, 0, 0, 196578, 0, 0, 196579, 0, 0, 196580, 0, 0, 196581, 0, 0, 196582, 0, 0, 196583, 0, 0, 196584, 0, 0, 196585, 0, 0, 196586, 0, 0, 196587, 0, 0, 196588, 0, 0, 196589, 0, 0, 196590, 0, 0, 196591, 0, 0, 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 196597, 0, 0, 196598, 0, 0, 196599, 0, 0, 196600, 0, 0, 196601, 0, 0, 196602, 0, 0, 196603, 0, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131089, 0, 0, 131090, 0, 0, 131091, 0, 0, 131092, 0, 0, 131093, 0, 0, 131094, 0, 0, 131095, 0, 0, 131096, 0, 0, 131097, 0, 0, 131098, 0, 0, 131099, 0, 0, 131100, 0, 0, 131101, 0, 0, 131102, 0, 0, 131103, 0, 0, 131104, 0, 0, 131105, 0, 0, 131106, 0, 0, 131107, 0, 0, 131108, 0, 0, 131109, 0, 0, 131110, 0, 0, 131111, 0, 0, 131112, 0, 0, 131113, 0, 0, 131114, 0, 0, 131115, 0, 0, 131116, 0, 0, 131117, 0, 0, 131118, 0, 0, 131119, 0, 0, 131120, 0, 0, 131121, 0, 0, 131122, 0, 0, 131123, 0, 0, 131124, 0, 0, 131125, 0, 0, 131126, 0, 0, 131127, 0, 0, 131128, 0, 0, 131129, 0, 0, 131130, 0, 0, 131131, 0, 0, 131132, 0, 0, 131133, 0, 0, 131134, 0, 0, 131135, 0, 0, 131136, 0, 0, 131137, 0, 0, 131138, 0, 0, 131139, 0, 0, 131140, 0, 0, 131141, 0, 0, 131142, 0, 0, 131143, 0, 0, 131144, 0, 0, 131145, 0, 0, 131146, 0, 0, 131147, 0, 0, 131148, 0, 0, 131149, 0, 0, 131150, 0, 0, 131151, 0, 0, 131152, 0, 0, 131153, 0, 0, 131154, 0, 0, 131155, 0, 0, 131156, 0, 0, 131157, 0, 0, 131158, 0, 0, 131159, 0, 0, 131160, 0, 0, 131161, 0, 0, 131162, 0, 0, 131163, 0, 0, 131164, 0, 0, 131165, 0, 0, 131166, 0, 0, 131167, 0, 0, 131168, 0, 0, 131169, 0, 0, 131170, 0, 0, 131171, 0, 0, 131172, 0, 0, 131173, 0, 0, 131174, 0, 0, 131175, 0, 0, 131176, 0, 0, 131177, 0, 0, 131178, 0, 0, 131179, 0, 0, 131180, 0, 0, 131181, 0, 0, 131182, 0, 0, 131183, 0, 0, 131184, 0, 0, 131185, 0, 0, 131186, 0, 0, 131187, 0, 0, 131188, 0, 0, 131189, 0, 0, 131190, 0, 0, 131191, 0, 0, 131192, 0, 0, 131193, 0, 0, 131194, 0, 0, 131195, 0, 0, 131196, 0, 0, 131197, 0, 0, 131198, 0, 0, 131199, 0, 0, 131200, 0, 0, 131201, 0, 0, 131202, 0, 0, 131203, 0, 0, 131204, 0, 0, 131205, 0, 0, 131206, 0, 0, 131207, 0, 0, 131208, 0, 0, 131209, 0, 0, 131210, 0, 0, 131211, 0, 0, 131212, 0, 0, 131213, 0, 0, 131214, 0, 0 )
 
@@ -74,26 +46,66 @@ collision_mask = 0
 format = 1
 script = ExtResource( 4 )
 
-[node name="LineCape" parent="." instance=ExtResource( 5 )]
-active = false
-
-[node name="CampeSkeletonController" parent="." instance=ExtResource( 10 )]
-phys_obj_path = NodePath("../Rose")
-targets_path = NodePath("../Rose/Utilities/CapeTarget")
-influencers_path = NodePath("../Rose/Utilities/CapeInfluencers")
-wind_path = NodePath("../Rose/Utilities/WindNode")
-skeleton_path = NodePath("../Rose/Utilities/CapeSkeleton")
-initial_rest_distance = 2.0
-
-[node name="Light2D4" parent="." instance=ExtResource( 7 )]
+[node name="Light2D5" parent="." instance=ExtResource( 7 )]
 visible = false
-position = Vector2( -346, 8 )
+position = Vector2( 582, -64 )
+rotation = -1.36686
 texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
 shadow_enabled = true
 shadow_item_cull_mask = 3
 
+[node name="skylight" type="Node2D" parent="."]
+visible = false
+position = Vector2( 134, -3696 )
+
+[node name="Light2D" parent="skylight" instance=ExtResource( 7 )]
+position = Vector2( -173, 931 )
+texture = ExtResource( 9 )
+texture_scale = 50.0
+range_height = 800.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D2" parent="skylight" instance=ExtResource( 7 )]
+position = Vector2( -5171, 709 )
+texture = ExtResource( 9 )
+texture_scale = 50.0
+range_height = 800.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D3" parent="skylight" instance=ExtResource( 7 )]
+position = Vector2( 4366, 931 )
+texture = ExtResource( 9 )
+texture_scale = 50.0
+range_height = 800.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="rotlight" type="Node2D" parent="."]
+visible = false
+position = Vector2( 265, 45 )
+rotation = 11.1995
+script = ExtResource( 5 )
+
+[node name="Light2D4" parent="rotlight" instance=ExtResource( 7 )]
+position = Vector2( 165, 0 )
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Line2D" type="Line2D" parent="rotlight"]
+z_index = 20
+points = PoolVector2Array( 0, 0, 165, 0 )
+width = 1.0
+default_color = Color( 0.564706, 0.639216, 1, 0.490196 )
+
 [node name="Rose" parent="." instance=ExtResource( 2 )]
-position = Vector2( 161, 39 )
+position = Vector2( 265, 44 )
 move_states = {
 "action": NodePath("MoveStates/Action"),
 "hit": NodePath("MoveStates/Hit"),
@@ -105,15 +117,81 @@ move_states = {
 [node name="CollisionBox" parent="Rose" index="0"]
 visible = false
 
+[node name="MoveStates" parent="Rose" index="1"]
+visible = false
+
 [node name="HitArea" parent="Rose" index="2"]
 visible = false
+
+[node name="Sprite" parent="Rose/Sprites" index="0"]
+texture = ExtResource( 11 )
+normal_map = ExtResource( 12 )
+offset = Vector2( 2, -1 )
+hframes = 5
+frame = 4
+
+[node name="DetectOtherArea" parent="Rose/Utilities" index="0"]
+visible = false
+
+[node name="LedgeBoxL" parent="Rose/Utilities" index="2"]
+visible = false
+
+[node name="LedgeBoxR" parent="Rose/Utilities" index="3"]
+visible = false
+
+[node name="LedgeCastL" parent="Rose/Utilities" index="4"]
+visible = false
+
+[node name="LedgeCastR" parent="Rose/Utilities" index="5"]
+visible = false
+
+[node name="CapeSkeleton" parent="Rose/Utilities" index="7"]
+visible = false
+
+[node name="CapeTarget" parent="Rose/Utilities" index="9"]
+visible = false
+
+[node name="Position2D" parent="Rose/Utilities/CapeTarget" index="0"]
+position = Vector2( -6, 1.66667 )
+
+[node name="Position2D2" parent="Rose/Utilities/CapeTarget" index="1"]
+position = Vector2( -4, 1 )
+
+[node name="Position2D3" parent="Rose/Utilities/CapeTarget" index="2"]
+position = Vector2( -1.66667, 0.333334 )
+
+[node name="Position2D4" parent="Rose/Utilities/CapeTarget" index="3"]
+position = Vector2( 1.33333, 0.333334 )
+
+[node name="Position2D5" parent="Rose/Utilities/CapeTarget" index="4"]
+position = Vector2( 3.33333, 1 )
 
 [node name="WindNode" parent="Rose/Utilities" index="11"]
 wind_type = 4
 directional = true
 direction = 4.0
 
+[node name="centerlight" parent="Rose" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 11, -2 )
+rotation = -2.36549
+z_index = -1
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = -190.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="CampeSkeletonController" parent="." instance=ExtResource( 10 )]
+phys_obj_path = NodePath("../Rose")
+targets_path = NodePath("../Rose/Utilities/CapeTarget")
+influencers_path = NodePath("../Rose/Utilities/CapeInfluencers")
+wind_path = NodePath("../Rose/Utilities/WindNode")
+skeleton_path = NodePath("../Rose/Utilities/CapeSkeleton")
+initial_rest_distance = 2.0
+
 [node name="Woodeater_Soldier_Prototype" type="Sprite" parent="."]
+visible = false
 position = Vector2( 234, 40 )
 texture = ExtResource( 6 )
 

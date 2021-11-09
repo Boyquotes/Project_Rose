@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Resources/Tilesets/PrimititveTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Game Objects/Actors/Players/Rose/Rose.tscn" type="PackedScene" id=2]
@@ -10,8 +10,6 @@
 [ext_resource path="res://Assets/Lights/background.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Lights/light_nopix.png" type="Texture" id=9]
 [ext_resource path="res://Game Objects/Testing/CampeSkeletonController.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" type="Texture" id=12]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -19, 10, 3, -5, 26, -5, 38, 7, 38, 16, -19, 15 )
@@ -48,7 +46,7 @@ script = ExtResource( 4 )
 
 [node name="Light2D5" parent="." instance=ExtResource( 7 )]
 visible = false
-position = Vector2( 582, -64 )
+position = Vector2( 390, -40 )
 rotation = -1.36686
 texture = ExtResource( 9 )
 texture_scale = 1.0
@@ -85,9 +83,8 @@ shadow_enabled = true
 shadow_item_cull_mask = 3
 
 [node name="rotlight" type="Node2D" parent="."]
-visible = false
 position = Vector2( 265, 45 )
-rotation = 11.1995
+rotation = 45.5504
 script = ExtResource( 5 )
 
 [node name="Light2D4" parent="rotlight" instance=ExtResource( 7 )]
@@ -124,11 +121,7 @@ visible = false
 visible = false
 
 [node name="Sprite" parent="Rose/Sprites" index="0"]
-texture = ExtResource( 11 )
-normal_map = ExtResource( 12 )
-offset = Vector2( 2, -1 )
-hframes = 5
-frame = 4
+frame = 1
 
 [node name="DetectOtherArea" parent="Rose/Utilities" index="0"]
 visible = false
@@ -152,19 +145,19 @@ visible = false
 visible = false
 
 [node name="Position2D" parent="Rose/Utilities/CapeTarget" index="0"]
-position = Vector2( -6, 1.66667 )
+position = Vector2( -5, 2 )
 
 [node name="Position2D2" parent="Rose/Utilities/CapeTarget" index="1"]
-position = Vector2( -4, 1 )
+position = Vector2( -2, 1 )
 
 [node name="Position2D3" parent="Rose/Utilities/CapeTarget" index="2"]
-position = Vector2( -1.66667, 0.333334 )
+position = Vector2( 1, 1 )
 
 [node name="Position2D4" parent="Rose/Utilities/CapeTarget" index="3"]
-position = Vector2( 1.33333, 0.333334 )
+position = Vector2( 4, 1 )
 
 [node name="Position2D5" parent="Rose/Utilities/CapeTarget" index="4"]
-position = Vector2( 3.33333, 1 )
+position = Vector2( 6, 2 )
 
 [node name="WindNode" parent="Rose/Utilities" index="11"]
 wind_type = 4

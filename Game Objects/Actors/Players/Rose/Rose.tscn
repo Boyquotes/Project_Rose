@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Game Objects/Actors/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Game Objects/Testing/CapeSkeleton.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/AscendToDescend_n.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Ascend_n.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Descend_n.png" type="Texture" id=20]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -493,7 +494,7 @@ tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0.3 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 19 ) ]
@@ -838,6 +839,18 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("../Sprites/Sprite:normal_map")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 20 ) ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -1349,10 +1362,10 @@ collision_mask = 896
 [node name="Sprite" type="Sprite" parent="Sprites" index="0"]
 light_mask = 2
 material = SubResource( 2 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 normal_map = ExtResource( 18 )
 offset = Vector2( 1, 2 )
-hframes = 2
+hframes = 3
 
 [node name="BaseAnimator" parent="Animators" index="0"]
 anims/Action_Dodge = SubResource( 3 )
@@ -1386,19 +1399,19 @@ position = Vector2( 0, -8 )
 script = ExtResource( 14 )
 
 [node name="Position2D" type="Position2D" parent="Utilities/CapeTarget" index="0"]
-position = Vector2( -6, 3 )
+position = Vector2( -5, 2 )
 
 [node name="Position2D2" type="Position2D" parent="Utilities/CapeTarget" index="1"]
-position = Vector2( -3, 3 )
+position = Vector2( -2, 1 )
 
 [node name="Position2D3" type="Position2D" parent="Utilities/CapeTarget" index="2"]
-position = Vector2( 0, 3 )
+position = Vector2( 1, 1 )
 
 [node name="Position2D4" type="Position2D" parent="Utilities/CapeTarget" index="3"]
-position = Vector2( 3, 3 )
+position = Vector2( 4, 1 )
 
 [node name="Position2D5" type="Position2D" parent="Utilities/CapeTarget" index="4"]
-position = Vector2( 6, 3 )
+position = Vector2( 6, 2 )
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities" index="10"]
 

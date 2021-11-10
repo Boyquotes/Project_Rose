@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Resources/Tilesets/PrimititveTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Game Objects/Actors/Players/Rose/Rose.tscn" type="PackedScene" id=2]
@@ -10,17 +10,58 @@
 [ext_resource path="res://Assets/Lights/background.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Lights/light_nopix.png" type="Texture" id=9]
 [ext_resource path="res://Game Objects/Testing/CampeSkeletonController.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=11]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -19, 10, 3, -5, 26, -5, 38, 7, 38, 16, -19, 15 )
 
 [node name="TestRoom" type="Node2D"]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 265, 44 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 100
+texture = ExtResource( 9 )
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 modulate = Color( 0.27451, 0.27451, 0.27451, 1 )
 light_mask = 2
 scale = Vector2( 20, 20 )
+z_index = -100
 texture = ExtResource( 8 )
+
+[node name="skylight" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 265, -1544 )
+scale = Vector2( 4, 4 )
+
+[node name="Light2D" parent="ParallaxBackground/ParallaxLayer/skylight" instance=ExtResource( 7 )]
+position = Vector2( -1000, 0 )
+texture = ExtResource( 9 )
+texture_scale = 50.0
+range_height = 800.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D2" parent="ParallaxBackground/ParallaxLayer/skylight" instance=ExtResource( 7 )]
+position = Vector2( 0, 0 )
+texture = ExtResource( 9 )
+texture_scale = 50.0
+range_height = 800.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D3" parent="ParallaxBackground/ParallaxLayer/skylight" instance=ExtResource( 7 )]
+position = Vector2( 1000, 0 )
+texture = ExtResource( 9 )
+texture_scale = 50.0
+range_height = 800.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -54,37 +95,10 @@ range_height = 50.0
 shadow_enabled = true
 shadow_item_cull_mask = 3
 
-[node name="skylight" type="Node2D" parent="."]
-visible = false
-position = Vector2( 134, -3696 )
-
-[node name="Light2D" parent="skylight" instance=ExtResource( 7 )]
-position = Vector2( -173, 931 )
-texture = ExtResource( 9 )
-texture_scale = 50.0
-range_height = 800.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-
-[node name="Light2D2" parent="skylight" instance=ExtResource( 7 )]
-position = Vector2( -5171, 709 )
-texture = ExtResource( 9 )
-texture_scale = 50.0
-range_height = 800.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-
-[node name="Light2D3" parent="skylight" instance=ExtResource( 7 )]
-position = Vector2( 4366, 931 )
-texture = ExtResource( 9 )
-texture_scale = 50.0
-range_height = 800.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-
 [node name="rotlight" type="Node2D" parent="."]
+visible = false
 position = Vector2( 265, 45 )
-rotation = 46.8939
+rotation = 55.8583
 script = ExtResource( 5 )
 
 [node name="Light2D4" parent="rotlight" instance=ExtResource( 7 )]
@@ -121,7 +135,9 @@ visible = false
 visible = false
 
 [node name="Sprite" parent="Rose/Sprites" index="0"]
-frame = 1
+texture = ExtResource( 11 )
+offset = Vector2( 2, -1 )
+hframes = 5
 
 [node name="DetectOtherArea" parent="Rose/Utilities" index="0"]
 visible = false
@@ -145,19 +161,19 @@ visible = false
 visible = false
 
 [node name="Position2D" parent="Rose/Utilities/CapeTarget" index="0"]
-position = Vector2( -5, 2 )
+position = Vector2( -6, 3 )
 
 [node name="Position2D2" parent="Rose/Utilities/CapeTarget" index="1"]
-position = Vector2( -2, 1 )
+position = Vector2( -4, 3 )
 
 [node name="Position2D3" parent="Rose/Utilities/CapeTarget" index="2"]
-position = Vector2( 1, 1 )
+position = Vector2( -1, 3 )
 
 [node name="Position2D4" parent="Rose/Utilities/CapeTarget" index="3"]
-position = Vector2( 4, 1 )
+position = Vector2( 2, 3 )
 
 [node name="Position2D5" parent="Rose/Utilities/CapeTarget" index="4"]
-position = Vector2( 6, 2 )
+position = Vector2( 4, 3 )
 
 [node name="WindNode" parent="Rose/Utilities" index="11"]
 wind_type = 4

@@ -84,7 +84,7 @@ shadow_item_cull_mask = 3
 
 [node name="rotlight" type="Node2D" parent="."]
 position = Vector2( 265, 45 )
-rotation = 45.5504
+rotation = 46.8939
 script = ExtResource( 5 )
 
 [node name="Light2D4" parent="rotlight" instance=ExtResource( 7 )]

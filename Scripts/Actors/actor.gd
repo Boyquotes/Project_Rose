@@ -121,8 +121,9 @@ func kill():
 	queue_free()
 
 
-func on_floor() -> bool:
-	return test_move(transform, Vector2(0, 1))
+#func on_floor() -> bool:
+#	print(test_move(transform, Vector2(0, 1)))
+#	return test_move(transform, Vector2(0, 1))
 
 
 func deactivate_grav():

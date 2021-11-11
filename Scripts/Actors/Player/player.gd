@@ -78,7 +78,7 @@ func _unpaused_phys_execute(delta):
 	vel.x = hor_spd
 	vel = move_and_slide(vel, floor_normal)
 	#no grav acceleration when on floor
-	if on_floor():
+	if is_on_floor():
 		air_time = 0
 		vel.y = 0
 		vert_spd = 0

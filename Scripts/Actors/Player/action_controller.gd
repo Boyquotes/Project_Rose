@@ -107,7 +107,7 @@ func parse_action(idx):
 	elif secondary_pressed():
 		slotted_secondary = true
 	elif dodge_pressed():
-		if idx == 0 && host.on_floor() || idx == 1:
+		if idx == 0 && host.is_on_floor() || idx == 1:
 			slotted_dodge = true
 	
 	clear_enter_vars()

@@ -42,7 +42,7 @@ func _handle_input():
 func _handle_animation():
 	if(jump):
 		host.animate(host.spr_anim,"AirJump", false);
-	if host.on_floor() && !land:
+	if host.is_on_floor() && !land:
 		land = true
 		host.animate(host.base_anim, "Land", false)
 	elif !land:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Game Objects/Actors/Players/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=2]
@@ -20,6 +20,11 @@
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/AscendToDescend_n.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Ascend_n.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Descend_n.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Climb_n.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/LookUp_n.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Crouch_n.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Grab_n.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Dodge_n.png" type="Texture" id=25]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -350,6 +355,18 @@ tracks/13/keys = {
 "method": "set_exit_dodge_early"
 } ]
 }
+tracks/14/type = "value"
+tracks/14/path = NodePath("../Sprites/Sprite:normal_map")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 25 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.45
@@ -664,6 +681,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("../Sprites/Sprite:normal_map")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 21 ) ]
+}
 
 [sub_resource type="Animation" id=7]
 loop = true
@@ -714,6 +743,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ Vector2( 5, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Sprites/Sprite:normal_map")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 23 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -1123,6 +1164,18 @@ tracks/10/keys = {
 "update": 0,
 "values": [ Vector2( 6, -10 ) ]
 }
+tracks/11/type = "value"
+tracks/11/path = NodePath("../Sprites/Sprite:normal_map")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 24 ) ]
+}
 
 [sub_resource type="Animation" id=11]
 loop = true
@@ -1173,6 +1226,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ Vector2( 3, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Sprites/Sprite:normal_map")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 22 ) ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -1354,6 +1419,10 @@ move_states = {
 "move_in_air": NodePath("MoveStates/MoveInAir"),
 "move_on_ground": NodePath("MoveStates/MoveOnGround")
 }
+iframe = true
+
+[node name="CollisionBox" parent="." index="0"]
+disabled = false
 
 [node name="HitArea" parent="." index="2"]
 collision_layer = 64
@@ -1362,10 +1431,10 @@ collision_mask = 896
 [node name="Sprite" type="Sprite" parent="Sprites" index="0"]
 light_mask = 2
 material = SubResource( 2 )
-texture = ExtResource( 8 )
+texture = ExtResource( 2 )
 normal_map = ExtResource( 18 )
-offset = Vector2( 1, 2 )
-hframes = 3
+offset = Vector2( 2, -1 )
+hframes = 5
 
 [node name="BaseAnimator" parent="Animators" index="0"]
 anims/Action_Dodge = SubResource( 3 )
@@ -1399,25 +1468,27 @@ position = Vector2( 0, -8 )
 script = ExtResource( 14 )
 
 [node name="Position2D" type="Position2D" parent="Utilities/CapeTarget" index="0"]
-position = Vector2( -5, 2 )
+position = Vector2( -6, 3 )
 
 [node name="Position2D2" type="Position2D" parent="Utilities/CapeTarget" index="1"]
-position = Vector2( -2, 1 )
+position = Vector2( -4, 3 )
 
 [node name="Position2D3" type="Position2D" parent="Utilities/CapeTarget" index="2"]
-position = Vector2( 1, 1 )
+position = Vector2( -1, 3 )
 
 [node name="Position2D4" type="Position2D" parent="Utilities/CapeTarget" index="3"]
-position = Vector2( 4, 1 )
+position = Vector2( 2, 3 )
 
 [node name="Position2D5" type="Position2D" parent="Utilities/CapeTarget" index="4"]
-position = Vector2( 6, 2 )
+position = Vector2( 4, 3 )
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities" index="10"]
 
 [node name="WindNode" type="Position2D" parent="Utilities" index="11"]
 position = Vector2( -64, -40 )
 script = ExtResource( 13 )
+wind_type = 4
+directional = true
 
 [node name="Timer" type="Timer" parent="Utilities/WindNode" index="0"]
 

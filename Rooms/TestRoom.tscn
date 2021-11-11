@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/Lights/background.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Lights/light_nopix.png" type="Texture" id=9]
 [ext_resource path="res://Game Objects/Testing/CampeSkeletonController.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" type="Texture" id=11]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -19, 10, 3, -5, 26, -5, 38, 7, 38, 16, -19, 15 )
@@ -23,6 +23,7 @@ polygon = PoolVector2Array( -19, 10, 3, -5, 26, -5, 38, 7, 38, 16, -19, 15 )
 motion_scale = Vector2( 0.1, 0.1 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
 position = Vector2( 265, 44 )
 scale = Vector2( 0.5, 0.5 )
 z_index = 100
@@ -36,6 +37,7 @@ z_index = -100
 texture = ExtResource( 8 )
 
 [node name="skylight" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
 position = Vector2( 265, -1544 )
 scale = Vector2( 4, 4 )
 
@@ -85,6 +87,60 @@ collision_mask = 0
 format = 1
 script = ExtResource( 4 )
 
+[node name="Light2D6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 150, -115 )
+rotation = 1.61821
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D7" parent="." instance=ExtResource( 7 )]
+position = Vector2( 558, 92 )
+rotation = 1.61821
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D8" parent="." instance=ExtResource( 7 )]
+position = Vector2( 875, -127 )
+rotation = 1.61821
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D9" parent="." instance=ExtResource( 7 )]
+position = Vector2( -154, 23 )
+rotation = 1.61821
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D10" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1313, 248 )
+rotation = 1.61821
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D11" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1733, -20 )
+rotation = 1.61821
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
 [node name="Light2D5" parent="." instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 390, -40 )
@@ -98,7 +154,7 @@ shadow_item_cull_mask = 3
 [node name="rotlight" type="Node2D" parent="."]
 visible = false
 position = Vector2( 265, 45 )
-rotation = 55.8583
+rotation = 51.8837
 script = ExtResource( 5 )
 
 [node name="Light2D4" parent="rotlight" instance=ExtResource( 7 )]
@@ -116,7 +172,6 @@ width = 1.0
 default_color = Color( 0.564706, 0.639216, 1, 0.490196 )
 
 [node name="Rose" parent="." instance=ExtResource( 2 )]
-position = Vector2( 265, 44 )
 move_states = {
 "action": NodePath("MoveStates/Action"),
 "hit": NodePath("MoveStates/Hit"),
@@ -125,71 +180,25 @@ move_states = {
 "move_on_ground": NodePath("MoveStates/MoveOnGround")
 }
 
-[node name="CollisionBox" parent="Rose" index="0"]
-visible = false
-
-[node name="MoveStates" parent="Rose" index="1"]
-visible = false
-
-[node name="HitArea" parent="Rose" index="2"]
-visible = false
-
 [node name="Sprite" parent="Rose/Sprites" index="0"]
 texture = ExtResource( 11 )
-offset = Vector2( 2, -1 )
-hframes = 5
-
-[node name="DetectOtherArea" parent="Rose/Utilities" index="0"]
-visible = false
-
-[node name="LedgeBoxL" parent="Rose/Utilities" index="2"]
-visible = false
-
-[node name="LedgeBoxR" parent="Rose/Utilities" index="3"]
-visible = false
-
-[node name="LedgeCastL" parent="Rose/Utilities" index="4"]
-visible = false
-
-[node name="LedgeCastR" parent="Rose/Utilities" index="5"]
-visible = false
-
-[node name="CapeSkeleton" parent="Rose/Utilities" index="7"]
-visible = false
-
-[node name="CapeTarget" parent="Rose/Utilities" index="9"]
-visible = false
+offset = Vector2( 0, 0 )
+hframes = 4
 
 [node name="Position2D" parent="Rose/Utilities/CapeTarget" index="0"]
-position = Vector2( -6, 3 )
+position = Vector2( -2, 5 )
 
 [node name="Position2D2" parent="Rose/Utilities/CapeTarget" index="1"]
-position = Vector2( -4, 3 )
+position = Vector2( -1, 4 )
 
 [node name="Position2D3" parent="Rose/Utilities/CapeTarget" index="2"]
-position = Vector2( -1, 3 )
+position = Vector2( 1, 3 )
 
 [node name="Position2D4" parent="Rose/Utilities/CapeTarget" index="3"]
-position = Vector2( 2, 3 )
+position = Vector2( 3, 3 )
 
 [node name="Position2D5" parent="Rose/Utilities/CapeTarget" index="4"]
-position = Vector2( 4, 3 )
-
-[node name="WindNode" parent="Rose/Utilities" index="11"]
-wind_type = 4
-directional = true
-direction = 4.0
-
-[node name="centerlight" parent="Rose" instance=ExtResource( 7 )]
-visible = false
-position = Vector2( 11, -2 )
-rotation = -2.36549
-z_index = -1
-texture = ExtResource( 9 )
-texture_scale = 1.0
-range_height = -190.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
+position = Vector2( 5, 4 )
 
 [node name="CampeSkeletonController" parent="." instance=ExtResource( 10 )]
 phys_obj_path = NodePath("../Rose")

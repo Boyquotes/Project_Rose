@@ -50,7 +50,7 @@ func _handle_animation():
 
 func _execute(delta):
 	._execute(delta)
-	if not host.on_floor():
+	if not host.is_on_floor():
 		exit_air()
 
 

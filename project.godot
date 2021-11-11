@@ -156,10 +156,6 @@ ActionEnums="*res://Scripts/Globals/action_enums.gd"
 SceneController="*res://Scripts/Globals/scene_controller.gd"
 UserSettings="*res://Scripts/Globals/user_settings.gd"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/width=480
@@ -172,10 +168,6 @@ window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray( "Hitbox Generator", "Palette Swap" )
-
-[global]
-
-fps=false
 
 [input]
 

@@ -50,7 +50,7 @@ func _handle_input():
 			FSM.move_in_air_state.jump = true
 			exit_state_flag = true
 			action_interrupted = true
-		if Input.is_action_just_pressed("Jump") and host.on_floor():
+		if Input.is_action_just_pressed("Jump") and host.is_on_floor():
 			FSM.move_on_ground_state.jump = true
 			exit_state_flag = true
 			action_interrupted = true

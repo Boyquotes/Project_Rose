@@ -115,7 +115,7 @@ func _exit(state):
 
 
 func exit_ground_or_air():
-	match(host.on_floor()):
+	match(host.is_on_floor()):
 		true:
 			_exit(FSM.move_on_ground_state)
 		false:

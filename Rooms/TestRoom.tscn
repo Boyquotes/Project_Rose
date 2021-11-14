@@ -493,6 +493,12 @@ texture = ExtResource( 11 )
 offset = Vector2( 0, 0 )
 hframes = 4
 
+[node name="LedgeCastL" parent="Rose/Utilities" index="4"]
+collision_mask = 1024
+
+[node name="LedgeCastR" parent="Rose/Utilities" index="6"]
+collision_mask = 1024
+
 [node name="Position2D" parent="Rose/Utilities/CapeTarget" index="0"]
 position = Vector2( -2, 5 )
 
@@ -520,7 +526,6 @@ initial_rest_distance = 2.0
 position = Vector2( 556, 88 )
 
 [node name="StoneSpriteShape" parent="StoneSpriteShape" index="0"]
-light_mask = 3
 _points = SubResource( 44 )
 
 [node name="CollisionPolygon2D" parent="StoneSpriteShape" index="1"]

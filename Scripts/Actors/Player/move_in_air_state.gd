@@ -6,7 +6,8 @@ export(bool) var transitioned := false
 export(bool) var jump := false
 export(NodePath) var ledge_cast_l_path
 export(NodePath) var ledge_cast_r_path
-
+export(NodePath) var open_ledge_cast_l_path
+export(NodePath) var open_ledge_cast_r_path
 
 var cutoff := false
 var land := false
@@ -18,6 +19,8 @@ var wasnt_wall_l := false
 var is_wall_l := false
 var ledge_cast_l
 var ledge_cast_r
+var open_ledge_cast_l
+var open_ledge_cast_r
 
 onready var ledge_disable_timer = $LedgeDisableTimer
 
@@ -25,7 +28,9 @@ func init():
 	.init()
 	ledge_cast_r = get_node(ledge_cast_r_path)
 	ledge_cast_l = get_node(ledge_cast_l_path)
-
+	open_ledge_cast_r = get_node(open_ledge_cast_r_path)
+	open_ledge_cast_l = get_node(open_ledge_cast_l_path)
+	
 func _ready():
 	jumped = false
 
@@ -61,10 +66,11 @@ func _handle_animation():
 
 
 func _execute(delta):
-	if detect_ledge(ledge_cast_r, 1):
-		return
-	if detect_ledge(ledge_cast_l, -1):
-		return
+	if host.vert_spd >= 0:
+		if detect_ledge(ledge_cast_r, open_ledge_cast_r, 1):
+			return
+		if detect_ledge(ledge_cast_l, open_ledge_cast_l, -1):
+			return
 	
 	._execute(delta)
 
@@ -83,8 +89,8 @@ func _exit(state):
 	is_wall_l = false
 	._exit(state)
 
-func detect_ledge(ledge_cast, dir : int):
-	if ledge_cast.is_colliding():
+func detect_ledge(ledge_cast, open_ledge_cast, dir : int):
+	if ledge_cast.is_colliding() and not open_ledge_cast.is_colliding():
 		FSM.ledge_grab_state.ledge_cast = ledge_cast
 		FSM.ledge_grab_state.move_direction = dir
 		_exit(FSM.ledge_grab_state)

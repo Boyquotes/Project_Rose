@@ -16,7 +16,7 @@ uniform float max_light : hint_range(0.0, 1.0) = 1.0;
 uniform float obj_light_add : hint_range(0.0, 1.0) = 0.0;
 // Light height variables
 uniform bool fake_light_depth = true;
-uniform float obj_height : hint_range(-2048.0, 2048.0) = -100.0; 
+uniform float obj_height : hint_range(-2048.0, 2048.0) = 0.0; 
 uniform float min_scale : hint_range(0.0, 10.0) = 0.2;
 uniform float max_scale : hint_range(0.0, 10.0) = 2.0; 
 uniform float light_change_thresh : hint_range(0.0, 4080.0) = 1000.0;
@@ -26,7 +26,7 @@ uniform bool fake_spot_light = false;
 uniform float first_shrink_speed : hint_range(0.0, 120.0) = 1.0; 
 uniform float second_shrink_speed : hint_range(0.0, 120.0) = 2.0; 
 //---------------Color Override
-uniform vec4 before_light_modulate : hint_color = vec4(0.5,0.37,0.37,1.0);
+uniform vec4 before_light_modulate : hint_color = vec4(0.5,0.5,0.5,1.0);
 
 void vertex() {
 	NORMAL_MATRIX = mat2(COLOR.rg, COLOR.ba)*2.0 - mat2(vec2(1.0), vec2(1.0));

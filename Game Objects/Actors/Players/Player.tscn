@@ -592,6 +592,8 @@ script = ExtResource( 4 )
 jumped = true
 ledge_cast_l_path = NodePath("../../Utilities/LedgeCastL")
 ledge_cast_r_path = NodePath("../../Utilities/LedgeCastR")
+open_ledge_cast_l_path = NodePath("../../Utilities/OpenLedgeCastL")
+open_ledge_cast_r_path = NodePath("../../Utilities/OpenLedgeCastR")
 
 [node name="LedgeDisableTimer" type="Timer" parent="MoveStates/MoveInAir" index="0"]
 one_shot = true
@@ -689,17 +691,25 @@ shape = SubResource( 19 )
 position = Vector2( 0, -20 )
 enabled = true
 cast_to = Vector2( -22, 0 )
-collision_mask = 1024
 
-[node name="LedgeCastR" type="RayCast2D" parent="Utilities" index="5"]
+[node name="OpenLedgeCastL" type="RayCast2D" parent="Utilities" index="5"]
+position = Vector2( 0, -36 )
+enabled = true
+cast_to = Vector2( -22, 0 )
+
+[node name="LedgeCastR" type="RayCast2D" parent="Utilities" index="6"]
 position = Vector2( 0, -20 )
 enabled = true
 cast_to = Vector2( 22, 0 )
-collision_mask = 1024
 
-[node name="Tween" type="Tween" parent="Utilities" index="6"]
+[node name="OpenLedgeCastR" type="RayCast2D" parent="Utilities" index="7"]
+position = Vector2( 0, -36 )
+enabled = true
+cast_to = Vector2( 22, 0 )
 
-[node name="ActionTarget" type="Node2D" parent="Utilities" index="7"]
+[node name="Tween" type="Tween" parent="Utilities" index="8"]
+
+[node name="ActionTarget" type="Node2D" parent="Utilities" index="9"]
 position = Vector2( 88.2941, 0 )
 
 [connection signal="timeout" from="MoveStates/MoveInAir/LedgeDisableTimer" to="MoveStates/MoveInAir" method="_on_LedgeDisableTimer_timeout"]

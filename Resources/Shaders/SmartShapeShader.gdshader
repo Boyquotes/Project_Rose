@@ -26,7 +26,7 @@ uniform bool fake_spot_light = false;
 uniform float first_shrink_speed : hint_range(0.0, 120.0) = 1.0; 
 uniform float second_shrink_speed : hint_range(0.0, 120.0) = 2.0; 
 //---------------Color Override
-uniform vec4 before_light_modulate : hint_color = vec4(0.5,0.37,0.37,1.0);
+uniform vec4 before_light_modulate : hint_color = vec4(0.5,0.5,0.5,1.0);
 
 void vertex() {
 	NORMAL_MATRIX = mat2(COLOR.rg, COLOR.ba)*2.0 - mat2(vec2(1.0), vec2(1.0));

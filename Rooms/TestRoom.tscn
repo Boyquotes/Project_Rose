@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Resources/Tilesets/PrimititveTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Game Objects/Actors/Players/Rose/Rose.tscn" type="PackedScene" id=2]
@@ -9,8 +9,318 @@
 [ext_resource path="res://Game Objects/Testing/Light2D.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Lights/background.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Lights/light_nopix.png" type="Texture" id=9]
-[ext_resource path="res://Game Objects/Testing/CampeSkeletonController.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Game Objects/Testing/CapeSkeletonController.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" type="Texture" id=11]
+[ext_resource path="res://Resources/Tilesets/StoneSpriteShape.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/rmsmartshape/vertex_properties.gd" type="Script" id=13]
+[ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=14]
+[ext_resource path="res://addons/rmsmartshape/shapes/point.gd" type="Script" id=15]
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 13 )
+texture_idx = 5
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 15 )
+position = Vector2( -387, 111 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 2 )
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 13 )
+texture_idx = 9
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 15 )
+position = Vector2( -387, -63 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 4 )
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 13 )
+texture_idx = 5
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 15 )
+position = Vector2( -236, -64 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 6 )
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 13 )
+texture_idx = 2
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 15 )
+position = Vector2( -228, 104 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 8 )
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 15 )
+position = Vector2( -236, 112 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 10 )
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 15 )
+position = Vector2( -236, 112 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 12 )
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 15 )
+position = Vector2( -388, 104 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 14 )
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 15 )
+position = Vector2( -380, 112 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 16 )
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 13 )
+texture_idx = 4
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 15 )
+position = Vector2( -388, -56 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 18 )
+
+[sub_resource type="Resource" id=20]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=21]
+script = ExtResource( 15 )
+position = Vector2( -228, -56 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 20 )
+
+[sub_resource type="Resource" id=22]
+script = ExtResource( 13 )
+texture_idx = 4
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=23]
+script = ExtResource( 15 )
+position = Vector2( -229, -63 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 22 )
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 13 )
+texture_idx = 7
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 15 )
+position = Vector2( -229, 111 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 24 )
+
+[sub_resource type="Resource" id=26]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=27]
+script = ExtResource( 15 )
+position = Vector2( -388, -48 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 26 )
+
+[sub_resource type="Resource" id=28]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=29]
+script = ExtResource( 15 )
+position = Vector2( -244, -64 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 28 )
+
+[sub_resource type="Resource" id=30]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=31]
+script = ExtResource( 15 )
+position = Vector2( -228, -48 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 30 )
+
+[sub_resource type="Resource" id=32]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=33]
+script = ExtResource( 15 )
+position = Vector2( -228, 96 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 32 )
+
+[sub_resource type="Resource" id=34]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=35]
+script = ExtResource( 15 )
+position = Vector2( -244, 112 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 34 )
+
+[sub_resource type="Resource" id=36]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=37]
+script = ExtResource( 15 )
+position = Vector2( -388, 96 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 36 )
+
+[sub_resource type="Resource" id=38]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=39]
+script = ExtResource( 15 )
+position = Vector2( -372, 112 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 38 )
+
+[sub_resource type="Resource" id=40]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=41]
+script = ExtResource( 15 )
+position = Vector2( -380, -64 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 40 )
+
+[sub_resource type="Resource" id=42]
+script = ExtResource( 13 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=43]
+script = ExtResource( 15 )
+position = Vector2( -372, -64 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 42 )
+
+[sub_resource type="Resource" id=44]
+script = ExtResource( 14 )
+_points = {
+4: SubResource( 3 ),
+7: SubResource( 5 ),
+9: SubResource( 7 ),
+10: SubResource( 9 ),
+11: SubResource( 11 ),
+12: SubResource( 13 ),
+14: SubResource( 15 ),
+15: SubResource( 17 ),
+17: SubResource( 19 ),
+19: SubResource( 21 ),
+21: SubResource( 23 ),
+22: SubResource( 25 ),
+24: SubResource( 27 ),
+25: SubResource( 29 ),
+26: SubResource( 31 ),
+27: SubResource( 33 ),
+28: SubResource( 35 ),
+29: SubResource( 37 ),
+30: SubResource( 39 ),
+31: SubResource( 41 ),
+32: SubResource( 43 )
+}
+_point_order = [ 11, 28, 30, 15, 4, 14, 29, 24, 17, 7, 31, 32, 25, 9, 21, 19, 26, 27, 10, 22, 12 ]
+_constraints = {
+[ 11, 12 ]: 15
+}
+_next_key = 33
+_material_overrides = {
+}
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -19, 10, 3, -5, 26, -5, 38, 7, 38, 16, -19, 15 )
@@ -66,7 +376,6 @@ shadow_enabled = true
 shadow_item_cull_mask = 3
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0.496094, 0.496094, 0.496094, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -87,64 +396,64 @@ collision_mask = 0
 format = 1
 script = ExtResource( 4 )
 
-[node name="Light2D6" parent="." instance=ExtResource( 7 )]
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
 position = Vector2( 150, -115 )
 rotation = 1.61821
-texture = ExtResource( 9 )
-texture_scale = 1.0
-range_height = 50.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
 
-[node name="Light2D7" parent="." instance=ExtResource( 7 )]
-position = Vector2( 558, 92 )
-rotation = 1.61821
-texture = ExtResource( 9 )
-texture_scale = 1.0
-range_height = 50.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-
-[node name="Light2D8" parent="." instance=ExtResource( 7 )]
-position = Vector2( 875, -127 )
-rotation = 1.61821
-texture = ExtResource( 9 )
-texture_scale = 1.0
-range_height = 50.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-
-[node name="Light2D9" parent="." instance=ExtResource( 7 )]
-position = Vector2( -154, 23 )
-rotation = 1.61821
-texture = ExtResource( 9 )
-texture_scale = 1.0
-range_height = 50.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-
-[node name="Light2D10" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1313, 248 )
-rotation = 1.61821
-texture = ExtResource( 9 )
-texture_scale = 1.0
-range_height = 50.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-
-[node name="Light2D11" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1733, -20 )
-rotation = 1.61821
-texture = ExtResource( 9 )
-texture_scale = 1.0
-range_height = 50.0
-shadow_enabled = true
-shadow_item_cull_mask = 3
-
-[node name="Light2D5" parent="." instance=ExtResource( 7 )]
+[node name="Light2D6" parent="Node2D" instance=ExtResource( 7 )]
 visible = false
-position = Vector2( 390, -40 )
-rotation = -1.36686
+position = Vector2( 0, 0 )
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D7" parent="Node2D" instance=ExtResource( 7 )]
+position = Vector2( 187.43, -417.352 )
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D8" parent="Node2D" instance=ExtResource( 7 )]
+position = Vector2( -46.3485, -723.616 )
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D9" parent="Node2D" instance=ExtResource( 7 )]
+position = Vector2( 152.253, 297.118 )
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D10" parent="Node2D" instance=ExtResource( 7 )]
+position = Vector2( 307.471, -1178.9 )
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D11" parent="Node2D" instance=ExtResource( 7 )]
+position = Vector2( 19.8656, -1585.72 )
+texture = ExtResource( 9 )
+texture_scale = 1.0
+range_height = 50.0
+shadow_enabled = true
+shadow_item_cull_mask = 3
+
+[node name="Light2D5" parent="Node2D" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 63.5407, -243.285 )
+rotation = -2.98507
 texture = ExtResource( 9 )
 texture_scale = 1.0
 range_height = 50.0
@@ -152,7 +461,6 @@ shadow_enabled = true
 shadow_item_cull_mask = 3
 
 [node name="rotlight" type="Node2D" parent="."]
-visible = false
 position = Vector2( 265, 45 )
 rotation = 51.8837
 script = ExtResource( 5 )
@@ -208,6 +516,16 @@ wind_path = NodePath("../Rose/Utilities/WindNode")
 skeleton_path = NodePath("../Rose/Utilities/CapeSkeleton")
 initial_rest_distance = 2.0
 
+[node name="StoneSpriteShape" parent="." instance=ExtResource( 12 )]
+position = Vector2( 556, 88 )
+
+[node name="StoneSpriteShape" parent="StoneSpriteShape" index="0"]
+light_mask = 3
+_points = SubResource( 44 )
+
+[node name="CollisionPolygon2D" parent="StoneSpriteShape" index="1"]
+polygon = PoolVector2Array( -236, 112.001, -244, 112, -372, 112, -380, 112.001, -387.071, 111.071, -388.001, 104, -388, 96, -388, -48, -388.001, -56.0001, -387.071, -63.0707, -380, -64.0013, -372, -64, -244, -64, -236, -64.0013, -228.929, -63.0707, -227.999, -56.0001, -228, -48, -228, 96, -227.999, 104, -228.929, 111.071 )
+
 [node name="Woodeater_Soldier_Prototype" type="Sprite" parent="."]
 visible = false
 position = Vector2( 234, 40 )
@@ -217,3 +535,4 @@ texture = ExtResource( 6 )
 occluder = SubResource( 1 )
 
 [editable path="Rose"]
+[editable path="StoneSpriteShape"]

@@ -37,6 +37,7 @@ var prev_mouse_position := Vector2()
 
 func _ready():
 	if active:
+		global_position = Vector2.ZERO
 		resting_distance = initial_rest_distance
 		physics = SkeletonClothPhysics.new()
 		physics.fixed_deltatime = 16
@@ -125,6 +126,8 @@ var deltatime := 0.0
 
 func _physics_process(_delta):
 	if active:
+		global_position = Vector2.ZERO
+		
 		#material.set_shader_param("root_pos", targets_node.get_global_transform_with_canvas()[2])
 		deltatime += _delta
 		#z_index += targets_node.z_index

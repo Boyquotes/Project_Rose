@@ -1,0 +1,583 @@
+[gd_scene load_steps=93 format=2]
+
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris4.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor4.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris_deeper1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris_deeper2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris_deeper4.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris_deeper3.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor1.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris3.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_fill1.png" type="Texture" id=13]
+[ext_resource path="res://addons/rmsmartshape/vertex_properties.gd" type="Script" id=14]
+[ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=15]
+[ext_resource path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" type="Script" id=16]
+[ext_resource path="res://addons/rmsmartshape/materials/edge_material.gd" type="Script" id=17]
+[ext_resource path="res://addons/rmsmartshape/normal_range.gd" type="Script" id=18]
+[ext_resource path="res://addons/rmsmartshape/shapes/point.gd" type="Script" id=19]
+[ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=20]
+[ext_resource path="res://addons/rmsmartshape/shapes/shape_closed.gd" type="Script" id=21]
+[ext_resource path="res://Resources/Shaders/SmartShapeShader.gdshader" type="Shader" id=22]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor1_n.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor2_n.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor3_n.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor4_n.png" type="Texture" id=26]
+[ext_resource path="res://Resources/Shaders/SmartShapeShader_Fill.gdshader" type="Shader" id=27]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris3_n.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris4_n.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris_deeper1_n.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris2_n.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris1_n.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris_deeper4_n.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris_deeper2_n.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_debris_deeper3_n.png" type="Texture" id=35]
+
+[sub_resource type="Resource" id=154]
+script = ExtResource( 14 )
+texture_idx = 5
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=155]
+script = ExtResource( 19 )
+position = Vector2( -387, 111 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 154 )
+
+[sub_resource type="Resource" id=156]
+script = ExtResource( 14 )
+texture_idx = 9
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=157]
+script = ExtResource( 19 )
+position = Vector2( -387, -63 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 156 )
+
+[sub_resource type="Resource" id=158]
+script = ExtResource( 14 )
+texture_idx = 5
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=159]
+script = ExtResource( 19 )
+position = Vector2( -236, -64 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 158 )
+
+[sub_resource type="Resource" id=160]
+script = ExtResource( 14 )
+texture_idx = 2
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=161]
+script = ExtResource( 19 )
+position = Vector2( -228, 104 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 160 )
+
+[sub_resource type="Resource" id=162]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=163]
+script = ExtResource( 19 )
+position = Vector2( -236, 112 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 162 )
+
+[sub_resource type="Resource" id=164]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=165]
+script = ExtResource( 19 )
+position = Vector2( -236, 112 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 164 )
+
+[sub_resource type="Resource" id=166]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=167]
+script = ExtResource( 19 )
+position = Vector2( -388, 104 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 166 )
+
+[sub_resource type="Resource" id=168]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=169]
+script = ExtResource( 19 )
+position = Vector2( -380, 112 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 168 )
+
+[sub_resource type="Resource" id=170]
+script = ExtResource( 14 )
+texture_idx = 4
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=171]
+script = ExtResource( 19 )
+position = Vector2( -388, -56 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 170 )
+
+[sub_resource type="Resource" id=172]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=173]
+script = ExtResource( 19 )
+position = Vector2( -228, -56 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 172 )
+
+[sub_resource type="Resource" id=174]
+script = ExtResource( 14 )
+texture_idx = 4
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=175]
+script = ExtResource( 19 )
+position = Vector2( -229, -63 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 174 )
+
+[sub_resource type="Resource" id=176]
+script = ExtResource( 14 )
+texture_idx = 7
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=177]
+script = ExtResource( 19 )
+position = Vector2( -229, 111 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 176 )
+
+[sub_resource type="Resource" id=178]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=179]
+script = ExtResource( 19 )
+position = Vector2( -388, -48 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 178 )
+
+[sub_resource type="Resource" id=180]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=181]
+script = ExtResource( 19 )
+position = Vector2( -244, -64 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 180 )
+
+[sub_resource type="Resource" id=182]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=183]
+script = ExtResource( 19 )
+position = Vector2( -228, -48 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 182 )
+
+[sub_resource type="Resource" id=184]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=185]
+script = ExtResource( 19 )
+position = Vector2( -228, 96 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 184 )
+
+[sub_resource type="Resource" id=186]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=187]
+script = ExtResource( 19 )
+position = Vector2( -244, 112 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 186 )
+
+[sub_resource type="Resource" id=188]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=189]
+script = ExtResource( 19 )
+position = Vector2( -388, 96 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 188 )
+
+[sub_resource type="Resource" id=190]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=191]
+script = ExtResource( 19 )
+position = Vector2( -372, 112 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 190 )
+
+[sub_resource type="Resource" id=192]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=193]
+script = ExtResource( 19 )
+position = Vector2( -380, -64 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 192 )
+
+[sub_resource type="Resource" id=194]
+script = ExtResource( 14 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=195]
+script = ExtResource( 19 )
+position = Vector2( -372, -64 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 194 )
+
+[sub_resource type="Resource" id=196]
+script = ExtResource( 15 )
+_points = {
+4: SubResource( 155 ),
+7: SubResource( 157 ),
+9: SubResource( 159 ),
+10: SubResource( 161 ),
+11: SubResource( 163 ),
+12: SubResource( 165 ),
+14: SubResource( 167 ),
+15: SubResource( 169 ),
+17: SubResource( 171 ),
+19: SubResource( 173 ),
+21: SubResource( 175 ),
+22: SubResource( 177 ),
+24: SubResource( 179 ),
+25: SubResource( 181 ),
+26: SubResource( 183 ),
+27: SubResource( 185 ),
+28: SubResource( 187 ),
+29: SubResource( 189 ),
+30: SubResource( 191 ),
+31: SubResource( 193 ),
+32: SubResource( 195 )
+}
+_point_order = [ 11, 28, 30, 15, 4, 14, 29, 24, 17, 7, 31, 32, 25, 9, 21, 19, 26, 27, 10, 22, 12 ]
+_constraints = {
+[ 11, 12 ]: 15
+}
+_next_key = 33
+_material_overrides = {
+}
+
+[sub_resource type="ShaderMaterial" id=197]
+shader = ExtResource( 22 )
+shader_param/first_stage = 0.75
+shader_param/first_smooth = 0.0
+shader_param/second_stage = 0.0
+shader_param/second_smooth = 0.0
+shader_param/rim_light = false
+shader_param/rim_thickness = 5.0
+shader_param/rim_intense = 1.0
+shader_param/rim_extra_thick = false
+shader_param/min_light = 0.0
+shader_param/mid_light = 0.0
+shader_param/max_light = 1.0
+shader_param/obj_light_add = 0.0
+shader_param/fake_light_depth = true
+shader_param/obj_height = 0.0
+shader_param/min_scale = 0.2
+shader_param/max_scale = 2.0
+shader_param/light_change_thresh = 1000.0
+shader_param/light_fade = true
+shader_param/light_fade_end = 2000.0
+shader_param/fake_spot_light = false
+shader_param/first_shrink_speed = 1.0
+shader_param/second_shrink_speed = 2.0
+shader_param/before_light_modulate = Color( 0.5, 0.37, 0.37, 1 )
+
+[sub_resource type="Resource" id=144]
+script = ExtResource( 17 )
+textures = [ ExtResource( 11 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 3 ) ]
+texture_normals = [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ]
+textures_corner_outer = [  ]
+textures_corner_inner = [  ]
+texture_normals_corner_outer = [  ]
+texture_normals_corner_inner = [  ]
+textures_taper_left = [  ]
+textures_taper_right = [  ]
+texture_normals_taper_left = [  ]
+texture_normals_taper_right = [  ]
+randomize_texture = true
+use_corner_texture = false
+use_taper_texture = false
+fit_mode = 1
+material = SubResource( 197 )
+
+[sub_resource type="Resource" id=145]
+script = ExtResource( 18 )
+begin = 45.0
+distance = 90.0
+edgeRendering = Vector2( 0, 0 )
+
+[sub_resource type="Resource" id=146]
+script = ExtResource( 16 )
+edge_material = SubResource( 144 )
+normal_range = SubResource( 145 )
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="ShaderMaterial" id=199]
+shader = ExtResource( 22 )
+shader_param/first_stage = 0.75
+shader_param/first_smooth = 0.0
+shader_param/second_stage = 0.0
+shader_param/second_smooth = 0.0
+shader_param/rim_light = false
+shader_param/rim_thickness = 5.0
+shader_param/rim_intense = 1.0
+shader_param/rim_extra_thick = false
+shader_param/min_light = 0.0
+shader_param/mid_light = 0.0
+shader_param/max_light = 1.0
+shader_param/obj_light_add = 0.0
+shader_param/fake_light_depth = true
+shader_param/obj_height = 0.0
+shader_param/min_scale = 0.2
+shader_param/max_scale = 2.0
+shader_param/light_change_thresh = 1000.0
+shader_param/light_fade = true
+shader_param/light_fade_end = 2000.0
+shader_param/fake_spot_light = false
+shader_param/first_shrink_speed = 1.0
+shader_param/second_shrink_speed = 2.0
+shader_param/before_light_modulate = Color( 0.5, 0.37, 0.37, 1 )
+
+[sub_resource type="Resource" id=147]
+script = ExtResource( 17 )
+textures = [ ExtResource( 1 ), ExtResource( 6 ), ExtResource( 12 ), ExtResource( 2 ) ]
+texture_normals = [ ExtResource( 32 ), ExtResource( 31 ), ExtResource( 28 ), ExtResource( 29 ) ]
+textures_corner_outer = [  ]
+textures_corner_inner = [  ]
+texture_normals_corner_outer = [  ]
+texture_normals_corner_inner = [  ]
+textures_taper_left = [  ]
+textures_taper_right = [  ]
+texture_normals_taper_left = [  ]
+texture_normals_taper_right = [  ]
+randomize_texture = true
+use_corner_texture = false
+use_taper_texture = false
+fit_mode = 1
+material = SubResource( 199 )
+
+[sub_resource type="Resource" id=148]
+script = ExtResource( 18 )
+begin = 45.0
+distance = 90.0
+edgeRendering = Vector2( 0, 0 )
+
+[sub_resource type="Resource" id=149]
+script = ExtResource( 16 )
+edge_material = SubResource( 147 )
+normal_range = SubResource( 148 )
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="ShaderMaterial" id=200]
+shader = ExtResource( 22 )
+shader_param/first_stage = 0.75
+shader_param/first_smooth = 0.0
+shader_param/second_stage = 0.0
+shader_param/second_smooth = 0.0
+shader_param/rim_light = false
+shader_param/rim_thickness = 5.0
+shader_param/rim_intense = 1.0
+shader_param/rim_extra_thick = false
+shader_param/min_light = 0.0
+shader_param/mid_light = 0.0
+shader_param/max_light = 1.0
+shader_param/obj_light_add = 0.0
+shader_param/fake_light_depth = true
+shader_param/obj_height = 0.0
+shader_param/min_scale = 0.2
+shader_param/max_scale = 2.0
+shader_param/light_change_thresh = 1000.0
+shader_param/light_fade = true
+shader_param/light_fade_end = 2000.0
+shader_param/fake_spot_light = false
+shader_param/first_shrink_speed = 1.0
+shader_param/second_shrink_speed = 2.0
+shader_param/before_light_modulate = Color( 0.5, 0.37, 0.37, 1 )
+
+[sub_resource type="Resource" id=150]
+script = ExtResource( 17 )
+textures = [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ) ]
+texture_normals = [ ExtResource( 30 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 33 ) ]
+textures_corner_outer = [  ]
+textures_corner_inner = [  ]
+texture_normals_corner_outer = [  ]
+texture_normals_corner_inner = [  ]
+textures_taper_left = [  ]
+textures_taper_right = [  ]
+texture_normals_taper_left = [  ]
+texture_normals_taper_right = [  ]
+randomize_texture = true
+use_corner_texture = false
+use_taper_texture = false
+fit_mode = 0
+material = SubResource( 200 )
+
+[sub_resource type="Resource" id=151]
+script = ExtResource( 18 )
+begin = 45.0
+distance = 90.0
+edgeRendering = Vector2( 0, 0 )
+
+[sub_resource type="Resource" id=152]
+script = ExtResource( 16 )
+edge_material = SubResource( 150 )
+normal_range = SubResource( 151 )
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="ShaderMaterial" id=198]
+shader = ExtResource( 27 )
+shader_param/first_stage = 0.75
+shader_param/first_smooth = 0.0
+shader_param/second_stage = 0.55
+shader_param/second_smooth = 0.4
+shader_param/rim_light = false
+shader_param/rim_thickness = 5.0
+shader_param/rim_intense = 1.0
+shader_param/rim_extra_thick = false
+shader_param/min_light = 0.0
+shader_param/mid_light = 0.0
+shader_param/max_light = 1.0
+shader_param/obj_light_add = 0.0
+shader_param/fake_light_depth = true
+shader_param/obj_height = -100.0
+shader_param/min_scale = 0.2
+shader_param/max_scale = 2.0
+shader_param/light_change_thresh = 1000.0
+shader_param/light_fade = true
+shader_param/light_fade_end = 2000.0
+shader_param/fake_spot_light = false
+shader_param/first_shrink_speed = 1.0
+shader_param/second_shrink_speed = 2.0
+shader_param/before_light_modulate = Color( 0.5, 0.37, 0.37, 1 )
+
+[sub_resource type="Resource" id=153]
+script = ExtResource( 20 )
+_edge_meta_materials = [ SubResource( 146 ), SubResource( 149 ), SubResource( 152 ) ]
+fill_textures = [ ExtResource( 13 ) ]
+fill_texture_normals = [  ]
+fill_texture_z_index = -10
+fill_mesh_offset = 0.0
+fill_mesh_material = SubResource( 198 )
+render_offset = 0.0
+
+[node name="StoneSpriteShape" type="StaticBody2D"]
+position = Vector2( 291, -60 )
+collision_mask = 12
+
+[node name="StoneSpriteShape" type="Node2D" parent="."]
+z_index = 500
+script = ExtResource( 21 )
+color_encoding = 1
+_points = SubResource( 196 )
+material_overrides = null
+shape_material = SubResource( 153 )
+tessellation_stages = 5
+tessellation_tolerence = 4.0
+flip_edges = false
+render_edges = true
+collision_size = 32.0
+collision_offset = 0.0
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.3 )
+polygon = PoolVector2Array( -236, 112.001, -244, 112, -372, 112, -380, 112.001, -387.071, 111.071, -388.001, 104, -388, 96, -388, -48, -388.001, -56.0001, -387.071, -63.0707, -380, -64.0013, -372, -64, -244, -64, -236, -64.0013, -228.929, -63.0707, -227.999, -56.0001, -228, -48, -228, 96, -227.999, 104, -228.929, 111.071 )

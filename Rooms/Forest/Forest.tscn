@@ -1,6 +1,6 @@
 [gd_scene load_steps=123 format=2]
 
-[ext_resource path="res://Assets/Lights/light_nopix.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Lights/lightbox.png" type="Texture" id=1]
 [ext_resource path="res://addons/rmsmartshape/shapes/point.gd" type="Script" id=2]
 [ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=3]
 [ext_resource path="res://Game Objects/Actors/Players/Rose/RosePrefab.tscn" type="PackedScene" id=4]
@@ -871,11 +871,12 @@ shadow_enabled = true
 shadow_item_cull_mask = 1
 
 [node name="Light2D5" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1336, 515 )
+visible = false
+position = Vector2( 1319, 521 )
 rotation = -1.11527
-scale = Vector2( 0.5, 2 )
+scale = Vector2( 1, 2 )
 texture = ExtResource( 1 )
-texture_scale = 1.0
+texture_scale = 50.0
 color = Color( 0.992157, 1, 0.862745, 1 )
 energy = 1.0
 range_item_cull_mask = 1
@@ -906,6 +907,6 @@ visible = true
 polygon = PoolVector2Array( -684.102, 169.101, -684.104, -216.104, -652, -216, -608, -216, -572, -216, -532, -216, -491.923, -216.091, -462.955, -40.0337, -434, -26, -429.997, -24.013, -422, -24, -389, -24, -353, -24, -317, -24, -276, -24, -212, -24, -172, -24, -139.896, -24.1036, -139.896, 7.89642, -108, 8, -76.1036, 7.89642, -76.1036, -24.1036, -44, -24, -11.8964, -24.1036, -11.8964, 39.8964, 20, 40, 52, 40, 84, 40, 115.896, 39.8964, 115.896, -24.1036, 164, -24, 204, -24, 246, -24, 276.104, -24.1036, 276.104, 7.89642, 310, 8, 340, 8, 371.896, 7.89642, 371.896, -120.104, 404.104, -120.104, 404.104, -88.1036, 439, -88, 476, -88, 537, -88, 611, -88, 655, -88, 716, -88, 784, -88, 820.896, -88.1036, 820.896, -152.104, 885, -152, 916.104, -152.104, 916.082, -23.9378, 108.001, 197.007, -166, 177 )
 
 [node name="RosePrefab" parent="." instance=ExtResource( 4 )]
-position = Vector2( 432, 608 )
+position = Vector2( 131, 428 )
 
 [editable path="StoneSpriteShape"]

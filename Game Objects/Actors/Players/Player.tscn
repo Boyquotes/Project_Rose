@@ -695,7 +695,7 @@ cast_to = Vector2( -22, 0 )
 [node name="OpenLedgeCastL" type="RayCast2D" parent="Utilities" index="5"]
 position = Vector2( 0, -36 )
 enabled = true
-cast_to = Vector2( -22, 0 )
+cast_to = Vector2( -40, 0 )
 
 [node name="LedgeCastR" type="RayCast2D" parent="Utilities" index="6"]
 position = Vector2( 0, -20 )
@@ -705,7 +705,7 @@ cast_to = Vector2( 22, 0 )
 [node name="OpenLedgeCastR" type="RayCast2D" parent="Utilities" index="7"]
 position = Vector2( 0, -36 )
 enabled = true
-cast_to = Vector2( 22, 0 )
+cast_to = Vector2( 40, 0 )
 
 [node name="Tween" type="Tween" parent="Utilities" index="8"]
 

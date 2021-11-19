@@ -280,42 +280,32 @@ class SkeletonPointMass:
 	""" Constraints """
 	func solve_constraints(this : SkeletonClothSim, wind : Vector2, time : float):
 		
-		if this.phys_obj_node.vel.length() > 0 and wind.length() != 0:
-			pos.y = (sin((time + yplace) / (1/wind.length()) * 1000) * .1) + pos.y
-		elif wind.length() != 0:
-			pos.x = (sin((time + xplace) / (1/wind.length()) * 1000) * .1) + pos.x
 		""" SkeletonLink Constraints """
 		# Links make sure PointMasss connected to this one is at a set distance away
 		for link in links:
 			link.solve()
 	
 		""" Other Constraints """
-		var tempos = Vector2(pos.x, ceil(pos.y))
+		var tempos = Vector2(pos.x, pos.y)
 		var space_state : Physics2DDirectSpaceState = this.get_world_2d().direct_space_state
 		var coll = 33
 		var collision_event = space_state.intersect_point(tempos, 1, [], coll)
 		var intersecting = collision_event.size() > 0
 		
-		var north = 0
-		var south = 0
-		var east = 0
-		var west = 0
+		var dir = 0
 		while(intersecting):
-			north += 1
-			south += 1
-			east += 1
-			west += 1
-			if space_state.intersect_point(Vector2(tempos.x,tempos.y-north), 1, [], coll).size() == 0:
-				pos = Vector2(tempos.x,tempos.y-north)
+			dir += 1
+			if space_state.intersect_point(Vector2(tempos.x,tempos.y-dir), 1, [], coll).size() == 0:
+				pos = Vector2(tempos.x,tempos.y-dir)
 				intersecting = false
-			elif space_state.intersect_point(Vector2(tempos.x,tempos.y+south), 1, [], coll).size() == 0:
-				pos = Vector2(tempos.x,tempos.y+south)
+			elif space_state.intersect_point(Vector2(tempos.x,tempos.y+dir), 1, [], coll).size() == 0:
+				pos = Vector2(tempos.x,tempos.y+dir)
 				intersecting = false
-			elif space_state.intersect_point(Vector2(tempos.x-east,tempos.y), 1, [], coll).size() == 0:
-				pos = Vector2(tempos.x-east,tempos.y)
+			elif space_state.intersect_point(Vector2(tempos.x-dir,tempos.y), 1, [], coll).size() == 0:
+				pos = Vector2(tempos.x-dir,tempos.y)
 				intersecting = false
-			elif space_state.intersect_point(Vector2(tempos.x+west,tempos.y), 1, [], coll).size() == 0:
-				pos = Vector2(tempos.x+west,tempos.y)
+			elif space_state.intersect_point(Vector2(tempos.x+dir,tempos.y), 1, [], coll).size() == 0:
+				pos = Vector2(tempos.x+dir,tempos.y)
 				intersecting = false
 		
 		# make sure the SkeletonPointMass stays in its place if it's pinned

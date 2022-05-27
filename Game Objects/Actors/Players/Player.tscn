@@ -12,7 +12,7 @@
 [ext_resource path="res://Scripts/Actors/Player/Generic/generic_action_instancer.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Actors/Player/finite_state_machine.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Actors/Player/rest_state.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/Actors/Player/Generic/powerups.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/Actors/Player/Generic/rose_powerups.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Climb.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Hurt.png" type="Texture" id=16]
@@ -653,10 +653,7 @@ anims/LandFromHit = SubResource( 15 )
 anims/LedgeGrab = SubResource( 16 )
 anims/LedgeJump = SubResource( 17 )
 
-[node name="Powerups" type="Node2D" parent="." index="6"]
-script = ExtResource( 13 )
-
-[node name="PlayerCamera" type="Camera2D" parent="." index="7"]
+[node name="PlayerCamera" type="Camera2D" parent="." index="6"]
 pause_mode = 1
 current = true
 script = ExtResource( 7 )
@@ -665,13 +662,9 @@ script = ExtResource( 7 )
 pause_mode = 2
 one_shot = true
 
-[node name="Utilities" type="Node2D" parent="." index="8"]
-
-[node name="DetectOtherArea" type="Area2D" parent="Utilities" index="0"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Utilities/DetectOtherArea" index="0"]
-
-[node name="AttackCollision" type="Area2D" parent="Utilities" index="1"]
+[node name="DetectOtherArea" parent="Utilities" index="0"]
+monitoring = true
+monitorable = true
 
 [node name="LedgeBoxL" type="Area2D" parent="Utilities" index="2"]
 position = Vector2( -10, -27 )
@@ -711,6 +704,9 @@ cast_to = Vector2( 40, 0 )
 
 [node name="ActionTarget" type="Node2D" parent="Utilities" index="9"]
 position = Vector2( 88.2941, 0 )
+
+[node name="Powerups" type="Node2D" parent="Utilities" index="10"]
+script = ExtResource( 13 )
 
 [connection signal="timeout" from="MoveStates/MoveInAir/LedgeDisableTimer" to="MoveStates/MoveInAir" method="_on_LedgeDisableTimer_timeout"]
 [connection signal="timeout" from="PlayerCamera/StopTimer" to="PlayerCamera" method="_on_StopTimer_timeout"]

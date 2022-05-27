@@ -7,14 +7,14 @@ const KEY_BINDING_SECTION = "key_binding"
 
 var _user_settings : ConfigFile;
 ### IMPORTANT: TURN THIS FALSE WHEN EXPORTING ###
-var load_defaults = true;
+var debug_load_from_file = false;
 
 func _ready():
 	load_settings()
 	if not _user_settings.has_section(KEY_BINDING_SECTION):
 		_create_default_key_bindings()
 	_load_key_bindings()
-	if(load_defaults):
+	if not OS.has_feature("standalone") and not debug_load_from_file:
 		_create_default_key_bindings();
 
 func load_settings():
@@ -28,12 +28,12 @@ func load_settings():
 	var err = _user_settings.load(USER_SETTINGS_PATH)
 	if err != OK:
 		print("[ERROR] Cannot load user settings")
-	
+
 func save_settings():
 	var err = _user_settings.save(USER_SETTINGS_PATH)
 	if err != OK:
 		print("[ERROR] Cannot save user settings")
-		
+
 func get_keybindings(action):
 	return _user_settings.get_value(KEY_BINDING_SECTION, action)
 	
@@ -65,6 +65,5 @@ func _load_key_bindings():
 			var inputs = _user_settings.get_value(KEY_BINDING_SECTION, binding)
 			for input in inputs:
 				InputMap.action_add_event(binding, input)
-		else:
-			pass
-			#print(binding)
+		elif debug_load_from_file:
+			print(binding)

@@ -1,6 +1,6 @@
 extends Node
 
-var powerups := {
+var rose_powerups := {
 	
 }
 

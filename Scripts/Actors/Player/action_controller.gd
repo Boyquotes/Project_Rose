@@ -25,7 +25,7 @@ var action_triggered := false
 var save_action := false
 var dodge_can_interrupt := false
 var move_can_interrupt := false
-var follow_up := false
+var action_can_interrupt := false
 var action_resets_jump := false
 
 var animate := false
@@ -65,17 +65,21 @@ func _enter():
 
 ### Prepares next move if user input is detected ###
 func _handle_input():
-	if dodge_can_interrupt || move_can_interrupt || follow_up && action_is_saved: #TODO: Revisit follow_up
+	if exit_dodge_early and action_stack[1] == "saved_action":
+		if !Input.is_action_pressed("Dodge"):
+			clear_action()
+			action_state.exit_ground_or_air()
+	if (dodge_can_interrupt || move_can_interrupt || action_can_interrupt) && action_is_saved: #TODO: Revisit follow_up
 		action_is_saved = false
-		if action_stack[1] == "Dodge": #TODO: maybe think about this
-			return
 		clear_action()
+		previous_action = action_stack[0]
 		action_stack[0] = action_stack[1]
-		combo += action_stack[1]
+		combo = action_stack[1] #to make a proper combo, use += instead
+		action_stack[1] = "saved_action"
 		commit_action()
 	if !action_state.action_committed:
 		if parse_action(0):
-			combo += action_stack[0]
+			combo = action_stack[0]
 			commit_action()
 	if save_action:
 		if parse_action(1):
@@ -92,11 +96,7 @@ func _handle_animation():
 
 
 func _execute(_delta):
-	if exit_dodge_early and action_stack[0] == "Dodge":
-		if !Input.is_action_pressed("Dodge"):
-			clear_action()
-			action_state.exit_ground_or_air()
-
+	pass
 
 ### begins parsing player action if an action is triggered ###
 func parse_action(idx):
@@ -125,7 +125,6 @@ func parse_action(idx):
 
 func record_action(idx, atk):
 	action_stack[idx] = atk
-	combo = "" #TODO: might have to rethink this
 	return true
 
 func primary_pressed():
@@ -142,7 +141,8 @@ func secondary_pressed():
 
 ### Resets action strings ###
 func reset_strings():
-	action_stack[0] = 'current_action'
+	action_stack[0] = "current_action"
+	action_stack[1] = "saved_action"
 	action_str = "action_str"
 
 ### Triggers appropriate action based on the strings constructed by player input ###
@@ -169,6 +169,12 @@ func commit_action():
 ### Constructs the string used to look up action hitboxes and animations ###
 func construct_action_string():
 	action_str = action_prefix + "_" + combo
+	if combo in ["Primary", "Secondary"]:
+		action_str += "_" + host.style_states[host.style_state]
+		if Input.is_action_pressed("Focus"):
+			action_str += "_" + "Focused"
+		if Input.is_action_pressed("Channel"):
+			action_str += "_" + "Channeled"
 
 func clear_action():
 	host.i_frame(0)
@@ -180,8 +186,8 @@ func clear_action():
 	action_state.action_committed = false
 	action_triggered = false
 	save_action = false
-	previous_action = action_stack[0]
 	move_can_interrupt = false
+	action_can_interrupt = false
 	dodge_can_interrupt = false
 	reset_strings()
 	action_state.hover = false
@@ -194,6 +200,11 @@ func clear_action():
 	action_resets_jump = false
 	action_state.combo_timer.start()
 
+func clear_action_stack():
+	action_stack = ["current_action", "saved_action"]
+	combo = ""
+	action_str = "action_str"
+	previous_action = "previous_action"
 
 func set_save_commit_action():
 	save_action = true
@@ -203,25 +214,15 @@ func set_save_commit_action():
 func set_dodge_can_interrupt():
 	dodge_can_interrupt = true
 
-
-func unset_dodge_can_interrupt():
-	dodge_can_interrupt = false
-	action_is_saved = false
-	save_action = false
-	clear_slotted_vars()
-
-
 func set_exit_dodge_early():
 	exit_dodge_early = true
 
 
-func set_interrupt():
+func set_move_interrupt():
 	move_can_interrupt = true
-	follow_up = true
 
-
-func clear_action_reset():
-	clear_action()
+func set_action_interrupt():
+	action_can_interrupt = true
 
 func clear_enter_vars():
 	enter_primary = false
@@ -247,3 +248,11 @@ func on_hit(col):
 			host.get_node("Camera2D").shake(.1, 15, 8)
 			if !host.on_floor() && action_resets_jump:
 				action_state.jump_is_reset = true;
+
+
+func _on_BaseAnimator_animation_finished(_anim_name):
+	if host.move_state == "action":
+		if !action_is_saved:
+			action_state.exit_ground_or_air()
+		host.activate_fric()
+

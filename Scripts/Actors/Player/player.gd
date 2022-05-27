@@ -13,10 +13,17 @@ signal item_changed
 
 # TODO: move to globals perhaps
 enum InputType {GAMEPAD, KEYMOUSE}
+enum Styles {BASE, WIND, EARTH, THUNDER}
 
 var active_input = InputType.GAMEPAD
+var style_states := {
+	Styles.BASE : "Base",
+	Styles.WIND : "Wind",
+	Styles.EARTH : "Earth",
+	Styles.THUNDER : "Thunder"
+}
+var style_state = Styles.Base
 
-var targettable_hitboxes := []
 var rad := 0.0
 var deg := 0.0
 var move_state := "move_on_ground"
@@ -37,6 +44,10 @@ func init():
 	iframe = false
 
 
+# This should be moved to some UI layer.
+signal input_unstable
+var switch_count := 0
+
 #hotswitch between keyboard and controller input
 #should be able to expand this to detect different types of controllers
 func _in(event):
@@ -44,9 +55,14 @@ func _in(event):
 			or event.get_class() == "InputEventKey"
 			or Input.get_connected_joypads().size() == 0):
 		active_input = InputType.KEYMOUSE
+		switch_count += 1
 	elif(event.get_class() == "InputEventJoypadMotion"
 			or event.get_class() == "InputEventJoypadButton"):
 		active_input = InputType.GAMEPAD
+		switch_count += 1
+	
+	if switch_count > 10:
+		emit_signal("input_unstable")
 
 
 #runs every frame
@@ -92,7 +108,15 @@ func _unpaused_phys_execute(delta):
 	#cap grav
 	if vert_spd > grav_max && grav_activated:
 		vert_spd = grav_max
+	
+	if vert_spd >= 150 and not done:
+		done = true
+		get_node("Utilities/CapeTarget").scale.x *= -1
+	if vert_spd < 150 and done:
+		done = false
+		get_node("Utilities/CapeTarget").scale.x *= -1
 
+var done = false
 
 func _paused_phys_execute(delta):
 	move_states[move_state]._paused_handle_input()
@@ -193,4 +217,4 @@ func _on_Player_System_hit_zero():
 
 #trigger for updating powerup flags
 func _on_UpgradeMenu_update_powerup(idx,activate):
-	$Powerups.powerups_idx[idx] = activate
+	pass #powerups.powerups_idx[idx] = activate

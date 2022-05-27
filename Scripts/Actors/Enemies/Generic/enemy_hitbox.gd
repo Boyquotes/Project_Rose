@@ -10,12 +10,12 @@ export(int) var hit_points := 5
 export(bool) var broken := false
 export(NodePath) var host
 export(LockType) var lock_type
-export(ActionEnums.AttackType) var attack_type
-export(ActionEnums.DisplacementType) var displacement_type
+export(GlobalEnums.AttackType) var attack_type
+export(GlobalEnums.DisplacementType) var displacement_type
 export(Array) var parent_box_paths := []
 export(Array) var child_box_paths := []
 
-var activated_displacement = ActionEnums.DisplacementType.None
+var activated_displacement = GlobalEnums.DisplacementType.None
 var attack : Action
 var parent_boxes
 var child_boxes

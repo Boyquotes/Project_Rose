@@ -22,3 +22,15 @@ script = ExtResource( 1 )
 [node name="BaseAnimator" type="AnimationPlayer" parent="Animators"]
 
 [node name="ShaderAnimator" type="AnimationPlayer" parent="Animators"]
+
+[node name="Utilities" type="Node2D" parent="."]
+
+[node name="DetectOtherArea" type="Area2D" parent="Utilities"]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Utilities/DetectOtherArea"]
+
+[node name="AttackCollision" type="Area2D" parent="Utilities"]
+monitoring = false
+monitorable = false

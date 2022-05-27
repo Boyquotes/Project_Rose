@@ -19,6 +19,7 @@ var physics : SkeletonClothPhysics
 var pointmasses : Array
 var targets : Array
 var bones : Array
+var top_cloth : Array
 
 # every SkeletonPointMass within this many pixels will be influenced by the cursor
 var mouse_influence_size := 5.0
@@ -61,6 +62,13 @@ func _ready():
 		wind_node = get_node(wind_path)
 		create_cloth(targets_node.global_position, self)
 
+func reassign_pins():
+	var inv := []
+	for target in targets:
+		inv.push_front(target)
+	for i in range(inv.size()):
+		top_cloth[i].pin_to(inv[i])
+	targets = inv
 
 func get_bones(i : int, bone : Node):
 	bones[i].push_back(bone)
@@ -111,6 +119,7 @@ func create_cloth(translation : Vector2, this : SkeletonClothSim):
 				var target = targets_node.get_child(x)
 				target.global_position = to_global(pointmass.pos)
 				this.targets.push_back(target)
+				this.top_cloth.push_back(pointmass)
 				pointmass.pin_to(target)
 			# add to SkeletonPointMass array  
 			pointmasses[y].push_back(pointmass)
@@ -152,7 +161,7 @@ class SkeletonClothPhysics:
 	var constraint_accuracy := 5
 	
 	# Update physics
-	func update(this : SkeletonClothSim, wind : Vector2, time : float):
+	func update(this : SkeletonClothSim, wind : Vector2, _time : float):
 		# calculate elapsed time
 		current_time = OS.get_system_time_msecs()
 		var deltatime_ms = current_time - previous_time
@@ -183,7 +192,7 @@ class SkeletonClothPhysics:
 			for x in constraint_accuracy:
 				for pointmass_arr in this.pointmasses:
 					for pointmass in pointmass_arr:
-						pointmass.solve_constraints(this, wind, time)
+						pointmass.solve_constraints(this)
 			for x in this.cloth_width:
 				for y in this.cloth_height:
 					if y != 0:
@@ -278,7 +287,7 @@ class SkeletonPointMass:
 						links.clear()
 	
 	""" Constraints """
-	func solve_constraints(this : SkeletonClothSim, wind : Vector2, time : float):
+	func solve_constraints(this : SkeletonClothSim):
 		
 		""" SkeletonLink Constraints """
 		# Links make sure PointMasss connected to this one is at a set distance away
@@ -393,3 +402,7 @@ class SkeletonLink:
 
 		p2.pos.x -= diffX * scalar_p2 * difference
 		p2.pos.y -= diffY * scalar_p2 * difference
+
+
+func _on_Rose_turned():
+	reassign_pins()

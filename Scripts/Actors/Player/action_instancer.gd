@@ -24,11 +24,10 @@ func initialize_action(action, follow_target = false):
 	action.action_controller = action_controller
 	action.action_instancer = self
 	action.follow_target = follow_target
-	action.z_index = 2
-	action.scale = scale
+	action.z_index = host.z_index + 1
 	action.global_position = host.global_position
 	host.get_parent().add_child(action)
-	#host.change_mana(-action.cost)
+	host.change_mana(-action.cost)
 
 func initialize_hitboxes(action):
 	var hitboxes = action.get_node("Hitboxes")
@@ -36,32 +35,13 @@ func initialize_hitboxes(action):
 	hitboxes.action_controller = action_controller
 	hitboxes.action_instancer = self
 	hitboxes.init()
-	set_rot(action, hitboxes)
 	return action
 
 func initialize_particles(action):
 	var particles = action.get_node("Particles")
-	#particles.init()
-	particles.scale = scale
 
-func initialize_sprite(action):
-	var sprite = action.get_node("Sprite")
-	sprite.scale = scale
-
-func set_rot(_action, _hitboxes):
-	pass
-"""
-	for hitbox in hitboxes.get_children():
-		if(is_instance_valid(hitbox)):
-			if(action_controller.rotate):
-				hitbox.global_rotation_degrees += action_controller.attack_degrees
-				if(hitbox.direction == 0):
-					hitbox.direction = hitbox.global_rotation_degrees * host.Direction
-				hitbox.scale.y = host.Direction
-			else:
-				hitbox.scale.x = host.Direction
-				hitbox.direction = hitbox.global_rotation_degrees * host.Direction
-"""
+func initialize_sprites(action):
+	var sprites = action.get_node("Sprites")
 
 func clear_actions():
 	for node in action_queue:
@@ -71,8 +51,14 @@ func clear_actions():
 func dequeue_action(node):
 	action_queue.erase(node)
 	if is_instance_valid(node):
-		if node.follow_target:
-			node.global_rotation_degrees = 0
-			node.queue_free()
-		else:
+		node.queue_free()
+
+func clear_cancelable_actions():
+	for node in action_queue:
+		dequeue_cancelable_action(node)
+
+func dequeue_cancelable_action(node):
+	if node.cancelable:
+		action_queue.erase(node)
+		if is_instance_valid(node):
 			node.queue_free()

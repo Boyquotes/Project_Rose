@@ -1,7 +1,7 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Resources/Tilesets/PrimititveTileset.tres" type="TileSet" id=1]
-[ext_resource path="res://Game Objects/Actors/Players/Rose/Rose.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game Objects/Actors/Players/Rose/RosePrefab.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Tilesets/Ledges.tres" type="TileSet" id=3]
 [ext_resource path="res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd" type="Script" id=4]
 [ext_resource path="res://Game Objects/Testing/rotlight.gd" type="Script" id=5]
@@ -9,8 +9,6 @@
 [ext_resource path="res://Game Objects/Testing/Light2D.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Lights/background.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Lights/light_nopix.png" type="Texture" id=9]
-[ext_resource path="res://Game Objects/Testing/CapeSkeletonController.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" type="Texture" id=11]
 [ext_resource path="res://Resources/Tilesets/StoneSpriteShape.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/rmsmartshape/vertex_properties.gd" type="Script" id=13]
 [ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=14]
@@ -466,10 +464,13 @@ rotation = 51.8837
 script = ExtResource( 5 )
 
 [node name="Light2D4" parent="rotlight" instance=ExtResource( 7 )]
-position = Vector2( 165, 0 )
+position = Vector2( -70.866, -37.683 )
+rotation = 2.98023e-08
 texture = ExtResource( 9 )
 texture_scale = 1.0
+energy = 1.0
 range_height = 50.0
+range_item_cull_mask = 3
 shadow_enabled = true
 shadow_item_cull_mask = 3
 
@@ -478,49 +479,6 @@ z_index = 20
 points = PoolVector2Array( 0, 0, 165, 0 )
 width = 1.0
 default_color = Color( 0.564706, 0.639216, 1, 0.490196 )
-
-[node name="Rose" parent="." instance=ExtResource( 2 )]
-move_states = {
-"action": NodePath("MoveStates/Action"),
-"hit": NodePath("MoveStates/Hit"),
-"ledge_grab": NodePath("MoveStates/LedgeGrab"),
-"move_in_air": NodePath("MoveStates/MoveInAir"),
-"move_on_ground": NodePath("MoveStates/MoveOnGround")
-}
-
-[node name="Sprite" parent="Rose/Sprites" index="0"]
-texture = ExtResource( 11 )
-offset = Vector2( 0, 0 )
-hframes = 4
-
-[node name="LedgeCastL" parent="Rose/Utilities" index="4"]
-collision_mask = 1024
-
-[node name="LedgeCastR" parent="Rose/Utilities" index="6"]
-collision_mask = 1024
-
-[node name="Position2D" parent="Rose/Utilities/CapeTarget" index="0"]
-position = Vector2( -2, 5 )
-
-[node name="Position2D2" parent="Rose/Utilities/CapeTarget" index="1"]
-position = Vector2( -1, 4 )
-
-[node name="Position2D3" parent="Rose/Utilities/CapeTarget" index="2"]
-position = Vector2( 1, 3 )
-
-[node name="Position2D4" parent="Rose/Utilities/CapeTarget" index="3"]
-position = Vector2( 3, 3 )
-
-[node name="Position2D5" parent="Rose/Utilities/CapeTarget" index="4"]
-position = Vector2( 5, 4 )
-
-[node name="CampeSkeletonController" parent="." instance=ExtResource( 10 )]
-phys_obj_path = NodePath("../Rose")
-targets_path = NodePath("../Rose/Utilities/CapeTarget")
-influencers_path = NodePath("../Rose/Utilities/CapeInfluencers")
-wind_path = NodePath("../Rose/Utilities/WindNode")
-skeleton_path = NodePath("../Rose/Utilities/CapeSkeleton")
-initial_rest_distance = 2.0
 
 [node name="StoneSpriteShape" parent="." instance=ExtResource( 12 )]
 position = Vector2( 556, 88 )
@@ -532,12 +490,13 @@ _points = SubResource( 44 )
 polygon = PoolVector2Array( -236, 112.001, -244, 112, -372, 112, -380, 112.001, -387.071, 111.071, -388.001, 104, -388, 96, -388, -48, -388.001, -56.0001, -387.071, -63.0707, -380, -64.0013, -372, -64, -244, -64, -236, -64.0013, -228.929, -63.0707, -227.999, -56.0001, -228, -48, -228, 96, -227.999, 104, -228.929, 111.071 )
 
 [node name="Woodeater_Soldier_Prototype" type="Sprite" parent="."]
-visible = false
 position = Vector2( 234, 40 )
 texture = ExtResource( 6 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Woodeater_Soldier_Prototype"]
 occluder = SubResource( 1 )
 
-[editable path="Rose"]
+[node name="RosePrefab" parent="." instance=ExtResource( 2 )]
+position = Vector2( -247, 11 )
+
 [editable path="StoneSpriteShape"]

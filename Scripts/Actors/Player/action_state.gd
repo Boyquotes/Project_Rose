@@ -12,6 +12,7 @@ var action_interrupted = false
 
 
 onready var action_controller = $ActionController
+onready var action_instancer = $ActionController/ActionInstancer
 onready var combo_timer = $ComboTimer
 
 
@@ -81,20 +82,21 @@ func _execute(delta):
 
 
 func _exit(state):
+	if state == FSM.hit_state:
+		action_instancer.clear_cancelable_actions()
 	use_default_movement = true
 	exit_state_flag = false
 	action_committed = false
 	jump_is_reset = false
 	action_interrupted = false
+	action_controller.clear_action()
 	action_controller.clear_save_vars()
 	action_controller.clear_slotted_vars()
 	action_controller.animate = false
-	action_controller.combo = ""
-	action_controller.action_stack = ["current_event", "saved_event"]
+	action_controller.clear_action_stack()
 	._exit(state)
 
 func _on_ComboTimer_timeout():
-	$ActionController/ActionInstancer.clear_actions()
 	action_controller.combo = ""
 	if(host.move_state == 'action'):
 		exit_ground_or_air()

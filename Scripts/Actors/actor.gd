@@ -3,6 +3,7 @@ extends KinematicBody2D
 # desc
 # long_desc
 
+signal turned
 signal animation_changed
 
 ###actor_exoport_data###
@@ -24,6 +25,8 @@ export(bool) var iframe := false
 var hp: float 
 var iframes := 0
 
+var targettable_hitboxes := []
+
 ###physics vars###
 var air_time := 0.0
 var hor_spd := 0.0
@@ -44,7 +47,8 @@ var prev_anim := ""
 
 onready var base_anim = $Animators/BaseAnimator
 onready var hit_box = $HitArea/HitBox
-
+onready var attack_coll_data = $Utilities/AttackCollision
+onready var powerup_data = $Utilities/Powerups
 func _ready():
 	init()
 
@@ -107,7 +111,7 @@ func _unpaused_phys_execute(_delta):
 func _cleanup():
 	pass
 
-func animate(animator, anim, cont = true):
+func animate(animator : AnimationPlayer, anim : String, cont = true):
 	if prev_anim != anim:
 		emit_signal("animation_changed")
 		prev_anim = anim
@@ -166,6 +170,8 @@ func add_vel(speed : float, degrees : float):
 func i_frame(frames : int):
 	iframes = frames
 
+func has_powerup(powerup):
+	return powerup_data.powerups[powerup]
 
 func call_init_in_children(host, parent):
 	for child in parent.get_children():

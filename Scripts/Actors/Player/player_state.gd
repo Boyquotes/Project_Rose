@@ -5,6 +5,10 @@ var move_direction : int
 var can_turn := true
 var can_move := true
 
+var switch_slash := false
+var switch_bash := false
+var switch_pierce := false
+
 #returns direction based on input
 func get_move_direction():
 	var right := int(Input.is_action_pressed("Move_Right"))
@@ -66,6 +70,7 @@ func turn(direction):
 		host.get_node("Utilities/CapeInfluencers").scale.x = host.get_node("Utilities/CapeInfluencers").scale.x * -1
 		host.get_node("Utilities/CapeTarget").scale.x = host.get_node("Utilities/CapeTarget").scale.x * -1
 		host.get_node("Utilities/WindNode").scale.x = host.get_node("Utilities/WindNode").scale.x * -1
+		host.emit_signal("turned")
 	host.hor_dir = direction
 
 
@@ -80,8 +85,16 @@ func _handle_input():
 	move_direction = get_move_direction()
 	if can_turn:
 		update_look_direction_and_scale(move_direction)
-	if get_action_just_pressed() and host.move_state != 'action':
-		_exit(FSM.action_state)
+	if host.move_state != 'action' || host.move_state != 'hit':
+		if get_action_just_pressed():
+			_exit(FSM.action_state)
+		elif get_switch_pressed():
+			if Input.is_action_just_pressed("Switch_Bash") and host.has_powerup(GlobalEnums.Powerups.METEOR_STYLE):
+				switch_bash = true
+			elif Input.is_action_just_pressed("Switch_Pierce") and host.has_powerup(GlobalEnums.Powerups.VOLT_STYLE):
+				switch_pierce = true
+			elif Input.is_action_just_pressed("Switch_Slash") and host.has_powerup(GlobalEnums.Powerups.VORTEX_STYLE):
+				switch_slash = true
 
 
 func _execute(_delta):
@@ -129,6 +142,12 @@ func exit_air():
 func exit_ground():
 	_exit(FSM.move_on_ground_state)
 
+func get_switch_pressed():
+	return (
+		Input.is_action_just_pressed("Switch_Bash") ||
+		Input.is_action_just_pressed("Switch_Pierce") ||
+		Input.is_action_just_pressed("Switch_Slash")
+	)
 
 func get_action_pressed():
 	return (

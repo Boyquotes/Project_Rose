@@ -4,6 +4,8 @@ extends Node2D
 ### debug_vars ###
 export(bool) var debug_input := true
 
+export(bool) var action_can_interrupt := false
+export(bool) var action_charges_jump := false
 
 var enter_primary := false
 var enter_item := false
@@ -17,19 +19,13 @@ var slotted_secondary := false
 
 var on_cooldown := false
 var hit := false
-var action_can_start := false
+
 var action_ended := false
 var action_is_saved := false
 var action_triggered := false
-
 var save_action := false
-var dodge_can_interrupt := false
-var move_can_interrupt := false
-var action_can_interrupt := false
-var action_resets_jump := false
 
 var animate := false
-var exit_dodge_early := false
 
 ### modifiable inits ###
 var air_counter := 1
@@ -46,6 +42,10 @@ var combo := ""
 var action_str := "action_str"
 var previous_action := "previous_action"
 
+
+func _ready():
+	action_can_interrupt = false
+	action_charges_jump = false
 
 func init():
 	action_state = get_parent()
@@ -65,11 +65,7 @@ func _enter():
 
 ### Prepares next move if user input is detected ###
 func _handle_input():
-	if exit_dodge_early and action_stack[1] == "saved_action":
-		if !Input.is_action_pressed("Dodge"):
-			clear_action()
-			action_state.exit_ground_or_air()
-	if (dodge_can_interrupt || move_can_interrupt || action_can_interrupt) && action_is_saved: #TODO: Revisit follow_up
+	if action_can_interrupt && action_is_saved:
 		action_is_saved = false
 		clear_action()
 		previous_action = action_stack[0]
@@ -91,7 +87,7 @@ func _handle_input():
 func _handle_animation():
 	if !debug_input:
 		if action_state.action_committed && animate :
-			host.animate(host.base_anim, action_str, true)
+			host.animate(host.base_anim, action_str, false)
 			animate = false
 
 
@@ -158,7 +154,6 @@ func commit_action():
 	action_ended = false
 	action_state.action_committed = true
 	action_is_saved = false
-	action_can_start = true
 	if(debug_input):
 		print(action_str)
 		clear_action()
@@ -186,18 +181,15 @@ func clear_action():
 	action_state.action_committed = false
 	action_triggered = false
 	save_action = false
-	move_can_interrupt = false
 	action_can_interrupt = false
-	dodge_can_interrupt = false
 	reset_strings()
 	action_state.hover = false
 	action_state.use_default_movement = true
 	action_state.can_turn = true
-	exit_dodge_early = false
 	host.normalize_grav()
 	host.activate_grav()
 	host.activate_fric()
-	action_resets_jump = false
+	action_charges_jump = false
 	action_state.combo_timer.start()
 
 func clear_action_stack():
@@ -209,20 +201,6 @@ func clear_action_stack():
 func set_save_commit_action():
 	save_action = true
 	action_state.can_turn = false
-
-
-func set_dodge_can_interrupt():
-	dodge_can_interrupt = true
-
-func set_exit_dodge_early():
-	exit_dodge_early = true
-
-
-func set_move_interrupt():
-	move_can_interrupt = true
-
-func set_action_interrupt():
-	action_can_interrupt = true
 
 func clear_enter_vars():
 	enter_primary = false
@@ -246,13 +224,6 @@ func on_hit(col):
 	if "hittable" in col:
 		if col.hittable:
 			host.get_node("Camera2D").shake(.1, 15, 8)
-			if !host.on_floor() && action_resets_jump:
-				action_state.jump_is_reset = true;
-
-
-func _on_BaseAnimator_animation_finished(_anim_name):
-	if host.move_state == "action":
-		if !action_is_saved:
-			action_state.exit_ground_or_air()
-		host.activate_fric()
+			if !host.on_floor() && action_charges_jump:
+				action_state.FSM.move_in_air_state.jump_charge += 1
 

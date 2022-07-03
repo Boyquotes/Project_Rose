@@ -275,11 +275,14 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "deactivate_fric"
+}, {
+"args": [  ],
+"method": "activate_fric"
 } ]
 }
 tracks/6/type = "value"
@@ -621,7 +624,7 @@ debug_input = false
 
 [node name="ActionInstancer" type="Node2D" parent="MoveStates/Action/ActionController" index="0"]
 script = ExtResource( 10 )
-action_target_path = NodePath("../../../../Utilities/ActionTarget")
+action_target_path = NodePath("../../../../Utilities/ActionSpawn")
 
 [node name="ComboTimer" type="Timer" parent="MoveStates/Action" index="1"]
 wait_time = 0.5
@@ -702,10 +705,13 @@ cast_to = Vector2( 40, 0 )
 
 [node name="Tween" type="Tween" parent="Utilities" index="8"]
 
-[node name="ActionTarget" type="Node2D" parent="Utilities" index="9"]
+[node name="ActionSpawn" type="Node2D" parent="Utilities" index="9"]
 position = Vector2( 88.2941, 0 )
 
-[node name="Powerups" type="Node2D" parent="Utilities" index="10"]
+[node name="TargetReticle" type="Node2D" parent="Utilities" index="10"]
+position = Vector2( 88.2941, 0 )
+
+[node name="Powerups" type="Node2D" parent="Utilities" index="11"]
 script = ExtResource( 13 )
 
 [connection signal="timeout" from="MoveStates/MoveInAir/LedgeDisableTimer" to="MoveStates/MoveInAir" method="_on_LedgeDisableTimer_timeout"]

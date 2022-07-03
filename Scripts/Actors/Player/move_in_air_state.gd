@@ -8,6 +8,8 @@ export(NodePath) var ledge_cast_l_path
 export(NodePath) var ledge_cast_r_path
 export(NodePath) var open_ledge_cast_l_path
 export(NodePath) var open_ledge_cast_r_path
+export(int) var max_jump_charges := 0
+export(int) var jump_charge := 0
 
 var cutoff := false
 var land := false
@@ -42,11 +44,14 @@ func _handle_input():
 	if jumped && !Input.is_action_pressed("Jump") && host.vert_spd < 0:
 		cutoff = true
 		host.vert_spd += 60
+	if Input.is_action_just_pressed("Jump") && jump_charge > 0 && host.vert_spd >= 0:
+		jump_charge -= 1
+		jump = true
 	._handle_input()
 
 func _handle_animation():
 	if(jump):
-		host.animate(host.spr_anim,"AirJump", false);
+		host.animate(host.base_anim, "AirJump", false);
 	if host.is_on_floor() && !land:
 		land = true
 		host.animate(host.base_anim, "Land", false)

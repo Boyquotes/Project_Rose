@@ -3,13 +3,12 @@ extends Actor
 # desc
 # long desc
 
-"""
+signal hurt
 signal hp_changed
-signal resource_1_changed
-signal resource_2_changed
+signal flora_changed
+signal focus_changed
 signal resource_3_changed
 signal item_changed
-"""
 
 # TODO: move to globals perhaps
 enum InputType {GAMEPAD, KEYMOUSE}
@@ -22,7 +21,13 @@ var style_states := {
 	Styles.EARTH : "Earth",
 	Styles.THUNDER : "Thunder"
 }
-var style_state = Styles.Base
+var style_state = Styles.BASE
+
+
+export (int) var max_flora := 10
+export (int) var max_focus := 3
+var flora := 0
+var focus := 0
 
 var rad := 0.0
 var deg := 0.0
@@ -35,6 +40,8 @@ onready var player_camera = $PlayerCamera
 #sets up some variables and initializes the state machine
 func init():
 	.init()
+	flora = max_flora
+	focus = max_focus
 	for key in move_states.keys():
 		move_states[key] = get_node(move_states[key])
 	if not Engine.editor_hint:
@@ -198,14 +205,27 @@ func tween_global_position(new: Vector2, time: float = .1):
 func change_move_state(var state: NodePath):
 	move_states[move_state].exit(get_node(state))
 
+func hurt():
+	change_hp(0)
 
 #convenient for changing the player's health, whether it is a heal or damage
 func change_hp(health):
 	hp += health
 	if hp > max_hp:
 		hp = max_hp
-	emit_signal("hp_changed",hp)
+	emit_signal("hp_changed", hp)
 
+func change_flora(flora):
+	flora += flora
+	if flora > max_flora:
+		flora = max_flora
+	emit_signal("flora_changed", flora)
+
+func change_focus(focus):
+	focus += focus
+	if focus > max_focus:
+		focus = max_focus
+	emit_signal("focus_changed", focus)
 
 #Death trigger
 func _on_Player_System_hit_zero():

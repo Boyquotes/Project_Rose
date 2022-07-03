@@ -4,11 +4,10 @@ extends PlayerState
 # Review these variables
 export(bool) var use_default_movement := true
 var hover = false
-var jump_is_reset = false
 
-var exit_state_flag = false
-var action_committed = false
-var action_interrupted = false
+var exit_state_normally_flag := false
+var action_committed := false
+var action_interrupted := false
 
 
 onready var action_controller = $ActionController
@@ -28,42 +27,40 @@ func _enter():
 
 func _handle_input():
 	action_controller._handle_input()
-	### for leaving the action state early ###
-	if (!get_action_pressed()
-			and (action_controller.move_can_interrupt
-				or action_controller.action_ended)):
-		if !action_controller.action_is_saved:
-			if(Input.is_action_pressed("Move_Left")
-					or Input.is_action_pressed("Move_Right")
-					or Input.is_action_pressed("Move_Up")
-					or Input.is_action_pressed("Move_Down")):
-				exit_state_flag = true
-			else:
-				exit_state_flag = false
+	# if the player is using a movement input, try to leave the action state
+	if(Input.is_action_pressed("Move_Left")
+			or Input.is_action_pressed("Move_Right")
+			or Input.is_action_pressed("Move_Up")
+			or Input.is_action_pressed("Move_Down")):
+		exit_state_normally_flag = true
 	
+	# if the player intends to commit an action, override the move
 	if (get_action_just_pressed() or get_action_pressed()
-			or action_controller.action_can_start):
-		exit_state_flag = false
+			or action_committed
+			or action_controller.action_is_saved):
+		exit_state_normally_flag = false
 	
-	if action_controller.dodge_can_interrupt or !action_committed:
-		if (Input.is_action_just_pressed("Jump") and jump_is_reset
-				and !host.on_floor()):
-			FSM.move_in_air_state.jump = true
-			exit_state_flag = true
-			action_interrupted = true
-		if Input.is_action_just_pressed("Jump") and host.is_on_floor():
+	# if the player tries to jump, override the action
+	if Input.is_action_just_pressed("Jump"):
+		if host.is_on_floor():
 			FSM.move_on_ground_state.jump = true
-			exit_state_flag = true
-			action_interrupted = true
+			exit_state_normally_flag = true
+		elif FSM.move_in_air_state.jump_charge > 0:
+			FSM.move_in_air_state.jump_charge -= 1
+			FSM.move_in_air_state.jump = true
+			exit_state_normally_flag = true
 	
-	if (exit_state_flag and (action_controller.move_can_interrupt
-			or action_controller.action_ended)):
-		action_controller.clear_action()
-		if(host.move_state == "action"):
-			exit_ground_or_air()
-	if exit_state_flag and action_interrupted:
-		action_controller.clear_action()
-		exit_ground_or_air()
+	# if the player is dodging but is not committing to a new action or holding
+		# the dodge button, end the action early
+	if (action_controller.action_str == "Action_Dodge"
+			and action_controller.action_stack[1] == "saved_action"
+			and !Input.is_action_pressed("Dodge")):
+		exit_state_normally_flag = true
+	if exit_state_normally_flag:
+		if action_controller.action_can_interrupt or action_controller.action_ended:
+			action_controller.clear_action()
+			if(host.move_state == "action"):
+				exit_ground_or_air()
 	._handle_input()
 
 
@@ -85,9 +82,8 @@ func _exit(state):
 	if state == FSM.hit_state:
 		action_instancer.clear_cancelable_actions()
 	use_default_movement = true
-	exit_state_flag = false
+	exit_state_normally_flag = false
 	action_committed = false
-	jump_is_reset = false
 	action_interrupted = false
 	action_controller.clear_action()
 	action_controller.clear_save_vars()
@@ -97,6 +93,12 @@ func _exit(state):
 	._exit(state)
 
 func _on_ComboTimer_timeout():
+	action_controller.combo = ""
+	if(host.move_state == 'action'):
+		exit_ground_or_air()
+
+
+func _on_BaseAnimator_animation_finished(anim_name):
 	action_controller.combo = ""
 	if(host.move_state == 'action'):
 		exit_ground_or_air()

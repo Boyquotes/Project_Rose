@@ -499,4 +499,14 @@ occluder = SubResource( 1 )
 [node name="RosePrefab" parent="." instance=ExtResource( 2 )]
 position = Vector2( -247, 11 )
 
+[node name="Rose" parent="RosePrefab" index="0"]
+move_states = {
+"action": NodePath("MoveStates/Action"),
+"hit": NodePath("MoveStates/Hit"),
+"ledge_grab": NodePath("MoveStates/LedgeGrab"),
+"move_in_air": NodePath("MoveStates/MoveInAir"),
+"move_on_ground": NodePath("MoveStates/MoveOnGround")
+}
+
 [editable path="StoneSpriteShape"]
+[editable path="RosePrefab"]

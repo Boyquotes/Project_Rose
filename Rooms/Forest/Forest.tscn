@@ -944,7 +944,6 @@ color = Color( 1, 0.85098, 0.85098, 1 )
 [node name="MainLights" type="Node2D" parent="."]
 
 [node name="Light2D2" parent="MainLights" instance=ExtResource( 7 )]
-visible = false
 position = Vector2( 318, 478 )
 rotation = -0.20944
 scale = Vector2( 0.7, 3 )
@@ -957,7 +956,6 @@ shadow_enabled = true
 shadow_item_cull_mask = 1
 
 [node name="Light2D3" parent="MainLights" instance=ExtResource( 7 )]
-visible = false
 position = Vector2( 779, 591 )
 scale = Vector2( 1.65484, 1.24615 )
 texture = ExtResource( 1 )
@@ -969,7 +967,6 @@ shadow_enabled = true
 shadow_item_cull_mask = 1
 
 [node name="Light2D4" parent="MainLights" instance=ExtResource( 7 )]
-visible = false
 position = Vector2( 616, 584 )
 scale = Vector2( 1.35865, 1.09751 )
 texture = ExtResource( 1 )
@@ -992,7 +989,6 @@ shadow_enabled = true
 shadow_item_cull_mask = 1
 
 [node name="Light2D6" parent="MainLights" instance=ExtResource( 7 )]
-visible = false
 position = Vector2( 1129, 513 )
 texture = ExtResource( 1 )
 texture_scale = 1.0
@@ -1005,7 +1001,6 @@ shadow_filter_smooth = 20.0
 shadow_item_cull_mask = 1
 
 [node name="Light2D5" parent="MainLights" instance=ExtResource( 7 )]
-visible = false
 position = Vector2( 1319, 521 )
 rotation = -1.11527
 scale = Vector2( 1, 2 )
@@ -1072,6 +1067,10 @@ light_mask = 1023
 texture = ExtResource( 6 )
 offset = Vector2( 2, -1 )
 hframes = 5
+
+[node name="WindNode" parent="RosePrefab/Rose/Utilities" index="11"]
+wind_type = 0
+directional = false
 
 [editable path="StoneSpriteShape"]
 [editable path="RosePrefab"]

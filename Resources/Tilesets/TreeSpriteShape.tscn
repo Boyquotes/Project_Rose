@@ -1,0 +1,151 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://addons/rmsmartshape/shapes/point.gd" type="Script" id=2]
+[ext_resource path="res://addons/rmsmartshape/vertex_properties.gd" type="Script" id=3]
+[ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=6]
+[ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=7]
+[ext_resource path="res://addons/rmsmartshape/shapes/shape_closed.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_fill1.png" type="Texture" id=53]
+[ext_resource path="res://Resources/Shaders/SmartShapeShader_Fill.gdshader" type="Shader" id=108]
+
+[sub_resource type="Resource" id=217]
+script = ExtResource( 3 )
+texture_idx = 7
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=218]
+script = ExtResource( 2 )
+position = Vector2( -387, 108 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 217 )
+
+[sub_resource type="Resource" id=219]
+script = ExtResource( 3 )
+texture_idx = 18
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=220]
+script = ExtResource( 2 )
+position = Vector2( -387, -68 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 219 )
+
+[sub_resource type="Resource" id=221]
+script = ExtResource( 3 )
+texture_idx = 4
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=222]
+script = ExtResource( 2 )
+position = Vector2( -227, -68 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 221 )
+
+[sub_resource type="Resource" id=223]
+script = ExtResource( 3 )
+texture_idx = 7
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=224]
+script = ExtResource( 2 )
+position = Vector2( -227, 108 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 223 )
+
+[sub_resource type="Resource" id=225]
+script = ExtResource( 3 )
+texture_idx = 7
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=226]
+script = ExtResource( 2 )
+position = Vector2( -387, 108 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 225 )
+
+[sub_resource type="Resource" id=227]
+script = ExtResource( 7 )
+_points = {
+4: SubResource( 218 ),
+7: SubResource( 220 ),
+21: SubResource( 222 ),
+22: SubResource( 224 ),
+35: SubResource( 226 )
+}
+_point_order = [ 4, 7, 21, 22, 35 ]
+_constraints = {
+[ 4, 35 ]: 15
+}
+_next_key = 42
+_material_overrides = {
+}
+
+[sub_resource type="ShaderMaterial" id=198]
+shader = ExtResource( 108 )
+shader_param/first_stage = 0.3
+shader_param/first_smooth = 0.25
+shader_param/second_stage = 0.0
+shader_param/second_smooth = 0.0
+shader_param/rim_light = false
+shader_param/rim_thickness = 5.0
+shader_param/rim_intense = 1.0
+shader_param/rim_extra_thick = false
+shader_param/min_light = 0.0
+shader_param/mid_light = 0.0
+shader_param/max_light = 1.0
+shader_param/obj_light_add = 0.0
+shader_param/fake_light_depth = true
+shader_param/obj_height = 0.0
+shader_param/min_scale = 0.2
+shader_param/max_scale = 2.0
+shader_param/light_change_thresh = 1000.0
+shader_param/light_fade = true
+shader_param/light_fade_end = 2000.0
+shader_param/fake_spot_light = false
+shader_param/first_shrink_speed = 1.0
+shader_param/second_shrink_speed = 2.0
+shader_param/before_light_modulate = Color( 0.5, 0.5, 0.5, 1 )
+
+[sub_resource type="Resource" id=153]
+script = ExtResource( 6 )
+_edge_meta_materials = [  ]
+fill_textures = [ ExtResource( 53 ) ]
+fill_texture_normals = [  ]
+fill_texture_z_index = -10
+fill_mesh_offset = 0.0
+fill_mesh_material = SubResource( 198 )
+render_offset = 0.0
+
+[node name="TreeSpriteShape" type="StaticBody2D"]
+position = Vector2( 291, -60 )
+collision_mask = 12
+
+[node name="TreeSpriteShape" type="Node2D" parent="."]
+z_index = 500
+script = ExtResource( 8 )
+color_encoding = 1
+_points = SubResource( 227 )
+material_overrides = null
+shape_material = SubResource( 153 )
+tessellation_stages = 5
+tessellation_tolerence = 4.0
+flip_edges = false
+render_edges = true
+collision_size = 32.0
+collision_offset = 0.0
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.3 )
+polygon = PoolVector2Array( -387.104, 108.104, -387.104, -68.1035, -226.896, -68.1035, -226.896, 108.104 )

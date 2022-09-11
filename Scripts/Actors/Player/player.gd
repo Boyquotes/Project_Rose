@@ -81,10 +81,10 @@ func _execute(_delta):
 		move_states['hit'].compare_to = global_position + Vector2(hor_dir * 25,0)
 		move_states[move_state]._exit(move_states['hit'])
 	
-	rad = $Utilities/ActionTarget.execute(_delta)
+	#rad = $Utilities/ActionTarget.execute(_delta)
 	
-	deg = rad2deg(rad)
-	$Utilities/ActionTarget.global_rotation_degrees = deg
+	#deg = rad2deg(rad)
+	#$Utilities/ActionTarget.global_rotation_degrees = deg
 
 
 

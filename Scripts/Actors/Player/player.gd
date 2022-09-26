@@ -50,7 +50,6 @@ func init():
 		$HitArea/HitBox.disabled = false
 	iframe = false
 
-
 # This should be moved to some UI layer.
 signal input_unstable
 var switch_count := 0

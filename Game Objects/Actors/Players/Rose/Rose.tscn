@@ -1418,14 +1418,9 @@ extents = Vector2( 240, 135 )
 [node name="Rose" instance=ExtResource( 1 )]
 z_index = 10
 collision_layer = 4
-move_states = {
-"action": NodePath("MoveStates/Action"),
-"hit": NodePath("MoveStates/Hit"),
-"ledge_grab": NodePath("MoveStates/LedgeGrab"),
-"move_in_air": NodePath("MoveStates/MoveInAir"),
-"move_on_ground": NodePath("MoveStates/MoveOnGround")
-}
 iframe = true
+max_flora = 10
+max_focus = 3
 
 [node name="CollisionBox" parent="." index="0"]
 disabled = false

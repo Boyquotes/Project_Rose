@@ -465,7 +465,6 @@ script = ExtResource( 5 )
 
 [node name="Light2D4" parent="rotlight" instance=ExtResource( 7 )]
 position = Vector2( -70.866, -37.683 )
-rotation = 2.98023e-08
 texture = ExtResource( 9 )
 texture_scale = 1.0
 energy = 1.0
@@ -500,13 +499,8 @@ occluder = SubResource( 1 )
 position = Vector2( -247, 11 )
 
 [node name="Rose" parent="RosePrefab" index="0"]
-move_states = {
-"action": NodePath("MoveStates/Action"),
-"hit": NodePath("MoveStates/Hit"),
-"ledge_grab": NodePath("MoveStates/LedgeGrab"),
-"move_in_air": NodePath("MoveStates/MoveInAir"),
-"move_on_ground": NodePath("MoveStates/MoveOnGround")
-}
+max_flora = 10
+max_focus = 3
 
 [editable path="StoneSpriteShape"]
 [editable path="RosePrefab"]

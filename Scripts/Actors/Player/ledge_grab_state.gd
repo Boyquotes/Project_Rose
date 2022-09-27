@@ -2,9 +2,9 @@ class_name LedgeGrabState
 extends PlayerState
 
 #how fast you stick to the wall
-export(float) var stick_var := 5.0
+@export var stick_var := 5.0
 #how fast you climb up or down towards the ledge
-export(float) var climb_var := 1.0
+@export var climb_var := 1.0
 
 
 var grab_animation_done := false
@@ -47,7 +47,7 @@ func _handle_animation():
 		host.animate(host.base_anim, "Climb", false)
 	elif(jump):
 		host.animate(host.base_anim, "LedgeJump", false)
-	._handle_animation()
+	super._handle_animation()
 
 
 func _execute(_delta):
@@ -78,7 +78,7 @@ func _exit(state):
 	jump = false
 	going_up = false
 	stick_var = 5
-	._exit(state)
+	super._exit(state)
 
 
 func set_grab_animation_done(flag := true):

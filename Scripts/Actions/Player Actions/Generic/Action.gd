@@ -1,9 +1,9 @@
 class_name Action
 extends Node2D
 
-export(bool) var cancelable := true
-export(int) var flora_cost := 0
-export(bool) var expend_focus := false
+@export var cancelable := true
+@export var flora_cost := 0
+@export var focus_cost := 0
 
 var action_spawn : Node2D
 var host : Player
@@ -13,11 +13,11 @@ func start():
 		global_position = action_spawn.global_position
 	if flora_cost:
 		host.change_flora(-flora_cost)
-	if expend_focus:
-		host.change_focus(-1)
+	if focus_cost:
+		host.change_focus(-focus_cost)
 	
 	$Animator.play("Action")
-	var err := $Animator.connect("animation_finished", self, "_on_animation_finished", [], CONNECT_REFERENCE_COUNTED)
+	var err := $Animator.connect("animation_finished",Callable(self,"_on_animation_finished").bind(),CONNECT_REFERENCE_COUNTED)
 	if err != 0:
 		printerr(err)
 

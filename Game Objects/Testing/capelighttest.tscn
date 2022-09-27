@@ -1,17 +1,17 @@
 [gd_scene load_steps=53 format=2]
 
-[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nn5.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nn5.png" type="Texture2D" id=1]
 [ext_resource path="res://Resources/Shaders/CapeShader.gdshader" type="Shader" id=2]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nnsngles2.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nn1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nnsngles2.png" type="Texture2D" id=3]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nn1.png" type="Texture2D" id=4]
 [ext_resource path="res://Game Objects/Testing/CapeSkeleton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game Objects/Testing/Light2D.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/Lights/light_nopix.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nnsngles4.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nnsngles5.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Lights/background.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nn2.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nn3.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Lights/light_nopix.png" type="Texture2D" id=7]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nnsngles4.png" type="Texture2D" id=8]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nnsngles5.png" type="Texture2D" id=9]
+[ext_resource path="res://Assets/Lights/background.png" type="Texture2D" id=10]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nn2.png" type="Texture2D" id=11]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_nn3.png" type="Texture2D" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -1135,14 +1135,14 @@ shader_param/norm = ExtResource( 9 )
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color( 0.278431, 0.278431, 0.278431, 1 )
 light_mask = 2
 scale = Vector2( 50, 50 )
 z_index = -5
 texture = ExtResource( 10 )
 
-[node name="Light2D" parent="." instance=ExtResource( 6 )]
+[node name="PointLight2D" parent="." instance=ExtResource( 6 )]
 position = Vector2( 24, -82 )
 rotation = -0.245434
 z_index = 20

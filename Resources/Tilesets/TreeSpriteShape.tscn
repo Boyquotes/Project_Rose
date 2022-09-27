@@ -5,7 +5,7 @@
 [ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=6]
 [ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=7]
 [ext_resource path="res://addons/rmsmartshape/shapes/shape_closed.gd" type="Script" id=8]
-[ext_resource path="res://Assets/Prototyping/Stone_Floor_fill1.png" type="Texture" id=53]
+[ext_resource path="res://Assets/Prototyping/Stone_Floor_fill1.png" type="Texture2D" id=53]
 [ext_resource path="res://Resources/Shaders/SmartShapeShader_Fill.gdshader" type="Shader" id=108]
 
 [sub_resource type="Resource" id=217]
@@ -148,4 +148,4 @@ collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.3 )
-polygon = PoolVector2Array( -387.104, 108.104, -387.104, -68.1035, -226.896, -68.1035, -226.896, 108.104 )
+polygon = PackedVector2Array( -387.104, 108.104, -387.104, -68.1035, -226.896, -68.1035, -226.896, 108.104 )

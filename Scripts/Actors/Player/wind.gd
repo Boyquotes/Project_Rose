@@ -1,11 +1,11 @@
-extends Position2D
+extends Marker2D
 
 enum WindType {NONE, GENTLE, MILD, STRONG, TORRENT}
 
-export (Vector2) var wind := Vector2(0.0, 0.0)
-export (WindType) var wind_type = WindType.GENTLE
-export (bool) var directional := false
-export(float) var direction := 0.0
+@export var wind := Vector2(0.0, 0.0)
+@export var wind_type = WindType.GENTLE
+@export var directional := false
+@export var direction := 0.0
 var prev_type = WindType.GENTLE
 var rng = RandomNumberGenerator.new()
 var roll_wind = false

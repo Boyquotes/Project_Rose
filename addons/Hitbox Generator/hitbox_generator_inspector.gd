@@ -11,8 +11,8 @@ func can_handle(object):
 func parse_begin(object : Object):
 	var child_button = GenChildButton.new()
 	add_custom_control(child_button)
-	child_button.connect("button_down", object, "create_child")
+	child_button.connect("button_down",Callable(object,"create_child"))
 	if object is EnemyHitbox:
 		var parent_button = GenParentButton.new()
 		add_custom_control(parent_button)
-		parent_button.connect("button_down", object, "create_parent")
+		parent_button.connect("button_down",Callable(object,"create_parent"))

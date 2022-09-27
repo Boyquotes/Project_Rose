@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node2D
 class_name SS2D_Shape_Render
 
@@ -6,7 +6,11 @@ class_name SS2D_Shape_Render
 Node is used to render shape geometry
 """
 
-var mesh = null setget set_mesh
+var mesh = null :
+	get:
+		return mesh # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_mesh
 
 
 func set_mesh(m):

@@ -1,4 +1,4 @@
-tool
+@tool
 class_name EnemyHitbox
 extends Area2D
 
@@ -6,14 +6,14 @@ signal hitbox_broken
 
 enum LockType {SINGLE, ALL}
 
-export(int) var hit_points := 5
-export(bool) var broken := false
-export(NodePath) var host
-export(LockType) var lock_type
-export(GlobalEnums.AttackType) var attack_type
-export(GlobalEnums.DisplacementType) var displacement_type
-export(Array) var parent_box_paths := []
-export(Array) var child_box_paths := []
+@export var hit_points := 5
+@export var broken := false
+@export var host: NodePath
+@export var lock_type: LockType
+@export var attack_type: GlobalEnums.AttackType # (GlobalEnums.AttackType)
+@export var displacement_type: GlobalEnums.DisplacementType # (GlobalEnums.DisplacementType)
+@export var parent_box_paths := []
+@export var child_box_paths := []
 
 var activated_displacement = GlobalEnums.DisplacementType.None
 var attack : Action
@@ -22,9 +22,8 @@ var child_boxes
 var locked : bool
 
 func _ready():
-	
 	if not Engine.editor_hint:
-		if not child_box_paths:
+		if child_box_paths.size() == 0:
 			locked = false
 		if broken:
 			hit_points = 0
@@ -46,7 +45,7 @@ func _process(delta):
 						broke_count += 1
 			if broke_count == child_boxes.size():
 				locked = false
-	if Engine.editor_hint and not get_parent() is Viewport:
+	if Engine.editor_hint and not get_parent() is SubViewport:
 		var clean_run = true
 		while clean_run or child_boxes is String:
 			child_boxes = get_parent().check_box_paths(child_box_paths)

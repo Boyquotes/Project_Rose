@@ -1,0 +1,9 @@
+DirectionalLight2D
+Node2D
+PointLight2D
+Camera2D
+Sprite2D
+AnimationPlayer
+CanvasModulate
+TileMap
+CollisionShape2D

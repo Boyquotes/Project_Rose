@@ -1,138 +1,49 @@
 shader_type canvas_item;
 
-uniform sampler2D norm;
-uniform float theta = 0.0;
-uniform float first_stage : hint_range(0.0, 1.0) = .75; 
-uniform float first_smooth : hint_range(0.0, 1.0) = 0.0; // Lengthens the color transition
-uniform float second_stage : hint_range(0.0, 1.0) = 0.5;   // If left at 0, only level 1 is used.
-uniform float second_smooth : hint_range(0.0, 1.0) = 0;
-uniform bool rim_light = true;
-uniform float rim_thickness : hint_range(0, 40) = 0.1;
-uniform float rim_intense : hint_range(0, 1) = 0.1;
-uniform bool rim_extra_thick = true;
-uniform float min_light : hint_range(0.0, 1.0) = 0.0;
-uniform float mid_light : hint_range(0.0, 1.0) = 0.0;
-uniform float max_light : hint_range(0.0, 1.0) = 1.0;
-uniform float obj_light_add : hint_range(0.0, 1.0) = 0.0;
-// Light height variables
-uniform bool fake_light_depth = true;
-uniform float obj_height : hint_range(-2048.0, 2048.0) = 0.0; 
-uniform float min_scale : hint_range(0.0, 10.0) = 0.2;
-uniform float max_scale : hint_range(0.0, 10.0) = 2.0; 
-uniform float light_change_thresh : hint_range(0.0, 4080.0) = 1000.0;
-uniform bool light_fade = true;
-uniform float light_fade_end : hint_range(0.0, 4080.0) = 2000.0;
-uniform bool fake_spot_light = false;
-uniform float first_shrink_speed : hint_range(0.0, 120.0) = 1.0; 
-uniform float second_shrink_speed : hint_range(0.0, 120.0) = 2.0; 
-//---------------Color Override
-uniform vec4 before_light_modulate : hint_color = vec4(0.5,0.5,0.5,1.0);
-
-
-void fragment() {
-	//NORMAL = vec3(NORMAL.x, -1.0 * NORMAL.y, NORMAL.z);
-	NORMAL = 2.0 * texture(norm, UV).rgb - 1.0;
-	// Get the vertex color or the color from the texture if set
-	vec4 finalColor = min(texture(TEXTURE, UV), COLOR);
-	COLOR = finalColor;
-	vec4 texture_color = texture(TEXTURE, UV);
-	if (AT_LIGHT_PASS) {
-		COLOR = texture_color;
-	} else {
-		COLOR = texture_color * before_light_modulate;
-	}
-}
-
-
-float light_calc(float light_strength, float would_be_strength) {
-	float target_strength = light_strength + would_be_strength * obj_light_add;
-	if (target_strength == 0.0) {target_strength = 0.000001;}
-	if (would_be_strength == 0.0) {would_be_strength = 1.0;}
-	return(target_strength / would_be_strength);
-}
-
+uniform vec3 cameraPosition = vec3(0.0f);
+// Setting a color difference between unlit and specular.
+uniform float shadowSubtract = 0.5f;
+uniform float specularAdd = 0.5f;
+uniform vec4 edgeColor : source_color = vec4(0.0f);
+uniform float lightPower = 1.0f;
 
 void light() {
-	float tempx = LIGHT_VEC.x;
-	float tempy = -LIGHT_VEC.y;
-	LIGHT_VEC.x = tempx * cos(theta) - tempy * sin(theta);
-	LIGHT_VEC.y = tempx * sin(theta) + tempy * cos(theta);
-	
-	vec3 tempnorm = vec3(NORMAL.x, -1.0 * NORMAL.y, -1.0 * NORMAL.z);
-	float level_1 = first_stage;
-	float level_1_smooth = first_smooth;
-	float level_2 = second_stage;
-	float level_2_smooth = second_smooth;
-	//---- Light height calc start ------------------------------------
-	//-----------------------------------------------------------------
-	if (fake_light_depth) {
-		float base_height = LIGHT_HEIGHT;
-		float new_height = base_height - obj_height;
-		LIGHT_HEIGHT = new_height;
-		if (fake_spot_light && obj_height < base_height && light_change_thresh < new_height ){
-			if (level_1 != 1.0) {
-				level_1 -= (light_change_thresh - new_height) * (first_shrink_speed * .0001);
-				if (level_2 != 0.0 && level_2 != 1.0) {
-					level_2 -= (light_change_thresh - new_height) * (second_shrink_speed * .0001);
-				}
-			}
-		}
-		if (light_fade && new_height > light_change_thresh) {
-			float n_height_safety = new_height;
-			if (n_height_safety == 0.0) { n_height_safety += 0.01; }
-			float light_dist_safety = light_change_thresh;
-			if (light_dist_safety == 0.0) { light_dist_safety += 0.001; }
-			float new_intens = 1.0;
-			float dark_distance = light_fade_end;
-			if (dark_distance == 0.0) {dark_distance = 1.0;}
-			new_intens = 1.0 - abs(abs(light_dist_safety) - abs(n_height_safety)) / dark_distance;
-			float light_drop_a = clamp(LIGHT_COLOR.a * new_intens, 0.0, 1.0);
-			LIGHT_COLOR *= light_drop_a;
-		}
-	}
-	//---- Light height calc end --------------------------------------
-	
-	float mid_range_light = mid_light;
-	if (mid_light == 0.0) { mid_range_light = max_light * 0.5; }
-	vec3 light_normal = normalize(vec3(LIGHT_VEC, -LIGHT_HEIGHT));
-	float would_be_strength = max(dot(-light_normal, NORMAL), 0.0);
-//-----Light Rim start------------------------------------------------------
-	if (rim_light) {
-		vec2 size = TEXTURE_PIXEL_SIZE * rim_thickness;
-		float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
-		outline *= texture(TEXTURE, UV + vec2(0, size.y)).a;
-		outline *= texture(TEXTURE, UV + vec2(size.x, 0)).a;
-		outline *= texture(TEXTURE, UV + vec2(0, -size.y)).a;
-		if (rim_extra_thick) {
-			outline *= texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
-			outline *= texture(TEXTURE, UV + vec2(size.x, size.y)).a;
-			outline *= texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
-			outline *= texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
-		}
-		outline = 1.0 - outline;
+    // Calculate the real position of this pixel in 3d space, taking into account
+    // the rotation and scale of the model. It's a useful formula for some effects.
+    // This could also be done in the vertex shader
+    vec3 worldPosition = FRAGCOORD.xyz;
 
-		vec4 color = texture(TEXTURE, UV);
-		float rim_cap = outline * color.a * rim_intense * (max_light - min_light);
-		LIGHT += rim_cap;
-	}
-	//-----Light Rim end------------------------------------------------------
-	if (would_be_strength > level_1 && level_2 == 0.0 ) {
-		float diff = smoothstep(level_1, (level_1 + level_1_smooth), would_be_strength) + min_light;
-		if (diff >= max_light) {diff = max_light;}
-		LIGHT *= light_calc(diff, would_be_strength);
-	} else if (would_be_strength > level_1 && would_be_strength < level_2 && level_2 != 0.0 ) {
-		float diff = smoothstep(level_1, (level_1 + level_1_smooth), would_be_strength) + min_light;
-		if (diff >= mid_range_light ) {diff = mid_range_light;}
-		LIGHT *= light_calc(diff, would_be_strength);
-	} else if (would_be_strength >= level_2 && level_2 != 0.0 ) {
-		float diff = smoothstep(level_2, (level_2 + level_2_smooth), would_be_strength) + mid_range_light;
-		if (diff < mid_range_light ) {diff = mid_range_light;}
-		if (diff >= max_light) {diff = max_light;}
-		LIGHT *= light_calc(diff, would_be_strength);
-	} else { 
-		if (min_light != 0.0) { 
-			LIGHT_VEC = -NORMAL.xy*length(LIGHT_VEC); 
-		}
-		LIGHT *= min_light;                                                                                                                                  
-	}
+    // Calculate the normal including the model rotation and scale
+    vec3 worldNormal = NORMAL.xyz;
+
+    vec3 lightVector = normalize( LIGHT_POSITION - worldPosition );
+    
+    vec3 cameraVector = normalize(LIGHT_POSITION - cameraPosition - worldPosition );
+    
+	vec4 finalColor = (texture(TEXTURE, UV) + LIGHT_COLOR) / 2.0f;
+    
+    //Substracting the difference from the main color for the shaded part
+    vec3 unlitColor = vec3(finalColor.x - shadowSubtract, finalColor.y - shadowSubtract, finalColor.z - shadowSubtract);
+    
+    // Adding the difference from the main color for the highlighted part
+    vec3 specularColor = vec3(finalColor.x + specularAdd, finalColor.y + specularAdd, finalColor.z + specularAdd);
+
+    // An example simple lighting effect, taking the dot product of the normal
+    // (which way this pixel is pointing) and a user generated light position
+    float brightness = dot( worldNormal, lightVector );
+    
+    vec3 reflectance = normalize(2.0 * dot(lightVector,worldNormal)*worldNormal-lightVector);
+
+    
+    if(dot(lightVector,worldNormal)<0.3){
+        LIGHT = edgeColor;
+    } else {
+        if (dot(worldNormal,lightVector)>0.0){
+            LIGHT = finalColor;
+            if (length(cameraVector - reflectance)<0.6){
+                    LIGHT = vec4(specularColor, 1.0);
+            }
+        }
+    }
+	//SHADOW_MODULATE = vec4(unlitColor,1.0);
 }

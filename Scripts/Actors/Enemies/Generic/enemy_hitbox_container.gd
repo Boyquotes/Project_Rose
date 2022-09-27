@@ -1,11 +1,11 @@
-tool
+@tool
 class_name EnemyHitboxContainer
 extends Node2D
 
 const Hitbox = preload("res://Game Objects/Actors/Enemies/Generic/EnemyHitbox.tscn")
 
 func create_child():
-	var hb = Hitbox.instance()
+	var hb = Hitbox.instantiate()
 	add_child(hb)
 	hb.set_owner(get_tree().get_edited_scene_root())
 	hb.child_box_paths = []
@@ -13,7 +13,7 @@ func create_child():
 	hb.name = "EnemyHitbox"
 
 func create_hitbox():
-	var hb = Hitbox.instance()
+	var hb = Hitbox.instantiate()
 	add_child(hb)
 	hb.set_owner(get_tree().get_edited_scene_root())
 	hb.child_box_paths = []

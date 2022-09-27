@@ -1,28 +1,40 @@
-tool
+@tool
 extends Resource
 class_name SS2D_VertexProperties
 
-export (int) var texture_idx: int # setget set_texture_idx
-export (bool) var flip: bool #setget set_flip
-export (float) var width: float #setget set_width
+@export (int) var texture_idx: int # :
+	get:
+		return texture_idx # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_texture_idx
+@export (bool) var flip: bool #:
+	get:
+		return flip # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_flip
+@export (float) var width: float #:
+	get:
+		return width # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_width
 
 
 func set_texture_idx(i: int):
 	texture_idx = i
 	emit_signal("changed")
-	property_list_changed_notify()
+	notify_property_list_changed()
 
 
 func set_flip(b: bool):
 	flip = b
 	emit_signal("changed")
-	property_list_changed_notify()
+	notify_property_list_changed()
 
 
 func set_width(w: float):
 	width = w
 	emit_signal("changed")
-	property_list_changed_notify()
+	notify_property_list_changed()
 
 
 func _init():

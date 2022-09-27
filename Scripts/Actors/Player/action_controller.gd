@@ -2,10 +2,10 @@ class_name ActionController
 extends Node2D
 
 ### debug_vars ###
-export(bool) var debug_input := true
+@export var debug_input := true
 
-export(bool) var action_can_interrupt := false
-export(bool) var action_charges_jump := false
+@export var action_can_interrupt := false
+@export var action_charges_jump := false
 
 var enter_primary := false
 var enter_item := false
@@ -141,7 +141,7 @@ func reset_strings():
 	action_stack[1] = "saved_action"
 	action_str = "action_str"
 
-### Triggers appropriate action based on the strings constructed by player input ###
+### Triggers appropriate action based checked the strings constructed by player input ###
 func commit_action():
 	construct_action_string()
 	var input_direction = get_parent().get_aim_direction()

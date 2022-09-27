@@ -1,5 +1,5 @@
-tool
-extends Reference
+@tool
+extends RefCounted
 
 """
 Everything in this script should be static
@@ -9,14 +9,14 @@ This is a simple script to work with arrays of SS2D_IndexMap
 Some notes:
 """
 
-# Will merge two arrays of MetaMatToIdxs; a overriting on top of b; returning a new array of MetaMatToIDxs
+# Will merge two arrays of MetaMatToIdxs; a overriting checked top of b; returning a new array of MetaMatToIDxs
 static func overwrite_array_a_into_array_b(a: Array, b: Array) -> Array:
 	var ret = []
 	# Make equal to b; b serves as the baseline
 	for bm in b:
 		ret.push_back(bm.duplicate())
 
-	# Merge a on top of b
+	# Merge a checked top of b
 	var to_remove = []
 	var to_add = []
 	for am in a:
@@ -31,7 +31,7 @@ static func overwrite_array_a_into_array_b(a: Array, b: Array) -> Array:
 					continue
 				overlapping_points.append(idx)
 
-			if overlapping_points.empty():
+			if overlapping_points.is_empty():
 				continue
 
 			# Remove all overlapping points
@@ -43,8 +43,8 @@ static func overwrite_array_a_into_array_b(a: Array, b: Array) -> Array:
 				to_remove.push_back(mm)
 
 		to_add.push_back(m)
-		for remove in to_remove:
-			ret.erase(remove)
+		for remove_at in to_remove:
+			ret.erase(remove_at)
 		for add in to_add:
 			ret.push_back(add)
 		to_add = []

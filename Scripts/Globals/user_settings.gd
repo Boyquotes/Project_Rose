@@ -38,14 +38,14 @@ func get_keybindings(action):
 	return _user_settings.get_value(KEY_BINDING_SECTION, action)
 	
 func replace_keybinding(action, idx, input):
-	var previous = InputMap.get_action_list(action)
+	var previous = InputMap.action_get_events(action)
 	previous[idx] = input;
 	_user_settings.set_value(KEY_BINDING_SECTION, action, previous)
 	save_settings()
 	_load_key_bindings()
 
 func add_keybinding(action, input):
-	var previous = InputMap.get_action_list(action)
+	var previous = InputMap.action_get_events(action)
 	previous.push_back(input);
 	_user_settings.set_value(KEY_BINDING_SECTION, action, previous)
 	save_settings()
@@ -53,7 +53,7 @@ func add_keybinding(action, input):
 
 func _create_default_key_bindings():
 	for idx in InputMap.get_actions().size():
-		_user_settings.set_value(KEY_BINDING_SECTION, InputMap.get_actions()[idx], InputMap.get_action_list(InputMap.get_actions()[idx]))
+		_user_settings.set_value(KEY_BINDING_SECTION, InputMap.get_actions()[idx], InputMap.action_get_events(InputMap.get_actions()[idx]))
 	save_settings()
  
 func _load_key_bindings():

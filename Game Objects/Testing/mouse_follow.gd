@@ -1,7 +1,7 @@
-extends Light2D
+extends PointLight2D
 
 
-export(float) var speed := 1.0
+@export var speed: float := 1.0
 
 
 # Called when the node enters the scene tree for the first time.

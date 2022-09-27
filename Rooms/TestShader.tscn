@@ -1,0 +1,153 @@
+[gd_scene load_steps=14 format=3 uid="uid://cs1cxg2o35kag"]
+
+[ext_resource type="Texture2D" uid="uid://cx0ju1jmxdi8w" path="res://Assets/Lights/light_nopix.png" id="1_64cxn"]
+[ext_resource type="Texture2D" uid="uid://bfy8jm6bkouou" path="res://Assets/Prototyping/circle.png" id="1_gpbri"]
+[ext_resource type="Shader" path="res://Resources/Shaders/CapeShader.gdshader" id="2_oj4md"]
+[ext_resource type="Texture2D" uid="uid://depeli1m46eue" path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" id="3_s23yc"]
+[ext_resource type="Texture2D" uid="uid://1lnjvsbpllno" path="res://Assets/Prototyping/hirescirclenormal.png" id="4_ck8p4"]
+[ext_resource type="Texture2D" uid="uid://c21s1kcuk3qp7" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" id="4_segv1"]
+
+[sub_resource type="Animation" id="Animation_q30np"]
+resource_name = "New Anim"
+length = 25.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2d:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight2d:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Camera2d:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 12.5, 25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 250), Vector2(0, -250), Vector2(0, 250)]
+}
+
+[sub_resource type="Animation" id="Animation_kukfp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2d:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight2d:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2d:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mbdq4"]
+_data = {
+"New Anim": SubResource("Animation_q30np"),
+"RESET": SubResource("Animation_kukfp")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84ygb"]
+shader = ExtResource("2_oj4md")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/edgeColor = Color(0, 0, 0, 1)
+shader_parameter/lightPower = 1.0
+shader_parameter/shadowSubtract = 0.5
+shader_parameter/specularAdd = 0.5
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7wuxo"]
+diffuse_texture = ExtResource("1_gpbri")
+normal_texture = ExtResource("4_ck8p4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c84ad"]
+shader = ExtResource("2_oj4md")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/edgeColor = Color(0, 0, 0, 1)
+shader_parameter/lightPower = 1.0
+shader_parameter/shadowSubtract = 0.5
+shader_parameter/specularAdd = 0.5
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ti12f"]
+diffuse_texture = ExtResource("3_s23yc")
+normal_texture = ExtResource("4_segv1")
+
+[node name="TestShader" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+light_mask = 0
+color = Color(0.75, 0.75, 0.75, 1)
+
+[node name="Node2d" type="Node2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="PointLight2d" type="PointLight2D" parent="Node2d"]
+position = Vector2(100, 0)
+color = Color(0, 0, 0, 1)
+texture = ExtResource("1_64cxn")
+height = 25.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mbdq4")
+}
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_84ygb")
+texture = SubResource("CanvasTexture_7wuxo")
+
+[node name="Sprite2d2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_c84ad")
+texture = SubResource("CanvasTexture_ti12f")
+
+[node name="Camera2d" type="Camera2D" parent="."]
+current = true
+
+[node name="DirectionalLight2d" type="DirectionalLight2D" parent="."]
+visible = false
+scale = Vector2(1, 1)

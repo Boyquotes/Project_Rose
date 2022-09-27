@@ -24,7 +24,7 @@ uniform bool fake_spot_light = false;
 uniform float first_shrink_speed : hint_range(0.0, 120.0) = 1.0; 
 uniform float second_shrink_speed : hint_range(0.0, 120.0) = 2.0; 
 //---------------Color Override
-uniform vec4 before_light_modulate : hint_color = vec4(0.5,0.5,0.5,1.0);
+uniform vec4 before_light_modulate : source_color = vec4(0.5,0.5,0.5,1.0);
 
 void fragment() {
 	NORMAL = vec3(NORMAL.x, -1.0 * NORMAL.y, NORMAL.z);
@@ -51,9 +51,9 @@ void light() {
 	//---- Light height calc start ------------------------------------
 	//-----------------------------------------------------------------
 	if (fake_light_depth) {
-		float base_height = LIGHT_HEIGHT;
+		float base_height = LIGHT_POSITION.z;
 		float new_height = base_height - obj_height;
-		LIGHT_HEIGHT = new_height;
+
 		if (fake_spot_light && obj_height < base_height && light_change_thresh < new_height ){
 			if (level_1 != 1.0) {
 				level_1 -= (light_change_thresh - new_height) * (first_shrink_speed * .0001);
@@ -72,7 +72,8 @@ void light() {
 			if (dark_distance == 0.0) {dark_distance = 1.0;}
 			new_intens = 1.0 - abs(abs(light_dist_safety) - abs(n_height_safety)) / dark_distance;
 			float light_drop_a = clamp(LIGHT_COLOR.a * new_intens, 0.0, 1.0);
-			LIGHT_COLOR *= light_drop_a;
+			//LIGHT = LIGHT 
+			//LIGHT_COLOR *= light_drop_a;
 		}
 	}
 	//---- Light height calc end --------------------------------------

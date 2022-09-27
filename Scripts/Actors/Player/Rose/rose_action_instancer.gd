@@ -6,8 +6,8 @@ func dodge():
 	action.start()
 
 func instance_dodge():
-	action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Rose/DodgeAction.tscn").instance())
+	action_queue.push_back(preload("res://Game Objects/Actions/Player Actions/Rose/DodgeAction.tscn").instantiate())
 	var action = action_queue.back()
-	initialize_action(action, action_target)
-	initialize_particles(action)
+	initialize_action(action)
+	#initialize_particles(action)
 	return action

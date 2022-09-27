@@ -1,7 +1,7 @@
 extends Node
 
-func change_scene(scene):
-	match(get_tree().change_scene(scene)):
+func change_scene_to_file(scene):
+	match(get_tree().change_scene_to_file(scene)):
 		OK:
 			#success
 			pass

@@ -1,13 +1,13 @@
-tool
-extends Reference
+@tool
+extends RefCounted
 class_name SS2D_Mesh
 
 """
 Used to organize all requested meshes to be rendered by their textures
 """
 
-var texture: Texture = null
-var texture_normal: Texture = null
+var texture: Texture2D = null
+var texture_normal: Texture2D = null
 var flip_texture: bool = false
 # Array of ArrayMesh
 var meshes: Array = []
@@ -18,8 +18,8 @@ var z_as_relative: bool = true
 
 
 func _init(
-	t: Texture = null,
-	tn: Texture = null,
+	t: Texture2D = null,
+	tn: Texture2D = null,
 	f: bool = false,
 	xform: Transform2D = Transform2D(),
 	m: Array = [],
@@ -49,7 +49,7 @@ func duplicate(sub_resource: bool = false):
 	return _new
 
 
-func matches(tex: Texture, tex_n: Texture, f: bool, t: Transform2D, m: Material, zi: int, zb: bool) -> bool:
+func matches(tex: Texture2D, tex_n: Texture2D, f: bool, t: Transform2D, m: Material, zi: int, zb: bool) -> bool:
 	if (
 		tex == texture
 		and tex_n == texture_normal

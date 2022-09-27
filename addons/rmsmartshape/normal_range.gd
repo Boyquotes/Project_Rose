@@ -1,4 +1,4 @@
-tool
+@tool
 extends Resource
 class_name SS2D_NormalRange
 """
@@ -7,16 +7,28 @@ This class will determine if the normal of a vector falls within the specifed an
 - 360.0 and 0.0 degrees are considered equivilent
 """
 
-export (int, 0, 360, 0) var begin = 0.0 setget set_begin
-export (int, 0, 360, 0) var distance = 0.0 setget set_distance
+@export (int, 0, 360, 0) var begin = 0.0 :
+	get:
+		return begin # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_begin
+@export (int, 0, 360, 0) var distance = 0.0 :
+	get:
+		return distance # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_distance
 
 # Deprecated variable
-var end = 0.0 setget set_end
+var end = 0.0 :
+	get:
+		return end # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_end
 
 # This is a hack to support the custom editor, needed a property
-# to exist to lock the TextureProgress to.  Makes it flow better
+# to exist to lock the TextureProgressBar to.  Makes it flow better
 # in the Inspector.
-export (Vector2) var edgeRendering
+@export (Vector2) var edgeRendering
 
 
 func set_distance(f: float):
@@ -62,7 +74,7 @@ static func get_angle_from_vector(vec: Vector2) -> float:
 
 	# This angle has a range of 360 degrees
 	# Is between 180 and - 180
-	var deg = rad2deg(angle)
+	var deg = rad_to_deg(angle)
 
 	# Get range between 0.0 and 360.0
 	if deg < 0:
@@ -88,7 +100,7 @@ static func _get_signed_angle_deg(degrees: float) -> float:
 
 
 # Saving a scene with this resource requires a parameter-less init method
-func _init(_begin: float = 0.0, _distance: float = 0.0):
+func _init(_begin: float = 0.0,_distance: float = 0.0):
 	_begin = _get_signed_angle_deg(_begin)
 	_distance = _get_signed_angle_deg(_distance)
 

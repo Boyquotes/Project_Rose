@@ -1,14 +1,14 @@
 class_name ClothSim
 extends Node2D
 
-export(NodePath) var phys_obj_path
-export(NodePath) var targets_path
-export(NodePath) var influencers_path
-export(NodePath) var wind_path
-export(float) var gravity := 480.0
-export(Texture) var texture
-export(Texture) var trim_texture
-export(bool) var active := true
+@export var phys_obj_path: NodePath
+@export var targets_path: NodePath
+@export var influencers_path: NodePath
+@export var wind_path: NodePath
+@export var gravity := 480.0
+@export var texture: Texture2D
+@export var trim_texture: Texture2D
+@export var active := true
 
 var wind_node
 var influencers_node
@@ -25,8 +25,8 @@ var mouse_influence_size := 5.0
 # minimum distance for tearing when user is right clicking
 var mouse_tear_size := 1.0
 var mouse_influence_scalar := 1.0
-onready var shadow_node = preload("res://Game Objects/Actors/Players/Rose/CapeShadow.tscn")
-onready var cape_line_node = preload("res://Game Objects/Testing/CapeLine.tscn")
+@onready var shadow_node = preload("res://Game Objects/Actors/Players/Rose/CapeShadow.tscn")
+@onready var cape_line_node = preload("res://Game Objects/Testing/CapeLine.tscn")
 
 var cloth_height := 8
 var cloth_width := 5
@@ -68,17 +68,17 @@ func _ready():
 		trim_line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 		trim_line.joint_mode = Line2D.LINE_JOINT_ROUND
 		trim_line.width = 0
-		trim_line.default_color = Color.white
+		trim_line.default_color = Color.WHITE
 
 		for x in cloth_width:
-			var line = cape_line_node.instance()
+			var line = cape_line_node.instantiate()
 			line.z_index = cloth_width - (x + 1)
 			line.texture = texture
 			line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 			line.joint_mode = Line2D.LINE_JOINT_ROUND
 			line.width = resting_distance
 			print(resting_distance)
-			line.default_color = Color.white
+			line.default_color = Color.WHITE
 			line.light_mask = light_bit + 2
 			add_child(line)
 			for y in cloth_height:
@@ -96,19 +96,19 @@ func _ready():
 		add_child(trim_line)
 
 
-func create_cloth(translation : Vector2, this : ClothSim):
+func create_cloth(position : Vector2, this : ClothSim):
 	# mid_width: amount to translate the curtain along x-axis for it to be centered
 	# (curtainWidth * restingDistances) = curtain's pixel width
 	#var mid_width = int(width/2 - (curtainWidth * restingDistances)/2)
 	var sum := 0.0
 	# Since this our fabric is basically a grid of points, we have two loops
-	for y in cloth_height: # due to the way PointMasss are attached, we need the y loop on the outside
+	for y in cloth_height: # due to the way PointMasss are attached, we need the y loop checked the outside
 		pointmasses.push_back([])
 		shadows.push_back([])
 		this.resting_distance += .25
 		sum += this.resting_distance
 		for x in cloth_width:
-			var pointmass = PointMass.new(translation.x + x * this.resting_distance, translation.y + y * this.resting_distance, x, y, this.resting_distance)
+			var pointmass = PointMass.new(position.x + x * this.resting_distance, position.y + y * this.resting_distance, x, y, this.resting_distance)
 			# attach to 
 			# x - 1  and
 			# y - 1  
@@ -134,7 +134,7 @@ func create_cloth(translation : Vector2, this : ClothSim):
 				pointmass.pin_to(target)
 			# add to PointMass array  
 			pointmasses[y].push_back(pointmass)
-			shadows[y].push_back(shadow_node.instance())
+			shadows[y].push_back(shadow_node.instantiate())
 	print(sum)
 
 func _draw():
@@ -149,7 +149,7 @@ var deltatime := 0.0
 
 func _physics_process(_delta):
 	if active:
-		#material.set_shader_param("root_pos", targets_node.get_global_transform_with_canvas()[2])
+		#material.set_shader_parameter("root_pos", targets_node.get_global_transform_with_canvas()[2])
 		deltatime += _delta
 		#z_index += targets_node.z_index
 		
@@ -174,8 +174,8 @@ class ClothPhysics:
 	
 	# Update physics
 	func update(this : ClothSim, wind : Vector2, time : float):
-		# calculate elapsed time
-		current_time = OS.get_system_time_msecs()
+		# calculate elapsed time in ms
+		current_time = Time.get_unix_time_from_system() * 1000
 		var deltatime_ms = current_time - previous_time
 		
 		previous_time = current_time # reset previous time
@@ -210,7 +210,7 @@ class ClothPhysics:
 					this.line_arr[x].set_point_position(y, this.pointmasses[y][x].pos)
 					this.shadows[y][x].position = this.pointmasses[y][x].pos
 					var loc = this.phys_obj_node.to_local(this.to_global(this.shadows[y][x].position))
-					var intersect = Geometry.segment_intersects_segment_2d(this.shadows[0][x-1].position, this.shadows[y][x-1].position, this.shadows[0][x].position, this.shadows[y][x].position)
+					var intersect = Geometry2D.segment_intersects_segment(this.shadows[0][x-1].position, this.shadows[y][x-1].position, this.shadows[0][x].position, this.shadows[y][x].position)
 					if x != 0:
 						if intersect:
 							this.shadows[y][x].visible = false
@@ -234,7 +234,7 @@ class PointMass:
 	
 	var xplace := 0
 	var yplace := 0
-	 
+	
 	var mass := .01
 	var damping := .91
 	
@@ -242,11 +242,11 @@ class PointMass:
 	var links = []
 	
 	var pinned := false
-	var pin : Position2D
+	var pin : Marker2D
 	
 	var resting_distance : float
 	# PointMass constructor
-	func _init(var x_pos : float, var y_pos : float, var x : int, y : int, rest : float):
+	func _init(x_pos : float,y_pos : float,x : int,y : int,rest : float):
 		pos.x = x_pos
 		pos.y = y_pos
 		
@@ -261,8 +261,8 @@ class PointMass:
 	# The update function is used to update the physics of the PointMass.
 	# motion is applied, and links are drawn here
 	# timeStep should be in elapsed seconds (deltaTime)
-	func update_physics(var timestep : float, this : ClothSim, wind : Vector2):
-		apply_force(mass * wind.x + mass * -this.phys_obj_node.vel.x, mass * wind.y + mass * this.gravity + mass * -this.phys_obj_node.vel.y)
+	func update_physics(timestep : float, this : ClothSim, wind : Vector2):
+		apply_force(mass * wind.y + mass * this.gravity + mass * -this.phys_obj_node.vel.y, mass * wind.x + mass * -this.phys_obj_node.vel.x)
 		
 		var vel_x = pos.x - last_x
 		var vel_y = pos.y - last_y
@@ -306,7 +306,7 @@ class PointMass:
 					if distance_squared < this.mouse_tear_size:
 						links.clear()
 	
-	""" Constraints """
+	# Constraints
 	func solve_constraints(this : ClothSim, wind : Vector2, time : float):
 		
 		if this.phys_obj_node.vel.length() > 0 and wind.length() != 0:
@@ -317,34 +317,39 @@ class PointMass:
 		# Links make sure PointMasss connected to this one is at a set distance away
 		for link in links:
 			link.solve()
-	
+		
 		""" Other Constraints """
-		var tempos = Vector2(pos.x, ceil(pos.y))
-		var space_state : Physics2DDirectSpaceState = this.get_world_2d().direct_space_state
+		var tempos = Vector2(pos.x, pos.y)
+		var space_state : PhysicsDirectSpaceState2D = this.get_world_2d().direct_space_state
 		var coll = 33
-		var collision_event = space_state.intersect_point(tempos, 1, [], coll)
+		var point_coll_params := PhysicsPointQueryParameters2D.new()
+		point_coll_params.collision_mask = coll
+		point_coll_params.position = tempos
+		var collision_event = space_state.intersect_point(point_coll_params, 1)
 		var intersecting = collision_event.size() > 0
 		
-		var north = 0
-		var south = 0
-		var east = 0
-		var west = 0
+		var dir = 0
 		while(intersecting):
-			north += 1
-			south += 1
-			east += 1
-			west += 1
-			if space_state.intersect_point(Vector2(tempos.x,tempos.y-north), 1, [], coll).size() == 0:
-				pos = Vector2(tempos.x,tempos.y-north)
+			dir += 1
+			var params_up := point_coll_params
+			params_up.position = Vector2(tempos.x,tempos.y-dir)
+			var params_down := point_coll_params
+			params_down.position = Vector2(tempos.x,tempos.y+dir)
+			var params_left := point_coll_params
+			params_left.position = Vector2(tempos.x-dir,tempos.y)
+			var params_right := point_coll_params
+			params_right.position = Vector2(tempos.x+dir,tempos.y)
+			if space_state.intersect_point(params_up, 1).size() == 0:
+				pos = Vector2(tempos.x,tempos.y-dir)
 				intersecting = false
-			elif space_state.intersect_point(Vector2(tempos.x,tempos.y+south), 1, [], coll).size() == 0:
-				pos = Vector2(tempos.x,tempos.y+south)
+			elif space_state.intersect_point(params_down, 1).size() == 0:
+				pos = Vector2(tempos.x,tempos.y+dir)
 				intersecting = false
-			elif space_state.intersect_point(Vector2(tempos.x-east,tempos.y), 1, [], coll).size() == 0:
-				pos = Vector2(tempos.x-east,tempos.y)
+			elif space_state.intersect_point(params_left, 1).size() == 0:
+				pos = Vector2(tempos.x-dir,tempos.y)
 				intersecting = false
-			elif space_state.intersect_point(Vector2(tempos.x+west,tempos.y), 1, [], coll).size() == 0:
-				pos = Vector2(tempos.x+west,tempos.y)
+			elif space_state.intersect_point(params_right, 1).size() == 0:
+				pos = Vector2(tempos.x+dir,tempos.y)
 				intersecting = false
 		
 		# make sure the PointMass stays in its place if it's pinned
@@ -360,11 +365,11 @@ class PointMass:
 	func remove_link(link : Link):
 		links.erase(link)
 	
-	func pin_to(target : Position2D):
+	func pin_to(target : Marker2D):
 		pinned = true
 		pin = target
 	
-	func apply_force(fx : float, fy : float):
+	func apply_force(fy : float, fx : float):
 		# acceleration = (1/mass) * force
 		# or
 		# acceleration = force / mass
@@ -396,7 +401,7 @@ class Link:
 	var p2 : PointMass
 	
 	
-	func _init(which1 : PointMass, which2 : PointMass, this : ClothSim):
+	func _init(which1 : PointMass,which2 : PointMass,this : ClothSim):
 		p1 = which1 # when you set one object to another, it's pretty much a reference. 
 		p2 = which2 # Anything that'll happen to p1 or p2 in here will happen to the paticles in our ArrayList
 		
@@ -425,7 +430,7 @@ class Link:
 		var scalar_p1 = (im1 / (im1 + im2)) * stiffness
 		var scalar_p2 = stiffness - scalar_p1
 
-		# Push/pull based on mass
+		# Push/pull based checked mass
 		# heavier objects will be pushed/pulled less than attached light objects
 		p1.pos.x += diffX * scalar_p1 * difference
 		p1.pos.y += diffY * scalar_p1 * difference

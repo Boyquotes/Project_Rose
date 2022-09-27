@@ -1,15 +1,15 @@
 class_name MoveInAirState
 extends PlayerState
 
-export(bool) var jumped := false
-export(bool) var transitioned := false
-export(bool) var jump := false
-export(NodePath) var ledge_cast_l_path
-export(NodePath) var ledge_cast_r_path
-export(NodePath) var open_ledge_cast_l_path
-export(NodePath) var open_ledge_cast_r_path
-export(int) var max_jump_charges := 0
-export(int) var jump_charge := 0
+@export var jumped := false
+@export var transitioned := false
+@export var jump := false
+@export var ledge_cast_l_path: NodePath
+@export var ledge_cast_r_path: NodePath
+@export var open_ledge_cast_l_path: NodePath
+@export var open_ledge_cast_r_path: NodePath
+@export var max_jump_charges := 0
+@export var jump_charge := 0
 
 var cutoff := false
 var land := false
@@ -24,10 +24,10 @@ var ledge_cast_r
 var open_ledge_cast_l
 var open_ledge_cast_r
 
-onready var ledge_disable_timer = $LedgeDisableTimer
+@onready var ledge_disable_timer = $LedgeDisableTimer
 
 func init():
-	.init()
+	super.init()
 	ledge_cast_r = get_node(ledge_cast_r_path)
 	ledge_cast_l = get_node(ledge_cast_l_path)
 	open_ledge_cast_r = get_node(open_ledge_cast_r_path)
@@ -47,7 +47,7 @@ func _handle_input():
 	if Input.is_action_just_pressed("Jump") && jump_charge > 0 && host.vert_spd >= 0:
 		jump_charge -= 1
 		jump = true
-	._handle_input()
+	super._handle_input()
 
 func _handle_animation():
 	if(jump):
@@ -67,7 +67,7 @@ func _handle_animation():
 				host.animate(host.base_anim, "Descend", false)
 				done_descent = true
 				done_ascent = false
-	._handle_animation()
+	super._handle_animation()
 
 
 func _execute(delta):
@@ -77,7 +77,7 @@ func _execute(delta):
 		if detect_ledge(ledge_cast_l, open_ledge_cast_l, -1):
 			return
 	
-	._execute(delta)
+	super._execute(delta)
 
 
 func _exit(state):
@@ -92,9 +92,9 @@ func _exit(state):
 	is_wall_r = false
 	wasnt_wall_l = false
 	is_wall_l = false
-	._exit(state)
+	super._exit(state)
 
-func detect_ledge(ledge_cast, open_ledge_cast, dir : int):
+func detect_ledge(ledge_cast : RayCast2D, open_ledge_cast, dir : int):
 	if ledge_cast.is_colliding() and not open_ledge_cast.is_colliding():
 		FSM.ledge_grab_state.ledge_cast = ledge_cast
 		FSM.ledge_grab_state.move_direction = dir

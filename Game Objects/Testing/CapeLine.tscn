@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Sprites/Actors/Rose/cape.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Actors/Rose/cape.png" type="Texture2D" id=1]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -17,7 +17,7 @@ uniform float min_light : hint_range(0.0, 1.0) = 0.0;
 uniform float mid_light : hint_range(0.0, 1.0) = 0.0;
 uniform float max_light : hint_range(0.0, 1.0) = 1.0;
 uniform float obj_light_add : hint_range(0.0, 1.0) = 0.0;
-// Light height variables
+// Light3D height variables
 uniform bool fake_light_depth = false;
 uniform float obj_height : hint_range(-2048.0, 2048.0) = 0.0; 
 uniform float min_scale : hint_range(0.0, 10.0) = 0.2;
@@ -29,7 +29,7 @@ uniform bool fake_spot_light = false;
 uniform float first_shrink_speed : hint_range(0.0, 120.0) = 0.0; 
 uniform float second_shrink_speed : hint_range(0.0, 120.0) = 0.0; 
 //---------------Color Override
-uniform vec4 before_light_modulate : hint_color = vec4(1.0,1.0,1.0,1.0);
+uniform vec4 before_light_modulate : source_color = vec4(1.0,1.0,1.0,1.0);
 
 void fragment() {
 	NORMAL = vec3(NORMAL.x, -1.0 * NORMAL.y, NORMAL.z);
@@ -53,7 +53,7 @@ void light() {
 	float level_1_smooth = first_smooth;
 	float level_2 = second_stage;
 	float level_2_smooth = second_smooth;
-	//---- Light height calc start ------------------------------------
+	//---- Light3D height calc start ------------------------------------
 	//-----------------------------------------------------------------
 	if (fake_light_depth) {
 		float base_height = LIGHT_HEIGHT;
@@ -80,13 +80,13 @@ void light() {
 			LIGHT_COLOR *= light_drop_a;
 		}
 	}
-	//---- Light height calc end --------------------------------------
+	//---- Light3D height calc end --------------------------------------
 	
 	float mid_range_light = mid_light;
 	if (mid_light == 0.0) { mid_range_light = max_light * 0.5; }
 	vec3 light_normal = normalize(vec3(LIGHT_VEC, -LIGHT_HEIGHT));
 	float would_be_strength = max(dot(-light_normal, NORMAL), 0.0);
-//-----Light Rim start------------------------------------------------------
+//-----Light3D Rim start------------------------------------------------------
 	if (rim_light) {
 		vec2 size = TEXTURE_PIXEL_SIZE * rim_thickness;
 		float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
@@ -105,7 +105,7 @@ void light() {
 		float rim_cap = outline * color.a * rim_intense * (max_light - min_light);
 		LIGHT += rim_cap;
 	}
-	//-----Light Rim end------------------------------------------------------
+	//-----Light3D Rim end------------------------------------------------------
 	if (would_be_strength > level_1 && level_2 == 0.0 ) {
 		float diff = smoothstep(level_1, (level_1 + level_1_smooth), would_be_strength) + min_light;
 		if (diff >= max_light) {diff = max_light;}

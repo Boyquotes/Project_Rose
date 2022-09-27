@@ -1,4 +1,4 @@
-tool
+@tool
 extends Resource
 class_name SS2D_Material_Shape
 
@@ -9,15 +9,43 @@ Each edge represents a set of textures used to render an edge
 
 # List of materials this shape can use
 # Should be SS2D_Material_Edge_Metadata
-export (Array, Resource) var _edge_meta_materials: Array = [] setget set_edge_meta_materials
-export (Array, Texture) var fill_textures: Array = [] setget set_fill_textures
-export (Array, Texture) var fill_texture_normals: Array = [] setget set_fill_texture_normals
-export (int) var fill_texture_z_index: int = -10 setget set_fill_texture_z_index
-export (float) var fill_mesh_offset: float = 0.0 setget set_fill_mesh_offset
-export (Material) var fill_mesh_material: Material = null setget set_fill_mesh_material
+@export (Array, Resource) var _edge_meta_materials: Array = [] :
+	get:
+		return _edge_meta_materials # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_edge_meta_materials
+@export (Array, Texture2D) var fill_textures: Array = [] :
+	get:
+		return fill_textures # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_fill_textures
+@export (Array, Texture2D) var fill_texture_normals: Array = [] :
+	get:
+		return fill_texture_normals # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_fill_texture_normals
+@export (int) var fill_texture_z_index: int = -10 :
+	get:
+		return fill_texture_z_index # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_fill_texture_z_index
+@export (float) var fill_mesh_offset: float = 0.0 :
+	get:
+		return fill_mesh_offset # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_fill_mesh_offset
+@export (Material) var fill_mesh_material: Material = null :
+	get:
+		return fill_mesh_material # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_fill_mesh_material
 
 # How much to offset all edges
-export (float, -1.5, 1.5, 0.1) var render_offset: float = 0.0 setget set_render_offset
+@export (float, -1.5, 1.5, 0.1) var render_offset: float = 0.0 :
+	get:
+		return render_offset # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_render_offset
 
 
 func set_fill_mesh_material(m: Material):
@@ -88,13 +116,13 @@ func set_edge_meta_materials(a: Array):
 		if e == null:
 			continue
 		if not a.has(e):
-			e.disconnect("changed", self, "_on_edge_material_changed")
+			e.disconnect("changed",Callable(self,"_on_edge_material_changed"))
 
 	for e in a:
 		if e == null:
 			continue
-		if not e.is_connected("changed", self, "_on_edge_material_changed"):
-			e.connect("changed", self, "_on_edge_material_changed")
+		if not e.is_connected("changed",Callable(self,"_on_edge_material_changed")):
+			e.connect("changed",Callable(self,"_on_edge_material_changed"))
 
 	_edge_meta_materials = a
 	emit_signal("changed")

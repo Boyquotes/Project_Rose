@@ -1,5 +1,5 @@
-tool
-extends Reference
+@tool
+extends RefCounted
 class_name SS2D_Quad
 
 enum ORIENTATION { COLINEAR = 0, CCW, CW }
@@ -20,12 +20,12 @@ var bn_b : Vector2
 var bn_c : Vector2
 var bn_d : Vector2
 
-var texture: Texture = null
-var texture_normal: Texture = null
+var texture: Texture2D = null
+var texture_normal: Texture2D = null
 var color: Color = Color(1.0, 1.0, 1.0, 1.0)
 
 var flip_texture: bool = false
-# Deprecated, should remove control_point_index
+# Deprecated, should remove_at control_point_index
 var control_point_index: int
 var fit_texture = SS2D_Material_Edge.FITMODE.SQUISH_AND_STRETCH
 
@@ -98,8 +98,8 @@ func _init(
 	b: Vector2 = Vector2.ZERO,
 	c: Vector2 = Vector2.ZERO,
 	d: Vector2 = Vector2.ZERO,
-	t: Texture = null,
-	tn: Texture = null,
+	t: Texture2D = null,
+	tn: Texture2D = null,
 	f: bool = false
 ):
 	pt_a = a
@@ -118,7 +118,7 @@ func get_rotation() -> float:
 
 """
 Given three colinear points p, q, r, the function checks if
-point q lies on line segment 'pr'
+point q lies checked line segment 'pr'
 """
 
 
@@ -163,19 +163,19 @@ func edges_intersect(p1: Vector2, q1: Vector2, p2: Vector2, q2: Vector2) -> bool
 		return true
 
 	# Special Cases
-	# p1 , q1 and p2 are colinear and p2 lies on segment p1q1
+	# p1 , q1 and p2 are colinear and p2 lies checked segment p1q1
 	if (o1 == 0) and on_segment(p1, p2, q1):
 		return true
 
-	# p1 , q1 and q2 are colinear and q2 lies on segment p1q1
+	# p1 , q1 and q2 are colinear and q2 lies checked segment p1q1
 	if (o2 == 0) and on_segment(p1, q2, q1):
 		return true
 
-	# p2 , q2 and p1 are colinear and p1 lies on segment p2q2
+	# p2 , q2 and p1 are colinear and p1 lies checked segment p2q2
 	if (o3 == 0) and on_segment(p2, p1, q2):
 		return true
 
-	# p2 , q2 and q1 are colinear and q1 lies on segment p2q2
+	# p2 , q2 and q1 are colinear and q1 lies checked segment p2q2
 	if (o4 == 0) and on_segment(p2, q1, q2):
 		return true
 

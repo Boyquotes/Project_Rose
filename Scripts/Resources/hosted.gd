@@ -1,6 +1,6 @@
 extends Node2D
 
-export(NodePath) var host_path
+@export var host_path: NodePath
 var host
 
 func init():

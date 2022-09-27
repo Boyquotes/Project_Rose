@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Actors/Player/wind.gd" type="Script" id=1]
 
-[node name="WindNode" type="Position2D"]
+[node name="WindNode" type="Marker2D"]
 position = Vector2( -64, -40 )
 script = ExtResource( 1 )
 

@@ -2,7 +2,7 @@ class_name ActionState
 extends PlayerState
 
 # Review these variables
-export(bool) var use_default_movement := true
+@export var use_default_movement := true
 var hover = false
 
 var exit_state_normally_flag := false
@@ -10,9 +10,9 @@ var action_committed := false
 var action_interrupted := false
 
 
-onready var action_controller = $ActionController
-onready var action_instancer = $ActionController/ActionInstancer
-onready var combo_timer = $ComboTimer
+@onready var action_controller = $ActionController
+@onready var action_instancer = $ActionController/ActionInstancer
+@onready var combo_timer = $ComboTimer
 
 
 ### Initialize Action State ###
@@ -61,7 +61,7 @@ func _handle_input():
 			action_controller.clear_action()
 			if(host.move_state == "action"):
 				exit_ground_or_air()
-	._handle_input()
+	super._handle_input()
 
 
 func _handle_animation():
@@ -71,7 +71,7 @@ func _handle_animation():
 func _execute(delta):
 	### Determining player movement from actions ###
 	if use_default_movement:
-		._execute(delta)
+		super._execute(delta)
 	else:
 		#handles when we use special movement
 		pass
@@ -90,7 +90,7 @@ func _exit(state):
 	action_controller.clear_slotted_vars()
 	action_controller.animate = false
 	action_controller.clear_action_stack()
-	._exit(state)
+	super._exit(state)
 
 func _on_ComboTimer_timeout():
 	action_controller.combo = ""
@@ -98,7 +98,7 @@ func _on_ComboTimer_timeout():
 		exit_ground_or_air()
 
 
-func _on_BaseAnimator_animation_finished(anim_name):
+func _on_BaseAnimator_animation_finished(_anim_name):
 	action_controller.combo = ""
 	if(host.move_state == 'action'):
 		exit_ground_or_air()

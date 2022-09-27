@@ -17,18 +17,18 @@ func _process(delta):
 	# Only shake when there's shake time remaining.
 	if _timer == 0:
 		return
-	# Only shake on certain frames.
+	# Only shake checked certain frames.
 	_last_shook_timer = _last_shook_timer + delta
 	# Be mathematically correct in the face of lag; usually only happens once.
 	while _last_shook_timer >= _period_in_ms:
 		
 		_last_shook_timer = _last_shook_timer - _period_in_ms
-		# Lerp between [amplitude] and 0.0 intensity based on remaining shake time.
+		# Lerp between [amplitude] and 0.0 intensity based checked remaining shake time.
 		var intensity = _amplitude * (1 - ((_duration - _timer) / _duration))
 		# Noise calculation logic from http://jonny.morrill.me/blog/view/14
-		var new_x = rand_range(-1.0, 1.0)
+		var new_x = randf_range(-1.0, 1.0)
 		var x_component = intensity * (_previous_x + (delta * (new_x - _previous_x)))
-		var new_y = rand_range(-1.0, 1.0)
+		var new_y = randf_range(-1.0, 1.0)
 		var y_component = intensity * (_previous_y + (delta * (new_y - _previous_y)))
 		_previous_x = new_x
 		_previous_y = new_y
@@ -42,7 +42,7 @@ func _process(delta):
 		_timer = 0
 		set_offset(get_offset() - _last_offset)
 
-# Kick off a new screenshake effect.
+# Kick unchecked a new screenshake effect.
 func shake(duration : float, frequency : float, amplitude : float):
 	$StopTimer.start(duration/2);
 	get_tree().paused = true;
@@ -51,8 +51,8 @@ func shake(duration : float, frequency : float, amplitude : float):
 	_timer = duration
 	_period_in_ms = 1.0 / frequency
 	_amplitude = amplitude
-	_previous_x = rand_range(-1.0, 1.0)
-	_previous_y = rand_range(-1.0, 1.0)
+	_previous_x = randf_range(-1.0, 1.0)
+	_previous_y = randf_range(-1.0, 1.0)
 	# Reset previous offset, if any.
 	set_offset(get_offset() - _last_offset)
 	_last_offset = Vector2(0, 0)

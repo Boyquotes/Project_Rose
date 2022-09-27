@@ -10,7 +10,7 @@ var action_instancer
 
 func init():
 	for hitbox in get_children():
-		hitbox.connect("area_entered", self, "_on_area_entered", [hitbox])
+		hitbox.connect("area_entered",Callable(self,"_on_area_entered").bind(hitbox))
 
 func _process(delta):
 	execute(delta)
@@ -39,7 +39,7 @@ func next_ray(origin, dest, spc):
 	var result = spc.intersect_ray(origin.global_position,
 			dest.global_position, item_trace, host.attack_coll_data.collision_mask)
 	#if there is nothing between this attack and the destination, the item is hittable
-	if result.empty():
+	if result.is_empty():
 		item_trace.clear()
 		return true
 	elif "attack_type" in result.collider:
@@ -56,7 +56,7 @@ func next_ray(origin, dest, spc):
 		#if the attack type of a collider between this attack and the destination is a
 			#different attack type than this attack, the attack stops at the current result.
 		else:
-			#if the current result collider is not the destination, the attack is cut off at
+			#if the current result collider is not the destination, the attack is cut unchecked at
 				#the result and the item is not hittable.
 			if result.collider != dest:
 				item_trace.clear()

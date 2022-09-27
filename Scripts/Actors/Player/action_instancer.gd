@@ -4,7 +4,7 @@ extends Node2D
 
 var action_queue := []
 
-export(NodePath) var action_target_path
+@export var action_target_path: NodePath
 
 var action_controller : ActionController
 var action_state : ActionState
@@ -18,7 +18,7 @@ func init():
 	action_spawn = get_node(action_target_path)
 
 func initialize_action(action, instance_on_spawn=false):
-	host.connect("hurt", action, "on_player_hurt")
+	#host.connect("hurt",Callable(action,"on_player_hurt"))
 	if instance_on_spawn:
 		action.action_spawn = action_spawn
 	action.z_index = host.z_index + 1
@@ -32,9 +32,3 @@ func initialize_hitboxes(action):
 	hitboxes.action_instancer = self
 	hitboxes.init()
 	return action
-
-func initialize_particles(action):
-	var particles = action.get_node("Particles")
-
-func initialize_sprites(action):
-	var sprites = action.get_node("Sprites")

@@ -1,15 +1,15 @@
 class_name MoveOnGroundState
 extends PlayerState
 
-"""
-func _handle_animation():
-	if slide:
-		slide = false
-		#host.animate(host.base_anim, "Slide", false)
-	else:
-		host.animate(host.base_anim, "Crouch", false)
-	._handle_animation()
-"""
+
+#func _handle_animation():
+#	if slide:
+#		slide = false
+#		#host.animate(host.base_anim, "Slide", false)
+#	else:
+#		host.animate(host.base_anim, "Crouch", false)
+#	super._handle_animation()
+
 
 var jump := false
 var crouch := false
@@ -31,7 +31,7 @@ func _handle_input():
 		look_up = true
 	else:
 		look_up = false
-	._handle_input()
+	super._handle_input()
 
 
 func _handle_animation():
@@ -45,15 +45,15 @@ func _handle_animation():
 		host.animate(host.base_anim, "Run", false)
 	else:
 		host.animate(host.base_anim, "Idle", false)
-	._handle_animation()
+	super._handle_animation()
 
 
 func _execute(delta):
-	._execute(delta)
+	super._execute(delta)
 	if not host.is_on_floor():
 		exit_air()
 
 
 func _exit(state):
 	jump = false
-	._exit(state)
+	super._exit(state)

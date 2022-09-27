@@ -1,0 +1,8 @@
+res://Rooms/TestShader.tscn
+res://Resources/Tilesets/PrimititveTileset.tres
+res://Resources/Tilesets/Ledges.tres
+res://Resources/Shaders/CapeShader.gdshader
+res://Rooms/TestRoom.tscn
+res://Game Objects/Actors/Players/Rose/Rose.tscn
+res://Game Objects/Actors/Players/Rose/RosePrefab.tscn
+res://Game Objects/Testing/CapeSkeleton.tscn

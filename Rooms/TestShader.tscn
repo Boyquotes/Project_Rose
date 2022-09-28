@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://cs1cxg2o35kag"]
+[gd_scene load_steps=15 format=3 uid="uid://cs1cxg2o35kag"]
 
 [ext_resource type="Texture2D" uid="uid://cx0ju1jmxdi8w" path="res://Assets/Lights/light_nopix.png" id="1_64cxn"]
 [ext_resource type="Texture2D" uid="uid://bfy8jm6bkouou" path="res://Assets/Prototyping/circle.png" id="1_gpbri"]
 [ext_resource type="Shader" path="res://Resources/Shaders/CapeShader.gdshader" id="2_oj4md"]
 [ext_resource type="Texture2D" uid="uid://depeli1m46eue" path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" id="3_s23yc"]
-[ext_resource type="Texture2D" uid="uid://1lnjvsbpllno" path="res://Assets/Prototyping/hirescirclenormal.png" id="4_ck8p4"]
+[ext_resource type="Texture2D" uid="uid://5oynu1d4we70" path="res://Assets/Prototyping/hirescirclenormal.png" id="4_ck8p4"]
 [ext_resource type="Texture2D" uid="uid://c21s1kcuk3qp7" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" id="4_segv1"]
+[ext_resource type="Texture2D" uid="uid://dyd2jpfsq1o80" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_Spec.png" id="7_hxe1a"]
 
 [sub_resource type="Animation" id="Animation_q30np"]
 resource_name = "New Anim"
-length = 25.0
+length = 6.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -18,7 +19,7 @@ tracks/0/path = NodePath("Node2d:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 25),
+"times": PackedFloat32Array(0, 6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.28319]
@@ -30,7 +31,7 @@ tracks/1/path = NodePath("DirectionalLight2d:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 25),
+"times": PackedFloat32Array(0, 6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 6.28319]
@@ -42,10 +43,22 @@ tracks/2/path = NodePath("Camera2d:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 12.5, 25),
+"times": PackedFloat32Array(0, 3, 6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 250), Vector2(0, -250), Vector2(0, 250)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2d/PointLight2d:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5125, 1.0125, 1.5125, 1.9875, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(70, 0), Vector2(35, 0), Vector2(70, 0), Vector2(35, 0), Vector2(70, 0), Vector2(35, 0), Vector2(70, 0), Vector2(35, 0), Vector2(70, 0), Vector2(35, 0), Vector2(70, 0), Vector2(35, 0), Vector2(70, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_kukfp"]
@@ -86,6 +99,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2d/PointLight2d:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(35, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mbdq4"]
 _data = {
@@ -116,18 +141,21 @@ shader_parameter/specularAdd = 0.5
 [sub_resource type="CanvasTexture" id="CanvasTexture_ti12f"]
 diffuse_texture = ExtResource("3_s23yc")
 normal_texture = ExtResource("4_segv1")
+specular_texture = ExtResource("7_hxe1a")
+specular_shininess = 0.5
 
 [node name="TestShader" type="Node2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 0
-color = Color(0.75, 0.75, 0.75, 1)
+color = Color(0.5, 0.5, 0.5, 1)
 
 [node name="Node2d" type="Node2D" parent="."]
-scale = Vector2(1, 1)
+visible = false
 
 [node name="PointLight2d" type="PointLight2D" parent="Node2d"]
-position = Vector2(100, 0)
+position = Vector2(35, 0)
+rotation = 0.0155062
 color = Color(0, 0, 0, 1)
 texture = ExtResource("1_64cxn")
 height = 25.0
@@ -144,10 +172,11 @@ texture = SubResource("CanvasTexture_7wuxo")
 [node name="Sprite2d2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_c84ad")
 texture = SubResource("CanvasTexture_ti12f")
+hframes = 5
 
 [node name="Camera2d" type="Camera2D" parent="."]
 current = true
 
 [node name="DirectionalLight2d" type="DirectionalLight2D" parent="."]
-visible = false
-scale = Vector2(1, 1)
+color = Color(0, 0, 0, 1)
+height = 0.75

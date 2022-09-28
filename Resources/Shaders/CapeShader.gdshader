@@ -7,6 +7,16 @@ uniform float specularAdd = 0.5f;
 uniform vec4 edgeColor : source_color = vec4(0.0f);
 uniform float lightPower = 1.0f;
 
+void fragment()
+{
+	vec4 spec = texture(SPECULAR_SHININESS_TEXTURE, UV);
+	vec4 col = texture(TEXTURE, UV);
+	if(spec.g < 0.5f)
+	{
+		//COLOR = vec4(col.r - specularAdd, col.g - specularAdd, col.b - specularAdd, col.a);
+	}
+}
+
 void light() {
     // Calculate the real position of this pixel in 3d space, taking into account
     // the rotation and scale of the model. It's a useful formula for some effects.
@@ -15,18 +25,23 @@ void light() {
 
     // Calculate the normal including the model rotation and scale
     vec3 worldNormal = NORMAL.xyz;
-
-    vec3 lightVector = normalize( LIGHT_POSITION - worldPosition );
-    
+	vec3 lightVector = normalize( LIGHT_POSITION - worldPosition );
     vec3 cameraVector = normalize(LIGHT_POSITION - cameraPosition - worldPosition );
+	
+	if( ceil(abs(LIGHT_POSITION.x) + abs(LIGHT_POSITION.y)) == 2.0f || floor(abs(LIGHT_POSITION.x) + abs(LIGHT_POSITION.y)) == 0.0f) {
+		lightVector = LIGHT_POSITION;
+		cameraVector = LIGHT_POSITION;
+		
+	}
+
     
 	vec4 finalColor = (texture(TEXTURE, UV) + LIGHT_COLOR) / 2.0f;
     
     //Substracting the difference from the main color for the shaded part
     vec3 unlitColor = vec3(finalColor.x - shadowSubtract, finalColor.y - shadowSubtract, finalColor.z - shadowSubtract);
     
-    // Adding the difference from the main color for the highlighted part
-    vec3 specularColor = vec3(finalColor.x + specularAdd, finalColor.y + specularAdd, finalColor.z + specularAdd);
+    // Adding the difference from the main color for the highlighted part vec4(finalColor.x + specularAdd, finalColor.y + specularAdd, finalColor.z + specularAdd, 1)
+    vec4 specularColor = SPECULAR_SHININESS;
 
     // An example simple lighting effect, taking the dot product of the normal
     // (which way this pixel is pointing) and a user generated light position
@@ -41,7 +56,7 @@ void light() {
         if (dot(worldNormal,lightVector)>0.0){
             LIGHT = finalColor;
             if (length(cameraVector - reflectance)<0.6){
-                    LIGHT = vec4(specularColor, 1.0);
+                    LIGHT = specularColor;
             }
         }
     }

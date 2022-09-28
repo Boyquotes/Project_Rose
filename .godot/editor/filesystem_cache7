@@ -1,5 +1,5 @@
 0b7126e0c6e86d3ec295a72f5aa6e0bd
-::res://::1664240040
+::res://::1664299687
 default_env.tres::Environment::-1::1664212601::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1631157048::0::1::::<><>::
 icon.png::CompressedTexture2D::5884758432852021157::1624883689::1664212620::1::::<><>::
@@ -233,10 +233,10 @@ Orange_Rect64x128.png::CompressedTexture2D::4734399016634767581::1624883689::166
 Orange_TrimmedBox64x64.png::CompressedTexture2D::4005733142529965073::1624883689::1664212621::1::::<><>::
 Orange_TrimmedBox128x128.png::CompressedTexture2D::3901362415911732491::1624883689::1664212621::1::::<><>::
 Orange__Combined.png::CompressedTexture2D::3934834229831102137::1624883689::1664212621::1::::<><>::
-::res://Assets/Prototyping/::1664248913
+::res://Assets/Prototyping/::1664300729
 circle normal.png::CompressedTexture2D::6205402397551480779::1664239465::1664239699::1::::<><>::
 circle.png::CompressedTexture2D::2788930379115646256::1664250283::1664250284::1::::<><>::
-hirescirclenormal.png::CompressedTexture2D::1848424613797366108::1664248908::1664248913::1::::<><>::
+hirescirclenormal.png::CompressedTexture2D::2136048111652815305::1664248908::1664300729::1::::<><>::
 Stone_Floor1.png::CompressedTexture2D::2743091243585233243::1636906099::1664212621::1::::<><>::
 Stone_Floor1_n.png::CompressedTexture2D::9206265109543083366::1637126496::1664212621::1::::<><>::
 Stone_Floor2.png::CompressedTexture2D::250587034951275634::1636906099::1664212621::1::::<><>::
@@ -471,41 +471,43 @@ Throw_Rock_Effect.png::CompressedTexture2D::1207616556261318718::1624884121::166
 Throw_Rock_Effect_Mask.png::CompressedTexture2D::5284141301476488654::1624884121::1664212620::1::::<><>::
 Wind_Dance_HoldX_Down_Ground_Slash.png::CompressedTexture2D::7565206302021604868::1624884121::1664212620::1::::<><>::
 Wind_Dance_Slash_Effect.png::CompressedTexture2D::8127682624025343821::1624884121::1664212620::1::::<><>::
-::res://Assets/Sprites/Actors/Rose/Movement/::1664212620
+::res://Assets/Sprites/Actors/Rose/Movement/::1664322504
 Ascend.json::TextFile::-1::1629811835::0::1::::<><>::
 Ascend.png::CompressedTexture2D::8359282555803664108::1636508806::1664212620::1::::<><>::
 AscendToDescend.json::TextFile::-1::1629811835::0::1::::<><>::
 AscendToDescend.png::CompressedTexture2D::897548230789266586::1636508986::1664212620::1::::<><>::
-AscendToDescend_n.png::CompressedTexture2D::6208971639543698286::1662150992::1664212620::1::::<><>::
-Ascend_n.png::CompressedTexture2D::1040932639886579790::1662150992::1664212620::1::::<><>::
+AscendToDescend_n.png::CompressedTexture2D::6208971639543698286::1664322602::1664212620::1::::<><>::
+Ascend_n.png::CompressedTexture2D::1040932639886579790::1664322602::1664212620::1::::<><>::
 Climb.json::TextFile::-1::1629811836::0::1::::<><>::
 Climb.png::CompressedTexture2D::1191022445278847636::1636603939::1664212620::1::::<><>::
-Climb_n.png::CompressedTexture2D::1594742868891854976::1662150992::1664212620::1::::<><>::
+Climb_n.png::CompressedTexture2D::1594742868891854976::1664322602::1664212620::1::::<><>::
 Crouch.json::TextFile::-1::1629811835::0::1::::<><>::
 Crouch.png::CompressedTexture2D::3787783074476834169::1636521863::1664212620::1::::<><>::
-Crouch_n.png::CompressedTexture2D::5293195983407917105::1662150992::1664212620::1::::<><>::
+Crouch_n.png::CompressedTexture2D::5293195983407917105::1664322602::1664212620::1::::<><>::
 Descend.json::TextFile::-1::1629811835::0::1::::<><>::
 Descend.png::CompressedTexture2D::6413951152187501507::1636508839::1664212620::1::::<><>::
-Descend_n.png::CompressedTexture2D::2589040860310973714::1662150992::1664212620::1::::<><>::
+Descend_n.png::CompressedTexture2D::2589040860310973714::1664322602::1664212620::1::::<><>::
 Dodge.json::TextFile::-1::1629811836::0::1::::<><>::
 Dodge.png::CompressedTexture2D::583423179079899903::1636605899::1664212620::1::::<><>::
-Dodge_n.png::CompressedTexture2D::7021278624498901923::1662150992::1664212620::1::::<><>::
+Dodge_n.png::CompressedTexture2D::7021278624498901923::1664322602::1664212620::1::::<><>::
 Grab.json::TextFile::-1::1629811836::0::1::::<><>::
 Grab.png::CompressedTexture2D::4426152765551513737::1636603961::1664212620::1::::<><>::
-Grab_n.png::CompressedTexture2D::8919029942977261298::1662150992::1664212620::1::::<><>::
+Grab_n.png::CompressedTexture2D::8919029942977261298::1664322602::1664212620::1::::<><>::
 Hurt.json::TextFile::-1::1629811836::0::1::::<><>::
 Hurt.png::CompressedTexture2D::6387505071404043134::1636515593::1664212620::1::::<><>::
-Hurt_n.png::CompressedTexture2D::3131600141108555385::1662150992::1664212620::1::::<><>::
+Hurt_n.png::CompressedTexture2D::3131600141108555385::1664322602::1664212620::1::::<><>::
 Idle.json::TextFile::-1::1629811835::0::1::::<><>::
-Idle.png::CompressedTexture2D::7471246064583267588::1636438244::1664212620::1::::<><>::
+Idle.png::CompressedTexture2D::7471246064583267588::1664318211::1664318213::1::::<><>::
 Idle_n2.png::CompressedTexture2D::3101626970983389837::1631282277::1664212620::1::::<><>::
-Idle_n.png::CompressedTexture2D::6722753832976255966::1662150992::1664212620::1::::<><>::
+Idle_n.png::CompressedTexture2D::6722753832976255966::1664322602::1664322605::1::::<><>::
+Idle_Spec.png::CompressedTexture2D::8851643659018630787::1664317057::1664317059::1::::<><>::
 LookUp.json::TextFile::-1::1629811835::0::1::::<><>::
 LookUp.png::CompressedTexture2D::8633877438168943949::1636513617::1664212620::1::::<><>::
-LookUp_n.png::CompressedTexture2D::8445499761884801028::1662150992::1664212620::1::::<><>::
+LookUp_n.png::CompressedTexture2D::8445499761884801028::1664322602::1664212620::1::::<><>::
 Run.json::TextFile::-1::1629811835::0::1::::<><>::
 Run.png::CompressedTexture2D::2864224001845537678::1636438298::1664212620::1::::<><>::
-Run_n.png::CompressedTexture2D::7226897871950973516::1662150992::1664212620::1::::<><>::
+Run_n.png::CompressedTexture2D::7226897871950973516::1664322602::1664212620::1::::<><>::
+test.png::CompressedTexture2D::6066400066046945843::1664296593::1664297170::1::::<><>::
 ::res://Assets/Sprites/Actors/Rose/Pierce_Attacks/::1664212620
 Dash.json::TextFile::-1::1628961244::0::1::::<><>::
 Dash.png::CompressedTexture2D::25357264839159079::1628961244::1664212620::1::::<><>::
@@ -574,16 +576,16 @@ EnemyHitbox.tscn::PackedScene::-1::1664212602::0::1::::<><>::res://Scripts/Actor
 EnemyHitboxContainer.tscn::PackedScene::-1::1664212602::0::1::::<><>::res://Scripts/Actors/Enemies/Generic/enemy_hitbox_container.gd
 ::res://Game Objects/Actors/Players/::1664215538
 Player.tscn::PackedScene::8784036644462105110::1664215538::0::1::::<><>::res://Game Objects/Actors/Actor.tscn<>res://Scripts/Actors/Player/player.gd<>res://Scripts/Actors/Player/move_on_ground_state.gd<>res://Scripts/Actors/Player/move_in_air_state.gd<>res://Scripts/Actors/Player/ledge_grab_state.gd<>res://Scripts/Actors/Player/hit_state.gd<>res://Scripts/Objects/Camera3D/camera.gd<>res://Scripts/Actors/Player/action_state.gd<>res://Scripts/Actors/Player/action_controller.gd<>res://Scripts/Actors/Player/Generic/generic_action_instancer.gd<>res://Scripts/Actors/Player/finite_state_machine.gd<>res://Scripts/Actors/Player/rest_state.gd<>res://Scripts/Actors/Player/Generic/rose_powerups.gd<>uid://iku5ochu7upr<>uid://q7673koqjru7<>uid://cxafjminduxqs
-::res://Game Objects/Actors/Players/Rose/::1664248054
+::res://Game Objects/Actors/Players/Rose/::1664318493
 CapeShadow.tscn::PackedScene::-1::1664212602::0::1::::<><>::res://Assets/Sprites/Actors/Rose/cape_shadow.png
-Rose.tscn::PackedScene::5115677687126917781::1664248054::0::1::::<><>::uid://dxfb2g85u3t6m<>uid://depeli1m46eue<>uid://bt73h7kvuhnfd<>uid://bku785j5o1h6p<>uid://dvakx2gcj8hcv<>uid://cxafjminduxqs<>uid://bg2pl6tq3qwuo<>uid://cxm73rf7d14xb<>uid://m11qunkg2upu<>uid://drdkfryqom6qq<>uid://q7673koqjru7<>uid://b4ccdbk8g8yir<>uid://iku5ochu7upr<>res://Scripts/Actors/Player/wind.gd<>res://Scripts/Actors/Player/cape_target.gd<>uid://c21s1kcuk3qp7<>uid://da707mu4r0sw7<>uid://ctmamscfq48e<>uid://cupw4di3p3vf7<>uid://o3iaj27sl1mw<>uid://bc5feifo0f8n3<>uid://wyrggpryppky<>uid://dslcfaetvqpay<>uid://chocfufs08wq8<>uid://d0cpec2nst2k1<>res://Scripts/Objects/Camera/camera.gd<>uid://c7bfoyxq832h0<>res://Scripts/Actors/Player/targetting.gd<>uid://dty4hpnsvb5m5
-RosePrefab.tscn::PackedScene::5136255324700900423::1664248054::0::1::::<><>::uid://ce5cp1q4xi47r<>uid://th7afrlxpyd0
-::res://Game Objects/Testing/::1664248054
+Rose.tscn::PackedScene::5115677687126917781::1664318493::0::1::::<><>::uid://dxfb2g85u3t6m<>uid://depeli1m46eue<>uid://bt73h7kvuhnfd<>uid://bku785j5o1h6p<>uid://dvakx2gcj8hcv<>uid://cxafjminduxqs<>uid://bg2pl6tq3qwuo<>uid://cxm73rf7d14xb<>uid://m11qunkg2upu<>uid://drdkfryqom6qq<>uid://q7673koqjru7<>uid://b4ccdbk8g8yir<>uid://iku5ochu7upr<>res://Scripts/Actors/Player/wind.gd<>res://Scripts/Actors/Player/cape_target.gd<>uid://c21s1kcuk3qp7<>uid://da707mu4r0sw7<>uid://ctmamscfq48e<>uid://cupw4di3p3vf7<>uid://o3iaj27sl1mw<>uid://bc5feifo0f8n3<>uid://wyrggpryppky<>uid://dslcfaetvqpay<>uid://chocfufs08wq8<>uid://d0cpec2nst2k1<>res://Scripts/Objects/Camera/camera.gd<>uid://c7bfoyxq832h0<>res://Scripts/Actors/Player/targetting.gd<>uid://dty4hpnsvb5m5
+RosePrefab.tscn::PackedScene::5136255324700900423::1664318493::0::1::::<><>::uid://ce5cp1q4xi47r<>uid://th7afrlxpyd0
+::res://Game Objects/Testing/::1664318493
 Cape.tscn::PackedScene::-1::1664212602::0::1::::<><>::res://Scripts/Objects/Cape/line_cape.gd<>res://Assets/Sprites/Actors/Rose/capetrim.png<>res://Assets/Sprites/Actors/Rose/cape.png
 capelighttest.gdshader::Shader::-1::1636163613::0::1::::<><>::
 capelighttest.tscn::PackedScene::-1::1664212602::0::1::::<><>::res://Assets/Sprites/Actors/Rose/fullcape_nn5.png<>res://Resources/Shaders/CapeShader.gdshader<>res://Assets/Sprites/Actors/Rose/fullcape_nnsngles2.png<>res://Assets/Sprites/Actors/Rose/fullcape_nn1.png<>res://Game Objects/Testing/CapeSkeleton.tscn<>res://Game Objects/Testing/Light2D.tscn<>res://Assets/Lights/light_nopix.png<>res://Assets/Sprites/Actors/Rose/fullcape_nnsngles4.png<>res://Assets/Sprites/Actors/Rose/fullcape_nnsngles5.png<>res://Assets/Lights/background.png<>res://Assets/Sprites/Actors/Rose/fullcape_nn2.png<>res://Assets/Sprites/Actors/Rose/fullcape_nn3.png
 CapeLine.tscn::PackedScene::-1::1664212602::0::1::::<><>::res://Assets/Sprites/Actors/Rose/cape.png
-CapeSkeleton.tscn::PackedScene::180330126701295338::1664248054::0::1::::<><>::uid://cwc0yhf362jgh<>uid://dd6bbvpra058j<>uid://dcl5wfnvldxy4<>res://Resources/Shaders/CapeShader.gdshader<>uid://0y2gs0vcnjb7<>res://Scripts/Actors/Player/cape_rendering/cape_rendering.gd<>uid://dnaurjackjruu<>uid://ch8o37d5l3atr<>res://Scripts/Resources/hosted.gd<>uid://c1novygmso4if<>uid://dprtkw2emf1w2<>uid://cnq4puavwg3s7<>uid://d4hkvytado6d
+CapeSkeleton.tscn::PackedScene::180330126701295338::1664318493::0::1::::<><>::uid://cwc0yhf362jgh<>uid://dd6bbvpra058j<>uid://dcl5wfnvldxy4<>res://Resources/Shaders/CapeShader.gdshader<>uid://0y2gs0vcnjb7<>res://Scripts/Actors/Player/cape_rendering/cape_rendering.gd<>uid://dnaurjackjruu<>uid://ch8o37d5l3atr<>res://Scripts/Resources/hosted.gd<>uid://c1novygmso4if<>uid://dprtkw2emf1w2<>uid://cnq4puavwg3s7<>uid://d4hkvytado6d
 CapeSkeletonController.tscn::PackedScene::1349981906579129191::1664223527::0::1::::<><>::res://Scripts/Objects/Cape/skeleton_cape.gd
 Influencer.tscn::PackedScene::-1::1664212602::0::1::::<><>::res://Scripts/Actors/Player/influencer.gd<>res://Assets/Sprites/Actors/Rose/Effects/Pierce_Projectile.png
 Light2D.tscn::PackedScene::-1::1664212602::0::1::::<><>::res://Assets/Lights/light.png<>res://Assets/Lights/spot.png
@@ -616,21 +618,21 @@ test_tuple.gd::GDScript::-1::1664212602::0::1::::<><>::
 ::res://Resources/::1635911579
 ::res://Resources/Custom/::1624883689
 pair.tres::Resource::-1::1664212601::0::1::::<><>::res://Scripts/Resources/pair.gd
-::res://Resources/Shaders/::1664250189
+::res://Resources/Shaders/::1664318494
 CapeMaterial.tres::ShaderMaterial::-1::1664212601::0::1::::<><>::res://Assets/Sprites/Actors/Rose/fullcape_n-sheet.png<>res://Resources/Shaders/CapeShader.gdshader
-CapeShader.gdshader::Shader::-1::1664250189::0::1::::<><>::
+CapeShader.gdshader::Shader::-1::1664318494::0::1::::<><>::
 CelShading.gdshader::Shader::-1::1664236055::0::1::::<><>::
 SmartShapeShader.gdshader::Shader::-1::1636910483::0::1::::<><>::
 SmartShapeShader_Fill.gdshader::Shader::-1::1659127979::0::1::::<><>::
-::res://Resources/Tilesets/::1664240260
-Ledges.tres::TileSet::1130592272994792055::1664240260::0::1::::<><>::uid://dn1onx25eh1xl
-PrimititveTileset.tres::TileSet::6924595876668365862::1664240259::0::1::::<><>::uid://bid0pw32gvu0o<>uid://c2gujli25tcv8<>uid://bm44wfxonee2w<>uid://dfwrlmtp8hsgk
+::res://Resources/Tilesets/::1664297625
+Ledges.tres::TileSet::1130592272994792055::1664297625::0::1::::<><>::uid://dn1onx25eh1xl
+PrimititveTileset.tres::TileSet::6924595876668365862::1664297624::0::1::::<><>::uid://bid0pw32gvu0o<>uid://c2gujli25tcv8<>uid://bm44wfxonee2w<>uid://dfwrlmtp8hsgk
 StoneSpriteShape.tscn::PackedScene::-1::1664212601::0::1::::<><>::res://Assets/Prototyping/Stone_Floor_debris1.png<>res://Assets/Prototyping/Stone_Floor_debris4.png<>res://Assets/Prototyping/Stone_Floor4.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper1.png<>res://Assets/Prototyping/Stone_Floor2.png<>res://Assets/Prototyping/Stone_Floor_debris2.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper2.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper4.png<>res://Assets/Prototyping/Stone_Floor3.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper3.png<>res://Assets/Prototyping/Stone_Floor1.png<>res://Assets/Prototyping/Stone_Floor_debris3.png<>res://Assets/Prototyping/Stone_Floor_fill1.png<>res://addons/rmsmartshape/vertex_properties.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>res://addons/rmsmartshape/materials/edge_material.gd<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/shapes/point.gd<>res://addons/rmsmartshape/materials/shape_material.gd<>res://addons/rmsmartshape/shapes/shape_closed.gd<>res://Resources/Shaders/SmartShapeShader.gdshader<>res://Assets/Prototyping/Stone_Floor1_n.png<>res://Assets/Prototyping/Stone_Floor2_n.png<>res://Assets/Prototyping/Stone_Floor3_n.png<>res://Assets/Prototyping/Stone_Floor4_n.png<>res://Resources/Shaders/SmartShapeShader_Fill.gdshader<>res://Assets/Prototyping/Stone_Floor_debris3_n.png<>res://Assets/Prototyping/Stone_Floor_debris4_n.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper1_n.png<>res://Assets/Prototyping/Stone_Floor_debris2_n.png<>res://Assets/Prototyping/Stone_Floor_debris1_n.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper4_n.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper2_n.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper3_n.png<>res://Assets/Prototyping/Stone_Floor6.png<>res://Assets/Prototyping/Stone_Floor7.png<>res://Assets/Prototyping/Stone_Floor8.png<>res://Assets/Prototyping/Stone_Floor6_n.png<>res://Assets/Prototyping/Stone_Floor7_n.png<>res://Assets/Prototyping/Stone_Floor8_n.png<>res://Assets/Prototyping/Stone_Floor5.png<>res://Assets/Prototyping/Stone_Floor5_n.png<>res://Assets/Prototyping/Stone_Floor_taper_right3_n.png<>res://Assets/Prototyping/Stone_Floor_taper_left3.png<>res://Assets/Prototyping/Stone_Floor_taper_left2.png<>res://Assets/Prototyping/Stone_Floor_taper_left1.png<>res://Assets/Prototyping/Stone_Floor_taper_left3_n.png<>res://Assets/Prototyping/Stone_Floor_taper_right1.png<>res://Assets/Prototyping/Stone_Floor_taper_right1_n.png<>res://Assets/Prototyping/Stone_Floor_taper_left1_n.png<>res://Assets/Prototyping/Stone_Floor_taper_right2.png<>res://Assets/Prototyping/Stone_Floor_taper_left2_n.png<>res://Assets/Prototyping/Stone_Floor_taper_right2_n.png<>res://Assets/Prototyping/Stone_Floor_taper_right3.png<>res://Assets/Prototyping/Stone_Floor_debris8.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_left2_n.png<>res://Assets/Prototyping/Stone_Floor_debris6_n.png<>res://Assets/Prototyping/Stone_Floor_debris6.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_left1.png<>res://Assets/Prototyping/Stone_Floor_debris7_n.png<>res://Assets/Prototyping/Stone_Floor_debris8_n.png<>res://Assets/Prototyping/Stone_Floor_debris7.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_right1.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_left1_n.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_left2.png<>res://Assets/Prototyping/Stone_Floor_debris5_n.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_left3.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_left3_n.png<>res://Assets/Prototyping/Stone_Floor_debris5.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_right1_n.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper6.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_right3_n.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_right2.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper6_n.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper5.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_right2_n.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_right1.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_right3_n.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper8_n.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_left3.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_left1_n.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_left3_n.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper5_n.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_right3.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper7.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_left2_n.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper8.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_right1_n.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_left1.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_right3.png<>res://Assets/Prototyping/Stone_Floor_debris_deeper7_n.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_left2.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_deeper_right2_n.png<>res://Assets/Prototyping/Stone_Floor_taper_debris_right2.png<>res://Assets/Prototyping/Stone_props5_n.png<>res://Assets/Prototyping/Stone_props3.png<>res://Assets/Prototyping/Stone_props2_n.png<>res://Assets/Prototyping/Stone_props3_n.png<>res://Assets/Prototyping/Stone_props4_n.png<>res://Assets/Prototyping/Stone_props4.png<>res://Assets/Prototyping/Stone_props5.png<>res://Assets/Prototyping/Stone_props6.png<>res://Assets/Prototyping/Stone_props6_n.png<>res://Assets/Prototyping/Stone_props7.png<>res://Assets/Prototyping/Stone_props1_n.png<>res://Assets/Prototyping/Stone_props2.png<>res://Assets/Prototyping/Stone_props1.png
 TreeSpriteShape.tscn::PackedScene::-1::1664212601::0::1::::<><>::res://addons/rmsmartshape/shapes/point.gd<>res://addons/rmsmartshape/vertex_properties.gd<>res://addons/rmsmartshape/materials/shape_material.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>res://addons/rmsmartshape/shapes/shape_closed.gd<>res://Assets/Prototyping/Stone_Floor_fill1.png<>res://Resources/Shaders/SmartShapeShader_Fill.gdshader
 TreeTileMap.tscn::PackedScene::-1::1664212601::0::1::::<><>::res://Assets/Prototyping/Tree_Floor.png
-::res://Rooms/::1664250189
-TestRoom.tscn::PackedScene::5306361939233053719::1664248053::0::1::::<><>::uid://c5wlc2imhei8u<>uid://cfgbm0iobxxv0<>uid://qdwxpeiw2ffb<>res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd<>res://Game Objects/Testing/rotlight.gd<>uid://cfl42focf6vta<>res://Game Objects/Testing/Light2D.tscn<>uid://b8rocjct0ygbg<>uid://cx0ju1jmxdi8w
-TestShader.tscn::PackedScene::6090077239246208862::1664250189::0::1::::<><>::uid://cx0ju1jmxdi8w<>uid://bfy8jm6bkouou<>res://Resources/Shaders/CapeShader.gdshader<>uid://depeli1m46eue<>uid://1lnjvsbpllno<>uid://c21s1kcuk3qp7
+::res://Rooms/::1664318494
+TestRoom.tscn::PackedScene::5306361939233053719::1664318493::0::1::::<><>::uid://c5wlc2imhei8u<>uid://cfgbm0iobxxv0<>uid://qdwxpeiw2ffb<>res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd<>res://Game Objects/Testing/rotlight.gd<>uid://cfl42focf6vta<>res://Game Objects/Testing/Light2D.tscn<>uid://b8rocjct0ygbg<>uid://cx0ju1jmxdi8w
+TestShader.tscn::PackedScene::6090077239246208862::1664318494::0::1::::<><>::uid://cx0ju1jmxdi8w<>uid://bfy8jm6bkouou<>res://Resources/Shaders/CapeShader.gdshader<>uid://depeli1m46eue<>uid://5oynu1d4we70<>uid://c21s1kcuk3qp7<>uid://dyd2jpfsq1o80
 TestSpriteShape.tscn::PackedScene::3130215181190963714::1664223527::0::1::::<><>::res://Scripts/Resources/mouse_follow.gd<>uid://cx0ju1jmxdi8w<>uid://b8rocjct0ygbg
 ::res://Rooms/Forest/::1659127963
 Forest.tscn::PackedScene::-1::1664212601::0::1::::<><>::res://Assets/Lights/lightbox.png<>res://addons/rmsmartshape/shapes/point.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>res://Game Objects/Actors/Players/Rose/RosePrefab.tscn<>res://addons/rmsmartshape/vertex_properties.gd<>res://Assets/Sprites/Actors/Rose/Movement/Idle.png<>res://Game Objects/Testing/Light2D.tscn<>res://Assets/Prototyping/Tutorial_A1.png<>res://Resources/Tilesets/StoneSpriteShape.tscn

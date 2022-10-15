@@ -1,50 +1,60 @@
 class_name MoveOnGroundState
 extends PlayerState
 
+@export var look_max := 100
 
-#func _handle_animation():
-#	if slide:
-#		slide = false
-#		#host.animate(host.base_anim, "Slide", false)
-#	else:
-#		host.animate(host.base_anim, "Crouch", false)
-#	super._handle_animation()
-
+@onready var look_timer : Timer = $LookTimer
 
 var jump := false
 var crouch := false
 var look_up := false
 var slide := false
-
+var looking := false
 func _enter():
 	host.move_state = 'move_on_ground'
 
 
 func _handle_input():
-	if Input.is_action_just_pressed("Jump"):
-		jump = true
-	if Input.is_action_pressed("Move_Down") and move_direction == 0:
+	if ((Input.is_action_pressed("Move_Down") or Input.is_action_pressed("Aim_Down"))
+			and move_direction == 0
+			and not slide):
 		crouch = true
-	else:
-		crouch = false
-	if Input.is_action_pressed("Move_Up") and move_direction == 0:
+	
+	if ((Input.is_action_pressed("Move_Up") or Input.is_action_pressed("Aim_Up"))
+			and move_direction == 0
+			and not jump):
 		look_up = true
-	else:
+		if not looking:
+			looking = true
+			look_timer.start()
+	elif look_up:
+		looking = false
+		call_timeout()
 		look_up = false
+	
+	if Input.is_action_just_pressed("Jump"):
+		if Input.get_joy_axis(0,JOY_AXIS_LEFT_Y) > .5 and abs(host.hor_spd) > 0:
+			slide = true
+		else:
+			jump = true
 	super._handle_input()
 
 
 func _handle_animation():
 	if jump:
 		host.animate(host.base_anim, "Jump", false)
-	elif crouch:
-		host.animate(host.base_anim, "Crouch", false)
-	elif look_up:
-		host.animate(host.base_anim, "LookUp", false)
-	elif move_direction != 0:
-		host.animate(host.base_anim, "Run", false)
 	else:
-		host.animate(host.base_anim, "Idle", false)
+		if slide:
+			host.animate(host.base_anim, "Slide", false)
+		else:
+			if crouch:
+				host.animate(host.base_anim, "Crouch", false)
+			elif look_up:
+				host.animate(host.base_anim, "LookUp", false)
+			elif move_direction != 0:
+				host.animate(host.base_anim, "Run", false)
+			else:
+				host.animate(host.base_anim, "Idle", false)
 	super._handle_animation()
 
 
@@ -52,8 +62,46 @@ func _execute(delta):
 	super._execute(delta)
 	if not host.is_on_floor():
 		exit_air()
+	if crouch:
+		_exit(FSM.crouch_state)
 
 
 func _exit(state):
+	if state == FSM.action_state:
+		if crouch or slide:
+			state.action_controller.crouched = true
+	crouch = false
+	slide = false
+	look_up = false
 	jump = false
+	looking = false
 	super._exit(state)
+
+func call_timeout():
+	_on_look_timer_timeout()
+
+func _on_look_timer_timeout():
+	host.player_camera.position.y = 0
+	
+	if look_up:
+		if looking:
+			host.player_camera.position.y = -look_max * 1.5
+	if crouch:
+		if looking:
+			host.player_camera.position.y = look_max
+		else:
+			host.player_camera.position.y = -look_max / 2
+
+
+func _on_base_animator_animation_finished(anim_name):
+	if anim_name == "Slide":
+		_exit(FSM.crouch_state)
+
+
+func _on_rose_animation_changed(prev_anim, new_anim):
+	if new_anim != "Slide" and host.move_state != "crouch":
+		host.crouch_hitbox.disabled = true
+		host.crouch_box.disabled = true
+		host.hitbox.disabled = false
+		host.collision_box.disabled = false
+		host.activate_fric()

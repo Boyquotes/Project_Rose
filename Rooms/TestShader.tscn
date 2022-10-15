@@ -1,12 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cs1cxg2o35kag"]
+[gd_scene load_steps=15 format=3 uid="uid://b2f8i8ahboj1v"]
 
 [ext_resource type="Texture2D" uid="uid://cx0ju1jmxdi8w" path="res://Assets/Lights/light_nopix.png" id="1_64cxn"]
 [ext_resource type="Texture2D" uid="uid://bfy8jm6bkouou" path="res://Assets/Prototyping/circle.png" id="1_gpbri"]
-[ext_resource type="Shader" path="res://Resources/Shaders/CapeShader.gdshader" id="2_oj4md"]
+[ext_resource type="Shader" path="res://Resources/Shaders/CelShader.gdshader" id="2_oj4md"]
 [ext_resource type="Texture2D" uid="uid://depeli1m46eue" path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" id="3_s23yc"]
 [ext_resource type="Texture2D" uid="uid://5oynu1d4we70" path="res://Assets/Prototyping/hirescirclenormal.png" id="4_ck8p4"]
 [ext_resource type="Texture2D" uid="uid://c21s1kcuk3qp7" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" id="4_segv1"]
-[ext_resource type="Texture2D" uid="uid://dyd2jpfsq1o80" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_Spec.png" id="7_hxe1a"]
+[ext_resource type="Texture2D" uid="uid://7i2eaxcfkuu4" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_spec.png" id="7_ucqps"]
 
 [sub_resource type="Animation" id="Animation_q30np"]
 resource_name = "New Anim"
@@ -129,6 +129,7 @@ shader_parameter/specularAdd = 0.5
 [sub_resource type="CanvasTexture" id="CanvasTexture_7wuxo"]
 diffuse_texture = ExtResource("1_gpbri")
 normal_texture = ExtResource("4_ck8p4")
+specular_shininess = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c84ad"]
 shader = ExtResource("2_oj4md")
@@ -136,19 +137,19 @@ shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/edgeColor = Color(0, 0, 0, 1)
 shader_parameter/lightPower = 1.0
 shader_parameter/shadowSubtract = 0.5
-shader_parameter/specularAdd = 0.5
+shader_parameter/specularAdd = 0.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ti12f"]
 diffuse_texture = ExtResource("3_s23yc")
 normal_texture = ExtResource("4_segv1")
-specular_texture = ExtResource("7_hxe1a")
+specular_texture = ExtResource("7_ucqps")
 specular_shininess = 0.5
 
 [node name="TestShader" type="Node2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 0
-color = Color(0.5, 0.5, 0.5, 1)
+color = Color(0.501961, 0.501961, 0.501961, 1)
 
 [node name="Node2d" type="Node2D" parent="."]
 visible = false
@@ -157,6 +158,7 @@ visible = false
 position = Vector2(35, 0)
 rotation = 0.0155062
 color = Color(0, 0, 0, 1)
+range_item_cull_mask = 2
 texture = ExtResource("1_64cxn")
 height = 25.0
 
@@ -166,11 +168,14 @@ libraries = {
 }
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
+light_mask = 3
 material = SubResource("ShaderMaterial_84ygb")
 texture = SubResource("CanvasTexture_7wuxo")
 
 [node name="Sprite2d2" type="Sprite2D" parent="."]
+light_mask = 3
 material = SubResource("ShaderMaterial_c84ad")
+z_index = 9
 texture = SubResource("CanvasTexture_ti12f")
 hframes = 5
 
@@ -179,4 +184,4 @@ current = true
 
 [node name="DirectionalLight2d" type="DirectionalLight2D" parent="."]
 color = Color(0, 0, 0, 1)
-height = 0.75
+height = 0.78

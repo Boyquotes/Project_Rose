@@ -8,6 +8,7 @@ extends Node2D
 @onready var ledge_grab_state = $LedgeGrab
 @onready var hit_state = $Hit
 @onready var action_state = $Action
+@onready var crouch_state = $Crouch
 @onready var FSM = self
 
 var host

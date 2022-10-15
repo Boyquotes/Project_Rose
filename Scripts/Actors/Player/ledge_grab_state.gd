@@ -62,11 +62,15 @@ func _execute(_delta):
 		stick_var -= 1
 	else:
 		hstop = true
-	#Snap to ledge height
-	if going_up and ledge_cast.is_colliding() and $ClimbBox.get_overlapping_bodies().size() != 0:
-		host.position.y -= 1
-	else:
+	#Snap to ledge height or fall if it's a bad detect
+	if ledge_cast.is_colliding() and not going_up:
+		exit_ground_or_air()
+	if going_up:
+		var gridset_idx = int((int(ledge_cast.global_position.y) + sign(ledge_cast.global_position.y)*12) / 32)
+		var gridset_actual = (gridset_idx * 32) - sign(gridset_idx)*25
+		host.global_position.y = gridset_actual
 		going_up = false
+
 
 
 func _exit(state):

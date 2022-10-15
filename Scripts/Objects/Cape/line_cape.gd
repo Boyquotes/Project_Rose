@@ -6,10 +6,11 @@ extends Node2D
 @export var influencers_path: NodePath
 @export var wind_path: NodePath
 @export var gravity := 480.0
-@export var texture: Texture2D
 @export var trim_texture: Texture2D
 @export var active := true
-
+@export var use_local := false
+@export var normal : Texture2D
+@export var normal_flipped : Texture2D
 var wind_node
 var influencers_node
 var phys_obj_node
@@ -26,7 +27,7 @@ var mouse_influence_size := 5.0
 var mouse_tear_size := 1.0
 var mouse_influence_scalar := 1.0
 @onready var shadow_node = preload("res://Game Objects/Actors/Players/Rose/CapeShadow.tscn")
-@onready var cape_line_node = preload("res://Game Objects/Testing/CapeLine.tscn")
+@onready var cape_line_node := $CapeLine
 
 var cloth_height := 8
 var cloth_width := 5
@@ -71,23 +72,20 @@ func _ready():
 		trim_line.default_color = Color.WHITE
 
 		for x in cloth_width:
-			var line = cape_line_node.instantiate()
+			var line = cape_line_node.duplicate()
 			line.z_index = cloth_width - (x + 1)
-			line.texture = texture
-			line.texture_mode = Line2D.LINE_TEXTURE_STRETCH
 			line.joint_mode = Line2D.LINE_JOINT_ROUND
 			line.width = resting_distance
-			print(resting_distance)
 			line.default_color = Color.WHITE
 			line.light_mask = light_bit + 2
 			add_child(line)
 			for y in cloth_height:
 				line.add_point(pointmasses[y][x].pos)
-				shadows[y][x].range_item_cull_mask = light_bit
-				var factor = pointmasses[y][x].resting_distance / initial_rest_distance
-				shadows[y][x].scale *= (factor + .75)
-				line.add_child(shadows[y][x])
-				shadows[y][x].position = pointmasses[y][x].pos
+				#shadows[y][x].range_item_cull_mask = light_bit
+				#var factor = pointmasses[y][x].resting_distance / initial_rest_distance
+				#shadows[y][x].scale *= (factor + .75)
+				#line.add_child(shadows[y][x])
+				#shadows[y][x].position = pointmasses[y][x].pos
 			light_bit = light_bit / 2
 			line_arr.push_back(line)
 			light_bit_sum += light_bit
@@ -104,7 +102,7 @@ func create_cloth(position : Vector2, this : ClothSim):
 	# Since this our fabric is basically a grid of points, we have two loops
 	for y in cloth_height: # due to the way PointMasss are attached, we need the y loop checked the outside
 		pointmasses.push_back([])
-		shadows.push_back([])
+		#shadows.push_back([])
 		this.resting_distance += .25
 		sum += this.resting_distance
 		for x in cloth_width:
@@ -134,8 +132,7 @@ func create_cloth(position : Vector2, this : ClothSim):
 				pointmass.pin_to(target)
 			# add to PointMass array  
 			pointmasses[y].push_back(pointmass)
-			shadows[y].push_back(shadow_node.instantiate())
-	print(sum)
+			#shadows[y].push_back(shadow_node.instantiate())
 
 func _draw():
 	"""
@@ -151,8 +148,9 @@ func _physics_process(_delta):
 	if active:
 		#material.set_shader_parameter("root_pos", targets_node.get_global_transform_with_canvas()[2])
 		deltatime += _delta
-		#z_index += targets_node.z_index
 		
+		for i in cloth_width:
+			line_arr[i].z_index = targets_node.get_child(i).z_index
 		
 		physics.update(self, wind_node.wind, deltatime)
 		
@@ -207,20 +205,23 @@ class ClothPhysics:
 						pointmass.solve_constraints(this, wind, time)
 			for x in this.cloth_width:
 				for y in this.cloth_height:
-					this.line_arr[x].set_point_position(y, this.pointmasses[y][x].pos)
-					this.shadows[y][x].position = this.pointmasses[y][x].pos
-					var loc = this.phys_obj_node.to_local(this.to_global(this.shadows[y][x].position))
-					var intersect = Geometry2D.segment_intersects_segment(this.shadows[0][x-1].position, this.shadows[y][x-1].position, this.shadows[0][x].position, this.shadows[y][x].position)
-					if x != 0:
-						if intersect:
-							this.shadows[y][x].visible = false
-						else:
-							this.shadows[y][x].visible = true
+					if this.use_local:
+						this.line_arr[x].set_point_position(y, Vector2(this.pointmasses[y][x].pos.x - this.pointmasses[0][0].pos.x, this.pointmasses[y][x].pos.y - this.pointmasses[0][0].pos.y))
 					else:
-						this.shadows[y][x].visible = true
+						this.line_arr[x].set_point_position(y, this.pointmasses[y][x].pos)
+					#this.shadows[y][x].position = this.pointmasses[y][x].pos
+					#var loc = this.phys_obj_node.to_local(this.to_global(this.shadows[y][x].position))
+					#var intersect = Geometry2D.segment_intersects_segment(this.shadows[0][x-1].position, this.shadows[y][x-1].position, this.shadows[0][x].position, this.shadows[y][x].position)
+					#if x != 0:
+					#	if intersect:
+					#		this.shadows[y][x].visible = false
+					#	else:
+					#		this.shadows[y][x].visible = true
+					#else:
+					#	this.shadows[y][x].visible = true
 					
-					if loc.y - this.line_arr[x].z_index < -5:
-						this.shadows[y][x].visible = !this.shadows[y][x].visible
+					#if loc.y - this.line_arr[x].z_index < -5:
+					#	this.shadows[y][x].visible = !this.shadows[y][x].visible
 				this.trim_line.set_point_position(x, this.pointmasses[this.cloth_height-1][x].pos)
 		return
 
@@ -330,6 +331,7 @@ class PointMass:
 		
 		var dir = 0
 		while(intersecting):
+			break
 			dir += 1
 			var params_up := point_coll_params
 			params_up.position = Vector2(tempos.x,tempos.y-dir)
@@ -438,7 +440,8 @@ class Link:
 		p2.pos.x -= diffX * scalar_p2 * difference
 		p2.pos.y -= diffY * scalar_p2 * difference
 
-
-func _on_CapeTarget_z_index_changed(z : int):
-	z_index = z
-	print(z_index)
+func _on_rose_turned():
+	if cape_line_node.texture.normal_texture == normal:
+		cape_line_node.texture.normal_texture = normal_flipped
+	else:
+		cape_line_node.texture.normal_texture = normal

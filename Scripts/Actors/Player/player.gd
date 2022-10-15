@@ -36,7 +36,10 @@ var speed_mag
 @onready var attack_collision = $Utilities/AttackCollision
 @onready var player_camera = $PlayerCamera
 @onready var powerups = $Utilities/Powerups
-
+@onready var hit_area = $HitArea
+@onready var collision_box = $CollisionBox
+@onready var crouch_box = $CrouchBox
+@onready var crouch_hitbox = $HitArea/CrouchBox
 #sets up some variables and initializes the state machine
 func init():
 	super.init()
@@ -45,10 +48,14 @@ func init():
 	for key in move_states.keys():
 		move_states[key] = get_node(move_states[key])
 	if not Engine.is_editor_hint():
-		player_camera = true
 		$CollisionBox.disabled = false
 		$HitArea/HitBox.disabled = false
 	iframe = false
+	crouch_box.disabled = true
+	crouch_hitbox.disabled = true
+	collision_box.disabled = false
+	hitbox.disabled = false
+
 
 # This should be moved to some UI layer.
 signal input_unstable
@@ -74,7 +81,6 @@ func _in(event):
 #runs every frame
 #home to debug inputs
 #calculates the player's input rotation for aiming abilities
-#also runs player hitbox "sight" to determine if an attack can hit an enemy
 func _execute(_delta):
 	if Input.is_key_pressed(KEY_I) && iframes <= 0:
 		move_states['hit'].compare_to = global_position + Vector2(hor_dir * 25,0)
@@ -186,6 +192,12 @@ func change_fric(f):
 func add_vel(speed : float, degrees : float = $MoveStates/Action/ActionController.action_degrees):
 	hor_spd = speed * cos(deg_to_rad(degrees))
 	vert_spd = speed * sin(deg_to_rad(degrees))
+
+func add_vel_hor(speed : float):
+	hor_spd = speed * hor_dir
+
+func slide(fact := 1.0):
+	hor_spd = true_soft_speed_cap * fact * hor_dir
 
 
 #useful for having the player jump from any state

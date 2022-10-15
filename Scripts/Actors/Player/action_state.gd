@@ -1,6 +1,8 @@
 class_name ActionState
 extends PlayerState
 
+signal debug_exit
+
 # Review these variables
 @export var use_default_movement := true
 var hover = false
@@ -26,6 +28,7 @@ func _enter():
 
 
 func _handle_input():
+	super._handle_input()
 	action_controller._handle_input()
 	# if the player is using a movement input, try to leave the action state
 	if(Input.is_action_pressed("Move_Left")
@@ -56,12 +59,13 @@ func _handle_input():
 			and action_controller.action_stack[1] == "saved_action"
 			and !Input.is_action_pressed("Dodge")):
 		exit_state_normally_flag = true
-	if exit_state_normally_flag:
-		if action_controller.action_can_interrupt or action_controller.action_ended:
-			action_controller.clear_action()
-			if(host.move_state == "action"):
-				exit_ground_or_air()
-	super._handle_input()
+	
+	if (exit_state_normally_flag
+			and (action_controller.action_ended or action_controller.action_can_interrupt)):
+		action_controller.clear_action()
+		if(host.move_state == "action"):
+			exit_ground_or_air()
+	
 
 
 func _handle_animation():
@@ -73,10 +77,16 @@ func _execute(delta):
 	if use_default_movement:
 		super._execute(delta)
 	else:
-		#handles when we use special movement
-		pass
+		no_movement_input(delta)
 	action_controller._execute(delta)
 
+func no_movement_input(delta):
+	# deccelerate after some special movement
+	if host.hor_spd != 0 and host.fric_activated:
+		if abs(host.hor_spd) <= host.true_fric:
+			host.hor_spd = 0
+		else:
+			host.hor_spd -= host.true_fric * sign(host.hor_spd)
 
 func _exit(state):
 	if state == FSM.hit_state:
@@ -93,12 +103,16 @@ func _exit(state):
 	super._exit(state)
 
 func _on_ComboTimer_timeout():
-	action_controller.combo = ""
-	if(host.move_state == 'action'):
-		exit_ground_or_air()
+	#action_controller.combo = ""
+	#if(host.move_state == 'action'):
+	#	exit_ground_or_air()
+	pass
 
 
 func _on_BaseAnimator_animation_finished(_anim_name):
-	action_controller.combo = ""
-	if(host.move_state == 'action'):
-		exit_ground_or_air()
+	exit_state_normally_flag = true
+	action_committed = false
+
+
+func _on_action_debug_exit():
+	exit_ground_or_air()

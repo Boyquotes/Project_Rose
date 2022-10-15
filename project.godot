@@ -49,6 +49,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Scripts/Objects/Cape/line_cape.gd"
 }, {
+"base": "PlayerState",
+"class": &"CrouchState",
+"language": &"GDScript",
+"path": "res://Scripts/Actors/Player/crouch_state.gd"
+}, {
 "base": "Area2D",
 "class": &"EnemyHitbox",
 "language": &"GDScript",
@@ -163,6 +168,7 @@ _global_script_class_icons={
 "ActionState": "",
 "Actor": "",
 "ClothSim": "",
+"CrouchState": "",
 "EnemyHitbox": "",
 "EnemyHitboxContainer": "",
 "GenChildButton": "",
@@ -206,8 +212,8 @@ window/size/viewport_height=270
 window/stretch/mode="viewport"
 window/size/width=480
 window/size/height=270
-window/size/test_height=324
 window/size/test_width=576
+window/size/test_height=324
 
 [editor_plugins]
 

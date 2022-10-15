@@ -6,8 +6,8 @@ var action_controller
 var action_instancer
 
 @export var displacement_strength := 45
-@export var displacement_type = 0 # (GlobalEnums.DisplacementType)
-@export var attack_type = 0 # (GlobalEnums.AttackType)
+@export var displacement_type : GlobalEnums.DisplacementType = GlobalEnums.DisplacementType.ARCING
+@export var attack_type : GlobalEnums.AttackType = GlobalEnums.AttackType.SLASHING
 @export var direction := 0.0
 @export var hit_limit := 0
 @export var damage := 25

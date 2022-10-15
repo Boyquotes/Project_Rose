@@ -10,7 +10,6 @@ var y := 0.0;
 
 func execute(_delta):
 	var tween := create_tween();
-	
 	if(host.active_input == host.InputType.KEYMOUSE):
 		y = get_global_mouse_position().y - global_position.y
 		x = get_global_mouse_position().x - global_position.x

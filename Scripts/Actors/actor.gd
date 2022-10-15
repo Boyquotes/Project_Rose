@@ -46,7 +46,7 @@ var fric_activated := true
 var prev_anim := ""
 
 @onready var base_anim = $Animators/BaseAnimator
-@onready var hit_box = $HitArea/HitBox
+@onready var hitbox = $HitArea/HitBox
 @onready var attack_coll_data = $Utilities/AttackCollision
 @onready var powerup_data = $Utilities/Powerups
 func _ready():
@@ -104,16 +104,16 @@ func _paused_phys_execute(_delta):
 func _unpaused_phys_execute(_delta):
 	if(iframes > 0):
 		iframes -= 1
-		hit_box.disabled = true
+		hitbox.disabled = true
 	else:
-		hit_box.disabled = false
+		hitbox.disabled = false
 
 func _cleanup():
 	pass
 
 func animate(animator : AnimationPlayer, anim : String, cont = true):
 	if prev_anim != anim:
-		emit_signal("animation_changed")
+		emit_signal("animation_changed", prev_anim, anim)
 		prev_anim = anim
 	animator.stop(cont)
 	animator.play(anim)

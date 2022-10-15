@@ -17,13 +17,14 @@ func init():
 	host = action_controller.host
 	action_spawn = get_node(action_target_path)
 
-func initialize_action(action, instance_on_spawn=false):
-	#host.connect("hurt",Callable(action,"on_player_hurt"))
+func initialize_action(action, instance_on_spawn=false, attached=false):
+	host.connect("hurt", Callable(action,"on_player_hurt"))
 	if instance_on_spawn:
 		action.action_spawn = action_spawn
 	action.z_index = host.z_index + 1
 	action.global_position = host.global_position
-	host.get_parent().add_child(action)
+	if not attached:
+		host.get_parent().add_child(action)
 
 func initialize_hitboxes(action):
 	var hitboxes = action.get_node("Hitboxes")

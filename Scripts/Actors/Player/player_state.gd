@@ -84,7 +84,7 @@ func _handle_input():
 	move_direction = get_move_direction()
 	if can_turn:
 		update_look_direction_and_scale(move_direction)
-	if host.move_state != 'action' || host.move_state != 'hit':
+	if host.move_state != 'action' and host.move_state != 'hit':
 		if get_action_just_pressed():
 			_exit(FSM.action_state)
 		elif get_switch_pressed():

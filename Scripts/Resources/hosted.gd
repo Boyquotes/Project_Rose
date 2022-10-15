@@ -4,5 +4,6 @@ extends Node2D
 var host
 
 func init():
-	host = get_node(host_path)
-	host.call_init_in_children(host, self)
+	#host = get_node(host_path)
+	#host.call_init_in_children(host, self)
+	pass

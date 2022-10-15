@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://7vcqruxvppvm"]
 
-[ext_resource path="res://Scripts/Objects/Cape/line_cape.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/capetrim.png" type="Texture2D" id=2]
-[ext_resource path="res://Assets/Sprites/Actors/Rose/cape.png" type="Texture2D" id=3]
+[ext_resource type="Script" path="res://Scripts/Objects/Cape/line_cape.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cs2revee2fjtw" path="res://Assets/Sprites/Actors/Rose/capetrim.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cn15hdw6h6p1u" path="res://Assets/Sprites/Actors/Rose/cape_n.png" id="3_f5xtj"]
+[ext_resource type="Texture2D" uid="uid://ctgv1pucpge4s" path="res://Assets/Sprites/Actors/Rose/cape_n_flipped.png" id="4_jrwx7"]
+[ext_resource type="PackedScene" uid="uid://ckjfqkihhdioh" path="res://Game Objects/Testing/CapeLine.tscn" id="4_pftc0"]
 
 [node name="LineCape" type="Node2D"]
-script = ExtResource( 1 )
-texture = ExtResource( 3 )
-trim_texture = ExtResource( 2 )
+script = ExtResource("1")
+trim_texture = ExtResource("2")
+normal = ExtResource("3_f5xtj")
+normal_flipped = ExtResource("4_jrwx7")
+
+[node name="CapeLine" parent="." instance=ExtResource("4_pftc0")]

@@ -17,6 +17,8 @@ var slotted_item := false
 var slotted_dodge := false
 var slotted_secondary := false
 
+var crouched := false
+
 var on_cooldown := false
 var hit := false
 
@@ -41,7 +43,7 @@ var action_stack := ["current_action", "saved_action"]
 var combo := ""
 var action_str := "action_str"
 var previous_action := "previous_action"
-
+var attack_counter := 1
 
 func _ready():
 	action_can_interrupt = false
@@ -66,11 +68,12 @@ func _enter():
 ### Prepares next move if user input is detected ###
 func _handle_input():
 	if action_can_interrupt && action_is_saved:
+		save_action = false
 		action_is_saved = false
 		clear_action()
-		previous_action = action_stack[0]
+		previous_action = action_str
 		action_stack[0] = action_stack[1]
-		combo = action_stack[1] #to make a proper combo, use += instead
+		combo = action_stack[0]
 		action_stack[1] = "saved_action"
 		commit_action()
 	if !action_state.action_committed:
@@ -80,7 +83,7 @@ func _handle_input():
 	if save_action:
 		if parse_action(1):
 			action_is_saved = true
-			save_action = false
+			
 
 
 ### Handles animation, incomplete ###
@@ -96,6 +99,7 @@ func _execute(_delta):
 
 ### begins parsing player action if an action is triggered ###
 func parse_action(idx):
+	clear_slotted_vars()
 	if primary_pressed():
 		slotted_primary = true
 	elif item_pressed():
@@ -108,11 +112,11 @@ func parse_action(idx):
 	
 	clear_enter_vars()
 	
-	if Input.is_action_just_released("Primary_Attack") && slotted_primary:
+	if slotted_primary:
 		return record_action(idx, "Primary")
-	if Input.is_action_just_released("Use_Item") && slotted_item:
+	if slotted_item:
 		return record_action(idx, "Item")
-	if Input.is_action_just_released("Secondary_Attack") && slotted_secondary:
+	if slotted_secondary:
 		return record_action(idx, "Secondary")
 	if slotted_dodge:
 		return record_action(idx, "Dodge")
@@ -135,16 +139,23 @@ func item_pressed():
 func secondary_pressed():
 	return enter_secondary || Input.is_action_just_pressed("Secondary_Attack")
 
-### Resets action strings ###
-func reset_strings():
-	action_stack[0] = "current_action"
-	action_stack[1] = "saved_action"
-	action_str = "action_str"
 
 ### Triggers appropriate action based checked the strings constructed by player input ###
 func commit_action():
 	construct_action_string()
+	if action_str == previous_action:
+		attack_counter += 1
+		action_str += str(attack_counter)
+	else:
+		attack_counter = 1
+	if debug_input or not host.base_anim.has_animation(action_str):
+		print(action_str)
+		clear_action()
+		action_state.emit_signal("debug_exit")
+		return
 	var input_direction = get_parent().get_aim_direction()
+	if input_direction == 0:
+		input_direction = get_parent().get_move_direction()
 	action_degrees = host.deg
 	action_state.can_turn = true
 	get_parent().update_look_direction_and_scale(input_direction)
@@ -154,22 +165,47 @@ func commit_action():
 	action_ended = false
 	action_state.action_committed = true
 	action_is_saved = false
-	if(debug_input):
-		print(action_str)
-		clear_action()
-	else:
-		animate = true
-		action_state.combo_timer.stop()
+	animate = true
+	action_state.combo_timer.stop()
+	save_action = true
 
 ### Constructs the string used to look up action hitboxes and animations ###
 func construct_action_string():
 	action_str = action_prefix + "_" + combo
 	if combo in ["Primary", "Secondary"]:
 		action_str += "_" + host.style_states[host.style_state]
+		action_str += attack_direction()
+		if crouched:
+			action_str += "_Crouched"
+		if not host.is_on_floor():
+			action_str += "_Air"
 		if Input.is_action_pressed("Focus"):
-			action_str += "_" + "Focused"
+			action_str += "_Focused"
 		if Input.is_action_pressed("Channel"):
-			action_str += "_" + "Channeled"
+			action_str += "_Channeled"
+	else:
+		action_str += attack_direction()
+
+func attack_direction():
+	var dir = ""
+	var hor = ""
+	var vert = ""
+	if (abs(Input.get_joy_axis(0, JOY_AXIS_LEFT_X)) > .4
+			or abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)) > .4):
+		hor = "Hor"
+	if (Input.get_joy_axis(0, JOY_AXIS_LEFT_Y) > .4
+			or Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y) > .4):
+		vert = "Down"
+	if (Input.get_joy_axis(0, JOY_AXIS_LEFT_Y) < -.4
+			or Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y) < -.4):
+		vert = "Up"
+	if vert:
+		dir += vert
+		if hor:
+			dir = hor + dir
+	if dir:
+		dir = "_" + dir
+	return dir
 
 func clear_action():
 	host.i_frame(0)
@@ -177,18 +213,18 @@ func clear_action():
 		clear_slotted_vars()
 	hit = false
 	clear_enter_vars()
-	action_ended = true
+	action_ended = false
 	action_state.action_committed = false
 	action_triggered = false
 	save_action = false
 	action_can_interrupt = false
-	reset_strings()
 	action_state.hover = false
 	action_state.use_default_movement = true
 	action_state.can_turn = true
 	host.normalize_grav()
 	host.activate_grav()
 	host.activate_fric()
+	crouched = false
 	action_charges_jump = false
 	action_state.combo_timer.start()
 
@@ -197,10 +233,7 @@ func clear_action_stack():
 	combo = ""
 	action_str = "action_str"
 	previous_action = "previous_action"
-
-func set_save_commit_action():
-	save_action = true
-	action_state.can_turn = false
+	attack_counter = 1
 
 func clear_enter_vars():
 	enter_primary = false
@@ -226,4 +259,3 @@ func on_hit(col):
 			host.get_node("Camera2D").shake(.1, 15, 8)
 			if !host.on_floor() && action_charges_jump:
 				action_state.FSM.move_in_air_state.jump_charge += 1
-

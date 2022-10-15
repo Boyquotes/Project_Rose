@@ -1,9 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=2]
-
-[ext_resource path="res://Assets/Sprites/Actors/Rose/fullcape_n-sheet.png" type="Texture2D" id=1]
-[ext_resource path="res://Resources/Shaders/CapeShader.gdshader" type="Shader" id=2]
-
-[resource]
-shader = ExtResource( 2 )
-shader_param/theta = 1.5708
-shader_param/norm = ExtResource( 1 )

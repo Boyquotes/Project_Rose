@@ -27,6 +27,7 @@ func init():
 		reinit = false
 
 func _process(_delta):
+	"""
 	if Engine.is_editor_hint() or not Engine.is_editor_hint():
 		if reinit:
 			init()
@@ -42,3 +43,5 @@ func _process(_delta):
 			material.set_shader_parameter("norm", secondary_normal)
 		else:
 			material.set_shader_parameter("norm", normal)
+	"""
+	pass

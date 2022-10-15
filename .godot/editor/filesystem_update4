@@ -1,8 +1,19 @@
-res://Rooms/TestShader.tscn
-res://Resources/Tilesets/PrimititveTileset.tres
-res://Resources/Shaders/CapeShader.gdshader
-res://Resources/Tilesets/Ledges.tres
 res://Rooms/TestRoom.tscn
-res://Game Objects/Actors/Players/Rose/Rose.tscn
+res://Resources/Tilesets/PrimititveTileset.tres
+res://Resources/Tilesets/Ledges.tres
+res://Game Objects/Testing/CapeLine.tscn
 res://Game Objects/Actors/Players/Rose/RosePrefab.tscn
-res://Game Objects/Testing/CapeSkeleton.tscn
+res://Game Objects/Testing/Cape.tscn
+res://Rooms/TestShader.tscn
+res://Game Objects/Actors/Players/Player.tscn
+res://Game Objects/Actors/Players/Rose/Rose.tscn
+res://Scripts/Actors/Player/ledge_grab_state.gd
+res://Scripts/Actors/Player/move_on_ground_state.gd
+res://Scripts/Actors/actor.gd
+res://Scripts/Actors/Player/crouch_state.gd
+res://Scripts/Actors/Player/action_controller.gd
+res://Scripts/Actors/Player/player.gd
+res://Scripts/Actors/Player/action_state.gd
+res://Scripts/Actors/Player/player_state.gd
+res://Game Objects/Actions/Player Actions/Rose/DodgeAction.tscn
+res://Game Objects/Actions/Player Actions/PlayerAction.tscn

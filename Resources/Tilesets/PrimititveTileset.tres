@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfwrlmtp8hsgk" path="res://Assets/Primitive Tiles/LightGrey/LightGrey_Ramp_76.png" id="4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oi0tm"]
+resource_name = "<null>"
 texture = ExtResource("1")
 texture_region_size = Vector2i(32, 32)
 0:0/next_alternative_id = 8

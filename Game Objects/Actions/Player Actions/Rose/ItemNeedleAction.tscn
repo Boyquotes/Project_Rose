@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://8nphoblopk8n"]
+
+[ext_resource type="PackedScene" uid="uid://vfilnew6cvga" path="res://Game Objects/Actions/Player Actions/PlayerAction.tscn" id="1_av26u"]
+[ext_resource type="Script" path="res://Scripts/Actions/Player Actions/Rose/needle_action.gd" id="2_w8ps8"]
+[ext_resource type="Texture2D" uid="uid://bn54113gmian7" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/Needle.png" id="3_bbqa3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbr04"]
+size = Vector2(350, 3)
+
+[sub_resource type="Animation" id="1"]
+resource_name = "Action"
+length = 0.5
+step = 0.01
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitboxes/Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_glv4f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitboxes/Area2D/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4cwgx"]
+_data = {
+"Action": SubResource("1"),
+"RESET": SubResource("Animation_glv4f")
+}
+
+[node name="ItemNeedleAction" instance=ExtResource("1_av26u")]
+script = ExtResource("2_w8ps8")
+
+[node name="Area2D" type="Area2D" parent="Hitboxes" index="0"]
+collision_layer = 2048
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Area2D" index="0"]
+position = Vector2(176.5, -0.5)
+shape = SubResource("RectangleShape2D_rbr04")
+debug_color = Color(0.701961, 0, 0.12549, 0.419608)
+
+[node name="Line2D" type="Line2D" parent="Sprites" index="0"]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 3.0
+texture = ExtResource("3_bbqa3")
+texture_mode = 2
+
+[node name="Animator" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_4cwgx")
+}

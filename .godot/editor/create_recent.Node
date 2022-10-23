@@ -1,11 +1,14 @@
+CollisionShape2D
+Area2D
+Line2D
 Sprite2D
+Polygon2D
 RichTextLabel
 Control
 TextEdit
 GPUParticles2D
 RayCast2D
 Node2D
-CollisionShape2D
 Timer
 SubViewportContainer
 SubViewport
@@ -15,7 +18,6 @@ LightOccluder2D
 CanvasModulate
 Bone2D
 Skeleton2D
-Polygon2D
 Camera2D
 AnimationPlayer
 TileMap

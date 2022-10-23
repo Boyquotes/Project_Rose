@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 signal turned
 signal animation_changed
+signal landed
 
 ###actor_exoport_data###
 @export var tag := "NPC" # TODO: Make into enum in global context
@@ -117,8 +118,6 @@ func animate(animator : AnimationPlayer, anim : String, cont = true):
 		prev_anim = anim
 	animator.stop(cont)
 	animator.play(anim)
-
-
 
 func kill():
 	#TODO: death anims and effects

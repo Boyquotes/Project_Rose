@@ -32,7 +32,7 @@ var rad := 0.0
 var deg := 0.0
 var move_state := "move_on_ground"
 var speed_mag
-
+var was_on_floor := false
 @onready var attack_collision = $Utilities/AttackCollision
 @onready var player_camera = $PlayerCamera
 @onready var powerups = $Utilities/Powerups
@@ -110,9 +110,14 @@ func _unpaused_phys_execute(delta):
 	vel = velocity
 	#no grav acceleration when checked floor
 	if is_on_floor():
+		if not was_on_floor:
+			emit_signal("landed")
 		air_time = 0
 		vel.y = 0
 		vert_spd = 0
+		was_on_floor = true
+	else:
+		was_on_floor = false
 	
 	if is_on_ceiling():
 		vert_spd = 0
@@ -194,7 +199,7 @@ func add_vel(speed : float, degrees : float = $MoveStates/Action/ActionControlle
 	vert_spd = speed * sin(deg_to_rad(degrees))
 
 func add_vel_hor(speed : float):
-	hor_spd = speed * hor_dir
+	hor_spd = speed * move_states[move_state].move_direction#hor_dir
 
 func slide(fact := 1.0):
 	hor_spd = true_soft_speed_cap * fact * hor_dir
@@ -215,6 +220,24 @@ func tween_global_position(new: Vector2, time: float = .1):
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property(self, "global_position", new, time)
 
+func change_to_grounded_anim(animator : AnimationPlayer, last_queued_action):
+	var frame = animator.current_animation_position
+	if is_instance_valid(last_queued_action) and frame <= .1:
+		frame = .11
+	var anim = animator.current_animation
+	var grounded_anim = ""
+	if "_Air" in anim:
+		var air_idx = anim.find("_Air")
+		grounded_anim = anim.substr(0, air_idx) + anim.substr(air_idx + 4)
+	if "_Down" in grounded_anim:
+		var down_idx = grounded_anim.find("_Down")
+		grounded_anim = grounded_anim.substr(0, down_idx) + grounded_anim.substr(down_idx + 5)
+	if animator.has_animation(grounded_anim):
+		animator.stop(true)
+		animator.play(grounded_anim)
+		animator.seek(frame, true)
+	else:
+		print(grounded_anim)
 
 #useful for easily changing states without having a lot of local references
 func change_move_state(state: NodePath):

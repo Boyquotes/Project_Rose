@@ -7,9 +7,6 @@
 
 [node name="Rose" parent="." instance=ExtResource("1")]
 
-[node name="Action" parent="Rose/MoveStates" index="4"]
-use_default_movement = false
-
 [node name="LineCape2" parent="." instance=ExtResource("2_mxe7s")]
 phys_obj_path = NodePath("../Rose")
 targets_path = NodePath("../Rose/Utilities/CapeTarget")

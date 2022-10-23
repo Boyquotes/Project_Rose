@@ -33,12 +33,11 @@ func _handle_input():
 	# if the player is using a movement input, try to leave the action state
 	if(Input.is_action_pressed("Move_Left")
 			or Input.is_action_pressed("Move_Right")
-			or Input.is_action_pressed("Move_Up")
 			or Input.is_action_pressed("Move_Down")):
 		exit_state_normally_flag = true
 	
 	# if the player intends to commit an action, override the move
-	if (get_action_just_pressed() or get_action_pressed()
+	if (get_action_just_pressed() or get_action_just_released()
 			or action_committed
 			or action_controller.action_is_saved):
 		exit_state_normally_flag = false
@@ -62,7 +61,6 @@ func _handle_input():
 	
 	if (exit_state_normally_flag
 			and (action_controller.action_ended or action_controller.action_can_interrupt)):
-		action_controller.clear_action()
 		if(host.move_state == "action"):
 			exit_ground_or_air()
 	
@@ -80,7 +78,7 @@ func _execute(delta):
 		no_movement_input(delta)
 	action_controller._execute(delta)
 
-func no_movement_input(delta):
+func no_movement_input(_delta):
 	# deccelerate after some special movement
 	if host.hor_spd != 0 and host.fric_activated:
 		if abs(host.hor_spd) <= host.true_fric:
@@ -111,8 +109,14 @@ func _on_ComboTimer_timeout():
 
 func _on_BaseAnimator_animation_finished(_anim_name):
 	exit_state_normally_flag = true
-	action_committed = false
+	action_controller.action_ended = true
 
 
 func _on_action_debug_exit():
 	exit_ground_or_air()
+
+
+func _on_rose_landed():
+	if host.move_state == "action":
+		#exit_ground()
+		host.change_to_grounded_anim(host.base_anim, action_instancer.last_queued_action)

@@ -19,10 +19,8 @@ func _ready():
 
 func load_settings():
 	# We create an empty file if not present to avoid error while loading settings
-	var file = File.new()
-	if not file.file_exists(USER_SETTINGS_PATH):
-		file.open(USER_SETTINGS_PATH, file.WRITE)
-		file.close()
+	if not FileAccess.file_exists(USER_SETTINGS_PATH):
+		FileAccess.open(USER_SETTINGS_PATH, FileAccess.WRITE)
 	
 	_user_settings = ConfigFile.new()
 	var err = _user_settings.load(USER_SETTINGS_PATH)

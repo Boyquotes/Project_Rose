@@ -27,10 +27,9 @@ void light() {
     vec3 worldNormal = NORMAL.xyz;
 	vec3 lightVector = normalize( LIGHT_POSITION - worldPosition );
     vec3 cameraVector = normalize(LIGHT_POSITION - cameraPosition - worldPosition );
-	
-	if( ceil(abs(LIGHT_POSITION.x) + abs(LIGHT_POSITION.y)) == 2.0f || floor(abs(LIGHT_POSITION.x) + abs(LIGHT_POSITION.y)) == 0.0f) {
-		lightVector = LIGHT_POSITION;
-		cameraVector = LIGHT_POSITION;
+	if( LIGHT_IS_DIRECTIONAL) {
+		lightVector = LIGHT_DIRECTION;
+		cameraVector = LIGHT_DIRECTION;
 	}
 
     

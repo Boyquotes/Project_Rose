@@ -1,8 +1,9 @@
 class_name PlayerState
 extends State
 
+@export var can_turn := true
+
 var move_direction : int
-var can_turn := true
 var can_move := true
 
 var switch_slash := false
@@ -155,6 +156,12 @@ func get_action_pressed():
 	Input.is_action_pressed("Use_Item") ||
 	Input.is_action_pressed("Secondary_Attack"))
 
+func get_action_just_released():
+	return (
+	Input.is_action_just_released("Primary_Attack") || 
+	Input.is_action_just_released("Dodge") ||
+	Input.is_action_just_released("Use_Item") ||
+	Input.is_action_just_released("Secondary_Attack"))
 
 func get_action_just_pressed():
 	return (

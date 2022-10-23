@@ -21,10 +21,10 @@ func _ready():
 
 func _enter():
 	host.move_state = 'hit'
-	if damage >= crit_thresh:
-		host.iframe(iframes * crit_iframe_factor)
-	else:
-		host.iframe(iframes)
+	#if damage >= crit_thresh:
+	#	host.iframe(iframes * crit_iframe_factor)
+	#else:
+	#	host.iframe(iframes)
 	# These are set when the player is hit
 	# host.change_hp(-damage)
 	update_look_direction_and_scale(move_direction) 

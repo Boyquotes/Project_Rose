@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://chupag1yjlgih"]
+[gd_scene load_steps=14 format=3 uid="uid://chupag1yjlgih"]
 
 [ext_resource type="TileSet" uid="uid://c5wlc2imhei8u" path="res://Resources/Tilesets/PrimititveTileset.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://cfgbm0iobxxv0" path="res://Game Objects/Actors/Players/Rose/RosePrefab.tscn" id="2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://3taie1a4v4n5" path="res://Game Objects/Testing/Light2D.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://b8rocjct0ygbg" path="res://Assets/Lights/background.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://cx0ju1jmxdi8w" path="res://Assets/Lights/light_nopix.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://cp3vd2a6jwewj" path="res://icon.png" id="9_868oj"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hxmjr"]
 particle_flag_disable_z = true
@@ -27,6 +28,9 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xpxx0"]
 gradient = SubResource("Gradient_n6abk")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jy8xx"]
+size = Vector2(20, 47)
 
 [node name="TestRoom" type="Node2D"]
 position = Vector2(0, -314)
@@ -76,9 +80,6 @@ shadow_item_cull_mask = 3
 texture = ExtResource("9")
 texture_scale = 50.0
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.498039, 0.498039, 0.498039, 1)
-
 [node name="TileMap" type="TileMap" parent="."]
 light_mask = 3
 tile_set = ExtResource("1")
@@ -117,13 +118,10 @@ visible = true
 [node name="DirectionalLight2d" type="DirectionalLight2D" parent="."]
 rotation = -0.261799
 color = Color(0, 0, 0, 1)
-height = 0.75
+height = 0.5
 
 [node name="RosePrefab" parent="." instance=ExtResource("2")]
 position = Vector2(-1400, -32)
-
-[node name="Action" parent="RosePrefab/Rose/MoveStates" index="4"]
-use_default_movement = false
 
 [node name="LineCape2" parent="RosePrefab" index="1"]
 visible = false
@@ -163,6 +161,33 @@ offset_right = 40.0
 offset_bottom = 40.0
 text = "yay!
 "
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1591, 33)
+collision_layer = 128
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_jy8xx")
+debug_color = Color(0.701961, 0.682353, 0, 0.419608)
+
+[node name="sprite" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("9_868oj")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(-1378, 33)
+collision_layer = 128
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("RectangleShape2D_jy8xx")
+debug_color = Color(0.701961, 0.682353, 0, 0.419608)
+
+[node name="sprite2" type="Sprite2D" parent="Area2D2"]
+texture = ExtResource("9_868oj")
 
 [editable path="rotlight/Light2D4"]
 [editable path="RosePrefab"]

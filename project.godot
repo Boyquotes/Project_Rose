@@ -99,6 +99,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://Scripts/Actors/Player/move_on_ground_state.gd"
 }, {
+"base": "Action",
+"class": &"NeedleAction",
+"language": &"GDScript",
+"path": "res://Scripts/Actions/Player Actions/Rose/needle_action.gd"
+}, {
 "base": "Actor",
 "class": &"Player",
 "language": &"GDScript",
@@ -178,6 +183,7 @@ _global_script_class_icons={
 "LedgeGrabState": "",
 "MoveInAirState": "",
 "MoveOnGroundState": "",
+"NeedleAction": "",
 "Player": "",
 "PlayerState": "",
 "RMS2D_VertexProperties": "",
@@ -359,6 +365,7 @@ Switch_Item={
 2d_physics/layer_9="Obstacle_Hitboxes"
 2d_physics/layer_10="Platform_Hitboxes"
 2d_physics/layer_11="Ledges"
+2d_physics/layer_12="Player_Attacks"
 
 [rendering]
 

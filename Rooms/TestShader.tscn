@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://depeli1m46eue" path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" id="3_s23yc"]
 [ext_resource type="Texture2D" uid="uid://5oynu1d4we70" path="res://Assets/Prototyping/hirescirclenormal.png" id="4_ck8p4"]
 [ext_resource type="Texture2D" uid="uid://c21s1kcuk3qp7" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" id="4_segv1"]
-[ext_resource type="Texture2D" uid="uid://7i2eaxcfkuu4" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_spec.png" id="7_ucqps"]
+[ext_resource type="Texture2D" uid="uid://rkadjiuyekh8" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_spec.png" id="7_ucqps"]
 
 [sub_resource type="Animation" id="Animation_q30np"]
 resource_name = "New Anim"
@@ -184,4 +184,4 @@ current = true
 
 [node name="DirectionalLight2d" type="DirectionalLight2D" parent="."]
 color = Color(0, 0, 0, 1)
-height = 0.78
+height = 0.5

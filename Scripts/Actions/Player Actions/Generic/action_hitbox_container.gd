@@ -70,10 +70,11 @@ func next_ray(origin, dest, spc):
 		return false
 
 func _on_area_entered(other, hitbox):
-	hitbox = hitbox[0]
-	if other in valid_targets and not other.disabled:
-		other.hits += 1
-		if other.hits >= other.hit_limit and other.hit_limit > 0:
-			other.disabled = true
-		action_controller.on_hit(other, hitbox)
-		other.on_hit(hitbox)
+	#hitbox = hitbox[0]
+	#if other in valid_targets and not other.disabled:
+	#	other.hits += 1
+	#	if other.hits >= other.hit_limit and other.hit_limit > 0:
+	#		other.disabled = true
+	#	action_controller.on_hit(other, hitbox)
+	#	other.on_hit(hitbox)
+	pass

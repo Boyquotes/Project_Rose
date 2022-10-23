@@ -75,6 +75,7 @@ func _exit(state):
 	look_up = false
 	jump = false
 	looking = false
+	call_timeout()
 	super._exit(state)
 
 func call_timeout():
@@ -90,7 +91,7 @@ func _on_look_timer_timeout():
 		if looking:
 			host.player_camera.position.y = look_max
 		else:
-			host.player_camera.position.y = -look_max / 2
+			host.player_camera.position.y = -look_max / 2.0
 
 
 func _on_base_animator_animation_finished(anim_name):
@@ -98,7 +99,7 @@ func _on_base_animator_animation_finished(anim_name):
 		_exit(FSM.crouch_state)
 
 
-func _on_rose_animation_changed(prev_anim, new_anim):
+func _on_rose_animation_changed(_prev_anim, new_anim):
 	if new_anim != "Slide" and host.move_state != "crouch":
 		host.crouch_hitbox.disabled = true
 		host.crouch_box.disabled = true

@@ -21,7 +21,7 @@
  "meta": {
   "app": "https://www.aseprite.org/",
   "version": "1.3-beta21-x64",
-  "image": "BaseNormalHor2_spec.png",
+  "image": "BaseNormalHor2.png",
   "format": "RGBA8888",
   "size": { "w": 384, "h": 192 },
   "scale": "1"

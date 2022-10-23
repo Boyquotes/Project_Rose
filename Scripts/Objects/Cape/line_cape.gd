@@ -86,7 +86,7 @@ func _ready():
 				#shadows[y][x].scale *= (factor + .75)
 				#line.add_child(shadows[y][x])
 				#shadows[y][x].position = pointmasses[y][x].pos
-			light_bit = light_bit / 2
+			light_bit = light_bit / 2.0
 			line_arr.push_back(line)
 			light_bit_sum += light_bit
 			trim_line.add_point(pointmasses[cloth_height-1][x].pos)
@@ -314,12 +314,12 @@ class PointMass:
 			pos.y = (sin((time + yplace) / (1/wind.length()) * 1000) * .1) + pos.y
 		elif wind.length() != 0:
 			pos.x = (sin((time + xplace) / (1/wind.length()) * 1000) * .1) + pos.x
-		""" Link Constraints """
+		#""" Link Constraints """
 		# Links make sure PointMasss connected to this one is at a set distance away
 		for link in links:
 			link.solve()
 		
-		""" Other Constraints """
+		#""" Other Constraints """
 		var tempos = Vector2(pos.x, pos.y)
 		var space_state : PhysicsDirectSpaceState2D = this.get_world_2d().direct_space_state
 		var coll = 33

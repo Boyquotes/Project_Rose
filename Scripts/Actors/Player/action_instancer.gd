@@ -2,7 +2,7 @@ class_name ActionInstancer
 extends Node2D
 
 
-var action_queue := []
+var last_queued_action
 
 @export var action_target_path: NodePath
 
@@ -18,13 +18,18 @@ func init():
 	action_spawn = get_node(action_target_path)
 
 func initialize_action(action, instance_on_spawn=false, attached=false):
-	host.connect("hurt", Callable(action,"on_player_hurt"))
+	#host.connect("hurt", Callable(action,"on_player_hurt"))
+	action.host = host
 	if instance_on_spawn:
 		action.action_spawn = action_spawn
 	action.z_index = host.z_index + 1
-	action.global_position = host.global_position
 	if not attached:
 		host.get_parent().add_child(action)
+	else:
+		host.add_child(action)
+	action.global_position = host.global_position
+	action.scale.x = host.hor_dir
+	return action
 
 func initialize_hitboxes(action):
 	var hitboxes = action.get_node("Hitboxes")

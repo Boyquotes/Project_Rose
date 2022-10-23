@@ -1,7 +1,7 @@
 class_name State
 extends Node2D
 
-var host
+var host : Player
 var FSM
 
 func init():

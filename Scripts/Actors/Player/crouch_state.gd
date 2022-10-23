@@ -39,7 +39,7 @@ func _handle_input():
 			if (Input.get_joy_axis(0,JOY_AXIS_LEFT_Y) > .5
 					or Input.get_joy_axis(0,JOY_AXIS_RIGHT_Y) > .5):
 				looking = true
-				look_timer.start(.25)
+				look_timer.start()
 	elif look_down:
 		looking = false
 		call_timeout()
@@ -118,6 +118,7 @@ func _exit(state):
 	host.crouch_box.disabled = true
 	host.hitbox.disabled = false
 	host.collision_box.disabled = false
+	call_timeout()
 	if state == FSM.action_state:
 		state.action_controller.crouched = true
 	super._exit(state)
@@ -127,7 +128,6 @@ func call_timeout():
 
 func _on_look_timer_timeout():
 	host.player_camera.position.y = 0
-	
 	if look_up:
 		if looking:
 			host.player_camera.position.y = -look_max * 1.5

@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=9 format=3 uid="uid://c5wlc2imhei8u"]
 
-[ext_resource type="Texture2D" uid="uid://bid0pw32gvu0o" path="res://Assets/Primitive Tiles/LightGrey/LightGrey_Box32x32.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://c2gujli25tcv8" path="res://Assets/Primitive Tiles/LightGrey/LightGrey_Ramp_72.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://bm44wfxonee2w" path="res://Assets/Primitive Tiles/LightGrey/LightGrey_Ramp_63.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://dfwrlmtp8hsgk" path="res://Assets/Primitive Tiles/LightGrey/LightGrey_Ramp_76.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://ciy8ay0ch7y0h" path="res://Assets/Primitive Tiles/LightGrey/LightGrey_Box32x32.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cbmsuibdxbsdn" path="res://Assets/Primitive Tiles/LightGrey/LightGrey_Ramp_72.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bjgcvrti3ndyu" path="res://Assets/Primitive Tiles/LightGrey/LightGrey_Ramp_63.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://de4i7xnws6xw6" path="res://Assets/Primitive Tiles/LightGrey/LightGrey_Ramp_76.png" id="4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oi0tm"]
 resource_name = "<null>"

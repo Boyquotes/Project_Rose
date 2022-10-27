@@ -9,3 +9,4 @@ func change_scene_to_file(scene):
 			printerr("Can't open " + scene)
 		ERR_CANT_CREATE:
 			printerr("Can't create " + scene)
+

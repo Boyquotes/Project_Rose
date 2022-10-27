@@ -1,18 +1,8 @@
-res://Game Objects/Actions/Player Actions/Rose/ItemNeedleAction.tscn
+res://Rooms/TestRoom.tscn
 res://Resources/Tilesets/PrimititveTileset.tres
 res://Resources/Tilesets/Ledges.tres
-res://Scripts/Actions/Player Actions/Rose/Needle.gd
-res://Scripts/Actions/Player Actions/Rose/needle_action.gd
 res://Game Objects/Actors/Players/Rose/Rose.tscn
-res://Rooms/TestRoom.tscn
-res://Rooms/TestShader.tscn
-res://Game Objects/Testing/CapeSkeletonController.tscn
-res://Scripts/Actors/Player/Rose/rose_action_instancer.gd
-res://Scripts/Actors/Player/action_instancer.gd
-res://Scripts/Actors/Player/player_state.gd
-res://Game Objects/Actions/Player Actions/Rose/ItemNeedleActionHorUp.tscn
-res://Scripts/Actors/Player/action_controller.gd
 res://Scripts/Actors/Player/player.gd
-res://Game Objects/Actions/Player Actions/Rose/ItemNeedleHorUpAction.tscn
-res://Game Objects/Actions/Player Actions/Rose/ItemNeedleHorDownAction.tscn
+res://Scripts/GUI/data_save_load.gd
+res://Rooms/TestShader.tscn
 res://Resources/Shaders/CelShader.gdshader

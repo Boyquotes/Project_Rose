@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "devolved_baccamite #idle 0.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 64, "h": 32 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 32 },
+    "sourceSize": { "w": 64, "h": 32 },
+    "duration": 250
+   },
+   {
+    "filename": "devolved_baccamite #idle 1.aseprite",
+    "frame": { "x": 64, "y": 0, "w": 64, "h": 32 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 32 },
+    "sourceSize": { "w": 64, "h": 32 },
+    "duration": 150
+   },
+   {
+    "filename": "devolved_baccamite #idle 2.aseprite",
+    "frame": { "x": 128, "y": 0, "w": 64, "h": 32 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 32 },
+    "sourceSize": { "w": 64, "h": 32 },
+    "duration": 150
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3-beta21-x64",
+  "image": "idle_spec.png",
+  "format": "RGBA8888",
+  "size": { "w": 192, "h": 32 },
+  "scale": "1"
+ }
+}

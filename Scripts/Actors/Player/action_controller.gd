@@ -191,22 +191,18 @@ func construct_action_string():
 		construct_from_item()
 
 func construct_from_item():
-	if (Input.get_joy_axis(0, JOY_AXIS_LEFT_Y) < -.4
-			or Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y) < -.4):
+	if Input.is_action_pressed("Aim_Up") or Input.is_action_pressed("Move_Up"):
 		action_str += "_HorUp"
-	if (Input.get_joy_axis(0, JOY_AXIS_LEFT_Y) > .4
-			or Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y) > .4):
+	if Input.is_action_pressed("Aim_Down") or Input.is_action_pressed("Move_Down"):
 		action_str += "_HorDown"
 	
 
 func construct_from_base():
 	if combo in ["Primary"]:
-		if (Input.get_joy_axis(0, JOY_AXIS_LEFT_Y) < -.4
-				or Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y) < -.4):
+		if Input.is_action_pressed("Aim_Up") or Input.is_action_pressed("Move_Up"):
 			action_str += "_Up"
 		if not host.is_on_floor():
-			if (Input.get_joy_axis(0, JOY_AXIS_LEFT_Y) > .4
-					or Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y) > .4):
+			if Input.is_action_pressed("Aim_Down") or Input.is_action_pressed("Move_Down"):
 				action_str += "_Down"
 			action_str += "_Air"
 	else:
@@ -220,14 +216,12 @@ func attack_direction():
 	var dir = ""
 	var hor = ""
 	var vert = ""
-	if (abs(Input.get_joy_axis(0, JOY_AXIS_LEFT_X)) > .4
-			or abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)) > .4):
+	if (Input.is_action_pressed("Aim_Left") or Input.is_action_pressed("Aim_Right")
+		or Input.is_action_pressed("Move_Left") or Input.is_action_pressed("Move_Right")):
 		hor = "Hor"
-	if (Input.get_joy_axis(0, JOY_AXIS_LEFT_Y) > .4
-			or Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y) > .4):
+	if Input.is_action_pressed("Aim_Down") or Input.is_action_pressed("Move_Down"):
 		vert = "Down"
-	if (Input.get_joy_axis(0, JOY_AXIS_LEFT_Y) < -.4
-			or Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y) < -.4):
+	if Input.is_action_pressed("Aim_Up") or Input.is_action_pressed("Move_Up"):
 		vert = "Up"
 	if vert:
 		dir += vert

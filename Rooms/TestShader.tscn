@@ -1,12 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2f8i8ahboj1v"]
+[gd_scene load_steps=23 format=3 uid="uid://b2f8i8ahboj1v"]
 
-[ext_resource type="Texture2D" uid="uid://cx0ju1jmxdi8w" path="res://Assets/Lights/light_nopix.png" id="1_64cxn"]
-[ext_resource type="Texture2D" uid="uid://bfy8jm6bkouou" path="res://Assets/Prototyping/circle.png" id="1_gpbri"]
+[ext_resource type="Texture2D" uid="uid://d2tafby3ekcpa" path="res://Assets/Lights/light_nopix.png" id="1_64cxn"]
+[ext_resource type="Texture2D" uid="uid://c3p7h2vn4tqsn" path="res://Assets/Prototyping/circle.png" id="1_gpbri"]
 [ext_resource type="Shader" path="res://Resources/Shaders/CelShader.gdshader" id="2_oj4md"]
-[ext_resource type="Texture2D" uid="uid://depeli1m46eue" path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" id="3_s23yc"]
-[ext_resource type="Texture2D" uid="uid://5oynu1d4we70" path="res://Assets/Prototyping/hirescirclenormal.png" id="4_ck8p4"]
-[ext_resource type="Texture2D" uid="uid://c21s1kcuk3qp7" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" id="4_segv1"]
-[ext_resource type="Texture2D" uid="uid://rkadjiuyekh8" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_spec.png" id="7_ucqps"]
+[ext_resource type="Texture2D" uid="uid://buvp2wh82u6kk" path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" id="3_s23yc"]
+[ext_resource type="Texture2D" uid="uid://b66y26pvs7dgk" path="res://Assets/Prototyping/hirescirclenormal.png" id="4_ck8p4"]
+[ext_resource type="Texture2D" uid="uid://d1ntbivh88bv8" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" id="4_segv1"]
+[ext_resource type="Texture2D" uid="uid://cra5omxkkutma" path="res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/idle.png" id="5_d4okt"]
+[ext_resource type="Texture2D" uid="uid://c08xjrxrmysma" path="res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/idle_n.png" id="6_4f02k"]
+[ext_resource type="Texture2D" uid="uid://dpxqwtx2yp7e7" path="res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/idle_spec.png" id="7_smafd"]
+[ext_resource type="Texture2D" uid="uid://crqdup41rh3am" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_Spec.png" id="7_ucqps"]
 
 [sub_resource type="Animation" id="Animation_q30np"]
 resource_name = "New Anim"
@@ -118,38 +121,188 @@ _data = {
 "RESET": SubResource("Animation_kukfp")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_84ygb"]
-shader = ExtResource("2_oj4md")
-shader_parameter/cameraPosition = Vector3(0, 0, 0)
-shader_parameter/edgeColor = Color(0, 0, 0, 1)
-shader_parameter/lightPower = 1.0
-shader_parameter/shadowSubtract = 0.5
-shader_parameter/specularAdd = 0.5
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qet0y"]
+polygon = PackedVector2Array(-4, -17, 1, -17, 0, 19, -5, 19)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_7wuxo"]
-diffuse_texture = ExtResource("1_gpbri")
-normal_texture = ExtResource("4_ck8p4")
-specular_shininess = 0.5
+[sub_resource type="Shader" id="Shader_wat1m"]
+code = "shader_type canvas_item;
+
+uniform vec3 cameraPosition = vec3(0.0f);
+// Setting a color difference between unlit and specular.
+uniform float shadowSubtract = 0.5f;
+uniform vec4 unlitColorMix : source_color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+uniform float unlitColorControl = 0.5f;
+
+void fragment()
+{
+	vec4 spec = texture(SPECULAR_SHININESS_TEXTURE, UV);
+	vec4 col = texture(TEXTURE, UV);
+	if(spec.g < 0.5f)
+	{
+		//COLOR = vec4(col.r - specularAdd, col.g - specularAdd, col.b - specularAdd, col.a);
+	}
+}
+
+void light() {
+    // Calculate the real position of this pixel in 3d space, taking into account
+    // the rotation and scale of the model. It's a useful formula for some effects.
+    // This could also be done in the vertex shader
+    vec3 worldPosition = FRAGCOORD.xyz;
+
+    // Calculate the normal including the model rotation and scale
+    vec3 worldNormal = NORMAL.xyz;
+	vec3 lightVector = normalize( LIGHT_POSITION - worldPosition );
+    vec3 cameraVector = normalize(LIGHT_POSITION - cameraPosition - worldPosition );
+	if( LIGHT_IS_DIRECTIONAL) {
+		lightVector = LIGHT_DIRECTION;
+		cameraVector = LIGHT_DIRECTION;
+	}
+
+    
+	vec4 finalColor = (texture(TEXTURE, UV) + LIGHT_COLOR) / 2.0f;
+	
+    //Substracting the difference from the main color for the shaded part
+    vec4 unlitColor = vec4(finalColor.x - shadowSubtract, finalColor.y - shadowSubtract, finalColor.z - shadowSubtract, 1);
+    unlitColor = mix(unlitColor, unlitColorMix, unlitColorControl);
+    // Adding the difference from the main color for the highlighted part vec4(finalColor.x + specularAdd, finalColor.y + specularAdd, finalColor.z + specularAdd, 1)
+    vec4 specularColor = (SPECULAR_SHININESS + LIGHT_COLOR) / 2.0f;
+
+    // An example simple lighting effect, taking the dot product of the normal
+    // (which way this pixel is pointing) and a user generated light position
+    float brightness = dot( worldNormal, lightVector );
+    
+    vec3 reflectance = normalize(2.0 * dot(lightVector,worldNormal)*worldNormal-lightVector);
+
+	//vec4 shadowColor = unlitColor
+    
+    if(dot(lightVector,worldNormal)<0.3){
+        LIGHT = unlitColor;
+    } else {
+        if (dot(worldNormal,lightVector)>0.0){
+            LIGHT = finalColor;
+            if (length(cameraVector - reflectance)<0.6){
+					if (SPECULAR_SHININESS.r > 0.01){
+						LIGHT = specularColor;
+					}
+            }
+        }
+    }
+	//SHADOW_MODULATE = vec4(edgeColor);
+}"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c84ad"]
-shader = ExtResource("2_oj4md")
+shader = SubResource("Shader_wat1m")
 shader_parameter/cameraPosition = Vector3(0, 0, 0)
-shader_parameter/edgeColor = Color(0, 0, 0, 1)
-shader_parameter/lightPower = 1.0
 shader_parameter/shadowSubtract = 0.5
-shader_parameter/specularAdd = 0.0
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/unlitColorMix = Color(0, 0, 0, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ti12f"]
 diffuse_texture = ExtResource("3_s23yc")
 normal_texture = ExtResource("4_segv1")
 specular_texture = ExtResource("7_ucqps")
-specular_shininess = 0.5
+
+[sub_resource type="Shader" id="Shader_15m3t"]
+code = "shader_type canvas_item;
+
+uniform vec3 cameraPosition = vec3(0.0f);
+// Setting a color difference between unlit and specular.
+uniform float shadowSubtract = 0.5f;
+uniform vec4 unlitColorMix : source_color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+uniform float unlitColorControl = 0.5f;
+
+void fragment()
+{
+	vec4 spec = texture(SPECULAR_SHININESS_TEXTURE, UV);
+	vec4 col = texture(TEXTURE, UV);
+	if(spec.g < 0.5f)
+	{
+		//COLOR = vec4(col.r - specularAdd, col.g - specularAdd, col.b - specularAdd, col.a);
+	}
+}
+
+void light() {
+    // Calculate the real position of this pixel in 3d space, taking into account
+    // the rotation and scale of the model. It's a useful formula for some effects.
+    // This could also be done in the vertex shader
+    vec3 worldPosition = FRAGCOORD.xyz;
+
+    // Calculate the normal including the model rotation and scale
+    vec3 worldNormal = NORMAL.xyz;
+	vec3 lightVector = normalize( LIGHT_POSITION - worldPosition );
+    vec3 cameraVector = normalize(LIGHT_POSITION - cameraPosition - worldPosition );
+	if( LIGHT_IS_DIRECTIONAL) {
+		lightVector = LIGHT_DIRECTION;
+		cameraVector = LIGHT_DIRECTION;
+	}
+
+    
+	vec4 finalColor = (texture(TEXTURE, UV) + LIGHT_COLOR) / 2.0f;
+	
+    //Substracting the difference from the main color for the shaded part
+    vec4 unlitColor = vec4(finalColor.x - shadowSubtract, finalColor.y - shadowSubtract, finalColor.z - shadowSubtract, 1);
+    unlitColor = mix(unlitColor, unlitColorMix, unlitColorControl);
+    // Adding the difference from the main color for the highlighted part vec4(finalColor.x + specularAdd, finalColor.y + specularAdd, finalColor.z + specularAdd, 1)
+    vec4 specularColor = (SPECULAR_SHININESS + LIGHT_COLOR) / 2.0f;
+
+    // An example simple lighting effect, taking the dot product of the normal
+    // (which way this pixel is pointing) and a user generated light position
+    float brightness = dot( worldNormal, lightVector );
+    
+    vec3 reflectance = normalize(2.0 * dot(lightVector,worldNormal)*worldNormal-lightVector);
+
+	//vec4 shadowColor = unlitColor
+    
+    if(dot(lightVector,worldNormal)<0.3){
+        LIGHT = unlitColor;
+    } else {
+        if (dot(worldNormal,lightVector)>0.0){
+            LIGHT = finalColor;
+            if (length(cameraVector - reflectance)<0.6){
+					if (SPECULAR_SHININESS.r > 0.01){
+						LIGHT = specularColor;
+					}
+            }
+        }
+    }
+	//SHADOW_MODULATE = vec4(edgeColor);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ylchl"]
+shader = SubResource("Shader_15m3t")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/shadowSubtract = 0.5
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/unlitColorMix = Color(0.223529, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t3x1h"]
+diffuse_texture = ExtResource("5_d4okt")
+normal_texture = ExtResource("6_4f02k")
+specular_texture = ExtResource("7_smafd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84ygb"]
+shader = ExtResource("2_oj4md")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/shadowSubtract = 0.5
+shader_parameter/unlitColorControl = null
+shader_parameter/unlitColorMix = null
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7wuxo"]
+diffuse_texture = ExtResource("1_gpbri")
+normal_texture = ExtResource("4_ck8p4")
 
 [node name="TestShader" type="Node2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 0
-color = Color(0.501961, 0.501961, 0.501961, 1)
+color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="DirectionalLight2d" type="DirectionalLight2D" parent="."]
+color = Color(0, 0, 0, 1)
+range_item_cull_mask = 1023
+shadow_color = Color(0, 0, 0, 1)
+shadow_item_cull_mask = 1023
+height = 0.5
 
 [node name="Node2d" type="Node2D" parent="."]
 visible = false
@@ -167,21 +320,29 @@ libraries = {
 "": SubResource("AnimationLibrary_mbdq4")
 }
 
-[node name="Sprite2d" type="Sprite2D" parent="."]
-light_mask = 3
-material = SubResource("ShaderMaterial_84ygb")
-texture = SubResource("CanvasTexture_7wuxo")
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+z_index = -1
+occluder = SubResource("OccluderPolygon2D_qet0y")
 
-[node name="Sprite2d2" type="Sprite2D" parent="."]
-light_mask = 3
+[node name="rose sprite" type="Sprite2D" parent="."]
+light_mask = 2
 material = SubResource("ShaderMaterial_c84ad")
 z_index = 9
 texture = SubResource("CanvasTexture_ti12f")
 hframes = 5
 
+[node name="baccamite sprite" type="Sprite2D" parent="."]
+light_mask = 2
+material = SubResource("ShaderMaterial_ylchl")
+scale = Vector2(-1, 1)
+z_index = 9
+texture = SubResource("CanvasTexture_t3x1h")
+hframes = 3
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+light_mask = 2
+material = SubResource("ShaderMaterial_84ygb")
+texture = SubResource("CanvasTexture_7wuxo")
+
 [node name="Camera2d" type="Camera2D" parent="."]
 current = true
-
-[node name="DirectionalLight2d" type="DirectionalLight2D" parent="."]
-color = Color(0, 0, 0, 1)
-height = 0.5

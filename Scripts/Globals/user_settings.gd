@@ -13,9 +13,9 @@ func _ready():
 	load_settings()
 	if not _user_settings.has_section(KEY_BINDING_SECTION):
 		_create_default_key_bindings()
-	_load_key_bindings()
-	if not OS.has_feature("standalone") and not debug_load_from_file:
+	if debug_load_from_file:
 		_create_default_key_bindings();
+	_load_key_bindings()
 
 func load_settings():
 	# We create an empty file if not present to avoid error while loading settings

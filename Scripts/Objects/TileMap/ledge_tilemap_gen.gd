@@ -9,3 +9,5 @@ func _ready():
 		var right = par.get_cell_source_id(0, Vector2i(cell.x+1,cell.y))
 		if (left == -1 and up == -1) or (right == -1 and up == -1):
 			set_cell(0, Vector2i(cell.x, cell.y), 0, Vector2i(0, 0), 0)
+
+

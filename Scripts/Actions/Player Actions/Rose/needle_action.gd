@@ -1,5 +1,5 @@
 class_name NeedleAction
-extends Action
+extends CharAction
 
 @onready var area : Area2D = $Hitboxes/Area2D
 @onready var line : Line2D = $Sprites/Line2D
@@ -43,7 +43,6 @@ func resolve_needle(rot):
 		
 		for event in collision_events:
 			if event:
-				area.get_child(0).disabled = true
 				hit = true
 				hpos = event.position
 				return

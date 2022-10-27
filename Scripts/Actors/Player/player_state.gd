@@ -14,7 +14,7 @@ var switch_pierce := false
 func get_move_direction():
 	var right := int(Input.is_action_pressed("Move_Right"))
 	var left := int(Input.is_action_pressed("Move_Left"))
-	
+	#print(right)
 	var input_direction := right - left
 	return input_direction
 
@@ -85,6 +85,9 @@ func _handle_input():
 	move_direction = get_move_direction()
 	if can_turn:
 		update_look_direction_and_scale(move_direction)
+	handle_action()
+
+func handle_action():
 	if host.move_state != 'action' and host.move_state != 'hit':
 		if get_action_just_pressed():
 			_exit(FSM.action_state)

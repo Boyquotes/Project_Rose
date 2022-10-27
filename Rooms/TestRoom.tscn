@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://chupag1yjlgih"]
+[gd_scene load_steps=16 format=3 uid="uid://chupag1yjlgih"]
 
 [ext_resource type="TileSet" uid="uid://c5wlc2imhei8u" path="res://Resources/Tilesets/PrimititveTileset.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://cfgbm0iobxxv0" path="res://Game Objects/Actors/Players/Rose/RosePrefab.tscn" id="2"]
@@ -6,9 +6,11 @@
 [ext_resource type="Script" path="res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd" id="4"]
 [ext_resource type="Script" path="res://Game Objects/Testing/rotlight.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://3taie1a4v4n5" path="res://Game Objects/Testing/Light2D.tscn" id="7"]
-[ext_resource type="Texture2D" uid="uid://b8rocjct0ygbg" path="res://Assets/Lights/background.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://cx0ju1jmxdi8w" path="res://Assets/Lights/light_nopix.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://cp3vd2a6jwewj" path="res://icon.png" id="9_868oj"]
+[ext_resource type="Texture2D" uid="uid://pu0rn2jyj0ny" path="res://Assets/Lights/background.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://d2tafby3ekcpa" path="res://Assets/Lights/light_nopix.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://drx3gbfwafho7" path="res://icon.png" id="9_868oj"]
+[ext_resource type="Script" path="res://Scripts/GUI/data_save_load.gd" id="9_h2m77"]
+[ext_resource type="PackedScene" uid="uid://fqwuppmwvegq" path="res://Game Objects/GUI/PauseSystem.tscn" id="9_xj5ky"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hxmjr"]
 particle_flag_disable_z = true
@@ -34,6 +36,24 @@ size = Vector2(20, 47)
 
 [node name="TestRoom" type="Node2D"]
 position = Vector2(0, -314)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseSystem" parent="CanvasLayer" instance=ExtResource("9_xj5ky")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+mouse_filter = 2
+
+[node name="DataNode" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -314.0
+offset_right = 40.0
+offset_bottom = -274.0
+script = ExtResource("9_h2m77")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -147,21 +167,6 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_hxmjr")
 texture = SubResource("GradientTexture2D_xpxx0")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 946.0
-offset_top = 407.0
-offset_right = 986.0
-offset_bottom = 447.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
-modulate = Color(0.94902, 0.560784, 1, 1)
-offset_right = 40.0
-offset_bottom = 40.0
-text = "yay!
-"
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.501961, 0.501961, 0.501961, 1)
 
@@ -179,8 +184,8 @@ texture = ExtResource("9_868oj")
 
 [node name="Area2D2" type="Area2D" parent="."]
 position = Vector2(-1378, 33)
-collision_layer = 128
-collision_mask = 2048
+collision_layer = 2176
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 shape = SubResource("RectangleShape2D_jy8xx")

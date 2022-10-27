@@ -3,9 +3,8 @@ shader_type canvas_item;
 uniform vec3 cameraPosition = vec3(0.0f);
 // Setting a color difference between unlit and specular.
 uniform float shadowSubtract = 0.5f;
-uniform float specularAdd = 0.5f;
-uniform vec4 edgeColor : source_color = vec4(0.0f);
-uniform float lightPower = 1.0f;
+uniform vec4 unlitColorMix : source_color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+uniform float unlitColorControl = 0.5f;
 
 void fragment()
 {
@@ -34,12 +33,12 @@ void light() {
 
     
 	vec4 finalColor = (texture(TEXTURE, UV) + LIGHT_COLOR) / 2.0f;
-    
+	
     //Substracting the difference from the main color for the shaded part
-    vec3 unlitColor = vec3(finalColor.x - shadowSubtract, finalColor.y - shadowSubtract, finalColor.z - shadowSubtract);
-    
+    vec4 unlitColor = vec4(finalColor.x - shadowSubtract, finalColor.y - shadowSubtract, finalColor.z - shadowSubtract, 1);
+    unlitColor = mix(unlitColor, unlitColorMix, unlitColorControl);
     // Adding the difference from the main color for the highlighted part vec4(finalColor.x + specularAdd, finalColor.y + specularAdd, finalColor.z + specularAdd, 1)
-    vec4 specularColor = SPECULAR_SHININESS;
+    vec4 specularColor = (SPECULAR_SHININESS + LIGHT_COLOR) / 2.0f;
 
     // An example simple lighting effect, taking the dot product of the normal
     // (which way this pixel is pointing) and a user generated light position
@@ -47,18 +46,19 @@ void light() {
     
     vec3 reflectance = normalize(2.0 * dot(lightVector,worldNormal)*worldNormal-lightVector);
 
+	//vec4 shadowColor = unlitColor
     
     if(dot(lightVector,worldNormal)<0.3){
-        LIGHT = edgeColor;
+        LIGHT = unlitColor;
     } else {
         if (dot(worldNormal,lightVector)>0.0){
             LIGHT = finalColor;
             if (length(cameraVector - reflectance)<0.6){
-					if (specularColor.r > 0.01){
+					if (SPECULAR_SHININESS.r > 0.01){
 						LIGHT = specularColor;
 					}
             }
         }
     }
-	//SHADOW_MODULATE = vec4(unlitColor,1.0);
+	//SHADOW_MODULATE = vec4(edgeColor);
 }

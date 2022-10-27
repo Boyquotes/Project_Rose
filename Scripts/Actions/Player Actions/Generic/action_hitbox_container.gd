@@ -10,7 +10,7 @@ var action_instancer
 
 func init():
 	for hitbox in get_children():
-		hitbox.connect("area_entered",Callable(self,"_on_area_entered").bind(hitbox))
+		hitbox.area_entered.connect(_on_area_entered)
 
 func _process(delta):
 	execute(delta)
@@ -69,7 +69,7 @@ func next_ray(origin, dest, spc):
 		item_trace.clear()
 		return false
 
-func _on_area_entered(other, hitbox):
+func _on_area_entered(hitbox):
 	#hitbox = hitbox[0]
 	#if other in valid_targets and not other.disabled:
 	#	other.hits += 1

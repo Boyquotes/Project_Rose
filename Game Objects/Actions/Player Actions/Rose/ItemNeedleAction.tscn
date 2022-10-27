@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://vfilnew6cvga" path="res://Game Objects/Actions/Player Actions/PlayerAction.tscn" id="1_av26u"]
 [ext_resource type="Script" path="res://Scripts/Actions/Player Actions/Rose/needle_action.gd" id="2_w8ps8"]
-[ext_resource type="Texture2D" uid="uid://bn54113gmian7" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/Needle.png" id="3_bbqa3"]
+[ext_resource type="Texture2D" uid="uid://ck0s61a2t57sb" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/Needle.png" id="3_bbqa3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbr04"]
 size = Vector2(350, 3)
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Action"
-length = 0.5
+length = 0.2
 step = 0.01
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -57,6 +57,7 @@ _data = {
 }
 
 [node name="ItemNeedleAction" instance=ExtResource("1_av26u")]
+z_as_relative = false
 script = ExtResource("2_w8ps8")
 
 [node name="Area2D" type="Area2D" parent="Hitboxes" index="0"]

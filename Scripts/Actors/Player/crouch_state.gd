@@ -2,10 +2,9 @@ class_name CrouchState
 extends PlayerState
 
 @export var look_max := 100
+@onready var look_timer : Timer = $LookTimer
 @export var open_cast_l_path : NodePath
 @export var open_cast_r_path : NodePath
-
-@onready var look_timer : Timer = $LookTimer
 
 var open_cast_l : RayCast2D
 var open_cast_r : RayCast2D

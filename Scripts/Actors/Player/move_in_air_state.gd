@@ -52,21 +52,18 @@ func _handle_input():
 func _handle_animation():
 	if(jump):
 		host.animate(host.base_anim, "AirJump", false);
-	if host.is_on_floor() && !land:
-		land = true
-		host.animate(host.base_anim, "Land", false)
-	elif !land:
-		if (cutoff && !transitioned) or (host.vert_spd > -250 && !transitioned):
-			host.animate(host.base_anim,"AscendToDescend", false)
-		elif !done_ascent || !done_descent:
-			if host.vert_spd < 0 && !done_ascent:
-				host.animate(host.base_anim, "Ascend", false)
-				done_ascent = true
-				done_descent = false
-			if host.vert_spd > 0 && !done_descent:
-				host.animate(host.base_anim, "Descend", false)
-				done_descent = true
-				done_ascent = false
+	else:
+		if host.is_on_floor() && !land:
+			land = true
+			host.animate(host.base_anim, "Land", false)
+		elif !land:
+			if not transitioned and (cutoff or host.vert_spd > -250):
+				host.animate(host.base_anim,"AscendToDescend", false)
+			else:
+				if host.vert_spd < 0:
+					host.animate(host.base_anim, "Ascend", false)
+				if host.vert_spd > 0:
+					host.animate(host.base_anim, "Descend", false)
 	super._handle_animation()
 
 

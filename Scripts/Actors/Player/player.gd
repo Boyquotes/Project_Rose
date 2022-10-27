@@ -34,7 +34,7 @@ var move_state := "move_on_ground"
 var speed_mag
 var was_on_floor := false
 @onready var attack_collision = $Utilities/AttackCollision
-@onready var player_camera = $PlayerCamera
+@onready var player_camera : Camera2D = $PlayerCamera
 @onready var powerups = $Utilities/Powerups
 @onready var hit_area = $HitArea
 @onready var collision_box = $CollisionBox
@@ -42,6 +42,8 @@ var was_on_floor := false
 @onready var crouch_hitbox = $HitArea/CrouchBox
 #sets up some variables and initializes the state machine
 func init():
+	player_camera.align()
+	player_camera.reset_smoothing()
 	super.init()
 	flora = max_flora
 	focus = max_focus
@@ -64,18 +66,10 @@ var switch_count := 0
 #hotswitch between keyboard and controller input
 #should be able to expand this to detect different types of controllers
 func _in(event):
-	if(event.get_class() == "InputEventMouseButton"
-			or event.get_class() == "InputEventKey"
-			or Input.get_connected_joypads().size() == 0):
+	if active_input != InputType.KEYMOUSE and Input.get_connected_joypads().size() == 0:
 		active_input = InputType.KEYMOUSE
-		switch_count += 1
-	elif(event.get_class() == "InputEventJoypadMotion"
-			or event.get_class() == "InputEventJoypadButton"):
+	elif active_input != InputType.GAMEPAD:
 		active_input = InputType.GAMEPAD
-		switch_count += 1
-	
-	if switch_count > 10:
-		emit_signal("input_unstable")
 
 
 #runs every frame
@@ -276,3 +270,13 @@ func _on_Player_System_hit_zero():
 #trigger for updating powerup flags
 func _on_UpgradeMenu_update_powerup(idx,activate):
 	powerups.powerups_idx[idx] = activate
+
+func save():
+	var save_dict = {
+		"pos_x" : position.x,
+		"pos_y" : position.y
+	}
+	return save_dict
+
+func load(load_data):
+	position = Vector2(load_data["pos_x"], load_data["pos_y"])

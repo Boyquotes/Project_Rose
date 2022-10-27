@@ -2,14 +2,23 @@ class_name MoveOnGroundState
 extends PlayerState
 
 @export var look_max := 100
-
 @onready var look_timer : Timer = $LookTimer
+@export var open_cast_l_path : NodePath
+@export var open_cast_r_path : NodePath
 
+var open_cast_l : RayCast2D
+var open_cast_r : RayCast2D
 var jump := false
 var crouch := false
 var look_up := false
 var slide := false
 var looking := false
+var force_crouch := false
+
+func _ready():
+	open_cast_l = get_node(open_cast_l_path)
+	open_cast_r = get_node(open_cast_r_path)
+
 func _enter():
 	host.move_state = 'move_on_ground'
 
@@ -33,12 +42,20 @@ func _handle_input():
 		look_up = false
 	
 	if Input.is_action_just_pressed("Jump"):
-		if Input.get_joy_axis(0,JOY_AXIS_LEFT_Y) > .5 and abs(host.hor_spd) > 0:
+		if  (abs(host.hor_spd) > 0
+				and (Input.is_action_pressed("Aim_Down") or Input.is_action_pressed("Move_Down"))):
 			slide = true
 		else:
 			jump = true
-	super._handle_input()
-
+	move_direction = get_move_direction()
+	if can_turn:
+		update_look_direction_and_scale(move_direction)
+	if slide:
+		detect_block()
+	else:
+		force_crouch = false
+	if not force_crouch:
+		handle_action()
 
 func _handle_animation():
 	if jump:
@@ -75,8 +92,12 @@ func _exit(state):
 	look_up = false
 	jump = false
 	looking = false
+	force_crouch = false
 	call_timeout()
 	super._exit(state)
+
+func detect_block():
+	force_crouch = open_cast_l.is_colliding() or open_cast_r.is_colliding()
 
 func call_timeout():
 	_on_look_timer_timeout()

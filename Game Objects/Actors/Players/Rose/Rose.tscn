@@ -65,10 +65,9 @@ size = Vector2(20, 16)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5dgm0"]
 shader = ExtResource("2_0ttwf")
 shader_parameter/cameraPosition = null
-shader_parameter/edgeColor = Color(0, 0, 0, 1)
-shader_parameter/lightPower = 1.0
 shader_parameter/shadowSubtract = 0.5
-shader_parameter/specularAdd = 0.5
+shader_parameter/unlitColorControl = null
+shader_parameter/unlitColorMix = null
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_acfie"]
 diffuse_texture = ExtResource("2")

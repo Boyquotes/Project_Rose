@@ -2,7 +2,4 @@ res://Rooms/TestRoom.tscn
 res://Resources/Tilesets/PrimititveTileset.tres
 res://Resources/Tilesets/Ledges.tres
 res://Game Objects/Actors/Players/Rose/Rose.tscn
-res://Scripts/Actors/Player/player.gd
-res://Scripts/GUI/data_save_load.gd
 res://Rooms/TestShader.tscn
-res://Resources/Shaders/CelShader.gdshader

@@ -1,5 +1,5 @@
 0b7126e0c6e86d3ec295a72f5aa6e0bd
-::res://::1666749129
+::res://::1667180950
 default_env.tres::Environment::-1::1666495302::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1666495302::0::1::::<><>::
 icon.png::CompressedTexture2D::8401663933077275584::1666495302::1666637301::1::::<><>::
@@ -14,7 +14,7 @@ import_plugin.gd::GDScript::-1::1666840284::0::1::::<>EditorImportPlugin<>::
 plugin.cfg::TextFile::-1::1666840284::0::1::::<><>::
 plugin.gd::GDScript::-1::1666840284::0::1::::<>EditorPlugin<>::
 ::res://addons/dialogue_manager/assets/::1666840284
-::res://addons/dialogue_manager/assets/icons/::1666840284
+::res://addons/dialogue_manager/assets/icons/::1666840286
 icon_dark.svg::CompressedTexture2D::1196544571219988655::1666840284::1666840286::1::::<><>::
 icon_light.svg::CompressedTexture2D::3337450175175582272::1666840284::1666840286::1::::<><>::
 ::res://addons/dialogue_manager/components/::1666840284
@@ -441,13 +441,13 @@ Woodeater_Soldier_sketch.png::CompressedTexture2D::1306570483592591109::16248841
 Woodeater_Spldier_Prototype_Sheet.png::CompressedTexture2D::8763185676672443688::1624884121::1666637301::1::::<><>::
 ::res://Assets/Sprites/Actors/Enemies/Woodeater_Spitter/::1666637301
 Woodeater_Spitter.png::CompressedTexture2D::2736805168899078775::1624884121::1666637301::1::::<><>::
-::res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/::1666832575
-idle.json::JSON::-1::1666829682::0::1::::<><>::
+::res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/::1666893572
+idle.json::JSON::-1::1666831635::0::1::::<><>::
 idle.png::CompressedTexture2D::5967898886409644452::1666829682::1666831478::1::::<><>::
 idle_n.png::CompressedTexture2D::6597100416416613824::1666832572::1666832575::1::::<><>::
 idle_spec.png::CompressedTexture2D::8260587188076944448::1666831635::1666831639::1::::<><>::
 mask.png::CompressedTexture2D::5953048604172383829::1624884121::1666637301::1::::<><>::
-Run.json::JSON::-1::1666829682::0::1::::<><>::
+Run.json::JSON::-1::1666831635::0::1::::<><>::
 Run.png::CompressedTexture2D::1636500666692122032::1666829682::1666831478::1::::<><>::
 Run_n.png::CompressedTexture2D::64107882637741598::1666832572::1666831478::1::::<><>::
 Run_spec.png::CompressedTexture2D::6479069780898763680::1666831635::1666831639::1::::<><>::

@@ -68,7 +68,7 @@ func _handle_animation():
 				host.animate(host.base_anim, "Crouch", false)
 			elif look_up:
 				host.animate(host.base_anim, "LookUp", false)
-			elif move_direction != 0:
+			elif move_direction != 0 and not host.is_on_wall():
 				host.animate(host.base_anim, "Run", false)
 			else:
 				host.animate(host.base_anim, "Idle", false)

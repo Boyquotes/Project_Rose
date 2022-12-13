@@ -7,9 +7,12 @@ extends Node2D
 @export var wind_path: NodePath
 @export var skeleton_path: NodePath
 @export var gravity := 480.0
-@export var initial_rest_distance := 8.0
+@export var initial_rest_distance := 2.0
 @export var active := true
 @export var draw_cape := false
+@export var cloth_height := 8
+@export var cloth_width := 5
+
 var wind_node
 var influencers_node
 var phys_obj_node
@@ -27,8 +30,6 @@ var mouse_influence_size := 5.0
 var mouse_tear_size := 1.0
 var mouse_influence_scalar := 1.0
 
-var cloth_height := 8
-var cloth_width := 5
 var resting_distance := 0.0
 var stiffnesses := .75
 var tear_sensitivity := 500 # distance the PointMasss have to go before ripping
@@ -58,7 +59,7 @@ func _ready():
 		
 		targets_node = get_node(targets_path)
 		
-		skeleton_node = get_node(skeleton_path).get_child(1)
+		skeleton_node = get_node(skeleton_path).get_child(0)
 		wind_node = get_node(wind_path)
 		create_cloth(targets_node.global_position, self)
 
@@ -85,8 +86,6 @@ func create_cloth(cloth_position : Vector2, this : SkeletonClothSim):
 	# mid_width: amount to translate the curtain along x-axis for it to be centered
 	# (curtainWidth * restingDistances) = curtain's pixel width
 	#var mid_width = int(width/2 - (curtainWidth * restingDistances)/2)
-	cloth_width = skeleton_node.get_child_count()
-	cloth_height = get_bone_length(skeleton_node.get_child(0))
 	for i in skeleton_node.get_child_count():
 		bones.push_back([])
 		get_bones(i, skeleton_node.get_child(i))
@@ -129,16 +128,22 @@ var deltatime := 0.0
 func _physics_process(_delta):
 	if active:
 		global_position = Vector2.ZERO
-		
-		#material.set_shader_parameter("root_pos", targets_node.get_global_transform_with_canvas()[2])
 		deltatime += _delta
-		#z_index += targets_node.z_index
+		
+		for i in cloth_width:
+			#z-index has to work on polygons, not bonesa
+			bones[i][0].z_index = targets[i].z_index
+			
 		
 		
 		physics.update(self, wind_node.wind, deltatime)
 		
 		
 
+func flip_targets():
+	targets.reverse()
+	for i in cloth_width:
+		pointmasses[0][i].pin_to(targets[i])
 
 # Physics
 # Timesteps are managed here
@@ -290,7 +295,7 @@ class SkeletonPointMass:
 		# Other Constraints
 		var tempos = Vector2(pos.x, pos.y)
 		var space_state : PhysicsDirectSpaceState2D = this.get_world_2d().direct_space_state
-		var coll = 33
+		var coll = 1
 		var point_coll_params := PhysicsPointQueryParameters2D.new()
 		point_coll_params.collision_mask = coll
 		point_coll_params.position = tempos
@@ -299,7 +304,8 @@ class SkeletonPointMass:
 		
 		var dir = 0
 		while(intersecting):
-			dir += 1
+			intersecting = false
+			dir += .01
 			var params_up := point_coll_params
 			params_up.position = Vector2(tempos.x,tempos.y-dir)
 			var params_down := point_coll_params
@@ -410,3 +416,7 @@ class SkeletonLink:
 
 func _on_Rose_turned():
 	reassign_pins()
+
+
+func _on_rose_turned():
+	flip_targets()

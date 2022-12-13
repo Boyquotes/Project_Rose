@@ -5,6 +5,7 @@ uniform vec3 cameraPosition = vec3(0.0f);
 uniform float shadowSubtract = 0.5f;
 uniform vec4 unlitColorMix : source_color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 uniform float unlitColorControl = 0.5f;
+uniform float theta = 0.0;
 
 void fragment()
 {
@@ -30,7 +31,10 @@ void light() {
 		lightVector = LIGHT_DIRECTION;
 		cameraVector = LIGHT_DIRECTION;
 	}
-
+	float tempx = lightVector.x;
+	float tempy = lightVector.y;
+	lightVector.x = tempx * cos(theta) - tempy * sin(theta);
+	lightVector.y = tempx * sin(theta) + tempy * cos(theta);
     
 	vec4 finalColor = (texture(TEXTURE, UV) + LIGHT_COLOR) / 2.0f;
 	

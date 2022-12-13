@@ -1,4 +1,11 @@
+CollisionShape2D
+StaticBody2D
+DirectionalLight2D
+Bone2D
+Skeleton2D
 Polygon2D
+Sprite2D
+WorldEnvironment
 LightOccluder2D
 HBoxContainer
 HSplitContainer
@@ -10,10 +17,8 @@ Label
 PanelContainer
 ScrollContainer
 Control
-CollisionShape2D
 Area2D
 Line2D
-Sprite2D
 RichTextLabel
 TextEdit
 GPUParticles2D
@@ -23,10 +28,5 @@ Timer
 SubViewportContainer
 SubViewport
 PointLight2D
-DirectionalLight2D
 CanvasModulate
-Bone2D
-Skeleton2D
 Camera2D
-AnimationPlayer
-TileMap

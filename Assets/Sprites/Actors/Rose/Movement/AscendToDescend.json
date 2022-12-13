@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "Rose - Movement - Normals #AscendToDescend 0.ase",
+    "filename": "Rose - Movement #AscendToDescend 0.ase",
     "frame": { "x": 0, "y": 0, "w": 192, "h": 192 },
     "rotated": false,
     "trimmed": false,
@@ -9,7 +9,7 @@
     "duration": 150
    },
    {
-    "filename": "Rose - Movement - Normals #AscendToDescend 1.ase",
+    "filename": "Rose - Movement #AscendToDescend 1.ase",
     "frame": { "x": 192, "y": 0, "w": 192, "h": 192 },
     "rotated": false,
     "trimmed": false,

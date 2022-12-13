@@ -1,67 +1,65 @@
-[gd_scene load_steps=23 format=3 uid="uid://b2f8i8ahboj1v"]
+[gd_scene load_steps=30 format=3 uid="uid://b2f8i8ahboj1v"]
 
-[ext_resource type="Texture2D" uid="uid://d2tafby3ekcpa" path="res://Assets/Lights/light_nopix.png" id="1_64cxn"]
 [ext_resource type="Texture2D" uid="uid://c3p7h2vn4tqsn" path="res://Assets/Prototyping/circle.png" id="1_gpbri"]
 [ext_resource type="Shader" path="res://Resources/Shaders/CelShader.gdshader" id="2_oj4md"]
 [ext_resource type="Texture2D" uid="uid://buvp2wh82u6kk" path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" id="3_s23yc"]
 [ext_resource type="Texture2D" uid="uid://b66y26pvs7dgk" path="res://Assets/Prototyping/hirescirclenormal.png" id="4_ck8p4"]
 [ext_resource type="Texture2D" uid="uid://d1ntbivh88bv8" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_n.png" id="4_segv1"]
-[ext_resource type="Texture2D" uid="uid://cra5omxkkutma" path="res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/idle.png" id="5_d4okt"]
-[ext_resource type="Texture2D" uid="uid://c08xjrxrmysma" path="res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/idle_n.png" id="6_4f02k"]
-[ext_resource type="Texture2D" uid="uid://dpxqwtx2yp7e7" path="res://Assets/Sprites/Actors/Enemies/Woodeater_Worker/idle_spec.png" id="7_smafd"]
+[ext_resource type="Texture2D" uid="uid://cra5omxkkutma" path="res://Assets/Sprites/Actors/Enemies/Baccamite Worker/idle.png" id="5_d4okt"]
+[ext_resource type="Texture2D" uid="uid://c08xjrxrmysma" path="res://Assets/Sprites/Actors/Enemies/Baccamite Worker/idle_n.png" id="6_4f02k"]
+[ext_resource type="Texture2D" uid="uid://dpxqwtx2yp7e7" path="res://Assets/Sprites/Actors/Enemies/Baccamite Worker/idle_spec.png" id="7_smafd"]
 [ext_resource type="Texture2D" uid="uid://crqdup41rh3am" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_Spec.png" id="7_ucqps"]
+[ext_resource type="Texture2D" uid="uid://ca3jsodgivfih" path="res://Assets/Sprites/Actors/Enemies/Wolfsbane Wasp/idle.png" id="10_h858y"]
+[ext_resource type="Texture2D" uid="uid://co0xb8mti3ue5" path="res://Assets/Sprites/Actors/Rose/fullcape.png" id="11_g77qk"]
+[ext_resource type="Texture2D" uid="uid://c5d5me02xpajm" path="res://Assets/Sprites/Actors/Rose/fullcape_nn.png" id="12_n7dms"]
+
+[sub_resource type="Gradient" id="Gradient_47xka"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8owsf"]
+gradient = SubResource("Gradient_47xka")
+
+[sub_resource type="Environment" id="Environment_yr1md"]
+background_mode = 3
+sdfgi_enabled = true
+glow_normalized = true
+glow_intensity = 1.97
+glow_bloom = 0.68
+glow_blend_mode = 1
+glow_hdr_threshold = 4.0
+fog_light_color = Color(0.25098, 0.270588, 0.298039, 1)
+fog_height = 397.67
+fog_height_density = 0.2952
+volumetric_fog_emission_energy = 93.71
+volumetric_fog_gi_inject = 16.0
+adjustment_color_correction = SubResource("GradientTexture2D_8owsf")
 
 [sub_resource type="Animation" id="Animation_q30np"]
 resource_name = "New Anim"
-length = 6.0
+length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Node2d:rotation")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Node2d/PointLight2d:position")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DirectionalLight2d:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("Camera2d:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 3, 6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 250), Vector2(0, -250), Vector2(0, 250)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Node2d/PointLight2d:position")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5125, 1.0125, 1.5125, 1.9875, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(70, 0), Vector2(35, 0), Vector2(70, 0), Vector2(35, 0), Vector2(70, 0), Vector2(35, 0), Vector2(70, 0), Vector2(35, 0), Vector2(70, 0), Vector2(35, 0), Vector2(70, 0), Vector2(35, 0), Vector2(70, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
 }
 
 [sub_resource type="Animation" id="Animation_kukfp"]
@@ -69,50 +67,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Node2d:rotation")
+tracks/0/path = NodePath("Node2d/PointLight2d:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(35, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DirectionalLight2d:rotation")
+tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera2d:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Node2d/PointLight2d:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(35, 0)]
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mbdq4"]
@@ -135,6 +109,7 @@ uniform float unlitColorControl = 0.5f;
 
 void fragment()
 {
+	
 	vec4 spec = texture(SPECULAR_SHININESS_TEXTURE, UV);
 	vec4 col = texture(TEXTURE, UV);
 	if(spec.g < 0.5f)
@@ -284,6 +259,7 @@ specular_texture = ExtResource("7_smafd")
 shader = ExtResource("2_oj4md")
 shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/shadowSubtract = 0.5
+shader_parameter/theta = null
 shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
 
@@ -291,29 +267,27 @@ shader_parameter/unlitColorMix = null
 diffuse_texture = ExtResource("1_gpbri")
 normal_texture = ExtResource("4_ck8p4")
 
-[node name="TestShader" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5003k"]
+shader = ExtResource("2_oj4md")
+shader_parameter/cameraPosition = null
+shader_parameter/shadowSubtract = null
+shader_parameter/theta = null
+shader_parameter/unlitColorControl = null
+shader_parameter/unlitColorMix = null
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pd7j1"]
+diffuse_texture = ExtResource("11_g77qk")
+normal_texture = ExtResource("12_n7dms")
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(0, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yr1md")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 0
-color = Color(0.5, 0.5, 0.5, 1)
-
-[node name="DirectionalLight2d" type="DirectionalLight2D" parent="."]
-color = Color(0, 0, 0, 1)
-range_item_cull_mask = 1023
-shadow_color = Color(0, 0, 0, 1)
-shadow_item_cull_mask = 1023
-height = 0.5
-
-[node name="Node2d" type="Node2D" parent="."]
-visible = false
-
-[node name="PointLight2d" type="PointLight2D" parent="Node2d"]
-position = Vector2(35, 0)
-rotation = 0.0155062
-color = Color(0, 0, 0, 1)
-range_item_cull_mask = 2
-texture = ExtResource("1_64cxn")
-height = 25.0
+color = Color(0.501961, 0.501961, 0.501961, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -326,16 +300,19 @@ occluder = SubResource("OccluderPolygon2D_qet0y")
 
 [node name="rose sprite" type="Sprite2D" parent="."]
 light_mask = 2
+z_index = 39
 material = SubResource("ShaderMaterial_c84ad")
-z_index = 9
+position = Vector2(-23, -13)
+rotation = -0.000128431
 texture = SubResource("CanvasTexture_ti12f")
 hframes = 5
 
 [node name="baccamite sprite" type="Sprite2D" parent="."]
 light_mask = 2
-material = SubResource("ShaderMaterial_ylchl")
-scale = Vector2(-1, 1)
 z_index = 9
+material = SubResource("ShaderMaterial_ylchl")
+position = Vector2(-38, 5)
+scale = Vector2(-1, 1)
 texture = SubResource("CanvasTexture_t3x1h")
 hframes = 3
 
@@ -346,3 +323,18 @@ texture = SubResource("CanvasTexture_7wuxo")
 
 [node name="Camera2d" type="Camera2D" parent="."]
 current = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = 6.44743
+color = Color(0, 0, 0, 1)
+height = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(68, -23)
+texture = ExtResource("10_h858y")
+hframes = 8
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5003k")
+position = Vector2(-23, -32)
+texture = SubResource("CanvasTexture_pd7j1")

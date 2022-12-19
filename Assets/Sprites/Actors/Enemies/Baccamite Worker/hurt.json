@@ -1,0 +1,20 @@
+{ "frames": [
+   {
+    "filename": "devolved_baccamite_worker #hurt.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 64, "h": 40 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 40 },
+    "sourceSize": { "w": 64, "h": 40 },
+    "duration": 250
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3-beta21-x64",
+  "image": "hurt.png",
+  "format": "RGBA8888",
+  "size": { "w": 64, "h": 40 },
+  "scale": "1"
+ }
+}

@@ -4,7 +4,7 @@ signal set_disabled
 
 var can_unpause := true
 
-func _process(delta):
+func _process(_delta):
 	if not get_tree().paused and Input.is_action_just_pressed("ui_pause"):
 		$PauseMenu/VBoxContainer/CloseMenuButton.grab_focus()
 		get_tree().paused = true

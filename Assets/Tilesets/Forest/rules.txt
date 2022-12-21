@@ -1,1 +1,3 @@
 Rules/Dirt Autotile Rules.tmx
+Rules/Tree Autotile Rules.tmx
+Rules/Grass Autotile Rules.tmx

@@ -72,24 +72,24 @@ script = ExtResource("4")
 
 [node name="GpuParticles2d" type="GPUParticles2D" parent="."]
 position = Vector2(873, 400)
-explosiveness = 1.0
-randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_hxmjr")
 texture = SubResource("GradientTexture2D_xpxx0")
+explosiveness = 1.0
+randomness = 1.0
 
 [node name="GpuParticles2d2" type="GPUParticles2D" parent="."]
 position = Vector2(1027, 392)
-explosiveness = 1.0
-randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_hxmjr")
 texture = SubResource("GradientTexture2D_xpxx0")
+explosiveness = 1.0
+randomness = 1.0
 
 [node name="GpuParticles2d3" type="GPUParticles2D" parent="."]
 position = Vector2(917, 336)
-explosiveness = 1.0
-randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_hxmjr")
 texture = SubResource("GradientTexture2D_xpxx0")
+explosiveness = 1.0
+randomness = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1591, 33)
@@ -121,6 +121,9 @@ height = 0.5
 
 [node name="RosePrefab" parent="." instance=ExtResource("2")]
 position = Vector2(-1499, 25)
+
+[node name="Sprite2d2" parent="RosePrefab/Rose/Utilities/CapeInfluencers/Marker2D" index="0"]
+visible = false
 
 [editable path="RosePrefab"]
 [editable path="RosePrefab/Rose"]

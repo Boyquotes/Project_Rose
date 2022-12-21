@@ -65,7 +65,7 @@ var switch_count := 0
 
 #hotswitch between keyboard and controller input
 #should be able to expand this to detect different types of controllers
-func _in(event):
+func _in(_event):
 	if active_input != InputType.KEYMOUSE and Input.get_connected_joypads().size() == 0:
 		active_input = InputType.KEYMOUSE
 	elif active_input != InputType.GAMEPAD:

@@ -69,7 +69,7 @@ func next_ray(origin, dest, spc):
 		item_trace.clear()
 		return false
 
-func _on_area_entered(hitbox):
+func _on_area_entered(_hitbox):
 	#hitbox = hitbox[0]
 	#if other in valid_targets and not other.disabled:
 	#	other.hits += 1

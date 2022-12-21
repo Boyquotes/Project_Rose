@@ -10,9 +10,9 @@
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.00239384
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.00239384
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_g06uc"]
 diffuse_texture = ExtResource("3_7jvsq")
@@ -23,313 +23,313 @@ specular_texture = ExtResource("5_1fhw0")
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.00239384
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.00239384
 
 [sub_resource type="ShaderMaterial" id="43"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.00239384
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.00239384
 
 [sub_resource type="ShaderMaterial" id="44"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.00266115
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.00266115
 
 [sub_resource type="ShaderMaterial" id="45"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.00266115
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.00266115
 
 [sub_resource type="ShaderMaterial" id="46"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.00266115
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.00266115
 
 [sub_resource type="ShaderMaterial" id="47"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.00266115
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.00266115
 
 [sub_resource type="ShaderMaterial" id="48"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.00266115
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.00266115
 
 [sub_resource type="ShaderMaterial" id="49"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="50"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="51"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="52"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="13"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="14"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="15"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="16"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="17"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="18"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="19"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="20"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="21"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="22"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="23"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="24"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="25"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="26"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="27"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="28"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="29"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="30"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="31"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="32"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="33"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="34"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="35"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = 0.0
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = 0.0
 
 [sub_resource type="ShaderMaterial" id="36"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="37"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="38"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="39"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [sub_resource type="ShaderMaterial" id="40"]
 shader = ExtResource("2_jc3v8")
 shader_parameter/cameraPosition = null
 shader_parameter/shadowSubtract = null
-shader_parameter/theta = -0.000267313
-shader_parameter/unlitColorControl = null
 shader_parameter/unlitColorMix = null
+shader_parameter/unlitColorControl = null
+shader_parameter/theta = -0.000267313
 
 [node name="CapeSkeleton" type="Node2D"]
 

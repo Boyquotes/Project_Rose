@@ -15,6 +15,7 @@ extends Node2D
 
 var wind_node
 var influencers_node
+var influencers : Dictionary
 var phys_obj_node
 var targets_node : Node2D
 var skeleton_node
@@ -28,7 +29,7 @@ var top_cloth : Array
 var mouse_influence_size := 5.0
 # minimum distance for tearing when user is right clicking
 var mouse_tear_size := 1.0
-var mouse_influence_scalar := 1.0
+var mouse_influence_scalar := 50.0
 
 var resting_distance := 0.0
 var stiffnesses := .75
@@ -56,7 +57,8 @@ func _ready():
 		phys_obj_node = get_node(phys_obj_path)
 		
 		influencers_node = get_node(influencers_path)
-		
+		for influencer in influencers_node.get_children():
+			influencers[influencer] = influencer.global_position
 		targets_node = get_node(targets_path)
 		
 		skeleton_node = get_node(skeleton_path).get_child(0)
@@ -213,7 +215,7 @@ class SkeletonPointMass:
 	var xplace := 0
 	var yplace := 0
 	
-	var mass := .01
+	var mass := .5
 	var damping := .91
 	
 	# An Array for links, so we can have as many links as we want to this SkeletonPointMass
@@ -268,21 +270,26 @@ class SkeletonPointMass:
 	func update_interactions(this : SkeletonClothSim):
 		# this is where our interaction comes in.
 		for influencer in this.influencers_node.get_children():
-			if influencer.moved:
+			if influencer.visible:
 				var inf_pos = this.to_local(influencer.global_position)
-				var inf_prev_pos = this.to_local(influencer.prev_glob_position)
+				var inf_prev_pos = this.to_local(this.influencers[influencer])
 				var distance_squared = dist_line_to_point_sq(inf_prev_pos, inf_pos, pos)
 				if distance_squared < this.mouse_influence_size:
+					print("!!!")
 					# remember mouseInfluenceSize was squared in setup()
 					# To change the velocity of our SkeletonPointMass, we subtract that change from the lastPosition.
 					# When the physics gets integrated (see updatePhysics()), the change is calculated
 					# Here, the velocity is set equal to the cursor's velocity
-					last_x = pos.x - (inf_pos.x - inf_prev_pos.x) * this.mouse_influence_scalar
-					last_y = pos.y - (inf_pos.y - inf_prev_pos.y) * this.mouse_influence_scalar
+					print(last_x)
+					last_x = pos.x + 1000#- (inf_pos.x - inf_prev_pos.x) * this.mouse_influence_scalar
+					last_y = pos.y + 1000#- (inf_pos.y - inf_prev_pos.y) * this.mouse_influence_scalar
+					print(last_x)
 				else:  
+					pass
 				# if the right mouse button is clicking, we tear the cloth by removing links
-					if distance_squared < this.mouse_tear_size:
-						links.clear()
+					#if distance_squared < this.mouse_tear_size:
+					#	links.clear()
+				this.influencers[influencer] = influencer.global_position
 	
 	# Constraints 
 	func solve_constraints(this : SkeletonClothSim):

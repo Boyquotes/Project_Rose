@@ -1,7 +1,8 @@
+Node2D
+DirectionalLight2D
 Marker2D
 CollisionShape2D
 StaticBody2D
-DirectionalLight2D
 Bone2D
 Skeleton2D
 Polygon2D
@@ -24,10 +25,8 @@ RichTextLabel
 TextEdit
 GPUParticles2D
 RayCast2D
-Node2D
 Timer
 SubViewportContainer
 SubViewport
 PointLight2D
 CanvasModulate
-Camera2D

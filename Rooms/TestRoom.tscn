@@ -31,7 +31,6 @@ gradient = SubResource("Gradient_n6abk")
 size = Vector2(20, 47)
 
 [node name="TestRoom" type="Node2D"]
-position = Vector2(0, -314)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 0
@@ -120,7 +119,6 @@ color = Color(0, 0, 0, 1)
 height = 0.5
 
 [node name="RosePrefab" parent="." instance=ExtResource("2")]
-position = Vector2(-1499, 25)
 
 [node name="Sprite2d2" parent="RosePrefab/Rose/Utilities/CapeInfluencers/Marker2D" index="0"]
 visible = false

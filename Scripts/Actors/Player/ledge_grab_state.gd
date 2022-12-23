@@ -66,8 +66,24 @@ func _execute(_delta):
 	if ledge_cast.is_colliding() and not going_up:
 		exit_ground_or_air()
 	if going_up:
-		var gridset_idx = int((int(ledge_cast.global_position.y) + sign(ledge_cast.global_position.y)*12) / 32)
-		var gridset_actual = (gridset_idx * 32) - sign(gridset_idx)*25
+		var collision_global = ledge_cast.get_collision_point()
+		var map : TileMap = ledge_cast.get_collider()
+		var cell_coords = map.local_to_map(collision_global)
+		var cell_loc = map.map_to_local(cell_coords)
+		var gridset_idx : int
+		var gridset_actual : float
+		var cast_y = ledge_cast.global_position.y
+		gridset_idx = roundi(cast_y / 32.0)
+		if sign(cast_y) > 0:
+			if cast_y >= cell_loc.y:
+				gridset_idx += 1 * sign(cast_y)
+			gridset_actual = (gridset_idx * 32) + sign(gridset_idx)*19
+			if gridset_idx == 0:
+				gridset_actual += 19
+		else:
+			if cast_y > cell_loc.y:
+				gridset_idx += 1 * sign(cast_y)
+			gridset_actual = (gridset_idx * 32) - sign(gridset_idx)*19
 		host.global_position.y = gridset_actual
 		going_up = false
 

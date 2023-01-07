@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dfkpd1aynirpq" path="res://Assets/Primitive Tiles/DarkGrey/DarkGrey_Box32x32.png" id="1"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t2jh8"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e1d5t"]
 resource_name = "asda"
 texture = ExtResource("1")
 texture_region_size = Vector2i(32, 32)
@@ -16,4 +16,4 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1024
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_t2jh8")
+sources/0 = SubResource("TileSetAtlasSource_e1d5t")

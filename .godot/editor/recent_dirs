@@ -1,3 +1,7 @@
+res://Scripts/Resources
+res://Resources/Shaders
+res://Assets/Lights
+res://Assets/Tilesets/Forest
 res://
 res://Assets/Sprites/Actors/Rose
 res://Assets/Sprites/Actors
@@ -6,10 +10,8 @@ res://Scripts/GUI
 res://Game Objects/GUI
 res://Scripts/Globals
 res://Scripts/Actions/Player Actions/Rose
-res://Assets/Lights
 res://Game Objects/Actions/Player Actions/Rose
 res://Scripts/Actors/Player
 res://Assets/Sprites/Actors/Rose/Movement
 res://Game Objects/Testing
-res://Resources/Shaders
 res://Resources/Tilesets

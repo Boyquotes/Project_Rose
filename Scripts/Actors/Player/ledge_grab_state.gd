@@ -74,9 +74,7 @@ func _execute(_delta):
 		var gridset_actual : float
 		var cast_y = ledge_cast.global_position.y
 		gridset_idx = roundi(cast_y / 32.0)
-		if sign(cast_y) > 0:
-			if cast_y >= cell_loc.y:
-				gridset_idx += 1 * sign(cast_y)
+		if sign(cast_y) >= 0:
 			gridset_actual = (gridset_idx * 32) + sign(gridset_idx)*19
 			if gridset_idx == 0:
 				gridset_actual += 19

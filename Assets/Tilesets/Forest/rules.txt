@@ -5,3 +5,6 @@
 
 Rules/Dirt Autotile Rules32.tmx
 Rules/Grass Autotile Rules32.tmx
+//Rules/Dirt Normals Autotile Rules32.tmx
+Rules/Dirt Spec Autotile Rules32.tmx
+//Rules/Grass Normals Autotile Rules32.tmx

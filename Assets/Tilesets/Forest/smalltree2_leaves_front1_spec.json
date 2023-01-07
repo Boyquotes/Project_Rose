@@ -1,0 +1,20 @@
+{ "frames": [
+   {
+    "filename": "smalltree2 (leaves_front1_spec).aseprite",
+    "frame": { "x": 0, "y": 0, "w": 513, "h": 439 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 513, "h": 439 },
+    "sourceSize": { "w": 513, "h": 439 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3-beta21-x64",
+  "image": "smalltree2_leaves_front1_spec.png",
+  "format": "RGBA8888",
+  "size": { "w": 513, "h": 439 },
+  "scale": "1"
+ }
+}

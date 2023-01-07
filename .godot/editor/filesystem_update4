@@ -1,10 +1,16 @@
-res://Rooms/Forest/Forest.tscn
+res://Rooms/TestRoom.tscn
 res://Resources/Tilesets/PrimititveTileset.tres
 res://Resources/Tilesets/Ledges.tres
-res://Rooms/TestRoom.tscn
+res://Resources/Shaders/windCelShader.gdshader
+res://Resources/Shaders/wind.gdshader
+res://Resources/Shaders/wind.tres
 res://Game Objects/Actors/Players/Rose/RosePrefab.tscn
 res://Game Objects/Testing/CapeSkeletonController.tscn
 res://Game Objects/Testing/CapeSkeleton.tscn
 res://Game Objects/Actors/Players/Rose/Rose.tscn
+res://Rooms/Forest/Forest.tscn
+res://Scripts/Actors/Player/player.gd
 res://Resources/Shaders/CelShader.gdshader
-res://Scripts/Actors/Player/ledge_grab_state.gd
+res://Scripts/Resources/MultiplyModulates.gd
+res://Resources/Shaders/MultCelShader.gdshader
+res://Scripts/Resources/set_blend.gd

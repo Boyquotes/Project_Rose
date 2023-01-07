@@ -1,335 +1,67 @@
-[gd_scene load_steps=47 format=3 uid="uid://op6vsappqqjn"]
+[gd_scene load_steps=11 format=3 uid="uid://op6vsappqqjn"]
 
-[ext_resource type="Shader" path="res://Resources/Shaders/CelShader.gdshader" id="2_jc3v8"]
+[ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="1_ya7ak"]
 [ext_resource type="Texture2D" uid="uid://551l4r4pporx" path="res://Assets/Sprites/Actors/Rose/fullcape_s.png" id="3_7jvsq"]
 [ext_resource type="Texture2D" uid="uid://mem3emjqhnom" path="res://Assets/Sprites/Actors/Rose/fullcape_n.png" id="4_mu81x"]
 [ext_resource type="Texture2D" uid="uid://bnuhds50otb7e" path="res://Assets/Sprites/Actors/Rose/fullcape_spec.png" id="5_1fhw0"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/cape_rendering/cape_rendering.gd" id="6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o0aky"]
-shader = ExtResource("2_jc3v8")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0xon"]
+shader = ExtResource("1_ya7ak")
 shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
+shader_parameter/lightColorFac = 0.1
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 0.5
+shader_parameter/unlitColorMix = Color(0.12549, 0.054902, 0.0627451, 1)
+shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = -0.00239384
+shader_parameter/darkArea = Color(1, 0, 0, 1)
+shader_parameter/segmentation = 1.0
+shader_parameter/aaa = null
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_g06uc"]
 diffuse_texture = ExtResource("3_7jvsq")
 normal_texture = ExtResource("4_mu81x")
 specular_texture = ExtResource("5_1fhw0")
 
-[sub_resource type="ShaderMaterial" id="42"]
-shader = ExtResource("2_jc3v8")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3elcx"]
+shader = ExtResource("1_ya7ak")
 shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
+shader_parameter/lightColorFac = 0.1
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 0.5
+shader_parameter/unlitColorMix = Color(0.12549, 0.054902, 0.0627451, 1)
+shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = -0.00239384
+shader_parameter/darkArea = Color(1, 0, 0, 1)
+shader_parameter/segmentation = 1.0
+shader_parameter/aaa = null
 
-[sub_resource type="ShaderMaterial" id="43"]
-shader = ExtResource("2_jc3v8")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fm4e"]
+shader = ExtResource("1_ya7ak")
 shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
+shader_parameter/lightColorFac = 0.1
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 0.5
+shader_parameter/unlitColorMix = Color(0.12549, 0.054902, 0.0627451, 1)
+shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = -0.00239384
+shader_parameter/darkArea = Color(1, 0, 0, 1)
+shader_parameter/segmentation = 1.0
+shader_parameter/aaa = null
 
-[sub_resource type="ShaderMaterial" id="44"]
-shader = ExtResource("2_jc3v8")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rpmlj"]
+shader = ExtResource("1_ya7ak")
 shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.00266115
-
-[sub_resource type="ShaderMaterial" id="45"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.00266115
-
-[sub_resource type="ShaderMaterial" id="46"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.00266115
-
-[sub_resource type="ShaderMaterial" id="47"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.00266115
-
-[sub_resource type="ShaderMaterial" id="48"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.00266115
-
-[sub_resource type="ShaderMaterial" id="49"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="50"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="51"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="52"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
+shader_parameter/lightColorFac = 0.1
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 0.5
+shader_parameter/unlitColorMix = Color(0.12549, 0.054902, 0.0627451, 1)
+shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="13"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="14"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="15"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="16"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="17"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="18"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="19"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="20"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="21"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="22"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="23"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="24"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="25"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="26"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="27"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="28"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="29"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="30"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="31"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="32"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="33"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="34"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="35"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = 0.0
-
-[sub_resource type="ShaderMaterial" id="36"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="37"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="38"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="39"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
-
-[sub_resource type="ShaderMaterial" id="40"]
-shader = ExtResource("2_jc3v8")
-shader_parameter/cameraPosition = null
-shader_parameter/shadowSubtract = null
-shader_parameter/unlitColorMix = null
-shader_parameter/unlitColorControl = null
-shader_parameter/theta = -0.000267313
+shader_parameter/darkArea = Color(1, 0, 0, 1)
+shader_parameter/segmentation = 1.0
+shader_parameter/aaa = null
 
 [node name="CapeSkeleton" type="Node2D"]
 
@@ -552,7 +284,7 @@ bone_angle = 0.0
 position = Vector2(-9, 0)
 
 [node name="SegR1C1" type="Polygon2D" parent="Polygons"]
-material = SubResource("ShaderMaterial_o0aky")
+material = SubResource("ShaderMaterial_w0xon")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(0, 0, 6, 0, 6, 3, 0, 3)
@@ -564,7 +296,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C1")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C1")
 
 [node name="SegR2C1" type="Polygon2D" parent="Polygons"]
-material = SubResource("42")
+material = SubResource("ShaderMaterial_3elcx")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(0, 3, 0, 6, 6, 6, 6, 3)
@@ -576,7 +308,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C1/SegR2C1")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C1")
 
 [node name="SegR3C1" type="Polygon2D" parent="Polygons"]
-material = SubResource("43")
+material = SubResource("ShaderMaterial_4fm4e")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(0, 6, 6, 6, 6, 9, 0, 9)
@@ -588,7 +320,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C1/SegR2C1/SegR3C1")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C1")
 
 [node name="SegR4C1" type="Polygon2D" parent="Polygons"]
-material = SubResource("44")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(0, 9, 6, 9, 6, 12, 0, 12)
@@ -600,7 +332,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C1/SegR2C1/SegR3C1/SegR4C1")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C1")
 
 [node name="SegR5C1" type="Polygon2D" parent="Polygons"]
-material = SubResource("45")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(0, 12, 6, 12, 6, 15, 0, 15)
@@ -612,7 +344,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C1/SegR2C1/SegR3C1/SegR4C1/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C1")
 
 [node name="SegR6C1" type="Polygon2D" parent="Polygons"]
-material = SubResource("46")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(0, 15, 6, 15, 6, 18, 0, 18)
@@ -624,7 +356,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C1/SegR2C1/SegR3C1/SegR4C1/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C1")
 
 [node name="SegR7C1" type="Polygon2D" parent="Polygons"]
-material = SubResource("47")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(0, 18, 6, 18, 6, 21, 0, 21)
@@ -636,7 +368,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C1/SegR2C1/SegR3C1/SegR4C1/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C1")
 
 [node name="SegR8C1" type="Polygon2D" parent="Polygons"]
-material = SubResource("48")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(0, 21, 6, 21, 6, 24, 0, 24)
@@ -648,7 +380,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C1/SegR2C1/SegR3C1/SegR4C1/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C1")
 
 [node name="SegR1C2" type="Polygon2D" parent="Polygons"]
-material = SubResource("49")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(3, 0, 9, 0, 9, 3, 3, 3)
@@ -660,7 +392,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C2")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C2")
 
 [node name="SegR2C2" type="Polygon2D" parent="Polygons"]
-material = SubResource("50")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(3, 3, 9, 3, 9, 6, 3, 6)
@@ -672,7 +404,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C2/SegR2C2")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C2")
 
 [node name="SegR3C2" type="Polygon2D" parent="Polygons"]
-material = SubResource("51")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(3, 6, 9, 6, 9, 9, 3, 9)
@@ -684,7 +416,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C2/SegR2C2/SegR3C2")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C2")
 
 [node name="SegR4C2" type="Polygon2D" parent="Polygons"]
-material = SubResource("52")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(3, 9, 9, 9, 9, 12, 3, 12)
@@ -696,7 +428,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C2/SegR2C2/SegR3C2/SegR4C2")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C2")
 
 [node name="SegR5C2" type="Polygon2D" parent="Polygons"]
-material = SubResource("13")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(3, 12, 9, 12, 9, 15, 3, 15)
@@ -708,7 +440,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C2/SegR2C2/SegR3C2/SegR4C2/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C2")
 
 [node name="SegR6C2" type="Polygon2D" parent="Polygons"]
-material = SubResource("14")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(3, 15, 9, 15, 9, 18, 3, 18)
@@ -720,7 +452,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C2/SegR2C2/SegR3C2/SegR4C2/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C2")
 
 [node name="SegR7C2" type="Polygon2D" parent="Polygons"]
-material = SubResource("15")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(3, 18, 9, 18, 9, 21, 3, 21)
@@ -732,7 +464,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C2/SegR2C2/SegR3C2/SegR4C2/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C2")
 
 [node name="SegR8C2" type="Polygon2D" parent="Polygons"]
-material = SubResource("16")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(3, 21, 9, 21, 9, 24, 3, 24)
@@ -744,7 +476,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C2/SegR2C2/SegR3C2/SegR4C2/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C2")
 
 [node name="SegR1C3" type="Polygon2D" parent="Polygons"]
-material = SubResource("17")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(6, 0, 12, 0, 12, 3, 6, 3)
@@ -756,7 +488,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C3")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C3")
 
 [node name="SegR2C3" type="Polygon2D" parent="Polygons"]
-material = SubResource("18")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(6, 3, 12, 3, 12, 6, 6, 6)
@@ -768,7 +500,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C3/SegR2C3")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C3")
 
 [node name="SegR3C3" type="Polygon2D" parent="Polygons"]
-material = SubResource("19")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(6, 6, 12, 6, 12, 9, 6, 9)
@@ -780,7 +512,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C3/SegR2C3/SegR3C3")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C3")
 
 [node name="SegR4C3" type="Polygon2D" parent="Polygons"]
-material = SubResource("20")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(6, 9, 12, 9, 12, 12, 6, 12)
@@ -792,7 +524,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C3/SegR2C3/SegR3C3/SegR4C3")
 z_bone_path = NodePath("../../Skeleton2D/SegR1C3")
 
 [node name="SegR5C3" type="Polygon2D" parent="Polygons"]
-material = SubResource("21")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(6, 12, 12, 12, 12, 15, 6, 15)
@@ -804,7 +536,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C3/SegR2C3/SegR3C3/SegR4C3/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C3")
 
 [node name="SegR6C3" type="Polygon2D" parent="Polygons"]
-material = SubResource("22")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(6, 15, 12, 15, 12, 18, 6, 18)
@@ -816,7 +548,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C3/SegR2C3/SegR3C3/SegR4C3/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C3")
 
 [node name="SegR7C3" type="Polygon2D" parent="Polygons"]
-material = SubResource("23")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(6, 18, 12, 18, 12, 21, 6, 21)
@@ -828,7 +560,7 @@ rot_bone_path = NodePath("../../Skeleton2D/SegR1C3/SegR2C3/SegR3C3/SegR4C3/SegR5
 z_bone_path = NodePath("../../Skeleton2D/SegR1C3")
 
 [node name="SegR8C3" type="Polygon2D" parent="Polygons"]
-material = SubResource("24")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(6, 21, 12, 21, 12, 24, 6, 24)
@@ -841,7 +573,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C3")
 
 [node name="SegR1C4" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("25")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(9, 0, 15, 0, 15, 3, 9, 3)
@@ -854,7 +586,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C4")
 
 [node name="SegR2C4" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("26")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(9, 3, 15, 3, 15, 6, 9, 6)
@@ -867,7 +599,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C4")
 
 [node name="SegR3C4" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("27")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(9, 6, 15, 6, 15, 9, 9, 9)
@@ -880,7 +612,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C4")
 
 [node name="SegR4C4" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("28")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(9, 9, 15, 9, 15, 12, 9, 12)
@@ -893,7 +625,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C4")
 
 [node name="SegR5C4" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("29")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(9, 12, 15, 12, 15, 15, 9, 15)
@@ -906,7 +638,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C4")
 
 [node name="SegR6C4" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("30")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(9, 15, 15, 15, 15, 18, 9, 18)
@@ -919,7 +651,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C4")
 
 [node name="SegR7C4" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("31")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(9, 18, 15, 18, 15, 21, 9, 21)
@@ -932,7 +664,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C4")
 
 [node name="SegR8C4" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("32")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(9, 21, 15, 21, 15, 24, 9, 24)
@@ -945,7 +677,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C4")
 
 [node name="SegR1C5" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("33")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(12, 0, 18, 0, 18, 3, 12, 3)
@@ -958,7 +690,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C5")
 
 [node name="SegR2C5" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("34")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(12, 3, 18, 3, 18, 6, 12, 6)
@@ -971,7 +703,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C5")
 
 [node name="SegR3C5" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("35")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(12, 6, 18, 6, 18, 9, 12, 9)
@@ -984,7 +716,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C5")
 
 [node name="SegR4C5" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("36")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(12, 9, 18, 9, 18, 12, 12, 12)
@@ -997,7 +729,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C5")
 
 [node name="SegR5C5" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("37")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(12, 12, 18, 12, 18, 15, 12, 15)
@@ -1010,7 +742,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C5")
 
 [node name="SegR6C5" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("38")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(12, 15, 18, 15, 18, 18, 12, 18)
@@ -1023,7 +755,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C5")
 
 [node name="SegR7C5" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("39")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(12, 18, 18, 18, 18, 21, 12, 21)
@@ -1036,7 +768,7 @@ z_bone_path = NodePath("../../Skeleton2D/SegR1C5")
 
 [node name="SegR8C5" type="Polygon2D" parent="Polygons"]
 z_index = -1000
-material = SubResource("40")
+material = SubResource("ShaderMaterial_rpmlj")
 texture = SubResource("CanvasTexture_g06uc")
 skeleton = NodePath("../../Skeleton2D")
 invert_border = 25.0

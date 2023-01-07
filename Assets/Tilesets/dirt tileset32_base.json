@@ -1,0 +1,20 @@
+{ "frames": [
+   {
+    "filename": "dirt tileset32 (base).aseprite",
+    "frame": { "x": 0, "y": 0, "w": 2112, "h": 992 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 2112, "h": 992 },
+    "sourceSize": { "w": 2112, "h": 992 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3-beta21-x64",
+  "image": "dirt tileset32_base.png",
+  "format": "RGBA8888",
+  "size": { "w": 2112, "h": 992 },
+  "scale": "1"
+ }
+}

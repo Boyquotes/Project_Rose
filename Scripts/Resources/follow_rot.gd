@@ -2,7 +2,7 @@
 extends Node2D
 
 @export var target_path : NodePath
-var target : Node2D
+var target : Node3D
 
 func _ready():
 	if Engine.is_editor_hint() or not Engine.is_editor_hint():
@@ -10,4 +10,4 @@ func _ready():
 
 func _process(delta):
 	if Engine.is_editor_hint() or not Engine.is_editor_hint():
-		rotation = target.rotation
+		rotation = atan2(target.rotation.y, -target.rotation.x)

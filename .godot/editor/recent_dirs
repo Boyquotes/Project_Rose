@@ -1,8 +1,9 @@
-res://Scripts/Resources
-res://Resources/Shaders
-res://Assets/Lights
+res://Rooms/Forest
 res://Assets/Tilesets/Forest
 res://
+res://Resources/Shaders
+res://Scripts/Resources
+res://Assets/Lights
 res://Assets/Sprites/Actors/Rose
 res://Assets/Sprites/Actors
 res://Scripts

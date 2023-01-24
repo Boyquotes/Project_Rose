@@ -73,7 +73,6 @@ shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(1, 0, 0, 1)
 shader_parameter/segmentation = 1.0
-shader_parameter/aaa = null
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_acfie"]
 diffuse_texture = ExtResource("2")

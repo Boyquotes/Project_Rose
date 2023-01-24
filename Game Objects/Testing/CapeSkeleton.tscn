@@ -17,7 +17,6 @@ shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = -0.00239384
 shader_parameter/darkArea = Color(1, 0, 0, 1)
 shader_parameter/segmentation = 1.0
-shader_parameter/aaa = null
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_g06uc"]
 diffuse_texture = ExtResource("3_7jvsq")
@@ -35,7 +34,6 @@ shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = -0.00239384
 shader_parameter/darkArea = Color(1, 0, 0, 1)
 shader_parameter/segmentation = 1.0
-shader_parameter/aaa = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4fm4e"]
 shader = ExtResource("1_ya7ak")
@@ -48,7 +46,6 @@ shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = -0.00239384
 shader_parameter/darkArea = Color(1, 0, 0, 1)
 shader_parameter/segmentation = 1.0
-shader_parameter/aaa = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rpmlj"]
 shader = ExtResource("1_ya7ak")
@@ -61,7 +58,6 @@ shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = -0.000267313
 shader_parameter/darkArea = Color(1, 0, 0, 1)
 shader_parameter/segmentation = 1.0
-shader_parameter/aaa = null
 
 [node name="CapeSkeleton" type="Node2D"]
 

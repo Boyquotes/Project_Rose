@@ -101,5 +101,5 @@ void light() {
     if(d < 0.1) {
 		LIGHT = unlitColor;
     }
-	//SHADOW_MODULATE = vec4(edgeColor);
+	SHADOW_MODULATE = unlitColor;
 }

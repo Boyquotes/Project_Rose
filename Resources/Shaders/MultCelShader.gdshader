@@ -10,11 +10,7 @@ uniform float unlitColorControl = 0.5f;
 uniform float theta = 0.0;
 uniform vec4 darkArea : source_color = vec4(0.0f, 0.0f, 1.0f, 1.0f);
 uniform float segmentation = 1.0f;
-uniform vec4 aaa : source_color;
-void fragment()
-{
-	NORMAL = NORMAL;
-}
+
 
 void light() {
     // Calculate the real position of this pixel in 3d space, taking into account

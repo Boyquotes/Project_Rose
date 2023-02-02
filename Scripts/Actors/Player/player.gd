@@ -8,6 +8,7 @@ signal flora_changed
 signal focus_changed
 signal resource_3_changed
 signal item_changed
+signal footstep
 
 # TODO: move to globals perhaps
 enum InputType {GAMEPAD, KEYMOUSE}
@@ -226,10 +227,13 @@ func change_to_grounded_anim(animator : AnimationPlayer, last_queued_action):
 	if "_Down" in grounded_anim:
 		var down_idx = grounded_anim.find("_Down")
 		grounded_anim = grounded_anim.substr(0, down_idx) + grounded_anim.substr(down_idx + 5)
+	if frame > 0.1:
+		grounded_anim += "_Grounded"
 	if animator.has_animation(grounded_anim):
-		animator.stop(true)
+		#animator.stop(false)
 		animator.play(grounded_anim)
 		animator.seek(frame, true)
+		print(animator.current_animation_position)
 	else:
 		print(grounded_anim)
 

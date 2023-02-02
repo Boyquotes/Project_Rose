@@ -1,10 +1,14 @@
-res://Rooms/Forest
+res://Scripts/Actors
+res://Game Objects/Testing
 res://Assets/Tilesets/Forest
-res://
+res://Rooms/Forest
 res://Resources/Shaders
-res://Scripts/Resources
-res://Assets/Lights
+res://Assets/Sprites/Actors/Rose/Effects
 res://Assets/Sprites/Actors/Rose
+res://Assets/Lights
+res://
+res://prototype
+res://Scripts/Resources
 res://Assets/Sprites/Actors
 res://Scripts
 res://Scripts/GUI
@@ -14,5 +18,4 @@ res://Scripts/Actions/Player Actions/Rose
 res://Game Objects/Actions/Player Actions/Rose
 res://Scripts/Actors/Player
 res://Assets/Sprites/Actors/Rose/Movement
-res://Game Objects/Testing
 res://Resources/Tilesets

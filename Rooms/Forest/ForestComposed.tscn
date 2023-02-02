@@ -1,0 +1,166 @@
+[gd_scene load_steps=22 format=3 uid="uid://dmdi1fso4lh8h"]
+
+[ext_resource type="PackedScene" uid="uid://dfimah88tvf7h" path="res://Rooms/Forest/ForestBG.tscn" id="1_wg7i5"]
+[ext_resource type="Script" path="res://Scripts/Resources/follow_player_camera.gd" id="2_435qw"]
+[ext_resource type="PackedScene" uid="uid://qykeyuysrcdh" path="res://Rooms/Forest/ForestBGHeightMap.tscn" id="3_0ktpu"]
+[ext_resource type="PackedScene" uid="uid://cx036wqth7ab3" path="res://Rooms/Forest/ForestBGNormalMap.tscn" id="4_ircky"]
+[ext_resource type="PackedScene" uid="uid://bx8p6y35u87xi" path="res://Rooms/Forest/ForestFG.tscn" id="5_gqlvt"]
+[ext_resource type="Shader" path="res://Resources/Shaders/Faux3DShadow.gdshader" id="6_srck8"]
+[ext_resource type="Shader" path="res://prototype/Forest_faux3D.gdshader" id="7_to2ag"]
+[ext_resource type="Script" path="res://Scripts/Resources/follow_rot.gd" id="8_n4mq7"]
+[ext_resource type="Script" path="res://Scripts/Resources/follow_node.gd" id="9_7ww8g"]
+[ext_resource type="Texture2D" uid="uid://dl8q2cotny0ij" path="res://icon.png" id="10_ji0sd"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ujkgo"]
+viewport_path = NodePath("BGViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y3hcw"]
+viewport_path = NodePath("BGViewportHeightMap")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vhxvc"]
+viewport_path = NodePath("BGViewportNormalMap")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o5t5h"]
+resource_local_to_scene = true
+shader = ExtResource("6_srck8")
+shader_parameter/depthMod = 0.03
+shader_parameter/depthRemap = 0.1
+shader_parameter/depthBrightness = 0.0
+shader_parameter/shadeMix = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/bg = SubResource("ViewportTexture_ujkgo")
+shader_parameter/bg_height = SubResource("ViewportTexture_y3hcw")
+shader_parameter/bg_normal = SubResource("ViewportTexture_vhxvc")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_s83n8"]
+viewport_path = NodePath("FGViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_he11j"]
+shader = ExtResource("7_to2ag")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p73d3"]
+viewport_path = NodePath("FGViewport")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r16ub"]
+light_mode = 1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_e30ub"]
+viewport_path = NodePath("BGViewportNormalMap")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2l48x"]
+polygon = PackedVector2Array(-488, 888, -528, 888, -592, 888, -592, 920, -976, 920, -976, 1496, -16, 1496, -16, 1368, 112, 1368, 112, 1304, -80, 1304, -80, 1432, -912, 1432, -912, 984, -656, 984, -656, 1048, -592, 1048, -592, 984, -528, 984, -528, 920, -488, 920)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ghuxy"]
+polygon = PackedVector2Array(-400, 920, -400, 984, -464, 984, -464, 1112, -528, 1112, -592, 1112, -592, 1080, -656, 1080, -656, 1144, -568, 1144, -568, 1336, -432, 1336, -432, 1272, -304, 1272, -304, 1336, -176, 1336, -176, 1240, -176, 984, 304, 984, 304, 952, -176, 952, -336, 984)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BGViewport" type="SubViewport" parent="."]
+canvas_item_default_texture_filter = 0
+size = Vector2i(960, 540)
+
+[node name="ForestBG" parent="BGViewport" instance=ExtResource("1_wg7i5")]
+
+[node name="Camera2D" type="Camera2D" parent="BGViewport" node_paths=PackedStringArray("playerCam")]
+current = true
+position_smoothing_speed = 10.0
+script = ExtResource("2_435qw")
+playerCam = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose/PlayerCamera")
+
+[node name="BGViewportHeightMap" type="SubViewport" parent="."]
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(960, 540)
+
+[node name="ForestBGHeightMap" parent="BGViewportHeightMap" instance=ExtResource("3_0ktpu")]
+
+[node name="Camera2D" type="Camera2D" parent="BGViewportHeightMap" node_paths=PackedStringArray("playerCam")]
+current = true
+position_smoothing_speed = 10.0
+script = ExtResource("2_435qw")
+playerCam = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose/PlayerCamera")
+
+[node name="BGViewportNormalMap" type="SubViewport" parent="."]
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(960, 540)
+
+[node name="ForestBGNormalMap" parent="BGViewportNormalMap" instance=ExtResource("4_ircky")]
+
+[node name="Camera2D" type="Camera2D" parent="BGViewportNormalMap" node_paths=PackedStringArray("playerCam")]
+current = true
+position_smoothing_speed = 10.0
+script = ExtResource("2_435qw")
+playerCam = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose/PlayerCamera")
+
+[node name="FGViewport" type="SubViewport" parent="."]
+canvas_item_default_texture_filter = 0
+size = Vector2i(960, 540)
+
+[node name="ForestFG" parent="FGViewport" instance=ExtResource("5_gqlvt")]
+
+[node name="CanvasModulate5" parent="FGViewport/ForestFG/midground2" index="0"]
+color = Color(0.75098, 0.75098, 0.75098, 1)
+
+[node name="CanvasModulate5" parent="FGViewport/ForestFG/foreground/ParallaxLayer4" index="0"]
+color = Color(0.626471, 0.626471, 0.626471, 1)
+
+[node name="BG_Shadow" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_o5t5h")
+position = Vector2(240, 136)
+texture = SubResource("ViewportTexture_s83n8")
+region_rect = Rect2(-244.005, -136.709, 1469.63, 994.945)
+
+[node name="FG" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_he11j")
+position = Vector2(240, 136)
+texture = SubResource("ViewportTexture_p73d3")
+region_rect = Rect2(-244.005, -136.709, 1469.63, 994.945)
+
+[node name="FG2" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_r16ub")
+position = Vector2(240, 136)
+texture = SubResource("ViewportTexture_e30ub")
+region_rect = Rect2(-244.005, -136.709, 1469.63, 994.945)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." node_paths=PackedStringArray("targetLight")]
+rotation = 0.436332
+color = Color(0.0470588, 0, 0.0588235, 1)
+energy = 0.5
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(1, 1, 1, 0)
+script = ExtResource("8_n4mq7")
+targetLight = NodePath("../FGViewport/ForestFG/player/playerLights")
+
+[node name="occ" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(2632, -744)
+script = ExtResource("9_7ww8g")
+target = NodePath("../FGViewport/ForestFG/player/RosePrefab/Rose/PlayerCamera")
+
+[node name="Sprite2D" type="Sprite2D" parent="occ"]
+visible = false
+position = Vector2(-496, 888)
+texture = ExtResource("10_ji0sd")
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="occ"]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(-3, -2)
+occluder = SubResource("OccluderPolygon2D_2l48x")
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="occ"]
+light_mask = 0
+visibility_layer = 0
+occluder = SubResource("OccluderPolygon2D_ghuxy")
+
+[editable path="BGViewport/ForestBG"]
+[editable path="BGViewport/ForestBG/background/back1/Node2D/NormalSphere"]
+[editable path="BGViewportHeightMap/ForestBGHeightMap"]
+[editable path="BGViewportHeightMap/ForestBGHeightMap/background/back1/Node2D/NormalSphere"]
+[editable path="BGViewportNormalMap/ForestBGNormalMap"]
+[editable path="FGViewport/ForestFG"]
+[editable path="FGViewport/ForestFG/player/RosePrefab"]
+[editable path="FGViewport/ForestFG/player/RosePrefab/Rose"]

@@ -1,0 +1,20 @@
+{ "frames": [
+   {
+    "filename": "bigtree (back1_h).ase",
+    "frame": { "x": 0, "y": 0, "w": 656, "h": 640 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 656, "h": 640 },
+    "sourceSize": { "w": 656, "h": 640 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3-beta21-x64",
+  "image": "bigtree_back1_h.png",
+  "format": "RGBA8888",
+  "size": { "w": 656, "h": 640 },
+  "scale": "1"
+ }
+}

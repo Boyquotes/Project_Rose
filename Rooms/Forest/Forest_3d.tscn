@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://dyxm4na0vc26n"]
+[gd_scene load_steps=114 format=3 uid="uid://dyxm4na0vc26n"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/MultiplyModulates.gd" id="1_4i0tg"]
 [ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="2_upn2y"]
@@ -21,19 +21,16 @@
 [ext_resource type="Texture2D" uid="uid://ds2gv8pgk3cm5" path="res://Assets/Tilesets/Forest/bigtree_back2_n.png" id="19_hjnku"]
 [ext_resource type="Texture2D" uid="uid://dri1jho1wccsa" path="res://Assets/Tilesets/Forest/forestbg_back4.png" id="20_2yvkw"]
 [ext_resource type="Texture2D" uid="uid://blrkrqkg287kj" path="res://Assets/Tilesets/Forest/forestbg_back4_n.png" id="21_cfnpf"]
-[ext_resource type="Shader" path="res://Resources/Shaders/windCelShader.gdshader" id="22_lgjmc"]
-[ext_resource type="Texture2D" uid="uid://b48w7rweua02y" path="res://Assets/Tilesets/Forest/forestbg_windmask.png" id="23_dowbg"]
+[ext_resource type="Shader" path="res://waterCelShader.gdshader" id="22_4pl1n"]
 [ext_resource type="Texture2D" uid="uid://5dduo173du0v" path="res://Assets/Tilesets/Forest/forestbg_back4_windy.png" id="24_yqwgp"]
 [ext_resource type="Texture2D" uid="uid://hh075q7pwoxs" path="res://Assets/Tilesets/Forest/forestbg_back4_windy_n.png" id="25_o56ol"]
 [ext_resource type="Texture2D" uid="uid://gninwtiu8g58" path="res://Assets/Tilesets/Forest/forestbg_spec.png" id="26_csn27"]
-[ext_resource type="Texture2D" uid="uid://pu0rn2jyj0ny" path="res://Assets/Lights/background.png" id="27_b0kpk"]
+[ext_resource type="Texture2D" uid="uid://8owqqpi1w2jf" path="res://Assets/Lights/background.png" id="27_b0kpk"]
 [ext_resource type="Texture2D" uid="uid://c6nyanfw6ceap" path="res://Assets/Tilesets/Forest/forestbg2_back2.png" id="28_2fcyh"]
 [ext_resource type="Texture2D" uid="uid://daxju6add4m1p" path="res://Assets/Tilesets/Forest/forestbg2_back2_spec.png" id="29_66ml6"]
-[ext_resource type="Texture2D" uid="uid://cx7sicb04c327" path="res://Assets/Tilesets/Forest/forestbg2_back2_windmask.png" id="30_higy1"]
 [ext_resource type="Texture2D" uid="uid://dvc5cjsbvuuv2" path="res://Assets/Tilesets/Forest/forestbg2_back2_leaves.png" id="31_48n7h"]
 [ext_resource type="Texture2D" uid="uid://bfphg3lkgxgrp" path="res://Assets/Tilesets/Forest/forestbg2_spec.png" id="32_5pusw"]
 [ext_resource type="Texture2D" uid="uid://bhhfsgg1w8syi" path="res://Assets/Tilesets/Forest/forestbg2_back.png" id="33_0yel6"]
-[ext_resource type="Texture2D" uid="uid://bdm8dd6l3cpxq" path="res://Assets/Tilesets/Forest/forestbg2_windmask.png" id="34_lljyk"]
 [ext_resource type="Texture2D" uid="uid://ds6tbls611ung" path="res://Assets/Tilesets/Forest/forestbg2_back_leaves.png" id="35_tsiav"]
 [ext_resource type="Texture2D" uid="uid://dtua27evvtd8i" path="res://Assets/Tilesets/Forest/hugetree_back.png" id="36_gyeki"]
 [ext_resource type="Texture2D" uid="uid://btsqym5ppd0rf" path="res://Assets/Tilesets/Forest/hugetree_back_n.png" id="37_gqjxb"]
@@ -48,19 +45,15 @@
 [ext_resource type="Texture2D" uid="uid://lp2y3b8twppf" path="res://Assets/Tilesets/Forest/bigtree_front2.png" id="47_52xed"]
 [ext_resource type="Texture2D" uid="uid://by5j4bl1rpo2" path="res://Assets/Tilesets/Forest/bigtree_front2_n.png" id="48_3qrk6"]
 [ext_resource type="Texture2D" uid="uid://c6754f25aftjs" path="res://Assets/Tilesets/Forest/bigtree_front2_spec.png" id="49_prudt"]
-[ext_resource type="Texture2D" uid="uid://bvurvprys5kg5" path="res://Assets/Tilesets/Forest/medtree_windmask.png" id="50_0jjxb"]
 [ext_resource type="Texture2D" uid="uid://b4behjsnyjluy" path="res://Assets/Tilesets/Forest/medtree_leaves_front1.png" id="51_s21ey"]
 [ext_resource type="Texture2D" uid="uid://blbvanx8nupbd" path="res://Assets/Tilesets/Forest/medtree_leaves_front1_n.png" id="52_pxvjn"]
 [ext_resource type="Texture2D" uid="uid://cru0y6ehyvngt" path="res://Assets/Tilesets/Forest/medtree_leaves_front1_spec.png" id="53_6caka"]
-[ext_resource type="Texture2D" uid="uid://4b4bcm8etq18" path="res://Assets/Tilesets/Forest/smalltree_windmask.png" id="54_e72bo"]
 [ext_resource type="Texture2D" uid="uid://d07c4hnwfomo0" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1.png" id="55_nd76w"]
 [ext_resource type="Texture2D" uid="uid://d30ovj7gk0hjv" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1_n.png" id="56_ltfq8"]
 [ext_resource type="Texture2D" uid="uid://cqn860v870rf" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1_spec.png" id="57_aya08"]
-[ext_resource type="Texture2D" uid="uid://c7xcalpae6v67" path="res://Assets/Tilesets/Forest/smalltree2_windmask.png" id="58_okt5d"]
 [ext_resource type="Texture2D" uid="uid://dqb6cqe4hsdtr" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1.png" id="59_qrvf4"]
 [ext_resource type="Texture2D" uid="uid://c32h3f13i3x2" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1_n.png" id="60_dxblj"]
 [ext_resource type="Texture2D" uid="uid://dn6atjvijfown" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1_spec.png" id="61_ymk3v"]
-[ext_resource type="Texture2D" uid="uid://c7x2f2l7kux2i" path="res://Assets/Tilesets/Forest/bigtree_windmask.png" id="62_2cp0b"]
 [ext_resource type="Texture2D" uid="uid://dptewkhxx5uyh" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1.png" id="63_x0djh"]
 [ext_resource type="Texture2D" uid="uid://cnf2m2uf7c4a6" path="res://Assets/Tilesets/Forest/bigtree__leaves_front1_n.png" id="64_7vndo"]
 [ext_resource type="Texture2D" uid="uid://dfghnt4fhibp3" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1_spec.png" id="65_y5wyr"]
@@ -69,6 +62,44 @@
 [ext_resource type="Texture2D" uid="uid://h3povsdptxax" path="res://Assets/Tilesets/Forest/rock_front1_spec.png" id="68_cyidv"]
 [ext_resource type="Texture2D" uid="uid://bfi72cevgfo18" path="res://Assets/Tilesets/Forest/hugetree_fore.png" id="69_geiab"]
 [ext_resource type="Texture2D" uid="uid://bgwvxlhiw0ne2" path="res://Assets/Tilesets/Forest/hugetree_fore_n.png" id="70_v486q"]
+
+[sub_resource type="Animation" id="Animation_rdpbv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-21.3299, -4.42, 2.192)]
+}
+
+[sub_resource type="Animation" id="Animation_72ly8"]
+resource_name = "new_animation"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-24.511, -4.42, 2), Vector3(-3.16875, -4.42, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_035x0"]
+_data = {
+"RESET": SubResource("Animation_rdpbv"),
+"new_animation": SubResource("Animation_72ly8")
+}
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_v52mf"]
 viewport_path = NodePath("SubViewport3")
@@ -89,7 +120,7 @@ polygon = PackedVector2Array(-1960, 1112, -1960, 1176, -1768, 1176, -1768, 1120,
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmki3"]
 shader = ExtResource("2_upn2y")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.4
 shader_parameter/lightAdd = -0.3
 shader_parameter/shadowSubtract = 0.2
@@ -108,7 +139,7 @@ specular_shininess = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k4wmw"]
 shader = ExtResource("2_upn2y")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.5
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.4
@@ -149,7 +180,7 @@ specular_texture = ExtResource("17_rc6ty")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_skvka"]
 shader = ExtResource("2_upn2y")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5
@@ -166,12 +197,9 @@ diffuse_texture = ExtResource("20_2yvkw")
 normal_texture = ExtResource("21_cfnpf")
 specular_texture = SubResource("CurveXYZTexture_vyn2j")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_586jy"]
-load_path = "res://.godot/imported/normalmap.png-fa237bedccd94dcfe2b48485414bfe1c.ctex"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k76oi"]
-shader = ExtResource("22_lgjmc")
-shader_parameter/cameraPosition = null
+shader = ExtResource("22_4pl1n")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5
@@ -179,16 +207,9 @@ shader_parameter/unlitColorMix = Color(0.0705882, 0, 0.101961, 1)
 shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(0.117647, 0.25098, 0.266667, 1)
-shader_parameter/scale = Vector4(0.5, 0.5, 0, 0)
 shader_parameter/velocity = Vector4(0.5, 0.5, 0, 0)
-shader_parameter/strength = 0.5
-shader_parameter/redMaskStrength = 3.0
-shader_parameter/greenMaskStrength = 1.5
-shader_parameter/blueMaskStrength = 2.0
 shader_parameter/normalIntensity = 0.05
 shader_parameter/normalSpeed = 3.0
-shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
-shader_parameter/windMask = ExtResource("23_dowbg")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vjf0v"]
 diffuse_texture = ExtResource("24_yqwgp")
@@ -331,7 +352,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ynyyt"]
 shader = ExtResource("2_upn2y")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.3
 shader_parameter/shadowSubtract = 0.5
@@ -354,8 +375,8 @@ normal_texture = ExtResource("48_3qrk6")
 specular_texture = ExtResource("49_prudt")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4jx46"]
-shader = ExtResource("22_lgjmc")
-shader_parameter/cameraPosition = null
+shader = ExtResource("22_4pl1n")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 1.5
@@ -363,16 +384,9 @@ shader_parameter/unlitColorMix = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(0, 0.396078, 0.329412, 1)
-shader_parameter/scale = Vector4(0.5, 0.5, 0, 0)
 shader_parameter/velocity = Vector4(0.5, 0.5, 0, 0)
-shader_parameter/strength = 0.5
-shader_parameter/redMaskStrength = 2.0
-shader_parameter/greenMaskStrength = 1.5
-shader_parameter/blueMaskStrength = 1.75
 shader_parameter/normalIntensity = 0.05
 shader_parameter/normalSpeed = 3.0
-shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
-shader_parameter/windMask = ExtResource("50_0jjxb")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4wmho"]
 diffuse_texture = ExtResource("51_s21ey")
@@ -381,8 +395,8 @@ specular_texture = ExtResource("53_6caka")
 specular_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jjvy6"]
-shader = ExtResource("22_lgjmc")
-shader_parameter/cameraPosition = null
+shader = ExtResource("22_4pl1n")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 1.5
@@ -390,16 +404,9 @@ shader_parameter/unlitColorMix = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(0, 0.396078, 0.329412, 1)
-shader_parameter/scale = Vector4(0.5, 0.5, 0, 0)
 shader_parameter/velocity = Vector4(0.5, 0.5, 0, 0)
-shader_parameter/strength = 0.5
-shader_parameter/redMaskStrength = 2.0
-shader_parameter/greenMaskStrength = 1.5
-shader_parameter/blueMaskStrength = 1.75
 shader_parameter/normalIntensity = 0.05
 shader_parameter/normalSpeed = 3.0
-shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
-shader_parameter/windMask = ExtResource("54_e72bo")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_rnpvp"]
 diffuse_texture = ExtResource("55_nd76w")
@@ -408,8 +415,8 @@ specular_texture = ExtResource("57_aya08")
 specular_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t8dwb"]
-shader = ExtResource("22_lgjmc")
-shader_parameter/cameraPosition = null
+shader = ExtResource("22_4pl1n")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 1.5
@@ -417,16 +424,9 @@ shader_parameter/unlitColorMix = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(0, 0.396078, 0.329412, 1)
-shader_parameter/scale = Vector4(0.5, 0.5, 0, 0)
 shader_parameter/velocity = Vector4(0.5, 0.5, 0, 0)
-shader_parameter/strength = 0.5
-shader_parameter/redMaskStrength = 2.0
-shader_parameter/greenMaskStrength = 1.5
-shader_parameter/blueMaskStrength = 1.75
 shader_parameter/normalIntensity = 0.05
 shader_parameter/normalSpeed = 3.0
-shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
-shader_parameter/windMask = ExtResource("58_okt5d")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_o5dl4"]
 diffuse_texture = ExtResource("59_qrvf4")
@@ -435,8 +435,8 @@ specular_texture = ExtResource("61_ymk3v")
 specular_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oia7u"]
-shader = ExtResource("22_lgjmc")
-shader_parameter/cameraPosition = null
+shader = ExtResource("22_4pl1n")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 1.5
@@ -444,20 +444,13 @@ shader_parameter/unlitColorMix = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(0, 0.396078, 0.329412, 1)
-shader_parameter/scale = Vector4(0.5, 0.5, 0, 0)
 shader_parameter/velocity = Vector4(0.5, 0.5, 0, 0)
-shader_parameter/strength = 0.5
-shader_parameter/redMaskStrength = 2.0
-shader_parameter/greenMaskStrength = 1.5
-shader_parameter/blueMaskStrength = 1.75
 shader_parameter/normalIntensity = 0.05
 shader_parameter/normalSpeed = 3.0
-shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
-shader_parameter/windMask = ExtResource("54_e72bo")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g56oo"]
-shader = ExtResource("22_lgjmc")
-shader_parameter/cameraPosition = null
+shader = ExtResource("22_4pl1n")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 1.5
@@ -465,16 +458,9 @@ shader_parameter/unlitColorMix = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(0, 0.396078, 0.329412, 1)
-shader_parameter/scale = Vector4(0.5, 0.5, 0, 0)
 shader_parameter/velocity = Vector4(0.5, 0.5, 0, 0)
-shader_parameter/strength = 0.5
-shader_parameter/redMaskStrength = 2.0
-shader_parameter/greenMaskStrength = 1.5
-shader_parameter/blueMaskStrength = 1.75
 shader_parameter/normalIntensity = 0.05
 shader_parameter/normalSpeed = 3.0
-shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
-shader_parameter/windMask = ExtResource("62_2cp0b")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_oniea"]
 diffuse_texture = ExtResource("63_x0djh")
@@ -484,7 +470,7 @@ specular_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gvqaq"]
 shader = ExtResource("2_upn2y")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.4
 shader_parameter/lightAdd = -0.6
 shader_parameter/shadowSubtract = 1.0
@@ -503,7 +489,7 @@ specular_shininess = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bkqmm"]
 shader = ExtResource("2_upn2y")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.1
 shader_parameter/lightAdd = -0.5
 shader_parameter/shadowSubtract = 1.2
@@ -520,7 +506,7 @@ specular_texture = ExtResource("38_24veb")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ejal"]
 shader = ExtResource("2_upn2y")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5
@@ -535,8 +521,8 @@ diffuse_texture = ExtResource("28_2fcyh")
 specular_texture = ExtResource("29_66ml6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rp2s7"]
-shader = ExtResource("22_lgjmc")
-shader_parameter/cameraPosition = null
+shader = ExtResource("22_4pl1n")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5
@@ -544,16 +530,9 @@ shader_parameter/unlitColorMix = Color(0.364706, 0.333333, 0.419608, 1)
 shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(0.290196, 0.392157, 0.4, 1)
-shader_parameter/scale = Vector4(0.5, 0.5, 0, 0)
 shader_parameter/velocity = Vector4(0.2, 0.2, 0, 0)
-shader_parameter/strength = 0.3
-shader_parameter/redMaskStrength = 3.0
-shader_parameter/greenMaskStrength = 1.5
-shader_parameter/blueMaskStrength = 2.0
 shader_parameter/normalIntensity = 0.05
 shader_parameter/normalSpeed = 3.0
-shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
-shader_parameter/windMask = ExtResource("30_higy1")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_lilrn"]
 diffuse_texture = ExtResource("31_48n7h")
@@ -561,7 +540,7 @@ specular_texture = ExtResource("32_5pusw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f8b0c"]
 shader = ExtResource("2_upn2y")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5
@@ -576,8 +555,8 @@ diffuse_texture = ExtResource("33_0yel6")
 specular_texture = ExtResource("26_csn27")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q3cej"]
-shader = ExtResource("22_lgjmc")
-shader_parameter/cameraPosition = null
+shader = ExtResource("22_4pl1n")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.2
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5
@@ -585,16 +564,9 @@ shader_parameter/unlitColorMix = Color(0.34902, 0.301961, 0.419608, 1)
 shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(0.180392, 0.32549, 0.341176, 1)
-shader_parameter/scale = Vector4(0.5, 0.5, 0, 0)
 shader_parameter/velocity = Vector4(0.3, 0.3, 0, 0)
-shader_parameter/strength = 0.5
-shader_parameter/redMaskStrength = 3.0
-shader_parameter/greenMaskStrength = 1.5
-shader_parameter/blueMaskStrength = 2.0
 shader_parameter/normalIntensity = 0.05
 shader_parameter/normalSpeed = 3.0
-shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
-shader_parameter/windMask = ExtResource("34_lljyk")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3gmex"]
 diffuse_texture = ExtResource("35_tsiav")
@@ -608,14 +580,20 @@ specular_texture = ExtResource("38_24veb")
 
 [node name="Node2D" type="Node"]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_035x0")
+}
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.43, -4.42, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3299, -4.42, 2.192)
+projection = 1
 current = true
+size = 2.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.5, -0.612372, 0.612372, 0, 0.707107, 0.707107, -0.866025, -0.353553, 0.353553, -13.2465, 6.56429, 2.7417)
 light_temperature = 6938.0
-light_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
 shadow_enabled = true
 shadow_blur = 0.0
 directional_shadow_max_distance = 4.0
@@ -662,7 +640,7 @@ layer = -1
 follow_viewport_enabled = true
 
 [node name="CanvasModulate4" type="CanvasModulate" parent="SubViewport/midground"]
-color = Color(0.343137, 0.343137, 0.343137, 1)
+color = Color(0.343138, 0.343138, 0.343138, 1)
 script = ExtResource("1_4i0tg")
 mult_node_path = NodePath("../../../SubViewport4/player/MainCanvasModulate")
 base_color = Color(0.184314, 0.184314, 0.184314, 1)
@@ -919,6 +897,7 @@ texture = SubResource("CanvasTexture_2vovv")
 
 [node name="foreground" type="ParallaxBackground" parent="SubViewport4"]
 layer = 2
+scroll_offset = Vector2(255, 289)
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="SubViewport4/foreground"]
 
@@ -1105,6 +1084,7 @@ texture = SubResource("CanvasTexture_okfki")
 
 [node name="parallax2" type="ParallaxBackground" parent="SubViewport4"]
 layer = 100
+scroll_offset = Vector2(255, 289)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="SubViewport4/parallax2"]
 position = Vector2(2890, -569)
@@ -1117,7 +1097,7 @@ position = Vector2(98, -28)
 texture = SubResource("CanvasTexture_ssh0v")
 
 [node name="parallax" type="ParallaxBackground" parent="SubViewport4"]
-scroll_offset = Vector2(239, 168)
+scroll_offset = Vector2(255, 289)
 
 [node name="Sprite2D" type="Sprite2D" parent="SubViewport4/parallax"]
 modulate = Color(0.752941, 0.752941, 0.752941, 1)

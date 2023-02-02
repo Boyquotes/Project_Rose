@@ -1,0 +1,609 @@
+[gd_scene load_steps=68 format=3 uid="uid://bx8p6y35u87xi"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/MultiplyModulates.gd" id="1_xwvlq"]
+[ext_resource type="Shader" path="res://Resources/Shaders/drop.gdshader" id="2_d2vkd"]
+[ext_resource type="Texture2D" uid="uid://c18o6qgsdsvcp" path="res://Assets/Tilesets/Forest/Forest32.png" id="3_cdpwy"]
+[ext_resource type="Texture2D" uid="uid://2ec6ob8m12hw" path="res://Assets/Tilesets/Forest/Forest32_n.png" id="4_bc008"]
+[ext_resource type="Texture2D" uid="uid://cr7ancdmji56l" path="res://Assets/Tilesets/Forest/Forest32_spec.png" id="5_fpsal"]
+[ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="6_dpi4r"]
+[ext_resource type="PackedScene" uid="uid://cfgbm0iobxxv0" path="res://Game Objects/Actors/Players/Rose/RosePrefab.tscn" id="7_3yybj"]
+[ext_resource type="TileSet" uid="uid://c5wlc2imhei8u" path="res://Resources/Tilesets/PrimititveTileset.tres" id="8_6fnya"]
+[ext_resource type="TileSet" uid="uid://qdwxpeiw2ffb" path="res://Resources/Tilesets/Ledges.tres" id="9_y370n"]
+[ext_resource type="Script" path="res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd" id="10_nr2s6"]
+[ext_resource type="Texture2D" uid="uid://bwetk6fomtlyg" path="res://Assets/Tilesets/Forest/Forest32_grass_fore.png" id="11_7h5ss"]
+[ext_resource type="Texture2D" uid="uid://bfvvdd2cnlpqx" path="res://Assets/Tilesets/Forest/Forest32_grass_fore_n.png" id="12_jnsd2"]
+[ext_resource type="Texture2D" uid="uid://dniq3sekhgl5f" path="res://Assets/Tilesets/Forest/radial gradient.png" id="13_drxmy"]
+[ext_resource type="Texture2D" uid="uid://lp2y3b8twppf" path="res://Assets/Tilesets/Forest/bigtree_front2.png" id="14_gourx"]
+[ext_resource type="Texture2D" uid="uid://by5j4bl1rpo2" path="res://Assets/Tilesets/Forest/bigtree_front2_n.png" id="15_2smlj"]
+[ext_resource type="Texture2D" uid="uid://c6754f25aftjs" path="res://Assets/Tilesets/Forest/bigtree_front2_spec.png" id="16_7o21o"]
+[ext_resource type="Texture2D" uid="uid://dklqnq6ajq8gm" path="res://Assets/Tilesets/Forest/smalltree_back1.png" id="17_ybihb"]
+[ext_resource type="Texture2D" uid="uid://urrgo65gs5jy" path="res://Assets/Tilesets/Forest/smalltree_back1_n.png" id="18_61rr5"]
+[ext_resource type="Texture2D" uid="uid://cmcnjwnw1llic" path="res://Assets/Tilesets/Forest/smalltree_back1_spec.png" id="19_i6loh"]
+[ext_resource type="Shader" path="res://Resources/Shaders/windCelShader.gdshader" id="20_bfmnx"]
+[ext_resource type="Texture2D" uid="uid://bvurvprys5kg5" path="res://Assets/Tilesets/Forest/medtree_windmask.png" id="21_vtosp"]
+[ext_resource type="Texture2D" uid="uid://b4behjsnyjluy" path="res://Assets/Tilesets/Forest/medtree_leaves_front1.png" id="22_j1hre"]
+[ext_resource type="Texture2D" uid="uid://blbvanx8nupbd" path="res://Assets/Tilesets/Forest/medtree_leaves_front1_n.png" id="23_pi03h"]
+[ext_resource type="Texture2D" uid="uid://cru0y6ehyvngt" path="res://Assets/Tilesets/Forest/medtree_leaves_front1_spec.png" id="24_v4iqy"]
+[ext_resource type="Texture2D" uid="uid://4b4bcm8etq18" path="res://Assets/Tilesets/Forest/smalltree_windmask.png" id="25_lefhs"]
+[ext_resource type="Texture2D" uid="uid://d07c4hnwfomo0" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1.png" id="26_1c4ku"]
+[ext_resource type="Texture2D" uid="uid://d30ovj7gk0hjv" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1_n.png" id="27_r8nsw"]
+[ext_resource type="Texture2D" uid="uid://cqn860v870rf" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1_spec.png" id="28_t34wn"]
+[ext_resource type="Texture2D" uid="uid://c7xcalpae6v67" path="res://Assets/Tilesets/Forest/smalltree2_windmask.png" id="29_was5n"]
+[ext_resource type="Texture2D" uid="uid://dqb6cqe4hsdtr" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1.png" id="30_2fkt6"]
+[ext_resource type="Texture2D" uid="uid://c32h3f13i3x2" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1_n.png" id="31_u8jfk"]
+[ext_resource type="Texture2D" uid="uid://dn6atjvijfown" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1_spec.png" id="32_dlv8f"]
+[ext_resource type="Texture2D" uid="uid://c7x2f2l7kux2i" path="res://Assets/Tilesets/Forest/bigtree_windmask.png" id="33_d0vxo"]
+[ext_resource type="Texture2D" uid="uid://dptewkhxx5uyh" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1.png" id="34_m4rdd"]
+[ext_resource type="Texture2D" uid="uid://cnf2m2uf7c4a6" path="res://Assets/Tilesets/Forest/bigtree__leaves_front1_n.png" id="35_nleho"]
+[ext_resource type="Texture2D" uid="uid://dfghnt4fhibp3" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1_spec.png" id="36_0287s"]
+[ext_resource type="Texture2D" uid="uid://i3yrbwj77ka1" path="res://Assets/Tilesets/Forest/rock_front1.png" id="37_pc2yb"]
+[ext_resource type="Texture2D" uid="uid://4judg3y0hmn0" path="res://Assets/Tilesets/Forest/rock_front1_n.png" id="38_kcgrk"]
+[ext_resource type="Texture2D" uid="uid://h3povsdptxax" path="res://Assets/Tilesets/Forest/rock_front1_spec.png" id="39_2cwwe"]
+[ext_resource type="Texture2D" uid="uid://bfi72cevgfo18" path="res://Assets/Tilesets/Forest/hugetree_fore.png" id="40_q4rhy"]
+[ext_resource type="Texture2D" uid="uid://bgwvxlhiw0ne2" path="res://Assets/Tilesets/Forest/hugetree_fore_n.png" id="41_msi4x"]
+[ext_resource type="Texture2D" uid="uid://clnnbiirokudd" path="res://Assets/Tilesets/Forest/hugetree_spec.png" id="42_c5gmp"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_usqrs"]
+polygon = PackedVector2Array(-488, 888, -528, 888, -592, 888, -592, 920, -976, 920, -976, 1496, -16, 1496, -16, 1368, 112, 1368, 112, 1304, -80, 1304, -80, 1432, -912, 1432, -912, 984, -656, 984, -656, 1048, -592, 1048, -592, 984, -528, 984, -528, 920, -488, 920)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4kkos"]
+polygon = PackedVector2Array(-400, 920, -400, 984, -464, 984, -464, 1112, -528, 1112, -592, 1112, -592, 1080, -656, 1080, -656, 1144, -568, 1144, -568, 1336, -432, 1336, -432, 1272, -304, 1272, -304, 1336, -176, 1336, -176, 1240, -176, 984, 304, 984, 304, 952, -176, 952, -336, 984)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2qm1s"]
+shader = ExtResource("2_d2vkd")
+shader_parameter/color = Color(0, 0, 0, 0.631373)
+shader_parameter/angle = 0.0
+shader_parameter/len = 14.0
+shader_parameter/unlitColorMix = Color(1, 1, 1, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_l6uq3"]
+diffuse_texture = ExtResource("3_cdpwy")
+normal_texture = ExtResource("4_bc008")
+specular_texture = ExtResource("5_fpsal")
+specular_color = Color(0, 0, 0, 1)
+specular_shininess = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rmki3"]
+shader = ExtResource("6_dpi4r")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.4
+shader_parameter/lightAdd = -0.3
+shader_parameter/shadowSubtract = 0.45
+shader_parameter/unlitColorMix = Color(0.113725, 0, 0.0705882, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(0.0627451, 0.0705882, 0.109804, 1)
+shader_parameter/segmentation = 1.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a6oxd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ynyyt"]
+shader = ExtResource("6_dpi4r")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.2
+shader_parameter/lightAdd = -0.3
+shader_parameter/shadowSubtract = 0.5
+shader_parameter/unlitColorMix = Color(0.0980392, 0.027451, 0.0980392, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(0.0627451, 0.0705882, 0.109804, 1)
+shader_parameter/segmentation = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2vovv"]
+diffuse_texture = ExtResource("11_7h5ss")
+normal_texture = ExtResource("12_jnsd2")
+specular_texture = ExtResource("5_fpsal")
+specular_color = Color(0, 0, 0, 1)
+specular_shininess = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k4wmw"]
+shader = ExtResource("6_dpi4r")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.5
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 0.4
+shader_parameter/unlitColorMix = Color(0.0784314, 0, 0.266667, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(0.113725, 0, 0.0705882, 1)
+shader_parameter/segmentation = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nkein"]
+diffuse_texture = ExtResource("14_gourx")
+normal_texture = ExtResource("15_2smlj")
+specular_texture = ExtResource("16_7o21o")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_g43sp"]
+diffuse_texture = ExtResource("17_ybihb")
+normal_texture = ExtResource("18_61rr5")
+specular_texture = ExtResource("19_i6loh")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_586jy"]
+load_path = "res://.godot/imported/normalmap.png-fa237bedccd94dcfe2b48485414bfe1c.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4jx46"]
+shader = ExtResource("20_bfmnx")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.2
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 1.5
+shader_parameter/unlitColorMix = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(0, 0.396078, 0.329412, 1)
+shader_parameter/scale = Vector4(0.3, 0.4, 0, 0)
+shader_parameter/velocity = Vector4(0.3, 0.4, 0, 0)
+shader_parameter/strength = 0.5
+shader_parameter/redMaskStrength = 2.0
+shader_parameter/greenMaskStrength = 1.5
+shader_parameter/blueMaskStrength = 1.75
+shader_parameter/normalIntensity = 0.05
+shader_parameter/normalSpeed = 3.0
+shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
+shader_parameter/windMask = ExtResource("21_vtosp")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4wmho"]
+diffuse_texture = ExtResource("22_j1hre")
+normal_texture = ExtResource("23_pi03h")
+specular_texture = ExtResource("24_v4iqy")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjvy6"]
+shader = ExtResource("20_bfmnx")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.2
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 1.5
+shader_parameter/unlitColorMix = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(0, 0.396078, 0.329412, 1)
+shader_parameter/scale = Vector4(0.3, 0.4, 0, 0)
+shader_parameter/velocity = Vector4(0.3, 0.4, 0, 0)
+shader_parameter/strength = 0.5
+shader_parameter/redMaskStrength = 2.0
+shader_parameter/greenMaskStrength = 1.5
+shader_parameter/blueMaskStrength = 1.75
+shader_parameter/normalIntensity = 0.05
+shader_parameter/normalSpeed = 3.0
+shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
+shader_parameter/windMask = ExtResource("25_lefhs")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rnpvp"]
+diffuse_texture = ExtResource("26_1c4ku")
+normal_texture = ExtResource("27_r8nsw")
+specular_texture = ExtResource("28_t34wn")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8dwb"]
+shader = ExtResource("20_bfmnx")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.2
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 1.5
+shader_parameter/unlitColorMix = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(0, 0.396078, 0.329412, 1)
+shader_parameter/scale = Vector4(0.3, 0.4, 0, 0)
+shader_parameter/velocity = Vector4(0.3, 0.4, 0, 0)
+shader_parameter/strength = 0.5
+shader_parameter/redMaskStrength = 2.0
+shader_parameter/greenMaskStrength = 1.5
+shader_parameter/blueMaskStrength = 1.75
+shader_parameter/normalIntensity = 0.05
+shader_parameter/normalSpeed = 3.0
+shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
+shader_parameter/windMask = ExtResource("29_was5n")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_o5dl4"]
+diffuse_texture = ExtResource("30_2fkt6")
+normal_texture = ExtResource("31_u8jfk")
+specular_texture = ExtResource("32_dlv8f")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oia7u"]
+shader = ExtResource("20_bfmnx")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.2
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 1.5
+shader_parameter/unlitColorMix = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(0, 0.396078, 0.329412, 1)
+shader_parameter/scale = Vector4(0.3, 0.4, 0, 0)
+shader_parameter/velocity = Vector4(0.3, 0.4, 0, 0)
+shader_parameter/strength = 0.5
+shader_parameter/redMaskStrength = 2.0
+shader_parameter/greenMaskStrength = 1.5
+shader_parameter/blueMaskStrength = 1.75
+shader_parameter/normalIntensity = 0.05
+shader_parameter/normalSpeed = 3.0
+shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
+shader_parameter/windMask = ExtResource("25_lefhs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g56oo"]
+shader = ExtResource("20_bfmnx")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.2
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 1.5
+shader_parameter/unlitColorMix = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(0, 0.396078, 0.329412, 1)
+shader_parameter/scale = Vector4(0.3, 0.4, 0, 0)
+shader_parameter/velocity = Vector4(0.3, 0.4, 0, 0)
+shader_parameter/strength = 0.5
+shader_parameter/redMaskStrength = 2.0
+shader_parameter/greenMaskStrength = 1.5
+shader_parameter/blueMaskStrength = 1.75
+shader_parameter/normalIntensity = 0.05
+shader_parameter/normalSpeed = 3.0
+shader_parameter/windMap = SubResource("CompressedTexture2D_586jy")
+shader_parameter/windMask = ExtResource("33_d0vxo")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_oniea"]
+diffuse_texture = ExtResource("34_m4rdd")
+normal_texture = ExtResource("35_nleho")
+specular_texture = ExtResource("36_0287s")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvqaq"]
+shader = ExtResource("6_dpi4r")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.4
+shader_parameter/lightAdd = -0.6
+shader_parameter/shadowSubtract = 1.0
+shader_parameter/unlitColorMix = Color(0.0980392, 0.027451, 0.0980392, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(1, 0, 0, 1)
+shader_parameter/segmentation = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_okfki"]
+diffuse_texture = ExtResource("37_pc2yb")
+normal_texture = ExtResource("38_kcgrk")
+specular_texture = ExtResource("39_2cwwe")
+specular_color = Color(0, 0, 0, 1)
+specular_shininess = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bkqmm"]
+shader = ExtResource("6_dpi4r")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.1
+shader_parameter/lightAdd = -0.5
+shader_parameter/shadowSubtract = 1.2
+shader_parameter/unlitColorMix = Color(0.0470588, 0, 0.160784, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(0.105882, 0.113725, 0, 1)
+shader_parameter/segmentation = 1.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ssh0v"]
+diffuse_texture = ExtResource("40_q4rhy")
+normal_texture = ExtResource("41_msi4x")
+specular_texture = ExtResource("42_c5gmp")
+
+[node name="ForestFG" type="Node2D"]
+
+[node name="midground" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="CanvasModulate4" type="CanvasModulate" parent="midground"]
+color = Color(0.537255, 0.537255, 0.537255, 1)
+script = ExtResource("1_xwvlq")
+mult_node_path = NodePath("../../player/MainCanvasModulate")
+base_color = Color(0.572549, 0.572549, 0.572549, 1)
+
+[node name="Midground" type="Node2D" parent="midground"]
+position = Vector2(2272, -1088)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="midground/Midground"]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(117, 170)
+occluder = SubResource("OccluderPolygon2D_usqrs")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="midground/Midground"]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(117, 170)
+occluder = SubResource("OccluderPolygon2D_4kkos")
+
+[node name="Forest33" type="Sprite2D" parent="midground/Midground"]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_2qm1s")
+texture = SubResource("CanvasTexture_l6uq3")
+
+[node name="Forest32" type="Sprite2D" parent="midground/Midground"]
+z_index = 1
+material = SubResource("ShaderMaterial_rmki3")
+texture = SubResource("CanvasTexture_l6uq3")
+
+[node name="player" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
+root_node = NodePath("../../../..")
+libraries = {
+"": SubResource("AnimationLibrary_a6oxd")
+}
+
+[node name="MainCanvasModulate" type="CanvasModulate" parent="player"]
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="RosePrefab" parent="player" instance=ExtResource("7_3yybj")]
+position = Vector2(0, -40)
+
+[node name="PlayerCamera" parent="player/RosePrefab/Rose" index="7"]
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+
+[node name="TileMap" type="TileMap" parent="player"]
+visible = false
+light_mask = 3
+position = Vector2(2272, -1088)
+tile_set = ExtResource("8_6fnya")
+format = 2
+layer_0/tile_data = PackedInt32Array(62, 0, 0, 63, 0, 0, 64, 0, 0, -65472, 0, 0, -131008, 0, 0, -130997, 0, 0, -130998, 0, 0, -130999, 0, 0, -131000, 0, 0, -131001, 0, 0, -131002, 0, 0, -131003, 0, 0, -131004, 0, 0, -131005, 0, 0, -131006, 0, 0, -131007, 0, 0, 65598, 0, 0, 131134, 0, 0, 131133, 0, 0, 131132, 0, 0, 196668, 0, 0, 262204, 0, 0, 327740, 0, 0, 327739, 0, 0, 327738, 0, 0, 327737, 0, 0, 327736, 0, 0, 327735, 0, 0, 327734, 0, 0, 393270, 0, 0, 393271, 0, 0, 393272, 0, 0, 393273, 0, 0, 458809, 0, 0, 524345, 0, 0, 589881, 0, 0, 655417, 0, 0, 720953, 0, 0, 786489, 0, 0, 786490, 0, 0, 786491, 0, 0, 786492, 0, 0, 720956, 0, 0, 655420, 0, 0, 655421, 0, 0, 655422, 0, 0, 655423, 0, 0, 655424, 0, 0, 655425, 0, 0, 720961, 0, 0, 786497, 0, 0, 786498, 0, 0, 786499, 0, 0, 786500, 0, 0, 720964, 0, 0, 655428, 0, 0, 589892, 0, 0, 524356, 0, 0, 458820, 0, 0, 393284, 0, 0, 327748, 0, 0, 262212, 0, 0, 196676, 0, 0, 131140, 0, 0, 65604, 0, 0, 65605, 0, 0, 65606, 0, 0, 65607, 0, 0, 65608, 0, 0, 65609, 0, 0, 65610, 0, 0, 65611, 0, 0, 2293699, 0, 0, 2293698, 0, 0, 2293697, 0, 0, 2293696, 0, 0, 2293695, 0, 0, 2293694, 0, 0, 2293693, 0, 0, 2293692, 0, 0, 2293691, 0, 0, 2293690, 0, 0, 2293689, 0, 0, 2293688, 0, 0, 2293687, 0, 0, 2293686, 0, 0, 2293685, 0, 0, 2293684, 0, 0, 2228148, 0, 0, 2162612, 0, 0, 2097076, 0, 0, 2031540, 0, 0, 1966004, 0, 0, 1900468, 0, 0, 1834932, 0, 0, 1769396, 0, 0, 1703860, 0, 0, 1638324, 0, 0, 1572788, 0, 0, 1507252, 0, 0, 1441716, 0, 0, 2359235, 0, 0, 2424771, 0, 0, 2424772, 0, 0, 2424773, 0, 0, 2424774, 0, 0, 2424775, 0, 0, 2424776, 0, 0, 2359240, 0, 0, 2293704, 0, 0, 2293705, 0, 0, 2293706, 0, 0, 2293707, 0, 0, 2359243, 0, 0, 2424779, 0, 0, 2490315, 0, 0, 2555851, 0, 0, 2555852, 0, 0, 2555853, 0, 0, 2555854, 0, 0, 2555855, 0, 0, 2555856, 0, 0, 2555857, 0, 0, 2555858, 0, 0, 2555859, 0, 0, 2555860, 0, 0, 2490324, 0, 0, 2424788, 0, 0, 2359252, 0, 0, 2293716, 0, 0, 2293717, 0, 0, 2293718, 0, 0, 2293719, 0, 0, 2293720, 0, 0, 2293721, 0, 0, 2293722, 0, 0, 2293723, 0, 0, 2293724, 0, 0, 2359260, 0, 0, 2424796, 0, 0, 2424797, 0, 0, 2424798, 0, 0, 2424799, 0, 0, 2424800, 0, 0, 2424801, 0, 0, 2424802, 0, 0, 2359266, 0, 0, 2293730, 0, 0, 2228194, 0, 0, 2162658, 0, 0, 2097122, 0, 0, 2031586, 0, 0, 2031587, 0, 0, 2097123, 0, 0, 2162659, 0, 0, 2162660, 0, 0, 2162661, 0, 0, 2162662, 0, 0, 2162663, 0, 0, 2162664, 0, 0, 2162665, 0, 0, 2162666, 0, 0, 2162667, 0, 0, 2162668, 0, 0, 2162669, 0, 0, 2162670, 0, 0, 2162671, 0, 0, 2162672, 0, 0, 2162673, 0, 0, 2162674, 0, 0, 2162675, 0, 0, 2162676, 0, 0, 2228212, 0, 0, 2228211, 0, 0, 2228210, 0, 0, 2293746, 0, 0, 2359282, 0, 0, 2359281, 0, 0, 2359280, 0, 0, 2490352, 0, 0, 2424816, 0, 0, 2490351, 0, 0, 2424815, 0, 0, 2359279, 0, 0, 2359278, 0, 0, 2359277, 0, 0, 2359276, 0, 0, 2359275, 0, 0, 2359274, 0, 0, 2359273, 0, 0, 2359272, 0, 0, 2359271, 0, 0, 2359270, 0, 0, 2424806, 0, 0, 2490342, 0, 0, 2555878, 0, 0, 2621414, 0, 0, 2686950, 0, 0, 2752486, 0, 0, 2818022, 0, 0, 2883558, 0, 0, 2949094, 0, 0, 3014630, 0, 0, 3080166, 0, 0, 3145702, 0, 0, 3211238, 0, 0, 3276774, 0, 0, 3342310, 0, 0, 3342311, 0, 0, 3342312, 0, 0, 3342313, 0, 0, 3342314, 0, 0, 3342315, 0, 0, 3342316, 0, 0, 3342317, 0, 0, 3342318, 0, 0, 3342319, 0, 0, 3342320, 0, 0, 3342321, 0, 0, 3342322, 0, 0, 3342323, 0, 0, 3342324, 0, 0, 3342325, 0, 0, 3342326, 0, 0, 3342327, 0, 0, 3342328, 0, 0, 3342329, 0, 0, 3342330, 0, 0, 3342331, 0, 0, 3342332, 0, 0, 3342333, 0, 0, 3342334, 0, 0, 3342335, 0, 0, 3276800, 0, 0, 3276801, 0, 0, 3211265, 0, 0, 3145729, 0, 0, 3080193, 0, 0, 3014657, 0, 0, 3014658, 0, 0, 3014659, 0, 0, 3014660, 0, 0, 3014661, 0, 0, 3014662, 0, 0, 2621423, 0, 0, 2621424, 0, 0, 2621425, 0, 0, 2621426, 0, 0, 2621427, 0, 0, 2621428, 0, 0, 2621429, 0, 0, 2555893, 0, 0, 2490357, 0, 0, 2424821, 0, 0, 2424822, 0, 0, 2424823, 0, 0, 2359287, 0, 0, 2293751, 0, 0, 2293752, 0, 0, 2293753, 0, 0, 2228217, 0, 0, 2162681, 0, 0, 2162682, 0, 0, 2162683, 0, 0, 2162684, 0, 0, 2162685, 0, 0, 2162686, 0, 0, 2162687, 0, 0, 2097152, 0, 0, 2097153, 0, 0, 2097154, 0, 0, 2097155, 0, 0, 2097156, 0, 0, 2097157, 0, 0, 2097158, 0, 0, 2097159, 0, 0, 2097160, 0, 0, 2293772, 0, 0, 2293771, 0, 0, 2293770, 0, 0, 2293769, 0, 0, 2293768, 0, 0, 2293767, 0, 0, 2293766, 0, 0, 2293765, 0, 0, 2293764, 0, 0, 2293763, 0, 0, 2293762, 0, 0, 2293761, 0, 0, 2293760, 0, 0, 2359295, 0, 0, 2359294, 0, 0, 2359293, 0, 0, 2424829, 0, 0, 2490365, 0, 0, 2555901, 0, 0, 2621437, 0, 0, 2686973, 0, 0, 2752509, 0, 0, 2818045, 0, 0, 2883581, 0, 0, 2949117, 0, 0, 3014653, 0, 0, 3080189, 0, 0, 3080188, 0, 0, 3080187, 0, 0, 3080186, 0, 0, 3014650, 0, 0, 2949114, 0, 0, 2949113, 0, 0, 2949112, 0, 0, 2949111, 0, 0, 2949110, 0, 0, 2949109, 0, 0, 3014645, 0, 0, 3080181, 0, 0, 3080180, 0, 0, 3080179, 0, 0, 3080178, 0, 0, 3014642, 0, 0, 2949106, 0, 0, 2883570, 0, 0, 2818034, 0, 0, 2752498, 0, 0, 2686962, 0, 0, 2686961, 0, 0, 2686960, 0, 0, 2686959, 0, 0, 2228149, 0, 0, 2162613, 0, 0, 2097077, 0, 0, 2031541, 0, 0, 1966005, 0, 0, 1900469, 0, 0, 1834933, 0, 0, 1769397, 0, 0, 1703861, 0, 0, 1638325, 0, 0, 1572789, 0, 0, 3014663, 0, 0, 3014664, 0, 0, 3014665, 0, 0, 3014666, 0, 0, 3014667, 0, 0, 3014668, 0, 0, 3014669, 0, 0, 3014670, 0, 0, 3014671, 0, 0, 3014672, 0, 0, 3014673, 0, 0, 3014674, 0, 0, 3014675, 0, 0, 3014676, 0, 0, 3014677, 0, 0, 3014678, 0, 0, 3014679, 0, 0, 3014680, 0, 0, 3014681, 0, 0, 3014682, 0, 0, 2949146, 0, 0, 2883610, 0, 0, 2818074, 0, 0, 2097109, 0, 0, 2097115, 0, 0, 2031579, 0, 0, 1966043, 0, 0, 1900507, 0, 0, 1900506, 0, 0, 1966042, 0, 0, 2031578, 0, 0, 2031577, 0, 0, 2031576, 0, 0, 2031575, 0, 0, 2031574, 0, 0, 2031573, 0, 0, 1966037, 0, 0, 1900501, 0, 0, 1900505, 0, 0, 1900504, 0, 0, 1900503, 0, 0, 1900502, 0, 0, 1966038, 0, 0, 1966039, 0, 0, 1966040, 0, 0, 1966041, 0, 0, 2097110, 0, 0, 2097111, 0, 0, 2097112, 0, 0, 2097113, 0, 0, 2097114, 0, 0, 1834965, 0, 0, 1834966, 0, 0, 1834967, 0, 0, 1834968, 0, 0, 1834969, 0, 0, 1834970, 0, 0, 1834971, 0, 0, 1769435, 0, 0, 1769434, 0, 0, 1769433, 0, 0, 1769432, 0, 0, 1769431, 0, 0, 1769430, 0, 0, 1769429, 0, 0, 1703893, 0, 0, 1703894, 0, 0, 1703895, 0, 0, 1703896, 0, 0, 1703897, 0, 0, 1703898, 0, 0, 1703899, 0, 0, 2490316, 0, 0, 2490317, 0, 0, 2490318, 0, 0, 2490319, 0, 0, 2490320, 0, 0, 2490321, 0, 0, 2490322, 0, 0, 2490323, 0, 0, 1966080, 0, 0, 2031616, 0, 0, 2031617, 0, 0, 1966081, 0, 0, 2228222, 0, 0, 1900544, 0, 0, 1900545, 0, 0, 1835009, 0, 0, 1769473, 0, 0, 1769472, 0, 0, 1835008, 0, 0, 1703937, 0, 0, 1638401, 0, 0, 1638400, 0, 0, 1703936, 0, 0)
+
+[node name="TileMap" type="TileMap" parent="player/TileMap"]
+modulate = Color(1, 0.0470588, 0.0392157, 1)
+light_mask = 3
+z_index = 464
+tile_set = ExtResource("9_y370n")
+format = 2
+script = ExtResource("10_nr2s6")
+
+[node name="playerLights" type="Node2D" parent="player"]
+rotation = 0.712094
+
+[node name="player light3" type="DirectionalLight2D" parent="player/playerLights"]
+z_index = -1
+z_as_relative = false
+color = Color(1, 0.373134, 0.149254, 1)
+range_layer_min = -1
+range_layer_max = 512
+shadow_enabled = true
+shadow_color = Color(1, 1, 1, 1)
+
+[node name="RayCast2D" type="RayCast2D" parent="player/playerLights/player light3"]
+
+[node name="player light4" type="DirectionalLight2D" parent="player/playerLights"]
+z_index = -1
+z_as_relative = false
+color = Color(0.329412, 0.121569, 0.0509804, 1)
+range_layer_min = -1
+range_layer_max = 512
+shadow_enabled = true
+shadow_color = Color(1, 1, 1, 1)
+height = 0.3
+
+[node name="RayCast2D" type="RayCast2D" parent="player/playerLights/player light4"]
+
+[node name="midground2" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="CanvasModulate5" type="CanvasModulate" parent="midground2"]
+color = Color(0.75098, 0.75098, 0.75098, 1)
+script = ExtResource("1_xwvlq")
+mult_node_path = NodePath("../../player/MainCanvasModulate")
+base_color = Color(1, 1, 1, 1)
+
+[node name="Forest32_grass" type="Sprite2D" parent="midground2"]
+z_index = 1
+material = SubResource("ShaderMaterial_ynyyt")
+position = Vector2(2272, -1088)
+texture = SubResource("CanvasTexture_2vovv")
+
+[node name="foreground" type="ParallaxBackground" parent="."]
+layer = 2
+scroll_offset = Vector2(480, 310)
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="foreground"]
+
+[node name="CanvasModulate5" type="CanvasModulate" parent="foreground/ParallaxLayer4"]
+color = Color(0.626471, 0.626471, 0.626471, 1)
+script = ExtResource("1_xwvlq")
+mult_node_path = NodePath("../../../player/MainCanvasModulate")
+base_color = Color(1, 1, 1, 1)
+fac = 0.75
+
+[node name="Node2D2" type="Node2D" parent="foreground/ParallaxLayer4"]
+
+[node name="Node2D" type="Node2D" parent="foreground/ParallaxLayer4/Node2D2"]
+z_index = 1
+position = Vector2(-256, -136)
+scale = Vector2(0.469281, 0.642866)
+
+[node name="RadialGradient" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(-6.10352e-05, 0)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient2" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(-6.10352e-05, 12.4443)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient3" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(17.0473, 24.8885)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient4" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(17.0473, 12.4443)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient5" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(17.0473, 0)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient6" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(17.0473, -24.8885)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient7" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(34.0946, -49.7771)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient8" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(51.142, -74.6656)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient9" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(85.2367, -99.5542)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient10" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(34.0947, 49.7771)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient11" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(34.0947, -12.4443)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient12" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(51.142, 12.4443)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient13" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(68.1894, 37.3328)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient14" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(34.0947, 37.3328)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient15" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(68.1894, -12.4443)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient16" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(68.1894, -37.3328)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient17" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(85.2367, -62.2214)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient18" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(51.142, -62.2214)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient19" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(34.0947, -37.3328)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient20" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(85.2367, 62.2214)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient21" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(102.284, -111.998)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient22" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(170.473, 219.33)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient25" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(272.757, 273.774)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient24" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(119.331, 199.108)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="RadialGradient23" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2/Node2D"]
+position = Vector2(255.71, 286.218)
+scale = Vector2(2.13092, 1.55553)
+texture = ExtResource("13_drxmy")
+
+[node name="bigtree_front2" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2"]
+material = SubResource("ShaderMaterial_k4wmw")
+position = Vector2(1024, -248)
+texture = SubResource("CanvasTexture_nkein")
+
+[node name="smalltree3" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2"]
+material = SubResource("ShaderMaterial_k4wmw")
+position = Vector2(-112, -131)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = SubResource("CanvasTexture_g43sp")
+
+[node name="medtree_leaves_front1" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2"]
+material = SubResource("ShaderMaterial_4jx46")
+position = Vector2(536, -216)
+texture = SubResource("CanvasTexture_4wmho")
+
+[node name="smalltree3_leaves_front" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2"]
+material = SubResource("ShaderMaterial_jjvy6")
+position = Vector2(-120, -131)
+texture = SubResource("CanvasTexture_rnpvp")
+
+[node name="smalltree2_leaves_front1" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2"]
+material = SubResource("ShaderMaterial_t8dwb")
+position = Vector2(64, -224)
+texture = SubResource("CanvasTexture_o5dl4")
+
+[node name="smalltree_leaves_front1" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2"]
+material = SubResource("ShaderMaterial_oia7u")
+position = Vector2(264, -120)
+texture = SubResource("CanvasTexture_rnpvp")
+
+[node name="bigtree_leaves_front1" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2"]
+material = SubResource("ShaderMaterial_g56oo")
+position = Vector2(1008, -232)
+texture = SubResource("CanvasTexture_oniea")
+
+[node name="rock" type="Sprite2D" parent="foreground/ParallaxLayer4/Node2D2"]
+material = SubResource("ShaderMaterial_gvqaq")
+position = Vector2(-128, -16)
+texture = SubResource("CanvasTexture_okfki")
+
+[node name="parallax2" type="ParallaxBackground" parent="."]
+layer = 100
+scroll_offset = Vector2(480, 310)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="parallax2"]
+position = Vector2(2890, -569)
+motion_scale = Vector2(1.05, 1.05)
+
+[node name="hugetree2" type="Sprite2D" parent="parallax2/ParallaxLayer"]
+light_mask = 0
+material = SubResource("ShaderMaterial_bkqmm")
+position = Vector2(98, -28)
+texture = SubResource("CanvasTexture_ssh0v")
+
+[editable path="player/RosePrefab"]
+[editable path="player/RosePrefab/Rose"]

@@ -20,6 +20,7 @@ func _ready():
 	open_cast_r = get_node(open_cast_r_path)
 
 func _enter():
+	
 	host.move_state = 'move_on_ground'
 
 

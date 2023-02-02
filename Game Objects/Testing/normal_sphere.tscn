@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://clfwut4ekevd4"]
+
+[ext_resource type="Texture2D" uid="uid://cqynn3b6pxniv" path="res://Assets/Tilesets/Forest/normalBall.png" id="1_2a1lc"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_k7km6"]
+diffuse_texture = ExtResource("1_2a1lc")
+normal_texture = ExtResource("1_2a1lc")
+
+[node name="NormalSphere" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_k7km6")

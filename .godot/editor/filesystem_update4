@@ -1,11 +1,28 @@
-res://Rooms/Forest/Forest.tscn
-res://Resources/Tilesets/PrimititveTileset.tres
+res://Rooms/Forest/ForestCompiled.tscn
+res://Scripts/Objects/Camera/camera.gd
 res://Resources/Shaders/MultCelShader.gdshader
-res://Resources/Tilesets/Ledges.tres
+res://waterCelShader.gdshader
 res://Resources/Shaders/windCelShader.gdshader
 res://Resources/Shaders/drop.gdshader
-res://Rooms/TestRoom.tscn
-res://Game Objects/Actors/Players/Rose/RosePrefab.tscn
-res://Game Objects/Testing/CapeSkeletonController.tscn
-res://Game Objects/Testing/CapeSkeleton.tscn
+res://Resources/Tilesets/PrimititveTileset.tres
+res://Resources/Tilesets/Ledges.tres
+res://prototype/Forest_faux3D.gdshader
+res://Resources/Shaders/Faux3DShadow.gdshader
+res://Rooms/Forest/ForestFG.tscn
+res://Rooms/Forest/ForestBGHeightMap.tscn
+res://Rooms/Forest/ForestBG.tscn
 res://Game Objects/Actors/Players/Rose/Rose.tscn
+res://Rooms/Forest/ForestBGNormalMap.tscn
+res://Rooms/Forest/Forest_faux3D.tscn
+res://Resources/Shaders/NormalToHeight.gdshader
+res://Scripts/Resources/mouse_follow.gd
+res://Resources/Shaders/NormalAsDiffuse.gdshader
+res://Resources/Shaders/NormalToHeight_Wind.gdshader
+res://Resources/Shaders/SolidWhite.gdshader
+res://Resources/Shaders/SolidWhite_Wind.gdshader
+res://Scripts/Resources/follow_player_camera.gd
+res://Rooms/Forest/ForestComposed.tscn
+res://Game Objects/Testing/normal_sphere.tscn
+res://Scripts/Actors/audio_handler.gd
+res://Scripts/Actors/Player/player.gd
+res://Scripts/Actors/Player/move_on_ground_state.gd

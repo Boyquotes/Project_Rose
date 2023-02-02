@@ -15,5 +15,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	
-	color = base_color.lerp(mult_node.color, fac)
+	if mult_node:
+		color = base_color.lerp(mult_node.color, fac)

@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://qdwxpeiw2ffb"]
 
-[ext_resource type="Texture2D" uid="uid://dfkpd1aynirpq" path="res://Assets/Primitive Tiles/DarkGrey/DarkGrey_Box32x32.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bsjwbftuptgl4" path="res://Assets/Primitive Tiles/DarkGrey/DarkGrey_Box32x32.png" id="1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e1d5t"]
 resource_name = "asda"

@@ -1,4 +1,4 @@
-class_name CharAction
+class_name CharacterAction
 extends Node2D
 
 @export var cancelable := true

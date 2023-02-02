@@ -1,5 +1,5 @@
 class_name NeedleAction
-extends CharAction
+extends CharacterAction
 
 @onready var area : Area2D = $Hitboxes/Area2D
 @onready var line : Line2D = $Sprites/Line2D

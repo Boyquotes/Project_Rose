@@ -1,5 +1,5 @@
 shader_type canvas_item;
-render_mode light_only;
+
 
 uniform vec4 color : source_color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 uniform float angle : hint_range(0,360);

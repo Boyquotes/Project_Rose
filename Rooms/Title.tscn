@@ -1,0 +1,200 @@
+[gd_scene load_steps=21 format=3 uid="uid://dd3lg7525of02"]
+
+[ext_resource type="Shader" path="res://Resources/Shaders/SmoothIn.gdshader" id="1_peo64"]
+[ext_resource type="Texture2D" uid="uid://bkrc7i8wja2mo" path="res://Assets/UI/Title_ThornMask.png" id="2_4xyi5"]
+[ext_resource type="Texture2D" uid="uid://cxb6c0o3ypmcw" path="res://Assets/UI/Title_Thorn.png" id="3_lyquq"]
+[ext_resource type="Texture2D" uid="uid://k3wid02ijsa3" path="res://Assets/UI/Title_oseMask.png" id="4_3rtat"]
+[ext_resource type="Texture2D" uid="uid://ct2nh3hwwp6ob" path="res://Assets/UI/Title_ose.png" id="5_whsat"]
+[ext_resource type="Texture2D" uid="uid://cva71d2b5ihau" path="res://Assets/UI/petal.png" id="6_rxtnm"]
+[ext_resource type="Texture2D" uid="uid://dp7cr3bmgj6lu" path="res://Assets/UI/Title_Cape.png" id="7_dyjtr"]
+[ext_resource type="Texture2D" uid="uid://ba3n1kuuetptc" path="res://Assets/UI/Title_R&Mask.png" id="8_hvx40"]
+[ext_resource type="Texture2D" uid="uid://rmgtwakeng5j" path="res://Assets/UI/Title_R&.png" id="9_nf6w8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yomuw"]
+shader = ExtResource("1_peo64")
+shader_parameter/cutoff = 1.0
+shader_parameter/smooth_size = 0.0
+shader_parameter/mask = ExtResource("2_4xyi5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uk48x"]
+shader = ExtResource("1_peo64")
+shader_parameter/cutoff = 1.0
+shader_parameter/smooth_size = 0.15
+shader_parameter/mask = ExtResource("4_3rtat")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w34eb"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_i4ym6"]
+offsets = PackedFloat32Array(0.747036, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gte6r"]
+gradient = SubResource("Gradient_i4ym6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dygp3"]
+emission_shape = 1
+emission_sphere_radius = 10.0
+particle_flag_disable_z = true
+spread = 20.0
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_gte6r")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_88ifd"]
+light_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kunjm"]
+shader = ExtResource("1_peo64")
+shader_parameter/cutoff = 1.0
+shader_parameter/smooth_size = 0.15
+shader_parameter/mask = ExtResource("8_hvx40")
+
+[sub_resource type="Animation" id="Animation_pausf"]
+resource_name = "TitleAnimation"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleR&:material:shader_parameter/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 2, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.236, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TitleOse:material:shader_parameter/cutoff")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TitleThorn:material:shader_parameter/cutoff")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.72, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TitleThorn:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-37, 64), Vector2(104, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_ss5qb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TitleR&:material:shader_parameter/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TitleOse:material:shader_parameter/cutoff")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TitleThorn:material:shader_parameter/cutoff")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TitleThorn:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(104, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sg4av"]
+_data = {
+"RESET": SubResource("Animation_ss5qb"),
+"TitleAnimation": SubResource("Animation_pausf")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TitleThorn" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_yomuw")
+position = Vector2(104, 64)
+texture = ExtResource("3_lyquq")
+
+[node name="TitleOse" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_uk48x")
+position = Vector2(104, 64)
+texture = ExtResource("5_whsat")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_w34eb")
+position = Vector2(56, 40)
+process_material = SubResource("ParticleProcessMaterial_dygp3")
+texture = ExtResource("6_rxtnm")
+lifetime = 6.0
+
+[node name="TitleCape" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_88ifd")
+position = Vector2(104, 64)
+texture = ExtResource("7_dyjtr")
+
+[node name="TitleR&" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_kunjm")
+position = Vector2(104, 64)
+texture = ExtResource("9_nf6w8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sg4av")
+}

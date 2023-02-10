@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://dmdi1fso4lh8h"]
 
 [ext_resource type="PackedScene" uid="uid://dfimah88tvf7h" path="res://Rooms/Forest/ForestBG.tscn" id="1_wg7i5"]
-[ext_resource type="Script" path="res://Scripts/Resources/follow_player_camera.gd" id="2_435qw"]
+[ext_resource type="PackedScene" path="res://Game Objects/Actors/Players/PlayerCamera2D.tscn" id="2_qbao2"]
 [ext_resource type="PackedScene" uid="uid://qykeyuysrcdh" path="res://Rooms/Forest/ForestBGHeightMap.tscn" id="3_0ktpu"]
 [ext_resource type="PackedScene" uid="uid://cx036wqth7ab3" path="res://Rooms/Forest/ForestBGNormalMap.tscn" id="4_ircky"]
 [ext_resource type="PackedScene" uid="uid://bx8p6y35u87xi" path="res://Rooms/Forest/ForestFG.tscn" id="5_gqlvt"]
@@ -60,11 +60,12 @@ size = Vector2i(960, 540)
 
 [node name="ForestBG" parent="BGViewport" instance=ExtResource("1_wg7i5")]
 
-[node name="Camera2D" type="Camera2D" parent="BGViewport" node_paths=PackedStringArray("playerCam")]
-current = true
-position_smoothing_speed = 10.0
-script = ExtResource("2_435qw")
-playerCam = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose/PlayerCamera")
+[node name="Node2D" parent="BGViewport/ForestBG/background/back1" index="0"]
+position = Vector2(-1, 0)
+
+[node name="PlayerCamera" parent="BGViewport" node_paths=PackedStringArray("player") instance=ExtResource("2_qbao2")]
+player = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose")
+playerPath = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose")
 
 [node name="BGViewportHeightMap" type="SubViewport" parent="."]
 transparent_bg = true
@@ -74,11 +75,25 @@ size = Vector2i(960, 540)
 
 [node name="ForestBGHeightMap" parent="BGViewportHeightMap" instance=ExtResource("3_0ktpu")]
 
-[node name="Camera2D" type="Camera2D" parent="BGViewportHeightMap" node_paths=PackedStringArray("playerCam")]
-current = true
-position_smoothing_speed = 10.0
-script = ExtResource("2_435qw")
-playerCam = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose/PlayerCamera")
+[node name="parallax2" parent="BGViewportHeightMap/ForestBGHeightMap" index="0"]
+scroll_offset = Vector2(481, 307)
+
+[node name="parallax" parent="BGViewportHeightMap/ForestBGHeightMap" index="1"]
+scroll_offset = Vector2(481, 307)
+
+[node name="background2" parent="BGViewportHeightMap/ForestBGHeightMap" index="2"]
+scroll_offset = Vector2(481, 307)
+
+[node name="Sprite2D2" parent="BGViewportHeightMap/ForestBGHeightMap/background2/ParallaxLayer" index="1"]
+position = Vector2(1094, -92)
+
+[node name="background" parent="BGViewportHeightMap/ForestBGHeightMap" index="3"]
+scroll_offset = Vector2(481, 307)
+
+[node name="PlayerCamera2" parent="BGViewportHeightMap" node_paths=PackedStringArray("player") instance=ExtResource("2_qbao2")]
+position = Vector2(-1, -37)
+player = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose")
+playerPath = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose")
 
 [node name="BGViewportNormalMap" type="SubViewport" parent="."]
 transparent_bg = true
@@ -88,23 +103,43 @@ size = Vector2i(960, 540)
 
 [node name="ForestBGNormalMap" parent="BGViewportNormalMap" instance=ExtResource("4_ircky")]
 
-[node name="Camera2D" type="Camera2D" parent="BGViewportNormalMap" node_paths=PackedStringArray("playerCam")]
-current = true
-position_smoothing_speed = 10.0
-script = ExtResource("2_435qw")
-playerCam = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose/PlayerCamera")
+[node name="parallax" parent="BGViewportNormalMap/ForestBGNormalMap" index="0"]
+scroll_offset = Vector2(481, 307)
+
+[node name="background2" parent="BGViewportNormalMap/ForestBGNormalMap" index="1"]
+scroll_offset = Vector2(481, 307)
+
+[node name="background" parent="BGViewportNormalMap/ForestBGNormalMap" index="2"]
+scroll_offset = Vector2(481, 307)
+
+[node name="PlayerCamera3" parent="BGViewportNormalMap" node_paths=PackedStringArray("player") instance=ExtResource("2_qbao2")]
+position = Vector2(-1, -37)
+player = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose")
+playerPath = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose")
 
 [node name="FGViewport" type="SubViewport" parent="."]
 canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
 size = Vector2i(960, 540)
 
 [node name="ForestFG" parent="FGViewport" instance=ExtResource("5_gqlvt")]
 
+[node name="PlayerCamera" parent="FGViewport/ForestFG/player" index="3" node_paths=PackedStringArray("player") instance=ExtResource("2_qbao2")]
+position = Vector2(-1, -37)
+player = NodePath("../RosePrefab/Rose")
+playerPath = NodePath("../RosePrefab/Rose")
+
 [node name="CanvasModulate5" parent="FGViewport/ForestFG/midground2" index="0"]
 color = Color(0.75098, 0.75098, 0.75098, 1)
 
+[node name="foreground" parent="FGViewport/ForestFG" index="3"]
+scroll_offset = Vector2(481, 307)
+
 [node name="CanvasModulate5" parent="FGViewport/ForestFG/foreground/ParallaxLayer4" index="0"]
 color = Color(0.626471, 0.626471, 0.626471, 1)
+
+[node name="parallax2" parent="FGViewport/ForestFG" index="4"]
+scroll_offset = Vector2(481, 307)
 
 [node name="BG_Shadow" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_o5t5h")
@@ -138,7 +173,8 @@ targetLight = NodePath("../FGViewport/ForestFG/player/playerLights")
 [node name="occ" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(2632, -744)
 script = ExtResource("9_7ww8g")
-target = NodePath("../FGViewport/ForestFG/player/RosePrefab/Rose/PlayerCamera")
+target = NodePath("../FGViewport/ForestFG/player/RosePrefab/MainPlayerCamera")
+target_path = NodePath("../FGViewport/ForestFG/player/PlayerCamera")
 
 [node name="Sprite2D" type="Sprite2D" parent="occ"]
 visible = false

@@ -31,6 +31,10 @@ func _enter():
 
 func _handle_input():
 	detect_block()
+	if not (Input.is_action_pressed("Move_Down") or Input.is_action_pressed("Aim_Down")):
+		if not force_crouch:
+			stand = true
+			return
 	if ((Input.is_action_pressed("Move_Down") or Input.is_action_pressed("Aim_Down"))
 			and move_direction == 0):
 		look_down = true
@@ -46,20 +50,17 @@ func _handle_input():
 	
 	if ((Input.is_action_pressed("Move_Up") or Input.is_action_pressed("Aim_Up"))
 			and move_direction == 0):
-		if not force_crouch:
-			stand = true
-		else:
-			look_up = true
-			if not looking:
-				if (Input.get_joy_axis(0,JOY_AXIS_LEFT_Y) < -.5
-						or Input.get_joy_axis(0,JOY_AXIS_RIGHT_Y) < -.5):
-					looking = true
-					look_timer.start(.25)
+		look_up = true
+		if not looking:
+			if (Input.get_joy_axis(0,JOY_AXIS_LEFT_Y) < -.5
+					or Input.get_joy_axis(0,JOY_AXIS_RIGHT_Y) < -.5):
+				looking = true
+				look_timer.start(.25)
 	elif look_up:
 		looking = false
 		call_timeout()
 		look_up = false
-		
+	
 	move_direction = get_move_direction()
 	
 	if Input.is_action_just_pressed("Jump") and not force_crouch:
@@ -126,12 +127,13 @@ func call_timeout():
 	_on_look_timer_timeout()
 
 func _on_look_timer_timeout():
-	host.player_camera.position.y = 0
-	if look_up:
-		if looking:
-			host.player_camera.position.y = -look_max * 1.5
-	if look_down:
-		if looking:
-			host.player_camera.position.y = look_max
-		else:
-			host.player_camera.position.y = -look_max / 2.0
+	for cam in host.cams:
+		cam.adj_position.y = 0
+		if look_up:
+			if looking:
+				cam.adj_position.y = -look_max * 1.5
+		if look_down:
+			if looking:
+				cam.adj_position.y = look_max
+			else:
+				cam.adj_position.y = -look_max / 2.0

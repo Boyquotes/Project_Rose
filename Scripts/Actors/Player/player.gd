@@ -9,6 +9,8 @@ signal focus_changed
 signal resource_3_changed
 signal item_changed
 signal footstep
+signal sliding
+signal silence
 
 # TODO: move to globals perhaps
 enum InputType {GAMEPAD, KEYMOUSE}
@@ -35,16 +37,15 @@ var move_state := "move_on_ground"
 var speed_mag
 var was_on_floor := false
 @onready var attack_collision = $Utilities/AttackCollision
-@onready var player_camera : Camera2D = $PlayerCamera
+@onready var cams : Array[PlayerCamera2D] = []
 @onready var powerups = $Utilities/Powerups
 @onready var hit_area = $HitArea
 @onready var collision_box = $CollisionBox
 @onready var crouch_box = $CrouchBox
 @onready var crouch_hitbox = $HitArea/CrouchBox
 #sets up some variables and initializes the state machine
+
 func init():
-	player_camera.align()
-	player_camera.reset_smoothing()
 	super.init()
 	flora = max_flora
 	focus = max_focus
@@ -58,6 +59,7 @@ func init():
 	crouch_hitbox.disabled = true
 	collision_box.disabled = false
 	hitbox.disabled = false
+	emit_signal("ready")
 
 
 # This should be moved to some UI layer.
@@ -275,12 +277,20 @@ func _on_Player_System_hit_zero():
 func _on_UpgradeMenu_update_powerup(idx,activate):
 	powerups.powerups_idx[idx] = activate
 
-func save():
+
+func attach_cam(cam : PlayerCamera2D):
+	cams.push_back(cam)
+	cam.global_position = global_position
+	cam.reset_smoothing()
+	cam.align()
+	
+
+func save_data():
 	var save_dict = {
 		"pos_x" : position.x,
 		"pos_y" : position.y
 	}
 	return save_dict
 
-func load(load_data):
-	position = Vector2(load_data["pos_x"], load_data["pos_y"])
+func load_data(data):
+	position = Vector2(data["pos_x"], data["pos_y"])

@@ -104,16 +104,17 @@ func call_timeout():
 	_on_look_timer_timeout()
 
 func _on_look_timer_timeout():
-	host.player_camera.position.y = 0
-	
-	if look_up:
-		if looking:
-			host.player_camera.position.y = -look_max * 1.5
-	if crouch:
-		if looking:
-			host.player_camera.position.y = look_max
-		else:
-			host.player_camera.position.y = -look_max / 2.0
+	for cam in host.cams:
+		cam.adj_position.y = 0
+		
+		if look_up:
+			if looking:
+				cam.adj_position.y = -look_max * 1.5
+		if crouch:
+			if looking:
+				cam.adj_position.y = look_max
+			else:
+				cam.adj_position.y = -look_max / 2.0
 
 
 func _on_base_animator_animation_finished(anim_name):
@@ -121,10 +122,16 @@ func _on_base_animator_animation_finished(anim_name):
 		_exit(FSM.crouch_state)
 
 
-func _on_rose_animation_changed(_prev_anim, new_anim):
+func _on_rose_animation_changed(prev_anim, new_anim):
 	if new_anim != "Slide" and host.move_state != "crouch":
 		host.crouch_hitbox.disabled = true
 		host.crouch_box.disabled = true
 		host.hitbox.disabled = false
 		host.collision_box.disabled = false
 		host.activate_fric()
+	if prev_anim == "Run" and new_anim == "Idle":
+		host.emit_signal("footstep", 3.0)
+	if prev_anim == "Crouch" and new_anim == "Idle":
+		host.emit_signal("footstep", 4.0)
+	if prev_anim == "Slide":
+		host.emit_signal("silence")

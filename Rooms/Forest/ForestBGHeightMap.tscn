@@ -243,7 +243,6 @@ texture = ExtResource("1_wemxf")
 
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="parallax2"]
 position = Vector2(2890, -569)
-scale = Vector2(1, 1)
 motion_scale = Vector2(0.208, 0.208)
 
 [node name="Node2D" type="Node2D" parent="parallax2/ParallaxLayer6"]
@@ -372,7 +371,7 @@ color = Color(0.99, 0.99, 0.99, 1)
 z_index = -1
 
 [node name="Node2D" type="Node2D" parent="background/back1"]
-position = Vector2(1, 2)
+position = Vector2(0, 1)
 
 [node name="medtree" type="Sprite2D" parent="background/back1/Node2D"]
 material = SubResource("ShaderMaterial_2dldl")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dxfb2g85u3t6m"]
+[gd_scene load_steps=36 format=3 uid="uid://dxfb2g85u3t6m"]
 
 [ext_resource type="PackedScene" path="res://Game Objects/Actors/Actor.tscn" id="1"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="2"]
@@ -6,16 +6,15 @@
 [ext_resource type="Script" path="res://Scripts/Actors/Player/move_in_air_state.gd" id="4"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/ledge_grab_state.gd" id="5"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/hit_state.gd" id="6"]
-[ext_resource type="Script" path="res://Scripts/Objects/Camera3D/camera.gd" id="7"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/action_state.gd" id="8"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/action_controller.gd" id="9"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/Generic/generic_action_instancer.gd" id="10"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/finite_state_machine.gd" id="11"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/rest_state.gd" id="12"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/Generic/rose_powerups.gd" id="13"]
-[ext_resource type="Texture2D" uid="uid://iku5ochu7upr" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" id="14"]
-[ext_resource type="Texture2D" uid="uid://q7673koqjru7" path="res://Assets/Sprites/Actors/Rose/Movement/Climb.png" id="15"]
-[ext_resource type="Texture2D" uid="uid://cxafjminduxqs" path="res://Assets/Sprites/Actors/Rose/Movement/Hurt.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://dxy8swrhmfe6o" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://dfd5mgjwinx80" path="res://Assets/Sprites/Actors/Rose/Movement/Climb.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://bmtqg8s70dckg" path="res://Assets/Sprites/Actors/Rose/Movement/Hurt.png" id="16"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(20, 38)
@@ -304,24 +303,10 @@ step = 0.01
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../PlayerCamera")
+tracks/0/path = NodePath("../MoveStates/Hit")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.2, 15.0, 8.0],
-"method": &"shake"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../MoveStates/Hit")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -329,13 +314,13 @@ tracks/1/keys = {
 "method": &"knock_back"
 }]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -343,61 +328,61 @@ tracks/2/keys = {
 "method": &"deactivate_fric"
 }]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../MoveStates/Hit:fall_flag")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../MoveStates/Hit:fall_flag")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0.05),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sprites/Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16")]
+}
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Sprites/Sprite2D:texture")
+tracks/4/path = NodePath("../Sprites/Sprite2D:hframes")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("16")]
+"values": [1]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Sprites/Sprite2D:hframes")
+tracks/5/path = NodePath("../Sprites/Sprite2D:offset")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [Vector2(4, -2)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Sprites/Sprite2D:offset")
+tracks/6/path = NodePath("../Sprites/Sprite2D:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(4, -2)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Sprites/Sprite2D:frame")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -665,15 +650,6 @@ libraries = {
 "": SubResource("AnimationLibrary_xm4ak")
 }
 
-[node name="PlayerCamera" type="Camera2D" parent="." index="6"]
-process_mode = 1
-current = true
-script = ExtResource("7")
-
-[node name="StopTimer" type="Timer" parent="PlayerCamera" index="0"]
-process_mode = 2
-one_shot = true
-
 [node name="DetectOtherArea" parent="Utilities" index="0"]
 monitoring = true
 monitorable = true
@@ -714,4 +690,3 @@ position = Vector2(88.2941, 0)
 script = ExtResource("13")
 
 [connection signal="timeout" from="MoveStates/MoveInAir/LedgeDisableTimer" to="MoveStates/MoveInAir" method="_on_LedgeDisableTimer_timeout"]
-[connection signal="timeout" from="PlayerCamera/StopTimer" to="PlayerCamera" method="_on_StopTimer_timeout"]

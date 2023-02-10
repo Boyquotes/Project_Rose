@@ -1,3 +1,5 @@
+@tool
+class_name PlayerCamera2D
 extends Camera2D
 
 var _duration = 0.0
@@ -8,12 +10,25 @@ var _last_shook_timer = 0
 var _previous_x = 0.0
 var _previous_y = 0.0
 var _last_offset = Vector2(0, 0)
+var adj_position = Vector2(0, 0)
+signal shake
+
+@export var player : Node2D
+@export_node_path var playerPath
 
 func _ready():
-	set_process(true)
+	if Engine.is_editor_hint() or not Engine.is_editor_hint():
+		player = get_node(playerPath)
+		await player.ready
+		player.attach_cam(self)
+		set_process(true)
 
 # Shake with decreasing intensity while there's time remaining.
 func _process(delta):
+	if Engine.is_editor_hint() or not Engine.is_editor_hint():
+		global_position = player.global_position
+		position += adj_position
+	
 	# Only shake when there's shake time remaining.
 	if _timer == 0:
 		return
@@ -42,8 +57,13 @@ func _process(delta):
 		_timer = 0
 		set_offset(get_offset() - _last_offset)
 
-# Kick unchecked a new screenshake effect.
-func shake(duration : float, frequency : float, amplitude : float):
+func shake_cam(duration : float, frequency : float, amplitude : float):
+	emit_signal("shake", duration, frequency, amplitude)
+
+func _on_StopTimer_timeout():
+	get_tree().paused = false;
+
+func _on_shake(duration : float, frequency : float, amplitude : float):
 	$StopTimer.start(duration/2);
 	get_tree().paused = true;
 	# Initialize variables.
@@ -56,6 +76,3 @@ func shake(duration : float, frequency : float, amplitude : float):
 	# Reset previous offset, if any.
 	set_offset(get_offset() - _last_offset)
 	_last_offset = Vector2(0, 0)
-
-func _on_StopTimer_timeout():
-	get_tree().paused = false;

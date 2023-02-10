@@ -1,0 +1,20 @@
+{ "frames": [
+   {
+    "filename": "Title (Cape).aseprite",
+    "frame": { "x": 0, "y": 0, "w": 208, "h": 128 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 208, "h": 128 },
+    "sourceSize": { "w": 208, "h": 128 },
+    "duration": 500
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3-beta21-x64",
+  "image": "Title_Cape.png",
+  "format": "RGBA8888",
+  "size": { "w": 208, "h": 128 },
+  "scale": "1"
+ }
+}

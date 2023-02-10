@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://ce5cp1q4xi47r"]
+[gd_scene load_steps=105 format=3 uid="uid://cegpaop1o2now"]
 
 [ext_resource type="PackedScene" uid="uid://dxfb2g85u3t6m" path="res://Game Objects/Actors/Players/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://bsqudhbcbu5tq" path="res://Assets/Sprites/Actors/Rose/Movement/Idle.png" id="2"]
@@ -28,7 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://b5rhuqebvwg1f" path="res://Assets/Sprites/Actors/Rose/Movement/LookUp_n.png" id="22"]
 [ext_resource type="Texture2D" uid="uid://bytslga6bvjkc" path="res://Assets/Sprites/Actors/Rose/Movement/Crouch_n.png" id="23"]
 [ext_resource type="Texture2D" uid="uid://ekjhugr2x5fv" path="res://Assets/Sprites/Actors/Rose/Movement/Grab_n.png" id="24"]
-[ext_resource type="Script" path="res://Scripts/Objects/Camera/camera.gd" id="24_f8vl1"]
 [ext_resource type="Texture2D" uid="uid://dywlvnpiyk1ux" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge_n.png" id="25"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/targetting.gd" id="27_rf1x6"]
 [ext_resource type="Texture2D" uid="uid://c8rca7bu5dyj0" path="res://Assets/Sprites/Actors/Rose/cape_shadow.png" id="28_ulm3k"]
@@ -59,7 +58,15 @@
 [ext_resource type="Texture2D" uid="uid://do6ftlb5idisf" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/BaseItemHorUp_spec.png" id="53_l01d3"]
 [ext_resource type="Texture2D" uid="uid://c2kyiydxnvuvb" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/BaseItemHorDown.png" id="54_46wjx"]
 [ext_resource type="Script" path="res://Scripts/Actors/audio_handler.gd" id="59_i7kba"]
-[ext_resource type="AudioStream" uid="uid://bgv727ig5wu0u" path="res://Assets/sfx/02-footstep.ogg" id="60_m0gpp"]
+[ext_resource type="AudioStream" uid="uid://cn7p24ax43am8" path="res://Assets/sfx/footsteps/dirt_small_01.wav" id="60_476h5"]
+[ext_resource type="AudioStream" uid="uid://dmipgverichil" path="res://Assets/sfx/footsteps/dirt_small_02.wav" id="61_dobde"]
+[ext_resource type="AudioStream" uid="uid://dx6jjv8t3i16c" path="res://Assets/sfx/footsteps/dirt_small_03.wav" id="62_83mud"]
+[ext_resource type="AudioStream" uid="uid://dlhyiygitnctd" path="res://Assets/sfx/footsteps/dirt_small_04.wav" id="63_j4ffd"]
+[ext_resource type="AudioStream" uid="uid://tucbwclrj8vh" path="res://Assets/sfx/footsteps/grass_01.wav" id="64_i7s0s"]
+[ext_resource type="AudioStream" uid="uid://dd03krstvwosv" path="res://Assets/sfx/footsteps/grass_02.wav" id="65_3ctk1"]
+[ext_resource type="AudioStream" uid="uid://c0i5156p105k6" path="res://Assets/sfx/footsteps/grass_03.wav" id="66_x5aat"]
+[ext_resource type="AudioStream" uid="uid://bf7yjvwtodx22" path="res://Assets/sfx/footsteps/grass_04.wav" id="67_4crhy"]
+[ext_resource type="AudioStream" uid="uid://bp5hx2o650aqy" path="res://Assets/sfx/slide/debris_soil_01.wav" id="68_itxvb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hehew"]
 size = Vector2(20, 16)
@@ -3402,6 +3409,20 @@ tracks/15/keys = {
 "method": &"jump"
 }]
 }
+tracks/16/type = "method"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("..")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"footstep", 2.5, 5.0],
+"method": &"emit_signal"
+}]
+}
 
 [sub_resource type="Animation" id="6"]
 length = 0.05
@@ -4810,6 +4831,20 @@ tracks/2/keys = {
 "method": &"exit_air"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"footstep", 0.0],
+"method": &"emit_signal"
+}]
+}
 
 [sub_resource type="Animation" id="14"]
 length = 0.3
@@ -4826,6 +4861,20 @@ tracks/0/keys = {
 "values": [{
 "args": [],
 "method": &"exit_ground"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"footstep", 2.5],
+"method": &"emit_signal"
 }]
 }
 
@@ -5671,10 +5720,10 @@ tracks/15/keys = {
 "times": PackedFloat32Array(0.253, 0.591),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [&"footstep"],
+"args": [&"footstep", 3.0],
 "method": &"emit_signal"
 }, {
-"args": [&"footstep"],
+"args": [&"footstep", 3.0],
 "method": &"emit_signal"
 }]
 }
@@ -5953,6 +6002,20 @@ tracks/21/keys = {
 "update": 1,
 "values": [5]
 }
+tracks/22/type = "method"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("..")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"sliding"],
+"method": &"emit_signal"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xvyg3"]
 _data = {
@@ -5994,6 +6057,7 @@ _data = {
 size = Vector2(480, 270)
 
 [node name="Rose" groups=["Persist"] instance=ExtResource("1")]
+position = Vector2(-1, 3)
 collision_layer = 4
 move_states = {
 "action": NodePath("MoveStates/Action"),
@@ -6008,9 +6072,6 @@ iframe = true
 [node name="CrouchBox" type="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_hehew")
-
-[node name="CollisionBox" parent="." index="1"]
-disabled = false
 
 [node name="MoveOnGround" parent="MoveStates" index="0"]
 open_cast_l_path = NodePath("../../Utilities/OpenCrouchCastL")
@@ -6053,7 +6114,6 @@ shape = SubResource("RectangleShape2D_hehew")
 [node name="Sprite2D" type="Sprite2D" parent="Sprites" index="0"]
 material = SubResource("ShaderMaterial_2qgdc")
 texture = SubResource("CanvasTexture_acfie")
-offset = Vector2(2, -1)
 hframes = 4
 frame = 2
 
@@ -6061,19 +6121,6 @@ frame = 2
 libraries = {
 "": SubResource("AnimationLibrary_xvyg3")
 }
-
-[node name="PlayerCamera" parent="." index="7"]
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-rotation_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.4
-drag_top_margin = 0.4
-drag_right_margin = 0.4
-drag_bottom_margin = 0.4
-script = ExtResource("24_f8vl1")
 
 [node name="CollisionShape2D" parent="Utilities/DetectOtherArea" index="0"]
 visible = false
@@ -6156,16 +6203,20 @@ modulate = Color(0, 0.0745098, 1, 1)
 position = Vector2(64, 0)
 texture = ExtResource("28_ulm3k")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="9"]
+[node name="SoundNode" type="Node2D" parent="Utilities" index="16"]
 script = ExtResource("59_i7kba")
-footsteps = [ExtResource("60_m0gpp")]
+footsteps_dirt = [ExtResource("60_476h5"), ExtResource("61_dobde"), ExtResource("62_83mud"), ExtResource("63_j4ffd")]
+footsteps_grass = [ExtResource("64_i7s0s"), ExtResource("65_3ctk1"), ExtResource("66_x5aat"), ExtResource("67_4crhy")]
+slide_dirt = [ExtResource("68_itxvb")]
 
-[node name="AudioListener2D" type="AudioListener2D" parent="." index="10"]
+[node name="AudioListener2D" type="AudioListener2D" parent="." index="8"]
 current = true
 
 [connection signal="animation_changed" from="." to="MoveStates/MoveOnGround" method="_on_rose_animation_changed"]
-[connection signal="footstep" from="." to="AudioStreamPlayer2D" method="_on_rose_footstep"]
+[connection signal="footstep" from="." to="Utilities/SoundNode" method="_on_rose_footstep"]
 [connection signal="landed" from="." to="MoveStates/Action" method="_on_rose_landed"]
+[connection signal="silence" from="." to="Utilities/SoundNode" method="_on_rose_silence"]
+[connection signal="sliding" from="." to="Utilities/SoundNode" method="_on_rose_sliding"]
 [connection signal="timeout" from="MoveStates/MoveOnGround/LookTimer" to="MoveStates/MoveOnGround" method="_on_look_timer_timeout"]
 [connection signal="debug_exit" from="MoveStates/Action" to="MoveStates/Action" method="_on_action_debug_exit"]
 [connection signal="timeout" from="MoveStates/Crouch/LookTimer" to="MoveStates/Crouch" method="_on_look_timer_timeout"]

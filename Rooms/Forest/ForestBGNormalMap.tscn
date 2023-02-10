@@ -431,7 +431,7 @@ color = Color(0.901961, 0.901961, 0.901961, 1)
 z_index = -1
 
 [node name="Node2D" type="Node2D" parent="background/back1"]
-position = Vector2(1, 2)
+position = Vector2(0, 1)
 
 [node name="medtree" type="Sprite2D" parent="background/back1/Node2D"]
 material = SubResource("ShaderMaterial_e7wvh")

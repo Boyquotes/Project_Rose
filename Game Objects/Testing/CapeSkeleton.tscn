@@ -8,7 +8,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w0xon"]
 shader = ExtResource("1_ya7ak")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.1
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5
@@ -25,7 +25,7 @@ specular_texture = ExtResource("5_1fhw0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3elcx"]
 shader = ExtResource("1_ya7ak")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.1
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5
@@ -37,7 +37,7 @@ shader_parameter/segmentation = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4fm4e"]
 shader = ExtResource("1_ya7ak")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.1
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5
@@ -49,7 +49,7 @@ shader_parameter/segmentation = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rpmlj"]
 shader = ExtResource("1_ya7ak")
-shader_parameter/cameraPosition = null
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.1
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5

@@ -359,7 +359,7 @@ texture = ExtResource("2_e21en")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="parallax"]
 position = Vector2(2890, -569)
-motion_scale = Vector2(0.8, 0.8)
+motion_scale = Vector2(0.75, 0.75)
 
 [node name="Sprite2D3" type="Sprite2D" parent="parallax/ParallaxLayer3"]
 material = SubResource("ShaderMaterial_5ejal")
@@ -374,7 +374,7 @@ texture = SubResource("CanvasTexture_lilrn")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="parallax"]
 position = Vector2(2890, -569)
-motion_scale = Vector2(0.9, 0.9)
+motion_scale = Vector2(0.875, 0.875)
 
 [node name="Sprite2D3" type="Sprite2D" parent="parallax/ParallaxLayer2"]
 material = SubResource("ShaderMaterial_f8b0c")
@@ -402,7 +402,7 @@ position = Vector2(2890, -569)
 motion_scale = Vector2(0.208, 0.208)
 
 [node name="Node2D" type="Node2D" parent="parallax/ParallaxLayer6"]
-position = Vector2(-2050, 633)
+position = Vector2(-2058, 697)
 
 [node name="water_far" type="Sprite2D" parent="parallax/ParallaxLayer6/Node2D"]
 light_mask = 0
@@ -481,7 +481,7 @@ fac = 0.75
 z_index = -1
 
 [node name="Node2D" type="Node2D" parent="background/back1"]
-position = Vector2(1, 2)
+position = Vector2(0, 1)
 
 [node name="medtree" type="Sprite2D" parent="background/back1/Node2D"]
 material = SubResource("ShaderMaterial_k4wmw")

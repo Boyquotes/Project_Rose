@@ -60,10 +60,20 @@ size = Vector2i(960, 540)
 
 [node name="ForestBG" parent="BGViewport" instance=ExtResource("1_wg7i5")]
 
+[node name="parallax" parent="BGViewport/ForestBG" index="3"]
+scroll_offset = Vector2(481, 307)
+
+[node name="background2" parent="BGViewport/ForestBG" index="4"]
+scroll_offset = Vector2(481, 307)
+
+[node name="background" parent="BGViewport/ForestBG" index="5"]
+scroll_offset = Vector2(481, 307)
+
 [node name="Node2D" parent="BGViewport/ForestBG/background/back1" index="0"]
 position = Vector2(-1, 0)
 
 [node name="PlayerCamera" parent="BGViewport" node_paths=PackedStringArray("player") instance=ExtResource("2_qbao2")]
+position = Vector2(-1, -37)
 player = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose")
 playerPath = NodePath("../../FGViewport/ForestFG/player/RosePrefab/Rose")
 

@@ -318,10 +318,10 @@ specular_texture = ExtResource("42_c5gmp")
 layer = -1
 follow_viewport_enabled = true
 
-[node name="CanvasModulate4" type="CanvasModulate" parent="midground"]
+[node name="CanvasModulate4" type="CanvasModulate" parent="midground" node_paths=PackedStringArray("mult_node")]
 color = Color(0.537255, 0.537255, 0.537255, 1)
 script = ExtResource("1_xwvlq")
-mult_node_path = NodePath("../../player/MainCanvasModulate")
+mult_node = NodePath("../../player/MainCanvasModulate")
 base_color = Color(0.572549, 0.572549, 0.572549, 1)
 
 [node name="Midground" type="Node2D" parent="midground"]
@@ -385,7 +385,7 @@ position = Vector2(1984, -192)
 autoplay = true
 max_distance = 1000.0
 script = ExtResource("41_4eoag")
-windStreams = [ExtResource("42_jfbyq"), ExtResource("43_1i1gf"), ExtResource("44_vxaur"), ExtResource("45_17j2s"), ExtResource("46_gsqb3"), ExtResource("47_roie6"), ExtResource("48_wk6v6"), ExtResource("49_2gdsh"), ExtResource("50_sfjpx"), ExtResource("51_xjn64"), ExtResource("52_6sryp"), ExtResource("53_0tlei"), ExtResource("54_wfh61"), ExtResource("55_qgl76"), ExtResource("56_qbrbq")]
+windStreams = Array[AudioStream]([ExtResource("42_jfbyq"), ExtResource("43_1i1gf"), ExtResource("44_vxaur"), ExtResource("45_17j2s"), ExtResource("46_gsqb3"), ExtResource("47_roie6"), ExtResource("48_wk6v6"), ExtResource("49_2gdsh"), ExtResource("50_sfjpx"), ExtResource("51_xjn64"), ExtResource("52_6sryp"), ExtResource("53_0tlei"), ExtResource("54_wfh61"), ExtResource("55_qgl76"), ExtResource("56_qbrbq")])
 
 [node name="RosePrefab" parent="player" instance=ExtResource("7_3yybj")]
 position = Vector2(0, -40)
@@ -446,10 +446,10 @@ script = ExtResource("29_pjspf")
 [node name="midground2" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="CanvasModulate5" type="CanvasModulate" parent="midground2"]
+[node name="CanvasModulate5" type="CanvasModulate" parent="midground2" node_paths=PackedStringArray("mult_node")]
 color = Color(0.75098, 0.75098, 0.75098, 1)
 script = ExtResource("1_xwvlq")
-mult_node_path = NodePath("../../player/MainCanvasModulate")
+mult_node = NodePath("../../player/MainCanvasModulate")
 base_color = Color(1, 1, 1, 1)
 
 [node name="Forest32_grass" type="Sprite2D" parent="midground2"]
@@ -464,10 +464,10 @@ scroll_offset = Vector2(480, 310)
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="foreground"]
 
-[node name="CanvasModulate5" type="CanvasModulate" parent="foreground/ParallaxLayer4"]
+[node name="CanvasModulate5" type="CanvasModulate" parent="foreground/ParallaxLayer4" node_paths=PackedStringArray("mult_node")]
 color = Color(0.626471, 0.626471, 0.626471, 1)
 script = ExtResource("1_xwvlq")
-mult_node_path = NodePath("../../../player/MainCanvasModulate")
+mult_node = NodePath("../../../player/MainCanvasModulate")
 base_color = Color(1, 1, 1, 1)
 fac = 0.75
 

@@ -1,9 +1,20 @@
-res://Rooms/TestRoom.tscn
+res://Rooms/Forest/ForestComposed.tscn
 res://Resources/Tilesets/PrimititveTileset.tres
 res://Resources/Shaders/MultCelShader.gdshader
 res://Resources/Tilesets/Ledges.tres
 res://waterCelShader.gdshader
 res://Resources/Shaders/windCelShader.gdshader
 res://Resources/Shaders/drop.gdshader
+res://Resources/Shaders/Faux3DShadow.gdshader
 res://prototype/Forest_faux3D.gdshader
-res://Rooms/Forest/ForestComposed.tscn
+res://Scripts/Resources/follow_node.gd
+res://Rooms/TestRoom.tscn
+res://Scripts/Actors/Player/action_instancer.gd
+res://Scripts/Resources/MultiplyModulates.gd
+res://Rooms/Forest/ForestFG.tscn
+res://Game Objects/Actors/Players/Rose/Rose.tscn
+res://Game Objects/Actions/Player Actions/Rose/PrimaryBase1Action.tscn
+res://Scripts/Resources/mouse_follow.gd
+res://Scripts/Objects/Cape/skeleton_cape.gd
+res://Scripts/Resources/windAudioShuffle.gd
+res://Scripts/Objects/Camera/player_camera.gd

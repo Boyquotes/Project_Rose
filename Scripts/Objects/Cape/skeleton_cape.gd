@@ -51,8 +51,8 @@ func _ready():
 		mouse_influence_size *= mouse_influence_size 
 		mouse_tear_size *= mouse_tear_size
 		
-		mouse_position = get_local_mouse_position()
-		prev_mouse_position = Vector2(0, 0)
+		#mouse_position = get_local_mouse_position()
+		#prev_mouse_position = Vector2(0, 0)
 		
 		phys_obj_node = get_node(phys_obj_path)
 		

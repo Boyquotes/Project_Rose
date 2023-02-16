@@ -4,18 +4,16 @@ extends Node2D
 
 var last_queued_action
 
-@export var action_target_path: NodePath
+@export var action_spawn: Node2D
 
 var action_controller : ActionController
 var action_state : ActionState
 var host : Player
-var action_spawn
 
 func init():
 	action_controller = get_parent()
 	action_state = action_controller.action_state
 	host = action_controller.host
-	action_spawn = get_node(action_target_path)
 
 func initialize_action(action, instance_on_spawn=false, attached=false):
 	#host.connect("hurt", Callable(action,"on_player_hurt"))

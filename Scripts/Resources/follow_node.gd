@@ -7,11 +7,10 @@ var prev
 var curr
 
 func _ready():
-	target = get_node(target_path)
 	curr = target.get_screen_center_position()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	prev = target.get_screen_center_position()
 	if prev != curr and curr:
 		global_position += (curr - prev) * dir

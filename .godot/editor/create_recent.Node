@@ -1,3 +1,5 @@
+AcceptDialog
+SubViewport
 Sprite2D
 Node2D
 AudioStreamPlayer2D
@@ -9,7 +11,6 @@ Node
 PointLight2D
 DirectionalLight2D
 Camera2D
-SubViewport
 SubViewportContainer
 ParallaxLayer
 LightOccluder2D

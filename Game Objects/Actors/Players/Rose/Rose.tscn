@@ -6089,7 +6089,6 @@ action_can_interrupt = true
 
 [node name="ActionInstancer" parent="MoveStates/Action/ActionController" index="0"]
 script = ExtResource("2_rv5x2")
-action_target_path = null
 
 [node name="Crouch" type="Node2D" parent="MoveStates" index="6"]
 script = ExtResource("3_7ptux")
@@ -6205,9 +6204,9 @@ texture = ExtResource("28_ulm3k")
 
 [node name="SoundNode" type="Node2D" parent="Utilities" index="16"]
 script = ExtResource("59_i7kba")
-footsteps_dirt = [ExtResource("60_476h5"), ExtResource("61_dobde"), ExtResource("62_83mud"), ExtResource("63_j4ffd")]
-footsteps_grass = [ExtResource("64_i7s0s"), ExtResource("65_3ctk1"), ExtResource("66_x5aat"), ExtResource("67_4crhy")]
-slide_dirt = [ExtResource("68_itxvb")]
+footsteps_dirt = Array[AudioStream]([ExtResource("60_476h5"), ExtResource("61_dobde"), ExtResource("62_83mud"), ExtResource("63_j4ffd")])
+footsteps_grass = Array[AudioStream]([ExtResource("64_i7s0s"), ExtResource("65_3ctk1"), ExtResource("66_x5aat"), ExtResource("67_4crhy")])
+slide_dirt = Array[AudioStream]([ExtResource("68_itxvb")])
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." index="8"]
 current = true

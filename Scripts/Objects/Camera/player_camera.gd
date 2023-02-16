@@ -13,12 +13,10 @@ var _last_offset = Vector2(0, 0)
 var adj_position = Vector2(0, 0)
 signal shake
 
-@export var player : Node2D
-@export_node_path var playerPath
+@export var player : Player
 
 func _ready():
 	if Engine.is_editor_hint() or not Engine.is_editor_hint():
-		player = get_node(playerPath)
 		await player.ready
 		player.attach_cam(self)
 		set_process(true)

@@ -218,7 +218,7 @@ func tween_global_position(new: Vector2, time: float = .1):
 	tween.tween_property(self, "global_position", new, time)
 
 func change_to_grounded_anim(animator : AnimationPlayer, last_queued_action):
-	var frame = animator.current_animation_position
+	var frame = animator.current_animation_position + 0.0
 	if is_instance_valid(last_queued_action) and frame <= .1:
 		frame = .11
 	var anim = animator.current_animation

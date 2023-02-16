@@ -37,7 +37,6 @@
 [ext_resource type="AudioStream" uid="uid://utfob0oodqxe" path="res://Assets/sfx/Forest_Stereo_LOOP.wav" id="33_bqw1s"]
 [ext_resource type="Texture2D" uid="uid://c7x2f2l7kux2i" path="res://Assets/Tilesets/Forest/bigtree_windmask.png" id="33_d0vxo"]
 [ext_resource type="Texture2D" uid="uid://dptewkhxx5uyh" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1.png" id="34_m4rdd"]
-[ext_resource type="Texture2D" uid="uid://cnf2m2uf7c4a6" path="res://Assets/Tilesets/Forest/bigtree__leaves_front1_n.png" id="35_nleho"]
 [ext_resource type="Texture2D" uid="uid://dfghnt4fhibp3" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1_spec.png" id="36_0287s"]
 [ext_resource type="Texture2D" uid="uid://i3yrbwj77ka1" path="res://Assets/Tilesets/Forest/rock_front1.png" id="37_pc2yb"]
 [ext_resource type="Texture2D" uid="uid://4judg3y0hmn0" path="res://Assets/Tilesets/Forest/rock_front1_n.png" id="38_kcgrk"]

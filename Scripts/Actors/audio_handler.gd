@@ -48,12 +48,12 @@ func _on_rose_footstep(pitch_adjust: float = 0.0, vol_adjust: float = 0.0):
 	var aud = instantiate_stream()
 	match(mat):
 		"Dirt":
-			aud.pitch_scale = aud.pitch_scale - 2.0 + pitch_adjust + rng.randf_range(-0.5, 0.5)
+			aud.pitch_scale = pitch_adjust + rng.randf_range(-0.5, 0.5)
 			aud.volume_db = aud.volume_db - 15 + vol_adjust
 			aud.stream = footsteps_dirt[rng.randi_range(0,footsteps_dirt.size())-1]
 			aud.play()
 		"Grass":
-			aud.pitch_scale = aud.pitch_scale - 2.0 + pitch_adjust + rng.randf_range(-0.5, 0.5)
+			aud.pitch_scale = pitch_adjust + rng.randf_range(-0.5, 0.5)
 			aud.volume_db = aud.volume_db - 15 + vol_adjust
 			var aud2 = instantiate_stream()
 			aud2.pitch_scale = aud2.pitch_scale + pitch_adjust + rng.randf_range(-0.5, 0.5)
@@ -70,12 +70,12 @@ func _on_rose_sliding():
 	var aud = instantiate_stream()
 	match(mat):
 		"Dirt":
-			aud.pitch_scale = aud.pitch_scale + 1.5 + rng.randf_range(-0.5, 0.5)
+			aud.pitch_scale = 1.5 + rng.randf_range(-0.5, 0.5)
 			aud.volume_db -= 10
 			aud.stream = slide_dirt[rng.randi_range(0,slide_dirt.size())-1]
 			#aud.play()
 		"Grass":
-			aud.pitch_scale = aud.pitch_scale + 1.5 + rng.randf_range(-0.5, 0.5)
+			aud.pitch_scale = 1.5 + rng.randf_range(-0.5, 0.5)
 			aud.volume_db -= 10
 			#var aud2 = instantiate_stream()
 			#aud2.pitch_scale += 2.0

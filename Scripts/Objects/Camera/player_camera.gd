@@ -1,4 +1,3 @@
-@tool
 class_name PlayerCamera2D
 extends Camera2D
 
@@ -16,16 +15,14 @@ signal shake
 @export var player : Player
 
 func _ready():
-	if Engine.is_editor_hint() or not Engine.is_editor_hint():
-		await player.ready
-		player.attach_cam(self)
-		set_process(true)
+	await player.ready
+	player.attach_cam(self)
+	set_process(true)
 
 # Shake with decreasing intensity while there's time remaining.
 func _process(delta):
-	if Engine.is_editor_hint() or not Engine.is_editor_hint():
-		global_position = player.global_position
-		position += adj_position
+	global_position = player.global_position
+	position += adj_position
 	
 	# Only shake when there's shake time remaining.
 	if _timer == 0:

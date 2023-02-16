@@ -2,64 +2,65 @@
 
 [ext_resource type="Script" path="res://Scripts/Resources/MultiplyModulates.gd" id="1_xwvlq"]
 [ext_resource type="Shader" path="res://Resources/Shaders/drop.gdshader" id="2_d2vkd"]
-[ext_resource type="Texture2D" uid="uid://c18o6qgsdsvcp" path="res://Assets/Tilesets/Forest/Forest32.png" id="3_cdpwy"]
-[ext_resource type="Texture2D" uid="uid://2ec6ob8m12hw" path="res://Assets/Tilesets/Forest/Forest32_n.png" id="4_bc008"]
-[ext_resource type="Texture2D" uid="uid://cr7ancdmji56l" path="res://Assets/Tilesets/Forest/Forest32_spec.png" id="5_fpsal"]
+[ext_resource type="Texture2D" uid="uid://cij14p1c33qlk" path="res://Assets/Tilesets/Forest/Forest32.png" id="3_cdpwy"]
+[ext_resource type="Texture2D" uid="uid://c0sr5a61c3654" path="res://Assets/Tilesets/Forest/Forest32_n.png" id="4_bc008"]
+[ext_resource type="Texture2D" uid="uid://dgrdgcfbk2b8y" path="res://Assets/Tilesets/Forest/Forest32_spec.png" id="5_fpsal"]
 [ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="6_dpi4r"]
 [ext_resource type="PackedScene" uid="uid://b3qa2j2b58qrd" path="res://Game Objects/Actors/Players/Rose/RosePrefab.tscn" id="7_3yybj"]
 [ext_resource type="TileSet" uid="uid://c5wlc2imhei8u" path="res://Resources/Tilesets/PrimititveTileset.tres" id="8_6fnya"]
 [ext_resource type="TileSet" uid="uid://qdwxpeiw2ffb" path="res://Resources/Tilesets/Ledges.tres" id="9_y370n"]
 [ext_resource type="Script" path="res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd" id="10_nr2s6"]
-[ext_resource type="Texture2D" uid="uid://bwetk6fomtlyg" path="res://Assets/Tilesets/Forest/Forest32_grass_fore.png" id="11_7h5ss"]
-[ext_resource type="Texture2D" uid="uid://bfvvdd2cnlpqx" path="res://Assets/Tilesets/Forest/Forest32_grass_fore_n.png" id="12_jnsd2"]
-[ext_resource type="Texture2D" uid="uid://dniq3sekhgl5f" path="res://Assets/Tilesets/Forest/radial gradient.png" id="13_drxmy"]
-[ext_resource type="Texture2D" uid="uid://lp2y3b8twppf" path="res://Assets/Tilesets/Forest/bigtree_front2.png" id="14_gourx"]
-[ext_resource type="Texture2D" uid="uid://by5j4bl1rpo2" path="res://Assets/Tilesets/Forest/bigtree_front2_n.png" id="15_2smlj"]
-[ext_resource type="Texture2D" uid="uid://c6754f25aftjs" path="res://Assets/Tilesets/Forest/bigtree_front2_spec.png" id="16_7o21o"]
-[ext_resource type="Texture2D" uid="uid://dklqnq6ajq8gm" path="res://Assets/Tilesets/Forest/smalltree_back1.png" id="17_ybihb"]
-[ext_resource type="Texture2D" uid="uid://urrgo65gs5jy" path="res://Assets/Tilesets/Forest/smalltree_back1_n.png" id="18_61rr5"]
-[ext_resource type="Texture2D" uid="uid://cmcnjwnw1llic" path="res://Assets/Tilesets/Forest/smalltree_back1_spec.png" id="19_i6loh"]
+[ext_resource type="Texture2D" uid="uid://ca5rbcedrbpqc" path="res://Assets/Tilesets/Forest/Forest32_grass_fore.png" id="11_7h5ss"]
+[ext_resource type="Texture2D" uid="uid://btmt0h8duqi2r" path="res://Assets/Tilesets/Forest/Forest32_grass_fore_n.png" id="12_jnsd2"]
+[ext_resource type="Texture2D" uid="uid://1tbslhnkrfm4" path="res://Assets/Tilesets/Forest/radial gradient.png" id="13_drxmy"]
+[ext_resource type="Texture2D" uid="uid://b7ob1ndq8wmsx" path="res://Assets/Tilesets/Forest/bigtree_front2.png" id="14_gourx"]
+[ext_resource type="Texture2D" uid="uid://vh7pccoynb4p" path="res://Assets/Tilesets/Forest/bigtree_front2_n.png" id="15_2smlj"]
+[ext_resource type="Texture2D" uid="uid://da4biit3ct2rc" path="res://Assets/Tilesets/Forest/bigtree_front2_spec.png" id="16_7o21o"]
+[ext_resource type="Texture2D" uid="uid://b3jcyv846cr7l" path="res://Assets/Tilesets/Forest/smalltree_back1.png" id="17_ybihb"]
+[ext_resource type="Texture2D" uid="uid://d31dme2ymymr5" path="res://Assets/Tilesets/Forest/smalltree_back1_n.png" id="18_61rr5"]
+[ext_resource type="Texture2D" uid="uid://c50isabg5rru4" path="res://Assets/Tilesets/Forest/smalltree_back1_spec.png" id="19_i6loh"]
 [ext_resource type="Shader" path="res://Resources/Shaders/windCelShader.gdshader" id="20_bfmnx"]
-[ext_resource type="Texture2D" uid="uid://bvurvprys5kg5" path="res://Assets/Tilesets/Forest/medtree_windmask.png" id="21_vtosp"]
-[ext_resource type="Texture2D" uid="uid://b4behjsnyjluy" path="res://Assets/Tilesets/Forest/medtree_leaves_front1.png" id="22_j1hre"]
-[ext_resource type="Texture2D" uid="uid://blbvanx8nupbd" path="res://Assets/Tilesets/Forest/medtree_leaves_front1_n.png" id="23_pi03h"]
-[ext_resource type="Texture2D" uid="uid://cru0y6ehyvngt" path="res://Assets/Tilesets/Forest/medtree_leaves_front1_spec.png" id="24_v4iqy"]
-[ext_resource type="Texture2D" uid="uid://4b4bcm8etq18" path="res://Assets/Tilesets/Forest/smalltree_windmask.png" id="25_lefhs"]
-[ext_resource type="Texture2D" uid="uid://d07c4hnwfomo0" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1.png" id="26_1c4ku"]
-[ext_resource type="Texture2D" uid="uid://d30ovj7gk0hjv" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1_n.png" id="27_r8nsw"]
-[ext_resource type="Texture2D" uid="uid://c8rca7bu5dyj0" path="res://Assets/Sprites/Actors/Rose/cape_shadow.png" id="28_pxbu4"]
-[ext_resource type="Texture2D" uid="uid://cqn860v870rf" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1_spec.png" id="28_t34wn"]
+[ext_resource type="Texture2D" uid="uid://b4r65i082e0kl" path="res://Assets/Tilesets/Forest/medtree_windmask.png" id="21_vtosp"]
+[ext_resource type="Texture2D" uid="uid://cnukr07q50n76" path="res://Assets/Tilesets/Forest/medtree_leaves_front1.png" id="22_j1hre"]
+[ext_resource type="Texture2D" uid="uid://hvb0brwkvtet" path="res://Assets/Tilesets/Forest/medtree_leaves_front1_n.png" id="23_pi03h"]
+[ext_resource type="Texture2D" uid="uid://hf8n44m7clsk" path="res://Assets/Tilesets/Forest/medtree_leaves_front1_spec.png" id="24_v4iqy"]
+[ext_resource type="Texture2D" uid="uid://cjvxb42ueyhkb" path="res://Assets/Tilesets/Forest/smalltree_windmask.png" id="25_lefhs"]
+[ext_resource type="Texture2D" uid="uid://bfbo7bhalpax" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1.png" id="26_1c4ku"]
+[ext_resource type="Texture2D" uid="uid://m5agiabjiyn6" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1_n.png" id="27_r8nsw"]
+[ext_resource type="Texture2D" uid="uid://cehmun2ra418y" path="res://Assets/Sprites/Actors/Rose/cape_shadow.png" id="28_pxbu4"]
+[ext_resource type="Texture2D" uid="uid://dgmkhxialsr1b" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1_spec.png" id="28_t34wn"]
 [ext_resource type="Script" path="res://Scripts/Resources/mouse_follow.gd" id="29_pjspf"]
-[ext_resource type="Texture2D" uid="uid://c7xcalpae6v67" path="res://Assets/Tilesets/Forest/smalltree2_windmask.png" id="29_was5n"]
-[ext_resource type="Texture2D" uid="uid://dqb6cqe4hsdtr" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1.png" id="30_2fkt6"]
-[ext_resource type="Texture2D" uid="uid://c32h3f13i3x2" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1_n.png" id="31_u8jfk"]
-[ext_resource type="Texture2D" uid="uid://dn6atjvijfown" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1_spec.png" id="32_dlv8f"]
-[ext_resource type="AudioStream" uid="uid://utfob0oodqxe" path="res://Assets/sfx/Forest_Stereo_LOOP.wav" id="33_bqw1s"]
-[ext_resource type="Texture2D" uid="uid://c7x2f2l7kux2i" path="res://Assets/Tilesets/Forest/bigtree_windmask.png" id="33_d0vxo"]
-[ext_resource type="Texture2D" uid="uid://dptewkhxx5uyh" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1.png" id="34_m4rdd"]
-[ext_resource type="Texture2D" uid="uid://dfghnt4fhibp3" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1_spec.png" id="36_0287s"]
-[ext_resource type="Texture2D" uid="uid://i3yrbwj77ka1" path="res://Assets/Tilesets/Forest/rock_front1.png" id="37_pc2yb"]
-[ext_resource type="Texture2D" uid="uid://4judg3y0hmn0" path="res://Assets/Tilesets/Forest/rock_front1_n.png" id="38_kcgrk"]
-[ext_resource type="Texture2D" uid="uid://h3povsdptxax" path="res://Assets/Tilesets/Forest/rock_front1_spec.png" id="39_2cwwe"]
-[ext_resource type="Texture2D" uid="uid://bfi72cevgfo18" path="res://Assets/Tilesets/Forest/hugetree_fore.png" id="40_q4rhy"]
+[ext_resource type="Texture2D" uid="uid://0rhff2h8hqx0" path="res://Assets/Tilesets/Forest/smalltree2_windmask.png" id="29_was5n"]
+[ext_resource type="Texture2D" uid="uid://b5a8eln6d67r3" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1.png" id="30_2fkt6"]
+[ext_resource type="Texture2D" uid="uid://cio3av7e6qhe2" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1_n.png" id="31_u8jfk"]
+[ext_resource type="Texture2D" uid="uid://c1carm827y5vj" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1_spec.png" id="32_dlv8f"]
+[ext_resource type="AudioStream" uid="uid://gnv4fsj60vmm" path="res://Assets/sfx/Forest_Stereo_LOOP.wav" id="33_bqw1s"]
+[ext_resource type="Texture2D" uid="uid://ck0rdr0bnc120" path="res://Assets/Tilesets/Forest/bigtree_windmask.png" id="33_d0vxo"]
+[ext_resource type="Texture2D" uid="uid://mp6sofcwuyax" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1.png" id="34_m4rdd"]
+[ext_resource type="Texture2D" uid="uid://c61y5e58qiebv" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1_spec.png" id="36_0287s"]
+[ext_resource type="Texture2D" uid="uid://b2fnvqm7tqwu1" path="res://Assets/Tilesets/Forest/rock_front1.png" id="37_pc2yb"]
+[ext_resource type="Texture2D" uid="uid://bp2lppdo62ssb" path="res://Assets/Tilesets/Forest/rock_front1_n.png" id="38_kcgrk"]
+[ext_resource type="Texture2D" uid="uid://cnxtwprpycwpe" path="res://Assets/Tilesets/Forest/rock_front1_spec.png" id="39_2cwwe"]
+[ext_resource type="Texture2D" uid="uid://pg3vju61t60k" path="res://Assets/Tilesets/Forest/hugetree_fore.png" id="40_q4rhy"]
 [ext_resource type="Script" path="res://Scripts/Resources/windAudioShuffle.gd" id="41_4eoag"]
-[ext_resource type="Texture2D" uid="uid://bgwvxlhiw0ne2" path="res://Assets/Tilesets/Forest/hugetree_fore_n.png" id="41_msi4x"]
-[ext_resource type="Texture2D" uid="uid://clnnbiirokudd" path="res://Assets/Tilesets/Forest/hugetree_spec.png" id="42_c5gmp"]
-[ext_resource type="AudioStream" uid="uid://mhu2de3s0uso" path="res://Assets/sfx/ambient wind/Wind1_S.wav" id="42_jfbyq"]
-[ext_resource type="AudioStream" uid="uid://hhucsea8rnfc" path="res://Assets/sfx/ambient wind/Wind2_S.wav" id="43_1i1gf"]
-[ext_resource type="AudioStream" uid="uid://fhy8sk2wbdgk" path="res://Assets/sfx/ambient wind/Wind3_S.wav" id="44_vxaur"]
-[ext_resource type="AudioStream" uid="uid://d1msd50cmhq2q" path="res://Assets/sfx/ambient wind/Wind4_S.wav" id="45_17j2s"]
-[ext_resource type="AudioStream" uid="uid://bj3gbtrpw51s6" path="res://Assets/sfx/ambient wind/Wind5_S.wav" id="46_gsqb3"]
-[ext_resource type="AudioStream" uid="uid://rqjlossv4lyr" path="res://Assets/sfx/ambient wind/Wind6_S.wav" id="47_roie6"]
-[ext_resource type="AudioStream" uid="uid://dpmi5tduah3ff" path="res://Assets/sfx/ambient wind/Wind7_S.wav" id="48_wk6v6"]
-[ext_resource type="AudioStream" uid="uid://dsbsqhicbj1wo" path="res://Assets/sfx/ambient wind/Wind8_S.wav" id="49_2gdsh"]
-[ext_resource type="AudioStream" uid="uid://cdutlxvgg4qm1" path="res://Assets/sfx/ambient wind/Wind9_S.wav" id="50_sfjpx"]
-[ext_resource type="AudioStream" uid="uid://brptq4uk2kiiu" path="res://Assets/sfx/ambient wind/Wind10_S.wav" id="51_xjn64"]
-[ext_resource type="AudioStream" uid="uid://cas46c6og17su" path="res://Assets/sfx/ambient wind/Wind11_S.wav" id="52_6sryp"]
-[ext_resource type="AudioStream" uid="uid://b3f1yqx2e4xxl" path="res://Assets/sfx/ambient wind/Wind12_S.wav" id="53_0tlei"]
-[ext_resource type="AudioStream" uid="uid://csjogj3oxsg44" path="res://Assets/sfx/ambient wind/Wind13_S.wav" id="54_wfh61"]
-[ext_resource type="AudioStream" uid="uid://c8lrrtl7kpnvt" path="res://Assets/sfx/ambient wind/Wind14_S.wav" id="55_qgl76"]
-[ext_resource type="AudioStream" uid="uid://be656ljqv6dap" path="res://Assets/sfx/ambient wind/Wind15_S.wav" id="56_qbrbq"]
+[ext_resource type="Texture2D" uid="uid://ttdbn1lxil3d" path="res://Assets/Tilesets/Forest/hugetree_fore_n.png" id="41_msi4x"]
+[ext_resource type="Texture2D" uid="uid://d0ramm382d3e6" path="res://Assets/Tilesets/Forest/hugetree_spec.png" id="42_c5gmp"]
+[ext_resource type="AudioStream" uid="uid://c0vac0kutf6qv" path="res://Assets/sfx/ambient wind/Wind1_S.wav" id="42_jfbyq"]
+[ext_resource type="AudioStream" uid="uid://6ksmjo7ugdbm" path="res://Assets/sfx/ambient wind/Wind2_S.wav" id="43_1i1gf"]
+[ext_resource type="AudioStream" uid="uid://b1yv2l5biy3es" path="res://Assets/sfx/ambient wind/Wind3_S.wav" id="44_vxaur"]
+[ext_resource type="AudioStream" uid="uid://b8rewkianytlu" path="res://Assets/sfx/ambient wind/Wind4_S.wav" id="45_17j2s"]
+[ext_resource type="AudioStream" uid="uid://bi8jgnqe50scg" path="res://Assets/sfx/ambient wind/Wind5_S.wav" id="46_gsqb3"]
+[ext_resource type="AudioStream" uid="uid://bjvywbpgin8il" path="res://Assets/sfx/ambient wind/Wind6_S.wav" id="47_roie6"]
+[ext_resource type="AudioStream" uid="uid://cy31lk7kas0n8" path="res://Assets/sfx/ambient wind/Wind7_S.wav" id="48_wk6v6"]
+[ext_resource type="AudioStream" uid="uid://m72yls58txl2" path="res://Assets/sfx/ambient wind/Wind8_S.wav" id="49_2gdsh"]
+[ext_resource type="AudioStream" uid="uid://c76nq64ry5a55" path="res://Assets/sfx/ambient wind/Wind9_S.wav" id="50_sfjpx"]
+[ext_resource type="AudioStream" uid="uid://bwbf7g4cmycr0" path="res://Assets/sfx/ambient wind/Wind10_S.wav" id="51_xjn64"]
+[ext_resource type="AudioStream" uid="uid://bpydwcixex6xq" path="res://Assets/sfx/ambient wind/Wind11_S.wav" id="52_6sryp"]
+[ext_resource type="AudioStream" uid="uid://5cfl7gtp3b5t" path="res://Assets/sfx/ambient wind/Wind12_S.wav" id="53_0tlei"]
+[ext_resource type="Texture2D" uid="uid://cyookwyfom8vv" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1_n.png" id="54_bdo0u"]
+[ext_resource type="AudioStream" uid="uid://b0d7q076x17k4" path="res://Assets/sfx/ambient wind/Wind13_S.wav" id="54_wfh61"]
+[ext_resource type="AudioStream" uid="uid://gl705561v6jb" path="res://Assets/sfx/ambient wind/Wind14_S.wav" id="55_qgl76"]
+[ext_resource type="AudioStream" uid="uid://b1sinfl4dxmii" path="res://Assets/sfx/ambient wind/Wind15_S.wav" id="56_qbrbq"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_usqrs"]
 polygon = PackedVector2Array(-488, 888, -528, 888, -592, 888, -592, 920, -976, 920, -976, 1496, -16, 1496, -16, 1368, 112, 1368, 112, 1304, -80, 1304, -80, 1432, -912, 1432, -912, 984, -656, 984, -656, 1048, -592, 1048, -592, 984, -528, 984, -528, 920, -488, 920)
@@ -271,7 +272,7 @@ shader_parameter/windMask = ExtResource("33_d0vxo")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_oniea"]
 diffuse_texture = ExtResource("34_m4rdd")
-normal_texture = ExtResource("35_nleho")
+normal_texture = ExtResource("54_bdo0u")
 specular_texture = ExtResource("36_0287s")
 specular_color = Color(0, 0, 0, 1)
 
@@ -317,10 +318,10 @@ specular_texture = ExtResource("42_c5gmp")
 layer = -1
 follow_viewport_enabled = true
 
-[node name="CanvasModulate4" type="CanvasModulate" parent="midground" node_paths=PackedStringArray("mult_node")]
+[node name="CanvasModulate4" type="CanvasModulate" parent="midground"]
 color = Color(0.537255, 0.537255, 0.537255, 1)
 script = ExtResource("1_xwvlq")
-mult_node = NodePath("../../player/MainCanvasModulate")
+mult_node_path = NodePath("../../player/MainCanvasModulate")
 base_color = Color(0.572549, 0.572549, 0.572549, 1)
 
 [node name="Midground" type="Node2D" parent="midground"]
@@ -445,10 +446,10 @@ script = ExtResource("29_pjspf")
 [node name="midground2" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="CanvasModulate5" type="CanvasModulate" parent="midground2" node_paths=PackedStringArray("mult_node")]
+[node name="CanvasModulate5" type="CanvasModulate" parent="midground2"]
 color = Color(0.75098, 0.75098, 0.75098, 1)
 script = ExtResource("1_xwvlq")
-mult_node = NodePath("../../player/MainCanvasModulate")
+mult_node_path = NodePath("../../player/MainCanvasModulate")
 base_color = Color(1, 1, 1, 1)
 
 [node name="Forest32_grass" type="Sprite2D" parent="midground2"]
@@ -463,10 +464,9 @@ scroll_offset = Vector2(480, 310)
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="foreground"]
 
-[node name="CanvasModulate5" type="CanvasModulate" parent="foreground/ParallaxLayer4" node_paths=PackedStringArray("mult_node")]
+[node name="CanvasModulate5" type="CanvasModulate" parent="foreground/ParallaxLayer4"]
 color = Color(0.626471, 0.626471, 0.626471, 1)
 script = ExtResource("1_xwvlq")
-mult_node = NodePath("../../../player/MainCanvasModulate")
 base_color = Color(1, 1, 1, 1)
 fac = 0.75
 

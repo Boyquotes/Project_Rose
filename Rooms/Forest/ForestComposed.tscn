@@ -9,7 +9,7 @@
 [ext_resource type="Shader" path="res://prototype/Forest_faux3D.gdshader" id="7_to2ag"]
 [ext_resource type="Script" path="res://Scripts/Resources/follow_rot.gd" id="8_n4mq7"]
 [ext_resource type="Script" path="res://Scripts/Resources/follow_node.gd" id="9_7ww8g"]
-[ext_resource type="Texture2D" uid="uid://dl8q2cotny0ij" path="res://icon.png" id="10_ji0sd"]
+[ext_resource type="Texture2D" uid="uid://cavnnhtram42k" path="res://icon.png" id="10_ji0sd"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ujkgo"]
 viewport_path = NodePath("BGViewport")
@@ -134,6 +134,9 @@ size = Vector2i(960, 540)
 [node name="PlayerCamera" parent="FGViewport/ForestFG/player" index="3" node_paths=PackedStringArray("player") instance=ExtResource("2_qbao2")]
 position = Vector2(-1, -37)
 player = NodePath("../RosePrefab/Rose")
+
+[node name="CanvasModulate5" parent="FGViewport/ForestFG/midground2" index="0"]
+color = Color(0.75098, 0.75098, 0.75098, 1)
 
 [node name="foreground" parent="FGViewport/ForestFG" index="3"]
 scroll_offset = Vector2(481, 307)

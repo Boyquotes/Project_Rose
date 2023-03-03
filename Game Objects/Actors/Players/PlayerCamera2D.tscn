@@ -1,10 +1,9 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://c5cxtnmv1a3ny"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/Camera/player_camera.gd" id="1_ukxb1"]
 
 [node name="PlayerCamera" type="Camera2D" node_paths=PackedStringArray("player")]
 process_mode = 1
-current = true
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0

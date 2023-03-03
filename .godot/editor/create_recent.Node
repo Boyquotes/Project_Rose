@@ -1,16 +1,16 @@
-AcceptDialog
-SubViewport
-Sprite2D
 Node2D
+Node
+Camera2D
+SubViewport
+AcceptDialog
+Sprite2D
 AudioStreamPlayer2D
 GPUParticles2D
 AnimationPlayer
 AudioListener2D
 ParallaxBackground
-Node
 PointLight2D
 DirectionalLight2D
-Camera2D
 SubViewportContainer
 ParallaxLayer
 LightOccluder2D
@@ -30,4 +30,3 @@ Bone2D
 Skeleton2D
 Polygon2D
 WorldEnvironment
-HBoxContainer

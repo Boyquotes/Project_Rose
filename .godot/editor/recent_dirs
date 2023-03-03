@@ -1,11 +1,11 @@
-res://Assets/Tilesets/Forest
 res://Rooms/Forest
+res://Assets/Lights
+res://Assets/Tilesets/Forest
 res://Scripts/Actors
 res://Game Objects/Testing
 res://Resources/Shaders
 res://Assets/Sprites/Actors/Rose/Effects
 res://Assets/Sprites/Actors/Rose
-res://Assets/Lights
 res://
 res://prototype
 res://Scripts/Resources

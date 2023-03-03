@@ -1,6 +1,3 @@
-res://Rooms/Forest/ForestComposed.tscn
-res://Scripts/Actions/Player Actions/Generic/action.gd
-res://addons/rmsmartshape/assets/GUI_Theme.tres
 res://Rooms/Forest/ForestFG.tscn
 res://Resources/Shaders/drop.gdshader
 res://Resources/Shaders/MultCelShader.gdshader
@@ -9,6 +6,17 @@ res://Resources/Tilesets/Ledges.tres
 res://Resources/Shaders/windCelShader.gdshader
 res://waterCelShader.gdshader
 res://prototype/Forest_faux3D.gdshader
-res://Scripts/Objects/Camera/player_camera.gd
 res://Game Objects/Actors/Players/Rose/Rose.tscn
+res://Rooms/Forest/ForestComposed.tscn
+res://Rooms/Forest/ForestBG.tscn
+res://Resources/Shaders/Faux3DShadow.gdshader
+res://Scripts/Resources/windAudioShuffle.gd
+res://Rooms/Forest/ForestCompiled.tscn
+res://Rooms/Forest/lights.tscn
 res://Scripts/Actors/audio_handler.gd
+res://Rooms/Forest/ForestBGHeightMap.tscn
+res://Rooms/Forest/ForestBG2NormalMap.tscn
+res://Rooms/Forest/ForestBGNormalMap.tscn
+res://Rooms/Forest/ForestBG2.tscn
+res://Game Objects/Actors/Players/PlayerCamera2D.tscn
+res://Rooms/Forest/occluders.tscn

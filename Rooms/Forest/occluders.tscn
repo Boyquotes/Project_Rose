@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvcqdfbopg02y"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_usqrs"]
+polygon = PackedVector2Array(-485, 886, -589, 886, -589, 918, -981, 918, -981, 1494, -949, 1454, -949, 950, -653, 950, -653, 1046, -597, 1046, -597, 982, -533, 982, -533, 918, -485, 918)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4kkos"]
+polygon = PackedVector2Array(-400, 920, -400, 984, -464, 984, -464, 1112, -528, 1112, -592, 1112, -592, 1080, -656, 1080, -656, 1144, -568, 1144, -568, 1336, -432, 1336, -432, 1272, -304, 1272, -304, 1336, -176, 1336, -176, 1240, -176, 984, 331, 982, 331, 1014, 491, 1014, 491, 758, 491, -1130, 1707, -1130, 1707, -1194, 451, -1194, 451, 950, -176, 952, -336, 984)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xmme6"]
+polygon = PackedVector2Array(651, -1402, 2283, -1402, 2283, -1354, 2283, 1590, 2251, 1590, 2251, -1354, 651, -1354)
+
+[node name="Occluders" type="Node2D"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(117, 170)
+occluder = SubResource("OccluderPolygon2D_usqrs")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(117, 170)
+occluder = SubResource("OccluderPolygon2D_4kkos")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(117, 170)
+occluder = SubResource("OccluderPolygon2D_xmme6")

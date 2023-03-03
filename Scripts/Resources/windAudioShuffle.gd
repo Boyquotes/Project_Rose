@@ -7,6 +7,6 @@ func _ready():
 	rng.randomize()
 
 func _process(_delta):
-	if !playing:
+	if !playing and autoplay:
 		stream = windStreams[rng.randi_range(0,windStreams.size())-1]
 		play()

@@ -1,25 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://deb1ra8lhfpcm"]
+[gd_scene load_steps=6 format=3 uid="uid://deb1ra8lhfpcm"]
 
+[ext_resource type="PackedScene" uid="uid://2qkwl63ufvtn" path="res://Rooms/Forest/ForestBG2.tscn" id="1_2t0hi"]
 [ext_resource type="PackedScene" uid="uid://dfimah88tvf7h" path="res://Rooms/Forest/ForestBG.tscn" id="2_fde47"]
 [ext_resource type="PackedScene" uid="uid://bx8p6y35u87xi" path="res://Rooms/Forest/ForestFG.tscn" id="3_dlpih"]
+[ext_resource type="PackedScene" uid="uid://b1ntr18o7fvrw" path="res://Rooms/Forest/lights.tscn" id="3_g6ggu"]
+[ext_resource type="Texture2D" uid="uid://cqiqrk216ov0w" path="res://Assets/Lights/clear.png" id="5_pq518"]
 
 [node name="ForestCompiled" type="Node2D"]
 
-[node name="ForestBG" parent="." instance=ExtResource("2_fde47")]
+[node name="ForestBG2" parent="." instance=ExtResource("1_2t0hi")]
 
-[node name="Node2D2" parent="ForestBG" index="2" node_paths=PackedStringArray("targetLight")]
-targetLight = NodePath("../../ForestFG/player/playerLights")
+[node name="ForestBG" parent="." instance=ExtResource("2_fde47")]
 
 [node name="ForestFG" parent="." instance=ExtResource("3_dlpih")]
 
-[node name="CanvasModulate5" parent="ForestFG/midground2" index="0"]
-color = Color(0.75098, 0.75098, 0.75098, 1)
+[node name="Lights" parent="." instance=ExtResource("3_g6ggu")]
 
-[node name="CanvasModulate5" parent="ForestFG/foreground/ParallaxLayer4" index="0"]
-color = Color(0.626471, 0.626471, 0.626471, 1)
+[node name="PointLight2D2" parent="Lights" index="1"]
+position = Vector2(2640, 304)
+color = Color(1, 0.901961, 0.337255, 1)
+
+[node name="PointLight2D3" parent="Lights" index="2"]
+visible = false
+position = Vector2(2464, 344)
+color = Color(0, 0, 0, 0)
+texture = ExtResource("5_pq518")
 
 [editable path="ForestBG"]
 [editable path="ForestBG/background/back1/Node2D/NormalSphere"]
 [editable path="ForestFG"]
 [editable path="ForestFG/player/RosePrefab"]
 [editable path="ForestFG/player/RosePrefab/Rose"]
+[editable path="Lights"]

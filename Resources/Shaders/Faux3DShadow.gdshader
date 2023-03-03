@@ -1,4 +1,5 @@
 shader_type canvas_item;
+//render_mode unshaded;
 
 uniform sampler2D bg: filter_nearest;
 uniform sampler2D bg_height: filter_nearest;
@@ -29,26 +30,6 @@ float remap(float val, float i1, float i2, float o1, float o2) {
 
 void light()
 {
-	/*
-	vec4 heightTex = texture(bg_height, UV) + depthBrightness;
-	float depth = heightTex.x;
-	vec3 lightPos = LIGHT_POSITION;
-	if (LIGHT_IS_DIRECTIONAL) {
-		lightPos = LIGHT_DIRECTION * directionalLightNotionalPosition;
-	}
-	vec3 fragPos = vec3(FRAGCOORD.xy, depth);
-	vec3 lightDir = normalize(fragPos - lightPos);
-	vec3 sample = lightPos + lightDir * (fg_height - lightPos.z) / lightDir.z;
-	vec4 grab = texture(TEXTURE, sample.xy * depthMod);
-	vec4 d4 = abs(grab - vec4(.5));
-	float d = max(max(d4.r, d4.g), d4.b);
-    if(d >= 0.1) {
-		LIGHT = LIGHT_COLOR;
-	}
-	else {
-		LIGHT = vec4(0.0);
-	}
-	*/
 	vec4 heightTex = texture(bg_height, UV);
 	float depth = heightTex.x;
 	// (1.0 - depth): b/c LightDirection is in opposite direction, we need to 

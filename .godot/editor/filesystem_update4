@@ -1,10 +1,15 @@
-res://Scripts/Components/health_component.gd
-res://Scripts/Actors/Player/player.gd
-res://Entities/Components/health_component.tscn
-res://Scripts/Actors/actor.gd
-res://Entities/Actors/Actor.tscn
-res://Entities/Components/animator_component.gd
-res://Scripts/Components/animator_component.gd
-res://Game Objects/Actors/Players/Rose/Rose.tscn
+res://Game Objects/Actors/Players/Rose/RoseBody.tscn
+res://addons/rmsmartshape/assets/GUI_Theme.tres
 res://Resources/Shaders/MultCelShader.gdshader
 res://Resources/Entities/Actors/Players/Rose/RoseAnimations.res
+res://Entities/Actors/Players/Rose/RosePrefab.tscn
+res://Entities/Actors/Players/Rose/Rose.tscn
+res://Rooms/Forest/ForestCompiled.tscn
+res://Resources/Shaders/windCelShader.gdshader
+res://waterCelShader.gdshader
+res://Resources/Shaders/drop.gdshader
+res://Resources/Tilesets/PrimititveTileset.tres
+res://Resources/Tilesets/Ledges.tres
+res://Scripts/Actors/Player/Rose/rose_action_instancer.gd
+res://Entities/Actors/Players/Rose/RoseBody.tscn
+res://Scripts/Actors/actor.gd

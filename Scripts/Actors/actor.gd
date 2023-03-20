@@ -113,6 +113,7 @@ func _cleanup():
 	pass
 
 func animate(animator : AnimationPlayer, anim : String, cont = true):
+	anim = "RoseAnimations/" + anim
 	if prev_anim != anim:
 		emit_signal("animation_changed", prev_anim, anim)
 		prev_anim = anim

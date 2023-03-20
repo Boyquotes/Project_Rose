@@ -1,11 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://dmdi1fso4lh8h"]
+[gd_scene load_steps=29 format=3]
 
 [ext_resource type="PackedScene" uid="uid://dfimah88tvf7h" path="res://Rooms/Forest/ForestBG.tscn" id="1_wg7i5"]
 [ext_resource type="PackedScene" uid="uid://b1ntr18o7fvrw" path="res://Rooms/Forest/lights.tscn" id="2_3wxym"]
-[ext_resource type="PackedScene" uid="uid://c5cxtnmv1a3ny" path="res://Game Objects/Actors/Players/PlayerCamera2D.tscn" id="2_qbao2"]
+[ext_resource type="PackedScene" uid="uid://c5cxtnmv1a3ny" path="res://Entities/Actors/Players/PlayerCamera2D.tscn" id="2_qbao2"]
 [ext_resource type="PackedScene" uid="uid://qykeyuysrcdh" path="res://Rooms/Forest/ForestBGHeightMap.tscn" id="3_0ktpu"]
 [ext_resource type="PackedScene" uid="uid://cx036wqth7ab3" path="res://Rooms/Forest/ForestBGNormalMap.tscn" id="4_ircky"]
-[ext_resource type="PackedScene" uid="uid://bx8p6y35u87xi" path="res://Rooms/Forest/ForestFG.tscn" id="5_gqlvt"]
+[ext_resource type="PackedScene" path="res://Rooms/Forest/ForestFG.tscn" id="5_gqlvt"]
 [ext_resource type="PackedScene" uid="uid://2qkwl63ufvtn" path="res://Rooms/Forest/ForestBG2.tscn" id="6_ka32b"]
 [ext_resource type="Shader" path="res://Resources/Shaders/Faux3DShadow.gdshader" id="6_srck8"]
 [ext_resource type="PackedScene" uid="uid://chr10ny74jx1s" path="res://Rooms/Forest/ForestBG2HeightMap.tscn" id="7_fjtdk"]
@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://dgf2lgiwtkyj3" path="res://Rooms/Forest/ForestBG2NormalMap.tscn" id="8_61pyn"]
 [ext_resource type="Script" path="res://Scripts/Resources/follow_rot.gd" id="8_n4mq7"]
 [ext_resource type="Script" path="res://Scripts/Resources/follow_node.gd" id="9_7ww8g"]
-[ext_resource type="Texture2D" uid="uid://dl8q2cotny0ij" path="res://icon.png" id="10_ji0sd"]
+[ext_resource type="Texture2D" uid="uid://cavnnhtram42k" path="res://icon.png" id="10_ji0sd"]
 [ext_resource type="PackedScene" uid="uid://dvcqdfbopg02y" path="res://Rooms/Forest/occluders.tscn" id="15_467jc"]
+
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ujkgo"]
 viewport_path = NodePath("BG/BGViewport")

@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/GUI/pause_system.gd" id="1_v1npt"]
+[ext_resource type="Script" path="res://Scripts/GUI/pause_menu.gd" id="2_k1oyj"]
+[ext_resource type="PackedScene" uid="uid://dnibougg6xb5p" path="res://Entities/GUI/ControlsMenu.tscn" id="3_d7k31"]
+
+
+[node name="PauseSystem" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v1npt")
+
+[node name="PauseMenu" type="PanelContainer" parent="."]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 48.0
+offset_bottom = 51.0
+script = ExtResource("2_k1oyj")
+controls_menu_path = NodePath("../ControlsMenu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+offset_right = 98.0
+offset_bottom = 101.0
+
+[node name="CloseMenuButton" type="Button" parent="PauseMenu/VBoxContainer"]
+offset_right = 98.0
+offset_bottom = 31.0
+focus_neighbor_top = NodePath("../ExitGameButton")
+focus_neighbor_bottom = NodePath("../ControlsMenuButton")
+focus_next = NodePath("../ControlsMenuButton")
+focus_previous = NodePath("../ExitGameButton")
+text = "Close Menu"
+
+[node name="ControlsMenuButton" type="Button" parent="PauseMenu/VBoxContainer"]
+offset_top = 35.0
+offset_right = 98.0
+offset_bottom = 66.0
+focus_neighbor_top = NodePath("../CloseMenuButton")
+focus_neighbor_bottom = NodePath("../ExitGameButton")
+focus_next = NodePath("../ExitGameButton")
+focus_previous = NodePath("../CloseMenuButton")
+text = "Controls
+"
+
+[node name="ExitGameButton" type="Button" parent="PauseMenu/VBoxContainer"]
+offset_top = 70.0
+offset_right = 98.0
+offset_bottom = 101.0
+focus_neighbor_top = NodePath("../ControlsMenuButton")
+focus_neighbor_bottom = NodePath("../CloseMenuButton")
+focus_next = NodePath("../CloseMenuButton")
+focus_previous = NodePath("../ControlsMenuButton")
+text = "Exit Game"
+
+[node name="ControlsMenu" parent="." instance=ExtResource("3_d7k31")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -240.0
+offset_top = -145.0
+offset_right = 240.0
+offset_bottom = 125.0
+grow_horizontal = 1
+grow_vertical = 1
+hostpath = NodePath("..")
+
+[connection signal="pressed" from="PauseMenu/VBoxContainer/CloseMenuButton" to="PauseMenu" method="_on_close_menu_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ControlsMenuButton" to="PauseMenu" method="_on_controls_menu_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ExitGameButton" to="PauseMenu" method="_on_exit_game_button_pressed"]

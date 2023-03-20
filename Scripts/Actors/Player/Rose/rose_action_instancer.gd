@@ -6,13 +6,13 @@ func dodge():
 	action.start()
 
 func instance_dodge():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/DodgeAction.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/DodgeAction.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action)
 	return action
 
 func instance_primary_base1():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/PrimaryBase1Action.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/PrimaryBase1Action.tscn").instantiate()
 	var action = last_queued_action
 	action = initialize_action(action, false, true)
 	action = initialize_hitboxes(action)
@@ -20,7 +20,7 @@ func instance_primary_base1():
 	return action
 
 func instance_primary_base2():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/PrimaryBase2Action.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/PrimaryBase2Action.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action, false, true)
 	initialize_hitboxes(action)
@@ -28,7 +28,7 @@ func instance_primary_base2():
 	return action
 
 func instance_primary_base_up():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/PrimaryBaseUpAction.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/PrimaryBaseUpAction.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action, false, true)
 	initialize_hitboxes(action)
@@ -36,7 +36,7 @@ func instance_primary_base_up():
 	return action
 
 func instance_primary_base_up_air():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/PrimaryBaseUpAirAction.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/PrimaryBaseUpAirAction.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action, false, true)
 	initialize_hitboxes(action)
@@ -44,7 +44,7 @@ func instance_primary_base_up_air():
 	return action
 
 func instance_primary_base_air():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/PrimaryBaseAirAction.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/PrimaryBaseAirAction.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action, false, true)
 	initialize_hitboxes(action)
@@ -52,7 +52,7 @@ func instance_primary_base_air():
 	return action
 
 func instance_primary_base_down_air():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/PrimaryBaseDownAirAction.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/PrimaryBaseDownAirAction.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action, false, true)
 	initialize_hitboxes(action)
@@ -60,7 +60,7 @@ func instance_primary_base_down_air():
 	return action
 
 func instance_secondary_base():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/SecondaryBaseAction.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/SecondaryBaseAction.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action, false, true)
 	initialize_hitboxes(action)
@@ -68,7 +68,7 @@ func instance_secondary_base():
 	return action
 
 func instance_secondary_base_crouch():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/SecondaryBaseCrouchAction.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/SecondaryBaseCrouchAction.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action, false, true)
 	initialize_hitboxes(action)
@@ -76,7 +76,7 @@ func instance_secondary_base_crouch():
 	return action
 
 func instance_item_needle():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/ItemNeedleAction.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/ItemNeedleAction.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action, false, false)
 	initialize_hitboxes(action)
@@ -84,7 +84,7 @@ func instance_item_needle():
 	return action
 
 func instance_item_needle_horup():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/ItemNeedleHorUpAction.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/ItemNeedleHorUpAction.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action, false, false)
 	initialize_hitboxes(action)
@@ -92,7 +92,7 @@ func instance_item_needle_horup():
 	return action
 
 func instance_item_needle_hordown():
-	last_queued_action = preload("res://Game Objects/Actions/Player Actions/Rose/ItemNeedleHorDownAction.tscn").instantiate()
+	last_queued_action = preload("res://Entities/Actions/Player Actions/Rose/ItemNeedleHorDownAction.tscn").instantiate()
 	var action = last_queued_action
 	initialize_action(action, false, false)
 	initialize_hitboxes(action)

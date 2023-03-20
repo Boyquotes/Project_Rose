@@ -18,6 +18,15 @@ func _ready():
 	await player.ready
 	player.attach_cam(self)
 	set_process(true)
+	position_smoothing_enabled = true
+	position_smoothing_speed = 10
+	limit_smoothed = true
+	drag_horizontal_enabled = true
+	drag_vertical_enabled = true
+	drag_bottom_margin = 0.1
+	drag_left_margin = 0.1
+	drag_right_margin = 0.1
+	drag_top_margin = 0.1
 
 # Shake with decreasing intensity while there's time remaining.
 func _process(delta):

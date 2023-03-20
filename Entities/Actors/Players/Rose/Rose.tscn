@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://reql368x3fj7"]
+
+[ext_resource type="PackedScene" uid="uid://cegpaop1o2now" path="res://Entities/Actors/Players/Rose/RoseBody.tscn" id="1_mpx4g"]
+[ext_resource type="PackedScene" uid="uid://op6vsappqqjn" path="res://Entities/Actors/Players/Rose/CapeSkeleton.tscn" id="2_p6q6m"]
+[ext_resource type="PackedScene" uid="uid://th7afrlxpyd0" path="res://Entities/Actors/Players/Rose/CapeSkeletonController.tscn" id="3_mhev1"]
+
+[node name="Rose" type="Node2D"]
+z_index = 20
+
+[node name="RoseBody" parent="." instance=ExtResource("1_mpx4g")]
+
+[node name="CapeSkeleton" parent="." instance=ExtResource("2_p6q6m")]
+
+[node name="CapeSkeletonController" parent="." instance=ExtResource("3_mhev1")]
+phys_obj_path = NodePath("../RoseBody")
+targets_path = NodePath("../RoseBody/Utilities/CapeTarget")
+influencers_path = NodePath("../RoseBody/Utilities/CapeInfluencers")
+wind_path = NodePath("../RoseBody/Utilities/WindNode")
+skeleton_path = NodePath("../CapeSkeleton")
+
+[editable path="RoseBody"]

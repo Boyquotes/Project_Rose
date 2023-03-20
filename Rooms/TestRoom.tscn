@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://chupag1yjlgih"]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="TileSet" uid="uid://c5wlc2imhei8u" path="res://Resources/Tilesets/PrimititveTileset.tres" id="1"]
-[ext_resource type="PackedScene" uid="uid://b3qa2j2b58qrd" path="res://Game Objects/Actors/Players/Rose/RosePrefab.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://reql368x3fj7" path="res://Entities/Actors/Players/Rose/Rose.tscn" id="2"]
 [ext_resource type="TileSet" uid="uid://qdwxpeiw2ffb" path="res://Resources/Tilesets/Ledges.tres" id="3"]
 [ext_resource type="Script" path="res://Scripts/Objects/TileMap/ledge_tilemap_gen.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://dl8q2cotny0ij" path="res://icon.png" id="9_868oj"]
+[ext_resource type="Texture2D" uid="uid://cavnnhtram42k" path="res://icon.png" id="9_868oj"]
 [ext_resource type="Script" path="res://Scripts/GUI/data_save_load.gd" id="9_h2m77"]
-[ext_resource type="PackedScene" uid="uid://fqwuppmwvegq" path="res://Game Objects/GUI/PauseSystem.tscn" id="9_xj5ky"]
+[ext_resource type="PackedScene" path="res://Entities/GUI/PauseSystem.tscn" id="9_xj5ky"]
+
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hxmjr"]
 particle_flag_disable_z = true

@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Scripts/Actors/Enemies/Generic/enemy_hitbox.gd" type="Script" id=1]
-
-[node name="EnemyHitbox" type="Area2D"]
-script = ExtResource( 1 )
-[connection signal="hitbox_broken" from="." to="." method="_on_EnemyHitbox_hitbox_broken"]

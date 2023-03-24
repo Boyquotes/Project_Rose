@@ -1,9 +1,11 @@
-[gd_scene load_steps=43 format=3 uid="uid://w56eq67hj8wq"]
+[gd_scene load_steps=48 format=3 uid="uid://w56eq67hj8wq"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_fk0us"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/finite_state_machine.gd" id="2_nyi3l"]
+[ext_resource type="PackedScene" uid="uid://b7ojl8v2dr6ic" path="res://Entities/Actors/Components/HealthComponent.tscn" id="2_r2lnc"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/Rose/rose_action_instancer.gd" id="2_rv5x2"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/crouch_state.gd" id="3_7ptux"]
+[ext_resource type="PackedScene" uid="uid://cbacgr06p2n8d" path="res://Entities/Actors/Components/HitBoxComponentComponent.tscn" id="3_nu4hu"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/move_on_ground_state.gd" id="3_wsm4e"]
 [ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="4_ahpf3"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/move_in_air_state.gd" id="4_fqp0q"]
@@ -13,37 +15,72 @@
 [ext_resource type="AnimationLibrary" uid="uid://bt2jl0ipha4it" path="res://Resources/Entities/Actors/Players/Rose/RoseAnimations.res" id="8_r86g7"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/action_controller.gd" id="8_stjrx"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/rest_state.gd" id="10_0y204"]
-[ext_resource type="Texture2D" uid="uid://bifaogk4jg48m" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://dxy8swrhmfe6o" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" id="11"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/wind.gd" id="13"]
+[ext_resource type="Texture2D" uid="uid://bpiuhqktlhc4h" path="res://Assets/Sprites/Actors/Rose/Movement/CrouchSlide_spec.png" id="17_iquf6"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/Rose/rose_powerups.gd" id="20_7yhyd"]
-[ext_resource type="Texture2D" uid="uid://b6lh1k3wtq7fq" path="res://Assets/Sprites/Actors/Rose/Movement/Idle_Spec.png" id="21_ug53m"]
-[ext_resource type="Texture2D" uid="uid://mog5dtp25i81" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge_n.png" id="25"]
+[ext_resource type="Texture2D" uid="uid://dywlvnpiyk1ux" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge_n.png" id="25"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/targetting.gd" id="27_rf1x6"]
-[ext_resource type="Texture2D" uid="uid://cehmun2ra418y" path="res://Assets/Sprites/Actors/Rose/cape_shadow.png" id="28_ulm3k"]
+[ext_resource type="Texture2D" uid="uid://c8rca7bu5dyj0" path="res://Assets/Sprites/Actors/Rose/cape_shadow.png" id="28_ulm3k"]
 [ext_resource type="Script" path="res://Scripts/Actors/audio_handler.gd" id="59_i7kba"]
-[ext_resource type="AudioStream" uid="uid://cuglsobpo2cvn" path="res://Assets/sfx/footsteps/dirt_small_01.wav" id="60_476h5"]
-[ext_resource type="AudioStream" uid="uid://dgfurii7q3eyx" path="res://Assets/sfx/footsteps/dirt_small_02.wav" id="61_dobde"]
-[ext_resource type="AudioStream" uid="uid://c7phaa4uvy2h3" path="res://Assets/sfx/footsteps/dirt_small_03.wav" id="62_83mud"]
-[ext_resource type="AudioStream" uid="uid://bny6fj3er18qr" path="res://Assets/sfx/footsteps/dirt_small_04.wav" id="63_j4ffd"]
-[ext_resource type="AudioStream" uid="uid://c1lo4gdyhfg02" path="res://Assets/sfx/footsteps/grass_01.wav" id="64_i7s0s"]
-[ext_resource type="AudioStream" uid="uid://cpk7dqj0ovakm" path="res://Assets/sfx/footsteps/grass_02.wav" id="65_3ctk1"]
-[ext_resource type="AudioStream" uid="uid://cyab4hixfrxc1" path="res://Assets/sfx/footsteps/grass_03.wav" id="66_x5aat"]
-[ext_resource type="AudioStream" uid="uid://drri6vmtj1742" path="res://Assets/sfx/slide/dirt_small_01.wav" id="67_0lnn5"]
-[ext_resource type="AudioStream" uid="uid://dfn5j6u585yl1" path="res://Assets/sfx/footsteps/grass_04.wav" id="67_4crhy"]
-[ext_resource type="AudioStream" uid="uid://fdvxcj1uqp4o" path="res://Assets/sfx/slide/dirt_small_02.wav" id="68_bsyx1"]
-[ext_resource type="AudioStream" uid="uid://ckkg8vn7nye6e" path="res://Assets/sfx/slide/dirt_small_03.wav" id="69_f7myh"]
-[ext_resource type="AudioStream" uid="uid://c3wxn1y7g27gs" path="res://Assets/sfx/slide/dirt_small_04.wav" id="70_hi1u4"]
+[ext_resource type="AudioStream" uid="uid://cn7p24ax43am8" path="res://Assets/sfx/footsteps/dirt_small_01.wav" id="60_476h5"]
+[ext_resource type="AudioStream" uid="uid://dmipgverichil" path="res://Assets/sfx/footsteps/dirt_small_02.wav" id="61_dobde"]
+[ext_resource type="AudioStream" uid="uid://dx6jjv8t3i16c" path="res://Assets/sfx/footsteps/dirt_small_03.wav" id="62_83mud"]
+[ext_resource type="AudioStream" uid="uid://dlhyiygitnctd" path="res://Assets/sfx/footsteps/dirt_small_04.wav" id="63_j4ffd"]
+[ext_resource type="AudioStream" uid="uid://tucbwclrj8vh" path="res://Assets/sfx/footsteps/grass_01.wav" id="64_i7s0s"]
+[ext_resource type="AudioStream" uid="uid://dd03krstvwosv" path="res://Assets/sfx/footsteps/grass_02.wav" id="65_3ctk1"]
+[ext_resource type="AudioStream" uid="uid://c0i5156p105k6" path="res://Assets/sfx/footsteps/grass_03.wav" id="66_x5aat"]
+[ext_resource type="AudioStream" uid="uid://j67f5a4y0kt2" path="res://Assets/sfx/slide/dirt_small_01.wav" id="67_0lnn5"]
+[ext_resource type="AudioStream" uid="uid://bf7yjvwtodx22" path="res://Assets/sfx/footsteps/grass_04.wav" id="67_4crhy"]
+[ext_resource type="AudioStream" uid="uid://5dkwcib3rpe7" path="res://Assets/sfx/slide/dirt_small_02.wav" id="68_bsyx1"]
+[ext_resource type="AudioStream" uid="uid://dymsuoh43v4xl" path="res://Assets/sfx/slide/dirt_small_03.wav" id="69_f7myh"]
+[ext_resource type="AudioStream" uid="uid://34xxjcy1hxrk" path="res://Assets/sfx/slide/dirt_small_04.wav" id="70_hi1u4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbug6"]
+size = Vector2(20, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hehew"]
+size = Vector2(20, 16)
+
+[sub_resource type="Animation" id="Animation_vqjy8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Sprite2D:texture:diffuse_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Sprite2D:texture:normal_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("25")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_182hr"]
+_data = {
+"RESET": SubResource("Animation_vqjy8")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inapb"]
 size = Vector2(20, 16)
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(20, 38)
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(20, 38)
-
-[sub_resource type="RectangleShape2D" id="3"]
 size = Vector2(20, 38)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2qgdc"]
@@ -61,7 +98,7 @@ shader_parameter/segmentation = 1.0
 [sub_resource type="CanvasTexture" id="CanvasTexture_acfie"]
 diffuse_texture = ExtResource("11")
 normal_texture = ExtResource("25")
-specular_texture = ExtResource("21_ug53m")
+specular_texture = ExtResource("17_iquf6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3m3ny"]
 size = Vector2(480, 270)
@@ -76,10 +113,17 @@ size = Vector2(20, 4)
 position = Vector2(-1, 3)
 collision_layer = 4
 script = ExtResource("1_fk0us")
+max_flora = null
+max_focus = null
+tag = null
 base_soft_speed_cap = 250.0
 base_jump_spd = 450.0
+attack_damage = null
+enabled = null
 base_grav = 20.0
+base_fric = null
 grav_max = 350.0
+base_acceleration = null
 move_states = {
 "action": NodePath("MoveStates/Action"),
 "crouch": NodePath("MoveStates/Crouch"),
@@ -88,11 +132,34 @@ move_states = {
 "move_in_air": NodePath("MoveStates/MoveInAir"),
 "move_on_ground": NodePath("MoveStates/MoveOnGround")
 }
-iframe = true
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_r2lnc")]
+max_health = 100
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
+
+[node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("RectangleShape2D_nbug6")
+disabled = true
+
+[node name="CrouchHitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
+
+[node name="HitBox" type="CollisionShape2D" parent="CrouchHitBoxComponent"]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_hehew")
+
+[node name="AnimatorComponent" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Animators")
+libraries = {
+"": SubResource("AnimationLibrary_182hr"),
+"RoseAnimations": ExtResource("8_r86g7")
+}
+
+[node name="StatusEffects" type="Node2D" parent="."]
 
 [node name="CrouchBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)
-shape = SubResource("RectangleShape2D_hehew")
+shape = SubResource("RectangleShape2D_inapb")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("1")
@@ -139,7 +206,6 @@ fall_flag = true
 
 [node name="Action" type="Node2D" parent="MoveStates"]
 script = ExtResource("7_f8aj2")
-use_default_movement = false
 
 [node name="ActionController" type="Node2D" parent="MoveStates/Action"]
 script = ExtResource("8_stjrx")
@@ -165,33 +231,14 @@ open_cast_r_path = NodePath("../../Utilities/OpenCrouchCastR")
 wait_time = 0.25
 one_shot = true
 
-[node name="HitArea" type="Area2D" parent="."]
-collision_layer = 64
-collision_mask = 145
-
-[node name="HitBox" type="CollisionShape2D" parent="HitArea"]
-shape = SubResource("3")
-disabled = true
-
-[node name="CrouchBox" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(0, 11)
-shape = SubResource("RectangleShape2D_hehew")
-
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
 material = SubResource("ShaderMaterial_2qgdc")
 texture = SubResource("CanvasTexture_acfie")
-hframes = 4
-
-[node name="StatusEffects" type="Node2D" parent="."]
+offset = Vector2(5, 0)
 
 [node name="Animators" type="Node2D" parent="."]
-
-[node name="BaseAnimator" type="AnimationPlayer" parent="Animators"]
-libraries = {
-"RoseAnimations": ExtResource("8_r86g7")
-}
 
 [node name="ShaderAnimator" type="AnimationPlayer" parent="Animators"]
 
@@ -254,24 +301,24 @@ hit_from_inside = true
 position = Vector2(0, -8)
 
 [node name="Marker2D" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = -1
-position = Vector2(-2, 4)
+z_index = 1
+position = Vector2(-9, 22)
 
 [node name="Position2D2" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = -2
-position = Vector2(0, 4)
+z_index = 2
+position = Vector2(-8, 21)
 
 [node name="Position2D3" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = -3
-position = Vector2(2, 4)
+z_index = 3
+position = Vector2(-7, 21)
 
 [node name="Position2D4" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = -4
-position = Vector2(4, 4)
+z_index = 4
+position = Vector2(-6, 20)
 
 [node name="Position2D5" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = -5
-position = Vector2(5, 5)
+z_index = 5
+position = Vector2(-4, 19)
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities"]
 
@@ -318,11 +365,11 @@ current = true
 [connection signal="landed" from="." to="MoveStates/Action" method="_on_rose_landed"]
 [connection signal="silence" from="." to="Utilities/SoundNode" method="_on_rose_silence"]
 [connection signal="sliding" from="." to="Utilities/SoundNode" method="_on_rose_sliding"]
+[connection signal="animation_finished" from="AnimatorComponent" to="." method="_on_animator_component_animation_finished"]
+[connection signal="animation_finished" from="AnimatorComponent" to="MoveStates/MoveInAir" method="_on_animator_component_animation_finished"]
+[connection signal="animation_finished" from="AnimatorComponent" to="MoveStates/Action" method="_on_BaseAnimator_animation_finished"]
 [connection signal="timeout" from="MoveStates/MoveOnGround/LookTimer" to="MoveStates/MoveOnGround" method="_on_look_timer_timeout"]
 [connection signal="timeout" from="MoveStates/MoveInAir/LedgeDisableTimer" to="MoveStates/MoveInAir" method="_on_LedgeDisableTimer_timeout" flags=18]
 [connection signal="debug_exit" from="MoveStates/Action" to="MoveStates/Action" method="_on_action_debug_exit"]
 [connection signal="timeout" from="MoveStates/Crouch/LookTimer" to="MoveStates/Crouch" method="_on_look_timer_timeout"]
-[connection signal="animation_finished" from="Animators/BaseAnimator" to="MoveStates/MoveOnGround" method="_on_base_animator_animation_finished"]
-[connection signal="animation_finished" from="Animators/BaseAnimator" to="MoveStates/MoveInAir" method="_on_BaseAnimator_animation_finished"]
-[connection signal="animation_finished" from="Animators/BaseAnimator" to="MoveStates/Action" method="_on_BaseAnimator_animation_finished"]
 [connection signal="timeout" from="Utilities/WindNode/Timer" to="Utilities/WindNode" method="_on_Timer_timeout"]

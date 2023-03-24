@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://cwnw60gwckxhj"]
 
-[ext_resource type="PackedScene" uid="uid://vfilnew6cvga" path="res://Entities/Actions/Player Actions/PlayerAction.tscn" id="1_av26u"]
-[ext_resource type="Texture2D" uid="uid://snyq8yuy73vt" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/BaseNormalHor1Hit.png" id="2_s5er2"]
+[ext_resource type="PackedScene" uid="uid://c74u1j4l4rnkv" path="res://Entities/Actions/Player Actions/PlayerAction.tscn" id="1_av26u"]
+[ext_resource type="Texture2D" uid="uid://ikgl0ijlnjvn" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/BaseNormalHor1Hit.png" id="2_s5er2"]
 [ext_resource type="Shader" path="res://Resources/Shaders/CelShader.gdshader" id="2_u7cao"]
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbr04"]
 size = Vector2(91, 59)

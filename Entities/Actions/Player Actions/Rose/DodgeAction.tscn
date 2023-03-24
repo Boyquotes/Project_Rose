@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://ohqaq5h3le4m"]
 
-[ext_resource type="PackedScene" uid="uid://vfilnew6cvga" path="res://Entities/Actions/Player Actions/PlayerAction.tscn" id="1"]
-
+[ext_resource type="PackedScene" uid="uid://c74u1j4l4rnkv" path="res://Entities/Actions/Player Actions/PlayerAction.tscn" id="1"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Action"

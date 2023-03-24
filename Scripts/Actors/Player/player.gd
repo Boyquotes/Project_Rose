@@ -3,7 +3,6 @@ extends Actor
 # desc
 # long desc
 
-signal hp_changed
 signal flora_changed
 signal focus_changed
 signal resource_3_changed
@@ -39,10 +38,11 @@ var was_on_floor := false
 @onready var attack_collision = $Utilities/AttackCollision
 @onready var cams : Array[PlayerCamera2D] = []
 @onready var powerups = $Utilities/Powerups
-@onready var hit_area = $HitArea
 @onready var collision_box = $CollisionBox
 @onready var crouch_box = $CrouchBox
-@onready var crouch_hitbox = $HitArea/CrouchBox
+@onready var hitbox = $HitBoxComponent
+@onready var crouch_hitbox = $CrouchHitBoxComponent
+
 #sets up some variables and initializes the state machine
 
 func init():
@@ -53,12 +53,8 @@ func init():
 		move_states[key] = get_node(move_states[key])
 	if not Engine.is_editor_hint():
 		$CollisionBox.disabled = false
-		$HitArea/HitBox.disabled = false
-	iframe = false
 	crouch_box.disabled = true
-	crouch_hitbox.disabled = true
 	collision_box.disabled = false
-	hitbox.disabled = false
 	emit_signal("ready")
 
 
@@ -79,7 +75,7 @@ func _in(_event):
 #home to debug inputs
 #calculates the player's input rotation for aiming abilities
 func _execute(_delta):
-	if Input.is_key_pressed(KEY_I) && iframes <= 0:
+	if Input.is_key_pressed(KEY_I):
 		move_states['hit'].compare_to = global_position + Vector2(hor_dir * 25,0)
 		move_states[move_state]._exit(move_states['hit'])
 	
@@ -231,27 +227,14 @@ func change_to_grounded_anim(animator : AnimationPlayer, last_queued_action):
 		grounded_anim = grounded_anim.substr(0, down_idx) + grounded_anim.substr(down_idx + 5)
 	if frame > 0.1:
 		grounded_anim += "_Grounded"
-	if animator.has_animation(grounded_anim):
+	if animator.has_animation("RoseAnimations/" + grounded_anim):
 		#animator.stop(false)
 		animator.play(grounded_anim)
 		animator.seek(frame, true)
-		print(animator.current_animation_position)
-	else:
-		print(grounded_anim)
 
 #useful for easily changing states without having a lot of local references
 func change_move_state(state: NodePath):
 	move_states[move_state].exit(get_node(state))
-
-func hurt():
-	change_hp(0)
-
-#convenient for changing the player's health, whether it is a heal or damage
-func change_hp(health):
-	hp += health
-	if hp > max_hp:
-		hp = max_hp
-	emit_signal("hp_changed", hp)
 
 func change_flora(flora_in):
 	flora += flora_in
@@ -294,3 +277,23 @@ func save_data():
 
 func load_data(data):
 	position = Vector2(data["pos_x"], data["pos_y"])
+
+func _on_animator_component_animation_finished(anim_name):
+	if anim_name == "Slide":
+		_exit(FSM.crouch_state)
+
+func _on_rose_animation_changed(prev_anim, new_anim):
+	prev_anim = "RoseAnimations/" + prev_anim
+	new_anim = "RoseAnimations/" + new_anim
+	if state is crouch 
+		switch hitboxes
+	if state is not crouch
+		switch them back
+	if prev_anim == "Slide":
+		activate_fric()
+	if prev_anim == "Run" and new_anim == "Idle":
+		emit_signal("footstep", 3.0)
+	if prev_anim == "Crouch" and new_anim == "Idle":
+		emit_signal("footstep", 4.0)
+	if prev_anim == "Slide":
+		emit_signal("silence")

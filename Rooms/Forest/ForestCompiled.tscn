@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://deb1ra8lhfpcm"]
 
 [ext_resource type="PackedScene" uid="uid://2qkwl63ufvtn" path="res://Rooms/Forest/ForestBG2.tscn" id="1_2t0hi"]
-[ext_resource type="PackedScene" path="res://Rooms/Forest/ForestBG.tscn" id="2_fde47"]
-[ext_resource type="PackedScene" path="res://Rooms/Forest/ForestFG.tscn" id="3_dlpih"]
+[ext_resource type="PackedScene" uid="uid://deyyqoyqudg4n" path="res://Rooms/Forest/ForestBG.tscn" id="2_fde47"]
+[ext_resource type="PackedScene" uid="uid://r8em6qvpg4ll" path="res://Rooms/Forest/ForestFG.tscn" id="3_dlpih"]
 [ext_resource type="PackedScene" uid="uid://b1ntr18o7fvrw" path="res://Rooms/Forest/lights.tscn" id="3_g6ggu"]
 [ext_resource type="Script" path="res://Scripts/Objects/Camera/player_camera.gd" id="5_go1uu"]
 
@@ -14,19 +14,47 @@
 
 [node name="ForestFG" parent="." instance=ExtResource("3_dlpih")]
 
+[node name="Sprite2D" parent="ForestFG/player/Rose/RoseBody/Sprites" index="0"]
+hframes = 2
+
+[node name="Marker2D" parent="ForestFG/player/Rose/RoseBody/Utilities/CapeTarget" index="0"]
+position = Vector2(-7, 7)
+
+[node name="Position2D2" parent="ForestFG/player/Rose/RoseBody/Utilities/CapeTarget" index="1"]
+position = Vector2(-5, 7)
+
+[node name="Position2D3" parent="ForestFG/player/Rose/RoseBody/Utilities/CapeTarget" index="2"]
+position = Vector2(-3, 7)
+
+[node name="Position2D4" parent="ForestFG/player/Rose/RoseBody/Utilities/CapeTarget" index="3"]
+position = Vector2(-1, 7)
+
+[node name="Position2D5" parent="ForestFG/player/Rose/RoseBody/Utilities/CapeTarget" index="4"]
+z_index = 5
+position = Vector2(1, 7)
+
 [node name="Lights" parent="." instance=ExtResource("3_g6ggu")]
 
 [node name="PointLight2D2" parent="Lights" index="1"]
 position = Vector2(2640, 304)
 
 [node name="PlayerCamera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
 script = ExtResource("5_go1uu")
-player = NodePath("../ForestFG/player/RosePrefab/RoseBody")
+player = NodePath("../ForestFG/player/Rose/RoseBody")
 
 [editable path="ForestBG"]
 [editable path="ForestBG/background/back1/Node2D/NormalSphere"]
 [editable path="ForestFG"]
 [editable path="ForestFG/midground/Midground/Occluders"]
-[editable path="ForestFG/player/RosePrefab"]
-[editable path="ForestFG/player/RosePrefab/RoseBody"]
+[editable path="ForestFG/player/Rose"]
+[editable path="ForestFG/player/Rose/RoseBody"]
 [editable path="Lights"]

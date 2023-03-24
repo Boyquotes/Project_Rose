@@ -108,7 +108,6 @@ func ledge_detection_switch():
 func _on_LedgeDisableTimer_timeout():
 	ledge_detection_switch()
 
-
-func _on_BaseAnimator_animation_finished(anim_name):
+func _on_animator_component_animation_finished(anim_name):
 	if(anim_name == "AscendToDescend"):
 		transitioned = true;

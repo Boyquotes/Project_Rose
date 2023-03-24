@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://v26lwt5o1x50"]
 
-[ext_resource type="PackedScene" uid="uid://vfilnew6cvga" path="res://Entities/Actions/Player Actions/PlayerAction.tscn" id="1_av26u"]
+[ext_resource type="PackedScene" uid="uid://c74u1j4l4rnkv" path="res://Entities/Actions/Player Actions/PlayerAction.tscn" id="1_av26u"]
 [ext_resource type="Script" path="res://Scripts/Actions/Player Actions/Rose/needle_action.gd" id="2_w8ps8"]
-[ext_resource type="Texture2D" uid="uid://deiik25i8s44r" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/Needle.png" id="3_bbqa3"]
-
+[ext_resource type="Texture2D" uid="uid://ck0s61a2t57sb" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/Needle.png" id="3_bbqa3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbr04"]
 size = Vector2(350, 3)

@@ -55,7 +55,6 @@ func _execute(delta):
 
 
 func _exit(state):
-	print(state.name)
 	damage = 0
 	fall_flag = false
 	hit_flag = true

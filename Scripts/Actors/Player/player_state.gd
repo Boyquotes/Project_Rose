@@ -14,7 +14,6 @@ var switch_pierce := false
 func get_move_direction():
 	var right := int(Input.is_action_pressed("Move_Right"))
 	var left := int(Input.is_action_pressed("Move_Left"))
-	#print(right)
 	var input_direction := right - left
 	return input_direction
 
@@ -66,7 +65,8 @@ func turn(direction):
 		host.get_node("Sprites").scale.x = host.get_node("Sprites").scale.x * -1
 		host.get_node("MoveStates").scale.x = host.get_node("MoveStates").scale.x * -1
 		host.get_node("CollisionBox").scale.x = host.get_node("CollisionBox").scale.x * -1
-		host.get_node("HitArea").scale.x = host.get_node("HitArea").scale.x * -1
+		host.get_node("HitBoxComponent").scale.x = host.get_node("HitBoxComponent").scale.x * -1
+		host.get_node("CrouchHitBoxComponent").scale.x = host.get_node("CrouchHitBoxComponent").scale.x * -1
 		host.get_node("Utilities/CapeTarget").scale.x = host.get_node("Utilities/CapeTarget").scale.x * -1
 		host.emit_signal("turned")
 	host.hor_dir = direction

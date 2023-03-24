@@ -42,5 +42,4 @@ func _process(_delta):
 		prev_glob_position = global_position
 		moved = false
 	position.y = sin((position.x + offset) / yspeed) * length
-	print()
 	position.x -= xspeed

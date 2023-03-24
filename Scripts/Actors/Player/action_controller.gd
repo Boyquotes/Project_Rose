@@ -149,8 +149,7 @@ func commit_action():
 		action_str += str(attack_counter)
 	else:
 		attack_counter = 1
-	if debug_input or not host.base_anim.has_animation(action_str):
-		print(action_str)
+	if debug_input or not host.base_anim.has_animation("RoseAnimations/" + action_str):
 		clear_action()
 		action_state.emit_signal("debug_exit")
 		return
@@ -246,7 +245,6 @@ func reset_action():
 	action_can_interrupt = false
 
 func clear_action():
-	host.i_frame(0)
 	if(!action_is_saved):
 		clear_slotted_vars()
 	hit = false

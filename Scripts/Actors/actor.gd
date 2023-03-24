@@ -9,7 +9,6 @@ signal landed
 
 ###actor_exoport_data###
 @export var tag := "NPC" # TODO: Make into enum in global context
-@export var max_hp := 100
 @export var base_soft_speed_cap := 100.0
 @export var base_jump_spd := 50.0
 @export var attack_damage := 5
@@ -20,11 +19,6 @@ signal landed
 @export var grav_max := 250.0
 @export var base_acceleration := 30.0
 @export var move_states := {}
-@export var iframe := false
-
-###actor_data###
-var hp: float 
-var iframes := 0
 
 var targettable_hitboxes := []
 
@@ -46,8 +40,7 @@ var grav_activated := true
 var fric_activated := true
 var prev_anim := ""
 
-@onready var base_anim = $Animators/BaseAnimator
-@onready var hitbox = $HitArea/HitBox
+@onready var base_anim = $AnimatorComponent
 @onready var attack_coll_data = $Utilities/AttackCollision
 @onready var powerup_data = $Utilities/Powerups
 func _ready():
@@ -60,7 +53,6 @@ func init():
 	true_soft_speed_cap = base_soft_speed_cap
 	true_jump_spd = base_jump_spd
 	true_acceleration = base_acceleration
-	hp = max_hp
 	### default movement controller vars ###
 	#1 = right, -1 = left
 	hor_dir = 1
@@ -103,11 +95,7 @@ func _paused_phys_execute(_delta):
 	pass
 
 func _unpaused_phys_execute(_delta):
-	if(iframes > 0):
-		iframes -= 1
-		hitbox.disabled = true
-	else:
-		hitbox.disabled = false
+	pass
 
 func _cleanup():
 	pass
@@ -126,7 +114,6 @@ func kill():
 
 
 #func on_floor() -> bool:
-#	print(test_move(transform, Vector2(0, 1)))
 #	return test_move(transform, Vector2(0, 1))
 
 
@@ -165,10 +152,6 @@ func activate_fric():
 func add_vel(speed : float, degrees : float):
 	hor_spd = speed * cos(deg_to_rad(degrees))
 	vert_spd = speed * sin(deg_to_rad(degrees))
-
-
-func i_frame(frames : int):
-	iframes = frames
 
 func has_powerup(powerup):
 	return powerup_data.powerups[powerup]

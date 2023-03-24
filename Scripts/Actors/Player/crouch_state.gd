@@ -22,9 +22,7 @@ func init():
 
 func _enter():
 	host.true_soft_speed_cap /= 2
-	host.crouch_hitbox.disabled = false
 	host.crouch_box.disabled = false
-	host.hitbox.disabled = true
 	host.collision_box.disabled = true
 	host.move_state = 'crouch'
 

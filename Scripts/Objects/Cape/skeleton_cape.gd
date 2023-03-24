@@ -275,15 +275,12 @@ class SkeletonPointMass:
 				var inf_prev_pos = this.to_local(this.influencers[influencer])
 				var distance_squared = dist_line_to_point_sq(inf_prev_pos, inf_pos, pos)
 				if distance_squared < this.mouse_influence_size:
-					print("!!!")
 					# remember mouseInfluenceSize was squared in setup()
 					# To change the velocity of our SkeletonPointMass, we subtract that change from the lastPosition.
 					# When the physics gets integrated (see updatePhysics()), the change is calculated
 					# Here, the velocity is set equal to the cursor's velocity
-					print(last_x)
 					last_x = pos.x + 1000#- (inf_pos.x - inf_prev_pos.x) * this.mouse_influence_scalar
 					last_y = pos.y + 1000#- (inf_pos.y - inf_prev_pos.y) * this.mouse_influence_scalar
-					print(last_x)
 				else:  
 					pass
 				# if the right mouse button is clicking, we tear the cloth by removing links

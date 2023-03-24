@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://c74u1j4l4rnkv"]
 
 [ext_resource type="Script" path="res://Scripts/Actions/action.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/Actions/action_hitbox_container.gd" id="2"]
-
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Action"

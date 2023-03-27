@@ -42,6 +42,7 @@ var was_on_floor := false
 @onready var crouch_box = $CrouchBox
 @onready var hitbox = $HitBoxComponent
 @onready var crouch_hitbox = $CrouchHitBoxComponent
+@onready var FSM = $MoveStates
 
 #sets up some variables and initializes the state machine
 
@@ -279,21 +280,17 @@ func load_data(data):
 	position = Vector2(data["pos_x"], data["pos_y"])
 
 func _on_animator_component_animation_finished(anim_name):
-	if anim_name == "Slide":
-		_exit(FSM.crouch_state)
+	if anim_name == "RoseAnimations/Slide":
+		activate_fric()
+		FSM.crouch_state.slide = false
 
 func _on_rose_animation_changed(prev_anim, new_anim):
-	prev_anim = "RoseAnimations/" + prev_anim
-	new_anim = "RoseAnimations/" + new_anim
-	if state is crouch 
-		switch hitboxes
-	if state is not crouch
-		switch them back
-	if prev_anim == "Slide":
+	if prev_anim == "RoseAnimations/Slide":
 		activate_fric()
-	if prev_anim == "Run" and new_anim == "Idle":
-		emit_signal("footstep", 3.0)
-	if prev_anim == "Crouch" and new_anim == "Idle":
-		emit_signal("footstep", 4.0)
-	if prev_anim == "Slide":
+		FSM.crouch_state.slide = false
 		emit_signal("silence")
+	if prev_anim == "RoseAnimations/Run" and new_anim == "RoseAnimations/Idle":
+		emit_signal("footstep", 3.0)
+	if prev_anim == "RoseAnimations/Crouch" and new_anim == "RoseAnimations/Idle":
+		emit_signal("footstep", 4.0)
+

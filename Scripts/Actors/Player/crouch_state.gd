@@ -14,6 +14,8 @@ var look_up := false
 var looking := false
 var force_crouch := false
 var stand := false
+var slide := false
+var slowed := false
 
 func init():
 	open_cast_l = get_node(open_cast_l_path)
@@ -21,7 +23,11 @@ func init():
 	super.init()
 
 func _enter():
-	host.true_soft_speed_cap /= 2
+	if not slide:
+		slowed = true
+		host.true_soft_speed_cap /= 2
+	host.hitbox.toggle_disabled()
+	host.crouch_hitbox.toggle_enabled()
 	host.crouch_box.disabled = false
 	host.collision_box.disabled = true
 	host.move_state = 'crouch'
@@ -83,7 +89,9 @@ func _handle_animation():
 	if jump:
 		host.animate(host.base_anim, "Jump", false)
 	else:
-		if move_direction != 0:
+		if slide:
+			host.animate(host.base_anim, "Slide", false)
+		elif move_direction != 0:
 			host.animate(host.base_anim, "Crawl", false)
 		else:
 			host.animate(host.base_anim, "Crouch", false)
@@ -92,6 +100,9 @@ func _handle_animation():
 
 func _execute(delta):
 	super._execute(delta)
+	if not slide and not slowed:
+		slowed = true
+		host.true_soft_speed_cap /= 2
 	if not host.is_on_floor():
 		exit_air()
 	if stand:
@@ -111,10 +122,11 @@ func _exit(state):
 	looking = false
 	force_crouch = false
 	stand = false
+	slide = false
 	host.true_soft_speed_cap = host.base_soft_speed_cap
-	host.crouch_hitbox.disabled = true
+	host.hitbox.toggle_enabled()
+	host.crouch_hitbox.toggle_disabled()
 	host.crouch_box.disabled = true
-	host.hitbox.disabled = false
 	host.collision_box.disabled = false
 	call_timeout()
 	if state == FSM.action_state:

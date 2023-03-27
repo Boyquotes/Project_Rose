@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://deb1ra8lhfpcm"]
+[gd_scene load_steps=7 format=3 uid="uid://deb1ra8lhfpcm"]
 
 [ext_resource type="PackedScene" uid="uid://2qkwl63ufvtn" path="res://Rooms/Forest/ForestBG2.tscn" id="1_2t0hi"]
 [ext_resource type="PackedScene" uid="uid://deyyqoyqudg4n" path="res://Rooms/Forest/ForestBG.tscn" id="2_fde47"]
@@ -6,13 +6,26 @@
 [ext_resource type="PackedScene" uid="uid://b1ntr18o7fvrw" path="res://Rooms/Forest/lights.tscn" id="3_g6ggu"]
 [ext_resource type="Script" path="res://Scripts/Objects/Camera/player_camera.gd" id="5_go1uu"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbug6"]
+size = Vector2(20, 38)
+
 [node name="ForestCompiled" type="Node2D"]
 
 [node name="ForestBG2" parent="." instance=ExtResource("1_2t0hi")]
+position = Vector2(-162, 160)
 
 [node name="ForestBG" parent="." instance=ExtResource("2_fde47")]
 
 [node name="ForestFG" parent="." instance=ExtResource("3_dlpih")]
+
+[node name="HitBox" parent="ForestFG/player/Rose/RoseBody/HitBoxComponent" index="0"]
+shape = SubResource("RectangleShape2D_nbug6")
+
+[node name="HitBox" parent="ForestFG/player/Rose/RoseBody/HitBoxComponent" index="4"]
+shape = SubResource("RectangleShape2D_nbug6")
+
+[node name="Crouch" parent="ForestFG/player/Rose/RoseBody/MoveStates" index="6"]
+look_max = 100
 
 [node name="Sprite2D" parent="ForestFG/player/Rose/RoseBody/Sprites" index="0"]
 hframes = 2
@@ -30,7 +43,6 @@ position = Vector2(-3, 7)
 position = Vector2(-1, 7)
 
 [node name="Position2D5" parent="ForestFG/player/Rose/RoseBody/Utilities/CapeTarget" index="4"]
-z_index = 5
 position = Vector2(1, 7)
 
 [node name="Lights" parent="." instance=ExtResource("3_g6ggu")]

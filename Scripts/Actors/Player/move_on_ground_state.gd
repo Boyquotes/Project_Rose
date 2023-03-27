@@ -62,17 +62,12 @@ func _handle_animation():
 	if jump:
 		host.animate(host.base_anim, "Jump", false)
 	else:
-		if slide:
-			host.animate(host.base_anim, "Slide", false)
+		if look_up:
+			host.animate(host.base_anim, "LookUp", false)
+		elif move_direction != 0 and not host.is_on_wall():
+			host.animate(host.base_anim, "Run", false)
 		else:
-			if crouch:
-				host.animate(host.base_anim, "Crouch", false)
-			elif look_up:
-				host.animate(host.base_anim, "LookUp", false)
-			elif move_direction != 0 and not host.is_on_wall():
-				host.animate(host.base_anim, "Run", false)
-			else:
-				host.animate(host.base_anim, "Idle", false)
+			host.animate(host.base_anim, "Idle", false)
 	super._handle_animation()
 
 
@@ -80,14 +75,13 @@ func _execute(delta):
 	super._execute(delta)
 	if not host.is_on_floor():
 		exit_air()
-	if crouch:
+	if crouch or slide:
 		_exit(FSM.crouch_state)
 
 
 func _exit(state):
-	if state == FSM.action_state:
-		if crouch or slide:
-			state.action_controller.crouched = true
+	if state == FSM.crouch_state and slide:
+		state.slide = true;
 	crouch = false
 	slide = false
 	look_up = false

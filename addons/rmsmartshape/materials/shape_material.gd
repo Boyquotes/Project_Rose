@@ -2,70 +2,40 @@
 extends Resource
 class_name SS2D_Material_Shape
 
-"""
-This material represents the set of edge materials used for a RMSmartShape2D
-Each edge represents a set of textures used to render an edge
-"""
+## This material represents the set of edge materials used for a smart shape.
+##
+## Each edge represents a set of textures used to render an edge.
 
-# List of materials this shape can use
-# Should be SS2D_Material_Edge_Metadata
-@export (Array, Resource) var _edge_meta_materials: Array = [] :
-	get:
-		return _edge_meta_materials # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_edge_meta_materials
-@export (Array, Texture2D) var fill_textures: Array = [] :
-	get:
-		return fill_textures # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_fill_textures
-@export (Array, Texture2D) var fill_texture_normals: Array = [] :
-	get:
-		return fill_texture_normals # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_fill_texture_normals
-@export (int) var fill_texture_z_index: int = -10 :
-	get:
-		return fill_texture_z_index # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_fill_texture_z_index
-@export (float) var fill_mesh_offset: float = 0.0 :
-	get:
-		return fill_mesh_offset # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_fill_mesh_offset
-@export (Material) var fill_mesh_material: Material = null :
-	get:
-		return fill_mesh_material # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_fill_mesh_material
+## List of materials this shape can use.
+@export var _edge_meta_materials: Array[SS2D_Material_Edge_Metadata] = [] : set = set_edge_meta_materials
+@export var fill_textures: Array[Texture2D] = [] : set = set_fill_textures
+@export var fill_texture_z_index: int = -10 : set = set_fill_texture_z_index
+@export var fill_texture_show_behind_parent: bool = false : set = set_fill_texture_show_behind_parent
+@export var fill_mesh_offset: float = 0.0 : set = set_fill_mesh_offset
+@export var fill_mesh_material: Material = null : set = set_fill_mesh_material
 
-# How much to offset all edges
-@export (float, -1.5, 1.5, 0.1) var render_offset: float = 0.0 :
-	get:
-		return render_offset # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_render_offset
+## How much to offset all edges
+@export_range (-1.5, 1.5, 0.1) var render_offset: float = 0.0 : set = set_render_offset
 
 
-func set_fill_mesh_material(m: Material):
+func set_fill_mesh_material(m: Material) -> void:
 	fill_mesh_material = m
-	emit_signal("changed")
+	emit_changed()
 
 
-func set_fill_mesh_offset(f: float):
+func set_fill_mesh_offset(f: float) -> void:
 	fill_mesh_offset = f
-	emit_signal("changed")
+	emit_changed()
 
 
-func set_render_offset(f: float):
+func set_render_offset(f: float) -> void:
 	render_offset = f
-	emit_signal("changed")
+	emit_changed()
 
 
-# Get all valid edge materials for this normal
-func get_edge_meta_materials(normal: Vector2) -> Array:
-	var materials = []
+## Get all valid edge materials for this normal.
+func get_edge_meta_materials(normal: Vector2) -> Array[SS2D_Material_Edge_Metadata]:
+	var materials: Array[SS2D_Material_Edge_Metadata] = []
 	for e in _edge_meta_materials:
 		if e == null:
 			continue
@@ -74,55 +44,55 @@ func get_edge_meta_materials(normal: Vector2) -> Array:
 	return materials
 
 
-func get_all_edge_meta_materials() -> Array:
+func get_all_edge_meta_materials() -> Array[SS2D_Material_Edge_Metadata]:
 	return _edge_meta_materials
 
 
-func get_all_edge_materials() -> Array:
-	var materials = []
+func get_all_edge_materials() -> Array[SS2D_Material_Edge]:
+	var materials: Array[SS2D_Material_Edge] = []
 	for meta in _edge_meta_materials:
 		if meta.edge_material != null:
 			materials.push_back(meta.edge_material)
 	return materials
 
 
-func add_edge_material(e: SS2D_Material_Edge_Metadata):
-	var new_array = _edge_meta_materials.duplicate()
+func add_edge_material(e: SS2D_Material_Edge_Metadata) -> void:
+	var new_array := _edge_meta_materials.duplicate()
 	new_array.push_back(e)
 	set_edge_meta_materials(new_array)
 
 
-func _on_edge_material_changed():
-	emit_signal("changed")
+func _on_edge_material_changed() -> void:
+	emit_changed()
 
 
-func set_fill_textures(a: Array):
+func set_fill_textures(a: Array[Texture2D]) -> void:
 	fill_textures = a
-	emit_signal("changed")
+	emit_changed()
 
 
-func set_fill_texture_normals(a: Array):
-	fill_texture_normals = a
-	emit_signal("changed")
-
-
-func set_fill_texture_z_index(i: int):
+func set_fill_texture_z_index(i: int) -> void:
 	fill_texture_z_index = i
-	emit_signal("changed")
+	emit_changed()
 
 
-func set_edge_meta_materials(a: Array):
+func set_fill_texture_show_behind_parent(value: bool) -> void:
+	fill_texture_show_behind_parent = value
+	emit_changed()
+
+
+func set_edge_meta_materials(a: Array[SS2D_Material_Edge_Metadata]) -> void:
 	for e in _edge_meta_materials:
 		if e == null:
 			continue
 		if not a.has(e):
-			e.disconnect("changed",Callable(self,"_on_edge_material_changed"))
+			e.disconnect("changed", self._on_edge_material_changed)
 
 	for e in a:
 		if e == null:
 			continue
-		if not e.is_connected("changed",Callable(self,"_on_edge_material_changed")):
-			e.connect("changed",Callable(self,"_on_edge_material_changed"))
+		if not e.is_connected("changed", self._on_edge_material_changed):
+			e.connect("changed", self._on_edge_material_changed)
 
 	_edge_meta_materials = a
-	emit_signal("changed")
+	emit_changed()

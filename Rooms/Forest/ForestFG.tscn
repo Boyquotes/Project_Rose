@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://r8em6qvpg4ll"]
+[gd_scene load_steps=89 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Resources/MultiplyModulates.gd" id="1_xwvlq"]
 [ext_resource type="PackedScene" uid="uid://dvcqdfbopg02y" path="res://Rooms/Forest/occluders.tscn" id="2_6vh7x"]
@@ -14,34 +14,34 @@
 [ext_resource type="Texture2D" uid="uid://bwetk6fomtlyg" path="res://Assets/Tilesets/Forest/Forest32_grass_fore.png" id="11_7h5ss"]
 [ext_resource type="Texture2D" uid="uid://bfvvdd2cnlpqx" path="res://Assets/Tilesets/Forest/Forest32_grass_fore_n.png" id="12_jnsd2"]
 [ext_resource type="Texture2D" uid="uid://dniq3sekhgl5f" path="res://Assets/Tilesets/Forest/radial gradient.png" id="13_drxmy"]
-[ext_resource type="Texture2D" uid="uid://lp2y3b8twppf" path="res://Assets/Tilesets/Forest/bigtree_front2.png" id="14_gourx"]
-[ext_resource type="Texture2D" uid="uid://by5j4bl1rpo2" path="res://Assets/Tilesets/Forest/bigtree_front2_n.png" id="15_2smlj"]
-[ext_resource type="Texture2D" uid="uid://c6754f25aftjs" path="res://Assets/Tilesets/Forest/bigtree_front2_spec.png" id="16_7o21o"]
-[ext_resource type="Texture2D" uid="uid://dklqnq6ajq8gm" path="res://Assets/Tilesets/Forest/smalltree_back1.png" id="17_ybihb"]
-[ext_resource type="Texture2D" uid="uid://urrgo65gs5jy" path="res://Assets/Tilesets/Forest/smalltree_back1_n.png" id="18_61rr5"]
-[ext_resource type="Texture2D" uid="uid://cmcnjwnw1llic" path="res://Assets/Tilesets/Forest/smalltree_back1_spec.png" id="19_i6loh"]
+[ext_resource type="Texture2D" uid="uid://lp2y3b8twppf" path="res://Assets/Areas/TheAncientForest/Props/bigtree_front2.png" id="14_gourx"]
+[ext_resource type="Texture2D" uid="uid://by5j4bl1rpo2" path="res://Assets/Areas/TheAncientForest/Props/bigtree_front2_n.png" id="15_2smlj"]
+[ext_resource type="Texture2D" uid="uid://c6754f25aftjs" path="res://Assets/Areas/TheAncientForest/Props/bigtree_front2_spec.png" id="16_7o21o"]
+[ext_resource type="Texture2D" uid="uid://dklqnq6ajq8gm" path="res://Assets/Areas/TheAncientForest/Props/smalltree_back1.png" id="17_ybihb"]
+[ext_resource type="Texture2D" uid="uid://urrgo65gs5jy" path="res://Assets/Areas/TheAncientForest/Props/smalltree_back1_n.png" id="18_61rr5"]
+[ext_resource type="Texture2D" uid="uid://cmcnjwnw1llic" path="res://Assets/Areas/TheAncientForest/Props/smalltree_back1_spec.png" id="19_i6loh"]
 [ext_resource type="Shader" path="res://Resources/Shaders/windCelShader.gdshader" id="20_bfmnx"]
-[ext_resource type="Texture2D" uid="uid://bvurvprys5kg5" path="res://Assets/Tilesets/Forest/medtree_windmask.png" id="21_vtosp"]
-[ext_resource type="Texture2D" uid="uid://b4behjsnyjluy" path="res://Assets/Tilesets/Forest/medtree_leaves_front1.png" id="22_j1hre"]
-[ext_resource type="Texture2D" uid="uid://blbvanx8nupbd" path="res://Assets/Tilesets/Forest/medtree_leaves_front1_n.png" id="23_pi03h"]
-[ext_resource type="Texture2D" uid="uid://cru0y6ehyvngt" path="res://Assets/Tilesets/Forest/medtree_leaves_front1_spec.png" id="24_v4iqy"]
-[ext_resource type="Texture2D" uid="uid://4b4bcm8etq18" path="res://Assets/Tilesets/Forest/smalltree_windmask.png" id="25_lefhs"]
-[ext_resource type="Texture2D" uid="uid://d07c4hnwfomo0" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1.png" id="26_1c4ku"]
-[ext_resource type="Texture2D" uid="uid://d30ovj7gk0hjv" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1_n.png" id="27_r8nsw"]
+[ext_resource type="Texture2D" uid="uid://bvurvprys5kg5" path="res://Assets/Areas/TheAncientForest/Props/medtree_windmask.png" id="21_vtosp"]
+[ext_resource type="Texture2D" uid="uid://b4behjsnyjluy" path="res://Assets/Areas/TheAncientForest/Props/medtree_leaves_front1.png" id="22_j1hre"]
+[ext_resource type="Texture2D" uid="uid://blbvanx8nupbd" path="res://Assets/Areas/TheAncientForest/Props/medtree_leaves_front1_n.png" id="23_pi03h"]
+[ext_resource type="Texture2D" uid="uid://cru0y6ehyvngt" path="res://Assets/Areas/TheAncientForest/Props/medtree_leaves_front1_spec.png" id="24_v4iqy"]
+[ext_resource type="Texture2D" uid="uid://4b4bcm8etq18" path="res://Assets/Areas/TheAncientForest/Props/smalltree_windmask.png" id="25_lefhs"]
+[ext_resource type="Texture2D" uid="uid://d07c4hnwfomo0" path="res://Assets/Areas/TheAncientForest/Props/smalltree_leaves_front1.png" id="26_1c4ku"]
+[ext_resource type="Texture2D" uid="uid://d30ovj7gk0hjv" path="res://Assets/Areas/TheAncientForest/Props/smalltree_leaves_front1_n.png" id="27_r8nsw"]
 [ext_resource type="Texture2D" uid="uid://c8rca7bu5dyj0" path="res://Assets/Sprites/Actors/Rose/cape_shadow.png" id="28_pxbu4"]
-[ext_resource type="Texture2D" uid="uid://cqn860v870rf" path="res://Assets/Tilesets/Forest/smalltree_leaves_front1_spec.png" id="28_t34wn"]
+[ext_resource type="Texture2D" uid="uid://cqn860v870rf" path="res://Assets/Areas/TheAncientForest/Props/smalltree_leaves_front1_spec.png" id="28_t34wn"]
 [ext_resource type="Script" path="res://Scripts/Resources/mouse_follow.gd" id="29_pjspf"]
-[ext_resource type="Texture2D" uid="uid://c7xcalpae6v67" path="res://Assets/Tilesets/Forest/smalltree2_windmask.png" id="29_was5n"]
-[ext_resource type="Texture2D" uid="uid://dqb6cqe4hsdtr" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1.png" id="30_2fkt6"]
-[ext_resource type="Texture2D" uid="uid://c32h3f13i3x2" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1_n.png" id="31_u8jfk"]
-[ext_resource type="Texture2D" uid="uid://dn6atjvijfown" path="res://Assets/Tilesets/Forest/smalltree2_leaves_front1_spec.png" id="32_dlv8f"]
+[ext_resource type="Texture2D" uid="uid://c7xcalpae6v67" path="res://Assets/Areas/TheAncientForest/Props/smalltree2_windmask.png" id="29_was5n"]
+[ext_resource type="Texture2D" uid="uid://dqb6cqe4hsdtr" path="res://Assets/Areas/TheAncientForest/Props/smalltree2_leaves_front1.png" id="30_2fkt6"]
+[ext_resource type="Texture2D" uid="uid://c32h3f13i3x2" path="res://Assets/Areas/TheAncientForest/Props/smalltree2_leaves_front1_n.png" id="31_u8jfk"]
+[ext_resource type="Texture2D" uid="uid://dn6atjvijfown" path="res://Assets/Areas/TheAncientForest/Props/smalltree2_leaves_front1_spec.png" id="32_dlv8f"]
 [ext_resource type="AudioStream" uid="uid://utfob0oodqxe" path="res://Assets/sfx/Forest_Stereo_LOOP.wav" id="33_bqw1s"]
-[ext_resource type="Texture2D" uid="uid://c7x2f2l7kux2i" path="res://Assets/Tilesets/Forest/bigtree_windmask.png" id="33_d0vxo"]
-[ext_resource type="Texture2D" uid="uid://dptewkhxx5uyh" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1.png" id="34_m4rdd"]
-[ext_resource type="Texture2D" uid="uid://dfghnt4fhibp3" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1_spec.png" id="36_0287s"]
-[ext_resource type="Texture2D" uid="uid://i3yrbwj77ka1" path="res://Assets/Tilesets/Forest/rock_front1.png" id="37_pc2yb"]
-[ext_resource type="Texture2D" uid="uid://4judg3y0hmn0" path="res://Assets/Tilesets/Forest/rock_front1_n.png" id="38_kcgrk"]
-[ext_resource type="Texture2D" uid="uid://h3povsdptxax" path="res://Assets/Tilesets/Forest/rock_front1_spec.png" id="39_2cwwe"]
+[ext_resource type="Texture2D" uid="uid://c7x2f2l7kux2i" path="res://Assets/Areas/TheAncientForest/Props/bigtree_windmask.png" id="33_d0vxo"]
+[ext_resource type="Texture2D" uid="uid://dptewkhxx5uyh" path="res://Assets/Areas/TheAncientForest/Props/bigtree_leaves_front1.png" id="34_m4rdd"]
+[ext_resource type="Texture2D" uid="uid://dfghnt4fhibp3" path="res://Assets/Areas/TheAncientForest/Props/bigtree_leaves_front1_spec.png" id="36_0287s"]
+[ext_resource type="Texture2D" uid="uid://i3yrbwj77ka1" path="res://Assets/Areas/TheAncientForest/Props/rock_front1.png" id="37_pc2yb"]
+[ext_resource type="Texture2D" uid="uid://4judg3y0hmn0" path="res://Assets/Areas/TheAncientForest/Props/rock_front1_n.png" id="38_kcgrk"]
+[ext_resource type="Texture2D" uid="uid://h3povsdptxax" path="res://Assets/Areas/TheAncientForest/Props/rock_front1_spec.png" id="39_2cwwe"]
 [ext_resource type="Texture2D" uid="uid://bfi72cevgfo18" path="res://Assets/Tilesets/Forest/hugetree_fore.png" id="40_q4rhy"]
 [ext_resource type="Script" path="res://Scripts/Resources/windAudioShuffle.gd" id="41_4eoag"]
 [ext_resource type="Texture2D" uid="uid://bgwvxlhiw0ne2" path="res://Assets/Tilesets/Forest/hugetree_fore_n.png" id="41_msi4x"]
@@ -58,7 +58,7 @@
 [ext_resource type="AudioStream" uid="uid://brptq4uk2kiiu" path="res://Assets/sfx/ambient wind/Wind10_S.wav" id="51_xjn64"]
 [ext_resource type="AudioStream" uid="uid://cas46c6og17su" path="res://Assets/sfx/ambient wind/Wind11_S.wav" id="52_6sryp"]
 [ext_resource type="AudioStream" uid="uid://b3f1yqx2e4xxl" path="res://Assets/sfx/ambient wind/Wind12_S.wav" id="53_0tlei"]
-[ext_resource type="Texture2D" uid="uid://b6w6n8hygpo4c" path="res://Assets/Tilesets/Forest/bigtree_leaves_front1_n.png" id="54_bdo0u"]
+[ext_resource type="Texture2D" uid="uid://b6w6n8hygpo4c" path="res://Assets/Areas/TheAncientForest/Props/bigtree_leaves_front1_n.png" id="54_bdo0u"]
 [ext_resource type="AudioStream" uid="uid://csjogj3oxsg44" path="res://Assets/sfx/ambient wind/Wind13_S.wav" id="54_wfh61"]
 [ext_resource type="AudioStream" uid="uid://c8lrrtl7kpnvt" path="res://Assets/sfx/ambient wind/Wind14_S.wav" id="55_qgl76"]
 [ext_resource type="AudioStream" uid="uid://be656ljqv6dap" path="res://Assets/sfx/ambient wind/Wind15_S.wav" id="56_qbrbq"]
@@ -90,6 +90,9 @@ shader_parameter/darkArea = Color(0.0627451, 0.0705882, 0.109804, 1)
 shader_parameter/segmentation = 1.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a6oxd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbug6"]
+size = Vector2(20, 38)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vo8me"]
 light_mode = 1
@@ -370,6 +373,12 @@ windStreams = Array[AudioStream]([ExtResource("42_jfbyq"), ExtResource("43_1i1gf
 
 [node name="Rose" parent="player" instance=ExtResource("7_3yybj")]
 position = Vector2(0, -40)
+
+[node name="HitBox" parent="player/Rose/RoseBody/HitBoxComponent" index="4"]
+shape = SubResource("RectangleShape2D_nbug6")
+
+[node name="Crouch" parent="player/Rose/RoseBody/MoveStates" index="6"]
+look_max = 100
 
 [node name="TileMap" type="TileMap" parent="player"]
 visible = false

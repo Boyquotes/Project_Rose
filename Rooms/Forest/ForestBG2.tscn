@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://2qkwl63ufvtn"]
+[gd_scene load_steps=59 format=3 uid="uid://2qkwl63ufvtn"]
 
 [ext_resource type="Texture2D" uid="uid://8owqqpi1w2jf" path="res://Assets/Lights/background.png" id="1_1yh88"]
 [ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="2_i2s8l"]
@@ -27,9 +27,10 @@
 [ext_resource type="Texture2D" uid="uid://b48w7rweua02y" path="res://Assets/Tilesets/Forest/forestbg_windmask.png" id="25_4pcjy"]
 [ext_resource type="Texture2D" uid="uid://5dduo173du0v" path="res://Assets/Tilesets/Forest/forestbg_back4_windy.png" id="26_wnol0"]
 [ext_resource type="Texture2D" uid="uid://c5r3oywmkcsae" path="res://Assets/Tilesets/Forest/forestbg_back4_leaves.png" id="27_67dgs"]
-[ext_resource type="Texture2D" uid="uid://c8gk0srcr2y21" path="res://Assets/Tilesets/Forest/fill.png" id="28_5yn2e"]
 [ext_resource type="Texture2D" uid="uid://q2kexfe3b0tc" path="res://Assets/Tilesets/Forest/fill_n.png" id="29_57wua"]
+[ext_resource type="Texture2D" uid="uid://dou3llm6titcn" path="res://Assets/Tilesets/Forest/tree_bg.png" id="29_w2co2"]
 [ext_resource type="PackedScene" uid="uid://dvcqdfbopg02y" path="res://Rooms/Forest/occluders.tscn" id="30_ac1bs"]
+[ext_resource type="Texture2D" uid="uid://bal7ff6hkwgsb" path="res://Assets/Tilesets/Forest/tree_bg_n.png" id="30_dr680"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ja2s8"]
 shader = ExtResource("2_i2s8l")
@@ -226,9 +227,18 @@ shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(0.0627451, 0.0705882, 0.109804, 1)
 shader_parameter/segmentation = 1.0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p47xc"]
+load_path = "res://.godot/imported/fill.png-a7cdf0b5ab594abed9d755f30a5a6bfd.ctex"
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_qda3b"]
-diffuse_texture = ExtResource("28_5yn2e")
+diffuse_texture = SubResource("CompressedTexture2D_p47xc")
 normal_texture = ExtResource("29_57wua")
+specular_color = Color(0, 0, 0, 1)
+texture_repeat = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4be7o"]
+diffuse_texture = ExtResource("29_w2co2")
+normal_texture = ExtResource("30_dr680")
 specular_color = Color(0, 0, 0, 1)
 texture_repeat = 2
 
@@ -353,6 +363,16 @@ position = Vector2(2168, 280)
 texture = SubResource("CanvasTexture_qda3b")
 region_enabled = true
 region_rect = Rect2(0, 0, 1500, 550)
+
+[node name="Sprite2D3" type="Sprite2D" parent="background2/ParallaxLayer"]
+modulate = Color(0.85098, 0.85098, 0.85098, 1)
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_pa8ul")
+position = Vector2(5389, -1445)
+texture = SubResource("CanvasTexture_4be7o")
+region_enabled = true
+region_rect = Rect2(0, 0, 5000, 4000)
 
 [node name="Occluders" parent="." instance=ExtResource("30_ac1bs")]
 position = Vector2(2389, -918)

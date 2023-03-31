@@ -15,7 +15,6 @@ signal shake
 @export var player : Player
 
 func _ready():
-	await player.ready
 	player.attach_cam(self)
 	set_process(true)
 

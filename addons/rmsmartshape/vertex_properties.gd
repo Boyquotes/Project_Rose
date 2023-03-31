@@ -2,58 +2,33 @@
 extends Resource
 class_name SS2D_VertexProperties
 
-@export (int) var texture_idx: int # :
-	get:
-		return texture_idx # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_texture_idx
-@export (bool) var flip: bool #:
-	get:
-		return flip # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_flip
-@export (float) var width: float #:
-	get:
-		return width # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_width
+@export var texture_idx: int # : set = set_texture_idx
+@export var flip: bool #: set = set_flip
+@export var width: float #: set = set_width
 
 
-func set_texture_idx(i: int):
+func set_texture_idx(i: int) -> void:
 	texture_idx = i
-	emit_signal("changed")
+	emit_changed()
 	notify_property_list_changed()
 
 
-func set_flip(b: bool):
+func set_flip(b: bool) -> void:
 	flip = b
-	emit_signal("changed")
+	emit_changed()
 	notify_property_list_changed()
 
 
-func set_width(w: float):
+func set_width(w: float) -> void:
 	width = w
-	emit_signal("changed")
+	emit_changed()
 	notify_property_list_changed()
 
 
-func _init():
+func _init() -> void:
 	texture_idx = 0
 	flip = false
 	width = 1.0
-
-
-func duplicate(sub_resources: bool = false):
-	var _new = __new()
-	_new.texture_idx = texture_idx
-	_new.flip = flip
-	_new.width = width
-	return _new
-
-
-# Workaround (class cannot reference itself)
-func __new() -> SS2D_VertexProperties:
-	return get_script().new()
 
 
 func equals(other: SS2D_VertexProperties) -> bool:

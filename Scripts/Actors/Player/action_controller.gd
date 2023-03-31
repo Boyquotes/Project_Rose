@@ -231,7 +231,6 @@ func attack_direction():
 	return dir
 
 func reset_action():
-	host.i_frame(0)
 	hit = false
 	save_action = false
 	action_state.hover = false

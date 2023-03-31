@@ -34,7 +34,7 @@ window/size/test_height=324
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/rmsmartshape/plugin.cfg", "res://addons/Hitbox Generator/plugin.cfg")
 
 [importer_defaults]
 

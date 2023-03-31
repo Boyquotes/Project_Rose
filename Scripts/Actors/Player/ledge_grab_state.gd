@@ -44,6 +44,7 @@ func _handle_animation():
 	if !grab_animation_done:
 		host.animate(host.base_anim, "LedgeGrab", false)
 	elif(climb):
+		host.collision_box.disabled = true
 		host.animate(host.base_anim, "Climb", false)
 	elif(jump):
 		host.animate(host.base_anim, "LedgeJump", false)
@@ -88,7 +89,7 @@ func _execute(_delta):
 
 
 func _exit(state):
-	host.get_node("CollisionBox").call_deferred("set_disabled", false)
+	host.collision_box.disabled = false
 	host.activate_grav()
 	hstop = false
 	grab_animation_done = false

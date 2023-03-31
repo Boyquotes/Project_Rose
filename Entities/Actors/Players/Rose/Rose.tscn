@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://reql368x3fj7"]
+[gd_scene load_steps=6 format=3 uid="uid://reql368x3fj7"]
 
 [ext_resource type="PackedScene" uid="uid://w56eq67hj8wq" path="res://Entities/Actors/Players/Rose/RoseBody.tscn" id="1_mpx4g"]
-[ext_resource type="Script" path="res://Entities/Actors/Components/hitbox_component.gd" id="2_gf2yo"]
 [ext_resource type="PackedScene" uid="uid://op6vsappqqjn" path="res://Entities/Actors/Players/Rose/CapeSkeleton.tscn" id="2_p6q6m"]
 [ext_resource type="PackedScene" uid="uid://th7afrlxpyd0" path="res://Entities/Actors/Players/Rose/CapeSkeletonController.tscn" id="3_mhev1"]
 
@@ -16,11 +15,6 @@ z_index = 20
 
 [node name="RoseBody" parent="." instance=ExtResource("1_mpx4g")]
 
-[node name="HitBoxComponent" parent="RoseBody" index="1"]
-collision_layer = 64
-collision_mask = 145
-script = ExtResource("2_gf2yo")
-
 [node name="HitBox" type="CollisionShape2D" parent="RoseBody/HitBoxComponent" index="0"]
 shape = SubResource("3")
 disabled = true
@@ -32,6 +26,11 @@ shape = SubResource("RectangleShape2D_hehew")
 [node name="Timer" type="Timer" parent="RoseBody/HitBoxComponent" index="2"]
 one_shot = true
 
+[node name="Sprite2D" parent="RoseBody/Sprites" index="0"]
+offset = Vector2(-1, 1)
+hframes = 3
+frame = 2
+
 [node name="CapeSkeleton" parent="." instance=ExtResource("2_p6q6m")]
 
 [node name="CapeSkeletonController" parent="." instance=ExtResource("3_mhev1")]
@@ -40,7 +39,5 @@ targets_path = NodePath("../RoseBody/Utilities/CapeTarget")
 influencers_path = NodePath("../RoseBody/Utilities/CapeInfluencers")
 wind_path = NodePath("../RoseBody/Utilities/WindNode")
 skeleton_path = NodePath("../CapeSkeleton")
-
-[connection signal="timeout" from="RoseBody/HitBoxComponent/Timer" to="RoseBody/HitBoxComponent" method="deactivate_iframe" flags=18]
 
 [editable path="RoseBody"]

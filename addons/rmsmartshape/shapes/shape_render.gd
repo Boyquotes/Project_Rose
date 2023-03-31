@@ -2,30 +2,26 @@
 extends Node2D
 class_name SS2D_Shape_Render
 
-"""
-Node is used to render shape geometry
-"""
+## Node is used to render shape geometry.
 
-var mesh = null :
-	get:
-		return mesh # TODOConverter40 Non existent get function 
-	set(mod_value):
-		mod_value  # TODOConverter40 Copy here content of set_mesh
+var mesh: SS2D_Mesh = null : set = set_mesh
 
 
-func set_mesh(m):
+func set_mesh(m: SS2D_Mesh) -> void:
 	mesh = m
 	if m != null:
 		material = mesh.material
 		z_index = mesh.z_index
 		z_as_relative = mesh.z_as_relative
+		show_behind_parent = mesh.show_behind_parent
 	else:
 		material = null
 		z_index = 0
 		z_as_relative = true
-	update()
+		show_behind_parent = false
+	queue_redraw()
 
 
-func _draw():
+func _draw() -> void:
 	if mesh != null:
 		mesh.render(self)

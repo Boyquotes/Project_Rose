@@ -284,13 +284,13 @@ func _on_animator_component_animation_finished(anim_name):
 		activate_fric()
 		FSM.crouch_state.slide = false
 
-func _on_rose_animation_changed(prev_anim, new_anim):
-	if prev_anim == "RoseAnimations/Slide":
+func _on_rose_animation_changed(previous_anim, new_anim):
+	if previous_anim == "RoseAnimations/Slide":
 		activate_fric()
 		FSM.crouch_state.slide = false
 		emit_signal("silence")
-	if prev_anim == "RoseAnimations/Run" and new_anim == "RoseAnimations/Idle":
+	if new_anim == "RoseAnimations/Crouch" || new_anim == "RoseAnimations/LookUp":
 		emit_signal("footstep", 3.0)
-	if prev_anim == "RoseAnimations/Crouch" and new_anim == "RoseAnimations/Idle":
-		emit_signal("footstep", 4.0)
+	if new_anim == "RoseAnimations/Idle":
+		emit_signal("footstep", 8.0)
 

@@ -1,0 +1,738 @@
+[gd_scene load_steps=144 format=3 uid="uid://dygkhp1kprlpd"]
+
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_closed.gd" id="1_lkdw8"]
+[ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="1_oxle0"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/vertex_properties.gd" id="2_n1t2d"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point.gd" id="3_87l1u"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="4_ar41d"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="5_opyod"]
+[ext_resource type="Texture2D" uid="uid://cr5uihvbyq277" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge.png" id="7_a3we4"]
+[ext_resource type="Texture2D" uid="uid://beoyo45rxsgxg" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge.png" id="7_tyjd8"]
+[ext_resource type="Texture2D" uid="uid://s48ekxavyhnt" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge_n.png" id="8_bt7cu"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="8_rtg5m"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="9_v2lky"]
+[ext_resource type="Texture2D" uid="uid://cp2wjdxinquft" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset left edge.png" id="10_c0umx"]
+[ext_resource type="Texture2D" uid="uid://0wmu0s2kk0bp" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge_n.png" id="10_o5hma"]
+[ext_resource type="Texture2D" uid="uid://dvohhcj574bxc" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset right edge.png" id="11_1nare"]
+[ext_resource type="Texture2D" uid="uid://dnmrolamkt8wf" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset bot edge.png" id="12_0ju5v"]
+[ext_resource type="Texture2D" uid="uid://dp6mgmq5mixid" path="res://Assets/Areas/TheAncientForest/Tilesets/clear.png" id="13_2pafp"]
+[ext_resource type="Texture2D" uid="uid://bs3pa0m1jafox" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset left edge_n.png" id="14_bk5ht"]
+[ext_resource type="Texture2D" uid="uid://cva713sen6jrg" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge bot inner left corner.png" id="14_mgfdh"]
+[ext_resource type="Texture2D" uid="uid://dm6l1x2osfd8k" path="res://Assets/Areas/TheAncientForest/Tilesets/grass tileset edge bot inner left corner.png" id="15_krrdn"]
+[ext_resource type="Texture2D" uid="uid://t72r44nhp3dh" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge top outer right corner.png" id="16_07c72"]
+[ext_resource type="Texture2D" uid="uid://bxmoq26oig15f" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset right edge_n.png" id="16_xuix2"]
+[ext_resource type="Texture2D" uid="uid://bjwi07vnpjf80" path="res://Assets/Areas/TheAncientForest/Tilesets/grass tileset edge top outer right corner.png" id="17_w0amd"]
+[ext_resource type="Texture2D" uid="uid://rale1yrrhvno" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge bot inner right corner.png" id="18_ar4ct"]
+[ext_resource type="Texture2D" uid="uid://b8t43ry6ch33o" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset bot edge_n.png" id="18_bgp50"]
+[ext_resource type="Texture2D" uid="uid://dhiudjiarsst3" path="res://Assets/Areas/TheAncientForest/Tilesets/grass tileset edge bot inner right corner.png" id="19_b0tcq"]
+[ext_resource type="Texture2D" uid="uid://e5culef1ck8m" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge top outer left corner.png" id="20_vv2k6"]
+[ext_resource type="Texture2D" uid="uid://bione5parf3o0" path="res://Assets/Areas/TheAncientForest/Tilesets/grass tileset edge top outer left corner.png" id="21_f8vw6"]
+[ext_resource type="Texture2D" uid="uid://sfw4aryeq2vt" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge bot inner left corner_n.png" id="22_00qp6"]
+[ext_resource type="Texture2D" uid="uid://bexw2bk0abdfc" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge top inner left corner.png" id="22_fgh72"]
+[ext_resource type="Texture2D" uid="uid://bgjue6sdrkp37" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge top outer right corner_n.png" id="23_mk1vn"]
+[ext_resource type="Texture2D" uid="uid://bpsnchajjspu6" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge bot outer right corner.png" id="23_y1awu"]
+[ext_resource type="Texture2D" uid="uid://dlx1bdb5nipce" path="res://Assets/Areas/TheAncientForest/Tilesets/grass tileset edge bot inner left corner_n.png" id="24_457u0"]
+[ext_resource type="Texture2D" uid="uid://cn7yn48038uxk" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge top inner right corner.png" id="24_ayovg"]
+[ext_resource type="Texture2D" uid="uid://c43r2q0xdd2qc" path="res://Assets/Areas/TheAncientForest/Tilesets/grass tileset edge top outer right corner_n.png" id="25_0xbyo"]
+[ext_resource type="Texture2D" uid="uid://b76vdfqq0vuub" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge bot outer left corner.png" id="25_ifals"]
+[ext_resource type="Texture2D" uid="uid://dntvmcgoemtyy" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge fore.png" id="26_23c0w"]
+[ext_resource type="Texture2D" uid="uid://dh7jml7todxdm" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge bot inner left corner.png" id="27_o2kv1"]
+[ext_resource type="Texture2D" uid="uid://cbra8jvouye7y" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge fore outer right corner.png" id="28_huvjm"]
+[ext_resource type="Texture2D" uid="uid://db625k4gm7vx7" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge bot inner right corner.png" id="29_fujhg"]
+[ext_resource type="Texture2D" uid="uid://1udh4nvkx5tw" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge bot inner right corner_n.png" id="29_ls8ut"]
+[ext_resource type="Texture2D" uid="uid://bv2n18uwrwmpa" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge top inner right corner_n.png" id="30_456tr"]
+[ext_resource type="Texture2D" uid="uid://d2a6mgewigewb" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge fore outer left corner.png" id="30_jd2pt"]
+[ext_resource type="Texture2D" uid="uid://dd01hpkmgrwjy" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset fill.png" id="31_7qdfd"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="32_vbxnj"]
+[ext_resource type="Texture2D" uid="uid://dpone6lk1l5e8" path="res://Assets/Areas/TheAncientForest/Tilesets/grass tileset edge bot inner right corner_n.png" id="32_xa6uu"]
+[ext_resource type="Texture2D" uid="uid://c5ysjmrs615q3" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge top outer left corner_n.png" id="34_dqarc"]
+[ext_resource type="Texture2D" uid="uid://dmr1ys5inr2bi" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge fore_n.png" id="35_03q1m"]
+[ext_resource type="Texture2D" uid="uid://cgv5cm8835ukm" path="res://Assets/Areas/TheAncientForest/Tilesets/grass tileset edge top outer left corner_n.png" id="36_telub"]
+[ext_resource type="Texture2D" uid="uid://b6sxt5y3wxdbk" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge bot inner left corner_n.png" id="37_1haf1"]
+[ext_resource type="Texture2D" uid="uid://0ap744gj7uq3" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge top inner left corner_n.png" id="38_6l7in"]
+[ext_resource type="Texture2D" uid="uid://8jjbauk7kcqi" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge fore right corner_n.png" id="39_pwbfh"]
+[ext_resource type="Texture2D" uid="uid://u1udwo3ggv3q" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge bot outer right corner_n.png" id="40_bq3rl"]
+[ext_resource type="Texture2D" uid="uid://cwp0wt2ggvqou" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge bot inner right corne_nr.png" id="41_tl5r7"]
+[ext_resource type="Texture2D" uid="uid://d00py074gx1kn" path="res://Assets/Areas/TheAncientForest/Tilesets/dirt tileset edge bot outer left corner_n.png" id="42_7vki7"]
+[ext_resource type="Texture2D" uid="uid://n1tpuib0txib" path="res://Assets/Areas/TheAncientForest/Tilesets/grass edge fore outer left corner_n.png" id="43_0mwpd"]
+[ext_resource type="Texture2D" uid="uid://dgr16lppcasw2" path="res://Assets/Areas/TheAncientForest/Tilesets/clear_n.png" id="45_hxgyl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhxkv"]
+shader = ExtResource("1_oxle0")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.4
+shader_parameter/lightAdd = -0.3
+shader_parameter/shadowSubtract = 0.45
+shader_parameter/unlitColorMix = Color(0.113725, 0, 0.0705882, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(0.0627451, 0.0705882, 0.109804, 1)
+shader_parameter/segmentation = 1.0
+
+[sub_resource type="Resource" id="Resource_h0leh"]
+script = ExtResource("2_n1t2d")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_gxcov"]
+script = ExtResource("3_87l1u")
+position = Vector2(-377, 224)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_h0leh")
+
+[sub_resource type="Resource" id="Resource_56juv"]
+script = ExtResource("2_n1t2d")
+texture_idx = -1
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_7t4fv"]
+script = ExtResource("3_87l1u")
+position = Vector2(-376, 61)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_56juv")
+
+[sub_resource type="Resource" id="Resource_tj2j3"]
+script = ExtResource("2_n1t2d")
+texture_idx = 7
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_f0h5t"]
+script = ExtResource("3_87l1u")
+position = Vector2(592, 61)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_tj2j3")
+
+[sub_resource type="Resource" id="Resource_dnfnv"]
+script = ExtResource("2_n1t2d")
+texture_idx = 3
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_ooe1n"]
+script = ExtResource("3_87l1u")
+position = Vector2(592, 117)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_dnfnv")
+
+[sub_resource type="Resource" id="Resource_4y85r"]
+script = ExtResource("2_n1t2d")
+texture_idx = -2
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_vxfra"]
+script = ExtResource("3_87l1u")
+position = Vector2(736, 61)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_4y85r")
+
+[sub_resource type="Resource" id="Resource_5a1c8"]
+script = ExtResource("2_n1t2d")
+texture_idx = -3
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_njts2"]
+script = ExtResource("3_87l1u")
+position = Vector2(736, 117)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_5a1c8")
+
+[sub_resource type="Resource" id="Resource_vuug4"]
+script = ExtResource("2_n1t2d")
+texture_idx = -1
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_a7j1r"]
+script = ExtResource("3_87l1u")
+position = Vector2(896, 61)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_vuug4")
+
+[sub_resource type="Resource" id="Resource_cf2pm"]
+script = ExtResource("2_n1t2d")
+texture_idx = -3
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_yjffx"]
+script = ExtResource("3_87l1u")
+position = Vector2(896, 101)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_cf2pm")
+
+[sub_resource type="Resource" id="Resource_fgfgh"]
+script = ExtResource("2_n1t2d")
+texture_idx = -5
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_x30u5"]
+script = ExtResource("3_87l1u")
+position = Vector2(936, 101)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_fgfgh")
+
+[sub_resource type="Resource" id="Resource_siikj"]
+script = ExtResource("2_n1t2d")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_pgpa2"]
+script = ExtResource("3_87l1u")
+position = Vector2(-377, 224)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_siikj")
+
+[sub_resource type="Resource" id="Resource_j6hpj"]
+script = ExtResource("2_n1t2d")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_5w8ak"]
+script = ExtResource("3_87l1u")
+position = Vector2(935, 208)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_j6hpj")
+
+[sub_resource type="Resource" id="Resource_n70jy"]
+script = ExtResource("2_n1t2d")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_uacyv"]
+script = ExtResource("3_87l1u")
+position = Vector2(-145, 16)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_n70jy")
+
+[sub_resource type="Resource" id="Resource_nq8bd"]
+script = ExtResource("2_n1t2d")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_gb1h6"]
+script = ExtResource("3_87l1u")
+position = Vector2(-49, 88)
+point_in = Vector2(-41, -16)
+point_out = Vector2(63, 16)
+properties = SubResource("Resource_nq8bd")
+
+[sub_resource type="Resource" id="Resource_x7dye"]
+script = ExtResource("2_n1t2d")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_0m2s8"]
+script = ExtResource("3_87l1u")
+position = Vector2(95, 24)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_x7dye")
+
+[sub_resource type="Resource" id="Resource_wgsqx"]
+script = ExtResource("4_ar41d")
+_points = {
+0: SubResource("Resource_pgpa2"),
+50: SubResource("Resource_gxcov"),
+64: SubResource("Resource_7t4fv"),
+77: SubResource("Resource_f0h5t"),
+78: SubResource("Resource_ooe1n"),
+79: SubResource("Resource_vxfra"),
+80: SubResource("Resource_njts2"),
+81: SubResource("Resource_a7j1r"),
+85: SubResource("Resource_yjffx"),
+86: SubResource("Resource_x30u5"),
+87: SubResource("Resource_5w8ak"),
+88: SubResource("Resource_uacyv"),
+89: SubResource("Resource_gb1h6"),
+92: SubResource("Resource_0m2s8")
+}
+_point_order = Array[int]([50, 64, 88, 89, 92, 77, 78, 80, 79, 81, 85, 86, 87, 0])
+_constraints = {
+Array[int]([50, 0]): 15
+}
+_next_key = 93
+_material_overrides = {}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t1ad0"]
+diffuse_texture = ExtResource("7_tyjd8")
+normal_texture = ExtResource("8_bt7cu")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4hdj3"]
+diffuse_texture = ExtResource("7_a3we4")
+normal_texture = ExtResource("10_o5hma")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_1114f"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([SubResource("CanvasTexture_t1ad0"), SubResource("CanvasTexture_4hdj3")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_q7php"]
+script = ExtResource("8_rtg5m")
+begin = 45.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_lc33j"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_1114f")
+normal_range = SubResource("Resource_q7php")
+weld = true
+render = true
+z_index = -5
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cn4xv"]
+diffuse_texture = ExtResource("10_c0umx")
+normal_texture = ExtResource("14_bk5ht")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_lxdxi"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([SubResource("CanvasTexture_cn4xv")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_obdkl"]
+script = ExtResource("8_rtg5m")
+begin = 135.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_pk2cp"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_lxdxi")
+normal_range = SubResource("Resource_obdkl")
+weld = true
+render = true
+z_index = -5
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8vtnc"]
+diffuse_texture = ExtResource("11_1nare")
+normal_texture = ExtResource("16_xuix2")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_a310o"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([SubResource("CanvasTexture_8vtnc")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_y5fkh"]
+script = ExtResource("8_rtg5m")
+begin = 315.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_wd7p2"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_a310o")
+normal_range = SubResource("Resource_y5fkh")
+weld = true
+render = true
+z_index = -5
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nj4uj"]
+diffuse_texture = ExtResource("12_0ju5v")
+normal_texture = ExtResource("18_bgp50")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_1mmh1"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([SubResource("CanvasTexture_nj4uj")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_1kksk"]
+script = ExtResource("8_rtg5m")
+begin = 225.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_be7j6"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_1mmh1")
+normal_range = SubResource("Resource_1kksk")
+weld = true
+render = true
+z_index = -5
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7h08a"]
+diffuse_texture = ExtResource("14_mgfdh")
+normal_texture = ExtResource("22_00qp6")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kxn23"]
+diffuse_texture = ExtResource("15_krrdn")
+normal_texture = ExtResource("24_457u0")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0v7s3"]
+diffuse_texture = ExtResource("16_07c72")
+normal_texture = ExtResource("23_mk1vn")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xgt5x"]
+diffuse_texture = ExtResource("17_w0amd")
+normal_texture = ExtResource("25_0xbyo")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_8whqm"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([ExtResource("13_2pafp")])
+textures_corner_outer = Array[Texture2D]([SubResource("CanvasTexture_0v7s3"), SubResource("CanvasTexture_xgt5x")])
+textures_corner_inner = Array[Texture2D]([SubResource("CanvasTexture_7h08a"), SubResource("CanvasTexture_kxn23")])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = false
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_8tmgj"]
+script = ExtResource("8_rtg5m")
+begin = 0.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_deif2"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_8whqm")
+normal_range = SubResource("Resource_8tmgj")
+weld = true
+render = true
+z_index = -4
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_m4w15"]
+diffuse_texture = ExtResource("18_ar4ct")
+normal_texture = ExtResource("29_ls8ut")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yx1me"]
+diffuse_texture = ExtResource("19_b0tcq")
+normal_texture = ExtResource("32_xa6uu")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pgyhx"]
+diffuse_texture = ExtResource("20_vv2k6")
+normal_texture = ExtResource("34_dqarc")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ud0td"]
+diffuse_texture = ExtResource("21_f8vw6")
+normal_texture = ExtResource("36_telub")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_qxebb"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([ExtResource("13_2pafp")])
+textures_corner_outer = Array[Texture2D]([SubResource("CanvasTexture_pgyhx"), SubResource("CanvasTexture_ud0td")])
+textures_corner_inner = Array[Texture2D]([SubResource("CanvasTexture_m4w15"), SubResource("CanvasTexture_yx1me")])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_u1hnw"]
+script = ExtResource("8_rtg5m")
+begin = 90.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_bqjvl"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_qxebb")
+normal_range = SubResource("Resource_u1hnw")
+weld = true
+render = true
+z_index = -4
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dud3l"]
+diffuse_texture = ExtResource("22_fgh72")
+normal_texture = ExtResource("38_6l7in")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_d7og4"]
+diffuse_texture = ExtResource("23_y1awu")
+normal_texture = ExtResource("40_bq3rl")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_7t2im"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([ExtResource("13_2pafp")])
+textures_corner_outer = Array[Texture2D]([SubResource("CanvasTexture_d7og4")])
+textures_corner_inner = Array[Texture2D]([SubResource("CanvasTexture_dud3l")])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_7eije"]
+script = ExtResource("8_rtg5m")
+begin = 270.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_qjayl"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_7t2im")
+normal_range = SubResource("Resource_7eije")
+weld = true
+render = true
+z_index = -4
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tkwoo"]
+diffuse_texture = ExtResource("24_ayovg")
+normal_texture = ExtResource("30_456tr")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ae1c1"]
+diffuse_texture = ExtResource("25_ifals")
+normal_texture = ExtResource("42_7vki7")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_ltyqq"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([ExtResource("13_2pafp")])
+textures_corner_outer = Array[Texture2D]([SubResource("CanvasTexture_ae1c1")])
+textures_corner_inner = Array[Texture2D]([SubResource("CanvasTexture_tkwoo")])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_cl4g0"]
+script = ExtResource("8_rtg5m")
+begin = 180.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_bfadq"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_ltyqq")
+normal_range = SubResource("Resource_cl4g0")
+weld = true
+render = true
+z_index = -4
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_l5r2w"]
+diffuse_texture = ExtResource("26_23c0w")
+normal_texture = ExtResource("35_03q1m")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_4vs68"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([ExtResource("13_2pafp"), SubResource("CanvasTexture_l5r2w")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([ExtResource("13_2pafp")])
+textures_taper_right = Array[Texture2D]([ExtResource("13_2pafp")])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_khfrc"]
+script = ExtResource("8_rtg5m")
+begin = 45.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_0nlvw"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_4vs68")
+normal_range = SubResource("Resource_khfrc")
+weld = true
+render = true
+z_index = -4
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kg414"]
+diffuse_texture = ExtResource("27_o2kv1")
+normal_texture = ExtResource("37_1haf1")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hrx5i"]
+diffuse_texture = ExtResource("28_huvjm")
+normal_texture = ExtResource("39_pwbfh")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_ov14v"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([ExtResource("13_2pafp")])
+textures_corner_outer = Array[Texture2D]([ExtResource("13_2pafp"), SubResource("CanvasTexture_hrx5i")])
+textures_corner_inner = Array[Texture2D]([ExtResource("13_2pafp"), SubResource("CanvasTexture_kg414")])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = false
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_23h3i"]
+script = ExtResource("8_rtg5m")
+begin = 0.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_6ljmx"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_ov14v")
+normal_range = SubResource("Resource_23h3i")
+weld = true
+render = true
+z_index = 5
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ft56h"]
+diffuse_texture = ExtResource("29_fujhg")
+normal_texture = ExtResource("41_tl5r7")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_qphv7"]
+diffuse_texture = ExtResource("30_jd2pt")
+normal_texture = ExtResource("43_0mwpd")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_rc06s"]
+script = ExtResource("5_opyod")
+textures = Array[Texture2D]([ExtResource("13_2pafp")])
+textures_corner_outer = Array[Texture2D]([ExtResource("13_2pafp"), SubResource("CanvasTexture_qphv7")])
+textures_corner_inner = Array[Texture2D]([ExtResource("13_2pafp"), SubResource("CanvasTexture_ft56h")])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+material = SubResource("ShaderMaterial_dhxkv")
+
+[sub_resource type="Resource" id="Resource_y573p"]
+script = ExtResource("8_rtg5m")
+begin = 90.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_5h28q"]
+script = ExtResource("9_v2lky")
+edge_material = SubResource("Resource_rc06s")
+normal_range = SubResource("Resource_y573p")
+weld = true
+render = true
+z_index = 5
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4jt7u"]
+diffuse_texture = ExtResource("31_7qdfd")
+normal_texture = ExtResource("45_hxgyl")
+specular_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_jsvmw"]
+script = ExtResource("32_vbxnj")
+_edge_meta_materials = Array[ExtResource("9_v2lky")]([SubResource("Resource_lc33j"), SubResource("Resource_pk2cp"), SubResource("Resource_wd7p2"), SubResource("Resource_be7j6"), SubResource("Resource_deif2"), SubResource("Resource_bqjvl"), SubResource("Resource_qjayl"), SubResource("Resource_bfadq"), SubResource("Resource_0nlvw"), SubResource("Resource_6ljmx"), SubResource("Resource_5h28q")])
+fill_textures = Array[Texture2D]([SubResource("CanvasTexture_4jt7u")])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_mesh_offset = 0.0
+fill_mesh_material = SubResource("ShaderMaterial_dhxkv")
+render_offset = 0.0
+
+[node name="DirtTiles" type="StaticBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+z_index = 4096
+polygon = PackedVector2Array(-648.106, 224.106, -647.087, 60.9278, -415.985, 15.9483, -383.375, 45.9996, -352.297, 69.9995, -335.896, 80.3122, -327.835, 84.5544, -319.999, 87.9973, -314.044, 89.2236, -308.001, 89.9175, -301.888, 90.1134, -295.725, 89.8431, -283.317, 88.0344, -270.922, 84.7495, -258.685, 80.2458, -246.752, 74.7808, -224.375, 61.9993, -189.641, 36.2496, -176.013, 23.9621, 321.098, 60.9091, 321.104, 116.896, 464.896, 116.896, 464.896, 60.8964, 625.104, 60.8964, 625.104, 100.896, 665.105, 100.896, 664.101, 208.101)
+
+[node name="SS2D_Shape_Closed" type="Node2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_dhxkv")
+position = Vector2(-271, 0)
+script = ExtResource("1_lkdw8")
+_points = SubResource("Resource_wgsqx")
+shape_material = SubResource("Resource_jsvmw")
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")

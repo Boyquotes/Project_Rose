@@ -123,6 +123,7 @@ func _exit(state):
 	force_crouch = false
 	stand = false
 	slide = false
+	slowed = false
 	host.true_soft_speed_cap = host.base_soft_speed_cap
 	host.hitbox.toggle_enabled()
 	host.crouch_hitbox.toggle_disabled()

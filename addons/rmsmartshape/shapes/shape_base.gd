@@ -140,6 +140,7 @@ func _point_array_assigned() -> void:
 func _refresh_action(value: String) -> void:
 	if value.length() > 0:
 		_points_modified()
+		_on_dirty_update()
 
 
 func _make_unique_action(value: String) -> void:
@@ -573,6 +574,7 @@ func _ready() -> void:
 	if not _is_instantiable:
 		push_error("'%s': SS2D_Shape_Base should not be instantiated! Use a Sub-Class!" % name)
 		queue_free()
+	_on_dirty_update()
 
 
 func _get_rendering_nodes_parent() -> SS2D_Shape_Render:
@@ -676,7 +678,8 @@ func _draw_debug(edges: Array[SS2D_Edge]) -> void:
 
 
 func _process(_delta: float) -> void:
-	_on_dirty_update()
+	pass
+	#_on_dirty_update()
 
 
 func _exit_tree() -> void:

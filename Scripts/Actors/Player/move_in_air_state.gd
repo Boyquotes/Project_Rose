@@ -4,10 +4,10 @@ extends PlayerState
 @export var jumped := false
 @export var transitioned := false
 @export var jump := false
-@export var ledge_cast_l_path: NodePath
-@export var ledge_cast_r_path: NodePath
-@export var open_ledge_cast_l_path: NodePath
-@export var open_ledge_cast_r_path: NodePath
+@export var ledge_cast_l: RayCast2D
+@export var ledge_cast_r: RayCast2D
+@export var open_ledge_cast_l: RayCast2D
+@export var open_ledge_cast_r: RayCast2D
 @export var max_jump_charges := 0
 @export var jump_charge := 0
 
@@ -19,20 +19,12 @@ var wasnt_wall_r := false
 var is_wall_r := false
 var wasnt_wall_l := false
 var is_wall_l := false
-var ledge_cast_l
-var ledge_cast_r
-var open_ledge_cast_l
-var open_ledge_cast_r
 
 @onready var ledge_disable_timer = $LedgeDisableTimer
 
 func init():
 	super.init()
-	ledge_cast_r = get_node(ledge_cast_r_path)
-	ledge_cast_l = get_node(ledge_cast_l_path)
-	open_ledge_cast_r = get_node(open_ledge_cast_r_path)
-	open_ledge_cast_l = get_node(open_ledge_cast_l_path)
-	
+
 func _ready():
 	jumped = false
 
@@ -91,7 +83,7 @@ func _exit(state):
 	is_wall_l = false
 	super._exit(state)
 
-func detect_ledge(ledge_cast : RayCast2D, open_ledge_cast, dir : int):
+func detect_ledge(ledge_cast : RayCast2D, open_ledge_cast: RayCast2D, dir : int):
 	if ledge_cast.is_colliding() and not open_ledge_cast.is_colliding():
 		FSM.ledge_grab_state.ledge_cast = ledge_cast
 		FSM.ledge_grab_state.move_direction = dir

@@ -36,7 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://dymsuoh43v4xl" path="res://Assets/sfx/slide/dirt_small_03.wav" id="69_f7myh"]
 [ext_resource type="AudioStream" uid="uid://34xxjcy1hxrk" path="res://Assets/sfx/slide/dirt_small_04.wav" id="70_hi1u4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysoh8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uimw"]
 size = Vector2(20, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hehew"]
@@ -134,7 +134,7 @@ max_health = 100
 [node name="HitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
 
 [node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("RectangleShape2D_ysoh8")
+shape = SubResource("RectangleShape2D_6uimw")
 disabled = true
 
 [node name="CrouchHitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
@@ -173,13 +173,13 @@ open_cast_r_path = NodePath("../../Utilities/OpenCrouchCastR")
 wait_time = 0.25
 one_shot = true
 
-[node name="MoveInAir" type="Node2D" parent="MoveStates"]
+[node name="MoveInAir" type="Node2D" parent="MoveStates" node_paths=PackedStringArray("ledge_cast_l", "ledge_cast_r", "open_ledge_cast_l", "open_ledge_cast_r")]
 script = ExtResource("4_fqp0q")
 jumped = true
-ledge_cast_l_path = NodePath("../../Utilities/LedgeCastL")
-ledge_cast_r_path = NodePath("../../Utilities/LedgeCastR")
-open_ledge_cast_l_path = NodePath("../../Utilities/OpenLedgeCastL")
-open_ledge_cast_r_path = NodePath("../../Utilities/OpenLedgeCastR")
+ledge_cast_l = NodePath("../../Utilities/LedgeCastL")
+ledge_cast_r = NodePath("../../Utilities/LedgeCastR")
+open_ledge_cast_l = NodePath("../../Utilities/OpenLedgeCastL")
+open_ledge_cast_r = NodePath("../../Utilities/OpenLedgeCastR")
 
 [node name="LedgeDisableTimer" type="Timer" parent="MoveStates/MoveInAir"]
 one_shot = true
@@ -252,7 +252,6 @@ position = Vector2(-10, -27)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Utilities/LedgeBoxL"]
-position = Vector2(0, 0.5)
 shape = SubResource("18")
 
 [node name="LedgeBoxR" type="Area2D" parent="Utilities"]
@@ -265,22 +264,18 @@ shape = SubResource("19")
 [node name="LedgeCastL" type="RayCast2D" parent="Utilities"]
 position = Vector2(0, -20)
 target_position = Vector2(-20, 0)
-collision_mask = 1024
 
 [node name="OpenLedgeCastL" type="RayCast2D" parent="Utilities"]
 position = Vector2(0, -36)
-target_position = Vector2(-16, 0)
-collision_mask = 1024
+target_position = Vector2(-30, 0)
 
 [node name="LedgeCastR" type="RayCast2D" parent="Utilities"]
 position = Vector2(0, -20)
 target_position = Vector2(20, 0)
-collision_mask = 1024
 
 [node name="OpenLedgeCastR" type="RayCast2D" parent="Utilities"]
 position = Vector2(0, -36)
-target_position = Vector2(16, 0)
-collision_mask = 1024
+target_position = Vector2(30, 0)
 
 [node name="OpenCrouchCastR" type="RayCast2D" parent="Utilities"]
 position = Vector2(0, -20)
@@ -354,6 +349,7 @@ footsteps_grass = Array[AudioStream]([ExtResource("64_i7s0s"), ExtResource("65_3
 slide_dirt = Array[AudioStream]([ExtResource("67_0lnn5"), ExtResource("68_bsyx1"), ExtResource("69_f7myh"), ExtResource("70_hi1u4")])
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
+position = Vector2(0, 19)
 current = true
 
 [connection signal="animation_changed" from="." to="." method="_on_rose_animation_changed"]

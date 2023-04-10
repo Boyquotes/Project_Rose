@@ -1,25 +1,18 @@
 class_name LedgeGrabState
 extends PlayerState
 
-#how fast you stick to the wall
-@export var stick_var := 5.0
-#how fast you climb up or down towards the ledge
-@export var climb_var := 1.0
-
-
 var grab_animation_done := false
 var jump := false
 var climb := false
 var hstop := false
-var going_up := false
+var going_up := true
 
-var ledge_cast
+var ledge_cast : RayCast2D
 
 func _enter():
 	host.move_state = 'ledge_grab'
 	host.deactivate_grav()
 	host.hor_spd = 0
-	going_up = true
 	update_look_direction_and_scale(move_direction)
 
 
@@ -58,32 +51,29 @@ func _execute(_delta):
 	#Snap to ledge side
 	if host.is_on_wall():
 		hstop = true
-	if !host.test_move(host.transform, Vector2(1 * host.hor_dir,0)) and !hstop:
-		host.position.x += stick_var * host.hor_dir
-		stick_var -= 1
-	else:
+	if !hstop:
+		var space_state := get_world_2d().direct_space_state
+		var query := PhysicsRayQueryParameters2D.new()
+		query.collision_mask = ledge_cast.collision_mask
+		query.from = host.global_position
+		query.to = host.global_position
+		query.to.x +=  + host.collision_box.shape.get_rect().size.x / 2 * host.hor_dir
+		while (space_state.intersect_ray(query).size() == 0):
+			query.from.x += host.hor_dir
+			query.to.x += host.hor_dir
+		host.global_position.x += abs(query.from.x - host.global_position.x) * host.hor_dir
 		hstop = true
 	#Snap to ledge height or fall if it's a bad detect
-	if ledge_cast.is_colliding() and not going_up:
-		exit_ground_or_air()
 	if going_up:
-		var collision_global = ledge_cast.get_collision_point()
-		var map : TileMap = ledge_cast.get_collider()
-		var cell_coords = map.local_to_map(collision_global)
-		var cell_loc = map.map_to_local(cell_coords)
-		var gridset_idx : int
-		var gridset_actual : float
-		var cast_y = ledge_cast.global_position.y
-		gridset_idx = roundi(cast_y / 32.0)
-		if sign(cast_y) >= 0:
-			gridset_actual = (gridset_idx * 32) + sign(gridset_idx)*19
-			if gridset_idx == 0:
-				gridset_actual += 19
-		else:
-			if cast_y > cell_loc.y:
-				gridset_idx += 1 * sign(cast_y)
-			gridset_actual = (gridset_idx * 32) - sign(gridset_idx)*19
-		host.global_position.y = gridset_actual
+		var space_state := get_world_2d().direct_space_state
+		var query := PhysicsRayQueryParameters2D.new()
+		query.collision_mask = ledge_cast.collision_mask
+		query.from = ledge_cast.global_position
+		query.to = ledge_cast.global_position + ledge_cast.target_position
+		while (space_state.intersect_ray(query)):
+			query.from.y -= 1
+			query.to.y -= 1
+		host.global_position.y -= abs(query.from.y - ledge_cast.global_position.y)
 		going_up = false
 
 
@@ -95,8 +85,7 @@ func _exit(state):
 	grab_animation_done = false
 	climb = false
 	jump = false
-	going_up = false
-	stick_var = 5
+	going_up = true
 	super._exit(state)
 
 

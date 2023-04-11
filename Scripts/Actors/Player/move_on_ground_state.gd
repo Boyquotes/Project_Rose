@@ -20,11 +20,13 @@ func _ready():
 	open_cast_r = get_node(open_cast_r_path)
 
 func _enter():
-	
+	super._enter()
 	host.move_state = 'move_on_ground'
 
 
 func _handle_input():
+	if super._handle_input():
+		return
 	if ((Input.is_action_pressed("Move_Down") or Input.is_action_pressed("Aim_Down"))
 			and move_direction == 0
 			and not slide):
@@ -59,6 +61,8 @@ func _handle_input():
 		handle_action()
 
 func _handle_animation():
+	if super._handle_animation():
+		return
 	if jump:
 		host.animate(host.base_anim, "Jump", false)
 	else:
@@ -68,11 +72,10 @@ func _handle_animation():
 			host.animate(host.base_anim, "Run", false)
 		else:
 			host.animate(host.base_anim, "Idle", false)
-	super._handle_animation()
-
 
 func _execute(delta):
-	super._execute(delta)
+	if super._execute(delta):
+		return
 	if not host.is_on_floor():
 		exit_air()
 	if crouch or slide:

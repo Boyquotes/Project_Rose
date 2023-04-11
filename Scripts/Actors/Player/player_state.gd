@@ -99,6 +99,8 @@ func handle_action():
 
 
 func _execute(_delta):
+	if super._execute(_delta):
+		return exiting
 	if (move_direction != 0
 			and host.true_soft_speed_cap >= abs(host.hor_spd)
 			and can_move):
@@ -118,13 +120,10 @@ func _execute(_delta):
 			host.hor_spd = 0
 		else:
 			host.hor_spd -= host.true_fric * sign(host.hor_spd)
+	return exiting
 
 
 func _exit(state):
-	state.can_turn = can_turn
-	state.can_move = can_move
-	can_turn = true
-	can_move = true
 	super._exit(state)
 
 

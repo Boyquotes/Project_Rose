@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/Actors/Player/rest_state.gd" id="10_0y204"]
 [ext_resource type="Texture2D" uid="uid://dxy8swrhmfe6o" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" id="11"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/wind.gd" id="13"]
-[ext_resource type="Texture2D" uid="uid://bpiuhqktlhc4h" path="res://Assets/Sprites/Actors/Rose/Movement/CrouchSlide_spec.png" id="18_t0o5d"]
+[ext_resource type="Texture2D" uid="uid://di6yfqroio682" path="res://Assets/Sprites/Actors/Rose/Movement/Crouch_spec.png" id="18_a18ws"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/Rose/rose_powerups.gd" id="20_7yhyd"]
 [ext_resource type="Texture2D" uid="uid://dywlvnpiyk1ux" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge_n.png" id="25"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/targetting.gd" id="27_rf1x6"]
@@ -98,7 +98,7 @@ shader_parameter/segmentation = 1.0
 [sub_resource type="CanvasTexture" id="CanvasTexture_acfie"]
 diffuse_texture = ExtResource("11")
 normal_texture = ExtResource("25")
-specular_texture = ExtResource("18_t0o5d")
+specular_texture = ExtResource("18_a18ws")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3m3ny"]
 size = Vector2(480, 270)
@@ -231,7 +231,8 @@ one_shot = true
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
 material = SubResource("ShaderMaterial_2qgdc")
 texture = SubResource("CanvasTexture_acfie")
-offset = Vector2(5, 0)
+offset = Vector2(-1, 1)
+hframes = 3
 
 [node name="Animators" type="Node2D" parent="."]
 
@@ -268,6 +269,7 @@ target_position = Vector2(-20, 0)
 [node name="OpenLedgeCastL" type="RayCast2D" parent="Utilities"]
 position = Vector2(0, -36)
 target_position = Vector2(-30, 0)
+hit_from_inside = true
 
 [node name="LedgeCastR" type="RayCast2D" parent="Utilities"]
 position = Vector2(0, -20)
@@ -276,6 +278,7 @@ target_position = Vector2(20, 0)
 [node name="OpenLedgeCastR" type="RayCast2D" parent="Utilities"]
 position = Vector2(0, -36)
 target_position = Vector2(30, 0)
+hit_from_inside = true
 
 [node name="OpenCrouchCastR" type="RayCast2D" parent="Utilities"]
 position = Vector2(0, -20)
@@ -291,24 +294,24 @@ hit_from_inside = true
 position = Vector2(0, -8)
 
 [node name="Marker2D" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = 1
-position = Vector2(-9, 22)
+z_index = -1
+position = Vector2(-4, 13)
 
 [node name="Position2D2" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = 2
-position = Vector2(-8, 21)
+z_index = -2
+position = Vector2(-2, 13)
 
 [node name="Position2D3" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = 3
-position = Vector2(-7, 21)
+z_index = -3
+position = Vector2(0, 13)
 
 [node name="Position2D4" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = 4
-position = Vector2(-6, 20)
+z_index = -4
+position = Vector2(2, 14)
 
 [node name="Position2D5" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = 5
-position = Vector2(-4, 19)
+z_index = -5
+position = Vector2(4, 15)
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities"]
 

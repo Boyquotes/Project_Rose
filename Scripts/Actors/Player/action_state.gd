@@ -98,6 +98,7 @@ func _exit(state):
 	action_controller.clear_slotted_vars()
 	action_controller.animate = false
 	action_controller.clear_action_stack()
+	can_turn = true
 	super._exit(state)
 
 func _on_ComboTimer_timeout():
@@ -105,11 +106,6 @@ func _on_ComboTimer_timeout():
 	#if(host.move_state == 'action'):
 	#	exit_ground_or_air()
 	pass
-
-
-func _on_BaseAnimator_animation_finished(_anim_name):
-	exit_state_normally_flag = true
-	action_controller.action_ended = true
 
 
 func _on_action_debug_exit():

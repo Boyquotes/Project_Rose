@@ -278,11 +278,17 @@ func save_data():
 
 func load_data(data):
 	position = Vector2(data["pos_x"], data["pos_y"])
+	
 
 func _on_animator_component_animation_finished(anim_name):
 	if anim_name == "RoseAnimations/Slide":
 		activate_fric()
 		FSM.crouch_state.slide = false
+	if(anim_name == "RoseAnimations/AscendToDescend"):
+		FSM.move_in_air_state.transitioned = true;
+	if move_state == "action":
+		FSM.action_state.exit_state_normally_flag = true
+		FSM.action_state.action_controller.action_ended = true
 
 func _on_rose_animation_changed(previous_anim, new_anim):
 	if previous_anim == "RoseAnimations/Slide":
@@ -290,7 +296,7 @@ func _on_rose_animation_changed(previous_anim, new_anim):
 		FSM.crouch_state.slide = false
 		emit_signal("silence")
 	if new_anim == "RoseAnimations/Crouch" || new_anim == "RoseAnimations/LookUp":
-		emit_signal("footstep", 3.0)
+		emit_signal("footstep", 2.0, -15)
 	if new_anim == "RoseAnimations/Idle":
-		emit_signal("footstep", 8.0)
+		emit_signal("footstep", 4.0, -15)
 

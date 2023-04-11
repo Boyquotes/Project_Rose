@@ -3,6 +3,7 @@ extends Node2D
 
 var host : Player
 var FSM
+var exiting := false
 
 func init():
 	FSM = get_parent()
@@ -10,16 +11,16 @@ func init():
 	host.call_init_in_children(host, self)
 
 func _enter():
-	pass;
+	exiting = false
 
 func _handle_animation():
-	pass;
+	return exiting
 
 func _handle_input():
-	pass;
+	return exiting
 
 func _execute(_delta):
-	pass;
+	return exiting
 
 func _paused_execute(_delta):
 	pass;

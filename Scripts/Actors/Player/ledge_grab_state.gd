@@ -9,7 +9,13 @@ var going_up := true
 
 var ledge_cast : RayCast2D
 
+func init():
+	super.init()
+	can_turn = false
+	can_move = false
+
 func _enter():
+	super._enter()
 	host.move_state = 'ledge_grab'
 	host.deactivate_grav()
 	host.hor_spd = 0
@@ -17,6 +23,8 @@ func _enter():
 
 
 func _handle_input():
+	if super._handle_input():
+		return
 	move_direction = get_move_direction()
 	if !jump and !climb and Input.is_action_pressed("Move_Down"):
 		FSM.move_in_air_state.ledge_disable_timer.start(.25)
@@ -34,17 +42,22 @@ func _handle_input():
 		jump = true
 
 func _handle_animation():
+	if super._handle_animation():
+		return
 	if !grab_animation_done:
 		host.animate(host.base_anim, "LedgeGrab", false)
 	elif(climb):
 		host.collision_box.disabled = true
 		host.animate(host.base_anim, "Climb", false)
+		exiting = true
 	elif(jump):
 		host.animate(host.base_anim, "LedgeJump", false)
 	super._handle_animation()
 
 
 func _execute(_delta):
+	if super._execute(_delta):
+		return
 	if jump && grab_animation_done:
 		turn(host.hor_dir * -1)
 		host.hor_spd = host.true_soft_speed_cap * host.hor_dir

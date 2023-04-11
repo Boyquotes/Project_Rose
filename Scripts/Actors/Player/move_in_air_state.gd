@@ -22,32 +22,34 @@ var is_wall_l := false
 
 @onready var ledge_disable_timer = $LedgeDisableTimer
 
-func init():
-	super.init()
-
 func _ready():
 	jumped = false
 
 
 func _enter():
+	super._enter()
 	host.move_state = 'move_in_air'
 
 func _handle_input():
+	if super._handle_input():
+		return
 	if jumped && !Input.is_action_pressed("Jump") && host.vert_spd < 0:
 		cutoff = true
 		host.vert_spd += 60
 	if Input.is_action_just_pressed("Jump") && jump_charge > 0 && host.vert_spd >= 0:
 		jump_charge -= 1
 		jump = true
-	super._handle_input()
 
 func _handle_animation():
+	if super._handle_animation():
+		return
 	if(jump):
 		host.animate(host.base_anim, "AirJump", false);
 	else:
 		if host.is_on_floor() && !land:
 			land = true
 			host.animate(host.base_anim, "Land", false)
+			exiting = true
 		elif !land:
 			if not transitioned and (cutoff or host.vert_spd > -250):
 				host.animate(host.base_anim,"AscendToDescend", false)
@@ -56,17 +58,15 @@ func _handle_animation():
 					host.animate(host.base_anim, "Ascend", false)
 				if host.vert_spd > 0:
 					host.animate(host.base_anim, "Descend", false)
-	super._handle_animation()
-
 
 func _execute(delta):
-	if host.vert_spd >= 0:
+	if super._execute(delta):
+		return
+	if host.vert_spd > 0:
 		if detect_ledge(ledge_cast_r, open_ledge_cast_r, 1):
 			return
 		if detect_ledge(ledge_cast_l, open_ledge_cast_l, -1):
 			return
-	
-	super._execute(delta)
 
 
 func _exit(state):
@@ -99,7 +99,3 @@ func ledge_detection_switch():
 
 func _on_LedgeDisableTimer_timeout():
 	ledge_detection_switch()
-
-func _on_animator_component_animation_finished(anim_name):
-	if(anim_name == "AscendToDescend"):
-		transitioned = true;

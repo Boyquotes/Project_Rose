@@ -15,14 +15,14 @@ enum LockType {SINGLE, ALL}
 @export var parent_box_paths := []
 @export var child_box_paths := []
 
-var activated_displacement = GlobalEnums.DisplacementType.None
-var attack : Action
+var activated_displacement = GlobalEnums.DisplacementType.NONE
+var attack : CharacterAction
 var parent_boxes
 var child_boxes
 var locked : bool
 
 func _ready():
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		if child_box_paths.size() == 0:
 			locked = false
 		if broken:
@@ -32,7 +32,7 @@ func _on_Area2D_area_entered(area):
 	print("!!!")
 
 func _process(delta):
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		if not broken and hit_points <= 0:
 			emit_signal("hitbox_broken", attack)
 		if locked:
@@ -45,7 +45,7 @@ func _process(delta):
 						broke_count += 1
 			if broke_count == child_boxes.size():
 				locked = false
-	if Engine.editor_hint and not get_parent() is SubViewport:
+	if Engine.is_editor_hint() and not get_parent() is SubViewport:
 		var clean_run = true
 		while clean_run or child_boxes is String:
 			child_boxes = get_parent().check_box_paths(child_box_paths)
@@ -67,7 +67,7 @@ func create_parent():
 	hb.child_box_paths.push_back(get_parent().get_path_to(self))
 
 
-func _on_EnemyHitbox_hitbox_broken(attack : Action):
+func _on_EnemyHitbox_hitbox_broken(attack : CharacterAction):
 	broken = true
 	if attack.displacement_type >= displacement_type:
 		activated_displacement = displacement_type

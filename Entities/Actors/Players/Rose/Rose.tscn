@@ -27,8 +27,6 @@ shape = SubResource("RectangleShape2D_hehew")
 one_shot = true
 
 [node name="Sprite2D" parent="RoseBody/Sprites" index="0"]
-offset = Vector2(-1, 1)
-hframes = 3
 frame = 2
 
 [node name="CapeSkeleton" parent="." instance=ExtResource("2_p6q6m")]

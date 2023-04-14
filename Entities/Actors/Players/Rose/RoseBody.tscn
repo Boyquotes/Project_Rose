@@ -36,7 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://dymsuoh43v4xl" path="res://Assets/sfx/slide/dirt_small_03.wav" id="69_f7myh"]
 [ext_resource type="AudioStream" uid="uid://34xxjcy1hxrk" path="res://Assets/sfx/slide/dirt_small_04.wav" id="70_hi1u4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uimw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6qi8"]
 size = Vector2(20, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hehew"]
@@ -134,7 +134,7 @@ max_health = 100
 [node name="HitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
 
 [node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("RectangleShape2D_6uimw")
+shape = SubResource("RectangleShape2D_f6qi8")
 disabled = true
 
 [node name="CrouchHitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]

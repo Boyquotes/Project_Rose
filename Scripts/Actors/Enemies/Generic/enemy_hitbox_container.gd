@@ -2,7 +2,7 @@
 class_name EnemyHitboxContainer
 extends Node2D
 
-const Hitbox = preload("res://Game Objects/Actors/Enemies/Generic/EnemyHitbox.tscn")
+const Hitbox = preload("res://Entities/Actors/Enemies/EnemyHitbox.tscn")
 
 func create_child():
 	var hb = Hitbox.instantiate()

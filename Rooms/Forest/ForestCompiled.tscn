@@ -1,4 +1,4 @@
-[gd_scene load_steps=313 format=3 uid="uid://d71uatcwv7p2"]
+[gd_scene load_steps=311 format=3 uid="uid://d71uatcwv7p2"]
 
 [ext_resource type="Texture2D" uid="uid://8owqqpi1w2jf" path="res://Assets/Lights/background.png" id="1_jcvx1"]
 [ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="2_osktj"]
@@ -28,9 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://b48w7rweua02y" path="res://Assets/Tilesets/Forest/forestbg_windmask.png" id="25_cqkyi"]
 [ext_resource type="Texture2D" uid="uid://5dduo173du0v" path="res://Assets/Tilesets/Forest/forestbg_back4_windy.png" id="26_ynwug"]
 [ext_resource type="Texture2D" uid="uid://c5r3oywmkcsae" path="res://Assets/Tilesets/Forest/forestbg_back4_leaves.png" id="27_gufc7"]
-[ext_resource type="Texture2D" uid="uid://dou3llm6titcn" path="res://Assets/Tilesets/Forest/tree_bg.png" id="29_h3u5v"]
+[ext_resource type="Texture2D" uid="uid://bc5a25ubij7df" path="res://Assets/Areas/TheAncientForest/Backdrops/tree_bg.png" id="28_6amqp"]
+[ext_resource type="Texture2D" uid="uid://mc7udrnhksdc" path="res://Assets/Areas/TheAncientForest/Backdrops/tree_bg_n.png" id="29_mw75a"]
 [ext_resource type="Texture2D" uid="uid://rjsdq7y40cdh" path="res://Assets/Areas/TheAncientForest/Backdrops/cave_bg.png" id="30_pn1br"]
-[ext_resource type="Texture2D" uid="uid://bal7ff6hkwgsb" path="res://Assets/Tilesets/Forest/tree_bg_n.png" id="30_tv064"]
 [ext_resource type="Texture2D" uid="uid://bn88skscxqqx0" path="res://Assets/Areas/TheAncientForest/Backdrops/cave_bg_n.png" id="31_3uw13"]
 [ext_resource type="Script" path="res://Scripts/Resources/MultiplyModulates.gd" id="32_4dr0u"]
 [ext_resource type="Texture2D" uid="uid://c15b7khyij3hb" path="res://Assets/Areas/TheAncientForest/Props/medtree_back1.png" id="33_017oh"]
@@ -292,8 +292,8 @@ shader_parameter/darkArea = Color(0.0627451, 0.0705882, 0.109804, 1)
 shader_parameter/segmentation = 1.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4be7o"]
-diffuse_texture = ExtResource("29_h3u5v")
-normal_texture = ExtResource("30_tv064")
+diffuse_texture = ExtResource("28_6amqp")
+normal_texture = ExtResource("29_mw75a")
 specular_color = Color(0, 0, 0, 1)
 texture_repeat = 2
 
@@ -1198,19 +1198,6 @@ point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_q6gaw")
 
-[sub_resource type="Resource" id="Resource_aqcum"]
-script = ExtResource("47_vpi2i")
-texture_idx = 0
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id="Resource_yikho"]
-script = ExtResource("48_ba1x1")
-position = Vector2(2872, 125)
-point_in = Vector2(0, 0)
-point_out = Vector2(0, 0)
-properties = SubResource("Resource_aqcum")
-
 [sub_resource type="Resource" id="Resource_0p2bw"]
 script = ExtResource("47_vpi2i")
 texture_idx = 7
@@ -1419,18 +1406,18 @@ point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_gcfgr")
 
-[sub_resource type="Resource" id="Resource_guwco"]
+[sub_resource type="Resource" id="Resource_pblub"]
 script = ExtResource("47_vpi2i")
-texture_idx = 0
+texture_idx = 3
 flip = false
 width = 1.0
 
 [sub_resource type="Resource" id="Resource_f3nub"]
 script = ExtResource("48_ba1x1")
-position = Vector2(2870, 125)
+position = Vector2(2872, 125)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_guwco")
+properties = SubResource("Resource_pblub")
 
 [sub_resource type="Resource" id="Resource_0x4m5"]
 script = ExtResource("47_vpi2i")
@@ -1468,7 +1455,6 @@ _points = {
 93: SubResource("Resource_prgic"),
 96: SubResource("Resource_riwa2"),
 97: SubResource("Resource_wmfpi"),
-101: SubResource("Resource_yikho"),
 102: SubResource("Resource_c5bsb"),
 103: SubResource("Resource_c060i"),
 104: SubResource("Resource_p0kd1"),
@@ -1488,7 +1474,7 @@ _points = {
 139: SubResource("Resource_f3nub"),
 140: SubResource("Resource_we7gf")
 }
-_point_order = Array[int]([31, 50, 64, 77, 78, 80, 79, 81, 85, 86, 83, 84, 82, 138, 87, 96, 97, 139, 101, 102, 140, 92, 93, 117, 103, 104, 108, 115, 109, 110, 111, 112, 116, 119, 120, 123, 124, 76, 0])
+_point_order = Array[int]([31, 50, 64, 77, 78, 80, 79, 81, 85, 86, 83, 84, 82, 138, 87, 96, 97, 139, 102, 140, 92, 93, 117, 103, 104, 108, 115, 109, 110, 111, 112, 116, 119, 120, 123, 124, 76, 0])
 _constraints = {
 Array[int]([31, 0]): 15
 }
@@ -1498,7 +1484,7 @@ _material_overrides = {}
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uimw"]
 size = Vector2(20, 38)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6qi8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpa4r"]
 size = Vector2(20, 38)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_njnxh"]
@@ -1893,7 +1879,7 @@ position = Vector2(-1, -61)
 
 [node name="CollisionPolygon2D" parent="ForestFG/player/DirtTiles" index="0"]
 visible = true
-polygon = PackedVector2Array(3409.1, 629.104, -647.103, 621.103, -647.104, 60.8964, 321.104, 60.8964, 321.104, 116.896, 464.896, 116.896, 464.896, 60.8964, 625.104, 60.8964, 625.104, 100.896, 665.104, 100.896, 665.104, 140.896, 856.896, 140.896, 856.896, 60.8965, 1119, 61, 1121, 61, 1553, 60.9925, 1729, 124.993, 2599, 125, 2601, 125, 2633, 125, 2643, 125, 2673, 124.987, 2753, 164.987, 2761, 165, 2840.9, 164.896, 2840.9, 84.8965, 2928.9, 84.8965, 2928.9, 52.8965, 2960.9, 52.8965, 2960.91, -10.9265, 2832.91, -34.9265, 2832.9, -123.104, 2960.9, -123.104, 2960.9, -210.896, 2832.9, -210.896, 2832.9, -259.104, 2961.01, -259.033, 3409.04, 164.984)
+polygon = PackedVector2Array(3409.1, 629.104, -647.103, 621.103, -647.104, 60.8964, 321.104, 60.8964, 321.104, 116.896, 464.896, 116.896, 464.896, 60.8964, 625.104, 60.8964, 625.104, 100.896, 665.104, 100.896, 665.104, 140.896, 856.896, 140.896, 856.896, 60.8965, 1119, 61, 1121, 61, 1553, 60.9925, 1729, 124.993, 2601, 125, 2633, 125, 2643, 125, 2673, 124.987, 2753, 164.987, 2761, 165, 2840.9, 164.896, 2840.9, 84.8965, 2928.9, 84.8965, 2928.9, 52.8965, 2960.9, 52.8965, 2960.91, -10.9265, 2832.91, -34.9265, 2832.9, -123.104, 2960.9, -123.104, 2960.9, -210.896, 2832.9, -210.896, 2832.9, -259.104, 2961.01, -259.033, 3409.04, 164.984)
 
 [node name="SS2D_Shape_Closed" parent="ForestFG/player/DirtTiles" index="1"]
 curve_bake_interval = 512.0
@@ -1926,7 +1912,7 @@ position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_6uimw")
 
 [node name="HitBox" parent="ForestFG/player/Rose/RoseBody/HitBoxComponent" index="4"]
-shape = SubResource("RectangleShape2D_f6qi8")
+shape = SubResource("RectangleShape2D_fpa4r")
 
 [node name="Sprite2D" parent="ForestFG/player/Rose/RoseBody/Sprites" index="0"]
 hframes = 2
@@ -2197,6 +2183,7 @@ occluder = SubResource("OccluderPolygon2D_erq0j")
 occluder = SubResource("OccluderPolygon2D_21d0s")
 
 [node name="PlayerCamera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+zoom = Vector2(2, 2)
 limit_left = -200
 limit_smoothed = true
 position_smoothing_enabled = true

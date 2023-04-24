@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://clfwut4ekevd4"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Texture2D" uid="uid://cqynn3b6pxniv" path="res://Assets/Tilesets/Forest/normalBall.png" id="1_2a1lc"]
+[ext_resource type="Texture2D" uid="uid://cqynn3b6pxniv" path="res://Assets/Prototyping/normalBall.png" id="1_2a1lc"]
+
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_k7km6"]
 diffuse_texture = ExtResource("1_2a1lc")

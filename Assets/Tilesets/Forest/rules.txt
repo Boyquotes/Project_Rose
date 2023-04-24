@@ -1,3 +1,0 @@
-Rules/Dirt Autotile Rules32.tmx
-Rules/Grass Autotile Rules32.tmx
-Rules/Tree Autotile Rules32.tmx

@@ -2,12 +2,12 @@ class_name State
 extends Node2D
 
 var host : Player
-var FSM
+var state_machine : FiniteStateMachine
 var exiting := false
 
 func init():
-	FSM = get_parent()
-	host = FSM.host
+	state_machine = get_parent()
+	host = state_machine.host
 	host.call_init_in_children(host, self)
 
 func _enter():

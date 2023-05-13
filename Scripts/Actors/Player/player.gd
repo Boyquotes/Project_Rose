@@ -24,7 +24,7 @@ var style_states := {
 }
 var style_state = Styles.BASE
 
-
+@export var state_machine : FiniteStateMachine
 @export var max_flora := 10
 @export var max_focus := 3
 var flora := 0
@@ -32,7 +32,6 @@ var focus := 0
 
 var rad := 0.0
 var deg := 0.0
-var move_state := "move_on_ground"
 var speed_mag
 var was_on_floor := false
 @onready var attack_collision = $Utilities/AttackCollision
@@ -42,7 +41,6 @@ var was_on_floor := false
 @onready var crouch_box = $CrouchBox
 @onready var hitbox = $HitBoxComponent
 @onready var crouch_hitbox = $CrouchHitBoxComponent
-@onready var FSM = $MoveStates
 
 #sets up some variables and initializes the state machine
 
@@ -50,8 +48,6 @@ func init():
 	super.init()
 	flora = max_flora
 	focus = max_focus
-	for key in move_states.keys():
-		move_states[key] = get_node(move_states[key])
 	if not Engine.is_editor_hint():
 		$CollisionBox.disabled = false
 	crouch_box.disabled = true
@@ -76,10 +72,6 @@ func _in(_event):
 #home to debug inputs
 #calculates the player's input rotation for aiming abilities
 func _execute(_delta):
-	if Input.is_key_pressed(KEY_I):
-		move_states['hit'].compare_to = global_position + Vector2(hor_dir * 25,0)
-		move_states[move_state]._exit(move_states['hit'])
-	
 	rad = $Utilities/TargetReticle.execute(_delta)
 	
 	deg = rad_to_deg(rad)
@@ -90,9 +82,7 @@ func _execute(_delta):
 func _unpaused_phys_execute(delta):
 	super._unpaused_phys_execute(delta)
 	#state machine
-	move_states[move_state]._handle_input()
-	move_states[move_state]._handle_animation()
-	move_states[move_state]._execute(delta)
+	state_machine.execute(delta)
 	#count time in air
 	air_time += delta
 	#move across surfaces
@@ -133,9 +123,7 @@ func _unpaused_phys_execute(delta):
 var done = false
 
 func _paused_phys_execute(delta):
-	move_states[move_state]._paused_handle_input()
-	move_states[move_state]._paused_handle_animation()
-	move_states[move_state]._paused_execute(delta)
+	state_machine.paused_execute(delta)
 
 
 ##trigger for detecting a hitbox entering player sight zone
@@ -193,7 +181,7 @@ func add_vel(speed : float, degrees : float = $MoveStates/Action/ActionControlle
 	vert_spd = speed * sin(deg_to_rad(degrees))
 
 func add_vel_hor(speed : float):
-	hor_spd = speed * move_states[move_state].move_direction#hor_dir
+	hor_spd = speed * state_machine.current_state.move_direction#hor_dir
 
 func slide(fact := 1.0):
 	hor_spd = true_soft_speed_cap * fact * hor_dir
@@ -235,7 +223,7 @@ func change_to_grounded_anim(animator : AnimationPlayer, last_queued_action):
 
 #useful for easily changing states without having a lot of local references
 func change_move_state(state: NodePath):
-	move_states[move_state].exit(get_node(state))
+	state_machine.current_state.exit(get_node(state))
 
 func change_flora(flora_in):
 	flora += flora_in
@@ -283,17 +271,17 @@ func load_data(data):
 func _on_animator_component_animation_finished(anim_name):
 	if anim_name == "RoseAnimations/Slide":
 		activate_fric()
-		FSM.crouch_state.slide = false
+		state_machine.crouch_state.slide = false
 	if(anim_name == "RoseAnimations/AscendToDescend"):
-		FSM.move_in_air_state.transitioned = true;
-	if move_state == "action":
-		FSM.action_state.exit_state_normally_flag = true
-		FSM.action_state.action_controller.action_ended = true
+		state_machine.move_in_air_state.transitioned = true;
+	if state_machine.move_state == "action":
+		state_machine.action_state.exit_state_normally_flag = true
+		state_machine.action_state.action_controller.action_ended = true
 
 func _on_rose_animation_changed(previous_anim, new_anim):
 	if previous_anim == "RoseAnimations/Slide":
 		activate_fric()
-		FSM.crouch_state.slide = false
+		state_machine.crouch_state.slide = false
 		emit_signal("silence")
 	if new_anim == "RoseAnimations/Crouch" || new_anim == "RoseAnimations/LookUp":
 		emit_signal("footstep", 2.0, -15)

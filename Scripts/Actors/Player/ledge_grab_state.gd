@@ -16,7 +16,7 @@ func init():
 
 func _enter():
 	super._enter()
-	host.move_state = 'ledge_grab'
+	state_machine.move_state = 'ledge_grab'
 	host.deactivate_grav()
 	host.hor_spd = 0
 	update_look_direction_and_scale(move_direction)
@@ -27,9 +27,9 @@ func _handle_input():
 		return
 	move_direction = get_move_direction()
 	if !jump and !climb and Input.is_action_pressed("Move_Down"):
-		FSM.move_in_air_state.ledge_disable_timer.start(.25)
-		FSM.move_in_air_state.ledge_detection_switch()
-		_exit(FSM.move_in_air_state)
+		state_machine.move_in_air_state.ledge_disable_timer.start(.25)
+		state_machine.move_in_air_state.ledge_detection_switch()
+		_exit(state_machine.move_in_air_state)
 	elif (!jump and !climb and grab_animation_done
 			and ((Input.is_action_pressed("Move_Up")
 					and move_direction == host.hor_dir)
@@ -37,8 +37,8 @@ func _handle_input():
 			and $ClimbBox.get_overlapping_bodies().size() == 0):
 		climb = true
 	elif !climb and Input.is_action_just_pressed("Jump"):
-		FSM.move_in_air_state.ledge_disable_timer.start(.2)
-		FSM.move_in_air_state.ledge_detection_switch()
+		state_machine.move_in_air_state.ledge_disable_timer.start(.2)
+		state_machine.move_in_air_state.ledge_detection_switch()
 		jump = true
 
 func _handle_animation():

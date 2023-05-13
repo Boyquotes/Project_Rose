@@ -38,4 +38,6 @@ influencers_path = NodePath("../RoseBody/Utilities/CapeInfluencers")
 wind_path = NodePath("../RoseBody/Utilities/WindNode")
 skeleton_path = NodePath("../CapeSkeleton")
 
+[connection signal="turned" from="RoseBody" to="CapeSkeletonController" method="_on_rose_body_turned"]
+
 [editable path="RoseBody"]

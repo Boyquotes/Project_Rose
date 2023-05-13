@@ -24,8 +24,8 @@ GameData="*res://Scripts/Globals/game_data.gd"
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=540
+window/size/viewport_width=480
+window/size/viewport_height=270
 window/stretch/mode="viewport"
 window/size/width=480
 window/size/height=270
@@ -250,3 +250,4 @@ textures/canvas_textures/default_texture_filter=0
 2d/snapping/use_gpu_pixel_snap=true
 environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false
+shading/enabled=false

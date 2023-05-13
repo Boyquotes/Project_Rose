@@ -6,6 +6,8 @@ extends PlayerState
 @export var jump := false
 @export var ledge_cast_l: RayCast2D
 @export var ledge_cast_r: RayCast2D
+@export var wall_cast_l: RayCast2D
+@export var wall_cast_r: RayCast2D
 @export var open_ledge_cast_l: RayCast2D
 @export var open_ledge_cast_r: RayCast2D
 @export var max_jump_charges := 0
@@ -28,7 +30,7 @@ func _ready():
 
 func _enter():
 	super._enter()
-	host.move_state = 'move_in_air'
+	state_machine.move_state = 'move_in_air'
 
 func _handle_input():
 	if super._handle_input():
@@ -63,9 +65,9 @@ func _execute(delta):
 	if super._execute(delta):
 		return
 	if host.vert_spd > 0:
-		if detect_ledge(ledge_cast_r, open_ledge_cast_r, 1):
+		if detect_ledge(ledge_cast_r, open_ledge_cast_r, wall_cast_r, 1):
 			return
-		if detect_ledge(ledge_cast_l, open_ledge_cast_l, -1):
+		if detect_ledge(ledge_cast_l, open_ledge_cast_l, wall_cast_l, -1):
 			return
 
 
@@ -83,11 +85,11 @@ func _exit(state):
 	is_wall_l = false
 	super._exit(state)
 
-func detect_ledge(ledge_cast : RayCast2D, open_ledge_cast: RayCast2D, dir : int):
-	if ledge_cast.is_colliding() and not open_ledge_cast.is_colliding():
-		FSM.ledge_grab_state.ledge_cast = ledge_cast
-		FSM.ledge_grab_state.move_direction = dir
-		_exit(FSM.ledge_grab_state)
+func detect_ledge(ledge_cast : RayCast2D, open_ledge_cast: RayCast2D, wall_cast: RayCast2D, dir : int):
+	if ledge_cast.is_colliding() and not open_ledge_cast.is_colliding() and wall_cast.is_colliding():
+		state_machine.ledge_grab_state.ledge_cast = ledge_cast
+		state_machine.ledge_grab_state.move_direction = dir
+		_exit(state_machine.ledge_grab_state)
 		return true
 	return false
 

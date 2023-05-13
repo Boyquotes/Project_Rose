@@ -83,12 +83,13 @@ func _handle_input():
 	move_direction = get_move_direction()
 	if can_turn:
 		update_look_direction_and_scale(move_direction)
-	handle_action()
+	return handle_action()
 
 func handle_action():
-	if host.move_state != 'action' and host.move_state != 'hit':
+	if state_machine.move_state != 'action' and state_machine.move_state != 'hit':
 		if get_action_just_pressed():
-			_exit(FSM.action_state)
+			_exit(state_machine.action_state)
+			return true
 		elif get_switch_pressed():
 			if Input.is_action_just_pressed("Switch_Bash") and host.has_powerup(GlobalEnums.Powerups.METEOR_STYLE):
 				switch_bash = true
@@ -96,6 +97,7 @@ func handle_action():
 				switch_pierce = true
 			elif Input.is_action_just_pressed("Switch_Slash") and host.has_powerup(GlobalEnums.Powerups.VORTEX_STYLE):
 				switch_slash = true
+	return false
 
 
 func _execute(_delta):
@@ -130,17 +132,17 @@ func _exit(state):
 func exit_ground_or_air():
 	match(host.is_on_floor()):
 		true:
-			_exit(FSM.move_on_ground_state)
+			_exit(state_machine.move_on_ground_state)
 		false:
-			_exit(FSM.move_in_air_state)
+			_exit(state_machine.move_in_air_state)
 
 
 func exit_air():
-	_exit(FSM.move_in_air_state)
+	_exit(state_machine.move_in_air_state)
 
 
 func exit_ground():
-	_exit(FSM.move_on_ground_state)
+	_exit(state_machine.move_on_ground_state)
 
 func get_switch_pressed():
 	return (

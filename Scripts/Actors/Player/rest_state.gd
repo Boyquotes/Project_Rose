@@ -11,7 +11,7 @@ extends PlayerState
 
 
 func _enter():
-	host.move_state = 'rest'
+	state_machine.move_state = 'rest'
 
 
 func _handle_input():

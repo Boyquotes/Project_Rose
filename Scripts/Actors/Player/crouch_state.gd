@@ -30,7 +30,7 @@ func _enter():
 	host.crouch_hitbox.toggle_enabled()
 	host.crouch_box.disabled = false
 	host.collision_box.disabled = true
-	host.move_state = 'crouch'
+	state_machine.move_state = 'crouch'
 
 
 func _handle_input():
@@ -73,9 +73,9 @@ func _handle_input():
 	
 	if can_turn:
 		update_look_direction_and_scale(move_direction)
-	if (host.move_state != 'action' || host.move_state != 'hit') and not force_crouch:
+	if (state_machine.move_state != 'action' || state_machine.move_state != 'hit') and not force_crouch:
 		if get_action_just_pressed():
-			_exit(FSM.action_state)
+			_exit(state_machine.action_state)
 		elif get_switch_pressed():
 			if Input.is_action_just_pressed("Switch_Bash") and host.has_powerup(GlobalEnums.Powerups.METEOR_STYLE):
 				switch_bash = true
@@ -130,7 +130,7 @@ func _exit(state):
 	host.crouch_box.disabled = true
 	host.collision_box.disabled = false
 	call_timeout()
-	if state == FSM.action_state:
+	if state == state_machine.action_state:
 		state.action_controller.crouched = true
 	super._exit(state)
 

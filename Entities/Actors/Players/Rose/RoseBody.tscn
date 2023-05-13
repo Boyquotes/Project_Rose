@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://w56eq67hj8wq"]
+[gd_scene load_steps=49 format=3 uid="uid://w56eq67hj8wq"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_fk0us"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/finite_state_machine.gd" id="2_nyi3l"]
@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/Actors/Player/rest_state.gd" id="10_0y204"]
 [ext_resource type="Texture2D" uid="uid://dxy8swrhmfe6o" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" id="11"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/wind.gd" id="13"]
-[ext_resource type="Texture2D" uid="uid://di6yfqroio682" path="res://Assets/Sprites/Actors/Rose/Movement/Crouch_spec.png" id="18_a18ws"]
+[ext_resource type="Texture2D" uid="uid://bg7hd580pwjna" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/BaseNormalHor2_spec.png" id="18_l7pni"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/Rose/rose_powerups.gd" id="20_7yhyd"]
 [ext_resource type="Texture2D" uid="uid://dywlvnpiyk1ux" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge_n.png" id="25"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/targetting.gd" id="27_rf1x6"]
@@ -36,7 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://dymsuoh43v4xl" path="res://Assets/sfx/slide/dirt_small_03.wav" id="69_f7myh"]
 [ext_resource type="AudioStream" uid="uid://34xxjcy1hxrk" path="res://Assets/sfx/slide/dirt_small_04.wav" id="70_hi1u4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpa4r"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbqhq"]
 size = Vector2(20, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hehew"]
@@ -98,7 +98,7 @@ shader_parameter/segmentation = 1.0
 [sub_resource type="CanvasTexture" id="CanvasTexture_acfie"]
 diffuse_texture = ExtResource("11")
 normal_texture = ExtResource("25")
-specular_texture = ExtResource("18_a18ws")
+specular_texture = ExtResource("18_l7pni")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3m3ny"]
 size = Vector2(480, 270)
@@ -109,11 +109,16 @@ size = Vector2(20, 4)
 [sub_resource type="RectangleShape2D" id="19"]
 size = Vector2(20, 4)
 
-[node name="RoseBody" type="CharacterBody2D" groups=["Persist"]]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eqg82"]
+cull_mode = 1
+polygon = PackedVector2Array(-9, -10, -9, -13, -5, -19, -1, -20, 4, -19, 6, -17, 6, -13, 4, -10, 4, -6, 4, 0, 5, 3, 5, 5, 3, 9, 2, 13, 2, 19, -2, 19, -2, 14, -3, 9, -6, 5, -6, 1, -7, -6, -6, -8)
+
+[node name="RoseBody" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["Persist"]]
 position = Vector2(-1, 3)
 collision_layer = 4
 floor_snap_length = 3.0
 script = ExtResource("1_fk0us")
+state_machine = NodePath("MoveStates")
 tag = "PC"
 base_soft_speed_cap = 250.0
 base_jump_spd = 450.0
@@ -134,7 +139,7 @@ max_health = 100
 [node name="HitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
 
 [node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("RectangleShape2D_fpa4r")
+shape = SubResource("RectangleShape2D_cbqhq")
 disabled = true
 
 [node name="CrouchHitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
@@ -163,6 +168,14 @@ disabled = true
 [node name="MoveStates" type="Node2D" parent="."]
 script = ExtResource("2_nyi3l")
 host_path = NodePath("..")
+move_states = {
+"action": NodePath("Action"),
+"crouch": NodePath("Crouch"),
+"hit": NodePath("Hit"),
+"ledge_grab": NodePath("LedgeGrab"),
+"move_in_air": NodePath("MoveInAir"),
+"move_on_ground": NodePath("MoveOnGround")
+}
 
 [node name="MoveOnGround" type="Node2D" parent="MoveStates"]
 script = ExtResource("3_wsm4e")
@@ -173,11 +186,13 @@ open_cast_r_path = NodePath("../../Utilities/OpenCrouchCastR")
 wait_time = 0.25
 one_shot = true
 
-[node name="MoveInAir" type="Node2D" parent="MoveStates" node_paths=PackedStringArray("ledge_cast_l", "ledge_cast_r", "open_ledge_cast_l", "open_ledge_cast_r")]
+[node name="MoveInAir" type="Node2D" parent="MoveStates" node_paths=PackedStringArray("ledge_cast_l", "ledge_cast_r", "wall_cast_l", "wall_cast_r", "open_ledge_cast_l", "open_ledge_cast_r")]
 script = ExtResource("4_fqp0q")
 jumped = true
 ledge_cast_l = NodePath("../../Utilities/LedgeCastL")
 ledge_cast_r = NodePath("../../Utilities/LedgeCastR")
+wall_cast_l = NodePath("../../Utilities/WallCastL")
+wall_cast_r = NodePath("../../Utilities/WallCastR")
 open_ledge_cast_l = NodePath("../../Utilities/OpenLedgeCastL")
 open_ledge_cast_r = NodePath("../../Utilities/OpenLedgeCastR")
 
@@ -201,10 +216,10 @@ fall_flag = true
 
 [node name="Action" type="Node2D" parent="MoveStates"]
 script = ExtResource("7_f8aj2")
+use_default_movement = false
 
 [node name="ActionController" type="Node2D" parent="MoveStates/Action"]
 script = ExtResource("8_stjrx")
-debug_input = false
 action_can_interrupt = true
 
 [node name="ActionInstancer" type="Node2D" parent="MoveStates/Action/ActionController"]
@@ -231,8 +246,7 @@ one_shot = true
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
 material = SubResource("ShaderMaterial_2qgdc")
 texture = SubResource("CanvasTexture_acfie")
-offset = Vector2(-1, 1)
-hframes = 3
+hframes = 2
 
 [node name="Animators" type="Node2D" parent="."]
 
@@ -280,6 +294,16 @@ position = Vector2(0, -36)
 target_position = Vector2(30, 0)
 hit_from_inside = true
 
+[node name="WallCastR" type="RayCast2D" parent="Utilities"]
+position = Vector2(1, -3)
+target_position = Vector2(30, 0)
+hit_from_inside = true
+
+[node name="WallCastL" type="RayCast2D" parent="Utilities"]
+position = Vector2(1, -3)
+target_position = Vector2(-30, 0)
+hit_from_inside = true
+
 [node name="OpenCrouchCastR" type="RayCast2D" parent="Utilities"]
 position = Vector2(0, -20)
 target_position = Vector2(8, 0)
@@ -295,23 +319,23 @@ position = Vector2(0, -8)
 
 [node name="Marker2D" type="Marker2D" parent="Utilities/CapeTarget"]
 z_index = -1
-position = Vector2(-4, 13)
+position = Vector2(-7, 7)
 
 [node name="Position2D2" type="Marker2D" parent="Utilities/CapeTarget"]
 z_index = -2
-position = Vector2(-2, 13)
+position = Vector2(-5, 7)
 
 [node name="Position2D3" type="Marker2D" parent="Utilities/CapeTarget"]
 z_index = -3
-position = Vector2(0, 13)
+position = Vector2(-3, 7)
 
 [node name="Position2D4" type="Marker2D" parent="Utilities/CapeTarget"]
 z_index = -4
-position = Vector2(2, 14)
+position = Vector2(-1, 7)
 
 [node name="Position2D5" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = -5
-position = Vector2(4, 15)
+z_index = 5
+position = Vector2(1, 7)
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities"]
 
@@ -325,10 +349,9 @@ texture = ExtResource("28_ulm3k")
 
 [node name="WindNode" type="Marker2D" parent="Utilities"]
 position = Vector2(-64, -40)
+rotation = -3.14159
 script = ExtResource("13")
-wind_type = 0
-
-[node name="Timer" type="Timer" parent="Utilities/WindNode"]
+time_mod = 3.0
 
 [node name="ActionSpawn" type="Node2D" parent="Utilities"]
 position = Vector2(88.2941, 0)
@@ -351,6 +374,11 @@ footsteps_dirt = Array[AudioStream]([ExtResource("60_476h5"), ExtResource("61_do
 footsteps_grass = Array[AudioStream]([ExtResource("64_i7s0s"), ExtResource("65_3ctk1"), ExtResource("66_x5aat"), ExtResource("67_4crhy")])
 slide_dirt = Array[AudioStream]([ExtResource("67_0lnn5"), ExtResource("68_bsyx1"), ExtResource("69_f7myh"), ExtResource("70_hi1u4")])
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Utilities"]
+z_index = -4096
+occluder = SubResource("OccluderPolygon2D_eqg82")
+occluder_light_mask = 5
+
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 position = Vector2(0, 19)
 current = true
@@ -364,4 +392,3 @@ current = true
 [connection signal="timeout" from="MoveStates/MoveOnGround/LookTimer" to="MoveStates/MoveOnGround" method="_on_look_timer_timeout"]
 [connection signal="timeout" from="MoveStates/MoveInAir/LedgeDisableTimer" to="MoveStates/MoveInAir" method="_on_LedgeDisableTimer_timeout" flags=18]
 [connection signal="timeout" from="MoveStates/Crouch/LookTimer" to="MoveStates/Crouch" method="_on_look_timer_timeout"]
-[connection signal="timeout" from="Utilities/WindNode/Timer" to="Utilities/WindNode" method="_on_Timer_timeout"]

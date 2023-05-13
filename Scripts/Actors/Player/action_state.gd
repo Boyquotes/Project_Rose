@@ -23,7 +23,8 @@ func _ready():
 
 
 func _enter():
-	host.move_state = 'action'
+	super._enter()
+	state_machine.move_state = 'action'
 	action_controller._enter()
 
 
@@ -45,11 +46,11 @@ func _handle_input():
 	# if the player tries to jump, override the action
 	if Input.is_action_just_pressed("Jump"):
 		if host.is_on_floor():
-			FSM.move_on_ground_state.jump = true
+			state_machine.move_on_ground_state.jump = true
 			exit_state_normally_flag = true
-		elif FSM.move_in_air_state.jump_charge > 0:
-			FSM.move_in_air_state.jump_charge -= 1
-			FSM.move_in_air_state.jump = true
+		elif state_machine.move_in_air_state.jump_charge > 0:
+			state_machine.move_in_air_state.jump_charge -= 1
+			state_machine.move_in_air_state.jump = true
 			exit_state_normally_flag = true
 	
 	# if the player is dodging but is not committing to a new action or holding
@@ -61,7 +62,7 @@ func _handle_input():
 	
 	if (exit_state_normally_flag
 			and (action_controller.action_ended or action_controller.action_can_interrupt)):
-		if(host.move_state == "action"):
+		if(state_machine.move_state == "action"):
 			exit_ground_or_air()
 	
 
@@ -87,7 +88,7 @@ func no_movement_input(_delta):
 			host.hor_spd -= host.true_fric * sign(host.hor_spd)
 
 func _exit(state):
-	if state == FSM.hit_state:
+	if state == state_machine.hit_state:
 		action_instancer.clear_cancelable_actions()
 	use_default_movement = true
 	exit_state_normally_flag = false
@@ -103,7 +104,7 @@ func _exit(state):
 
 func _on_ComboTimer_timeout():
 	#action_controller.combo = ""
-	#if(host.move_state == 'action'):
+	#if(state_machine.move_state == 'action'):
 	#	exit_ground_or_air()
 	pass
 
@@ -113,6 +114,6 @@ func _on_action_debug_exit():
 
 
 func _on_rose_landed():
-	if host.move_state == "action":
+	if state_machine.move_state == "action":
 		#exit_ground()
 		host.change_to_grounded_anim(host.base_anim, action_instancer.last_queued_action)

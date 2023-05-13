@@ -40,10 +40,14 @@ var grav_activated := true
 var fric_activated := true
 var prev_anim := ""
 
-@onready var base_anim = $AnimatorComponent
-@onready var attack_coll_data = $Utilities/AttackCollision
-@onready var powerup_data = $Utilities/Powerups
+var base_anim : AnimationPlayer
+var attack_coll_data : Area2D
+var powerup_data : Node2D
+
 func _ready():
+	base_anim = $AnimatorComponent
+	attack_coll_data = $Utilities/AttackCollision
+	powerup_data = $Utilities/Powerups
 	init()
 
 func init():

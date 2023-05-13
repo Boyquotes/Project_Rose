@@ -21,7 +21,7 @@ func _ready():
 
 func _enter():
 	super._enter()
-	host.move_state = 'move_on_ground'
+	state_machine.move_state = 'move_on_ground'
 
 
 func _handle_input():
@@ -79,11 +79,11 @@ func _execute(delta):
 	if not host.is_on_floor():
 		exit_air()
 	if crouch or slide:
-		_exit(FSM.crouch_state)
+		_exit(state_machine.crouch_state)
 
 
 func _exit(state):
-	if state == FSM.crouch_state and slide:
+	if state == state_machine.crouch_state and slide:
 		state.slide = true;
 	crouch = false
 	slide = false
@@ -91,6 +91,7 @@ func _exit(state):
 	jump = false
 	looking = false
 	force_crouch = false
+	look_timer.stop()
 	call_timeout()
 	super._exit(state)
 

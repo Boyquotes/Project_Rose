@@ -11,7 +11,6 @@ uniform float theta = 0.0;
 uniform vec4 darkArea : source_color = vec4(0.0f, 0.0f, 1.0f, 1.0f);
 uniform float segmentation = 1.0f;
 
-
 void light() {
     // Calculate the real position of this pixel in 3d space, taking into account
     // the rotation and scale of the model. It's a useful formula for some effects.

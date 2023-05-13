@@ -20,7 +20,7 @@ func _ready():
 
 
 func _enter():
-	host.move_state = 'hit'
+	state_machine.move_state = 'hit'
 	#if damage >= crit_thresh:
 	#	host.iframe(iframes * crit_iframe_factor)
 	#else:

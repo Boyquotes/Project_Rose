@@ -1,0 +1,20 @@
+{ "frames": [
+   {
+    "filename": "bush2 (bush).aseprite",
+    "frame": { "x": 0, "y": 0, "w": 51, "h": 45 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 51, "h": 45 },
+    "sourceSize": { "w": 51, "h": 45 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3-rc2-x64",
+  "image": "bush2_bush.png",
+  "format": "RGBA8888",
+  "size": { "w": 51, "h": 45 },
+  "scale": "1"
+ }
+}

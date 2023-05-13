@@ -422,5 +422,5 @@ func _on_Rose_turned():
 	reassign_pins()
 
 
-func _on_rose_turned():
+func _on_rose_body_turned():
 	flip_targets()

@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmud2tsmq4dlr"]
+
+[ext_resource type="Script" path="res://Entities/Actors/Enemies/Spidahli.gd" id="1_cteoa"]
+[ext_resource type="Texture2D" uid="uid://crvaiwgb6m2fe" path="res://Assets/Sprites/Actors/Enemies/Spidahli/idle.png" id="2_1oefh"]
+[ext_resource type="Script" path="res://Scripts/Actors/Player/finite_state_machine.gd" id="3_d0kgk"]
+[ext_resource type="Script" path="res://Scripts/Actors/state.gd" id="4_gqy4t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bnwc"]
+size = Vector2(20, 43)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vludh"]
+diffuse_texture = ExtResource("2_1oefh")
+
+[node name="Actor" type="CharacterBody2D"]
+z_index = 26
+collision_layer = 8
+script = ExtResource("1_cteoa")
+move_states = {
+"flee_state": NodePath("FiniteStateMachine/FleeState"),
+"hurt_state": NodePath("FiniteStateMachine/HurtState"),
+"idle": NodePath("FiniteStateMachine/IdleState"),
+"walk_state": NodePath("FiniteStateMachine/WalkState")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_3bnwc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_vludh")
+hframes = 3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="FiniteStateMachine" type="Node2D" parent="."]
+script = ExtResource("3_d0kgk")
+host_path = NodePath("..")
+move_states = {
+"flee_state": NodePath("FiniteStateMachine/FleeState"),
+"hurt_state": NodePath("FiniteStateMachine/HurtState"),
+"idle": NodePath("FiniteStateMachine/IdleState"),
+"walk_state": NodePath("FiniteStateMachine/WalkState")
+}
+
+[node name="IdleState" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("4_gqy4t")
+
+[node name="WalkState" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("4_gqy4t")
+
+[node name="FleeState" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("4_gqy4t")
+
+[node name="HurtState" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("4_gqy4t")
+
+[node name="AI" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_3bnwc")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

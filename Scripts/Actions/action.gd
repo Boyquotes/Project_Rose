@@ -2,6 +2,7 @@ class_name CharacterAction
 extends Node2D
 
 @export var cancelable := true
+@export var damage := 1
 @export var flora_cost := 0
 @export var focus_cost := 0
 

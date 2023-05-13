@@ -44,14 +44,15 @@ func update_mat():
 	var collider = host.get_slide_collision(0).get_collider()
 	if collider is StaticBody2D:
 		var shape : SS2D_Shape_Base = collider.get_child(1)
-		var closest = INF
-		for _point in shape._points._points.values():
-			var point : SS2D_Point = _point
-			var glob = shape.to_global(point.position)
-			var dist = global_position.distance_to(glob)
-			if dist < closest:
-				closest = dist
-				mat = point.properties.texture_idx as MAT
+		if shape:
+			var closest = INF
+			for _point in shape._points._points.values():
+				var point : SS2D_Point = _point
+				var glob = shape.to_global(point.position)
+				var dist = global_position.distance_to(glob)
+				if dist < closest:
+					closest = dist
+					mat = point.properties.texture_idx as MAT
 
 
 func _on_rose_footstep(pitch_adjust: float = 0.0, vol_adjust: float = 0.0):

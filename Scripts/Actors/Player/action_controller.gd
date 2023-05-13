@@ -87,10 +87,9 @@ func _handle_input():
 
 ### Handles animation, incomplete ###
 func _handle_animation():
-	if !debug_input:
-		if action_state.action_committed:
-			host.animate(host.base_anim, action_str, true)
-			action_state.action_committed = false
+	if action_state.action_committed:
+		host.animate(host.base_anim, action_str, true)
+		action_state.action_committed = false
 
 
 func _execute(_delta):
@@ -142,14 +141,17 @@ func secondary_pressed():
 ### Triggers appropriate action based checked the strings constructed by player input ###
 func commit_action():
 	construct_action_string()
-	if (host.base_anim.has_animation(action_str + str(attack_counter + 1)) and
+	if (host.base_anim.has_animation("RoseAnimations/" + action_str + str(attack_counter + 1)) and
 			(action_str == previous_action
 				or action_str + str(attack_counter) == previous_action)):
 		attack_counter += 1
 		action_str += str(attack_counter)
 	else:
 		attack_counter = 1
-	if debug_input or not host.base_anim.has_animation("RoseAnimations/" + action_str):
+	if debug_input:
+		print(action_str)
+	if not host.base_anim.has_animation("RoseAnimations/" + action_str):
+		print(action_str)
 		clear_action()
 		action_state.emit_signal("debug_exit")
 		return
@@ -293,7 +295,7 @@ func on_hit(col):
 		if col.hittable:
 			host.get_node("Camera2D").shake(.1, 15, 8)
 			if !host.on_floor() && action_charges_jump:
-				action_state.FSM.move_in_air_state.jump_charge += 1
+				action_state.state_machine.move_in_air_state.jump_charge += 1
 
 
 

@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://Scripts/Actors/Player/rest_state.gd" id="10_0y204"]
 [ext_resource type="Texture2D" uid="uid://dxy8swrhmfe6o" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" id="11"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/wind.gd" id="13"]
-[ext_resource type="Texture2D" uid="uid://bg7hd580pwjna" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/BaseNormalHor2_spec.png" id="18_l7pni"]
+[ext_resource type="Texture2D" uid="uid://bslwedomf7nf7" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/BaseNormalHorAir_spec.png" id="18_exncc"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/Rose/rose_powerups.gd" id="20_7yhyd"]
 [ext_resource type="Texture2D" uid="uid://dywlvnpiyk1ux" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge_n.png" id="25"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/targetting.gd" id="27_rf1x6"]
@@ -36,7 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://dymsuoh43v4xl" path="res://Assets/sfx/slide/dirt_small_03.wav" id="69_f7myh"]
 [ext_resource type="AudioStream" uid="uid://34xxjcy1hxrk" path="res://Assets/sfx/slide/dirt_small_04.wav" id="70_hi1u4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbqhq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67f41"]
 size = Vector2(20, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hehew"]
@@ -68,6 +68,126 @@ tracks/1/keys = {
 "update": 1,
 "values": [ExtResource("25")]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Utilities/CapeTarget/Position2D5:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Utilities/CapeTarget/Position2D4:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Utilities/CapeTarget/Marker2D:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Utilities/CapeTarget/Marker2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, 5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Utilities/CapeTarget/Position2D2:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Utilities/CapeTarget/Position2D2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 4)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Utilities/CapeTarget/Position2D3:z_index")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Utilities/CapeTarget/Position2D3:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 3)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Utilities/CapeTarget/Position2D4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, 2)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Utilities/CapeTarget/Position2D5:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_182hr"]
 _data = {
@@ -98,7 +218,7 @@ shader_parameter/segmentation = 1.0
 [sub_resource type="CanvasTexture" id="CanvasTexture_acfie"]
 diffuse_texture = ExtResource("11")
 normal_texture = ExtResource("25")
-specular_texture = ExtResource("18_l7pni")
+specular_texture = ExtResource("18_exncc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3m3ny"]
 size = Vector2(480, 270)
@@ -110,8 +230,8 @@ size = Vector2(20, 4)
 size = Vector2(20, 4)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eqg82"]
-cull_mode = 1
-polygon = PackedVector2Array(-9, -10, -9, -13, -5, -19, -1, -20, 4, -19, 6, -17, 6, -13, 4, -10, 4, -6, 4, 0, 5, 3, 5, 5, 3, 9, 2, 13, 2, 19, -2, 19, -2, 14, -3, 9, -6, 5, -6, 1, -7, -6, -6, -8)
+cull_mode = 2
+polygon = PackedVector2Array(-5, -19, 4, -19, 5, 5, 2, 19, -2, 19, -6, 5)
 
 [node name="RoseBody" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["Persist"]]
 position = Vector2(-1, 3)
@@ -139,7 +259,7 @@ max_health = 100
 [node name="HitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
 
 [node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("RectangleShape2D_cbqhq")
+shape = SubResource("RectangleShape2D_67f41")
 disabled = true
 
 [node name="CrouchHitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
@@ -216,7 +336,6 @@ fall_flag = true
 
 [node name="Action" type="Node2D" parent="MoveStates"]
 script = ExtResource("7_f8aj2")
-use_default_movement = false
 
 [node name="ActionController" type="Node2D" parent="MoveStates/Action"]
 script = ExtResource("8_stjrx")
@@ -318,24 +437,24 @@ hit_from_inside = true
 position = Vector2(0, -8)
 
 [node name="Marker2D" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = -1
-position = Vector2(-7, 7)
+z_index = 1
+position = Vector2(-9, 5)
 
 [node name="Position2D2" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = -2
-position = Vector2(-5, 7)
+z_index = 2
+position = Vector2(-8, 4)
 
 [node name="Position2D3" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = -3
-position = Vector2(-3, 7)
+z_index = 3
+position = Vector2(-6, 3)
 
 [node name="Position2D4" type="Marker2D" parent="Utilities/CapeTarget"]
-z_index = -4
-position = Vector2(-1, 7)
+z_index = 4
+position = Vector2(-4, 2)
 
 [node name="Position2D5" type="Marker2D" parent="Utilities/CapeTarget"]
 z_index = 5
-position = Vector2(1, 7)
+position = Vector2(-2, 1)
 
 [node name="CapeInfluencers" type="Node2D" parent="Utilities"]
 

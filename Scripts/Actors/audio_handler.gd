@@ -54,8 +54,17 @@ func update_mat():
 					closest = dist
 					mat = point.properties.texture_idx as MAT
 
+func rose_attackfx(name: String, pitch_adjust: float = 0.0, vol_adjust: float = 0.0, pitch_range : float = 0.25):
+	if not playing:
+		printerr("Not Playing Sounds From Player!")
+		return
+	var aud = instantiate_stream()
+	aud.pitch_scale = aud.pitch_scale + pitch_adjust + rng.randf_range(-pitch_range, pitch_range)
+	aud.volume_db = aud.volume_db + vol_adjust
+	aud.stream = load("res://Assets/sfx/Rose/Attacks/" + name + ".wav")
+	aud.play()
 
-func _on_rose_footstep(pitch_adjust: float = 0.0, vol_adjust: float = 0.0):
+func rose_footstep(pitch_adjust: float = 0.0, vol_adjust: float = 0.0):
 	if not playing:
 		printerr("Not Playing Sounds From Player!")
 		return
@@ -77,7 +86,7 @@ func _on_rose_footstep(pitch_adjust: float = 0.0, vol_adjust: float = 0.0):
 			aud.play()
 			aud2.play()
 
-func _on_rose_sliding(pitch_adjust: float = 0.0, vol_adjust: float = 0.0):
+func rose_sliding(pitch_adjust: float = 0.0, vol_adjust: float = 0.0):
 	if not playing:
 		printerr("Not Playing Sounds From Player!")
 		return
@@ -100,5 +109,11 @@ func _on_rose_sliding(pitch_adjust: float = 0.0, vol_adjust: float = 0.0):
 			#aud2.play()
 
 
-func _on_rose_silence():
+func rose_silence():
 	suppress_size = aud_buffer.size()
+
+func _on_rose_body_footstep(x, y):
+	rose_footstep(x, y)
+
+func _on_rose_body_silence():
+	rose_silence()

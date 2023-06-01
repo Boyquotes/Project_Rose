@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://reql368x3fj7"]
+[gd_scene load_steps=10 format=3 uid="uid://reql368x3fj7"]
 
-[ext_resource type="PackedScene" uid="uid://w56eq67hj8wq" path="res://Entities/Actors/Players/Rose/RoseBody.tscn" id="1_mpx4g"]
+[ext_resource type="PackedScene" uid="uid://cln0p0ujudono" path="res://Entities/Actors/Players/Rose/RoseBody.tscn" id="1_mpx4g"]
+[ext_resource type="Texture2D" uid="uid://cypyj6pef4nvx" path="res://Assets/Sprites/Actors/Rose/Movement/Crouch.png" id="2_eoo8k"]
 [ext_resource type="PackedScene" uid="uid://op6vsappqqjn" path="res://Entities/Actors/Players/Rose/CapeSkeleton.tscn" id="2_p6q6m"]
+[ext_resource type="Texture2D" uid="uid://bytslga6bvjkc" path="res://Assets/Sprites/Actors/Rose/Movement/Crouch_n.png" id="3_cu047"]
 [ext_resource type="PackedScene" uid="uid://th7afrlxpyd0" path="res://Entities/Actors/Players/Rose/CapeSkeletonController.tscn" id="3_mhev1"]
+[ext_resource type="Texture2D" uid="uid://di6yfqroio682" path="res://Assets/Sprites/Actors/Rose/Movement/Crouch_spec.png" id="4_4r8ef"]
 
 [sub_resource type="RectangleShape2D" id="3"]
 size = Vector2(20, 38)
@@ -10,10 +13,21 @@ size = Vector2(20, 38)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hehew"]
 size = Vector2(20, 16)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_lje0h"]
+diffuse_texture = ExtResource("2_eoo8k")
+normal_texture = ExtResource("3_cu047")
+specular_texture = ExtResource("4_4r8ef")
+
 [node name="Rose" type="Node2D"]
 z_index = 20
 
 [node name="RoseBody" parent="." instance=ExtResource("1_mpx4g")]
+max_flora = 10
+max_focus = 3
+attack_damage = 5
+enabled = true
+base_fric = 50.0
+base_acceleration = 30.0
 
 [node name="HitBox" type="CollisionShape2D" parent="RoseBody/HitBoxComponent" index="0"]
 shape = SubResource("3")
@@ -26,24 +40,10 @@ shape = SubResource("RectangleShape2D_hehew")
 [node name="Timer" type="Timer" parent="RoseBody/HitBoxComponent" index="2"]
 one_shot = true
 
-[node name="Marker2D" parent="RoseBody/Utilities/CapeTarget" index="0"]
-z_index = 1
-position = Vector2(-9, 5)
-
-[node name="Position2D2" parent="RoseBody/Utilities/CapeTarget" index="1"]
-z_index = 2
-position = Vector2(-8, 4)
-
-[node name="Position2D3" parent="RoseBody/Utilities/CapeTarget" index="2"]
-z_index = 3
-position = Vector2(-6, 3)
-
-[node name="Position2D4" parent="RoseBody/Utilities/CapeTarget" index="3"]
-z_index = 4
-position = Vector2(-4, 2)
-
-[node name="Position2D5" parent="RoseBody/Utilities/CapeTarget" index="4"]
-position = Vector2(-2, 1)
+[node name="Sprite2D" parent="RoseBody/Sprites" index="0"]
+texture = SubResource("CanvasTexture_lje0h")
+hframes = 4
+frame = 1
 
 [node name="CapeSkeleton" parent="." instance=ExtResource("2_p6q6m")]
 

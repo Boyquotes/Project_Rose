@@ -24,7 +24,6 @@ var style_states := {
 }
 var style_state = Styles.BASE
 
-@export var state_machine : FiniteStateMachine
 @export var max_flora := 10
 @export var max_focus := 3
 var flora := 0
@@ -53,6 +52,7 @@ func init():
 	crouch_box.disabled = true
 	collision_box.disabled = false
 	emit_signal("ready")
+	set_up_direction(floor_normal)
 
 
 # This should be moved to some UI layer.
@@ -89,7 +89,7 @@ func _unpaused_phys_execute(delta):
 	vel.y = vert_spd
 	vel.x = hor_spd
 	set_velocity(vel)
-	set_up_direction(floor_normal)
+
 	move_and_slide()
 	vel = velocity
 	#no grav acceleration when checked floor
@@ -216,7 +216,7 @@ func change_to_grounded_anim(animator : AnimationPlayer, last_queued_action):
 		grounded_anim = grounded_anim.substr(0, down_idx) + grounded_anim.substr(down_idx + 5)
 	if frame > 0.1:
 		grounded_anim += "_Grounded"
-	if animator.has_animation("RoseAnimations/" + grounded_anim):
+	if animator.has_animation(grounded_anim):
 		#animator.stop(false)
 		animator.play(grounded_anim)
 		animator.seek(frame, true)
@@ -283,8 +283,6 @@ func _on_rose_animation_changed(previous_anim, new_anim):
 		activate_fric()
 		state_machine.crouch_state.slide = false
 		emit_signal("silence")
-	if new_anim == "RoseAnimations/Crouch" || new_anim == "RoseAnimations/LookUp":
-		emit_signal("footstep", 2.0, -15)
 	if new_anim == "RoseAnimations/Idle":
-		emit_signal("footstep", 4.0, -15)
+		emit_signal("footstep", 4.0, -30)
 

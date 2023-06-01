@@ -15,12 +15,6 @@ diffuse_texture = ExtResource("2_1oefh")
 z_index = 26
 collision_layer = 8
 script = ExtResource("1_cteoa")
-move_states = {
-"flee_state": NodePath("FiniteStateMachine/FleeState"),
-"hurt_state": NodePath("FiniteStateMachine/HurtState"),
-"idle": NodePath("FiniteStateMachine/IdleState"),
-"walk_state": NodePath("FiniteStateMachine/WalkState")
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

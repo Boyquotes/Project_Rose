@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://w56eq67hj8wq"]
+[gd_scene load_steps=49 format=3 uid="uid://cln0p0ujudono"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_fk0us"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/finite_state_machine.gd" id="2_nyi3l"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="4_ahpf3"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/move_in_air_state.gd" id="4_fqp0q"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/ledge_grab_state.gd" id="5_khmi4"]
+[ext_resource type="Texture2D" uid="uid://di6yfqroio682" path="res://Assets/Sprites/Actors/Rose/Movement/Crouch_spec.png" id="6_kpanm"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/hit_state.gd" id="6_l568u"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/action_state.gd" id="7_f8aj2"]
 [ext_resource type="AnimationLibrary" uid="uid://bt2jl0ipha4it" path="res://Resources/Entities/Actors/Players/Rose/RoseAnimations.res" id="8_r86g7"]
@@ -17,30 +18,34 @@
 [ext_resource type="Script" path="res://Scripts/Actors/Player/rest_state.gd" id="10_0y204"]
 [ext_resource type="Texture2D" uid="uid://dxy8swrhmfe6o" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge.png" id="11"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/wind.gd" id="13"]
-[ext_resource type="Texture2D" uid="uid://bslwedomf7nf7" path="res://Assets/Sprites/Actors/Rose/Basic Attacks/BaseNormalHorAir_spec.png" id="18_exncc"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/Rose/rose_powerups.gd" id="20_7yhyd"]
+[ext_resource type="AudioStream" uid="uid://cn7p24ax43am8" path="res://Assets/sfx/Rose/footsteps/dirt_small_01.wav" id="24_eudmd"]
 [ext_resource type="Texture2D" uid="uid://dywlvnpiyk1ux" path="res://Assets/Sprites/Actors/Rose/Movement/Dodge_n.png" id="25"]
+[ext_resource type="AudioStream" uid="uid://dmipgverichil" path="res://Assets/sfx/Rose/footsteps/dirt_small_02.wav" id="25_alfby"]
+[ext_resource type="AudioStream" uid="uid://dx6jjv8t3i16c" path="res://Assets/sfx/Rose/footsteps/dirt_small_03.wav" id="26_kb0qx"]
+[ext_resource type="AudioStream" uid="uid://dlhyiygitnctd" path="res://Assets/sfx/Rose/footsteps/dirt_small_04.wav" id="27_7d7v0"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/targetting.gd" id="27_rf1x6"]
+[ext_resource type="AudioStream" uid="uid://tucbwclrj8vh" path="res://Assets/sfx/Rose/footsteps/grass_01.wav" id="28_l86wd"]
 [ext_resource type="Texture2D" uid="uid://c8rca7bu5dyj0" path="res://Assets/Sprites/Actors/Rose/cape_shadow.png" id="28_ulm3k"]
+[ext_resource type="AudioStream" uid="uid://dd03krstvwosv" path="res://Assets/sfx/Rose/footsteps/grass_02.wav" id="29_4e2rh"]
+[ext_resource type="AudioStream" uid="uid://c0i5156p105k6" path="res://Assets/sfx/Rose/footsteps/grass_03.wav" id="30_8kw3x"]
+[ext_resource type="AudioStream" uid="uid://bf7yjvwtodx22" path="res://Assets/sfx/Rose/footsteps/grass_04.wav" id="31_qkrlm"]
 [ext_resource type="Script" path="res://Scripts/Actors/audio_handler.gd" id="59_i7kba"]
-[ext_resource type="AudioStream" uid="uid://cn7p24ax43am8" path="res://Assets/sfx/footsteps/dirt_small_01.wav" id="60_476h5"]
-[ext_resource type="AudioStream" uid="uid://dmipgverichil" path="res://Assets/sfx/footsteps/dirt_small_02.wav" id="61_dobde"]
-[ext_resource type="AudioStream" uid="uid://dx6jjv8t3i16c" path="res://Assets/sfx/footsteps/dirt_small_03.wav" id="62_83mud"]
-[ext_resource type="AudioStream" uid="uid://dlhyiygitnctd" path="res://Assets/sfx/footsteps/dirt_small_04.wav" id="63_j4ffd"]
-[ext_resource type="AudioStream" uid="uid://tucbwclrj8vh" path="res://Assets/sfx/footsteps/grass_01.wav" id="64_i7s0s"]
-[ext_resource type="AudioStream" uid="uid://dd03krstvwosv" path="res://Assets/sfx/footsteps/grass_02.wav" id="65_3ctk1"]
-[ext_resource type="AudioStream" uid="uid://c0i5156p105k6" path="res://Assets/sfx/footsteps/grass_03.wav" id="66_x5aat"]
 [ext_resource type="AudioStream" uid="uid://j67f5a4y0kt2" path="res://Assets/sfx/slide/dirt_small_01.wav" id="67_0lnn5"]
-[ext_resource type="AudioStream" uid="uid://bf7yjvwtodx22" path="res://Assets/sfx/footsteps/grass_04.wav" id="67_4crhy"]
 [ext_resource type="AudioStream" uid="uid://5dkwcib3rpe7" path="res://Assets/sfx/slide/dirt_small_02.wav" id="68_bsyx1"]
 [ext_resource type="AudioStream" uid="uid://dymsuoh43v4xl" path="res://Assets/sfx/slide/dirt_small_03.wav" id="69_f7myh"]
 [ext_resource type="AudioStream" uid="uid://34xxjcy1hxrk" path="res://Assets/sfx/slide/dirt_small_04.wav" id="70_hi1u4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_67f41"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p8e1"]
 size = Vector2(20, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hehew"]
 size = Vector2(20, 16)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lje0h"]
+diffuse_texture = ExtResource("11")
+normal_texture = ExtResource("25")
+specular_texture = ExtResource("6_kpanm")
 
 [sub_resource type="Animation" id="Animation_vqjy8"]
 length = 0.001
@@ -188,6 +193,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [Vector2(-2, 1)]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Sprites/Sprite2D:texture")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CanvasTexture_lje0h")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_182hr"]
 _data = {
@@ -209,16 +226,13 @@ shader_parameter/cameraPosition = Vector3(0, 0, 0)
 shader_parameter/lightColorFac = 0.1
 shader_parameter/lightAdd = -0.2
 shader_parameter/shadowSubtract = 0.5
+shader_parameter/pointUnlitAdjust = Color(0, 0, 0, 1)
 shader_parameter/unlitColorMix = Color(0.12549, 0.054902, 0.0627451, 1)
+shader_parameter/unlitColorBase = Color(0, 0, 0, 1)
 shader_parameter/unlitColorControl = 0.5
 shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(1, 0, 0, 1)
 shader_parameter/segmentation = 1.0
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_acfie"]
-diffuse_texture = ExtResource("11")
-normal_texture = ExtResource("25")
-specular_texture = ExtResource("18_exncc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3m3ny"]
 size = Vector2(480, 270)
@@ -233,25 +247,16 @@ size = Vector2(20, 4)
 cull_mode = 2
 polygon = PackedVector2Array(-5, -19, 4, -19, 5, 5, 2, 19, -2, 19, -6, 5)
 
-[node name="RoseBody" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["Persist"]]
+[node name="RoseBody" type="CharacterBody2D" node_paths=PackedStringArray("state_machine") groups=["Persist", "Player"]]
 position = Vector2(-1, 3)
 collision_layer = 4
 floor_snap_length = 3.0
 script = ExtResource("1_fk0us")
-state_machine = NodePath("MoveStates")
-tag = "PC"
 base_soft_speed_cap = 250.0
 base_jump_spd = 450.0
 base_grav = 20.0
 grav_max = 350.0
-move_states = {
-"action": NodePath("MoveStates/Action"),
-"crouch": NodePath("MoveStates/Crouch"),
-"hit": NodePath("MoveStates/Hit"),
-"ledge_grab": NodePath("MoveStates/LedgeGrab"),
-"move_in_air": NodePath("MoveStates/MoveInAir"),
-"move_on_ground": NodePath("MoveStates/MoveOnGround")
-}
+state_machine = NodePath("MoveStates")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_r2lnc")]
 max_health = 100
@@ -259,7 +264,7 @@ max_health = 100
 [node name="HitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
 
 [node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("RectangleShape2D_67f41")
+shape = SubResource("RectangleShape2D_5p8e1")
 disabled = true
 
 [node name="CrouchHitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
@@ -336,6 +341,7 @@ fall_flag = true
 
 [node name="Action" type="Node2D" parent="MoveStates"]
 script = ExtResource("7_f8aj2")
+use_default_movement = false
 
 [node name="ActionController" type="Node2D" parent="MoveStates/Action"]
 script = ExtResource("8_stjrx")
@@ -364,8 +370,8 @@ one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
 material = SubResource("ShaderMaterial_2qgdc")
-texture = SubResource("CanvasTexture_acfie")
-hframes = 2
+texture = SubResource("CanvasTexture_lje0h")
+offset = Vector2(5, 0)
 
 [node name="Animators" type="Node2D" parent="."]
 
@@ -489,8 +495,8 @@ script = ExtResource("20_7yhyd")
 
 [node name="SoundNode" type="Node2D" parent="Utilities"]
 script = ExtResource("59_i7kba")
-footsteps_dirt = Array[AudioStream]([ExtResource("60_476h5"), ExtResource("61_dobde"), ExtResource("62_83mud"), ExtResource("63_j4ffd")])
-footsteps_grass = Array[AudioStream]([ExtResource("64_i7s0s"), ExtResource("65_3ctk1"), ExtResource("66_x5aat"), ExtResource("67_4crhy")])
+footsteps_dirt = Array[AudioStream]([ExtResource("24_eudmd"), ExtResource("25_alfby"), ExtResource("26_kb0qx"), ExtResource("27_7d7v0")])
+footsteps_grass = Array[AudioStream]([ExtResource("28_l86wd"), ExtResource("29_4e2rh"), ExtResource("30_8kw3x"), ExtResource("31_qkrlm")])
 slide_dirt = Array[AudioStream]([ExtResource("67_0lnn5"), ExtResource("68_bsyx1"), ExtResource("69_f7myh"), ExtResource("70_hi1u4")])
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Utilities"]
@@ -503,10 +509,8 @@ position = Vector2(0, 19)
 current = true
 
 [connection signal="animation_changed" from="." to="." method="_on_rose_animation_changed"]
-[connection signal="footstep" from="." to="Utilities/SoundNode" method="_on_rose_footstep"]
-[connection signal="landed" from="." to="MoveStates/Action" method="_on_rose_landed"]
-[connection signal="silence" from="." to="Utilities/SoundNode" method="_on_rose_silence"]
-[connection signal="sliding" from="." to="Utilities/SoundNode" method="_on_rose_sliding"]
+[connection signal="footstep" from="." to="Utilities/SoundNode" method="_on_rose_body_footstep"]
+[connection signal="silence" from="." to="Utilities/SoundNode" method="_on_rose_body_silence"]
 [connection signal="animation_finished" from="AnimatorComponent" to="." method="_on_animator_component_animation_finished"]
 [connection signal="timeout" from="MoveStates/MoveOnGround/LookTimer" to="MoveStates/MoveOnGround" method="_on_look_timer_timeout"]
 [connection signal="timeout" from="MoveStates/MoveInAir/LedgeDisableTimer" to="MoveStates/MoveInAir" method="_on_LedgeDisableTimer_timeout" flags=18]

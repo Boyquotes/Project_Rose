@@ -7,8 +7,7 @@ signal turned
 signal animation_changed
 signal landed
 
-###actor_exoport_data###
-@export var tag := "NPC" # TODO: Make into enum in global context
+###actor_export_data###
 @export var base_soft_speed_cap := 100.0
 @export var base_jump_spd := 50.0
 @export var attack_damage := 5
@@ -18,7 +17,7 @@ signal landed
 @export var base_fric := 50.0
 @export var grav_max := 250.0
 @export var base_acceleration := 30.0
-@export var move_states := {}
+@export var state_machine : FiniteStateMachine
 
 var targettable_hitboxes := []
 

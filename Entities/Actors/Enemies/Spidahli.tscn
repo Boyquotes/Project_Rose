@@ -1,65 +1,102 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmud2tsmq4dlr"]
+[gd_scene load_steps=14 format=3 uid="uid://cmud2tsmq4dlr"]
 
-[ext_resource type="Script" path="res://Entities/Actors/Enemies/Spidahli.gd" id="1_cteoa"]
-[ext_resource type="Texture2D" uid="uid://crvaiwgb6m2fe" path="res://Assets/Sprites/Actors/Enemies/Spidahli/idle.png" id="2_1oefh"]
-[ext_resource type="Script" path="res://Scripts/Actors/Player/finite_state_machine.gd" id="3_d0kgk"]
+[ext_resource type="Script" path="res://Entities/Actors/Enemies/spidahli.gd" id="1_4gxso"]
+[ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="4_cgr0m"]
 [ext_resource type="Script" path="res://Scripts/Actors/state.gd" id="4_gqy4t"]
+[ext_resource type="Texture2D" uid="uid://c2m3hqmu6rjxr" path="res://Assets/Sprites/Actors/Enemies/Spidahli/spidahli_body.png" id="4_mmqo6"]
+[ext_resource type="Script" path="res://Scripts/Actors/Enemies/Spidahli/spidahli_fsm.gd" id="4_sfrkf"]
+[ext_resource type="Script" path="res://Scripts/Actors/Enemies/Generic/enemy_idle_state.gd" id="5_5c7q7"]
+[ext_resource type="Script" path="res://Entities/Actors/vitality.gd" id="5_it6vi"]
+[ext_resource type="Script" path="res://Scripts/Actors/Enemies/hitbox.gd" id="6_jb60j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3bnwc"]
 size = Vector2(20, 43)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_vludh"]
-diffuse_texture = ExtResource("2_1oefh")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_to1by"]
+shader = ExtResource("4_cgr0m")
+shader_parameter/cameraPosition = Vector3(0, 0, 0)
+shader_parameter/lightColorFac = 0.1
+shader_parameter/lightAdd = -0.2
+shader_parameter/shadowSubtract = 0.5
+shader_parameter/pointUnlitAdjust = Color(0, 0, 0, 1)
+shader_parameter/unlitColorMix = Color(0.12549, 0.054902, 0.0627451, 1)
+shader_parameter/unlitColorBase = Color(0, 0, 0, 1)
+shader_parameter/unlitColorControl = 0.5
+shader_parameter/theta = 0.0
+shader_parameter/darkArea = Color(1, 0, 0, 1)
+shader_parameter/segmentation = 1.0
 
-[node name="Actor" type="CharacterBody2D"]
-z_index = 26
-collision_layer = 8
-script = ExtResource("1_cteoa")
+[sub_resource type="Animation" id="Animation_ga5vp"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_3bnwc")
+[sub_resource type="Animation" id="Animation_q6phx"]
+length = 0.001
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("CanvasTexture_vludh")
-hframes = 3
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
-one_shot = true
-autostart = true
-
-[node name="FiniteStateMachine" type="Node2D" parent="."]
-script = ExtResource("3_d0kgk")
-host_path = NodePath("..")
-move_states = {
-"flee_state": NodePath("FiniteStateMachine/FleeState"),
-"hurt_state": NodePath("FiniteStateMachine/HurtState"),
-"idle": NodePath("FiniteStateMachine/IdleState"),
-"walk_state": NodePath("FiniteStateMachine/WalkState")
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cnpt"]
+_data = {
+"RESET": SubResource("Animation_q6phx"),
+"walk": SubResource("Animation_ga5vp")
 }
 
-[node name="IdleState" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("4_gqy4t")
+[node name="Spidahli" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
+z_index = 26
+position = Vector2(103, 100)
+collision_layer = 8
+script = ExtResource("1_4gxso")
+state_machine = NodePath("FiniteStateMachine")
 
-[node name="WalkState" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("4_gqy4t")
+[node name="Vitality" type="Node" parent="."]
+script = ExtResource("5_it6vi")
+hitboxes = [NodePath("../Hitbox")]
 
-[node name="FleeState" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("4_gqy4t")
-
-[node name="HurtState" type="Node2D" parent="FiniteStateMachine"]
-script = ExtResource("4_gqy4t")
-
-[node name="AI" type="Node2D" parent="."]
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 128
-collision_mask = 2048
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_3bnwc")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+material = SubResource("ShaderMaterial_to1by")
+texture = ExtResource("4_mmqo6")
+
+[node name="FiniteStateMachine" type="Node2D" parent="."]
+script = ExtResource("4_sfrkf")
+host_path = NodePath("..")
+move_states = {
+"idle": NodePath("Idle")
+}
+default_state = "idle"
+
+[node name="Idle" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("5_5c7q7")
+move_chance = null
+can_turn = null
+
+[node name="MoveTimer" type="Timer" parent="FiniteStateMachine/Idle"]
+one_shot = true
+
+[node name="Flee" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("4_gqy4t")
+
+[node name="Hit" type="Node2D" parent="FiniteStateMachine"]
+script = ExtResource("4_gqy4t")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2048
+script = ExtResource("6_jb60j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_3bnwc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "walk"
+libraries = {
+"": SubResource("AnimationLibrary_2cnpt")
+}
+
+[connection signal="vital_died" from="Vitality" to="." method="on_vital_death"]
+[connection signal="timeout" from="FiniteStateMachine/Idle/MoveTimer" to="FiniteStateMachine/Idle" method="_on_move_timer_timeout"]

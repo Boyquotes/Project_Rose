@@ -8,6 +8,7 @@ signal animation_changed
 signal landed
 
 ###actor_export_data###
+@export var health := 5
 @export var base_soft_speed_cap := 100.0
 @export var base_jump_spd := 50.0
 @export var attack_damage := 5
@@ -38,15 +39,13 @@ var floor_normal := Vector2(0, -1)
 var grav_activated := true
 var fric_activated := true
 var prev_anim := ""
+var was_on_floor := false
 
 var base_anim : AnimationPlayer
 var attack_coll_data : Area2D
-var powerup_data : Node2D
+
 
 func _ready():
-	base_anim = $AnimatorComponent
-	attack_coll_data = $Utilities/AttackCollision
-	powerup_data = $Utilities/Powerups
 	init()
 
 func init():
@@ -61,7 +60,6 @@ func init():
 	hor_dir = 1
 	vel = Vector2(0, 0)
 	floor_normal = Vector2(0, -1)
-	$CollisionBox.disabled = false
 	call_init_in_children(self, self)
 
 
@@ -88,17 +86,48 @@ func _execute(_delta):
 
 
 #moves the player and runs state logic
-func _phys_execute(_delta):
+func _phys_execute(delta):
 	if get_tree().paused:
-		_paused_phys_execute(_delta)
+		_paused_phys_execute(delta)
 	else:
-		_unpaused_phys_execute(_delta)
+		_unpaused_phys_execute(delta)
 
-func _paused_phys_execute(_delta):
-	pass
+func _paused_phys_execute(delta):
+	state_machine.paused_execute(delta)
 
-func _unpaused_phys_execute(_delta):
-	pass
+func _unpaused_phys_execute(delta):
+	#state machine
+	state_machine.execute(delta)
+	#count time in air
+	air_time += delta
+	#move across surfaces
+	vel.y = vert_spd
+	vel.x = hor_spd
+	set_velocity(vel)
+
+	move_and_slide()
+	vel = velocity
+	#no grav acceleration when checked floor
+	if is_on_floor():
+		if not was_on_floor:
+			emit_signal("landed")
+		air_time = 0
+		vel.y = 0
+		vert_spd = 0
+		was_on_floor = true
+	else:
+		was_on_floor = false
+	
+	if is_on_ceiling():
+		vert_spd = 0
+	
+	if grav_activated:
+		vert_spd += true_grav
+	
+	#cap grav
+	if vert_spd > grav_max && grav_activated:
+		vert_spd = grav_max
+
 
 func _cleanup():
 	pass
@@ -110,6 +139,14 @@ func animate(animator : AnimationPlayer, anim : String, cont = true):
 		prev_anim = anim
 		animator.stop(cont)
 	animator.play(anim)
+
+func on_vital_death(vital : Vitality):
+	if vital.vital_type == GlobalEnums.VitalType.BRAIN:
+		kill()
+	if vital.vital_type == GlobalEnums.VitalType.HEART:
+		health -= 1
+	if health <= 0:
+		kill()
 
 func kill():
 	#TODO: death anims and effects
@@ -156,8 +193,17 @@ func add_vel(speed : float, degrees : float):
 	hor_spd = speed * cos(deg_to_rad(degrees))
 	vert_spd = speed * sin(deg_to_rad(degrees))
 
-func has_powerup(powerup):
-	return powerup_data.powerups[powerup]
+#Temporarily change grav for the convenience of some abilities.
+func change_grav(g):
+	true_grav = g
+
+#Temporarily change friction for the convenience of some abilities.
+func change_fric(f):
+	true_fric = f
+
+#useful for easily changing states without having a lot of local references
+func change_move_state(state: NodePath):
+	state_machine.current_state.exit(get_node(state))
 
 func call_init_in_children(host, parent):
 	for child in parent.get_children():

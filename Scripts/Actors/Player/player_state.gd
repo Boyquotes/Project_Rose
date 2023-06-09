@@ -1,10 +1,5 @@
 class_name PlayerState
-extends State
-
-@export var can_turn := true
-
-var move_direction : int
-var can_move := true
+extends MoveState
 
 var switch_slash := false
 var switch_bash := false
@@ -52,14 +47,6 @@ func get_aim_direction():
 #
 #	return input_direction
 
-#sets direction and turns the player appropriately
-func update_look_direction_and_scale(direction):
-	if direction == 0:
-		return
-	if host.hor_dir != direction:
-		turn(direction)
-
-
 func turn(direction):
 	if host.hor_dir != 0:
 		host.get_node("Sprites").scale.x = host.get_node("Sprites").scale.x * -1
@@ -98,32 +85,6 @@ func handle_action():
 			elif Input.is_action_just_pressed("Switch_Slash") and host.has_powerup(GlobalEnums.Powerups.VORTEX_STYLE):
 				switch_slash = true
 	return false
-
-
-func _execute(_delta):
-	if super._execute(_delta):
-		return exiting
-	if (move_direction != 0
-			and host.true_soft_speed_cap >= abs(host.hor_spd)
-			and can_move):
-		# if you're changing direction, accelerate faster in the other direction for !!game feel!!
-		if move_direction != sign(host.hor_spd):
-			host.true_acceleration = host.base_acceleration * 1.5
-		else:
-			host.true_acceleration = host.base_acceleration
-		
-		if not host.true_soft_speed_cap == abs(host.hor_spd) or sign(host.hor_spd) != move_direction:
-			host.hor_spd += host.true_acceleration * move_direction
-		if host.true_soft_speed_cap < abs(host.hor_spd):
-			host.hor_spd = host.true_soft_speed_cap * move_direction
-	# deccelerate after some special movement
-	elif host.hor_spd != 0 and host.fric_activated:
-		if abs(host.hor_spd) <= host.true_fric:
-			host.hor_spd = 0
-		else:
-			host.hor_spd -= host.true_fric * sign(host.hor_spd)
-	return exiting
-
 
 func _exit(state):
 	super._exit(state)

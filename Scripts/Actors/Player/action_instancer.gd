@@ -34,5 +34,4 @@ func initialize_hitboxes(action):
 	hitboxes.host = host
 	hitboxes.action_controller = action_controller
 	hitboxes.action_instancer = self
-	hitboxes.init()
 	return action

@@ -1,7 +1,7 @@
 extends Node
 
-enum AttackType {NONE, SLASHING, BASHING, PIERCING, TRUE}
+enum AttackType {ALL, SLASHING, BASHING, PIERCING, TRUE}
 enum DisplacementType {NONE, SHOVE, ARCING, DIRECTIONAL, EXPLOSIVE}
 enum Powerups {BASE_STYLE, VORTEX_STYLE, METEOR_STYLE, VOLT_STYLE, FOCUS, CHANNEL}
-
+enum VitalType {BRAIN, HEART}
 enum Materials {GRASS, DIRT}

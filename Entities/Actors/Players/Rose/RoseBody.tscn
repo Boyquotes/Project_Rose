@@ -1,18 +1,18 @@
 [gd_scene load_steps=49 format=3 uid="uid://cln0p0ujudono"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_fk0us"]
-[ext_resource type="Script" path="res://Scripts/Actors/Player/finite_state_machine.gd" id="2_nyi3l"]
-[ext_resource type="PackedScene" uid="uid://b7ojl8v2dr6ic" path="res://Entities/Actors/Components/HealthComponent.tscn" id="2_r2lnc"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/Rose/rose_action_instancer.gd" id="2_rv5x2"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/crouch_state.gd" id="3_7ptux"]
 [ext_resource type="PackedScene" uid="uid://cbacgr06p2n8d" path="res://Entities/Actors/Components/HitBoxComponentComponent.tscn" id="3_nu4hu"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/move_on_ground_state.gd" id="3_wsm4e"]
 [ext_resource type="Shader" path="res://Resources/Shaders/MultCelShader.gdshader" id="4_ahpf3"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/move_in_air_state.gd" id="4_fqp0q"]
+[ext_resource type="Script" path="res://Entities/Actors/vitality.gd" id="4_radp3"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/ledge_grab_state.gd" id="5_khmi4"]
 [ext_resource type="Texture2D" uid="uid://di6yfqroio682" path="res://Assets/Sprites/Actors/Rose/Movement/Crouch_spec.png" id="6_kpanm"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/hit_state.gd" id="6_l568u"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/action_state.gd" id="7_f8aj2"]
+[ext_resource type="Script" path="res://Scripts/Actors/Player/player_fsm.gd" id="8_8cpf4"]
 [ext_resource type="AnimationLibrary" uid="uid://bt2jl0ipha4it" path="res://Resources/Entities/Actors/Players/Rose/RoseAnimations.res" id="8_r86g7"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/action_controller.gd" id="8_stjrx"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/rest_state.gd" id="10_0y204"]
@@ -36,7 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://dymsuoh43v4xl" path="res://Assets/sfx/slide/dirt_small_03.wav" id="69_f7myh"]
 [ext_resource type="AudioStream" uid="uid://34xxjcy1hxrk" path="res://Assets/sfx/slide/dirt_small_04.wav" id="70_hi1u4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p8e1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1agdq"]
 size = Vector2(20, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hehew"]
@@ -258,16 +258,18 @@ base_grav = 20.0
 grav_max = 350.0
 state_machine = NodePath("MoveStates")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_r2lnc")]
-max_health = 100
+[node name="Vitality" type="Node" parent="."]
+script = ExtResource("4_radp3")
 
 [node name="HitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
+collision_mask = 128
 
 [node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("RectangleShape2D_5p8e1")
+shape = SubResource("RectangleShape2D_1agdq")
 disabled = true
 
 [node name="CrouchHitBoxComponent" parent="." instance=ExtResource("3_nu4hu")]
+collision_mask = 128
 
 [node name="HitBox" type="CollisionShape2D" parent="CrouchHitBoxComponent"]
 position = Vector2(0, 11)
@@ -291,7 +293,7 @@ shape = SubResource("1")
 disabled = true
 
 [node name="MoveStates" type="Node2D" parent="."]
-script = ExtResource("2_nyi3l")
+script = ExtResource("8_8cpf4")
 host_path = NodePath("..")
 move_states = {
 "action": NodePath("Action"),
@@ -301,6 +303,7 @@ move_states = {
 "move_in_air": NodePath("MoveInAir"),
 "move_on_ground": NodePath("MoveOnGround")
 }
+default_state = "move_on_ground"
 
 [node name="MoveOnGround" type="Node2D" parent="MoveStates"]
 script = ExtResource("3_wsm4e")
@@ -371,7 +374,7 @@ one_shot = true
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
 material = SubResource("ShaderMaterial_2qgdc")
 texture = SubResource("CanvasTexture_lje0h")
-offset = Vector2(5, 0)
+offset = Vector2(3, 0)
 
 [node name="Animators" type="Node2D" parent="."]
 
@@ -380,12 +383,16 @@ offset = Vector2(5, 0)
 [node name="Utilities" type="Node2D" parent="."]
 
 [node name="DetectOtherArea" type="Area2D" parent="Utilities"]
+collision_layer = 0
+collision_mask = 896
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Utilities/DetectOtherArea"]
 visible = false
 shape = SubResource("RectangleShape2D_3m3ny")
 
 [node name="AttackCollision" type="Area2D" parent="Utilities"]
+collision_layer = 2048
+collision_mask = 896
 
 [node name="LedgeBoxL" type="Area2D" parent="Utilities"]
 position = Vector2(-10, -27)
@@ -492,6 +499,7 @@ texture = ExtResource("28_ulm3k")
 
 [node name="Powerups" type="Node2D" parent="Utilities"]
 script = ExtResource("20_7yhyd")
+powerups = {}
 
 [node name="SoundNode" type="Node2D" parent="Utilities"]
 script = ExtResource("59_i7kba")
@@ -510,8 +518,13 @@ current = true
 
 [connection signal="animation_changed" from="." to="." method="_on_rose_animation_changed"]
 [connection signal="footstep" from="." to="Utilities/SoundNode" method="_on_rose_body_footstep"]
+[connection signal="landed" from="." to="MoveStates/Action" method="_on_rose_landed"]
 [connection signal="silence" from="." to="Utilities/SoundNode" method="_on_rose_body_silence"]
+[connection signal="area_entered" from="HitBoxComponent" to="Vitality" method="_on_player_hit"]
+[connection signal="area_entered" from="CrouchHitBoxComponent" to="Vitality" method="_on_player_hit"]
 [connection signal="animation_finished" from="AnimatorComponent" to="." method="_on_animator_component_animation_finished"]
 [connection signal="timeout" from="MoveStates/MoveOnGround/LookTimer" to="MoveStates/MoveOnGround" method="_on_look_timer_timeout"]
 [connection signal="timeout" from="MoveStates/MoveInAir/LedgeDisableTimer" to="MoveStates/MoveInAir" method="_on_LedgeDisableTimer_timeout" flags=18]
 [connection signal="timeout" from="MoveStates/Crouch/LookTimer" to="MoveStates/Crouch" method="_on_look_timer_timeout"]
+[connection signal="area_entered" from="Utilities/DetectOtherArea" to="." method="_on_detect_DetectOtherArea_area_entered"]
+[connection signal="area_exited" from="Utilities/DetectOtherArea" to="." method="_on_detect_DetectOtherArea_area_exited"]

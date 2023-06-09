@@ -115,5 +115,4 @@ func _on_action_debug_exit():
 
 func _on_rose_landed():
 	if state_machine.move_state == "action":
-		#exit_ground()
 		host.change_to_grounded_anim(host.base_anim, action_instancer.last_queued_action)

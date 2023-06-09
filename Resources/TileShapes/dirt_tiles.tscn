@@ -113,7 +113,7 @@ shader_parameter/theta = 0.0
 shader_parameter/darkArea = Color(0.0627451, 0.0705882, 0.109804, 1)
 shader_parameter/segmentation = 1.0
 
-[sub_resource type="Resource" id="Resource_cjfjn"]
+[sub_resource type="Resource" id="Resource_okxwg"]
 script = ExtResource("2_n1t2d")
 texture_idx = 2
 flip = false
@@ -124,9 +124,9 @@ script = ExtResource("3_87l1u")
 position = Vector2(-314, 138)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_cjfjn")
+properties = SubResource("Resource_okxwg")
 
-[sub_resource type="Resource" id="Resource_87p8a"]
+[sub_resource type="Resource" id="Resource_5l8ex"]
 script = ExtResource("2_n1t2d")
 texture_idx = 2
 flip = false
@@ -137,9 +137,9 @@ script = ExtResource("3_87l1u")
 position = Vector2(-314, 202)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_87p8a")
+properties = SubResource("Resource_5l8ex")
 
-[sub_resource type="Resource" id="Resource_jsesn"]
+[sub_resource type="Resource" id="Resource_hinms"]
 script = ExtResource("2_n1t2d")
 texture_idx = 2
 flip = false
@@ -150,9 +150,9 @@ script = ExtResource("3_87l1u")
 position = Vector2(-314, 138)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_jsesn")
+properties = SubResource("Resource_hinms")
 
-[sub_resource type="Resource" id="Resource_klqpm"]
+[sub_resource type="Resource" id="Resource_d15n8"]
 script = ExtResource("2_n1t2d")
 texture_idx = 2
 flip = false
@@ -163,9 +163,9 @@ script = ExtResource("3_87l1u")
 position = Vector2(-90, 138)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_klqpm")
+properties = SubResource("Resource_d15n8")
 
-[sub_resource type="Resource" id="Resource_07a1t"]
+[sub_resource type="Resource" id="Resource_p8dbx"]
 script = ExtResource("2_n1t2d")
 texture_idx = 2
 flip = false
@@ -176,7 +176,7 @@ script = ExtResource("3_87l1u")
 position = Vector2(-90, 202)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_07a1t")
+properties = SubResource("Resource_p8dbx")
 
 [sub_resource type="Resource" id="Resource_wgsqx"]
 script = ExtResource("4_ar41d")

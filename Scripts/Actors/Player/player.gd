@@ -31,8 +31,9 @@ var focus := 0
 
 var rad := 0.0
 var deg := 0.0
-var speed_mag
-var was_on_floor := false
+var cape_corrected := false
+var powerup_data : Node2D
+
 @onready var attack_collision = $Utilities/AttackCollision
 @onready var cams : Array[PlayerCamera2D] = []
 @onready var powerups = $Utilities/Powerups
@@ -45,6 +46,9 @@ var was_on_floor := false
 
 func init():
 	super.init()
+	base_anim = $AnimatorComponent
+	attack_coll_data = $Utilities/AttackCollision
+	powerup_data = $Utilities/Powerups
 	flora = max_flora
 	focus = max_focus
 	if not Engine.is_editor_hint():
@@ -77,63 +81,25 @@ func _execute(_delta):
 	deg = rad_to_deg(rad)
 	$Utilities/TargetReticle.global_rotation = rad
 
-
-
 func _unpaused_phys_execute(delta):
 	super._unpaused_phys_execute(delta)
-	#state machine
-	state_machine.execute(delta)
-	#count time in air
-	air_time += delta
-	#move across surfaces
-	vel.y = vert_spd
-	vel.x = hor_spd
-	set_velocity(vel)
-
-	move_and_slide()
-	vel = velocity
-	#no grav acceleration when checked floor
-	if is_on_floor():
-		if not was_on_floor:
-			emit_signal("landed")
-		air_time = 0
-		vel.y = 0
-		vert_spd = 0
-		was_on_floor = true
-	else:
-		was_on_floor = false
 	
-	if is_on_ceiling():
-		vert_spd = 0
-	
-	if grav_activated:
-		vert_spd += true_grav
-	
-	#cap grav
-	if vert_spd > grav_max && grav_activated:
-		vert_spd = grav_max
-	
-	if vert_spd >= 150 and not done:
-		done = true
+	#cape correction
+	if vert_spd >= 150 and not cape_corrected:
+		cape_corrected = true
 		get_node("Utilities/CapeTarget").scale.x *= -1
-	if vert_spd < 150 and done:
-		done = false
+	if vert_spd < 150 and cape_corrected:
+		cape_corrected = false
 		get_node("Utilities/CapeTarget").scale.x *= -1
 
-var done = false
-
-func _paused_phys_execute(delta):
-	state_machine.paused_execute(delta)
-
-
-##trigger for detecting a hitbox entering player sight zone
-#func _on_detect_DetectOtherArea_area_entered(area):
-#	if(!targettable_hitboxes.has(area)):
-#		targettable_hitboxes.push_back(area)
-##trigger for detecting a hitbox leaving player sight zone
-#func _on_detect_DetectOtherArea_area_exited(area):
-#	if(targettable_hitboxes.has(area)):
-#		targettable_hitboxes.erase(area)
+#trigger for detecting a hitbox entering player sight zone
+func _on_detect_DetectOtherArea_area_entered(area):
+	if(!targettable_hitboxes.has(area)):
+		targettable_hitboxes.push_back(area)
+#trigger for detecting a hitbox leaving player sight zone
+func _on_detect_DetectOtherArea_area_exited(area):
+	if(targettable_hitboxes.has(area)):
+		targettable_hitboxes.erase(area)
 
 
 #useful for easily getting the general hor_dir of the mouse
@@ -163,17 +129,6 @@ func mouse_d() -> bool:
 		return (deg < 150 && deg > 30)
 	else:
 		return false
-
-
-#Temporarily change grav for the convenience of some abilities.
-func change_grav(g):
-	true_grav = g
-
-
-#Temporarily change friction for the convenience of some abilities.
-func change_fric(f):
-	true_fric = f
-
 
 #useful for easily adding or subtracting vel to an or effect ability through animation
 func add_vel(speed : float, degrees : float = $MoveStates/Action/ActionController.action_degrees):
@@ -221,10 +176,6 @@ func change_to_grounded_anim(animator : AnimationPlayer, last_queued_action):
 		animator.play(grounded_anim)
 		animator.seek(frame, true)
 
-#useful for easily changing states without having a lot of local references
-func change_move_state(state: NodePath):
-	state_machine.current_state.exit(get_node(state))
-
 func change_flora(flora_in):
 	flora += flora_in
 	if flora > max_flora:
@@ -257,6 +208,9 @@ func attach_cam(cam : PlayerCamera2D):
 	cam.align()
 	
 
+func has_powerup(powerup):
+	return powerup_data.powerups[powerup]
+
 func save_data():
 	var save_dict = {
 		"pos_x" : position.x,
@@ -283,6 +237,6 @@ func _on_rose_animation_changed(previous_anim, new_anim):
 		activate_fric()
 		state_machine.crouch_state.slide = false
 		emit_signal("silence")
-	if new_anim == "RoseAnimations/Idle":
+	if new_anim == "RoseAnimations/Idle" || new_anim == "RoseAnimations/Crouch" || new_anim == "RoseAnimations/LookUp":
 		emit_signal("footstep", 4.0, -30)
 

@@ -72,6 +72,11 @@ _data = {
 
 [node name="ItemNeedleAction" instance=ExtResource("1_av26u")]
 script = ExtResource("2_w8ps8")
+type = 3
+blockable = true
+
+[node name="Hitboxes" parent="." index="1" node_paths=PackedStringArray("action")]
+action = NodePath("..")
 
 [node name="Area2D" type="Area2D" parent="Hitboxes" index="0"]
 rotation = 0.785398

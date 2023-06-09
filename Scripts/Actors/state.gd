@@ -1,7 +1,7 @@
 class_name State
 extends Node2D
 
-var host : Player
+var host : Actor
 var state_machine : FiniteStateMachine
 var exiting := false
 

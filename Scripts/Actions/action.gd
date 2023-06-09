@@ -1,13 +1,17 @@
 class_name CharacterAction
 extends Node2D
 
+@export var type := GlobalEnums.AttackType.SLASHING
 @export var cancelable := true
-@export var damage := 1
+@export var damage := 2
+@export var hit_limit := 1
+@export var blockable := false
 @export var flora_cost := 0
 @export var focus_cost := 0
 
 var action_spawn : Node2D
 var host : Player
+var hits := 0
 
 func start():
 	if action_spawn:

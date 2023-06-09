@@ -94,9 +94,16 @@ _data = {
 }
 
 [node name="SecondaryBaseCrouch" instance=ExtResource("1_av26u")]
+type = 2
 cancelable = false
+damage = 4
+
+[node name="Hitboxes" parent="." index="1" node_paths=PackedStringArray("action")]
+action = NodePath("..")
 
 [node name="Area2D" type="Area2D" parent="Hitboxes" index="0"]
+collision_layer = 2048
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Area2D" index="0"]
 position = Vector2(7.5, -15)
